@@ -6,9 +6,10 @@ import { Badge } from "@/components/ui/badge";
 
 interface CartDrawerProps {
   onCheckout: () => void;
+  checkingOut?: boolean;
 }
 
-export const CartDrawer = ({ onCheckout }: CartDrawerProps) => {
+export const CartDrawer = ({ onCheckout, checkingOut = false }: CartDrawerProps) => {
   const { items, updateQuantity, removeItem, getTotalItems, getTotalPrice } = useCart();
 
   return (
@@ -95,8 +96,9 @@ export const CartDrawer = ({ onCheckout }: CartDrawerProps) => {
                   onClick={onCheckout} 
                   className="w-full bg-gradient-primary hover:opacity-90"
                   size="lg"
+                  disabled={checkingOut}
                 >
-                  Proceed to Checkout
+                  {checkingOut ? "Creating Checkout..." : "Proceed to Checkout"}
                 </Button>
               </div>
             </>

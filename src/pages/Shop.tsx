@@ -79,6 +79,20 @@ const Shop = () => {
   const handleCheckout = async () => {
     if (!product || checkoutLoading) return;
 
+    // If not logged in, ask for a guest email
+    let guestEmail: string | undefined = undefined;
+    if (!user?.email) {
+      guestEmail = window.prompt("Enter your email for receipts and order updates:");
+      if (!guestEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(guestEmail)) {
+        toast({
+          title: "Email required",
+          description: "Please enter a valid email to continue.",
+          variant: "destructive",
+        });
+        return;
+      }
+    }
+
     setCheckoutLoading(true);
     try {
       const checkoutItems = [{
@@ -87,13 +101,16 @@ const Shop = () => {
       }];
 
       const { data, error } = await supabase.functions.invoke('create-checkout', {
-        body: { items: checkoutItems }
+        body: { 
+          items: checkoutItems,
+          guestEmail
+        }
       });
 
       if (error) throw error;
 
       if (data?.url) {
-        window.location.href = data.url; // Direct redirect instead of new tab
+        window.location.href = data.url;
       } else {
         throw new Error("No checkout URL received");
       }

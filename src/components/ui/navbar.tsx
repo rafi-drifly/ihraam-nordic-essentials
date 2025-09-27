@@ -10,11 +10,11 @@ import { supabase } from "@/integrations/supabase/client";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const [checkingOut, setCheckingOut] = useState(false);
   const location = useLocation();
   const { user, signOut } = useAuth();
 
   const handleCheckout = async () => {
-    // Get cart items and create checkout
     const cartItems = JSON.parse(localStorage.getItem('ihraam-cart') || '[]');
     
     if (cartItems.length === 0) {
@@ -22,11 +22,25 @@ const Navbar = () => {
       return;
     }
 
+    // If not logged in, ask for a guest email
+    let guestEmail: string | undefined = undefined;
+    if (!user?.email) {
+      guestEmail = window.prompt("Enter your email for receipts and order updates:");
+      if (!guestEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(guestEmail)) {
+        alert("A valid email is required to continue.");
+        return;
+      }
+    }
+
+    setCheckingOut(true);
     try {
       console.log('Starting checkout with items:', cartItems);
       
       const { data, error } = await supabase.functions.invoke('create-checkout', {
-        body: { items: cartItems.map((item: any) => ({ id: item.id, quantity: item.quantity })) }
+        body: { 
+          items: cartItems.map((item: any) => ({ id: item.id, quantity: item.quantity })),
+          guestEmail
+        }
       });
 
       console.log('Checkout response:', { data, error });
@@ -47,6 +61,8 @@ const Navbar = () => {
     } catch (error) {
       console.error('Error creating checkout:', error);
       alert(`Checkout failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    } finally {
+      setCheckingOut(false);
     }
   };
 
@@ -93,7 +109,7 @@ const Navbar = () => {
 
           {/* Cart and Mobile menu button */}
           <div className="flex items-center space-x-4">
-            <CartDrawer onCheckout={handleCheckout} />
+            <CartDrawer onCheckout={handleCheckout} checkingOut={checkingOut} />
             
             {user ? (
               <div className="flex items-center space-x-2">

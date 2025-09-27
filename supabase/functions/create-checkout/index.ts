@@ -12,6 +12,7 @@ interface CheckoutRequest {
     id: string;
     quantity: number;
   }>;
+  guestEmail?: string;
   shippingAddress?: {
     name: string;
     line1: string;
@@ -37,8 +38,8 @@ serve(async (req) => {
       apiVersion: "2025-08-27.basil",
     });
 
-    const { items, shippingAddress }: CheckoutRequest = await req.json();
-    console.log("Checkout request:", { items, shippingAddress });
+    const { items, shippingAddress, guestEmail }: CheckoutRequest = await req.json();
+    console.log("Checkout request:", { items, shippingAddress, guestEmail });
 
     // Get user if authenticated (optional for guest checkout)
     const authHeader = req.headers.get("Authorization");
@@ -50,6 +51,11 @@ serve(async (req) => {
       console.log("Authenticated user:", user?.id);
     } else {
       console.log("No auth header - guest checkout");
+    }
+
+    // Require guestEmail if no authenticated user
+    if (!user?.email && !guestEmail) {
+      throw new Error("Guest email is required for checkout");
     }
 
     // Find or create Stripe customer
@@ -101,7 +107,7 @@ serve(async (req) => {
       .from('orders')
       .insert({
         user_id: user?.id || null,
-        guest_email: user?.email || null,
+        guest_email: user?.email || guestEmail || null,
         total_amount: finalTotal,
         currency: 'EUR',
         status: 'pending',
@@ -173,7 +179,7 @@ serve(async (req) => {
     // Create checkout session
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
-      customer_email: customerId ? undefined : undefined,
+      customer_email: customerId ? undefined : (user?.email || guestEmail),
       line_items: lineItems,
       mode: "payment",
       success_url: `${req.headers.get("origin")}/order-success?session_id={CHECKOUT_SESSION_ID}`,
