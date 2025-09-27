@@ -1,16 +1,128 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Minus, Plus, ShoppingCart, Star, Check } from "lucide-react";
+import { useCart } from "@/hooks/useCart";
+import { useAuth } from "@/hooks/useAuth";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 import ihraamProduct from "@/assets/ihraam-product.jpg";
 import ihraamWorn from "@/assets/ihraam-worn.jpg";
 
+interface Product {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  currency: string;
+  stock_quantity: number;
+  images: string[];
+  is_active: boolean;
+}
+
 const Shop = () => {
   const [quantity, setQuantity] = useState(1);
+  const [product, setProduct] = useState<Product | null>(null);
+  const [loading, setLoading] = useState(true);
+  const { addItem } = useCart();
+  const { user } = useAuth();
+  const { toast } = useToast();
+
+  useEffect(() => {
+    fetchProduct();
+  }, []);
+
+  const fetchProduct = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('products')
+        .select('*')
+        .eq('is_active', true)
+        .single();
+
+      if (error) throw error;
+      
+      setProduct(data);
+    } catch (error) {
+      console.error('Error fetching product:', error);
+      toast({
+        title: "Error",
+        description: "Failed to load product. Please refresh the page.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const incrementQuantity = () => setQuantity(prev => prev + 1);
   const decrementQuantity = () => setQuantity(prev => Math.max(1, prev - 1));
+
+  const handleAddToCart = () => {
+    if (!product) return;
+
+    addItem({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: ihraamProduct
+    }, quantity);
+
+    toast({
+      title: "Added to cart",
+      description: `${quantity} x ${product.name} added to your cart.`,
+    });
+  };
+
+  const handleCheckout = async () => {
+    if (!product) return;
+
+    try {
+      const checkoutItems = [{
+        id: product.id,
+        quantity: quantity
+      }];
+
+      const { data, error } = await supabase.functions.invoke('create-checkout', {
+        body: { items: checkoutItems }
+      });
+
+      if (error) throw error;
+
+      if (data?.url) {
+        window.open(data.url, '_blank');
+      }
+    } catch (error) {
+      console.error('Error creating checkout:', error);
+      toast({
+        title: "Error",
+        description: "Failed to create checkout session. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen py-8 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary mx-auto"></div>
+          <p className="mt-4 text-muted-foreground">Loading product...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!product) {
+    return (
+      <div className="min-h-screen py-8 flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-lg text-muted-foreground">Product not found</p>
+        </div>
+      </div>
+    );
+  }
 
   const features = [
     "100% Premium Cotton",
@@ -70,22 +182,21 @@ const Shop = () => {
                 </div>
               </div>
               <h1 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-                Pure Ihraam Cloth Set
+                {product.name}
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Premium quality Ihraam set made from 100% cotton. Lightweight, comfortable, 
-                and perfectly suited for your sacred pilgrimage to Makkah.
+                {product.description}
               </p>
             </div>
 
             {/* Price */}
             <div className="border-t border-b border-border py-6">
               <div className="flex items-baseline gap-2">
-                <span className="text-4xl font-bold text-foreground">15€</span>
+                <span className="text-4xl font-bold text-foreground">{product.price}€</span>
                 <span className="text-lg text-muted-foreground">+ shipping</span>
               </div>
               <p className="text-sm text-muted-foreground mt-1">
-                Free shipping on orders over 50€
+                Stock: {product.stock_quantity} available
               </p>
             </div>
 
@@ -135,11 +246,19 @@ const Shop = () => {
                 <Button 
                   size="lg" 
                   className="w-full bg-gradient-primary hover:opacity-90 transition-opacity"
+                  onClick={handleAddToCart}
+                  disabled={product.stock_quantity < quantity}
                 >
                   <ShoppingCart className="w-5 h-5 mr-2" />
-                  Add to Cart - {(15 * quantity).toFixed(0)}€
+                  Add to Cart - {(product.price * quantity).toFixed(0)}€
                 </Button>
-                <Button variant="outline" size="lg" className="w-full">
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="w-full"
+                  onClick={handleCheckout}
+                  disabled={product.stock_quantity < quantity}
+                >
                   Buy Now with Stripe
                 </Button>
               </div>

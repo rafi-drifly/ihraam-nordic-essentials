@@ -1,11 +1,21 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ShoppingCart } from "lucide-react";
+import { Menu, X, User, LogOut } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
+import { CartDrawer } from "@/components/shop/CartDrawer";
+import { AuthModal } from "@/components/auth/AuthModal";
+import { supabase } from "@/integrations/supabase/client";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
   const location = useLocation();
+  const { user, signOut } = useAuth();
+
+  const handleCheckout = async () => {
+    // This will be implemented in the Shop component
+  };
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -50,13 +60,24 @@ const Navbar = () => {
 
           {/* Cart and Mobile menu button */}
           <div className="flex items-center space-x-4">
-            <Button variant="outline" size="sm" className="relative">
-              <ShoppingCart className="h-4 w-4" />
-              <span className="sr-only">Shopping cart</span>
-              <span className="absolute -top-2 -right-2 bg-accent text-accent-foreground text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                0
-              </span>
-            </Button>
+            <CartDrawer onCheckout={handleCheckout} />
+            
+            {user ? (
+              <div className="flex items-center space-x-2">
+                <span className="text-sm text-muted-foreground hidden sm:block">
+                  {user.email}
+                </span>
+                <Button variant="ghost" size="sm" onClick={signOut}>
+                  <LogOut className="h-4 w-4" />
+                  <span className="hidden sm:ml-2 sm:inline">Sign Out</span>
+                </Button>
+              </div>
+            ) : (
+              <Button variant="outline" size="sm" onClick={() => setShowAuthModal(true)}>
+                <User className="h-4 w-4" />
+                <span className="hidden sm:ml-2 sm:inline">Sign In</span>
+              </Button>
+            )}
 
             {/* Mobile menu button */}
             <div className="md:hidden">
@@ -93,6 +114,8 @@ const Navbar = () => {
           </div>
         )}
       </div>
+      
+      <AuthModal open={showAuthModal} onOpenChange={setShowAuthModal} />
     </nav>
   );
 };
