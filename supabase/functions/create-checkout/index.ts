@@ -47,6 +47,9 @@ serve(async (req) => {
       const token = authHeader.replace("Bearer ", "");
       const { data } = await supabaseClient.auth.getUser(token);
       user = data.user;
+      console.log("Authenticated user:", user?.id);
+    } else {
+      console.log("No auth header - guest checkout");
     }
 
     // Find or create Stripe customer
@@ -88,8 +91,13 @@ serve(async (req) => {
     const shippingCost = 5; // 5€
     const finalTotal = totalAmount + shippingCost;
 
-    // Create order in Supabase first
-    const { data: order, error: orderError } = await supabaseClient
+    // Create order in Supabase first - use service role client for order creation
+    const supabaseAdmin = createClient(
+      Deno.env.get("SUPABASE_URL") ?? "",
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
+    );
+
+    const { data: order, error: orderError } = await supabaseAdmin
       .from('orders')
       .insert({
         user_id: user?.id || null,
@@ -102,6 +110,8 @@ serve(async (req) => {
       })
       .select()
       .single();
+
+    console.log("Order creation result:", { order, orderError });
 
     if (orderError) {
       throw new Error(`Error creating order: ${orderError.message}`);
@@ -119,7 +129,7 @@ serve(async (req) => {
       };
     });
 
-    const { error: orderItemsError } = await supabaseClient
+    const { error: orderItemsError } = await supabaseAdmin
       .from('order_items')
       .insert(orderItems);
 

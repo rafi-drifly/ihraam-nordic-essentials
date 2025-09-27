@@ -18,21 +18,35 @@ const Navbar = () => {
     const cartItems = JSON.parse(localStorage.getItem('ihraam-cart') || '[]');
     
     if (cartItems.length === 0) {
+      alert('Your cart is empty');
       return;
     }
 
     try {
+      console.log('Starting checkout with items:', cartItems);
+      
       const { data, error } = await supabase.functions.invoke('create-checkout', {
         body: { items: cartItems.map((item: any) => ({ id: item.id, quantity: item.quantity })) }
       });
 
-      if (error) throw error;
+      console.log('Checkout response:', { data, error });
+
+      if (error) {
+        console.error('Checkout error:', error);
+        alert(`Checkout failed: ${error.message}`);
+        return;
+      }
 
       if (data?.url) {
+        // Clear cart after successful checkout
+        localStorage.removeItem('ihraam-cart');
         window.location.href = data.url;
+      } else {
+        alert('No checkout URL received');
       }
     } catch (error) {
       console.error('Error creating checkout:', error);
+      alert(`Checkout failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   };
 
