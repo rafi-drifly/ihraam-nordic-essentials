@@ -25,6 +25,7 @@ const Shop = () => {
   const [quantity, setQuantity] = useState(1);
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
   const { addItem } = useCart();
   const { user } = useAuth();
   const { toast } = useToast();
@@ -76,8 +77,9 @@ const Shop = () => {
   };
 
   const handleCheckout = async () => {
-    if (!product) return;
+    if (!product || checkoutLoading) return;
 
+    setCheckoutLoading(true);
     try {
       const checkoutItems = [{
         id: product.id,
@@ -91,15 +93,19 @@ const Shop = () => {
       if (error) throw error;
 
       if (data?.url) {
-        window.open(data.url, '_blank');
+        window.location.href = data.url; // Direct redirect instead of new tab
+      } else {
+        throw new Error("No checkout URL received");
       }
     } catch (error) {
       console.error('Error creating checkout:', error);
       toast({
-        title: "Error",
+        title: "Checkout Error",
         description: "Failed to create checkout session. Please try again.",
         variant: "destructive",
       });
+    } finally {
+      setCheckoutLoading(false);
     }
   };
 
@@ -257,9 +263,9 @@ const Shop = () => {
                   size="lg" 
                   className="w-full"
                   onClick={handleCheckout}
-                  disabled={product.stock_quantity < quantity}
+                  disabled={product.stock_quantity < quantity || checkoutLoading}
                 >
-                  Buy Now with Stripe
+                  {checkoutLoading ? "Creating Checkout..." : "Buy Now with Stripe"}
                 </Button>
               </div>
             </div>

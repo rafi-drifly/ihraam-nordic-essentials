@@ -79,7 +79,55 @@ serve(async (req) => {
       throw new Error("No products found");
     }
 
-    // Create line items for Stripe checkout
+    // Calculate total amount
+    const totalAmount = items.reduce((total, item) => {
+      const product = products.find(p => p.id === item.id);
+      return total + (product ? product.price * item.quantity : 0);
+    }, 0);
+
+    const shippingCost = 5; // 5€
+    const finalTotal = totalAmount + shippingCost;
+
+    // Create order in Supabase first
+    const { data: order, error: orderError } = await supabaseClient
+      .from('orders')
+      .insert({
+        user_id: user?.id || null,
+        guest_email: user?.email || null,
+        total_amount: finalTotal,
+        currency: 'EUR',
+        status: 'pending',
+        shipping_address: shippingAddress || {},
+        order_number: `ORD-${Date.now()}`
+      })
+      .select()
+      .single();
+
+    if (orderError) {
+      throw new Error(`Error creating order: ${orderError.message}`);
+    }
+
+    // Create order items
+    const orderItems = items.map(item => {
+      const product = products.find(p => p.id === item.id);
+      return {
+        order_id: order.id,
+        product_id: item.id,
+        quantity: item.quantity,
+        unit_price: product?.price || 0,
+        total_price: (product?.price || 0) * item.quantity
+      };
+    });
+
+    const { error: orderItemsError } = await supabaseClient
+      .from('order_items')
+      .insert(orderItems);
+
+    if (orderItemsError) {
+      throw new Error(`Error creating order items: ${orderItemsError.message}`);
+    }
+
+    // Create line items for Stripe checkout (no images to avoid URL issues)
     const lineItems = items.map(item => {
       const product = products.find(p => p.id === item.id);
       if (!product) {
@@ -92,7 +140,6 @@ serve(async (req) => {
           product_data: {
             name: product.name,
             description: product.description,
-            images: product.images?.filter(Boolean) || [],
           },
           unit_amount: Math.round(product.price * 100), // Convert to cents
         },
@@ -100,8 +147,7 @@ serve(async (req) => {
       };
     });
 
-    // Add shipping if provided or use a default shipping cost
-    const shippingCost = 500; // 5€ in cents
+    // Add shipping
     lineItems.push({
       price_data: {
         currency: 'eur',
@@ -109,7 +155,7 @@ serve(async (req) => {
           name: 'Shipping',
           description: 'Standard shipping to Europe',
         },
-        unit_amount: shippingCost,
+        unit_amount: Math.round(shippingCost * 100),
       },
       quantity: 1,
     });
@@ -117,11 +163,11 @@ serve(async (req) => {
     // Create checkout session
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
-      customer_email: customerId ? undefined : undefined, // Will be collected in checkout
+      customer_email: customerId ? undefined : undefined,
       line_items: lineItems,
       mode: "payment",
-      success_url: `${req.headers.get("origin")}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${req.headers.get("origin")}/shop`,
+      success_url: `${req.headers.get("origin")}/order-success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${req.headers.get("origin")}/cart`,
       shipping_address_collection: {
         allowed_countries: ['SE', 'NO', 'DK', 'FI', 'DE', 'NL', 'BE', 'FR', 'AT', 'IT', 'ES'],
       },
@@ -135,6 +181,7 @@ serve(async (req) => {
       },
       metadata: {
         user_id: user?.id || '',
+        order_id: order.id,
         items: JSON.stringify(items),
       },
     });
@@ -147,7 +194,7 @@ serve(async (req) => {
     });
   } catch (error) {
     console.error("Error in create-checkout function:", error);
-    return new Response(JSON.stringify({ error: error.message }), {
+    return new Response(JSON.stringify({ error: (error as Error).message }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 500,
     });
