@@ -27,6 +27,7 @@ const Footer = () => {
               {[
                 { name: "Home", href: "/" },
                 { name: "Shop", href: "/shop" },
+                { name: "Guides & Knowledge", href: "/blog" },
                 { name: "Shipping & Delivery", href: "/shipping" },
                 { name: "About Us", href: "/about" },
                 { name: "Contact", href: "/contact" },
@@ -81,9 +82,8 @@ const Footer = () => {
             © 2024 Pure Ihraam. All rights reserved.
           </p>
           <div className="mt-4 md:mt-0">
-            <p className="text-muted-foreground text-xs italic">
-              "And whoever does good deeds, whether male or female, while being a believer, 
-              those will enter Paradise..." - Quran 4:124
+            <p className="text-muted-foreground text-xs italic max-w-md">
+              "Take provisions, but the best provision is Taqwa (God-consciousness)." — Qur'an 2:197
             </p>
           </div>
         </div>

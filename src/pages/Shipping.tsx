@@ -8,21 +8,21 @@ const Shipping = () => {
       region: "Sweden 🇸🇪",
       timeframe: "3-7 business days",
       cost: "49 SEK",
-      description: "Fast domestic shipping across all of Sweden",
+      description: "Fast domestic shipping across all regions of Sweden. Order by 2 PM for same-day processing.",
       method: "PostNord, DHL, or UPS"
     },
     {
       region: "Nordic Countries 🇳🇴🇩🇰🇫🇮",
-      timeframe: "7-14 business days",
+      timeframe: "7-14 business days", 
       cost: "89 SEK",
-      description: "Norway, Denmark, Finland",
+      description: "Reliable delivery to Norway, Denmark, and Finland with full tracking support.",
       method: "International carriers"
     },
     {
       region: "European Union 🇪🇺",
       timeframe: "7-14 business days",
-      cost: "99 SEK",
-      description: "All EU member countries",
+      cost: "99 SEK", 
+      description: "Comprehensive coverage across all EU member countries with customs pre-clearance.",
       method: "Express international shipping"
     }
   ];
@@ -90,12 +90,21 @@ const Shipping = () => {
             ))}
           </div>
 
-          <div className="mt-8 text-center">
+          <div className="mt-8 text-center space-y-4">
             <div className="inline-flex items-center space-x-2 bg-accent/10 px-4 py-2 rounded-lg">
               <Truck className="h-5 w-5 text-accent" />
               <span className="text-accent font-medium">
                 Free shipping on orders over 50€ to all destinations
               </span>
+            </div>
+            
+            {/* Pilgrimage Tip */}
+            <div className="bg-primary/10 rounded-lg p-4 max-w-2xl mx-auto">
+              <h4 className="font-semibold text-primary mb-2">💡 Pilgrimage Planning Tip</h4>
+              <p className="text-sm text-muted-foreground">
+                <strong>Order your Ihraam at least 3-4 weeks before travel</strong> to avoid last-minute stress 
+                and ensure you have time for any adjustments or replacements if needed.
+              </p>
             </div>
           </div>
         </div>

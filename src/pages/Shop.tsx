@@ -308,21 +308,32 @@ const Shop = () => {
               <h2 className="text-2xl font-bold text-foreground mb-6">Product Description</h2>
               <div className="prose prose-lg max-w-none text-muted-foreground">
                 <p className="mb-4">
-                  Our Pure Ihraam cloth set is carefully crafted for the modern pilgrim who values 
-                  both tradition and comfort. Made from premium 100% cotton, this two-piece set 
-                  provides the perfect balance of breathability and durability needed for your 
-                  sacred journey.
+                  Our Pure Ihraam cloth set consists of <strong>two unstitched white cloth pieces</strong> 
+                  (115 cm x 200 cm each), carefully crafted for the modern pilgrim who values both tradition and comfort. 
+                  Made from premium 100% cotton, this lightweight and breathable fabric provides the perfect balance 
+                  of comfort and durability needed for your sacred journey.
                 </p>
                 <p className="mb-4">
                   The set includes both the Izaar (lower garment) and Ridaa (upper garment), 
-                  pre-cut to traditional specifications. The fabric is pre-washed and treated 
-                  to ensure it maintains its pristine white appearance throughout your pilgrimage.
+                  pre-cut to traditional specifications and <strong>suitable for all body types</strong>. 
+                  The fabric is pre-washed and treated to ensure it maintains its pristine white appearance 
+                  throughout your pilgrimage. Each set is <strong>packaged securely for travel</strong> to ensure 
+                  it arrives in perfect condition.
                 </p>
-                <p>
+                <p className="mb-6">
                   With the intention of making Hajj and Umrah accessible to all believers, 
                   we've priced this essential item at just 15€, ensuring that financial 
                   constraints don't become a barrier to your spiritual journey.
                 </p>
+
+                {/* Hadith Reference */}
+                <div className="bg-accent/10 rounded-lg p-6 mt-6">
+                  <blockquote className="text-lg italic text-foreground mb-3">
+                    "Wear white clothes, for they are among the best of your clothes, 
+                    and shroud your dead in them."
+                  </blockquote>
+                  <cite className="text-sm text-muted-foreground">— Abu Dawood, Tirmidhi</cite>
+                </div>
               </div>
             </div>
             

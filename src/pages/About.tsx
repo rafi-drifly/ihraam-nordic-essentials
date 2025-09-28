@@ -5,23 +5,18 @@ const About = () => {
   const values = [
     {
       icon: <Heart className="h-8 w-8 text-primary" />,
-      title: "Sincere Intention",
-      description: "Every Ihraam is prepared with the pure intention of earning reward in the Akhirah and serving the Muslim community."
+      title: "Purity",
+      description: "Every Ihraam is prepared with the pure intention of earning reward in the Akhirah and serving the Muslim community with sincerity."
     },
     {
       icon: <Users className="h-8 w-8 text-primary" />,
-      title: "Accessibility",
-      description: "We believe every Muslim should have access to quality Ihraam cloth, regardless of their financial situation."
-    },
-    {
-      icon: <Globe className="h-8 w-8 text-primary" />,
-      title: "European Service",
-      description: "Serving pilgrims across Sweden, the Nordics, and all of Europe with fast, reliable delivery."
+      title: "Accessibility", 
+      description: "We believe every Muslim should have access to quality Ihraam cloth at 15€, regardless of their financial situation."
     },
     {
       icon: <Award className="h-8 w-8 text-primary" />,
-      title: "Quality Commitment",
-      description: "Using only premium materials to ensure your spiritual journey is comfortable and worry-free."
+      title: "Trust",
+      description: "Building trust through consistent quality, reliable delivery, and transparent pricing across Sweden, Nordics, and Europe."
     }
   ];
 
@@ -34,8 +29,9 @@ const About = () => {
             About Pure Ihraam
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Founded with the intention of serving the Muslim community and making 
-            the sacred pilgrimage more accessible to believers across Europe.
+            <strong>Pure Ihraam was founded to make Ihram affordable (15€ + shipping) and accessible to all.</strong> 
+            This is not about profit but about earning ajr (reward) in the Akhirah by serving the Muslim community 
+            and making the sacred pilgrimage accessible to believers across Europe.
           </p>
         </div>
 
@@ -75,12 +71,11 @@ const About = () => {
               to your pilgrimage, but to your spiritual journey and the barakah it brings."
             </blockquote>
             
-            <div className="mt-8 p-4 bg-accent/10 rounded-lg">
-              <p className="text-sm text-center font-medium text-accent-foreground">
-                "And whoever does good deeds, whether male or female, while being a believer, 
-                those will enter Paradise and will not be wronged even as much as the speck on a date seed."
-              </p>
-              <p className="text-xs text-center text-muted-foreground mt-2">- Quran 4:124</p>
+            <div className="mt-8 p-6 bg-accent/10 rounded-lg">
+              <blockquote className="text-lg italic text-foreground text-center mb-3">
+                "The most beloved of people to Allah are those who are most beneficial to the people."
+              </blockquote>
+              <cite className="text-sm text-center text-muted-foreground block">— Al-Mu'jam al-Awsat</cite>
             </div>
           </div>
         </div>
@@ -94,7 +89,7 @@ const About = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {values.map((value, index) => (
               <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow">
                 <CardContent className="p-6 text-center">

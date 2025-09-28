@@ -87,6 +87,70 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Quran Verse Section */}
+      <section className="py-16 bg-accent/5">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <Card className="border-accent/20 bg-background/50">
+            <CardContent className="p-8">
+              <blockquote className="text-xl lg:text-2xl italic text-foreground mb-4 leading-relaxed">
+                "And proclaim to the people the Hajj; they will come to you on foot and on every lean camel; 
+                they will come from every distant pass."
+              </blockquote>
+              <cite className="text-sm text-muted-foreground">— Qur'an 22:27</cite>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* Product Highlights Section */}
+      <section className="py-20 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
+              Why Choose Pure Ihraam?
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Quality, accessibility, and comfort for every pilgrim
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <Card className="text-center border-0 shadow-lg hover:shadow-xl transition-shadow">
+              <CardContent className="p-8">
+                <div className="text-4xl font-bold text-primary mb-2">15€</div>
+                <h3 className="text-xl font-semibold text-foreground mb-4">Affordable for All</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Quality Ihraam at just 15€ + shipping. Making pilgrimage accessible regardless of financial situation, 
+                  with the sincere intention of earning ajr in the Akhirah.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="text-center border-0 shadow-lg hover:shadow-xl transition-shadow">
+              <CardContent className="p-8">
+                <div className="text-4xl mb-4">🌟</div>
+                <h3 className="text-xl font-semibold text-foreground mb-4">Comfortable & Durable</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Premium 100% cotton fabric that's soft, breathable, and long-lasting. 
+                  Pre-washed and ready to use, ensuring comfort throughout your sacred journey.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="text-center border-0 shadow-lg hover:shadow-xl transition-shadow">
+              <CardContent className="p-8">
+                <div className="text-4xl mb-4">🚚</div>
+                <h3 className="text-xl font-semibold text-foreground mb-4">Delivered Across Europe</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Fast, reliable delivery across Sweden (3-7 days), Nordic countries and all EU member states (7-14 days). 
+                  Secure packaging with tracking included.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Benefits Section */}
       <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -116,6 +180,20 @@ const Home = () => {
               </Card>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Final Hadith Section */}
+      <section className="py-16 bg-gradient-subtle">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <Card className="border-0 bg-background/80">
+            <CardContent className="p-8">
+              <blockquote className="text-xl lg:text-2xl italic text-foreground mb-4 leading-relaxed">
+                "And Hajj to the House is a duty that mankind owes to Allah, for those who can afford the journey."
+              </blockquote>
+              <cite className="text-sm text-muted-foreground">— Qur'an 3:97</cite>
+            </CardContent>
+          </Card>
         </div>
       </section>
 

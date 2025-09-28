@@ -223,7 +223,7 @@ const Contact = () => {
           </div>
         </div>
 
-        {/* FAQ Preview */}
+        {/* FAQ Section */}
         <div className="mt-16">
           <Card className="bg-muted">
             <CardHeader>
@@ -233,10 +233,38 @@ const Contact = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <h4 className="font-semibold text-foreground mb-2">
+                    Is the Ihram suitable for tall/broad men?
+                  </h4>
+                  <p className="text-sm text-muted-foreground">
+                    Yes, our generous size (115cm x 200cm each piece) is suitable for all body types, 
+                    including tall and broad-shouldered men.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-foreground mb-2">
+                    Do you also sell belts or sandals?
+                  </h4>
+                  <p className="text-sm text-muted-foreground">
+                    Not yet, but we're working on expanding our pilgrimage essentials collection. 
+                    Belts and sandals coming soon, In Sha Allah.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-foreground mb-2">
+                    Can mosques/travel groups order in bulk?
+                  </h4>
+                  <p className="text-sm text-muted-foreground">
+                    Yes! We welcome bulk orders from mosques, travel agencies, and Hajj/Umrah groups. 
+                    Contact us for special pricing on orders of 20+ sets.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-foreground mb-2">
                     How long does shipping take?
                   </h4>
                   <p className="text-sm text-muted-foreground">
-                    Sweden: 3-7 business days, Nordic/EU countries: 7-14 business days
+                    Sweden: 3-7 business days, Nordic countries: 7-14 business days, EU: 7-14 business days. 
+                    Free shipping on orders over 50€.
                   </p>
                 </div>
                 <div>
@@ -244,7 +272,8 @@ const Contact = () => {
                     What's included in the Ihraam set?
                   </h4>
                   <p className="text-sm text-muted-foreground">
-                    Two pieces: Izaar (lower garment) and Ridaa (upper garment)
+                    Two unstitched white cotton pieces: Izaar (lower garment) and Ridaa (upper garment), 
+                    each measuring 115cm x 200cm.
                   </p>
                 </div>
                 <div>
@@ -252,15 +281,8 @@ const Contact = () => {
                     Can I return or exchange?
                   </h4>
                   <p className="text-sm text-muted-foreground">
-                    Yes, we offer returns within 30 days if unused and in original packaging
-                  </p>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-foreground mb-2">
-                    Do you offer bulk discounts?
-                  </h4>
-                  <p className="text-sm text-muted-foreground">
-                    Contact us for group orders of 10+ sets for special pricing
+                    Yes, we offer returns within 30 days if unused and in original packaging. 
+                    Your satisfaction is important to us.
                   </p>
                 </div>
               </div>
