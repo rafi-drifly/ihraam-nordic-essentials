@@ -7,6 +7,7 @@ import { AuthProvider } from "@/hooks/useAuth";
 import { CartProvider } from "@/hooks/useCart";
 import Navbar from "@/components/ui/navbar";
 import Footer from "@/components/ui/footer";
+import ScrollToTop from "@/components/ScrollToTop";
 import Home from "./pages/Home";
 import Shop from "./pages/Shop";
 import Blog from "./pages/Blog";
@@ -27,6 +28,7 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
+            <ScrollToTop />
             <div className="min-h-screen flex flex-col">
               <Navbar />
               <main className="flex-1">
