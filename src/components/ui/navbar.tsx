@@ -6,6 +6,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { CartDrawer } from "@/components/shop/CartDrawer";
 import { AuthModal } from "@/components/auth/AuthModal";
 import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,12 +14,13 @@ const Navbar = () => {
   const [checkingOut, setCheckingOut] = useState(false);
   const location = useLocation();
   const { user, signOut } = useAuth();
+  const { toast } = useToast();
 
   const handleCheckout = async () => {
     const cartItems = JSON.parse(localStorage.getItem('ihraam-cart') || '[]');
     
     if (cartItems.length === 0) {
-      alert('Your cart is empty');
+      toast({ title: "Cart is empty", description: "Add items to cart before checkout.", variant: "destructive" });
       return;
     }
 
@@ -27,7 +29,7 @@ const Navbar = () => {
     if (!user?.email) {
       guestEmail = window.prompt("Enter your email for receipts and order updates:");
       if (!guestEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(guestEmail)) {
-        alert("A valid email is required to continue.");
+        toast({ title: "Email required", description: "Please enter a valid email to continue.", variant: "destructive" });
         return;
       }
     }
@@ -47,7 +49,7 @@ const Navbar = () => {
 
       if (error) {
         console.error('Checkout error:', error);
-        alert(`Checkout failed: ${error.message}`);
+        toast({ title: "Checkout failed", description: error.message || "Unable to create checkout session.", variant: "destructive" });
         return;
       }
 
@@ -56,11 +58,12 @@ const Navbar = () => {
         localStorage.removeItem('ihraam-cart');
         window.location.href = data.url;
       } else {
-        alert('No checkout URL received');
+        toast({ title: "Checkout error", description: "No checkout URL received.", variant: "destructive" });
       }
     } catch (error) {
       console.error('Error creating checkout:', error);
-      alert(`Checkout failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      const message = error instanceof Error ? error.message : 'Unknown error';
+      toast({ title: "Checkout failed", description: message, variant: "destructive" });
     } finally {
       setCheckingOut(false);
     }
