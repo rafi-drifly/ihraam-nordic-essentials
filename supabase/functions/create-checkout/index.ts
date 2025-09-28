@@ -182,6 +182,7 @@ serve(async (req) => {
       customer_email: customerId ? undefined : (user?.email || guestEmail),
       line_items: lineItems,
       mode: "payment",
+      currency: "eur", // Force EUR currency only
       success_url: `${req.headers.get("origin")}/order-success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${req.headers.get("origin")}/cart`,
       shipping_address_collection: {
