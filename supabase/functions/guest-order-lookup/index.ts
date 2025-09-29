@@ -17,9 +17,10 @@ serve(async (req) => {
   }
 
   try {
+    // Use service role client for secure data access with proper RLS bypass
     const supabaseClient = createClient(
       Deno.env.get("SUPABASE_URL") ?? "",
-      Deno.env.get("SUPABASE_ANON_KEY") ?? ""
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
     );
 
     const { orderNumber, lookupToken }: GuestOrderLookupRequest = await req.json();
@@ -82,8 +83,37 @@ serve(async (req) => {
     // Log successful lookup for security monitoring
     console.log(`Successful guest order lookup: ${orderNumber} at ${new Date().toISOString()}`);
 
-    // Return order details (excluding sensitive lookup token)
-    const { lookup_token, ...safeOrderData } = order;
+    // Return ONLY safe, non-sensitive order details
+    // Exclude: lookup_token, guest_email, detailed shipping address, and other PII
+    const safeOrderData = {
+      id: order.id,
+      order_number: order.order_number,
+      status: order.status,
+      total_amount: order.total_amount,
+      currency: order.currency,
+      created_at: order.created_at,
+      order_items: order.order_items?.map((item: any) => ({
+        id: item.id,
+        quantity: item.quantity,
+        unit_price: item.unit_price,
+        total_price: item.total_price,
+        products: item.products ? {
+          name: item.products.name,
+          description: item.products.description,
+          price: item.products.price
+          // Exclude images to prevent potential data leaks
+        } : null
+      })) || [],
+      payments: order.payments?.map((payment: any) => ({
+        id: payment.id,
+        status: payment.status,
+        amount: payment.amount,
+        currency: payment.currency,
+        created_at: payment.created_at
+      })) || [],
+      // Only show general shipping region, not full address
+      shipping_region: order.shipping_address?.country || 'N/A'
+    };
     
     return new Response(JSON.stringify({ 
       success: true, 

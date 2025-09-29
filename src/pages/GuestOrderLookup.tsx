@@ -13,9 +13,8 @@ interface OrderData {
   status: string;
   total_amount: number;
   currency: string;
-  guest_email: string;
-  shipping_address: any;
   created_at: string;
+  shipping_region?: string;
   order_items: Array<{
     id: string;
     quantity: number;
@@ -25,8 +24,7 @@ interface OrderData {
       name: string;
       description: string;
       price: number;
-      images: string[];
-    };  
+    } | null;  
   }>;
   payments: Array<{
     id: string;
@@ -220,27 +218,10 @@ const GuestOrderLookup = () => {
                   </div>
                 </div>
 
-                {orderData.guest_email && (
+                {orderData.shipping_region && (
                   <div>
-                    <span className="text-sm font-medium text-muted-foreground">Email:</span>
-                    <p className="mt-1">{orderData.guest_email}</p>
-                  </div>
-                )}
-
-                {orderData.shipping_address && Object.keys(orderData.shipping_address).length > 0 && (
-                  <div>
-                    <span className="text-sm font-medium text-muted-foreground">Shipping Address:</span>
-                    <div className="mt-1 text-sm bg-muted p-3 rounded">
-                      {orderData.shipping_address.name && <p className="font-medium">{orderData.shipping_address.name}</p>}
-                      {orderData.shipping_address.line1 && <p>{orderData.shipping_address.line1}</p>}
-                      {orderData.shipping_address.line2 && <p>{orderData.shipping_address.line2}</p>}
-                      {orderData.shipping_address.city && (
-                        <p>
-                          {orderData.shipping_address.postal_code} {orderData.shipping_address.city}
-                        </p>
-                      )}
-                      {orderData.shipping_address.country && <p>{orderData.shipping_address.country}</p>}
-                    </div>
+                    <span className="text-sm font-medium text-muted-foreground">Shipping Region:</span>
+                    <p className="mt-1">{orderData.shipping_region}</p>
                   </div>
                 )}
               </CardContent>
