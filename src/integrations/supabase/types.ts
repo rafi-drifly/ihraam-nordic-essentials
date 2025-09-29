@@ -65,6 +65,7 @@ export type Database = {
           currency: string
           guest_email: string | null
           id: string
+          lookup_token: string | null
           notes: string | null
           order_number: string
           shipping_address: Json
@@ -78,6 +79,7 @@ export type Database = {
           currency?: string
           guest_email?: string | null
           id?: string
+          lookup_token?: string | null
           notes?: string | null
           order_number: string
           shipping_address: Json
@@ -91,6 +93,7 @@ export type Database = {
           currency?: string
           guest_email?: string | null
           id?: string
+          lookup_token?: string | null
           notes?: string | null
           order_number?: string
           shipping_address?: Json

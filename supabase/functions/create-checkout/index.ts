@@ -112,7 +112,8 @@ serve(async (req) => {
         currency: 'EUR',
         status: 'pending',
         shipping_address: shippingAddress || {},
-        order_number: `ORD-${Date.now()}`
+        order_number: `ORD-${Date.now()}`,
+        lookup_token: crypto.randomUUID() // Generate secure lookup token for guest orders
       })
       .select()
       .single();
