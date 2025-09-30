@@ -110,26 +110,30 @@ const handler = async (req: Request): Promise<Response> => {
     console.log('Web3Forms response status:', web3formsResponse.status);
     console.log('Web3Forms response headers:', Object.fromEntries(web3formsResponse.headers.entries()));
 
-    let web3formsResult;
     const responseText = await web3formsResponse.text();
     console.log('Web3Forms raw response:', responseText);
 
+    // Check if response is successful
+    let isSuccess = false;
+    
+    // Try to parse as JSON first
     try {
-      web3formsResult = JSON.parse(responseText);
+      const jsonResult = JSON.parse(responseText);
+      isSuccess = web3formsResponse.ok && jsonResult.success;
+      console.log('Web3Forms JSON result:', jsonResult);
     } catch (parseError) {
-      console.error('Failed to parse Web3Forms response as JSON:', parseError);
-      console.error('Response was:', responseText);
-      return new Response(JSON.stringify({ 
-        error: 'Invalid response from email service. Please try again or contact us directly.' 
-      }), {
-        status: 500,
-        headers: { 'Content-Type': 'application/json', ...corsHeaders },
-      });
+      // If not JSON, check if it's HTML with success indicators
+      console.log('Response is not JSON, checking for HTML success indicators');
+      
+      if (web3formsResponse.ok && responseText.includes('Form submitted successfully!')) {
+        isSuccess = true;
+        console.log('HTML response indicates successful form submission');
+      } else {
+        console.error('No success indicators found in response');
+      }
     }
 
-    console.log('Web3Forms parsed result:', web3formsResult);
-
-    if (web3formsResponse.ok && web3formsResult.success) {
+    if (isSuccess) {
       return new Response(JSON.stringify({ 
         success: true,
         message: 'Message sent successfully! We will get back to you soon.' 
@@ -138,7 +142,7 @@ const handler = async (req: Request): Promise<Response> => {
         headers: { 'Content-Type': 'application/json', ...corsHeaders },
       });
     } else {
-      console.error('Web3Forms error:', web3formsResult);
+      console.error('Web3Forms submission failed');
       return new Response(JSON.stringify({ 
         error: 'Failed to send message. Please try again or contact us directly.' 
       }), {
