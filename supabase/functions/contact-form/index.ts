@@ -107,9 +107,27 @@ const handler = async (req: Request): Promise<Response> => {
       body: formData,
     });
 
-    const web3formsResult = await web3formsResponse.json();
+    console.log('Web3Forms response status:', web3formsResponse.status);
+    console.log('Web3Forms response headers:', Object.fromEntries(web3formsResponse.headers.entries()));
 
-    console.log('Web3Forms response:', web3formsResult);
+    let web3formsResult;
+    const responseText = await web3formsResponse.text();
+    console.log('Web3Forms raw response:', responseText);
+
+    try {
+      web3formsResult = JSON.parse(responseText);
+    } catch (parseError) {
+      console.error('Failed to parse Web3Forms response as JSON:', parseError);
+      console.error('Response was:', responseText);
+      return new Response(JSON.stringify({ 
+        error: 'Invalid response from email service. Please try again or contact us directly.' 
+      }), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json', ...corsHeaders },
+      });
+    }
+
+    console.log('Web3Forms parsed result:', web3formsResult);
 
     if (web3formsResponse.ok && web3formsResult.success) {
       return new Response(JSON.stringify({ 
