@@ -32,22 +32,22 @@ const Contact = () => {
       icon: <Mail className="h-6 w-6 text-primary" />,
       title: "Email Us",
       description: "Send us an email and we'll respond within 24 hours",
-      contact: "info@pureihraam.se",
-      action: "mailto:info@pureihraam.se"
+      contact: "pureihraam@gmail.com",
+      action: "mailto:pureihraam@gmail.com"
     },
     {
       icon: <MessageCircle className="h-6 w-6 text-primary" />,
       title: "WhatsApp",
       description: "Quick questions? Message us on WhatsApp",
-      contact: "+46 XXX XXX XXX",
-      action: "https://wa.me/46XXXXXXXXX"
+      contact: "+46720131476",
+      action: "https://wa.me/46720131476"
     },
     {
       icon: <Phone className="h-6 w-6 text-primary" />,
       title: "Call Us",
       description: "Speak directly with our customer service team",
-      contact: "+46 XXX XXX XXX",
-      action: "tel:+46XXXXXXXXX"
+      contact: "+46720131476",
+      action: "tel:+46720131476"
     }
   ];
 
