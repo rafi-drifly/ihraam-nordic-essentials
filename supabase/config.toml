@@ -11,3 +11,6 @@ verify_jwt = false
 
 [functions.guest-order-lookup]
 verify_jwt = false
+
+[functions.contact-form]
+verify_jwt = false

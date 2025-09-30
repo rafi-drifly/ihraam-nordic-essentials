@@ -4,7 +4,18 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, MessageCircle, MapPin, Clock } from "lucide-react";
+import { Mail, Phone, MessageCircle, MapPin, Clock, Loader2 } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
+import { z } from "zod";
+
+// Form validation schema
+const contactSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
+  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
+  subject: z.string().trim().min(1, "Subject is required").max(200, "Subject must be less than 200 characters"),
+  message: z.string().trim().min(1, "Message is required").max(2000, "Message must be less than 2000 characters"),
+});
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -13,11 +24,75 @@ const Contact = () => {
     subject: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission - will integrate with Supabase later
-    console.log("Form submitted:", formData);
+    setIsSubmitting(true);
+    setErrors({});
+
+    try {
+      // Validate form data
+      const validatedData = contactSchema.parse(formData);
+
+      // Submit to our Edge Function
+      const { data, error } = await supabase.functions.invoke('contact-form', {
+        body: validatedData,
+      });
+
+      if (error) {
+        throw new Error(error.message || 'Failed to send message');
+      }
+
+      if (data?.error) {
+        throw new Error(data.error);
+      }
+
+      // Success
+      toast({
+        title: "Message Sent Successfully!",
+        description: "Thank you for contacting us. We'll get back to you within 24 hours.",
+      });
+
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+
+    } catch (error: any) {
+      console.error('Form submission error:', error);
+      
+      if (error instanceof z.ZodError) {
+        // Handle validation errors
+        const fieldErrors: Record<string, string> = {};
+        error.issues.forEach((issue) => {
+          if (issue.path[0]) {
+            fieldErrors[issue.path[0] as string] = issue.message;
+          }
+        });
+        setErrors(fieldErrors);
+        
+        toast({
+          title: "Please check your form",
+          description: "There are some validation errors that need to be fixed.",
+          variant: "destructive",
+        });
+      } else {
+        // Handle API errors
+        toast({
+          title: "Failed to Send Message",
+          description: error.message || "Please try again later or contact us directly.",
+          variant: "destructive",
+        });
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -164,7 +239,10 @@ const Contact = () => {
                         onChange={handleChange}
                         placeholder="Your full name"
                         required
+                        disabled={isSubmitting}
+                        className={errors.name ? "border-red-500" : ""}
                       />
+                      {errors.name && <p className="text-sm text-red-500">{errors.name}</p>}
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="email">Email Address *</Label>
@@ -176,7 +254,10 @@ const Contact = () => {
                         onChange={handleChange}
                         placeholder="your@email.com"
                         required
+                        disabled={isSubmitting}
+                        className={errors.email ? "border-red-500" : ""}
                       />
+                      {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
                     </div>
                   </div>
 
@@ -189,7 +270,10 @@ const Contact = () => {
                       onChange={handleChange}
                       placeholder="What is your message about?"
                       required
+                      disabled={isSubmitting}
+                      className={errors.subject ? "border-red-500" : ""}
                     />
+                    {errors.subject && <p className="text-sm text-red-500">{errors.subject}</p>}
                   </div>
 
                   <div className="space-y-2">
@@ -200,17 +284,21 @@ const Contact = () => {
                       value={formData.message}
                       onChange={handleChange}
                       placeholder="Please provide details about your inquiry..."
-                      className="min-h-[120px]"
+                      className={`min-h-[120px] ${errors.message ? "border-red-500" : ""}`}
                       required
+                      disabled={isSubmitting}
                     />
+                    {errors.message && <p className="text-sm text-red-500">{errors.message}</p>}
                   </div>
 
                   <Button 
                     type="submit" 
                     size="lg" 
                     className="w-full bg-gradient-primary hover:opacity-90 transition-opacity"
+                    disabled={isSubmitting}
                   >
-                    Send Message
+                    {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                    {isSubmitting ? "Sending..." : "Send Message"}
                   </Button>
 
                   <p className="text-xs text-muted-foreground text-center">
