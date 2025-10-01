@@ -35,7 +35,7 @@ const PaymentSuccess = () => {
           </div>
           <h1 className="text-3xl font-bold text-foreground mb-2">Payment Successful!</h1>
           <p className="text-lg text-muted-foreground">
-            Thank you for your order. We're preparing your Ihraam for shipment.
+            Thank you for your order. We're preparing your Ihram for shipment.
           </p>
         </div>
 

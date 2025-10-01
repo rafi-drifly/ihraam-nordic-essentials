@@ -47,18 +47,18 @@ const Home = () => {
             <div className="animate-fade-in">
               <h1 className="text-4xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
                 Pure & Comfortable
-                <span className="block text-primary">Ihraam</span>
+                <span className="block text-primary">Ihram</span>
               </h1>
               <p className="text-xl text-muted-foreground mb-4">
                 Only <span className="font-bold text-accent">15€</span> + shipping
               </p>
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                Lightweight, thin, and comfortable Ihraam cloth for your sacred journey. 
+                Lightweight, thin, and comfortable Ihram (Ihraam) cloth for your sacred journey. 
                 Made with the intention of earning ajr and making pilgrimage accessible to all.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button asChild size="lg" className="bg-gradient-primary hover:opacity-90 transition-opacity">
-                  <Link to="/shop">Order Your Ihraam</Link>
+                  <Link to="/shop">Order Your Ihram</Link>
                 </Button>
                 <Button asChild variant="outline" size="lg">
                   <Link to="/about">Learn More</Link>
@@ -71,13 +71,13 @@ const Home = () => {
               <div className="relative">
                 <img
                   src={ihraamProduct}
-                  alt="Pure white Ihraam cloth laid flat"
+                  alt="Pure white Ihram (Ihraam) cloth laid flat"
                   className="rounded-2xl shadow-2xl w-full"
                 />
                 <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-white rounded-2xl shadow-xl p-4 hidden md:block">
                   <img
                     src={ihraamWorn}
-                    alt="Ihraam worn by pilgrim"
+                    alt="Ihram (Ihraam) worn by pilgrim"
                     className="w-full h-full object-cover rounded-xl"
                   />
                 </div>
@@ -107,7 +107,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-              Why Choose Pure Ihraam?
+              Why Choose Pure Ihram?
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Quality, accessibility, and comfort for every pilgrim
@@ -120,7 +120,7 @@ const Home = () => {
                 <div className="text-4xl font-bold text-primary mb-2">15€</div>
                 <h3 className="text-xl font-semibold text-foreground mb-4">Affordable for All</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  Quality Ihraam at just 15€ + shipping. Making pilgrimage accessible regardless of financial situation, 
+                  Quality Ihram (Ihraam) at just 15€ + shipping. Making pilgrimage accessible regardless of financial situation, 
                   with the sincere intention of earning ajr in the Akhirah.
                 </p>
               </CardContent>
@@ -156,7 +156,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-              Why Choose Our Ihraam?
+              Why Choose Our Ihram?
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Designed with the pilgrim's comfort and spiritual focus in mind
@@ -204,7 +204,7 @@ const Home = () => {
             Ready for Your Spiritual Journey?
           </h2>
           <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-            Join thousands of pilgrims who trust Pure Ihraam for their sacred journey. 
+            Join thousands of pilgrims who trust Pure Ihram for their sacred journey. 
             Fast delivery across Sweden, Nordics, and Europe.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

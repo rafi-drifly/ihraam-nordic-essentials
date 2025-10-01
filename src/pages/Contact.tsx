@@ -135,7 +135,7 @@ const Contact = () => {
             Contact Us
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Have questions about our Ihraam cloth or need assistance with your order? 
+            Have questions about our Ihram (Ihraam) cloth or need assistance with your order? 
             We're here to help with your pilgrimage preparations.
           </p>
         </div>
@@ -357,7 +357,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-foreground mb-2">
-                    What's included in the Ihraam set?
+                    What's included in the Ihram set?
                   </h4>
                   <p className="text-sm text-muted-foreground">
                     Two unstitched white cotton pieces: Izaar (lower garment) and Ridaa (upper garment), 

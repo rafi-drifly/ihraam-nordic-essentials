@@ -3,16 +3,16 @@ import { Heart, Users, Globe, Award } from "lucide-react";
 
 const About = () => {
   const values = [
-    {
-      icon: <Heart className="h-8 w-8 text-primary" />,
-      title: "Purity",
-      description: "Every Ihraam is prepared with the pure intention of earning reward in the Akhirah and serving the Muslim community with sincerity."
-    },
-    {
-      icon: <Users className="h-8 w-8 text-primary" />,
-      title: "Accessibility", 
-      description: "We believe every Muslim should have access to quality Ihraam cloth at 15€, regardless of their financial situation."
-    },
+      {
+        icon: <Heart className="h-8 w-8 text-primary" />,
+        title: "Purity",
+        description: "Every Ihram is prepared with the pure intention of earning reward in the Akhirah and serving the Muslim community with sincerity."
+      },
+      {
+        icon: <Users className="h-8 w-8 text-primary" />,
+        title: "Accessibility", 
+        description: "We believe every Muslim should have access to quality Ihram (Ihraam) cloth at 15€, regardless of their financial situation."
+      },
     {
       icon: <Award className="h-8 w-8 text-primary" />,
       title: "Trust",
@@ -26,10 +26,10 @@ const About = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            About Pure Ihraam
+            About Pure Ihram
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            <strong>Pure Ihraam was founded to make Ihram affordable (15€ + shipping) and accessible to all.</strong> 
+            <strong>Pure Ihram was founded to make Ihram (Ihraam) affordable (15€ + shipping) and accessible to all.</strong> 
             This is not about profit but about earning ajr (reward) in the Akhirah by serving the Muslim community 
             and making the sacred pilgrimage accessible to believers across Europe.
           </p>
@@ -41,13 +41,13 @@ const About = () => {
             <h2 className="text-3xl font-bold text-foreground mb-6">Our Story</h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                Pure Ihraam was born from a simple yet profound realization: too many Muslims 
-                across Europe were struggling to find affordable, quality Ihraam cloth for their 
+                Pure Ihram was born from a simple yet profound realization: too many Muslims 
+                across Europe were struggling to find affordable, quality Ihram (Ihraam) cloth for their 
                 pilgrimage to the holy cities of Makkah and Madinah.
               </p>
               <p>
                 Having witnessed fellow believers paying excessive prices for basic pilgrimage 
-                essentials, we made a commitment to provide premium Ihraam cloth at an honest, 
+                essentials, we made a commitment to provide premium Ihram cloth at an honest, 
                 accessible price of just 15€.
               </p>
               <p>
@@ -66,7 +66,7 @@ const About = () => {
           <div className="bg-muted rounded-2xl p-8">
             <h3 className="text-2xl font-bold text-foreground mb-4">Our Promise</h3>
             <blockquote className="text-lg italic text-muted-foreground leading-relaxed">
-              "We promise to provide every Muslim with access to pure, comfortable Ihraam cloth 
+              "We promise to provide every Muslim with access to pure, comfortable Ihram (Ihraam) cloth 
               at a price that honors both quality and affordability. Our commitment is not just 
               to your pilgrimage, but to your spiritual journey and the barakah it brings."
             </blockquote>
@@ -116,7 +116,7 @@ const About = () => {
               <div className="space-y-4 text-muted-foreground">
                 <p>
                   During Hajj and Umrah, pilgrims face intense physical and spiritual demands. 
-                  Your Ihraam should be the least of your concerns – comfortable, breathable, 
+                  Your Ihram should be the least of your concerns – comfortable, breathable, 
                   and durable enough to withstand the journey ahead.
                 </p>
                 <p>

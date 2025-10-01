@@ -35,9 +35,21 @@ interface CartProviderProps {
 export const CartProvider = ({ children }: CartProviderProps) => {
   const [items, setItems] = useState<CartItem[]>([]);
 
-  // Load cart from localStorage on mount
+  // Load cart from localStorage on mount with migration from old key
   useEffect(() => {
-    const savedCart = localStorage.getItem('ihraam-cart');
+    // Try new key first
+    let savedCart = localStorage.getItem('ihram-cart');
+    
+    // If not found, check old key and migrate
+    if (!savedCart) {
+      const oldCart = localStorage.getItem('ihraam-cart');
+      if (oldCart) {
+        localStorage.setItem('ihram-cart', oldCart);
+        localStorage.removeItem('ihraam-cart');
+        savedCart = oldCart;
+      }
+    }
+    
     if (savedCart) {
       try {
         setItems(JSON.parse(savedCart));
@@ -49,7 +61,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 
   // Save cart to localStorage whenever items change
   useEffect(() => {
-    localStorage.setItem('ihraam-cart', JSON.stringify(items));
+    localStorage.setItem('ihram-cart', JSON.stringify(items));
   }, [items]);
 
   const addItem = (item: Omit<CartItem, 'quantity'>, quantity = 1) => {

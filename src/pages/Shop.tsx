@@ -185,7 +185,7 @@ const Shop = () => {
             <div className="aspect-square bg-muted rounded-2xl overflow-hidden">
               <img
                 src={ihraamProduct}
-                alt="Pure Ihraam Cloth Set"
+                alt="Pure Ihram (Ihraam) Cloth Set"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -193,7 +193,7 @@ const Shop = () => {
               <div className="aspect-square bg-muted rounded-xl overflow-hidden">
                 <img
                   src={ihraamWorn}
-                  alt="Ihraam worn by pilgrim"
+                  alt="Ihram (Ihraam) worn by pilgrim"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -321,7 +321,7 @@ const Shop = () => {
               <h2 className="text-2xl font-bold text-foreground mb-6">Product Description</h2>
               <div className="prose prose-lg max-w-none text-muted-foreground">
                 <p className="mb-4">
-                  Our Pure Ihraam cloth set consists of <strong>two unstitched white cloth pieces</strong> 
+                  Our Pure Ihram (Ihraam) cloth set consists of <strong>two unstitched white cloth pieces</strong> 
                   (115 cm x 200 cm each), carefully crafted for the modern pilgrim who values both tradition and comfort. 
                   Made from premium 100% cotton, this lightweight and breathable fabric provides the perfect balance 
                   of comfort and durability needed for your sacred journey.

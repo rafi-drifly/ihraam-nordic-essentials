@@ -94,9 +94,9 @@ const handler = async (req: Request): Promise<Response> => {
     formData.append('access_key', web3formsKey);
     formData.append('name', name.trim());
     formData.append('email', email.trim());
-    formData.append('subject', `[Pure Ihraam Contact] ${subject.trim()}`);
+    formData.append('subject', `[Pure Ihram Contact] ${subject.trim()}`);
     formData.append('message', `From: ${name.trim()} (${email.trim()})\n\nSubject: ${subject.trim()}\n\nMessage:\n${message.trim()}`);
-    formData.append('from_name', 'Pure Ihraam Contact Form');
+    formData.append('from_name', 'Pure Ihram Contact Form');
     formData.append('redirect', 'false');
 
     console.log('Sending form data to Web3Forms...');

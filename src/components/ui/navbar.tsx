@@ -19,7 +19,7 @@ const Navbar = () => {
   const { toast } = useToast();
 
   const handleCheckout = async () => {
-    const cartItems = JSON.parse(localStorage.getItem('ihraam-cart') || '[]');
+    const cartItems = JSON.parse(localStorage.getItem('ihram-cart') || '[]');
     
     if (cartItems.length === 0) {
       toast({ title: "Cart is empty", description: "Add items to cart before checkout.", variant: "destructive" });
@@ -42,7 +42,7 @@ const Navbar = () => {
   };
 
   const processCheckout = async (guestEmail?: string) => {
-    const cartItems = JSON.parse(localStorage.getItem('ihraam-cart') || '[]');
+    const cartItems = JSON.parse(localStorage.getItem('ihram-cart') || '[]');
 
     setCheckingOut(true);
     try {
@@ -65,7 +65,7 @@ const Navbar = () => {
 
       if (data?.url) {
         // Clear cart after successful checkout
-        localStorage.removeItem('ihraam-cart');
+        localStorage.removeItem('ihram-cart');
         window.location.href = data.url;
       } else {
         toast({ title: "Checkout error", description: "No checkout URL received.", variant: "destructive" });
@@ -100,7 +100,7 @@ const Navbar = () => {
             <div className="w-8 h-8 bg-gradient-primary rounded-full flex items-center justify-center">
               <span className="text-white font-bold text-sm">I</span>
             </div>
-            <span className="text-xl font-bold text-foreground">Pure Ihraam</span>
+            <span className="text-xl font-bold text-foreground">Pure Ihram</span>
           </Link>
 
           {/* Desktop Navigation */}

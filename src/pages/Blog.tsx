@@ -9,7 +9,7 @@ const Blog = () => {
       id: 1,
       title: "How to Wear Ihram – A Simple Guide for Pilgrims",
       excerpt: "A step-by-step guide to properly wearing the Ihram garments, ensuring comfort and adherence to Islamic guidelines during your pilgrimage.",
-      author: "Pure Ihraam Team",
+      author: "Pure Ihram Team",
       readTime: "5 min read",
       date: "March 15, 2024",
       category: "Guide",

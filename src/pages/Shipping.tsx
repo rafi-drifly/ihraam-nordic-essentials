@@ -31,7 +31,7 @@ const Shipping = () => {
     {
       icon: <Package className="h-6 w-6 text-primary" />,
       title: "Secure Packaging",
-      description: "Your Ihraam is carefully packaged in protective, eco-friendly materials"
+      description: "Your Ihram is carefully packaged in protective, eco-friendly materials"
     },
     {
       icon: <Shield className="h-6 w-6 text-primary" />,
@@ -60,7 +60,7 @@ const Shipping = () => {
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Fast, reliable delivery across Sweden, the Nordics, and Europe. 
-            Your Ihraam will arrive in perfect condition, ready for your sacred journey.
+            Your Ihram will arrive in perfect condition, ready for your sacred journey.
           </p>
         </div>
 
@@ -102,7 +102,7 @@ const Shipping = () => {
             <div className="bg-primary/10 rounded-lg p-4 max-w-2xl mx-auto">
               <h4 className="font-semibold text-primary mb-2">💡 Pilgrimage Planning Tip</h4>
               <p className="text-sm text-muted-foreground">
-                <strong>Order your Ihraam at least 3-4 weeks before travel</strong> to avoid last-minute stress 
+                <strong>Order your Ihram at least 3-4 weeks before travel</strong> to avoid last-minute stress 
                 and ensure you have time for any adjustments or replacements if needed.
               </p>
             </div>

@@ -12,10 +12,10 @@ const Footer = () => {
               <div className="w-8 h-8 bg-gradient-primary rounded-full flex items-center justify-center">
                 <span className="text-white font-bold text-sm">I</span>
               </div>
-              <span className="text-xl font-bold text-foreground">Pure Ihraam</span>
+              <span className="text-xl font-bold text-foreground">Pure Ihram</span>
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed">
-              Providing pure, comfortable Ihraam cloth for pilgrims across Sweden, the Nordics, and Europe. 
+              Providing pure, comfortable Ihram (Ihraam) cloth for pilgrims across Sweden, the Nordics, and Europe. 
               Made with the intention of reward and accessibility for all.
             </p>
           </div>
@@ -79,7 +79,7 @@ const Footer = () => {
         {/* Bottom Section */}
         <div className="border-t border-border mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-muted-foreground text-sm">
-            © 2024 Pure Ihraam. All rights reserved.
+            © 2025 Pure Ihram. All rights reserved.
           </p>
           <div className="mt-4 md:mt-0">
             <p className="text-muted-foreground text-xs italic max-w-md">

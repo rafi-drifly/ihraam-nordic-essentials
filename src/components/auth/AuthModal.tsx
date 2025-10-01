@@ -53,7 +53,7 @@ export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>Welcome to Ihraam Store</DialogTitle>
+          <DialogTitle>Welcome to Pure Ihram</DialogTitle>
           <DialogDescription>
             Sign in to your account or create a new one to continue shopping.
           </DialogDescription>
