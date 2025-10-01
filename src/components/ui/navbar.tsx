@@ -1,21 +1,17 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, User, LogOut } from "lucide-react";
-import { useAuth } from "@/hooks/useAuth";
+import { Menu, X } from "lucide-react";
 import { CartDrawer } from "@/components/shop/CartDrawer";
-import { AuthModal } from "@/components/auth/AuthModal";
 import { GuestEmailModal } from "@/components/checkout/GuestEmailModal";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [showAuthModal, setShowAuthModal] = useState(false);
   const [showEmailModal, setShowEmailModal] = useState(false);
   const [checkingOut, setCheckingOut] = useState(false);
   const location = useLocation();
-  const { user, signOut } = useAuth();
   const { toast } = useToast();
 
   const handleCheckout = async () => {
@@ -26,14 +22,8 @@ const Navbar = () => {
       return;
     }
 
-    // If not logged in, show email modal
-    if (!user?.email) {
-      setShowEmailModal(true);
-      return;
-    }
-
-    // User is logged in, proceed with checkout
-    await processCheckout();
+    // Always show email modal for guest checkout
+    setShowEmailModal(true);
   };
 
   const handleGuestEmailSubmit = async (guestEmail: string) => {
@@ -125,23 +115,6 @@ const Navbar = () => {
           {/* Cart and Mobile menu button */}
           <div className="flex items-center space-x-4">
             <CartDrawer onCheckout={handleCheckout} checkingOut={checkingOut} />
-            
-            {user ? (
-              <div className="flex items-center space-x-2">
-                <span className="text-sm text-muted-foreground hidden sm:block">
-                  {user.email}
-                </span>
-                <Button variant="ghost" size="sm" onClick={signOut}>
-                  <LogOut className="h-4 w-4" />
-                  <span className="hidden sm:ml-2 sm:inline">Sign Out</span>
-                </Button>
-              </div>
-            ) : (
-              <Button variant="outline" size="sm" onClick={() => setShowAuthModal(true)}>
-                <User className="h-4 w-4" />
-                <span className="hidden sm:ml-2 sm:inline">Sign In</span>
-              </Button>
-            )}
 
             {/* Mobile menu button */}
             <div className="md:hidden">
@@ -184,7 +157,6 @@ const Navbar = () => {
         onOpenChange={setShowEmailModal}
         onSubmit={handleGuestEmailSubmit}
       />
-      <AuthModal open={showAuthModal} onOpenChange={setShowAuthModal} />
     </nav>
   );
 };

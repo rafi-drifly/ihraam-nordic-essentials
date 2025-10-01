@@ -4,20 +4,18 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle, Package, ArrowRight, Key } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
-import { useAuth } from "@/hooks/useAuth";
 
 const PaymentSuccess = () => {
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get('session_id');
   const { clearCart } = useCart();
-  const { user } = useAuth();
   const [orderNumber] = useState(() => 
     `ORD-${new Date().toISOString().slice(0, 10).replace(/-/g, '')}-${Math.random().toString(36).substr(2, 5).toUpperCase()}`
   );
   const [lookupToken] = useState(() => crypto.randomUUID());
   
-  // Show lookup token only for guest orders (no authenticated user)
-  const isGuestOrder = !user;
+  // All orders are guest orders now
+  const isGuestOrder = true;
 
   useEffect(() => {
     // Clear cart after successful payment

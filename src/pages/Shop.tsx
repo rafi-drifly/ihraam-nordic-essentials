@@ -4,7 +4,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Minus, Plus, ShoppingCart, Star, Check } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
-import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { GuestEmailModal } from "@/components/checkout/GuestEmailModal";
@@ -29,7 +28,6 @@ const Shop = () => {
   const [checkoutLoading, setCheckoutLoading] = useState(false);
   const [showEmailModal, setShowEmailModal] = useState(false);
   const { addItem } = useCart();
-  const { user } = useAuth();
   const { toast } = useToast();
 
   useEffect(() => {
@@ -81,14 +79,8 @@ const Shop = () => {
   const handleCheckout = async () => {
     if (!product || checkoutLoading) return;
 
-    // If not logged in, show email modal
-    if (!user?.email) {
-      setShowEmailModal(true);
-      return;
-    }
-
-    // User is logged in, proceed with checkout
-    await processCheckout();
+    // Always show email modal for guest checkout
+    setShowEmailModal(true);
   };
 
   const handleGuestEmailSubmit = async (guestEmail: string) => {
