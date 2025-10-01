@@ -5,12 +5,14 @@ import { Menu, X, User, LogOut } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { CartDrawer } from "@/components/shop/CartDrawer";
 import { AuthModal } from "@/components/auth/AuthModal";
+import { GuestEmailModal } from "@/components/checkout/GuestEmailModal";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const [showEmailModal, setShowEmailModal] = useState(false);
   const [checkingOut, setCheckingOut] = useState(false);
   const location = useLocation();
   const { user, signOut } = useAuth();
@@ -24,15 +26,23 @@ const Navbar = () => {
       return;
     }
 
-    // If not logged in, ask for a guest email
-    let guestEmail: string | undefined = undefined;
+    // If not logged in, show email modal
     if (!user?.email) {
-      guestEmail = window.prompt("Enter your email for receipts and order updates:");
-      if (!guestEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(guestEmail)) {
-        toast({ title: "Email required", description: "Please enter a valid email to continue.", variant: "destructive" });
-        return;
-      }
+      setShowEmailModal(true);
+      return;
     }
+
+    // User is logged in, proceed with checkout
+    await processCheckout();
+  };
+
+  const handleGuestEmailSubmit = async (guestEmail: string) => {
+    setShowEmailModal(false);
+    await processCheckout(guestEmail);
+  };
+
+  const processCheckout = async (guestEmail?: string) => {
+    const cartItems = JSON.parse(localStorage.getItem('ihraam-cart') || '[]');
 
     setCheckingOut(true);
     try {
@@ -169,6 +179,11 @@ const Navbar = () => {
         )}
       </div>
       
+      <GuestEmailModal
+        open={showEmailModal}
+        onOpenChange={setShowEmailModal}
+        onSubmit={handleGuestEmailSubmit}
+      />
       <AuthModal open={showAuthModal} onOpenChange={setShowAuthModal} />
     </nav>
   );

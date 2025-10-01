@@ -7,6 +7,7 @@ import { useCart } from "@/hooks/useCart";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { GuestEmailModal } from "@/components/checkout/GuestEmailModal";
 import ihraamProduct from "@/assets/ihraam-product.jpg";
 import ihraamWorn from "@/assets/ihraam-worn.jpg";
 
@@ -26,6 +27,7 @@ const Shop = () => {
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
+  const [showEmailModal, setShowEmailModal] = useState(false);
   const { addItem } = useCart();
   const { user } = useAuth();
   const { toast } = useToast();
@@ -79,19 +81,23 @@ const Shop = () => {
   const handleCheckout = async () => {
     if (!product || checkoutLoading) return;
 
-    // If not logged in, ask for a guest email
-    let guestEmail: string | undefined = undefined;
+    // If not logged in, show email modal
     if (!user?.email) {
-      guestEmail = window.prompt("Enter your email for receipts and order updates:");
-      if (!guestEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(guestEmail)) {
-        toast({
-          title: "Email required",
-          description: "Please enter a valid email to continue.",
-          variant: "destructive",
-        });
-        return;
-      }
+      setShowEmailModal(true);
+      return;
     }
+
+    // User is logged in, proceed with checkout
+    await processCheckout();
+  };
+
+  const handleGuestEmailSubmit = async (guestEmail: string) => {
+    setShowEmailModal(false);
+    await processCheckout(guestEmail);
+  };
+
+  const processCheckout = async (guestEmail?: string) => {
+    if (!product) return;
 
     setCheckoutLoading(true);
     try {
@@ -157,8 +163,15 @@ const Shop = () => {
   ];
 
   return (
-    <div className="min-h-screen py-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <>
+      <GuestEmailModal
+        open={showEmailModal}
+        onOpenChange={setShowEmailModal}
+        onSubmit={handleGuestEmailSubmit}
+      />
+      
+      <div className="min-h-screen py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
         <nav className="flex items-center space-x-2 text-sm text-muted-foreground mb-8">
           <span>Home</span>
@@ -362,6 +375,7 @@ const Shop = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
