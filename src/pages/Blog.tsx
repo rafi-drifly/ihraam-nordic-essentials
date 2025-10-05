@@ -12,7 +12,7 @@ const Blog = () => {
       excerpt: "A step-by-step guide to properly wearing the Ihram garments, ensuring comfort and adherence to Islamic guidelines during your pilgrimage.",
       author: "Pure Ihram Team",
       readTime: "5 min read",
-      date: "March 15, 2024",
+      date: "October 5, 2025",
       category: "Guide",
       image: "/api/placeholder/400/250",
       content: "Learn the proper way to wear your Ihram cloth with our comprehensive guide..."

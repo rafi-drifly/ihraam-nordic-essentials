@@ -13,7 +13,7 @@ const BlogPost = () => {
     excerpt: "A step-by-step guide to properly wearing the Ihram garments, ensuring comfort and adherence to Sunnah during your sacred journey.",
     author: "Pure Ihram Team",
     readTime: "12 min read",
-    date: "March 15, 2024",
+    date: "October 5, 2025",
     category: "Guide",
   };
 
