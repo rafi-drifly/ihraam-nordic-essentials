@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Clock, User, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Blog = () => {
   const blogPosts = [
@@ -142,10 +143,19 @@ const Blog = () => {
                     <User className="h-3 w-3 mr-1" />
                     {post.author}
                   </div>
-                  <Button size="sm" variant="ghost" className="group-hover:text-primary">
-                    Read More
-                    <ArrowRight className="h-3 w-3 ml-1" />
-                  </Button>
+                  {post.id === 1 ? (
+                    <Link to="/blog/how-to-wear-ihram">
+                      <Button size="sm" variant="ghost" className="group-hover:text-primary">
+                        Read More
+                        <ArrowRight className="h-3 w-3 ml-1" />
+                      </Button>
+                    </Link>
+                  ) : (
+                    <Button size="sm" variant="ghost" className="group-hover:text-primary">
+                      Read More
+                      <ArrowRight className="h-3 w-3 ml-1" />
+                    </Button>
+                  )}
                 </div>
                 
                 <div className="text-xs text-muted-foreground mt-2">
