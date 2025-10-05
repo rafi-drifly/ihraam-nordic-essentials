@@ -128,9 +128,17 @@ const Blog = () => {
                     {post.readTime}
                   </div>
                 </div>
-                <CardTitle className="text-lg group-hover:text-primary transition-colors line-clamp-2">
-                  {post.title}
-                </CardTitle>
+                {post.id === 1 ? (
+                  <Link to="/blog/how-to-wear-ihram">
+                    <CardTitle className="text-lg group-hover:text-primary transition-colors line-clamp-2 cursor-pointer">
+                      {post.title}
+                    </CardTitle>
+                  </Link>
+                ) : (
+                  <CardTitle className="text-lg group-hover:text-primary transition-colors line-clamp-2">
+                    {post.title}
+                  </CardTitle>
+                )}
               </CardHeader>
               
               <CardContent>
