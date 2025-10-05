@@ -3,10 +3,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Clock, User, ArrowLeft } from "lucide-react";
-import ihramGarments from "@/assets/blog/ihram-garments.jpg";
-import pilgrimsKaaba from "@/assets/blog/pilgrims-kaaba.jpg";
-import howToWearIzar from "@/assets/blog/how-to-wear-izar.jpg";
-import spiritualPreparation from "@/assets/blog/spiritual-preparation.jpg";
 
 const BlogPost = () => {
   const { slug } = useParams();
@@ -56,15 +52,6 @@ const BlogPost = () => {
           </div>
         </div>
 
-        {/* Hero Image */}
-        <div className="mb-8 rounded-lg overflow-hidden">
-          <img 
-            src={pilgrimsKaaba} 
-            alt="Pilgrims in Ihram at Kaaba" 
-            className="w-full h-auto object-cover"
-          />
-        </div>
-
         {/* Article Content */}
         <article className="prose prose-lg max-w-none">
           <section className="mb-12">
@@ -102,14 +89,6 @@ const BlogPost = () => {
             <p className="text-muted-foreground leading-relaxed mb-6">
               Before wearing Ihram, make sure you have the following essentials:
             </p>
-
-            <div className="mb-6 rounded-lg overflow-hidden">
-              <img 
-                src={ihramGarments} 
-                alt="White Ihram garments - two-piece unstitched cotton cloth" 
-                className="w-full h-auto object-cover"
-              />
-            </div>
 
             <div className="space-y-6">
               <div>
@@ -169,13 +148,6 @@ const BlogPost = () => {
 
               <div>
                 <h3 className="text-2xl font-semibold text-foreground mb-3">Step 2: Wearing the Izar (Lower Garment)</h3>
-                <div className="mb-4 rounded-lg overflow-hidden">
-                  <img 
-                    src={howToWearIzar} 
-                    alt="Instructional guide on wearing Izar (lower Ihram garment)" 
-                    className="w-full h-auto object-cover"
-                  />
-                </div>
                 <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4 mb-3">
                   <li>Wrap the izar around your waist.</li>
                   <li>Ensure it covers from your navel to your ankles.</li>
@@ -260,13 +232,6 @@ const BlogPost = () => {
 
           <section className="mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-4">Spiritual Reminder</h2>
-            <div className="mb-6 rounded-lg overflow-hidden">
-              <img 
-                src={spiritualPreparation} 
-                alt="Prayer beads and Quran - spiritual preparation for pilgrimage" 
-                className="w-full h-auto object-cover"
-              />
-            </div>
             <p className="text-muted-foreground leading-relaxed mb-6">
               Ihram is not just about two white cloths — it's about purifying your heart and disconnecting from worldly distractions.
             </p>
