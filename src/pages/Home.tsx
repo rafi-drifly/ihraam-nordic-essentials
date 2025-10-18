@@ -5,42 +5,31 @@ import { Check, Truck, Heart, Star } from "lucide-react";
 import ihraamProduct from "@/assets/hero-product.avif";
 import ihraamWorn from "@/assets/ihraam-worn.jpg";
 import heroPattern from "@/assets/hero-pattern.jpg";
-
 const Home = () => {
-  const benefits = [
-    {
-      icon: <Check className="h-6 w-6 text-primary" />,
-      title: "Lightweight & Comfortable",
-      description: "Made from premium cotton, thin and breathable for maximum comfort during your pilgrimage."
-    },
-    {
-      icon: <Heart className="h-6 w-6 text-primary" />,
-      title: "Made with Intention",
-      description: "Every piece is prepared with the sincere intention of reward in the Akhirah and accessibility for all."
-    },
-    {
-      icon: <Truck className="h-6 w-6 text-primary" />,
-      title: "Fast EU Delivery",
-      description: "Quick delivery across Sweden (3-7 days) and all Nordic/EU countries (7-14 days)."
-    },
-    {
-      icon: <Star className="h-6 w-6 text-primary" />,
-      title: "Affordable Quality",
-      description: "High-quality Ihraam at just 15€ + shipping, making it accessible for every pilgrim."
-    }
-  ];
-
-  return (
-    <div className="min-h-screen">
+  const benefits = [{
+    icon: <Check className="h-6 w-6 text-primary" />,
+    title: "Lightweight & Comfortable",
+    description: "Made from premium cotton, thin and breathable for maximum comfort during your pilgrimage."
+  }, {
+    icon: <Heart className="h-6 w-6 text-primary" />,
+    title: "Made with Intention",
+    description: "Every piece is prepared with the sincere intention of reward in the Akhirah and accessibility for all."
+  }, {
+    icon: <Truck className="h-6 w-6 text-primary" />,
+    title: "Fast EU Delivery",
+    description: "Quick delivery across Sweden (3-7 days) and all Nordic/EU countries (7-14 days)."
+  }, {
+    icon: <Star className="h-6 w-6 text-primary" />,
+    title: "Affordable Quality",
+    description: "High-quality Ihraam at just 15€ + shipping, making it accessible for every pilgrim."
+  }];
+  return <div className="min-h-screen">
       {/* Hero Section */}
-      <section 
-        className="relative bg-gradient-hero py-20 lg:py-32 overflow-hidden"
-        style={{
-          backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.8)), url(${heroPattern})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-        }}
-      >
+      <section className="relative bg-gradient-hero py-20 lg:py-32 overflow-hidden" style={{
+      backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.8)), url(${heroPattern})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center'
+    }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Text Content */}
@@ -69,18 +58,8 @@ const Home = () => {
             {/* Product Images */}
             <div className="animate-slide-up">
               <div className="relative">
-                <img
-                  src={ihraamProduct}
-                  alt="Pure white Ihram (Ihraam) cloth laid flat"
-                  className="rounded-2xl shadow-2xl w-full"
-                />
-                <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-white rounded-2xl shadow-xl p-4 hidden md:block">
-                  <img
-                    src={ihraamWorn}
-                    alt="Ihram (Ihraam) worn by pilgrim"
-                    className="w-full h-full object-cover rounded-xl"
-                  />
-                </div>
+                <img src={ihraamProduct} alt="Pure white Ihram (Ihraam) cloth laid flat" className="rounded-2xl shadow-2xl w-full" />
+                
               </div>
             </div>
           </div>
@@ -164,8 +143,7 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {benefits.map((benefit, index) => (
-              <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow">
+            {benefits.map((benefit, index) => <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow">
                 <CardContent className="p-6 text-center">
                   <div className="flex justify-center mb-4">
                     {benefit.icon}
@@ -177,8 +155,7 @@ const Home = () => {
                     {benefit.description}
                   </p>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
@@ -217,8 +194,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default Home;
