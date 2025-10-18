@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Minus, Plus, ShoppingCart, Star, Check, X } from "lucide-react";
+import { Minus, Plus, ShoppingCart, Star, Check, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
@@ -35,7 +35,7 @@ const Shop = () => {
   const [loading, setLoading] = useState(true);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
   const [showEmailModal, setShowEmailModal] = useState(false);
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
   const {
     addItem
   } = useCart();
@@ -45,6 +45,23 @@ const Shop = () => {
   useEffect(() => {
     fetchProduct();
   }, []);
+
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (selectedImageIndex === null) return;
+      
+      if (e.key === 'ArrowLeft') {
+        navigatePrevious();
+      } else if (e.key === 'ArrowRight') {
+        navigateNext();
+      } else if (e.key === 'Escape') {
+        setSelectedImageIndex(null);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [selectedImageIndex]);
   const fetchProduct = async () => {
     try {
       const {
@@ -142,30 +159,64 @@ const Shop = () => {
   
   const allImages = [ihraamProduct, detail2, detail3, detail4, detail5, detail6, detail7, detail8];
 
+  const navigateNext = () => {
+    if (selectedImageIndex === null) return;
+    setSelectedImageIndex((selectedImageIndex + 1) % allImages.length);
+  };
+
+  const navigatePrevious = () => {
+    if (selectedImageIndex === null) return;
+    setSelectedImageIndex((selectedImageIndex - 1 + allImages.length) % allImages.length);
+  };
+
   return <>
       <GuestEmailModal open={showEmailModal} onOpenChange={setShowEmailModal} onSubmit={handleGuestEmailSubmit} />
       
       {/* Image Lightbox */}
-      <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
-        <DialogContent className="max-w-4xl p-0 bg-transparent border-none">
+      <Dialog open={selectedImageIndex !== null} onOpenChange={() => setSelectedImageIndex(null)}>
+        <DialogContent className="max-w-5xl p-0 bg-background/95 backdrop-blur">
           <Button 
             variant="ghost" 
             size="icon" 
-            className="absolute right-4 top-4 z-50 bg-background/80 hover:bg-background"
-            onClick={() => setSelectedImage(null)}
+            className="absolute right-4 top-4 z-50 bg-background/80 hover:bg-background rounded-full"
+            onClick={() => setSelectedImageIndex(null)}
           >
             <X className="h-4 w-4" />
           </Button>
-          {selectedImage && (
-            <img 
-              src={selectedImage} 
-              alt="Product enlarged view" 
-              className="w-full h-auto rounded-lg"
-            />
+          
+          {/* Navigation Buttons */}
+          <Button
+            variant="ghost"
+            size="icon"
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-50 bg-background/80 hover:bg-background rounded-full"
+            onClick={navigatePrevious}
+          >
+            <ChevronLeft className="h-6 w-6" />
+          </Button>
+          
+          <Button
+            variant="ghost"
+            size="icon"
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-50 bg-background/80 hover:bg-background rounded-full"
+            onClick={navigateNext}
+          >
+            <ChevronRight className="h-6 w-6" />
+          </Button>
+
+          {selectedImageIndex !== null && (
+            <div className="p-4">
+              <img 
+                src={allImages[selectedImageIndex]} 
+                alt={`Product view ${selectedImageIndex + 1}`}
+                className="w-full h-auto rounded-lg max-h-[85vh] object-contain"
+              />
+              <div className="text-center mt-3 text-sm text-muted-foreground">
+                {selectedImageIndex + 1} / {allImages.length}
+              </div>
+            </div>
           )}
         </DialogContent>
       </Dialog>
-      
       <div className="min-h-screen py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
@@ -181,32 +232,32 @@ const Shop = () => {
             {/* Main Image */}
             <div 
               className="aspect-square bg-muted rounded-2xl overflow-hidden mb-4 cursor-pointer hover:opacity-90 transition-opacity"
-              onClick={() => setSelectedImage(ihraamProduct)}
+              onClick={() => setSelectedImageIndex(0)}
             >
               <img src={ihraamProduct} alt="Pure Ihram (Ihraam) Cloth Set" className="w-full h-full object-cover" />
             </div>
             
             {/* Detail Images Grid */}
             <div className="grid grid-cols-4 gap-2">
-              <div className="aspect-square bg-muted rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity" onClick={() => setSelectedImage(detail2)}>
+              <div className="aspect-square bg-muted rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity" onClick={() => setSelectedImageIndex(1)}>
                 <img src={detail2} alt="Ihram towel set packaged in eco-friendly zip carry bag" className="w-full h-full object-cover" />
               </div>
-              <div className="aspect-square bg-muted rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity" onClick={() => setSelectedImage(detail3)}>
+              <div className="aspect-square bg-muted rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity" onClick={() => setSelectedImageIndex(2)}>
                 <img src={detail3} alt="Quick-dry microfiber Ihram fabric detail" className="w-full h-full object-cover" />
               </div>
-              <div className="aspect-square bg-muted rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity" onClick={() => setSelectedImage(detail4)}>
+              <div className="aspect-square bg-muted rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity" onClick={() => setSelectedImageIndex(3)}>
                 <img src={detail4} alt="Ihram Hajj towel set white color" className="w-full h-full object-cover" />
               </div>
-              <div className="aspect-square bg-muted rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity" onClick={() => setSelectedImage(detail5)}>
+              <div className="aspect-square bg-muted rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity" onClick={() => setSelectedImageIndex(4)}>
                 <img src={detail5} alt="Soft and comfortable microfiber Ihram" className="w-full h-full object-cover" />
               </div>
-              <div className="aspect-square bg-muted rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity" onClick={() => setSelectedImage(detail6)}>
+              <div className="aspect-square bg-muted rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity" onClick={() => setSelectedImageIndex(5)}>
                 <img src={detail6} alt="Premium Ihram towel set for Hajj and Umrah" className="w-full h-full object-cover" />
               </div>
-              <div className="aspect-square bg-muted rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity" onClick={() => setSelectedImage(detail7)}>
+              <div className="aspect-square bg-muted rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity" onClick={() => setSelectedImageIndex(6)}>
                 <img src={detail7} alt="Lightweight Ihram for pilgrims" className="w-full h-full object-cover" />
               </div>
-              <div className="aspect-square bg-muted rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity" onClick={() => setSelectedImage(detail8)}>
+              <div className="aspect-square bg-muted rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity" onClick={() => setSelectedImageIndex(7)}>
                 <img src={detail8} alt="Antimicrobial and hypoallergenic Ihram towel" className="w-full h-full object-cover" />
               </div>
             </div>
