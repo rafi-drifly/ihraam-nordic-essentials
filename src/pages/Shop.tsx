@@ -150,10 +150,39 @@ const Shop = () => {
         </nav>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Product Images */}
+          {/* Product Images Gallery */}
           <div className="space-y-4">
-            <div className="aspect-square bg-muted rounded-2xl overflow-hidden">
+            {/* Main Image */}
+            <div className="aspect-square bg-muted rounded-2xl overflow-hidden mb-4">
               <img src={ihraamProduct} alt="Pure Ihram (Ihraam) Cloth Set" className="w-full h-full object-cover" />
+            </div>
+            
+            {/* Detail Images Grid */}
+            <div className="grid grid-cols-4 gap-2">
+              <div className="aspect-square bg-muted rounded-lg overflow-hidden">
+                <img src={detail1} alt="Ihram Hajj towel set detail" className="w-full h-full object-cover" />
+              </div>
+              <div className="aspect-square bg-muted rounded-lg overflow-hidden">
+                <img src={detail2} alt="Ihram towel set packaged in eco-friendly zip carry bag" className="w-full h-full object-cover" />
+              </div>
+              <div className="aspect-square bg-muted rounded-lg overflow-hidden">
+                <img src={detail3} alt="Quick-dry microfiber Ihram fabric detail" className="w-full h-full object-cover" />
+              </div>
+              <div className="aspect-square bg-muted rounded-lg overflow-hidden">
+                <img src={detail4} alt="Ihram Hajj towel set white color" className="w-full h-full object-cover" />
+              </div>
+              <div className="aspect-square bg-muted rounded-lg overflow-hidden">
+                <img src={detail5} alt="Soft and comfortable microfiber Ihram" className="w-full h-full object-cover" />
+              </div>
+              <div className="aspect-square bg-muted rounded-lg overflow-hidden">
+                <img src={detail6} alt="Premium Ihram towel set for Hajj and Umrah" className="w-full h-full object-cover" />
+              </div>
+              <div className="aspect-square bg-muted rounded-lg overflow-hidden">
+                <img src={detail7} alt="Lightweight Ihram for pilgrims" className="w-full h-full object-cover" />
+              </div>
+              <div className="aspect-square bg-muted rounded-lg overflow-hidden">
+                <img src={detail8} alt="Antimicrobial and hypoallergenic Ihram towel" className="w-full h-full object-cover" />
+              </div>
             </div>
           </div>
 
@@ -173,7 +202,9 @@ const Shop = () => {
                 {product.name}
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                {product.description}
+                Stay cool, clean, and comfortable on your sacred journey. The Pure Ihram Hajj Towel Set combines 
+                Sunnah simplicity with modern microfiber performance — soft, absorbent, and made to last through 
+                every step of Hajj or Umrah.
               </p>
             </div>
 
@@ -188,17 +219,81 @@ const Shop = () => {
               </p>
             </div>
 
+            {/* Specifications Table */}
+            <Card className="shadow-sm">
+              <CardHeader>
+                <CardTitle className="text-lg" style={{ color: '#2C7A7B' }}>Technical Specifications</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Table>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell className="font-medium">Material</TableCell>
+                      <TableCell>100% Microfiber Polyester</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell className="font-medium">Size</TableCell>
+                      <TableCell>115 × 230 cm</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell className="font-medium">Weight</TableCell>
+                      <TableCell>1400 g (2 pieces)</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell className="font-medium">Features</TableCell>
+                      <TableCell>Quick-Dry • Antimicrobial • Hypoallergenic</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell className="font-medium">Packaging</TableCell>
+                      <TableCell>Eco-friendly zip carry bag</TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
+
             {/* Features */}
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg">What's Included</CardTitle>
+                <CardTitle className="text-lg">Key Features</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                  {features.map((feature, index) => <div key={index} className="flex items-center space-x-2">
-                      <Check className="h-4 w-4 text-primary" />
-                      <span className="text-sm">{feature}</span>
-                    </div>)}
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3">
+                    <Check className="h-5 w-5 text-primary mt-0.5" />
+                    <div>
+                      <p className="font-medium">Soft & Comfortable</p>
+                      <p className="text-sm text-muted-foreground">Smooth microfiber gentle on the skin</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Check className="h-5 w-5 text-primary mt-0.5" />
+                    <div>
+                      <p className="font-medium">Quick-Dry Technology</p>
+                      <p className="text-sm text-muted-foreground">Absorbs moisture and dries rapidly</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Check className="h-5 w-5 text-primary mt-0.5" />
+                    <div>
+                      <p className="font-medium">Antimicrobial Protection</p>
+                      <p className="text-sm text-muted-foreground">Prevents bacterial buildup</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Check className="h-5 w-5 text-primary mt-0.5" />
+                    <div>
+                      <p className="font-medium">Sustainable & Reusable</p>
+                      <p className="text-sm text-muted-foreground">Durable and easy to wash</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Check className="h-5 w-5 text-primary mt-0.5" />
+                    <div>
+                      <p className="font-medium">Sunnah-Compliant Design</p>
+                      <p className="text-sm text-muted-foreground">Two unstitched white pieces symbolizing purity</p>
+                    </div>
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -240,184 +335,26 @@ const Shop = () => {
                 </ul>
               </CardContent>
             </Card>
-          </div>
-        </div>
 
-        {/* Complete Product Description Section */}
-        <div className="mt-20 border-t border-border pt-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Left Column - Product Images */}
-            <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="aspect-square bg-muted rounded-lg overflow-hidden">
-                  
-                </div>
-                <div className="aspect-square bg-muted rounded-lg overflow-hidden">
-                  <img src={detail2} alt="Ihram towel set packaged in eco-friendly zip carry bag" className="w-full h-full object-cover" />
-                </div>
-                <div className="aspect-square bg-muted rounded-lg overflow-hidden">
-                  <img src={detail3} alt="Quick-dry microfiber Ihram fabric detail" className="w-full h-full object-cover" />
-                </div>
-                <div className="aspect-square bg-muted rounded-lg overflow-hidden">
-                  <img src={detail4} alt="Ihram Hajj towel set white color" className="w-full h-full object-cover" />
-                </div>
-                <div className="aspect-square bg-muted rounded-lg overflow-hidden">
-                  <img src={detail5} alt="Soft and comfortable microfiber Ihram" className="w-full h-full object-cover" />
-                </div>
-                <div className="aspect-square bg-muted rounded-lg overflow-hidden">
-                  <img src={detail6} alt="Premium Ihram towel set for Hajj and Umrah" className="w-full h-full object-cover" />
-                </div>
-                <div className="aspect-square bg-muted rounded-lg overflow-hidden">
-                  <img src={detail7} alt="Lightweight Ihram for pilgrims" className="w-full h-full object-cover" />
-                </div>
-                <div className="aspect-square bg-muted rounded-lg overflow-hidden">
-                  <img src={detail8} alt="Antimicrobial and hypoallergenic Ihram towel" className="w-full h-full object-cover" />
-                </div>
-              </div>
-            </div>
-
-            {/* Right Column - Product Details */}
-            <div className="space-y-8">
-              {/* Title and Intro */}
-              <div>
-                <h1 className="text-3xl font-bold mb-4" style={{
-                  color: '#2C7A7B'
-                }}>
-                  Ihram Hajj Towel Set – Premium Quick-Dry Microfiber (115×230 cm, 1400 g)
-                </h1>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  Stay cool, clean, and comfortable on your sacred journey. The Pure Ihram Hajj Towel Set combines 
-                  Sunnah simplicity with modern microfiber performance — soft, absorbent, and made to last through 
-                  every step of Hajj or Umrah.
-                </p>
-              </div>
-
-              {/* Specifications Table */}
-              <Card className="shadow-sm">
-                <CardHeader>
-                  <CardTitle className="text-xl" style={{
-                    color: '#2C7A7B'
-                  }}>Technical Specifications</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead className="font-semibold">Feature</TableHead>
-                        <TableHead className="font-semibold">Details</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      <TableRow>
-                        <TableCell className="font-medium">Product Name</TableCell>
-                        <TableCell>Ihram Hajj Towel Set</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell className="font-medium">Fabric Material</TableCell>
-                        <TableCell>100% Microfiber Polyester</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell className="font-medium">Size</TableCell>
-                        <TableCell>115 × 230 cm</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell className="font-medium">Weight</TableCell>
-                        <TableCell>1400 g per set (2 pieces – top + bottom)</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell className="font-medium">Color</TableCell>
-                        <TableCell>White</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell className="font-medium">Usage</TableCell>
-                        <TableCell>Ihram for Hajj & Umrah</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell className="font-medium">Features</TableCell>
-                        <TableCell>Quick-Dry • Antimicrobial • Hypoallergenic • Sustainable • Lightweight</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell className="font-medium">Packaging</TableCell>
-                        <TableCell>2-piece set in eco-friendly zip carry bag</TableCell>
-                      </TableRow>
-                    </TableBody>
-                  </Table>
-                </CardContent>
-              </Card>
-
-              {/* Features List */}
-              <div>
-                <h2 className="text-2xl font-bold mb-4" style={{
-                  color: '#2C7A7B'
-                }}>Key Features</h2>
-                <div className="space-y-3">
-                  <div className="flex items-start gap-3">
-                    <span className="text-2xl">☁️</span>
-                    <div>
-                      <h3 className="font-semibold">Soft & Comfortable</h3>
-                      <p className="text-sm text-muted-foreground">Smooth microfiber gentle on the skin.</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-2xl">💧</span>
-                    <div>
-                      <h3 className="font-semibold">Quick-Dry Technology</h3>
-                      <p className="text-sm text-muted-foreground">Absorbs moisture and dries rapidly.</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-2xl">🦠</span>
-                    <div>
-                      <h3 className="font-semibold">Antimicrobial Protection</h3>
-                      <p className="text-sm text-muted-foreground">Prevents bacterial buildup.</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-2xl">♻️</span>
-                    <div>
-                      <h3 className="font-semibold">Sustainable & Reusable</h3>
-                      <p className="text-sm text-muted-foreground">Durable and easy to wash.</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-2xl">🕋</span>
-                    <div>
-                      <h3 className="font-semibold">Sunnah-Compliant Design</h3>
-                      <p className="text-sm text-muted-foreground">Two unstitched white pieces symbolizing purity.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Care Instructions */}
-              <div className="border-t border-border pt-6">
-                <h3 className="text-lg font-semibold mb-3" style={{
-                  color: '#2C7A7B'
-                }}>Care Instructions</h3>
-                <ul className="space-y-2 text-sm text-muted-foreground">
+            {/* Care Instructions */}
+            <Card className="bg-accent/10">
+              <CardContent className="p-4">
+                <h3 className="font-semibold mb-2" style={{ color: '#2C7A7B' }}>Care Instructions</h3>
+                <ul className="text-sm text-muted-foreground space-y-1">
                   <li>• Machine wash gentle cycle (≤ 40°C)</li>
                   <li>• Do not bleach</li>
                   <li>• Air-dry or tumble-dry low</li>
                   <li>• Avoid ironing directly on the fabric</li>
                 </ul>
-              </div>
+              </CardContent>
+            </Card>
 
-              {/* Spiritual Reminder */}
-              <div className="bg-accent/10 rounded-lg p-6 border-l-4" style={{
-                borderLeftColor: '#2C7A7B'
-              }}>
-                <blockquote className="text-base italic text-foreground mb-2">
-                  "Take provisions, but indeed, the best provision is Taqwa (God-consciousness)."
-                </blockquote>
-                <cite className="text-sm text-muted-foreground">— Qur'an 2:197</cite>
-              </div>
-
-              {/* CTA Button */}
-              <Button size="lg" className="w-full text-lg py-6" style={{
-                backgroundColor: '#2C7A7B'
-              }} onClick={handleCheckout} disabled={checkoutLoading}>
-                {checkoutLoading ? "Processing..." : "Buy Now – €15 + Shipping"}
-              </Button>
+            {/* Spiritual Reminder */}
+            <div className="bg-accent/10 rounded-lg p-6 border-l-4" style={{ borderLeftColor: '#2C7A7B' }}>
+              <blockquote className="text-base italic text-foreground mb-2">
+                "Take provisions, but indeed, the best provision is Taqwa (God-consciousness)."
+              </blockquote>
+              <cite className="text-sm text-muted-foreground">— Qur'an 2:197</cite>
             </div>
           </div>
         </div>
