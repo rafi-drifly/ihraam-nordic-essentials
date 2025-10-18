@@ -52,6 +52,17 @@ const Blog = () => {
     },
     {
       id: 5,
+      title: "Essential Duas for Umrah (With Transliteration & Meaning)",
+      excerpt: "A pilgrim's guide to the most beloved supplications during Umrah — from departure to Tawaf and beyond, with Arabic, transliteration, and English meaning.",
+      author: "Pure Ihram Team",
+      readTime: "15 min read",
+      date: "March 15, 2024",
+      category: "Guide",
+      image: "/api/placeholder/400/250",
+      content: "Complete guide to essential duas during Umrah journey..."
+    },
+    {
+      id: 6,
       title: "The Spiritual Meaning of Ihram – Equality Before Allah",
       excerpt: "Explore the deeper spiritual significance of Ihram and how it represents the equality of all believers in the sight of Allah.",
       author: "Islamic Scholar",
@@ -152,6 +163,12 @@ const Blog = () => {
                       {post.title}
                     </CardTitle>
                   </Link>
+                ) : post.id === 5 ? (
+                  <Link to="/blog/essential-duas-umrah">
+                    <CardTitle className="text-lg group-hover:text-primary transition-colors line-clamp-2 cursor-pointer">
+                      {post.title}
+                    </CardTitle>
+                  </Link>
                 ) : (
                   <CardTitle className="text-lg group-hover:text-primary transition-colors line-clamp-2">
                     {post.title}
@@ -192,6 +209,13 @@ const Blog = () => {
                     </Link>
                   ) : post.id === 4 ? (
                     <Link to="/blog/common-mistakes-ihram">
+                      <Button size="sm" variant="ghost" className="group-hover:text-primary">
+                        Read More
+                        <ArrowRight className="h-3 w-3 ml-1" />
+                      </Button>
+                    </Link>
+                  ) : post.id === 5 ? (
+                    <Link to="/blog/essential-duas-umrah">
                       <Button size="sm" variant="ghost" className="group-hover:text-primary">
                         Read More
                         <ArrowRight className="h-3 w-3 ml-1" />
