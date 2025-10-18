@@ -190,18 +190,6 @@ const Shop = () => {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="aspect-square bg-muted rounded-xl overflow-hidden">
-                <img
-                  src={ihraamWorn}
-                  alt="Ihram (Ihraam) worn by pilgrim"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="aspect-square bg-muted rounded-xl overflow-hidden flex items-center justify-center">
-                <span className="text-muted-foreground">Detail View</span>
-              </div>
-            </div>
           </div>
 
           {/* Product Info */}
