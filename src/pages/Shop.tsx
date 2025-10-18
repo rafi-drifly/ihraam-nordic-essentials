@@ -202,7 +202,9 @@ const Shop = () => {
           {/* Product Images Gallery */}
           <div className="space-y-4">
             {/* Main Image */}
-            
+            <div className="aspect-square bg-muted rounded-lg overflow-hidden cursor-pointer hover:opacity-95 transition-opacity" onClick={() => setSelectedImageIndex(0)}>
+              <img src={ihraamProduct} alt="Pure Ihram Hajj Towel Set - Premium microfiber two-piece set for Hajj and Umrah" className="w-full h-full object-cover" />
+            </div>
             
             {/* Detail Images Grid */}
             <div className="grid grid-cols-4 gap-2">
