@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Check, Truck, Heart, Star } from "lucide-react";
 import ihraamProduct from "@/assets/ihraam-product.jpg";
 import ihraamWorn from "@/assets/ihraam-worn.jpg";
-import heroPattern from "@/assets/hero-pattern.jpg";
+import heroBackground from "@/assets/hero-background.avif";
 
 const Home = () => {
   const benefits = [
@@ -36,7 +36,7 @@ const Home = () => {
       <section 
         className="relative bg-gradient-hero py-20 lg:py-32 overflow-hidden"
         style={{
-          backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.8)), url(${heroPattern})`,
+          backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.8)), url(${heroBackground})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center'
         }}
