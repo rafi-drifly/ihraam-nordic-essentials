@@ -9,6 +9,15 @@ import { useToast } from "@/hooks/use-toast";
 import { GuestEmailModal } from "@/components/checkout/GuestEmailModal";
 import ihraamProduct from "@/assets/ihraam-product.jpg";
 import ihraamWorn from "@/assets/ihraam-worn.jpg";
+import detail1 from "@/assets/product/detail-1.avif";
+import detail2 from "@/assets/product/detail-2.avif";
+import detail3 from "@/assets/product/detail-3.avif";
+import detail4 from "@/assets/product/detail-4.avif";
+import detail5 from "@/assets/product/detail-5.avif";
+import detail6 from "@/assets/product/detail-6.avif";
+import detail7 from "@/assets/product/detail-7.avif";
+import detail8 from "@/assets/product/detail-8.avif";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 interface Product {
   id: string;
@@ -306,62 +315,207 @@ const Shop = () => {
           </div>
         </div>
 
-        {/* Description Section */}
-        <div className="mt-16">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2">
-              <h2 className="text-2xl font-bold text-foreground mb-6">Product Description</h2>
-              <div className="prose prose-lg max-w-none text-muted-foreground">
-                <p className="mb-4">
-                  Our Pure Ihram (Ihraam) cloth set consists of <strong>two unstitched white cloth pieces</strong> 
-                  (115 cm x 200 cm each), carefully crafted for the modern pilgrim who values both tradition and comfort. 
-                  Made from premium 100% cotton, this lightweight and breathable fabric provides the perfect balance 
-                  of comfort and durability needed for your sacred journey.
-                </p>
-                <p className="mb-4">
-                  The set includes both the Izaar (lower garment) and Ridaa (upper garment), 
-                  pre-cut to traditional specifications and <strong>suitable for all body types</strong>. 
-                  The fabric is pre-washed and treated to ensure it maintains its pristine white appearance 
-                  throughout your pilgrimage. Each set is <strong>packaged securely for travel</strong> to ensure 
-                  it arrives in perfect condition.
-                </p>
-                <p className="mb-6">
-                  With the intention of making Hajj and Umrah accessible to all believers, 
-                  we've priced this essential item at just 15€, ensuring that financial 
-                  constraints don't become a barrier to your spiritual journey.
-                </p>
-
-                {/* Hadith Reference */}
-                <div className="bg-accent/10 rounded-lg p-6 mt-6">
-                  <blockquote className="text-lg italic text-foreground mb-3">
-                    "Wear white clothes, for they are among the best of your clothes, 
-                    and shroud your dead in them."
-                  </blockquote>
-                  <cite className="text-sm text-muted-foreground">— Abu Dawood, Tirmidhi</cite>
+        {/* Complete Product Description Section */}
+        <div className="mt-20 border-t border-border pt-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Left Column - Product Images */}
+            <div className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="aspect-square bg-muted rounded-lg overflow-hidden">
+                  <img
+                    src={detail1}
+                    alt="Pure Ihram Hajj Towel Set (115×230 cm) – white microfiber cloth for pilgrims"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="aspect-square bg-muted rounded-lg overflow-hidden">
+                  <img
+                    src={detail2}
+                    alt="Ihram towel set packaged in eco-friendly zip carry bag"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="aspect-square bg-muted rounded-lg overflow-hidden">
+                  <img
+                    src={detail3}
+                    alt="Quick-dry microfiber Ihram fabric detail"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="aspect-square bg-muted rounded-lg overflow-hidden">
+                  <img
+                    src={detail4}
+                    alt="Ihram Hajj towel set white color"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="aspect-square bg-muted rounded-lg overflow-hidden">
+                  <img
+                    src={detail5}
+                    alt="Soft and comfortable microfiber Ihram"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="aspect-square bg-muted rounded-lg overflow-hidden">
+                  <img
+                    src={detail6}
+                    alt="Premium Ihram towel set for Hajj and Umrah"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="aspect-square bg-muted rounded-lg overflow-hidden">
+                  <img
+                    src={detail7}
+                    alt="Lightweight Ihram for pilgrims"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="aspect-square bg-muted rounded-lg overflow-hidden">
+                  <img
+                    src={detail8}
+                    alt="Antimicrobial and hypoallergenic Ihram towel"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
             </div>
-            
-            <div>
-              <h3 className="text-xl font-bold text-foreground mb-4">Size Guide</h3>
-              <div className="space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <span>Izaar (Lower):</span>
-                  <span>115cm x 200cm</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Ridaa (Upper):</span>
-                  <span>115cm x 200cm</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Fabric Weight:</span>
-                  <span>Lightweight</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Care:</span>
-                  <span>Machine washable</span>
+
+            {/* Right Column - Product Details */}
+            <div className="space-y-8">
+              {/* Title and Intro */}
+              <div>
+                <h1 className="text-3xl font-bold mb-4" style={{ color: '#2C7A7B' }}>
+                  Ihram Hajj Towel Set – Premium Quick-Dry Microfiber (115×230 cm, 1400 g)
+                </h1>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  Stay cool, clean, and comfortable on your sacred journey. The Pure Ihram Hajj Towel Set combines 
+                  Sunnah simplicity with modern microfiber performance — soft, absorbent, and made to last through 
+                  every step of Hajj or Umrah.
+                </p>
+              </div>
+
+              {/* Specifications Table */}
+              <Card className="shadow-sm">
+                <CardHeader>
+                  <CardTitle className="text-xl" style={{ color: '#2C7A7B' }}>Technical Specifications</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead className="font-semibold">Feature</TableHead>
+                        <TableHead className="font-semibold">Details</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      <TableRow>
+                        <TableCell className="font-medium">Product Name</TableCell>
+                        <TableCell>Ihram Hajj Towel Set</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="font-medium">Fabric Material</TableCell>
+                        <TableCell>100% Microfiber Polyester</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="font-medium">Size</TableCell>
+                        <TableCell>115 × 230 cm</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="font-medium">Weight</TableCell>
+                        <TableCell>1400 g per set (2 pieces – top + bottom)</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="font-medium">Color</TableCell>
+                        <TableCell>White</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="font-medium">Usage</TableCell>
+                        <TableCell>Ihram for Hajj & Umrah</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="font-medium">Features</TableCell>
+                        <TableCell>Quick-Dry • Antimicrobial • Hypoallergenic • Sustainable • Lightweight</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="font-medium">Packaging</TableCell>
+                        <TableCell>2-piece set in eco-friendly zip carry bag</TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </CardContent>
+              </Card>
+
+              {/* Features List */}
+              <div>
+                <h2 className="text-2xl font-bold mb-4" style={{ color: '#2C7A7B' }}>Key Features</h2>
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3">
+                    <span className="text-2xl">☁️</span>
+                    <div>
+                      <h3 className="font-semibold">Soft & Comfortable</h3>
+                      <p className="text-sm text-muted-foreground">Smooth microfiber gentle on the skin.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-2xl">💧</span>
+                    <div>
+                      <h3 className="font-semibold">Quick-Dry Technology</h3>
+                      <p className="text-sm text-muted-foreground">Absorbs moisture and dries rapidly.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-2xl">🦠</span>
+                    <div>
+                      <h3 className="font-semibold">Antimicrobial Protection</h3>
+                      <p className="text-sm text-muted-foreground">Prevents bacterial buildup.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-2xl">♻️</span>
+                    <div>
+                      <h3 className="font-semibold">Sustainable & Reusable</h3>
+                      <p className="text-sm text-muted-foreground">Durable and easy to wash.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-2xl">🕋</span>
+                    <div>
+                      <h3 className="font-semibold">Sunnah-Compliant Design</h3>
+                      <p className="text-sm text-muted-foreground">Two unstitched white pieces symbolizing purity.</p>
+                    </div>
+                  </div>
                 </div>
               </div>
+
+              {/* Care Instructions */}
+              <div className="border-t border-border pt-6">
+                <h3 className="text-lg font-semibold mb-3" style={{ color: '#2C7A7B' }}>Care Instructions</h3>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li>• Machine wash gentle cycle (≤ 40°C)</li>
+                  <li>• Do not bleach</li>
+                  <li>• Air-dry or tumble-dry low</li>
+                  <li>• Avoid ironing directly on the fabric</li>
+                </ul>
+              </div>
+
+              {/* Spiritual Reminder */}
+              <div className="bg-accent/10 rounded-lg p-6 border-l-4" style={{ borderLeftColor: '#2C7A7B' }}>
+                <blockquote className="text-base italic text-foreground mb-2">
+                  "Take provisions, but indeed, the best provision is Taqwa (God-consciousness)."
+                </blockquote>
+                <cite className="text-sm text-muted-foreground">— Qur'an 2:197</cite>
+              </div>
+
+              {/* CTA Button */}
+              <Button 
+                size="lg" 
+                className="w-full text-lg py-6"
+                style={{ backgroundColor: '#2C7A7B' }}
+                onClick={handleCheckout}
+                disabled={checkoutLoading}
+              >
+                {checkoutLoading ? "Processing..." : "Buy Now – €15 + Shipping"}
+              </Button>
             </div>
           </div>
         </div>
