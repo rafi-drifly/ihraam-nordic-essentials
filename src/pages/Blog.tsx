@@ -3,6 +3,12 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Clock, User, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import howToWearIhram from "@/assets/blog/how-to-wear-ihram.png";
+import sunnahActs from "@/assets/blog/sunnah-acts.png";
+import umrahChecklist from "@/assets/blog/umrah-checklist.png";
+import commonMistakes from "@/assets/blog/common-mistakes.png";
+import essentialDuas from "@/assets/blog/essential-duas.png";
+import spiritualMeaning from "@/assets/blog/spiritual-meaning.png";
 
 const Blog = () => {
   const blogPosts = [
@@ -14,7 +20,7 @@ const Blog = () => {
       readTime: "5 min read",
       date: "October 5, 2025",
       category: "Guide",
-      image: "/api/placeholder/400/250",
+      image: howToWearIhram,
       content: "Learn the proper way to wear your Ihram cloth with our comprehensive guide..."
     },
     {
@@ -25,7 +31,7 @@ const Blog = () => {
       readTime: "7 min read",
       date: "March 10, 2024",
       category: "Sunnah",
-      image: "/api/placeholder/400/250",
+      image: sunnahActs,
       content: "Before entering the sacred state of Ihram, there are several Sunnah acts..."
     },
     {
@@ -36,7 +42,7 @@ const Blog = () => {
       readTime: "10 min read",
       date: "March 5, 2024",
       category: "Preparation",
-      image: "/api/placeholder/400/250",
+      image: umrahChecklist,
       content: "Preparing for Umrah requires careful planning and organization..."
     },
     {
@@ -47,7 +53,7 @@ const Blog = () => {
       readTime: "6 min read",
       date: "February 28, 2024",
       category: "Tips",
-      image: "/api/placeholder/400/250",
+      image: commonMistakes,
       content: "During Hajj and Umrah, pilgrims may unknowingly make mistakes..."
     },
     {
@@ -58,7 +64,7 @@ const Blog = () => {
       readTime: "15 min read",
       date: "March 15, 2024",
       category: "Guide",
-      image: "/api/placeholder/400/250",
+      image: essentialDuas,
       content: "Complete guide to essential duas during Umrah journey..."
     },
     {
@@ -69,7 +75,7 @@ const Blog = () => {
       readTime: "8 min read",
       date: "February 20, 2024",
       category: "Spiritual",
-      image: "/api/placeholder/400/250",
+      image: spiritualMeaning,
       content: "The white garments of Ihram symbolize purity and equality..."
     }
   ];
@@ -124,9 +130,11 @@ const Blog = () => {
           {blogPosts.map((post) => (
             <Card key={post.id} className="group hover:shadow-lg transition-all duration-300 overflow-hidden">
               <div className="aspect-video bg-muted overflow-hidden">
-                <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                  <span className="text-muted-foreground text-sm">Article Image</span>
-                </div>
+                <img 
+                  src={post.image} 
+                  alt={post.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
               </div>
               
               <CardHeader>
