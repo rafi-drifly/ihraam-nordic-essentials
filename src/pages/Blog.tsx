@@ -134,6 +134,12 @@ const Blog = () => {
                       {post.title}
                     </CardTitle>
                   </Link>
+                ) : post.id === 2 ? (
+                  <Link to="/blog/sunnah-acts-before-ihram">
+                    <CardTitle className="text-lg group-hover:text-primary transition-colors line-clamp-2 cursor-pointer">
+                      {post.title}
+                    </CardTitle>
+                  </Link>
                 ) : (
                   <CardTitle className="text-lg group-hover:text-primary transition-colors line-clamp-2">
                     {post.title}
@@ -153,6 +159,13 @@ const Blog = () => {
                   </div>
                   {post.id === 1 ? (
                     <Link to="/blog/how-to-wear-ihram">
+                      <Button size="sm" variant="ghost" className="group-hover:text-primary">
+                        Read More
+                        <ArrowRight className="h-3 w-3 ml-1" />
+                      </Button>
+                    </Link>
+                  ) : post.id === 2 ? (
+                    <Link to="/blog/sunnah-acts-before-ihram">
                       <Button size="sm" variant="ghost" className="group-hover:text-primary">
                         Read More
                         <ArrowRight className="h-3 w-3 ml-1" />

@@ -11,6 +11,7 @@ import Home from "./pages/Home";
 import Shop from "./pages/Shop";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
+import SunnahActsBlog from "./pages/SunnahActsBlog";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Shipping from "./pages/Shipping";
@@ -36,6 +37,8 @@ const App = () => (
               <Route path="/" element={<Home />} />
               <Route path="/shop" element={<Shop />} />
               <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/how-to-wear-ihram" element={<BlogPost />} />
+              <Route path="/blog/sunnah-acts-before-ihram" element={<SunnahActsBlog />} />
               <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
