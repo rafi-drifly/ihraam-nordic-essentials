@@ -45,11 +45,9 @@ const Shop = () => {
   useEffect(() => {
     fetchProduct();
   }, []);
-
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
       if (selectedImageIndex === null) return;
-      
       if (e.key === 'ArrowLeft') {
         navigatePrevious();
       } else if (e.key === 'ArrowRight') {
@@ -58,7 +56,6 @@ const Shop = () => {
         setSelectedImageIndex(null);
       }
     };
-
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, [selectedImageIndex]);
@@ -156,65 +153,40 @@ const Shop = () => {
       </div>;
   }
   const features = ["100% Premium Cotton", "Two-piece set (Izaar & Ridaa)", "Lightweight & Breathable", "Pre-washed & Ready to Use", "Suitable for All Seasons", "Machine Washable"];
-  
   const allImages = [ihraamProduct, detail2, detail3, detail4, detail5, detail6, detail7, detail8];
-
   const navigateNext = () => {
     if (selectedImageIndex === null) return;
     setSelectedImageIndex((selectedImageIndex + 1) % allImages.length);
   };
-
   const navigatePrevious = () => {
     if (selectedImageIndex === null) return;
     setSelectedImageIndex((selectedImageIndex - 1 + allImages.length) % allImages.length);
   };
-
   return <>
       <GuestEmailModal open={showEmailModal} onOpenChange={setShowEmailModal} onSubmit={handleGuestEmailSubmit} />
       
       {/* Image Lightbox */}
       <Dialog open={selectedImageIndex !== null} onOpenChange={() => setSelectedImageIndex(null)}>
         <DialogContent className="max-w-5xl p-0 bg-background/95 backdrop-blur">
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            className="absolute right-4 top-4 z-50 bg-background/80 hover:bg-background rounded-full"
-            onClick={() => setSelectedImageIndex(null)}
-          >
+          <Button variant="ghost" size="icon" className="absolute right-4 top-4 z-50 bg-background/80 hover:bg-background rounded-full" onClick={() => setSelectedImageIndex(null)}>
             <X className="h-4 w-4" />
           </Button>
           
           {/* Navigation Buttons */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-50 bg-background/80 hover:bg-background rounded-full"
-            onClick={navigatePrevious}
-          >
+          <Button variant="ghost" size="icon" className="absolute left-4 top-1/2 -translate-y-1/2 z-50 bg-background/80 hover:bg-background rounded-full" onClick={navigatePrevious}>
             <ChevronLeft className="h-6 w-6" />
           </Button>
           
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-50 bg-background/80 hover:bg-background rounded-full"
-            onClick={navigateNext}
-          >
+          <Button variant="ghost" size="icon" className="absolute right-4 top-1/2 -translate-y-1/2 z-50 bg-background/80 hover:bg-background rounded-full" onClick={navigateNext}>
             <ChevronRight className="h-6 w-6" />
           </Button>
 
-          {selectedImageIndex !== null && (
-            <div className="p-4">
-              <img 
-                src={allImages[selectedImageIndex]} 
-                alt={`Product view ${selectedImageIndex + 1}`}
-                className="w-full h-auto rounded-lg max-h-[85vh] object-contain"
-              />
+          {selectedImageIndex !== null && <div className="p-4">
+              <img src={allImages[selectedImageIndex]} alt={`Product view ${selectedImageIndex + 1}`} className="w-full h-auto rounded-lg max-h-[85vh] object-contain" />
               <div className="text-center mt-3 text-sm text-muted-foreground">
                 {selectedImageIndex + 1} / {allImages.length}
               </div>
-            </div>
-          )}
+            </div>}
         </DialogContent>
       </Dialog>
       <div className="min-h-screen py-8">
@@ -230,12 +202,7 @@ const Shop = () => {
           {/* Product Images Gallery */}
           <div className="space-y-4">
             {/* Main Image */}
-            <div 
-              className="aspect-square bg-muted rounded-2xl overflow-hidden mb-4 cursor-pointer hover:opacity-90 transition-opacity"
-              onClick={() => setSelectedImageIndex(0)}
-            >
-              <img src={ihraamProduct} alt="Pure Ihram (Ihraam) Cloth Set" className="w-full h-full object-cover" />
-            </div>
+            
             
             {/* Detail Images Grid */}
             <div className="grid grid-cols-4 gap-2">
@@ -299,7 +266,9 @@ const Shop = () => {
             {/* Specifications Table */}
             <Card className="shadow-sm">
               <CardHeader>
-                <CardTitle className="text-lg" style={{ color: '#2C7A7B' }}>Technical Specifications</CardTitle>
+                <CardTitle className="text-lg" style={{
+                  color: '#2C7A7B'
+                }}>Technical Specifications</CardTitle>
               </CardHeader>
               <CardContent>
                 <Table>
@@ -416,7 +385,9 @@ const Shop = () => {
             {/* Care Instructions */}
             <Card className="bg-accent/10">
               <CardContent className="p-4">
-                <h3 className="font-semibold mb-2" style={{ color: '#2C7A7B' }}>Care Instructions</h3>
+                <h3 className="font-semibold mb-2" style={{
+                  color: '#2C7A7B'
+                }}>Care Instructions</h3>
                 <ul className="text-sm text-muted-foreground space-y-1">
                   <li>• Machine wash gentle cycle (≤ 40°C)</li>
                   <li>• Do not bleach</li>
@@ -427,7 +398,9 @@ const Shop = () => {
             </Card>
 
             {/* Spiritual Reminder */}
-            <div className="bg-accent/10 rounded-lg p-6 border-l-4" style={{ borderLeftColor: '#2C7A7B' }}>
+            <div className="bg-accent/10 rounded-lg p-6 border-l-4" style={{
+              borderLeftColor: '#2C7A7B'
+            }}>
               <blockquote className="text-base italic text-foreground mb-2">
                 "Take provisions, but indeed, the best provision is Taqwa (God-consciousness)."
               </blockquote>
