@@ -1,10 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import { Check, Truck, Heart, Star } from "lucide-react";
+import { Check, Truck, Heart, Star, ArrowRight } from "lucide-react";
 import ihraamProduct from "@/assets/hero-product.avif";
 import ihraamWorn from "@/assets/ihraam-worn.jpg";
 import heroPattern from "@/assets/hero-pattern.jpg";
+import spiritualMeaning from "@/assets/blog/spiritual-meaning.png";
+import howToWear from "@/assets/blog/how-to-wear-ihram.png";
+import sunnahActs from "@/assets/blog/sunnah-acts.png";
+import umrahChecklist from "@/assets/blog/umrah-checklist.png";
+import essentialDuas from "@/assets/blog/essential-duas.png";
+import commonMistakes from "@/assets/blog/common-mistakes.png";
 const Home = () => {
   const benefits = [{
     icon: <Check className="h-6 w-6 text-primary" />,
@@ -171,6 +177,183 @@ const Home = () => {
               <cite className="text-sm text-muted-foreground">— Qur'an 3:97</cite>
             </CardContent>
           </Card>
+        </div>
+      </section>
+
+      {/* Guides & Knowledge Section */}
+      <section className="py-20 px-6 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4">
+              Guides & Knowledge
+            </h2>
+            <div className="w-20 h-1 bg-gradient-primary mx-auto mb-6 rounded-full"></div>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Learn everything you need before your pilgrimage — from Sunnah acts and packing tips to the spiritual meaning of Ihram.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            {/* Blog Card 1 */}
+            <Card className="group overflow-hidden border shadow-md hover:shadow-lg transition-all duration-300 rounded-2xl">
+              <div className="overflow-hidden">
+                <img 
+                  src={spiritualMeaning} 
+                  alt="The Spiritual Meaning of Ihram" 
+                  className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+              </div>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-bold text-foreground mb-3 leading-tight">
+                  The Spiritual Meaning of Ihram – Equality Before Allah
+                </h3>
+                <p className="text-muted-foreground mb-4 text-sm leading-relaxed line-clamp-3">
+                  Explore the deeper significance of Ihram and how it represents humility and unity among believers.
+                </p>
+                <Link 
+                  to="/blog/the-spiritual-meaning-of-ihram" 
+                  className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all"
+                >
+                  Read More <ArrowRight className="h-4 w-4" />
+                </Link>
+              </CardContent>
+            </Card>
+
+            {/* Blog Card 2 */}
+            <Card className="group overflow-hidden border shadow-md hover:shadow-lg transition-all duration-300 rounded-2xl">
+              <div className="overflow-hidden">
+                <img 
+                  src={howToWear} 
+                  alt="How to Wear Ihram" 
+                  className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+              </div>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-bold text-foreground mb-3 leading-tight">
+                  How to Wear Ihram – Step-by-Step Guide for Pilgrims
+                </h3>
+                <p className="text-muted-foreground mb-4 text-sm leading-relaxed line-clamp-3">
+                  Learn the correct way to wear Ihram garments with Sunnah guidance and comfort tips.
+                </p>
+                <Link 
+                  to="/blog/how-to-wear-ihram" 
+                  className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all"
+                >
+                  Read More <ArrowRight className="h-4 w-4" />
+                </Link>
+              </CardContent>
+            </Card>
+
+            {/* Blog Card 3 */}
+            <Card className="group overflow-hidden border shadow-md hover:shadow-lg transition-all duration-300 rounded-2xl">
+              <div className="overflow-hidden">
+                <img 
+                  src={sunnahActs} 
+                  alt="Sunnah Acts Before Entering Ihram" 
+                  className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+              </div>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-bold text-foreground mb-3 leading-tight">
+                  Sunnah Acts Before Entering Ihram
+                </h3>
+                <p className="text-muted-foreground mb-4 text-sm leading-relaxed line-clamp-3">
+                  Prepare your body and heart before Ihram through ghusl, perfume, and prayer — following the Sunnah.
+                </p>
+                <Link 
+                  to="/blog/sunnah-acts-before-entering-ihram" 
+                  className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all"
+                >
+                  Read More <ArrowRight className="h-4 w-4" />
+                </Link>
+              </CardContent>
+            </Card>
+
+            {/* Blog Card 4 */}
+            <Card className="group overflow-hidden border shadow-md hover:shadow-lg transition-all duration-300 rounded-2xl">
+              <div className="overflow-hidden">
+                <img 
+                  src={umrahChecklist} 
+                  alt="Checklist for Umrah Preparation" 
+                  className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+              </div>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-bold text-foreground mb-3 leading-tight">
+                  Checklist for Umrah Preparation (Clothes, Duas, Documents)
+                </h3>
+                <p className="text-muted-foreground mb-4 text-sm leading-relaxed line-clamp-3">
+                  A complete guide to what you need before your journey — from essentials to spiritual preparation.
+                </p>
+                <Link 
+                  to="/blog/checklist-for-umrah-preparation" 
+                  className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all"
+                >
+                  Read More <ArrowRight className="h-4 w-4" />
+                </Link>
+              </CardContent>
+            </Card>
+
+            {/* Blog Card 5 */}
+            <Card className="group overflow-hidden border shadow-md hover:shadow-lg transition-all duration-300 rounded-2xl">
+              <div className="overflow-hidden">
+                <img 
+                  src={essentialDuas} 
+                  alt="Essential Duas for Umrah" 
+                  className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+              </div>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-bold text-foreground mb-3 leading-tight">
+                  Essential Duas for Umrah (With Transliteration & Meaning)
+                </h3>
+                <p className="text-muted-foreground mb-4 text-sm leading-relaxed line-clamp-3">
+                  Memorize the most important duas for each stage of Umrah, with Arabic and English meaning.
+                </p>
+                <Link 
+                  to="/blog/essential-duas-for-umrah" 
+                  className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all"
+                >
+                  Read More <ArrowRight className="h-4 w-4" />
+                </Link>
+              </CardContent>
+            </Card>
+
+            {/* Blog Card 6 */}
+            <Card className="group overflow-hidden border shadow-md hover:shadow-lg transition-all duration-300 rounded-2xl">
+              <div className="overflow-hidden">
+                <img 
+                  src={commonMistakes} 
+                  alt="Common Mistakes Pilgrims Make in Ihram" 
+                  className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+              </div>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-bold text-foreground mb-3 leading-tight">
+                  Common Mistakes Pilgrims Make in Ihram
+                </h3>
+                <p className="text-muted-foreground mb-4 text-sm leading-relaxed line-clamp-3">
+                  Avoid the common errors that can affect your pilgrimage and maintain the sanctity of Ihram.
+                </p>
+                <Link 
+                  to="/blog/common-mistakes-pilgrims-make-in-ihram" 
+                  className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all"
+                >
+                  Read More <ArrowRight className="h-4 w-4" />
+                </Link>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* View All CTA */}
+          <div className="text-center">
+            <Button asChild variant="outline" size="lg" className="group">
+              <Link to="/blog" className="inline-flex items-center gap-2">
+                View All Guides
+                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
 
