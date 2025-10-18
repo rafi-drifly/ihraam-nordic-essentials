@@ -15,6 +15,7 @@ import SunnahActsBlog from "./pages/SunnahActsBlog";
 import UmrahChecklistBlog from "./pages/UmrahChecklistBlog";
 import IhramMistakesBlog from "./pages/IhramMistakesBlog";
 import UmrahDuasBlog from "./pages/UmrahDuasBlog";
+import IhramSpiritualMeaningBlog from "./pages/IhramSpiritualMeaningBlog";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Shipping from "./pages/Shipping";
@@ -45,6 +46,7 @@ const App = () => (
               <Route path="/blog/umrah-preparation-checklist" element={<UmrahChecklistBlog />} />
               <Route path="/blog/common-mistakes-ihram" element={<IhramMistakesBlog />} />
               <Route path="/blog/essential-duas-umrah" element={<UmrahDuasBlog />} />
+              <Route path="/blog/spiritual-meaning-ihram" element={<IhramSpiritualMeaningBlog />} />
               <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
