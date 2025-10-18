@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { Check, Truck, Heart, Star } from "lucide-react";
-import ihraamProduct from "@/assets/ihraam-product.jpg";
+import ihraamProduct from "@/assets/hero-product.avif";
 import ihraamWorn from "@/assets/ihraam-worn.jpg";
 import heroPattern from "@/assets/hero-pattern.jpg";
 
