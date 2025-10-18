@@ -160,9 +160,6 @@ const Shop = () => {
             {/* Detail Images Grid */}
             <div className="grid grid-cols-4 gap-2">
               <div className="aspect-square bg-muted rounded-lg overflow-hidden">
-                <img src={detail1} alt="Ihram Hajj towel set detail" className="w-full h-full object-cover" />
-              </div>
-              <div className="aspect-square bg-muted rounded-lg overflow-hidden">
                 <img src={detail2} alt="Ihram towel set packaged in eco-friendly zip carry bag" className="w-full h-full object-cover" />
               </div>
               <div className="aspect-square bg-muted rounded-lg overflow-hidden">
