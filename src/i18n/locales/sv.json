@@ -1,0 +1,89 @@
+{
+  "nav": {
+    "home": "Hem",
+    "shop": "Butik",
+    "blog": "Guider & Kunskap",
+    "shipping": "Frakt",
+    "trackOrder": "Spåra Order",
+    "about": "Om Oss",
+    "contact": "Kontakt"
+  },
+  "footer": {
+    "description": "Premium Ihram-kläder för din heliga resa. Tillverkade med omsorg, levererade med hängivenhet.",
+    "quickLinks": "Snabblänkar",
+    "serviceAreas": "Leveransområden",
+    "contactUs": "Kontakta Oss",
+    "areas": {
+      "sweden": "Sverige (2-4 dagar)",
+      "uk": "Storbritannien (5-7 dagar)",
+      "europe": "Europa (5-10 dagar)",
+      "worldwide": "Världen (7-14 dagar)"
+    },
+    "copyright": "© {{year}} Pure Ihram. Alla rättigheter förbehållna.",
+    "quote": "\"Och kungör för människorna vallfärden; de skall komma till dig till fots och på alla slags utmärglade riddjur; de skall komma från alla fjärran håll.\" - Koranen 22:27"
+  },
+  "home": {
+    "hero": {
+      "title": "Börja Din Heliga Resa",
+      "subtitle": "Premium Ihram-kläder tillverkade för komfort, renhet och hängivenhet. Börja din pilgrimsfärd med högsta kvalitet.",
+      "cta": "Handla Nu",
+      "learnMore": "Läs Mer"
+    },
+    "benefits": {
+      "title": "Varför Välja Pure Ihram?",
+      "quality": {
+        "title": "Premium Kvalitet",
+        "description": "100% bomull, mjukt och andningsbart tyg perfekt för den heliga resan"
+      },
+      "shipping": {
+        "title": "Snabb Leverans",
+        "description": "Snabb leverans till Sverige, Storbritannien, Europa och världen"
+      },
+      "authentic": {
+        "title": "Autentisk Design",
+        "description": "Traditionell Ihram-design enligt Sunnah-specifikationer"
+      }
+    },
+    "guides": {
+      "title": "Guider & Kunskap",
+      "subtitle": "Förbered dig för din heliga resa med våra omfattande guider",
+      "viewAll": "Visa Alla Guider"
+    }
+  },
+  "shop": {
+    "addToCart": "Lägg i Kundvagn",
+    "buyNow": "Köp Nu",
+    "inStock": "I Lager",
+    "outOfStock": "Slut i Lager",
+    "quantity": "Antal",
+    "specifications": "Tekniska Specifikationer",
+    "features": "Viktiga Egenskaper",
+    "shippingInfo": "Fraktinformation",
+    "careInstructions": "Skötselråd"
+  },
+  "about": {
+    "title": "Om Pure Ihram",
+    "mission": "Vårt Uppdrag",
+    "story": "Vår Historia",
+    "values": "Våra Värderingar"
+  },
+  "contact": {
+    "title": "Kontakta Oss",
+    "subtitle": "Vi finns här för att hjälpa dig med frågor om din beställning eller våra produkter",
+    "form": {
+      "name": "Namn",
+      "email": "E-post",
+      "message": "Meddelande",
+      "submit": "Skicka Meddelande"
+    }
+  },
+  "shipping": {
+    "title": "Fraktinformation",
+    "subtitle": "Snabb och pålitlig leverans världen över"
+  },
+  "common": {
+    "loading": "Laddar...",
+    "error": "Något gick fel",
+    "retry": "Försök Igen"
+  }
+}

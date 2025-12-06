@@ -1,16 +1,19 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { CartDrawer } from "@/components/shop/CartDrawer";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [checkingOut, setCheckingOut] = useState(false);
   const location = useLocation();
   const { toast } = useToast();
+  const { t } = useTranslation();
 
   const handleCheckout = async () => {
     const cartItems = JSON.parse(localStorage.getItem('ihram-cart') || '[]');
@@ -57,13 +60,13 @@ const Navbar = () => {
   const isActive = (path: string) => location.pathname === path;
 
   const navigation = [
-    { name: "Home", href: "/" },
-    { name: "Shop", href: "/shop" },
-    { name: "Guides & Knowledge", href: "/blog" },
-    { name: "Shipping", href: "/shipping" },  
-    { name: "Track Order", href: "/guest-order-lookup" },
-    { name: "About", href: "/about" },
-    { name: "Contact", href: "/contact" },
+    { name: t('nav.home'), href: "/" },
+    { name: t('nav.shop'), href: "/shop" },
+    { name: t('nav.blog'), href: "/blog" },
+    { name: t('nav.shipping'), href: "/shipping" },  
+    { name: t('nav.trackOrder'), href: "/guest-order-lookup" },
+    { name: t('nav.about'), href: "/about" },
+    { name: t('nav.contact'), href: "/contact" },
   ];
 
   return (
@@ -97,8 +100,9 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Cart and Mobile menu button */}
-          <div className="flex items-center space-x-4">
+          {/* Language Switcher, Cart and Mobile menu button */}
+          <div className="flex items-center space-x-2">
+            <LanguageSwitcher />
             <CartDrawer onCheckout={handleCheckout} checkingOut={checkingOut} />
 
             {/* Mobile menu button */}
