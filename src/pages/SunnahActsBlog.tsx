@@ -3,25 +3,29 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Clock, User, ArrowLeft, ShoppingCart } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const SunnahActsBlog = () => {
+  const { t, i18n } = useTranslation();
+  const localePrefix = i18n.language === 'sv' ? '/sv' : '';
+
   const post = {
-    title: "Sunnah Acts Before Entering Ihram",
-    excerpt: "Preparing your body and heart before stepping into the sacred state of Ihram.",
-    author: "Islamic Scholar",
-    readTime: "12 min read",
-    date: "March 10, 2024",
-    category: "Sunnah",
+    title: t('blog.posts.sunnahActs.title'),
+    excerpt: t('blog.posts.sunnahActs.excerpt'),
+    author: t('blog.posts.sunnahActs.author'),
+    readTime: t('blog.posts.sunnahActs.readTime'),
+    date: t('blog.posts.sunnahActs.date'),
+    category: t('blog.categories.sunnah'),
   };
 
   return (
     <div className="min-h-screen py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back Button */}
-        <Link to="/blog">
+        <Link to={`${localePrefix}/blog`}>
           <Button variant="ghost" className="mb-8 hover:text-primary">
             <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Blog
+            {t('blogPost.backToBlog')}
           </Button>
         </Link>
 
@@ -53,7 +57,7 @@ const SunnahActsBlog = () => {
         <article className="prose prose-lg max-w-none">
           {/* Introduction */}
           <section className="mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">Introduction</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-4">{t('blogPost.introduction')}</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
               Every sacred journey begins with preparation — not only of luggage and documents, but of the heart and soul. Before donning the white garments of Ihram, the Prophet ﷺ taught us a series of Sunnah acts that purify the body, refine intention, and welcome the pilgrim into a state of humility and devotion.
             </p>
@@ -175,16 +179,16 @@ const SunnahActsBlog = () => {
               <CardContent className="p-6 flex items-center justify-between">
                 <div>
                   <p className="text-foreground font-semibold mb-1">
-                    For comfort and durability
+                    {t('blogPost.forComfortAndDurability')}
                   </p>
                   <p className="text-muted-foreground text-sm">
-                    Choose the Pure Ihram Quick-Dry Set (115×230 cm)
+                    {t('blogPost.choosePureIhram')}
                   </p>
                 </div>
-                <Link to="/shop">
+                <Link to={`${localePrefix}/shop`}>
                   <Button className="bg-gradient-primary hover:opacity-90 transition-opacity">
                     <ShoppingCart className="h-4 w-4 mr-2" />
-                    Shop Now
+                    {t('blogPost.shopNow')}
                   </Button>
                 </Link>
               </CardContent>
@@ -269,7 +273,7 @@ const SunnahActsBlog = () => {
           {/* Section 8: Practical Tips */}
           <section className="mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-4">
-              🌿 Practical Preparation Tips
+              🌿 {t('blogPost.practicalTips')}
             </h2>
             <div className="bg-muted p-6 rounded-lg">
               <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
@@ -284,7 +288,7 @@ const SunnahActsBlog = () => {
           {/* Section 9: Spiritual Reflection */}
           <section className="mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-4">
-              💭 Spiritual Reflection
+              💭 {t('blogPost.spiritualReflection')}
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
               Each Sunnah act before Ihram — from bathing to prayer — is a renewal of the soul. It's as if the pilgrim stands before Allah saying:
@@ -310,24 +314,24 @@ const SunnahActsBlog = () => {
           {/* Section 10: Related Reading */}
           <section className="mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-4">
-              📚 Related Reading
+              📚 {t('blogPost.relatedReading')}
             </h2>
             <div className="grid gap-4">
-              <Link to="/blog/how-to-wear-ihram">
+              <Link to={`${localePrefix}/blog/how-to-wear-ihram`}>
                 <Card className="hover:shadow-lg transition-shadow">
                   <CardContent className="p-4 flex items-center justify-between">
                     <span className="text-foreground font-medium">
-                      How to Wear Ihram – Step-by-Step Guide
+                      {t('blogPost.howToWearLink')}
                     </span>
                     <ArrowLeft className="h-4 w-4 rotate-180" />
                   </CardContent>
                 </Card>
               </Link>
-              <Link to="/shop">
+              <Link to={`${localePrefix}/shop`}>
                 <Card className="hover:shadow-lg transition-shadow">
                   <CardContent className="p-4 flex items-center justify-between">
                     <span className="text-foreground font-medium">
-                      Shop the Pure Ihram Hajj Towel Set
+                      {t('blogPost.shopTowelSet')}
                     </span>
                     <ShoppingCart className="h-4 w-4" />
                   </CardContent>
@@ -341,9 +345,9 @@ const SunnahActsBlog = () => {
             <Card className="bg-gradient-subtle border-0">
               <CardContent className="p-8 text-center">
                 <blockquote className="text-xl italic text-foreground mb-2">
-                  "May Allah accept your pilgrimage, forgive your sins, and return you purified — just as you were born."
+                  {t('blogPost.closingDua')}
                 </blockquote>
-                <p className="text-sm text-muted-foreground mt-4">— Ameen</p>
+                <p className="text-sm text-muted-foreground mt-4">{t('blogPost.ameen')}</p>
               </CardContent>
             </Card>
           </section>
@@ -353,15 +357,15 @@ const SunnahActsBlog = () => {
         <Card className="bg-gradient-subtle border-0 mt-12">
           <CardContent className="p-8 text-center">
             <h3 className="text-2xl font-bold text-foreground mb-4">
-              Prepare for Your Sacred Journey
+              {t('blogPost.prepareForJourney')}
             </h3>
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Order your premium Ihram towel set today and begin your pilgrimage with comfort, confidence, and spiritual readiness.
+              {t('blogPost.orderCtaAlt')}
             </p>
-            <Link to="/shop">
+            <Link to={`${localePrefix}/shop`}>
               <Button size="lg" className="bg-gradient-primary hover:opacity-90 transition-opacity">
                 <ShoppingCart className="h-5 w-5 mr-2" />
-                Shop Ihram Set
+                {t('blogPost.shopIhramSet')}
               </Button>
             </Link>
           </CardContent>

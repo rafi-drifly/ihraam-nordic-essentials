@@ -3,30 +3,34 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 const IhramSpiritualMeaningBlog = () => {
+  const { t, i18n } = useTranslation();
+  const localePrefix = i18n.language === 'sv' ? '/sv' : '';
+
   return (
     <div className="min-h-screen py-8">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back Button */}
-        <Link to="/blog">
+        <Link to={`${localePrefix}/blog`}>
           <Button variant="ghost" className="mb-6">
             <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Guides
+            {t('blogPost.backToGuides')}
           </Button>
         </Link>
 
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-4">
-            <Badge variant="secondary">Spiritual</Badge>
-            <span className="text-sm text-muted-foreground">10 min read</span>
+            <Badge variant="secondary">{t('blog.categories.spiritual')}</Badge>
+            <span className="text-sm text-muted-foreground">{t('blog.posts.spiritualMeaning.readTime')}</span>
           </div>
           <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            🌿 The Spiritual Meaning of Ihram – Equality Before Allah
+            🌿 {t('blog.posts.spiritualMeaning.title')}
           </h1>
           <p className="text-xl text-muted-foreground leading-relaxed">
-            Exploring the deeper significance of Ihram and how it symbolizes humility, purity, and unity in Islam.
+            {t('blog.posts.spiritualMeaning.excerpt')}
           </p>
         </div>
 
@@ -34,7 +38,7 @@ const IhramSpiritualMeaningBlog = () => {
         <Card className="mb-8 bg-accent/5 border-accent/20">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <span>🌙</span> Introduction
+              <span>🌙</span> {t('blogPost.introduction')}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -279,7 +283,7 @@ const IhramSpiritualMeaningBlog = () => {
         <Card className="mb-8 bg-gradient-subtle border-0">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <span>💭</span> Spiritual Reflection
+              <span>💭</span> {t('blogPost.spiritualReflection')}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -304,33 +308,33 @@ const IhramSpiritualMeaningBlog = () => {
         {/* Related Reading */}
         <Card className="mb-8">
           <CardHeader>
-            <CardTitle>🏷️ Related Reading</CardTitle>
+            <CardTitle>🏷️ {t('blogPost.relatedReading')}</CardTitle>
           </CardHeader>
           <CardContent>
             <ul className="space-y-2">
               <li>
-                <Link to="/blog/how-to-wear-ihram" className="text-primary hover:underline">
-                  How to Wear Ihram – Step-by-Step Guide →
+                <Link to={`${localePrefix}/blog/how-to-wear-ihram`} className="text-primary hover:underline">
+                  {t('blogPost.howToWearLink')} →
                 </Link>
               </li>
               <li>
-                <Link to="/blog/sunnah-acts-before-ihram" className="text-primary hover:underline">
-                  Sunnah Acts Before Entering Ihram →
+                <Link to={`${localePrefix}/blog/sunnah-acts-before-ihram`} className="text-primary hover:underline">
+                  {t('blogPost.sunnahActsLink')} →
                 </Link>
               </li>
               <li>
-                <Link to="/blog/umrah-preparation-checklist" className="text-primary hover:underline">
-                  Checklist for Umrah Preparation →
+                <Link to={`${localePrefix}/blog/umrah-preparation-checklist`} className="text-primary hover:underline">
+                  {t('blogPost.checklistLink')} →
                 </Link>
               </li>
               <li>
-                <Link to="/blog/essential-duas-umrah" className="text-primary hover:underline">
-                  Essential Duas for Umrah →
+                <Link to={`${localePrefix}/blog/essential-duas-umrah`} className="text-primary hover:underline">
+                  {t('blogPost.duasLink')} →
                 </Link>
               </li>
               <li>
-                <Link to="/blog/common-mistakes-ihram" className="text-primary hover:underline">
-                  Common Mistakes Pilgrims Make in Ihram →
+                <Link to={`${localePrefix}/blog/common-mistakes-ihram`} className="text-primary hover:underline">
+                  {t('blogPost.mistakesLink')} →
                 </Link>
               </li>
             </ul>
@@ -339,10 +343,10 @@ const IhramSpiritualMeaningBlog = () => {
 
         {/* Back to Blog */}
         <div className="text-center">
-          <Link to="/blog">
+          <Link to={`${localePrefix}/blog`}>
             <Button variant="outline" size="lg">
               <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to All Guides
+              {t('blogPost.backToAllGuides')}
             </Button>
           </Link>
         </div>

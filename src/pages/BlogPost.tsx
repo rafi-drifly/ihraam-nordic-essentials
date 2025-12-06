@@ -3,28 +3,30 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Clock, User, ArrowLeft } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const BlogPost = () => {
   const { slug } = useParams();
+  const { t, i18n } = useTranslation();
+  const localePrefix = i18n.language === 'sv' ? '/sv' : '';
 
-  // This would normally come from a database or CMS
   const post = {
-    title: "How to Wear Ihram – A Simple Guide for Pilgrims",
-    excerpt: "A step-by-step guide to properly wearing the Ihram garments, ensuring comfort and adherence to Sunnah during your sacred journey.",
-    author: "Pure Ihram Team",
-    readTime: "12 min read",
-    date: "October 5, 2025",
-    category: "Guide",
+    title: t('blog.posts.howToWear.title'),
+    excerpt: t('blog.posts.howToWear.excerpt'),
+    author: t('blog.posts.howToWear.author'),
+    readTime: t('blog.posts.howToWear.readTime'),
+    date: t('blog.posts.howToWear.date'),
+    category: t('blog.categories.guide'),
   };
 
   return (
     <div className="min-h-screen py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back Button */}
-        <Link to="/blog">
+        <Link to={`${localePrefix}/blog`}>
           <Button variant="ghost" className="mb-8 hover:text-primary">
             <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Blog
+            {t('blogPost.backToBlog')}
           </Button>
         </Link>
 
@@ -55,7 +57,7 @@ const BlogPost = () => {
         {/* Article Content */}
         <article className="prose prose-lg max-w-none">
           <section className="mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">Introduction</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-4">{t('blogPost.introduction')}</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
               Embarking on the journey of Hajj or Umrah is one of the most spiritual experiences in a Muslim's life. Before stepping into Ihram, every pilgrim prepares physically and spiritually — purifying the body, making intention (niyyah), and adorning the two humble white garments that symbolize equality, humility, and devotion to Allah.
             </p>
@@ -65,7 +67,7 @@ const BlogPost = () => {
           </section>
 
           <section className="mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">What is Ihram?</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-4">{t('blogPost.whatIsIhram')}</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
               The word Ihram (إحرام) means "to make sacred" — it's both a spiritual state and the simple two-piece garment that marks the beginning of your pilgrimage.
             </p>
@@ -85,7 +87,7 @@ const BlogPost = () => {
           </section>
 
           <section className="mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">What You'll Need</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-4">{t('blogPost.whatYouNeed')}</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
               Before wearing Ihram, make sure you have the following essentials:
             </p>
@@ -122,7 +124,7 @@ const BlogPost = () => {
           </section>
 
           <section className="mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">Step-by-Step: How to Wear Ihram (for Men)</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-4">{t('blogPost.stepByStep')}</h2>
 
             <div className="space-y-8">
               <div>
@@ -198,7 +200,7 @@ const BlogPost = () => {
           </section>
 
           <section className="mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">Ihram Guidelines for Women</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-4">{t('blogPost.womenGuidelines')}</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
               Women do not have a specific Ihram garment — they wear modest, simple, non-adorned clothing that covers the body completely (without gloves or face veil).
             </p>
@@ -210,7 +212,7 @@ const BlogPost = () => {
           </section>
 
           <section className="mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">Common Mistakes to Avoid</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-4">{t('blogPost.commonMistakes')}</h2>
             <ul className="space-y-2 text-muted-foreground ml-4">
               <li>❌ Wearing stitched clothing (for men).</li>
               <li>❌ Using scented soaps or perfumes on Ihram cloth.</li>
@@ -221,7 +223,7 @@ const BlogPost = () => {
           </section>
 
           <section className="mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">Practical Tips for Comfort</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-4">{t('blogPost.practicalTips')}</h2>
             <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
               <li>Choose lightweight cotton Ihram — especially if traveling in summer.</li>
               <li>Keep a spare Ihram set for long journeys or emergencies.</li>
@@ -231,7 +233,7 @@ const BlogPost = () => {
           </section>
 
           <section className="mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">Spiritual Reminder</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-4">{t('blogPost.spiritualReminder')}</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
               Ihram is not just about two white cloths — it's about purifying your heart and disconnecting from worldly distractions.
             </p>
@@ -246,7 +248,7 @@ const BlogPost = () => {
           </section>
 
           <section className="mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">Closing Message</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-4">{t('blogPost.closingMessage')}</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
               At Pure Ihram, we believe Ihram should be simple, comfortable, and accessible to everyone. Our lightweight, pre-washed cotton Ihram sets are made with the intention of ease and reward — so you can focus on your worship, not discomfort.
             </p>
@@ -265,14 +267,14 @@ const BlogPost = () => {
         <Card className="bg-gradient-subtle border-0 mt-12">
           <CardContent className="p-8 text-center">
             <h3 className="text-2xl font-bold text-foreground mb-4">
-              Ready for Your Sacred Journey?
+              {t('blogPost.readyForJourney')}
             </h3>
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Order your premium Ihram cloth today and prepare for your pilgrimage with comfort and confidence.
+              {t('blogPost.orderCta')}
             </p>
-            <Link to="/shop">
+            <Link to={`${localePrefix}/shop`}>
               <Button size="lg" className="bg-gradient-primary hover:opacity-90 transition-opacity">
-                Shop Ihram
+                {t('blogPost.shopIhram')}
               </Button>
             </Link>
           </CardContent>

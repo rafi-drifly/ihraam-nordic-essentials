@@ -3,30 +3,34 @@ import { Badge } from "@/components/ui/badge";
 import { AlertCircle, CheckCircle2, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 const IhramMistakesBlog = () => {
+  const { t, i18n } = useTranslation();
+  const localePrefix = i18n.language === 'sv' ? '/sv' : '';
+
   return (
     <div className="min-h-screen py-8">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back Button */}
-        <Link to="/blog">
+        <Link to={`${localePrefix}/blog`}>
           <Button variant="ghost" className="mb-6">
             <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Guides
+            {t('blogPost.backToGuides')}
           </Button>
         </Link>
 
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-4">
-            <Badge variant="secondary">Tips</Badge>
-            <span className="text-sm text-muted-foreground">12 min read</span>
+            <Badge variant="secondary">{t('blog.categories.tips')}</Badge>
+            <span className="text-sm text-muted-foreground">{t('blog.posts.commonMistakes.readTime')}</span>
           </div>
           <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            ⚠️ Common Mistakes Pilgrims Make in Ihram
+            ⚠️ {t('blog.posts.commonMistakes.title')}
           </h1>
           <p className="text-xl text-muted-foreground leading-relaxed">
-            Avoid these common errors to preserve the purity and sanctity of your pilgrimage.
+            {t('blog.posts.commonMistakes.excerpt')}
           </p>
         </div>
 
@@ -34,7 +38,7 @@ const IhramMistakesBlog = () => {
         <Card className="mb-8 bg-accent/5 border-accent/20">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <span>🌙</span> Introduction
+              <span>🌙</span> {t('blogPost.introduction')}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -315,7 +319,7 @@ const IhramMistakesBlog = () => {
                 <li>Keep both shoulders covered except during Tawaf (when the right shoulder is uncovered)</li>
               </ul>
               <p className="text-sm text-foreground">
-                👉 Read detailed steps here: <Link to="/blog/how-to-wear-ihram" className="text-primary hover:underline">How to Wear Ihram – A Step-by-Step Guide</Link>
+                👉 Read detailed steps here: <Link to={`${localePrefix}/blog/how-to-wear-ihram`} className="text-primary hover:underline">{t('blogPost.howToWearLink')}</Link>
               </p>
             </div>
           </CardContent>
@@ -382,20 +386,23 @@ const IhramMistakesBlog = () => {
         <Card className="mb-8 bg-gradient-subtle border-0">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <span>💭</span> Spiritual Reflection
+              <span>💭</span> {t('blogPost.spiritualReflection')}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-foreground leading-relaxed">
-              Ihram is more than two white cloths — it's a mirror for the soul.
+              Mistakes happen, but what matters is sincerity and intention.
             </p>
             <p className="text-foreground leading-relaxed">
-              Every rule you follow, every restraint you practice, teaches humility, patience, and equality before Allah.
+              If you make an error during Ihram, seek knowledge, ask a scholar, and know that Allah is Most Merciful.
+            </p>
+            <p className="text-foreground leading-relaxed">
+              Your pilgrimage is about growth, not perfection.
             </p>
             <div className="bg-background rounded-lg p-6 border-l-4 border-primary mt-4">
               <blockquote className="text-base italic text-foreground mb-2">
-                "Whoever performs Hajj for Allah's pleasure and does not commit any sin or dispute, 
-                he returns as pure as the day his mother gave birth to him."
+                "Whoever performs Hajj for the sake of Allah and does not commit obscene or sinful acts, 
+                he will return like the day his mother gave birth to him."
               </blockquote>
               <cite className="text-sm text-muted-foreground">— Sahih al-Bukhari</cite>
             </div>
@@ -405,23 +412,33 @@ const IhramMistakesBlog = () => {
         {/* Related Reading */}
         <Card className="mb-8">
           <CardHeader>
-            <CardTitle>🏷️ Related Reading</CardTitle>
+            <CardTitle>🏷️ {t('blogPost.relatedReading')}</CardTitle>
           </CardHeader>
           <CardContent>
             <ul className="space-y-2">
               <li>
-                <Link to="/blog/sunnah-acts-before-ihram" className="text-primary hover:underline">
-                  Sunnah Acts Before Entering Ihram →
+                <Link to={`${localePrefix}/blog/how-to-wear-ihram`} className="text-primary hover:underline">
+                  {t('blogPost.howToWearLink')} →
                 </Link>
               </li>
               <li>
-                <Link to="/blog/how-to-wear-ihram" className="text-primary hover:underline">
-                  How to Wear Ihram →
+                <Link to={`${localePrefix}/blog/sunnah-acts-before-ihram`} className="text-primary hover:underline">
+                  {t('blogPost.sunnahActsLink')} →
                 </Link>
               </li>
               <li>
-                <Link to="/blog/umrah-preparation-checklist" className="text-primary hover:underline">
-                  Checklist for Umrah Preparation →
+                <Link to={`${localePrefix}/blog/umrah-preparation-checklist`} className="text-primary hover:underline">
+                  {t('blogPost.checklistLink')} →
+                </Link>
+              </li>
+              <li>
+                <Link to={`${localePrefix}/blog/essential-duas-umrah`} className="text-primary hover:underline">
+                  {t('blogPost.duasLink')} →
+                </Link>
+              </li>
+              <li>
+                <Link to={`${localePrefix}/blog/spiritual-meaning-ihram`} className="text-primary hover:underline">
+                  {t('blogPost.spiritualMeaningLink')} →
                 </Link>
               </li>
             </ul>
@@ -430,10 +447,10 @@ const IhramMistakesBlog = () => {
 
         {/* Back to Blog */}
         <div className="text-center">
-          <Link to="/blog">
+          <Link to={`${localePrefix}/blog`}>
             <Button variant="outline" size="lg">
               <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to All Guides
+              {t('blogPost.backToAllGuides')}
             </Button>
           </Link>
         </div>
