@@ -7,7 +7,6 @@ import { CartProvider } from "@/hooks/useCart";
 import Navbar from "@/components/ui/navbar";
 import Footer from "@/components/ui/footer";
 import ScrollToTop from "@/components/ScrollToTop";
-import LocaleHandler from "@/components/LocaleHandler";
 import Home from "./pages/Home";
 import Shop from "./pages/Shop";
 import Blog from "./pages/Blog";
@@ -35,12 +34,10 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <ScrollToTop />
-          <LocaleHandler />
           <div className="min-h-screen flex flex-col">
             <Navbar />
             <main className="flex-1">
             <Routes>
-              {/* English Routes */}
               <Route path="/" element={<Home />} />
               <Route path="/shop" element={<Shop />} />
               <Route path="/blog" element={<Blog />} />
@@ -57,26 +54,7 @@ const App = () => (
               <Route path="/order-success" element={<OrderSuccess />} />
               <Route path="/guest-order-lookup" element={<GuestOrderLookup />} />
               <Route path="/cart" element={<Cart />} />
-              
-              {/* Swedish Routes */}
-              <Route path="/sv" element={<Home />} />
-              <Route path="/sv/butik" element={<Shop />} />
-              <Route path="/sv/blogg" element={<Blog />} />
-              <Route path="/sv/blogg/hur-man-bar-ihram" element={<BlogPost />} />
-              <Route path="/sv/blogg/sunnah-handlingar-innan-ihram" element={<SunnahActsBlog />} />
-              <Route path="/sv/blogg/checklista-umrah-forberedelse" element={<UmrahChecklistBlog />} />
-              <Route path="/sv/blogg/vanliga-misstag-ihram" element={<IhramMistakesBlog />} />
-              <Route path="/sv/blogg/viktiga-duas-umrah" element={<UmrahDuasBlog />} />
-              <Route path="/sv/blogg/andlig-betydelse-ihram" element={<IhramSpiritualMeaningBlog />} />
-              <Route path="/sv/blogg/:slug" element={<BlogPost />} />
-              <Route path="/sv/om-oss" element={<About />} />
-              <Route path="/sv/kontakt" element={<Contact />} />
-              <Route path="/sv/frakt" element={<Shipping />} />
-              <Route path="/sv/order-bekraftelse" element={<OrderSuccess />} />
-              <Route path="/sv/spara-order" element={<GuestOrderLookup />} />
-              <Route path="/sv/varukorg" element={<Cart />} />
-              
-              {/* Catch-all */}
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
             </main>
