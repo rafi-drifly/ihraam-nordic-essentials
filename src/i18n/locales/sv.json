@@ -366,15 +366,145 @@
     }
   },
   "shop": {
+    "breadcrumb": {
+      "home": "Hem",
+      "shop": "Butik"
+    },
+    "loading": "Laddar produkt...",
+    "notFound": "Produkten hittades inte",
+    "fastDelivery": "Snabb Leverans",
+    "reviews": "recensioner",
+    "description": "Håll dig sval, ren och bekväm på din heliga resa. Pure Ihram Hajj Handduksset kombinerar Sunnah enkelhet med modern mikrofiber prestanda — mjuk, absorberande och gjord för att hålla genom varje steg av Hajj eller Umrah.",
+    "plusShipping": "+ frakt",
+    "stock": "Lager:",
+    "available": "tillgängliga",
+    "quantity": "Antal:",
     "addToCart": "Lägg i Kundvagn",
-    "buyNow": "Köp Nu",
-    "inStock": "I Lager",
-    "outOfStock": "Slut i Lager",
-    "quantity": "Antal",
-    "specifications": "Tekniska Specifikationer",
-    "features": "Viktiga Egenskaper",
-    "shippingInfo": "Fraktinformation",
-    "careInstructions": "Skötselråd"
+    "buyNow": "Köp Nu med Stripe",
+    "creatingCheckout": "Skapar Kassa...",
+    "addedToCart": "Tillagd i kundvagn",
+    "addedToCartDesc": "{{quantity}} x {{name}} tillagd i din kundvagn.",
+    "specifications": {
+      "title": "Tekniska Specifikationer",
+      "material": "Material",
+      "materialValue": "100% Mikrofiber Polyester",
+      "size": "Storlek",
+      "sizeValue": "115 × 230 cm",
+      "weight": "Vikt",
+      "weightValue": "1400 g (2 delar)",
+      "features": "Egenskaper",
+      "featuresValue": "Snabbtorkande • Antimikrobiell • Hypoallergen",
+      "packaging": "Förpackning",
+      "packagingValue": "Miljövänlig bärväska med dragkedja"
+    },
+    "features": {
+      "title": "Viktiga Egenskaper",
+      "soft": {
+        "title": "Mjuk & Bekväm",
+        "description": "Slät mikrofiber som är skonsam mot huden"
+      },
+      "quickDry": {
+        "title": "Snabbtorkande Teknik",
+        "description": "Absorberar fukt och torkar snabbt"
+      },
+      "antimicrobial": {
+        "title": "Antimikrobiellt Skydd",
+        "description": "Förhindrar bakterietillväxt"
+      },
+      "sustainable": {
+        "title": "Hållbar & Återanvändbar",
+        "description": "Tålig och lätt att tvätta"
+      },
+      "sunnah": {
+        "title": "Sunnah-Kompatibel Design",
+        "description": "Två osydda vita plagg som symboliserar renhet"
+      }
+    },
+    "shippingInfo": {
+      "title": "Fraktinformation",
+      "sweden": "Sverige: 3-7 arbetsdagar",
+      "nordic": "Norden & EU: 7-14 arbetsdagar",
+      "tracking": "Säker förpackning & spårning ingår"
+    },
+    "careInstructions": {
+      "title": "Skötselråd",
+      "wash": "Maskintvätt skonsam cykel (≤ 40°C)",
+      "bleach": "Bleka ej",
+      "dry": "Lufttorka eller torktumlare låg värme",
+      "iron": "Undvik att stryka direkt på tyget"
+    },
+    "spiritualReminder": {
+      "title": "Andlig Påminnelse",
+      "quote": "\"Den bästa pilgrimerna är den som har den bästa förnödenheten och den mest fromma avsikten.\"",
+      "cite": "— Hadith"
+    }
+  },
+  "blog": {
+    "title": "Guider & Kunskap",
+    "subtitle": "Viktig vägledning och kunskap för din heliga resa. Lär dig om Hajj, Umrah och pilgrimsfärdens andliga betydelse från islamiska lärda och erfarna guider.",
+    "quranVerse": "\"Och kungör för människorna vallfärden; de skall komma till dig till fots och på alla slags utmärglade riddjur; de skall komma från alla fjärran håll.\"",
+    "quranVerseCite": "— Koranen 22:27",
+    "readMore": "Läs Mer",
+    "categories": {
+      "all": "Alla",
+      "guide": "Guide",
+      "sunnah": "Sunnah",
+      "preparation": "Förberedelse",
+      "tips": "Tips",
+      "spiritual": "Andlig"
+    },
+    "posts": {
+      "howToWear": {
+        "title": "Hur Man Bär Ihram – En Enkel Guide för Pilgrimer",
+        "excerpt": "En steg-för-steg guide för att korrekt bära Ihram-kläderna, som säkerställer komfort och efterlevnad av islamiska riktlinjer under din pilgrimsfärd.",
+        "author": "Pure Ihram Team",
+        "readTime": "5 min läsning",
+        "date": "5 oktober 2025"
+      },
+      "sunnahActs": {
+        "title": "Sunnah-Handlingar Innan Man Går In i Ihram",
+        "excerpt": "Upptäck de rekommenderade Sunnah-handlingarna att utföra innan man går in i Ihram-tillståndet, inklusive personlig hygien och andlig förberedelse.",
+        "author": "Islamisk Lärd",
+        "readTime": "7 min läsning",
+        "date": "10 mars 2024"
+      },
+      "checklist": {
+        "title": "Checklista för Umrah-Förberedelse (Kläder, Duas, Dokument)",
+        "excerpt": "Komplett checklista som täcker allt du behöver för Umrah - från viktiga dokument till klädkrav och viktiga duas att memorera.",
+        "author": "Reseexpert",
+        "readTime": "10 min läsning",
+        "date": "5 mars 2024"
+      },
+      "commonMistakes": {
+        "title": "Vanliga Misstag Pilgrimer Gör i Ihram",
+        "excerpt": "Undvik dessa vanliga fel som pilgrimer ofta gör i Ihram-tillståndet, vilket hjälper dig att bevara heligheten i din pilgrimsfärd.",
+        "author": "Hajj Guide",
+        "readTime": "6 min läsning",
+        "date": "28 februari 2024"
+      },
+      "essentialDuas": {
+        "title": "Viktiga Duas för Umrah (Med Translitteration & Betydelse)",
+        "excerpt": "En pilgrims guide till de mest älskade bönerna under Umrah — från avresa till Tawaf och vidare, med arabiska, translitteration och engelsk betydelse.",
+        "author": "Pure Ihram Team",
+        "readTime": "15 min läsning",
+        "date": "15 mars 2024"
+      },
+      "spiritualMeaning": {
+        "title": "Den Andliga Betydelsen av Ihram – Jämlikhet Inför Allah",
+        "excerpt": "Utforska den djupare andliga betydelsen av Ihram och hur den representerar jämlikheten hos alla troende inför Allah.",
+        "author": "Islamisk Lärd",
+        "readTime": "8 min läsning",
+        "date": "20 februari 2024"
+      }
+    },
+    "hadithQuote": "\"Den som utför Hajj för Allahs skull och inte yttrar något obscent tal eller gör någon ond handling, kommer att återvända ren som den dag hans moder födde honom.\"",
+    "hadithCite": "— Bukhari & Muslim",
+    "newsletter": {
+      "title": "Håll Dig Uppdaterad med Islamisk Kunskap",
+      "subtitle": "Prenumerera för att få de senaste artiklarna, guiderna och andliga insikterna för att hjälpa dig förbereda dig för din pilgrimsresa.",
+      "placeholder": "Ange din e-post",
+      "subscribe": "Prenumerera"
+    }
   },
   "common": {
     "loading": "Laddar...",

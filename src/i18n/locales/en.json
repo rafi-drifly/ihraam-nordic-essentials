@@ -366,15 +366,145 @@
     }
   },
   "shop": {
+    "breadcrumb": {
+      "home": "Home",
+      "shop": "Shop"
+    },
+    "loading": "Loading product...",
+    "notFound": "Product not found",
+    "fastDelivery": "Fast Delivery",
+    "reviews": "reviews",
+    "description": "Stay cool, clean, and comfortable on your sacred journey. The Pure Ihram Hajj Towel Set combines Sunnah simplicity with modern microfiber performance — soft, absorbent, and made to last through every step of Hajj or Umrah.",
+    "plusShipping": "+ shipping",
+    "stock": "Stock:",
+    "available": "available",
+    "quantity": "Quantity:",
     "addToCart": "Add to Cart",
-    "buyNow": "Buy Now",
-    "inStock": "In Stock",
-    "outOfStock": "Out of Stock",
-    "quantity": "Quantity",
-    "specifications": "Technical Specifications",
-    "features": "Key Features",
-    "shippingInfo": "Shipping Information",
-    "careInstructions": "Care Instructions"
+    "buyNow": "Buy Now with Stripe",
+    "creatingCheckout": "Creating Checkout...",
+    "addedToCart": "Added to cart",
+    "addedToCartDesc": "{{quantity}} x {{name}} added to your cart.",
+    "specifications": {
+      "title": "Technical Specifications",
+      "material": "Material",
+      "materialValue": "100% Microfiber Polyester",
+      "size": "Size",
+      "sizeValue": "115 × 230 cm",
+      "weight": "Weight",
+      "weightValue": "1400 g (2 pieces)",
+      "features": "Features",
+      "featuresValue": "Quick-Dry • Antimicrobial • Hypoallergenic",
+      "packaging": "Packaging",
+      "packagingValue": "Eco-friendly zip carry bag"
+    },
+    "features": {
+      "title": "Key Features",
+      "soft": {
+        "title": "Soft & Comfortable",
+        "description": "Smooth microfiber gentle on the skin"
+      },
+      "quickDry": {
+        "title": "Quick-Dry Technology",
+        "description": "Absorbs moisture and dries rapidly"
+      },
+      "antimicrobial": {
+        "title": "Antimicrobial Protection",
+        "description": "Prevents bacterial buildup"
+      },
+      "sustainable": {
+        "title": "Sustainable & Reusable",
+        "description": "Durable and easy to wash"
+      },
+      "sunnah": {
+        "title": "Sunnah-Compliant Design",
+        "description": "Two unstitched white pieces symbolizing purity"
+      }
+    },
+    "shippingInfo": {
+      "title": "Shipping Information",
+      "sweden": "Sweden: 3-7 business days",
+      "nordic": "Nordic & EU: 7-14 business days",
+      "tracking": "Secure packaging & tracking included"
+    },
+    "careInstructions": {
+      "title": "Care Instructions",
+      "wash": "Machine wash gentle cycle (≤ 40°C)",
+      "bleach": "Do not bleach",
+      "dry": "Air-dry or tumble-dry low",
+      "iron": "Avoid ironing directly on the fabric"
+    },
+    "spiritualReminder": {
+      "title": "Spiritual Reminder",
+      "quote": "\"The best of pilgrims is he who has the best provision and the most pious intention.\"",
+      "cite": "— Hadith"
+    }
+  },
+  "blog": {
+    "title": "Guides & Knowledge",
+    "subtitle": "Essential guidance and knowledge for your sacred journey. Learn about Hajj, Umrah, and the spiritual significance of pilgrimage from Islamic scholars and experienced guides.",
+    "quranVerse": "\"And proclaim to the people the Hajj; they will come to you on foot and on every lean camel; they will come from every distant pass.\"",
+    "quranVerseCite": "— Qur'an 22:27",
+    "readMore": "Read More",
+    "categories": {
+      "all": "All",
+      "guide": "Guide",
+      "sunnah": "Sunnah",
+      "preparation": "Preparation",
+      "tips": "Tips",
+      "spiritual": "Spiritual"
+    },
+    "posts": {
+      "howToWear": {
+        "title": "How to Wear Ihram – A Simple Guide for Pilgrims",
+        "excerpt": "A step-by-step guide to properly wearing the Ihram garments, ensuring comfort and adherence to Islamic guidelines during your pilgrimage.",
+        "author": "Pure Ihram Team",
+        "readTime": "5 min read",
+        "date": "October 5, 2025"
+      },
+      "sunnahActs": {
+        "title": "Sunnah Acts Before Entering Ihram",
+        "excerpt": "Discover the recommended Sunnah practices to perform before entering the state of Ihram, including personal hygiene and spiritual preparation.",
+        "author": "Islamic Scholar",
+        "readTime": "7 min read",
+        "date": "March 10, 2024"
+      },
+      "checklist": {
+        "title": "Checklist for Umrah Preparation (Clothes, Duas, Documents)",
+        "excerpt": "Complete checklist covering everything you need for Umrah - from essential documents to clothing requirements and important duas to memorize.",
+        "author": "Travel Expert",
+        "readTime": "10 min read",
+        "date": "March 5, 2024"
+      },
+      "commonMistakes": {
+        "title": "Common Mistakes Pilgrims Make in Ihram",
+        "excerpt": "Avoid these common errors that pilgrims often make while in the state of Ihram, helping you maintain the sanctity of your pilgrimage.",
+        "author": "Hajj Guide",
+        "readTime": "6 min read",
+        "date": "February 28, 2024"
+      },
+      "essentialDuas": {
+        "title": "Essential Duas for Umrah (With Transliteration & Meaning)",
+        "excerpt": "A pilgrim's guide to the most beloved supplications during Umrah — from departure to Tawaf and beyond, with Arabic, transliteration, and English meaning.",
+        "author": "Pure Ihram Team",
+        "readTime": "15 min read",
+        "date": "March 15, 2024"
+      },
+      "spiritualMeaning": {
+        "title": "The Spiritual Meaning of Ihram – Equality Before Allah",
+        "excerpt": "Explore the deeper spiritual significance of Ihram and how it represents the equality of all believers in the sight of Allah.",
+        "author": "Islamic Scholar",
+        "readTime": "8 min read",
+        "date": "February 20, 2024"
+      }
+    },
+    "hadithQuote": "\"Whoever performs Hajj for the sake of Allah and does not utter any obscene speech or do any evil deed, will return as pure as the day his mother gave birth to him.\"",
+    "hadithCite": "— Bukhari & Muslim",
+    "newsletter": {
+      "title": "Stay Updated with Islamic Knowledge",
+      "subtitle": "Subscribe to receive the latest articles, guides, and spiritual insights to help you prepare for your pilgrimage journey.",
+      "placeholder": "Enter your email",
+      "subscribe": "Subscribe"
+    }
   },
   "common": {
     "loading": "Loading...",
