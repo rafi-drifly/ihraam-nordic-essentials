@@ -13,7 +13,10 @@ const Navbar = () => {
   const [checkingOut, setCheckingOut] = useState(false);
   const location = useLocation();
   const { toast } = useToast();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+
+  // Get locale prefix for links
+  const localePrefix = location.pathname.startsWith('/sv') ? '/sv' : '';
 
   const handleCheckout = async () => {
     const cartItems = JSON.parse(localStorage.getItem('ihram-cart') || '[]');
@@ -57,7 +60,10 @@ const Navbar = () => {
     }
   }
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) => {
+    const currentPath = location.pathname.replace(/^\/sv/, '') || '/';
+    return currentPath === path;
+  };
 
   const navigation = [
     { name: t('nav.home'), href: "/" },
@@ -69,12 +75,19 @@ const Navbar = () => {
     { name: t('nav.contact'), href: "/contact" },
   ];
 
+  const getLocalizedHref = (href: string) => {
+    if (href === '/') {
+      return localePrefix || '/';
+    }
+    return `${localePrefix}${href}`;
+  };
+
   return (
     <nav className="bg-background border-b border-border sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
+          <Link to={localePrefix || '/'} className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-gradient-primary rounded-full flex items-center justify-center">
               <span className="text-white font-bold text-sm">I</span>
             </div>
@@ -87,7 +100,7 @@ const Navbar = () => {
               {navigation.map((item) => (
                 <Link
                   key={item.name}
-                  to={item.href}
+                  to={getLocalizedHref(item.href)}
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                     isActive(item.href)
                       ? "text-primary bg-secondary"
@@ -125,7 +138,7 @@ const Navbar = () => {
               {navigation.map((item) => (
                 <Link
                   key={item.name}
-                  to={item.href}
+                  to={getLocalizedHref(item.href)}
                   className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
                     isActive(item.href)
                       ? "text-primary bg-secondary"
