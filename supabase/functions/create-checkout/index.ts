@@ -12,15 +12,6 @@ interface CheckoutRequest {
     id: string;
     quantity: number;
   }>;
-  guestEmail?: string;
-  shippingAddress?: {
-    name: string;
-    line1: string;
-    line2?: string;
-    city: string;
-    postal_code: string;
-    country: string;
-  };
 }
 
 serve(async (req) => {
@@ -38,8 +29,8 @@ serve(async (req) => {
       apiVersion: "2025-08-27.basil",
     });
 
-    const { items, shippingAddress, guestEmail }: CheckoutRequest = await req.json();
-    console.log("Checkout request:", { items, shippingAddress, guestEmail });
+    const { items }: CheckoutRequest = await req.json();
+    console.log("Checkout request:", { items });
 
     // Get user if authenticated (optional for guest checkout)
     const authHeader = req.headers.get("Authorization");
@@ -53,9 +44,7 @@ serve(async (req) => {
       console.log("No auth header - guest checkout");
     }
 
-    // Guest email is now optional - Stripe Checkout will collect it
-
-    // Find or create Stripe customer
+    // Find or create Stripe customer if user is authenticated
     let customerId;
     if (user?.email) {
       const customers = await stripe.customers.list({ email: user.email, limit: 1 });
@@ -85,63 +74,9 @@ serve(async (req) => {
       throw new Error("No products found");
     }
 
-    // Calculate total amount
-    const totalAmount = items.reduce((total, item) => {
-      const product = products.find(p => p.id === item.id);
-      return total + (product ? product.price * item.quantity : 0);
-    }, 0);
-
     const shippingCost = 5; // 5€
-    const finalTotal = totalAmount + shippingCost;
 
-    // Create order in Supabase first - use service role client for order creation
-    const supabaseAdmin = createClient(
-      Deno.env.get("SUPABASE_URL") ?? "",
-      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
-    );
-
-    const { data: order, error: orderError } = await supabaseAdmin
-      .from('orders')
-      .insert({
-        user_id: user?.id || null,
-        guest_email: user?.email || guestEmail || null,
-        total_amount: finalTotal,
-        currency: 'EUR',
-        status: 'pending',
-        shipping_address: shippingAddress || {},
-        order_number: `ORD-${Date.now()}`,
-        lookup_token: crypto.randomUUID() // Generate secure lookup token for guest orders
-      })
-      .select()
-      .single();
-
-    console.log("Order creation result:", { order, orderError });
-
-    if (orderError) {
-      throw new Error(`Error creating order: ${orderError.message}`);
-    }
-
-    // Create order items
-    const orderItems = items.map(item => {
-      const product = products.find(p => p.id === item.id);
-      return {
-        order_id: order.id,
-        product_id: item.id,
-        quantity: item.quantity,
-        unit_price: product?.price || 0,
-        total_price: (product?.price || 0) * item.quantity
-      };
-    });
-
-    const { error: orderItemsError } = await supabaseAdmin
-      .from('order_items')
-      .insert(orderItems);
-
-    if (orderItemsError) {
-      throw new Error(`Error creating order items: ${orderItemsError.message}`);
-    }
-
-    // Create line items for Stripe checkout (no images to avoid URL issues)
+    // Create line items for Stripe checkout
     const lineItems = items.map(item => {
       const product = products.find(p => p.id === item.id);
       if (!product) {
@@ -174,13 +109,13 @@ serve(async (req) => {
       quantity: 1,
     });
 
-    // Create checkout session
+    // Create checkout session - order will be created in webhook after payment
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
-      customer_email: customerId ? undefined : (user?.email || guestEmail),
+      customer_email: customerId ? undefined : undefined, // Let Stripe collect email
       line_items: lineItems,
       mode: "payment",
-      currency: "eur", // Force EUR currency only
+      currency: "eur",
       success_url: `${req.headers.get("origin")}/order-success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${req.headers.get("origin")}/cart`,
       shipping_address_collection: {
@@ -196,8 +131,8 @@ serve(async (req) => {
       },
       metadata: {
         user_id: user?.id || '',
-        order_id: order.id,
         items: JSON.stringify(items),
+        shipping_cost: shippingCost.toString(),
       },
     });
 
