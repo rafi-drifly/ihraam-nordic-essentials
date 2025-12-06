@@ -1,52 +1,55 @@
+import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Truck, Package, Shield, Clock, MapPin, Euro } from "lucide-react";
 
 const Shipping = () => {
+  const { t } = useTranslation();
+
   const shippingZones = [
     {
-      region: "Sweden 🇸🇪",
-      timeframe: "3-7 business days",
-      cost: "49 SEK",
-      description: "Fast domestic shipping across all regions of Sweden. Order by 2 PM for same-day processing.",
-      method: "PostNord, DHL, or UPS"
+      region: t('shipping.zones.sweden.region'),
+      timeframe: t('shipping.zones.sweden.timeframe'),
+      cost: t('shipping.zones.sweden.cost'),
+      description: t('shipping.zones.sweden.description'),
+      method: t('shipping.zones.sweden.method')
     },
     {
-      region: "Nordic Countries 🇳🇴🇩🇰🇫🇮",
-      timeframe: "7-14 business days", 
-      cost: "89 SEK",
-      description: "Reliable delivery to Norway, Denmark, and Finland with full tracking support.",
-      method: "International carriers"
+      region: t('shipping.zones.nordic.region'),
+      timeframe: t('shipping.zones.nordic.timeframe'),
+      cost: t('shipping.zones.nordic.cost'),
+      description: t('shipping.zones.nordic.description'),
+      method: t('shipping.zones.nordic.method')
     },
     {
-      region: "European Union 🇪🇺",
-      timeframe: "7-14 business days",
-      cost: "99 SEK", 
-      description: "Comprehensive coverage across all EU member countries with customs pre-clearance.",
-      method: "Express international shipping"
+      region: t('shipping.zones.eu.region'),
+      timeframe: t('shipping.zones.eu.timeframe'),
+      cost: t('shipping.zones.eu.cost'),
+      description: t('shipping.zones.eu.description'),
+      method: t('shipping.zones.eu.method')
     }
   ];
 
   const features = [
     {
       icon: <Package className="h-6 w-6 text-primary" />,
-      title: "Secure Packaging",
-      description: "Your Ihram is carefully packaged in protective, eco-friendly materials"
+      title: t('shipping.features.packaging.title'),
+      description: t('shipping.features.packaging.description')
     },
     {
       icon: <Shield className="h-6 w-6 text-primary" />,
-      title: "Tracking Included",
-      description: "Full tracking information provided for all shipments"
+      title: t('shipping.features.tracking.title'),
+      description: t('shipping.features.tracking.description')
     },
     {
       icon: <Clock className="h-6 w-6 text-primary" />,
-      title: "Processing Time",
-      description: "Orders processed within 1-2 business days"
+      title: t('shipping.features.processing.title'),
+      description: t('shipping.features.processing.description')
     },
     {
       icon: <Euro className="h-6 w-6 text-primary" />,
-      title: "Free Shipping",
-      description: "Orders over 50€ qualify for free shipping"
+      title: t('shipping.features.free.title'),
+      description: t('shipping.features.free.description')
     }
   ];
 
@@ -56,20 +59,19 @@ const Shipping = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            Shipping & Delivery
+            {t('shipping.title')}
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Fast, reliable delivery across Sweden, the Nordics, and Europe. 
-            Your Ihram will arrive in perfect condition, ready for your sacred journey.
+            {t('shipping.subtitle')}
           </p>
         </div>
 
         {/* Shipping Zones */}
         <div className="mb-16">
           <h2 className="text-3xl font-bold text-foreground text-center mb-8">
-            Delivery Zones & Timeframes
+            {t('shipping.zones.title')}
           </h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {shippingZones.map((zone, index) => (
               <Card key={index} className="relative hover:shadow-lg transition-shadow">
@@ -94,16 +96,15 @@ const Shipping = () => {
             <div className="inline-flex items-center space-x-2 bg-accent/10 px-4 py-2 rounded-lg">
               <Truck className="h-5 w-5 text-accent" />
               <span className="text-accent font-medium">
-                Free shipping on orders over 50€ to all destinations
+                {t('shipping.freeShipping')}
               </span>
             </div>
-            
+
             {/* Pilgrimage Tip */}
             <div className="bg-primary/10 rounded-lg p-4 max-w-2xl mx-auto">
-              <h4 className="font-semibold text-primary mb-2">💡 Pilgrimage Planning Tip</h4>
+              <h4 className="font-semibold text-primary mb-2">{t('shipping.tip.title')}</h4>
               <p className="text-sm text-muted-foreground">
-                <strong>Order your Ihram at least 3-4 weeks before travel</strong> to avoid last-minute stress 
-                and ensure you have time for any adjustments or replacements if needed.
+                {t('shipping.tip.description')}
               </p>
             </div>
           </div>
@@ -112,9 +113,9 @@ const Shipping = () => {
         {/* Features */}
         <div className="mb-16">
           <h2 className="text-3xl font-bold text-foreground text-center mb-8">
-            Shipping Features
+            {t('shipping.features.title')}
           </h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((feature, index) => (
               <Card key={index} className="text-center hover:shadow-lg transition-shadow">
@@ -140,26 +141,26 @@ const Shipping = () => {
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
                 <Package className="h-5 w-5 text-primary" />
-                <span>Order Processing</span>
+                <span>{t('shipping.orderProcessing.title')}</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <h4 className="font-semibold text-foreground mb-2">Processing Times</h4>
+                <h4 className="font-semibold text-foreground mb-2">{t('shipping.orderProcessing.times.title')}</h4>
                 <ul className="space-y-1 text-sm text-muted-foreground">
-                  <li>• Monday-Friday orders: Processed same day if ordered before 2 PM CET</li>
-                  <li>• Weekend orders: Processed next business day</li>
-                  <li>• Quality check and packaging: 24-48 hours</li>
+                  <li>• {t('shipping.orderProcessing.times.weekday')}</li>
+                  <li>• {t('shipping.orderProcessing.times.weekend')}</li>
+                  <li>• {t('shipping.orderProcessing.times.quality')}</li>
                 </ul>
               </div>
-              
+
               <div>
-                <h4 className="font-semibold text-foreground mb-2">What Happens Next?</h4>
+                <h4 className="font-semibold text-foreground mb-2">{t('shipping.orderProcessing.next.title')}</h4>
                 <ol className="space-y-1 text-sm text-muted-foreground">
-                  <li>1. Order confirmation email sent immediately</li>
-                  <li>2. Processing notification within 24 hours</li>
-                  <li>3. Shipping confirmation with tracking number</li>
-                  <li>4. Delivery to your address</li>
+                  <li>1. {t('shipping.orderProcessing.next.step1')}</li>
+                  <li>2. {t('shipping.orderProcessing.next.step2')}</li>
+                  <li>3. {t('shipping.orderProcessing.next.step3')}</li>
+                  <li>4. {t('shipping.orderProcessing.next.step4')}</li>
                 </ol>
               </div>
             </CardContent>
@@ -169,27 +170,27 @@ const Shipping = () => {
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
                 <MapPin className="h-5 w-5 text-primary" />
-                <span>Delivery Information</span>
+                <span>{t('shipping.deliveryInfo.title')}</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <h4 className="font-semibold text-foreground mb-2">Delivery Methods</h4>
+                <h4 className="font-semibold text-foreground mb-2">{t('shipping.deliveryInfo.methods.title')}</h4>
                 <ul className="space-y-1 text-sm text-muted-foreground">
-                  <li>• Standard delivery to your door</li>
-                  <li>• Signature required for orders over 200€</li>
-                  <li>• Safe place delivery available upon request</li>
-                  <li>• PO Box delivery not available</li>
+                  <li>• {t('shipping.deliveryInfo.methods.door')}</li>
+                  <li>• {t('shipping.deliveryInfo.methods.signature')}</li>
+                  <li>• {t('shipping.deliveryInfo.methods.safePlace')}</li>
+                  <li>• {t('shipping.deliveryInfo.methods.poBox')}</li>
                 </ul>
               </div>
-              
+
               <div>
-                <h4 className="font-semibold text-foreground mb-2">Tracking & Updates</h4>
+                <h4 className="font-semibold text-foreground mb-2">{t('shipping.deliveryInfo.tracking.title')}</h4>
                 <ul className="space-y-1 text-sm text-muted-foreground">
-                  <li>• Real-time tracking via SMS and email</li>
-                  <li>• Delivery window notifications</li>
-                  <li>• Failed delivery rescheduling options</li>
-                  <li>• Customer service support</li>
+                  <li>• {t('shipping.deliveryInfo.tracking.realTime')}</li>
+                  <li>• {t('shipping.deliveryInfo.tracking.window')}</li>
+                  <li>• {t('shipping.deliveryInfo.tracking.failed')}</li>
+                  <li>• {t('shipping.deliveryInfo.tracking.support')}</li>
                 </ul>
               </div>
             </CardContent>
@@ -199,33 +200,32 @@ const Shipping = () => {
         {/* Special Circumstances */}
         <Card className="mb-16">
           <CardHeader>
-            <CardTitle>Special Circumstances & Holiday Delivery</CardTitle>
+            <CardTitle>{t('shipping.special.title')}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <h4 className="font-semibold text-foreground mb-3">Ramadan & Hajj Season</h4>
+                <h4 className="font-semibold text-foreground mb-3">{t('shipping.special.ramadan.title')}</h4>
                 <p className="text-sm text-muted-foreground mb-2">
-                  During peak pilgrimage seasons, we experience higher order volumes. 
-                  We recommend ordering at least 2-3 weeks before your departure date.
+                  {t('shipping.special.ramadan.description')}
                 </p>
                 <ul className="space-y-1 text-sm text-muted-foreground">
-                  <li>• Hajj season: Order 3+ weeks early</li>
-                  <li>• Umrah (Ramadan): Order 2+ weeks early</li>
-                  <li>• Express shipping available upon request</li>
+                  <li>• {t('shipping.special.ramadan.hajj')}</li>
+                  <li>• {t('shipping.special.ramadan.umrah')}</li>
+                  <li>• {t('shipping.special.ramadan.express')}</li>
                 </ul>
               </div>
-              
+
               <div>
-                <h4 className="font-semibold text-foreground mb-3">Holiday Periods</h4>
+                <h4 className="font-semibold text-foreground mb-3">{t('shipping.special.holidays.title')}</h4>
                 <p className="text-sm text-muted-foreground mb-2">
-                  Shipping may be delayed during major holidays in Sweden and destination countries.
+                  {t('shipping.special.holidays.description')}
                 </p>
                 <ul className="space-y-1 text-sm text-muted-foreground">
-                  <li>• Christmas/New Year: 2-3 days extra</li>
-                  <li>• Easter holidays: 1-2 days extra</li>
-                  <li>• Midsummer (Sweden): Processing delayed</li>
-                  <li>• We'll notify you of any delays</li>
+                  <li>• {t('shipping.special.holidays.christmas')}</li>
+                  <li>• {t('shipping.special.holidays.easter')}</li>
+                  <li>• {t('shipping.special.holidays.midsummer')}</li>
+                  <li>• {t('shipping.special.holidays.notify')}</li>
                 </ul>
               </div>
             </div>
@@ -236,24 +236,23 @@ const Shipping = () => {
         <Card className="bg-muted text-center">
           <CardContent className="p-8">
             <h3 className="text-2xl font-bold text-foreground mb-4">
-              Questions About Shipping?
+              {t('shipping.support.title')}
             </h3>
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Our customer service team is here to help with any shipping questions 
-              or special delivery requirements for your pilgrimage preparations.
+              {t('shipping.support.description')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="mailto:pureihraam@gmail.com"
                 className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition-opacity"
               >
-                Email Support
+                {t('shipping.support.email')}
               </a>
               <a
                 href="https://wa.me/46720131476"
                 className="inline-flex items-center justify-center px-6 py-3 border border-border rounded-lg hover:bg-muted-foreground/10 transition-colors"
               >
-                WhatsApp
+                {t('shipping.support.whatsapp')}
               </a>
             </div>
           </CardContent>

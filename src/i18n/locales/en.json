@@ -9,45 +9,360 @@
     "contact": "Contact"
   },
   "footer": {
-    "description": "Premium Ihram garments for your sacred journey. Crafted with care, delivered with devotion.",
+    "description": "Providing pure, comfortable Ihram (Ihraam) cloth for pilgrims across Sweden, the Nordics, and Europe. Made with the intention of reward and accessibility for all.",
     "quickLinks": "Quick Links",
     "serviceAreas": "Service Areas",
-    "contactUs": "Contact Us",
+    "contact": "Contact",
     "areas": {
-      "sweden": "Sweden (2-4 days)",
-      "uk": "United Kingdom (5-7 days)",
-      "europe": "Europe (5-10 days)",
-      "worldwide": "Worldwide (7-14 days)"
+      "sweden": "Sweden (3-7 days)",
+      "norway": "Norway (7-14 days)",
+      "denmark": "Denmark (7-14 days)",
+      "finland": "Finland (7-14 days)",
+      "eu": "EU Countries (7-14 days)"
     },
-    "copyright": "© {{year}} Pure Ihram. All rights reserved.",
-    "quote": "\"And proclaim to the people the Hajj; they will come to you on foot and on every lean camel; they will come from every distant pass.\" - Quran 22:27"
+    "links": {
+      "home": "Home",
+      "shop": "Shop",
+      "blog": "Guides & Knowledge",
+      "shipping": "Shipping & Delivery",
+      "about": "About Us",
+      "contact": "Contact"
+    },
+    "copyright": "© 2025 Pure Ihram. All rights reserved.",
+    "quote": "\"Take provisions, but the best provision is Taqwa (God-consciousness).\" — Qur'an 2:197"
   },
   "home": {
     "hero": {
-      "title": "Begin Your Sacred Journey",
-      "subtitle": "Premium Ihram garments crafted for comfort, purity, and devotion. Start your pilgrimage with the finest quality.",
-      "cta": "Shop Now",
+      "title": "Pure & Comfortable",
+      "titleHighlight": "Ihram",
+      "price": "Only",
+      "priceAmount": "15€",
+      "priceSuffix": "+ shipping",
+      "description": "Lightweight, thin, and comfortable Ihram (Ihraam) cloth for your sacred journey. Made with the intention of earning ajr and making pilgrimage accessible to all.",
+      "cta": "Order Your Ihram",
       "learnMore": "Learn More"
     },
-    "benefits": {
+    "quranVerse1": "\"And proclaim to the people the Hajj; they will come to you on foot and on every lean camel; they will come from every distant pass.\"",
+    "quranVerse1Cite": "— Qur'an 22:27",
+    "whyChoose": {
       "title": "Why Choose Pure Ihram?",
-      "quality": {
-        "title": "Premium Quality",
-        "description": "100% cotton, soft and breathable fabric perfect for the sacred journey"
+      "subtitle": "Quality, accessibility, and comfort for every pilgrim",
+      "affordable": {
+        "title": "Affordable for All",
+        "description": "Quality Ihram (Ihraam) at just 15€ + shipping. Making pilgrimage accessible regardless of financial situation, with the sincere intention of earning ajr in the Akhirah."
       },
-      "shipping": {
-        "title": "Fast Shipping",
-        "description": "Quick delivery to Sweden, UK, Europe and worldwide"
+      "comfortable": {
+        "title": "Comfortable & Durable",
+        "description": "Premium 100% cotton fabric that's soft, breathable, and long-lasting. Pre-washed and ready to use, ensuring comfort throughout your sacred journey."
       },
-      "authentic": {
-        "title": "Authentic Design",
-        "description": "Traditional Ihram design following Sunnah specifications"
+      "delivery": {
+        "title": "Delivered Across Europe",
+        "description": "Fast, reliable delivery across Sweden (3-7 days), Nordic countries and all EU member states (7-14 days). Secure packaging with tracking included."
       }
     },
+    "benefits": {
+      "title": "Why Choose Our Ihram?",
+      "subtitle": "Designed with the pilgrim's comfort and spiritual focus in mind",
+      "lightweight": {
+        "title": "Lightweight & Comfortable",
+        "description": "Made from premium cotton, thin and breathable for maximum comfort during your pilgrimage."
+      },
+      "intention": {
+        "title": "Made with Intention",
+        "description": "Every piece is prepared with the sincere intention of reward in the Akhirah and accessibility for all."
+      },
+      "fastDelivery": {
+        "title": "Fast EU Delivery",
+        "description": "Quick delivery across Sweden (3-7 days) and all Nordic/EU countries (7-14 days)."
+      },
+      "affordable": {
+        "title": "Affordable Quality",
+        "description": "High-quality Ihraam at just 15€ + shipping, making it accessible for every pilgrim."
+      }
+    },
+    "quranVerse2": "\"And Hajj to the House is a duty that mankind owes to Allah, for those who can afford the journey.\"",
+    "quranVerse2Cite": "— Qur'an 3:97",
     "guides": {
       "title": "Guides & Knowledge",
-      "subtitle": "Prepare for your sacred journey with our comprehensive guides",
-      "viewAll": "View All Guides"
+      "subtitle": "Learn everything you need before your pilgrimage — from Sunnah acts and packing tips to the spiritual meaning of Ihram.",
+      "viewAll": "View All Guides",
+      "readMore": "Read More",
+      "articles": {
+        "spiritual": {
+          "title": "The Spiritual Meaning of Ihram – Equality Before Allah",
+          "description": "Explore the deeper significance of Ihram and how it represents humility and unity among believers."
+        },
+        "howToWear": {
+          "title": "How to Wear Ihram – Step-by-Step Guide for Pilgrims",
+          "description": "Learn the correct way to wear Ihram garments with Sunnah guidance and comfort tips."
+        },
+        "sunnah": {
+          "title": "Sunnah Acts Before Entering Ihram",
+          "description": "Prepare your body and heart before Ihram through ghusl, perfume, and prayer — following the Sunnah."
+        },
+        "checklist": {
+          "title": "Checklist for Umrah Preparation (Clothes, Duas, Documents)",
+          "description": "A complete guide to what you need before your journey — from essentials to spiritual preparation."
+        },
+        "duas": {
+          "title": "Essential Duas for Umrah (With Transliteration & Meaning)",
+          "description": "Memorize the most important duas for each stage of Umrah, with Arabic and English meaning."
+        },
+        "mistakes": {
+          "title": "Common Mistakes Pilgrims Make in Ihram",
+          "description": "Avoid the common errors that can affect your pilgrimage and maintain the sanctity of Ihram."
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready for Your Spiritual Journey?",
+      "description": "Order your premium Ihram today and begin your pilgrimage with comfort and peace of mind.",
+      "button": "Shop Now"
+    }
+  },
+  "about": {
+    "title": "About Pure Ihram",
+    "subtitle": "Pure Ihram was founded to make Ihram (Ihraam) affordable (15€ + shipping) and accessible to all. This is not about profit but about earning ajr (reward) in the Akhirah by serving the Muslim community and making the sacred pilgrimage accessible to believers across Europe.",
+    "story": {
+      "title": "Our Story",
+      "p1": "Pure Ihram was born from a simple yet profound realization: too many Muslims across Europe were struggling to find affordable, quality Ihram (Ihraam) cloth for their pilgrimage to the holy cities of Makkah and Madinah.",
+      "p2": "Having witnessed fellow believers paying excessive prices for basic pilgrimage essentials, we made a commitment to provide premium Ihram cloth at an honest, accessible price of just 15€.",
+      "p3": "Our mission extends beyond commerce – every sale is made with the sincere intention of earning ajr (reward) in the Akhirah while helping our brothers and sisters fulfill their religious obligations without financial burden.",
+      "p4": "Today, we're proud to serve thousands of pilgrims across Sweden, the Nordic countries, and the European Union, ensuring that distance and cost never become barriers to spiritual fulfillment."
+    },
+    "promise": {
+      "title": "Our Promise",
+      "text": "\"We promise to provide every Muslim with access to pure, comfortable Ihram (Ihraam) cloth at a price that honors both quality and affordability. Our commitment is not just to your pilgrimage, but to your spiritual journey and the barakah it brings.\"",
+      "hadith": "\"The most beloved of people to Allah are those who are most beneficial to the people.\"",
+      "hadithCite": "— Al-Mu'jam al-Awsat"
+    },
+    "values": {
+      "title": "Our Values",
+      "subtitle": "The principles that guide every aspect of our business",
+      "purity": {
+        "title": "Purity",
+        "description": "Every Ihram is prepared with the pure intention of earning reward in the Akhirah and serving the Muslim community with sincerity."
+      },
+      "accessibility": {
+        "title": "Accessibility",
+        "description": "We believe every Muslim should have access to quality Ihram (Ihraam) cloth at 15€, regardless of their financial situation."
+      },
+      "trust": {
+        "title": "Trust",
+        "description": "Building trust through consistent quality, reliable delivery, and transparent pricing across Sweden, Nordics, and Europe."
+      }
+    },
+    "quality": {
+      "title": "Why Quality Matters",
+      "p1": "During Hajj and Umrah, pilgrims face intense physical and spiritual demands. Your Ihram should be the least of your concerns – comfortable, breathable, and durable enough to withstand the journey ahead.",
+      "p2": "We source our fabric from trusted suppliers who understand the sacred nature of these garments. Every piece is inspected, pre-washed, and prepared with the care befitting its holy purpose.",
+      "cotton": {
+        "title": "Premium Cotton",
+        "description": "100% natural cotton fibers for maximum breathability and comfort"
+      },
+      "preTreated": {
+        "title": "Pre-Treated",
+        "description": "Pre-washed and treated to maintain pristine appearance"
+      },
+      "traditional": {
+        "title": "Traditional Cut",
+        "description": "Authentic dimensions following traditional Islamic guidelines"
+      }
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Have questions about our Ihram (Ihraam) cloth or need assistance with your order? We're here to help with your pilgrimage preparations.",
+    "getInTouch": "Get in Touch",
+    "methods": {
+      "email": {
+        "title": "Email Us",
+        "description": "Send us an email and we'll respond within 24 hours"
+      },
+      "whatsapp": {
+        "title": "WhatsApp",
+        "description": "Quick questions? Message us on WhatsApp"
+      },
+      "call": {
+        "title": "Call Us",
+        "description": "Speak directly with our customer service team"
+      }
+    },
+    "hours": {
+      "title": "Business Hours",
+      "weekdays": "Monday - Friday:",
+      "weekdaysTimes": "9:00 AM - 6:00 PM",
+      "saturday": "Saturday:",
+      "saturdayTimes": "10:00 AM - 4:00 PM",
+      "sunday": "Sunday:",
+      "sundayTimes": "Closed",
+      "timezone": "All times are in Central European Time (CET)"
+    },
+    "serviceArea": {
+      "title": "Service Area",
+      "primary": "Primary:",
+      "extended": "Extended:",
+      "international": "International:"
+    },
+    "form": {
+      "title": "Send us a Message",
+      "subtitle": "Fill out the form below and we'll get back to you as soon as possible.",
+      "name": "Full Name",
+      "namePlaceholder": "Your full name",
+      "email": "Email Address",
+      "emailPlaceholder": "your@email.com",
+      "subject": "Subject",
+      "subjectPlaceholder": "What is your message about?",
+      "message": "Message",
+      "messagePlaceholder": "Please provide details about your inquiry...",
+      "submit": "Send Message",
+      "sending": "Sending...",
+      "privacy": "By submitting this form, you agree to our privacy policy. We'll only use your information to respond to your inquiry.",
+      "success": {
+        "title": "Message Sent Successfully!",
+        "description": "Thank you for contacting us. We'll get back to you within 24 hours."
+      },
+      "error": {
+        "title": "Failed to Send Message",
+        "validation": "Please check your form",
+        "validationDescription": "There are some validation errors that need to be fixed."
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "size": {
+        "question": "Is the Ihram suitable for tall/broad men?",
+        "answer": "Yes, our generous size (115cm x 200cm each piece) is suitable for all body types, including tall and broad-shouldered men."
+      },
+      "accessories": {
+        "question": "Do you also sell belts or sandals?",
+        "answer": "Not yet, but we're working on expanding our pilgrimage essentials collection. Belts and sandals coming soon, In Sha Allah."
+      },
+      "bulk": {
+        "question": "Can mosques/travel groups order in bulk?",
+        "answer": "Yes! We welcome bulk orders from mosques, travel agencies, and Hajj/Umrah groups. Contact us for special pricing on orders of 20+ sets."
+      },
+      "shipping": {
+        "question": "How long does shipping take?",
+        "answer": "Sweden: 3-7 business days, Nordic countries: 7-14 business days, EU: 7-14 business days. Free shipping on orders over 50€."
+      },
+      "included": {
+        "question": "What's included in the Ihram set?",
+        "answer": "Two unstitched white cotton pieces: Izaar (lower garment) and Ridaa (upper garment), each measuring 115cm x 200cm."
+      },
+      "returns": {
+        "question": "Can I return or exchange?",
+        "answer": "Yes, we offer returns within 30 days if unused and in original packaging. Your satisfaction is important to us."
+      }
+    }
+  },
+  "shipping": {
+    "title": "Shipping & Delivery",
+    "subtitle": "Fast, reliable delivery across Sweden, the Nordics, and Europe. Your Ihram will arrive in perfect condition, ready for your sacred journey.",
+    "zones": {
+      "title": "Delivery Zones & Timeframes",
+      "sweden": {
+        "region": "Sweden 🇸🇪",
+        "timeframe": "3-7 business days",
+        "cost": "49 SEK",
+        "description": "Fast domestic shipping across all regions of Sweden. Order by 2 PM for same-day processing.",
+        "method": "PostNord, DHL, or UPS"
+      },
+      "nordic": {
+        "region": "Nordic Countries 🇳🇴🇩🇰🇫🇮",
+        "timeframe": "7-14 business days",
+        "cost": "89 SEK",
+        "description": "Reliable delivery to Norway, Denmark, and Finland with full tracking support.",
+        "method": "International carriers"
+      },
+      "eu": {
+        "region": "European Union 🇪🇺",
+        "timeframe": "7-14 business days",
+        "cost": "99 SEK",
+        "description": "Comprehensive coverage across all EU member countries with customs pre-clearance.",
+        "method": "Express international shipping"
+      }
+    },
+    "freeShipping": "Free shipping on orders over 50€ to all destinations",
+    "tip": {
+      "title": "💡 Pilgrimage Planning Tip",
+      "description": "Order your Ihram at least 3-4 weeks before travel to avoid last-minute stress and ensure you have time for any adjustments or replacements if needed."
+    },
+    "features": {
+      "title": "Shipping Features",
+      "packaging": {
+        "title": "Secure Packaging",
+        "description": "Your Ihram is carefully packaged in protective, eco-friendly materials"
+      },
+      "tracking": {
+        "title": "Tracking Included",
+        "description": "Full tracking information provided for all shipments"
+      },
+      "processing": {
+        "title": "Processing Time",
+        "description": "Orders processed within 1-2 business days"
+      },
+      "free": {
+        "title": "Free Shipping",
+        "description": "Orders over 50€ qualify for free shipping"
+      }
+    },
+    "orderProcessing": {
+      "title": "Order Processing",
+      "times": {
+        "title": "Processing Times",
+        "weekday": "Monday-Friday orders: Processed same day if ordered before 2 PM CET",
+        "weekend": "Weekend orders: Processed next business day",
+        "quality": "Quality check and packaging: 24-48 hours"
+      },
+      "next": {
+        "title": "What Happens Next?",
+        "step1": "Order confirmation email sent immediately",
+        "step2": "Processing notification within 24 hours",
+        "step3": "Shipping confirmation with tracking number",
+        "step4": "Delivery to your address"
+      }
+    },
+    "deliveryInfo": {
+      "title": "Delivery Information",
+      "methods": {
+        "title": "Delivery Methods",
+        "door": "Standard delivery to your door",
+        "signature": "Signature required for orders over 200€",
+        "safePlace": "Safe place delivery available upon request",
+        "poBox": "PO Box delivery not available"
+      },
+      "tracking": {
+        "title": "Tracking & Updates",
+        "realTime": "Real-time tracking via SMS and email",
+        "window": "Delivery window notifications",
+        "failed": "Failed delivery rescheduling options",
+        "support": "Customer service support"
+      }
+    },
+    "special": {
+      "title": "Special Circumstances & Holiday Delivery",
+      "ramadan": {
+        "title": "Ramadan & Hajj Season",
+        "description": "During peak pilgrimage seasons, we experience higher order volumes. We recommend ordering at least 2-3 weeks before your departure date.",
+        "hajj": "Hajj season: Order 3+ weeks early",
+        "umrah": "Umrah (Ramadan): Order 2+ weeks early",
+        "express": "Express shipping available upon request"
+      },
+      "holidays": {
+        "title": "Holiday Periods",
+        "description": "Shipping may be delayed during major holidays in Sweden and destination countries.",
+        "christmas": "Christmas/New Year: 2-3 days extra",
+        "easter": "Easter holidays: 1-2 days extra",
+        "midsummer": "Midsummer (Sweden): Processing delayed",
+        "notify": "We'll notify you of any delays"
+      }
+    },
+    "support": {
+      "title": "Questions About Shipping?",
+      "description": "Our customer service team is here to help with any shipping questions or special delivery requirements for your pilgrimage preparations.",
+      "email": "Email Support",
+      "whatsapp": "WhatsApp"
     }
   },
   "shop": {
@@ -60,26 +375,6 @@
     "features": "Key Features",
     "shippingInfo": "Shipping Information",
     "careInstructions": "Care Instructions"
-  },
-  "about": {
-    "title": "About Pure Ihram",
-    "mission": "Our Mission",
-    "story": "Our Story",
-    "values": "Our Values"
-  },
-  "contact": {
-    "title": "Contact Us",
-    "subtitle": "We're here to help with any questions about your order or our products",
-    "form": {
-      "name": "Name",
-      "email": "Email",
-      "message": "Message",
-      "submit": "Send Message"
-    }
-  },
-  "shipping": {
-    "title": "Shipping Information",
-    "subtitle": "Fast and reliable delivery worldwide"
   },
   "common": {
     "loading": "Loading...",

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -18,6 +19,7 @@ const contactSchema = z.object({
 });
 
 const Contact = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -34,10 +36,8 @@ const Contact = () => {
     setErrors({});
 
     try {
-      // Validate form data
       const validatedData = contactSchema.parse(formData);
 
-      // Submit to our Edge Function
       const { data, error } = await supabase.functions.invoke('contact-form', {
         body: validatedData,
       });
@@ -50,13 +50,11 @@ const Contact = () => {
         throw new Error(data.error);
       }
 
-      // Success
       toast({
-        title: "Message Sent Successfully!",
-        description: "Thank you for contacting us. We'll get back to you within 24 hours.",
+        title: t('contact.form.success.title'),
+        description: t('contact.form.success.description'),
       });
 
-      // Reset form
       setFormData({
         name: "",
         email: "",
@@ -66,9 +64,8 @@ const Contact = () => {
 
     } catch (error: any) {
       console.error('Form submission error:', error);
-      
+
       if (error instanceof z.ZodError) {
-        // Handle validation errors
         const fieldErrors: Record<string, string> = {};
         error.issues.forEach((issue) => {
           if (issue.path[0]) {
@@ -76,16 +73,15 @@ const Contact = () => {
           }
         });
         setErrors(fieldErrors);
-        
+
         toast({
-          title: "Please check your form",
-          description: "There are some validation errors that need to be fixed.",
+          title: t('contact.form.error.validation'),
+          description: t('contact.form.error.validationDescription'),
           variant: "destructive",
         });
       } else {
-        // Handle API errors
         toast({
-          title: "Failed to Send Message",
+          title: t('contact.form.error.title'),
           description: error.message || "Please try again later or contact us directly.",
           variant: "destructive",
         });
@@ -105,22 +101,22 @@ const Contact = () => {
   const contactMethods = [
     {
       icon: <Mail className="h-6 w-6 text-primary" />,
-      title: "Email Us",
-      description: "Send us an email and we'll respond within 24 hours",
+      title: t('contact.methods.email.title'),
+      description: t('contact.methods.email.description'),
       contact: "pureihraam@gmail.com",
       action: "mailto:pureihraam@gmail.com"
     },
     {
       icon: <MessageCircle className="h-6 w-6 text-primary" />,
-      title: "WhatsApp",
-      description: "Quick questions? Message us on WhatsApp",
+      title: t('contact.methods.whatsapp.title'),
+      description: t('contact.methods.whatsapp.description'),
       contact: "+46720131476",
       action: "https://wa.me/46720131476"
     },
     {
       icon: <Phone className="h-6 w-6 text-primary" />,
-      title: "Call Us",
-      description: "Speak directly with our customer service team",
+      title: t('contact.methods.call.title'),
+      description: t('contact.methods.call.description'),
       contact: "+46720131476",
       action: "tel:+46720131476"
     }
@@ -132,19 +128,18 @@ const Contact = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            Contact Us
+            {t('contact.title')}
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Have questions about our Ihram (Ihraam) cloth or need assistance with your order? 
-            We're here to help with your pilgrimage preparations.
+            {t('contact.subtitle')}
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Contact Methods */}
           <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-foreground">Get in Touch</h2>
-            
+            <h2 className="text-2xl font-bold text-foreground">{t('contact.getInTouch')}</h2>
+
             {contactMethods.map((method, index) => (
               <Card key={index} className="hover:shadow-lg transition-shadow">
                 <CardContent className="p-6">
@@ -176,25 +171,25 @@ const Contact = () => {
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
                   <Clock className="h-5 w-5 text-primary" />
-                  <span>Business Hours</span>
+                  <span>{t('contact.hours.title')}</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span>Monday - Friday:</span>
-                    <span>9:00 AM - 6:00 PM</span>
+                    <span>{t('contact.hours.weekdays')}</span>
+                    <span>{t('contact.hours.weekdaysTimes')}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Saturday:</span>
-                    <span>10:00 AM - 4:00 PM</span>
+                    <span>{t('contact.hours.saturday')}</span>
+                    <span>{t('contact.hours.saturdayTimes')}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Sunday:</span>
-                    <span>Closed</span>
+                    <span>{t('contact.hours.sunday')}</span>
+                    <span>{t('contact.hours.sundayTimes')}</span>
                   </div>
                   <p className="text-muted-foreground text-xs mt-3">
-                    All times are in Central European Time (CET)
+                    {t('contact.hours.timezone')}
                   </p>
                 </div>
               </CardContent>
@@ -205,14 +200,14 @@ const Contact = () => {
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
                   <MapPin className="h-5 w-5 text-primary" />
-                  <span>Service Area</span>
+                  <span>{t('contact.serviceArea.title')}</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-2 text-sm">
-                  <p><span className="font-medium">Primary:</span> Sweden 🇸🇪</p>
-                  <p><span className="font-medium">Extended:</span> Nordic Countries</p>
-                  <p><span className="font-medium">International:</span> European Union</p>
+                  <p><span className="font-medium">{t('contact.serviceArea.primary')}</span> Sweden 🇸🇪</p>
+                  <p><span className="font-medium">{t('contact.serviceArea.extended')}</span> Nordic Countries</p>
+                  <p><span className="font-medium">{t('contact.serviceArea.international')}</span> European Union</p>
                 </div>
               </CardContent>
             </Card>
@@ -222,22 +217,22 @@ const Contact = () => {
           <div className="lg:col-span-2">
             <Card>
               <CardHeader>
-                <CardTitle>Send us a Message</CardTitle>
+                <CardTitle>{t('contact.form.title')}</CardTitle>
                 <p className="text-muted-foreground">
-                  Fill out the form below and we'll get back to you as soon as possible.
+                  {t('contact.form.subtitle')}
                 </p>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="name">Full Name *</Label>
+                      <Label htmlFor="name">{t('contact.form.name')} *</Label>
                       <Input
                         id="name"
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        placeholder="Your full name"
+                        placeholder={t('contact.form.namePlaceholder')}
                         required
                         disabled={isSubmitting}
                         className={errors.name ? "border-red-500" : ""}
@@ -245,14 +240,14 @@ const Contact = () => {
                       {errors.name && <p className="text-sm text-red-500">{errors.name}</p>}
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="email">Email Address *</Label>
+                      <Label htmlFor="email">{t('contact.form.email')} *</Label>
                       <Input
                         id="email"
                         name="email"
                         type="email"
                         value={formData.email}
                         onChange={handleChange}
-                        placeholder="your@email.com"
+                        placeholder={t('contact.form.emailPlaceholder')}
                         required
                         disabled={isSubmitting}
                         className={errors.email ? "border-red-500" : ""}
@@ -262,13 +257,13 @@ const Contact = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="subject">Subject *</Label>
+                    <Label htmlFor="subject">{t('contact.form.subject')} *</Label>
                     <Input
                       id="subject"
                       name="subject"
                       value={formData.subject}
                       onChange={handleChange}
-                      placeholder="What is your message about?"
+                      placeholder={t('contact.form.subjectPlaceholder')}
                       required
                       disabled={isSubmitting}
                       className={errors.subject ? "border-red-500" : ""}
@@ -277,13 +272,13 @@ const Contact = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="message">Message *</Label>
+                    <Label htmlFor="message">{t('contact.form.message')} *</Label>
                     <Textarea
                       id="message"
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
-                      placeholder="Please provide details about your inquiry..."
+                      placeholder={t('contact.form.messagePlaceholder')}
                       className={`min-h-[120px] ${errors.message ? "border-red-500" : ""}`}
                       required
                       disabled={isSubmitting}
@@ -291,19 +286,18 @@ const Contact = () => {
                     {errors.message && <p className="text-sm text-red-500">{errors.message}</p>}
                   </div>
 
-                  <Button 
-                    type="submit" 
-                    size="lg" 
+                  <Button
+                    type="submit"
+                    size="lg"
                     className="w-full bg-gradient-primary hover:opacity-90 transition-opacity"
                     disabled={isSubmitting}
                   >
                     {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                    {isSubmitting ? "Sending..." : "Send Message"}
+                    {isSubmitting ? t('contact.form.sending') : t('contact.form.submit')}
                   </Button>
 
                   <p className="text-xs text-muted-foreground text-center">
-                    By submitting this form, you agree to our privacy policy. 
-                    We'll only use your information to respond to your inquiry.
+                    {t('contact.form.privacy')}
                   </p>
                 </form>
               </CardContent>
@@ -315,62 +309,56 @@ const Contact = () => {
         <div className="mt-16">
           <Card className="bg-muted">
             <CardHeader>
-              <CardTitle>Frequently Asked Questions</CardTitle>
+              <CardTitle>{t('contact.faq.title')}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <h4 className="font-semibold text-foreground mb-2">
-                    Is the Ihram suitable for tall/broad men?
+                    {t('contact.faq.size.question')}
                   </h4>
                   <p className="text-sm text-muted-foreground">
-                    Yes, our generous size (115cm x 200cm each piece) is suitable for all body types, 
-                    including tall and broad-shouldered men.
+                    {t('contact.faq.size.answer')}
                   </p>
                 </div>
                 <div>
                   <h4 className="font-semibold text-foreground mb-2">
-                    Do you also sell belts or sandals?
+                    {t('contact.faq.accessories.question')}
                   </h4>
                   <p className="text-sm text-muted-foreground">
-                    Not yet, but we're working on expanding our pilgrimage essentials collection. 
-                    Belts and sandals coming soon, In Sha Allah.
+                    {t('contact.faq.accessories.answer')}
                   </p>
                 </div>
                 <div>
                   <h4 className="font-semibold text-foreground mb-2">
-                    Can mosques/travel groups order in bulk?
+                    {t('contact.faq.bulk.question')}
                   </h4>
                   <p className="text-sm text-muted-foreground">
-                    Yes! We welcome bulk orders from mosques, travel agencies, and Hajj/Umrah groups. 
-                    Contact us for special pricing on orders of 20+ sets.
+                    {t('contact.faq.bulk.answer')}
                   </p>
                 </div>
                 <div>
                   <h4 className="font-semibold text-foreground mb-2">
-                    How long does shipping take?
+                    {t('contact.faq.shipping.question')}
                   </h4>
                   <p className="text-sm text-muted-foreground">
-                    Sweden: 3-7 business days, Nordic countries: 7-14 business days, EU: 7-14 business days. 
-                    Free shipping on orders over 50€.
+                    {t('contact.faq.shipping.answer')}
                   </p>
                 </div>
                 <div>
                   <h4 className="font-semibold text-foreground mb-2">
-                    What's included in the Ihram set?
+                    {t('contact.faq.included.question')}
                   </h4>
                   <p className="text-sm text-muted-foreground">
-                    Two unstitched white cotton pieces: Izaar (lower garment) and Ridaa (upper garment), 
-                    each measuring 115cm x 200cm.
+                    {t('contact.faq.included.answer')}
                   </p>
                 </div>
                 <div>
                   <h4 className="font-semibold text-foreground mb-2">
-                    Can I return or exchange?
+                    {t('contact.faq.returns.question')}
                   </h4>
                   <p className="text-sm text-muted-foreground">
-                    Yes, we offer returns within 30 days if unused and in original packaging. 
-                    Your satisfaction is important to us.
+                    {t('contact.faq.returns.answer')}
                   </p>
                 </div>
               </div>
