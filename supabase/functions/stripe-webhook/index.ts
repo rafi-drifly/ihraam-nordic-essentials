@@ -42,36 +42,108 @@ serve(async (req) => {
 
     if (event.type === "checkout.session.completed") {
       const session = event.data.object as Stripe.Checkout.Session;
-      const orderId = session.metadata?.order_id;
-
-      if (!orderId) {
-        console.error("No order_id found in session metadata");
-        return new Response("No order_id found", { status: 400 });
+      
+      // Get items from metadata
+      const itemsJson = session.metadata?.items;
+      const userId = session.metadata?.user_id || null;
+      const shippingCost = parseFloat(session.metadata?.shipping_cost || "5");
+      
+      if (!itemsJson) {
+        console.error("No items found in session metadata");
+        return new Response("No items found", { status: 400 });
       }
 
-      // Update order status to paid
-      const { error: updateError } = await supabaseClient
-        .from('orders')
-        .update({ 
-          status: 'paid',
-          updated_at: new Date().toISOString()
-        })
-        .eq('id', orderId);
+      const items = JSON.parse(itemsJson);
+      const customerEmail = session.customer_details?.email || session.customer_email;
+      
+      if (!customerEmail) {
+        console.error("No customer email found");
+        return new Response("No customer email found", { status: 400 });
+      }
 
-      if (updateError) {
-        console.error("Error updating order:", updateError);
-        throw updateError;
+      // Get shipping address from Stripe
+      const shippingDetails = session.shipping_details;
+      const shippingAddress = shippingDetails ? {
+        name: shippingDetails.name,
+        line1: shippingDetails.address?.line1,
+        line2: shippingDetails.address?.line2,
+        city: shippingDetails.address?.city,
+        postal_code: shippingDetails.address?.postal_code,
+        country: shippingDetails.address?.country,
+      } : {};
+
+      // Get product details to calculate prices
+      const productIds = items.map((item: { id: string }) => item.id);
+      const { data: products, error: productsError } = await supabaseClient
+        .from('products')
+        .select('*')
+        .in('id', productIds);
+
+      if (productsError) {
+        console.error("Error fetching products:", productsError);
+        throw productsError;
+      }
+
+      // Calculate total amount
+      const subtotal = items.reduce((total: number, item: { id: string; quantity: number }) => {
+        const product = products?.find(p => p.id === item.id);
+        return total + (product ? product.price * item.quantity : 0);
+      }, 0);
+      const totalAmount = subtotal + shippingCost;
+
+      // Create order
+      const { data: order, error: orderError } = await supabaseClient
+        .from('orders')
+        .insert({
+          user_id: userId || null,
+          guest_email: customerEmail,
+          total_amount: totalAmount,
+          currency: 'EUR',
+          status: 'paid',
+          shipping_address: shippingAddress,
+          order_number: `ORD-${Date.now()}`,
+          lookup_token: crypto.randomUUID()
+        })
+        .select()
+        .single();
+
+      if (orderError) {
+        console.error("Error creating order:", orderError);
+        throw orderError;
+      }
+
+      console.log("Order created:", order.id);
+
+      // Create order items
+      const orderItems = items.map((item: { id: string; quantity: number }) => {
+        const product = products?.find(p => p.id === item.id);
+        return {
+          order_id: order.id,
+          product_id: item.id,
+          quantity: item.quantity,
+          unit_price: product?.price || 0,
+          total_price: (product?.price || 0) * item.quantity
+        };
+      });
+
+      const { error: orderItemsError } = await supabaseClient
+        .from('order_items')
+        .insert(orderItems);
+
+      if (orderItemsError) {
+        console.error("Error creating order items:", orderItemsError);
+        throw orderItemsError;
       }
 
       // Create payment record
       const { error: paymentError } = await supabaseClient
         .from('payments')
         .insert({
-          order_id: orderId,
+          order_id: order.id,
           stripe_payment_intent_id: session.payment_intent as string,
-          amount: (session.amount_total || 0) / 100, // Convert from cents
+          amount: (session.amount_total || 0) / 100,
           currency: session.currency?.toUpperCase() || 'EUR',
-          status: 'completed'
+          status: 'succeeded'
         });
 
       if (paymentError) {
@@ -79,29 +151,30 @@ serve(async (req) => {
         throw paymentError;
       }
 
-      // Get order details for email
-      const { data: order, error: orderError } = await supabaseClient
+      // Get full order details for email
+      const { data: fullOrder, error: fullOrderError } = await supabaseClient
         .from('orders')
         .select('*, order_items(*, products(name))')
-        .eq('id', orderId)
+        .eq('id', order.id)
         .single();
 
-      if (!orderError && order) {
+      if (!fullOrderError && fullOrder) {
         // Send confirmation email
         try {
           await supabaseClient.functions.invoke('send-order-confirmation', {
             body: {
-              order: order,
-              customerEmail: order.guest_email || session.customer_email
+              order: fullOrder,
+              customerEmail: customerEmail
             }
           });
+          console.log("Confirmation email sent to:", customerEmail);
         } catch (emailError) {
           console.error("Error sending confirmation email:", emailError);
           // Don't fail the webhook for email errors
         }
       }
 
-      console.log(`Order ${orderId} marked as paid and confirmation email sent`);
+      console.log(`Order ${order.id} created and marked as paid`);
     }
 
     return new Response(JSON.stringify({ received: true }), {
