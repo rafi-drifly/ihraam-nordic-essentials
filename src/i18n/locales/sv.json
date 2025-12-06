@@ -1,0 +1,477 @@
+{
+  "nav": {
+    "home": "Hem",
+    "shop": "Butik",
+    "blog": "Guider & Kunskap",
+    "shipping": "Frakt",
+    "trackOrder": "Spåra Order",
+    "about": "Om Oss",
+    "contact": "Kontakt"
+  },
+  "footer": {
+    "description": "Vi tillhandahåller ren, bekväm Ihram (Ihraam) för pilgrimer i Sverige, Norden och Europa. Tillverkad med avsikten att belönas och göra pilgrimsfärden tillgänglig för alla.",
+    "quickLinks": "Snabblänkar",
+    "serviceAreas": "Leveransområden",
+    "contact": "Kontakt",
+    "sweden": "Sverige (3-7 dagar)",
+    "norway": "Norge (7-14 dagar)",
+    "denmark": "Danmark (7-14 dagar)",
+    "finland": "Finland (7-14 dagar)",
+    "eu": "EU-länder (7-14 dagar)",
+    "copyright": "© 2025 Pure Ihram. Alla rättigheter förbehållna.",
+    "quranVerse": "\"Ta med er förråd, men det bästa förådet är Taqwa (gudsfruktan).\" — Koranen 2:197",
+    "aboutUs": "Om Oss",
+    "shippingDelivery": "Frakt & Leverans"
+  },
+  "home": {
+    "hero": {
+      "title": "Ren & Bekväm",
+      "titleAccent": "Ihram",
+      "price": "Endast",
+      "priceAmount": "15€",
+      "priceShipping": "+ frakt",
+      "description": "Lätt, tunn och bekväm Ihram (Ihraam) för din heliga resa. Tillverkad med avsikten att tjäna ajr och göra pilgrimsfärden tillgänglig för alla.",
+      "orderButton": "Beställ Din Ihram",
+      "learnMore": "Läs Mer"
+    },
+    "quran": {
+      "verse1": "\"Och förkunna för människorna pilgrimsfärden; de skall komma till dig till fots och på alla slags magra kameler; de skall komma från alla avlägsna trakter.\"",
+      "cite1": "— Koranen 22:27",
+      "verse2": "\"Och pilgrimsfärden till Huset är en plikt för människorna mot Allah, för dem som har möjlighet att genomföra den.\"",
+      "cite2": "— Koranen 3:97"
+    },
+    "highlights": {
+      "title": "Varför Välja Pure Ihram?",
+      "subtitle": "Kvalitet, tillgänglighet och komfort för varje pilgrim",
+      "affordable": {
+        "price": "15€",
+        "title": "Prisvärd för Alla",
+        "description": "Kvalitets-Ihram (Ihraam) för endast 15€ + frakt. Gör pilgrimsfärden tillgänglig oavsett ekonomisk situation, med den uppriktiga avsikten att tjäna ajr i Akhirah."
+      },
+      "comfortable": {
+        "title": "Bekväm & Hållbar",
+        "description": "Premium 100% bomullstyg som är mjukt, andningsbart och långvarigt. Förtvättad och redo att användas, för komfort under hela din heliga resa."
+      },
+      "delivery": {
+        "title": "Leverans över hela Europa",
+        "description": "Snabb, pålitlig leverans över Sverige (3-7 dagar), nordiska länder och alla EU-medlemsstater (7-14 dagar). Säker förpackning med spårning inkluderad."
+      }
+    },
+    "benefits": {
+      "title": "Varför Välja Vår Ihram?",
+      "subtitle": "Designad med pilgrimens komfort och andliga fokus i åtanke",
+      "lightweight": {
+        "title": "Lätt & Bekväm",
+        "description": "Tillverkad av premiumbomull, tunn och andningsbar för maximal komfort under din pilgrimsfärd."
+      },
+      "intention": {
+        "title": "Tillverkad med Avsikt",
+        "description": "Varje plagg förbereds med den uppriktiga avsikten att belönas i Akhirah och göra pilgrimsfärden tillgänglig för alla."
+      },
+      "fastDelivery": {
+        "title": "Snabb EU-Leverans",
+        "description": "Snabb leverans över Sverige (3-7 dagar) och alla nordiska/EU-länder (7-14 dagar)."
+      },
+      "quality": {
+        "title": "Prisvärd Kvalitet",
+        "description": "Högkvalitativ Ihraam för endast 15€ + frakt, tillgänglig för varje pilgrim."
+      }
+    },
+    "guides": {
+      "title": "Guider & Kunskap",
+      "subtitle": "Lär dig allt du behöver innan din pilgrimsfärd — från Sunnah-handlingar och packningstips till den andliga betydelsen av Ihram.",
+      "viewAll": "Visa Alla Guider",
+      "readMore": "Läs Mer"
+    },
+    "cta": {
+      "title": "Redo för Din Andliga Resa?",
+      "description": "Beställ din rena, bekväma Ihram idag och börja din pilgrimsfärdsförberedelse med sinnesfrid. Prisvärd, tillgänglig och levererad med omsorg.",
+      "button": "Handla Nu"
+    }
+  },
+  "shop": {
+    "breadcrumb": {
+      "home": "Hem",
+      "shop": "Butik"
+    },
+    "badge": {
+      "fastDelivery": "Snabb Leverans"
+    },
+    "reviews": "recensioner",
+    "productDescription": "Håll dig sval, ren och bekväm på din heliga resa. Pure Ihram Hajj Handduksset kombinerar Sunnahs enkelhet med modern mikrofiberprestanda — mjuk, absorberande och gjord för att hålla genom varje steg av Hajj eller Umrah.",
+    "price": {
+      "shipping": "+ frakt",
+      "stock": "Lager:",
+      "available": "tillgängliga"
+    },
+    "specs": {
+      "title": "Tekniska Specifikationer",
+      "material": "Material",
+      "materialValue": "100% Mikrofiber Polyester",
+      "size": "Storlek",
+      "sizeValue": "115 × 230 cm",
+      "weight": "Vikt",
+      "weightValue": "1400 g (2 delar)",
+      "features": "Funktioner",
+      "featuresValue": "Snabbtorkande • Antimikrobiell • Hypoallergen",
+      "packaging": "Förpackning",
+      "packagingValue": "Miljövänlig dragkedjeväska"
+    },
+    "keyFeatures": {
+      "title": "Nyckelfunktioner",
+      "soft": {
+        "title": "Mjuk & Bekväm",
+        "description": "Slät mikrofiber som är skonsam mot huden"
+      },
+      "quickDry": {
+        "title": "Snabbtorkande Teknologi",
+        "description": "Absorberar fukt och torkar snabbt"
+      },
+      "antimicrobial": {
+        "title": "Antimikrobiellt Skydd",
+        "description": "Förhindrar bakterietillväxt"
+      },
+      "sustainable": {
+        "title": "Hållbar & Återanvändbar",
+        "description": "Tålig och enkel att tvätta"
+      },
+      "sunnah": {
+        "title": "Sunnah-Kompatibel Design",
+        "description": "Två osydda vita stycken som symboliserar renhet"
+      }
+    },
+    "quantity": "Antal:",
+    "addToCart": "Lägg i Varukorgen",
+    "buyNow": "Köp Nu med Stripe",
+    "creatingCheckout": "Skapar Betalning...",
+    "shippingInfo": {
+      "title": "Fraktinformation",
+      "sweden": "Sverige: 3-7 arbetsdagar",
+      "eu": "Norden & EU: 7-14 arbetsdagar",
+      "packaging": "Säker förpackning & spårning inkluderad"
+    },
+    "care": {
+      "title": "Skötselråd",
+      "wash": "Maskintvätt skonsamt program (≤ 40°C)",
+      "bleach": "Bleka inte",
+      "dry": "Lufttorka eller torktumla på låg värme",
+      "iron": "Undvik att stryka direkt på tyget"
+    },
+    "reminder": {
+      "title": "Andlig Påminnelse",
+      "text": "När du förbereder dig för din heliga resa, kom ihåg att Ihrams sanna skönhet inte ligger i tyget självt, utan i det tillstånd av andlig renhet det representerar. Må din pilgrimsfärd accepteras och ditt hjärta fyllas med friden i underkastelse till Allah."
+    },
+    "loading": "Laddar produkt...",
+    "notFound": "Produkt hittades inte",
+    "addedToCart": "Tillagd i varukorgen",
+    "addedToCartDesc": "tillagd i din varukorg."
+  },
+  "blog": {
+    "title": "Guider & Kunskap",
+    "subtitle": "Viktig vägledning och kunskap för din heliga resa. Lär dig om Hajj, Umrah och pilgrimsfärdens andliga betydelse från islamiska lärda och erfarna guider.",
+    "quranVerse": "\"Och förkunna för människorna pilgrimsfärden; de skall komma till dig till fots och på alla slags magra kameler; de skall komma från alla avlägsna trakter.\"",
+    "hadith": "\"Den som utför Hajj för Allahs skull och inte yttrar obscent tal eller begår någon ond handling, kommer att återvända lika ren som dagen hans mor födde honom.\"",
+    "hadithCite": "— Bukhari & Muslim",
+    "categories": {
+      "all": "Alla",
+      "guide": "Guide",
+      "sunnah": "Sunnah",
+      "preparation": "Förberedelse",
+      "tips": "Tips",
+      "spiritual": "Andligt"
+    },
+    "newsletter": {
+      "title": "Håll Dig Uppdaterad med Islamisk Kunskap",
+      "description": "Prenumerera för att få de senaste artiklarna, guiderna och andliga insikterna för att hjälpa dig förbereda för din pilgrimsfärd.",
+      "placeholder": "Ange din e-post",
+      "button": "Prenumerera"
+    },
+    "readMore": "Läs Mer",
+    "posts": {
+      "howToWear": {
+        "title": "Hur man bär Ihram – Steg-för-steg guide för pilgrimer",
+        "excerpt": "En steg-för-steg guide för att korrekt bära Ihram-kläderna, vilket säkerställer komfort och efterlevnad av islamiska riktlinjer under din pilgrimsfärd."
+      },
+      "sunnahActs": {
+        "title": "Sunnah-handlingar innan man går in i Ihram",
+        "excerpt": "Upptäck de rekommenderade Sunnah-handlingarna att utföra innan du går in i Ihram-tillståndet, inklusive personlig hygien och andlig förberedelse."
+      },
+      "checklist": {
+        "title": "Checklista för Umrah-förberedelse (Kläder, Duas, Dokument)",
+        "excerpt": "Komplett checklista som täcker allt du behöver för Umrah - från viktiga dokument till klädkrav och viktiga duas att memorera."
+      },
+      "mistakes": {
+        "title": "Vanliga misstag pilgrimer gör i Ihram",
+        "excerpt": "Undvik dessa vanliga fel som pilgrimer ofta gör medan de är i Ihram-tillståndet, och hjälp dig upprätthålla din pilgrimsfärds helighet."
+      },
+      "duas": {
+        "title": "Viktiga Duas för Umrah (Med Translitterering & Betydelse)",
+        "excerpt": "En pilgrims guide till de mest älskade bönerna under Umrah — från avresa till Tawaf och vidare, med arabiska, translitterering och svensk betydelse."
+      },
+      "spiritual": {
+        "title": "Den andliga betydelsen av Ihram – Likhet inför Allah",
+        "excerpt": "Utforska den djupare andliga betydelsen av Ihram och hur det representerar jämlikheten mellan alla troende inför Allah."
+      }
+    }
+  },
+  "about": {
+    "title": "Om Pure Ihram",
+    "subtitle": "Pure Ihram grundades för att göra Ihram (Ihraam) prisvärd (15€ + frakt) och tillgänglig för alla. Detta handlar inte om vinst utan om att tjäna ajr (belöning) i Akhirah genom att tjäna den muslimska gemenskapen och göra den heliga pilgrimsfärden tillgänglig för troende i hela Europa.",
+    "story": {
+      "title": "Vår Historia",
+      "p1": "Pure Ihram föddes ur en enkel men djupgående insikt: alltför många muslimer i Europa kämpade för att hitta prisvärd, kvalitativ Ihram (Ihraam) för sin pilgrimsfärd till de heliga städerna Mekka och Medina.",
+      "p2": "Efter att ha sett medtroende betala överdrivna priser för grundläggande pilgrimsfärdstillbehör, åtog vi oss att tillhandahålla premium Ihram-tyg till ett ärligt, tillgängligt pris på endast 15€.",
+      "p3": "Vårt uppdrag sträcker sig bortom handel – varje försäljning görs med den uppriktiga avsikten att tjäna ajr (belöning) i Akhirah samtidigt som vi hjälper våra bröder och systrar att uppfylla sina religiösa plikter utan ekonomisk börda.",
+      "p4": "Idag är vi stolta över att betjäna tusentals pilgrimer över Sverige, de nordiska länderna och Europeiska unionen, och säkerställer att avstånd och kostnad aldrig blir hinder för andlig uppfyllelse."
+    },
+    "promise": {
+      "title": "Vårt Löfte",
+      "text": "\"Vi lovar att ge varje muslim tillgång till ren, bekväm Ihram (Ihraam) till ett pris som hedrar både kvalitet och tillgänglighet. Vårt åtagande gäller inte bara din pilgrimsfärd, utan din andliga resa och den barakah den medför.\"",
+      "hadith": "\"De mest älskade av människor hos Allah är de som är mest nyttiga för människor.\"",
+      "hadithCite": "— Al-Mu'jam al-Awsat"
+    },
+    "values": {
+      "title": "Våra Värderingar",
+      "subtitle": "Principerna som vägleder varje aspekt av vår verksamhet",
+      "purity": {
+        "title": "Renhet",
+        "description": "Varje Ihram förbereds med den rena avsikten att tjäna belöning i Akhirah och tjäna den muslimska gemenskapen med uppriktighet."
+      },
+      "accessibility": {
+        "title": "Tillgänglighet",
+        "description": "Vi tror att varje muslim bör ha tillgång till kvalitets-Ihram (Ihraam) för 15€, oavsett ekonomisk situation."
+      },
+      "trust": {
+        "title": "Förtroende",
+        "description": "Bygger förtroende genom konsekvent kvalitet, pålitlig leverans och transparent prissättning i Sverige, Norden och Europa."
+      }
+    },
+    "quality": {
+      "title": "Varför Kvalitet Spelar Roll",
+      "p1": "Under Hajj och Umrah möter pilgrimer intensiva fysiska och andliga krav. Din Ihram bör vara det minsta av dina bekymmer – bekväm, andningsbar och tillräckligt hållbar för att klara resan framför dig.",
+      "p2": "Vi hämtar vårt tyg från pålitliga leverantörer som förstår dessa plaggs heliga natur. Varje plagg inspekteras, förtvättas och förbereds med den omsorg som passar dess heliga syfte.",
+      "cotton": {
+        "title": "Premiumbomull",
+        "description": "100% naturliga bomullsfibrer för maximal andningsbarhet och komfort"
+      },
+      "preTreated": {
+        "title": "Förbehandlad",
+        "description": "Förtvättad och behandlad för att bibehålla orört utseende"
+      },
+      "traditional": {
+        "title": "Traditionell Snitt",
+        "description": "Autentiska mått enligt traditionella islamiska riktlinjer"
+      }
+    }
+  },
+  "contact": {
+    "title": "Kontakta Oss",
+    "subtitle": "Har du frågor om vår Ihram (Ihraam) eller behöver hjälp med din beställning? Vi finns här för att hjälpa dig med dina pilgrimsfärdsförberedelser.",
+    "getInTouch": "Kontakta Oss",
+    "methods": {
+      "email": {
+        "title": "Maila Oss",
+        "description": "Skicka oss ett mail så svarar vi inom 24 timmar"
+      },
+      "whatsapp": {
+        "title": "WhatsApp",
+        "description": "Snabba frågor? Skriv till oss på WhatsApp"
+      },
+      "phone": {
+        "title": "Ring Oss",
+        "description": "Prata direkt med vårt kundtjänstteam"
+      }
+    },
+    "businessHours": {
+      "title": "Öppettider",
+      "monFri": "Måndag - Fredag:",
+      "monFriHours": "09:00 - 18:00",
+      "saturday": "Lördag:",
+      "saturdayHours": "10:00 - 16:00",
+      "sunday": "Söndag:",
+      "sundayHours": "Stängt",
+      "timezone": "Alla tider är i centraleuropeisk tid (CET)"
+    },
+    "serviceArea": {
+      "title": "Serviceområde",
+      "primary": "Primärt:",
+      "extended": "Utökat:",
+      "international": "Internationellt:"
+    },
+    "form": {
+      "title": "Skicka ett Meddelande",
+      "subtitle": "Fyll i formuläret nedan så återkommer vi så snart som möjligt.",
+      "name": "Fullständigt Namn *",
+      "namePlaceholder": "Ditt fullständiga namn",
+      "email": "E-postadress *",
+      "emailPlaceholder": "din@email.com",
+      "subject": "Ämne *",
+      "subjectPlaceholder": "Vad handlar ditt meddelande om?",
+      "message": "Meddelande *",
+      "messagePlaceholder": "Vänligen ge detaljer om din förfrågan...",
+      "submit": "Skicka Meddelande",
+      "sending": "Skickar...",
+      "privacy": "Genom att skicka detta formulär godkänner du vår integritetspolicy. Vi använder endast din information för att svara på din förfrågan.",
+      "success": "Meddelande Skickat!",
+      "successDesc": "Tack för att du kontaktar oss. Vi återkommer inom 24 timmar.",
+      "error": "Kunde Inte Skicka Meddelande",
+      "validationError": "Vänligen kontrollera ditt formulär"
+    },
+    "faq": {
+      "title": "Vanliga Frågor",
+      "q1": "Passar Ihram för långa/breda män?",
+      "a1": "Ja, vår generösa storlek (115cm x 200cm per del) passar alla kroppstyper, inklusive långa och bredaxlade män.",
+      "q2": "Säljer ni även bälten eller sandaler?",
+      "a2": "Inte ännu, men vi arbetar med att utöka vårt sortiment av pilgrimsfärdstillbehör. Bälten och sandaler kommer snart, In Sha Allah.",
+      "q3": "Kan moskéer/resegrupper beställa i bulk?",
+      "a3": "Ja! Vi välkomnar bulkbeställningar från moskéer, resebyråer och Hajj/Umrah-grupper. Kontakta oss för specialpriser på beställningar av 20+ set.",
+      "q4": "Hur lång tid tar leveransen?",
+      "a4": "Sverige: 3-7 arbetsdagar, Nordiska länder: 7-14 arbetsdagar, EU: 7-14 arbetsdagar. Fri frakt på beställningar över 50€.",
+      "q5": "Vad ingår i Ihram-setet?",
+      "a5": "Två osydda vita bomullsplagg: Izaar (nedre plagg) och Ridaa (övre plagg), vardera med måtten 115cm x 200cm.",
+      "q6": "Kan jag returnera eller byta?",
+      "a6": "Ja, vi erbjuder returer inom 30 dagar om plagget är oanvänt och i originalförpackning. Din nöjdhet är viktig för oss."
+    }
+  },
+  "shipping": {
+    "title": "Frakt & Leverans",
+    "subtitle": "Snabb, pålitlig leverans över Sverige, Norden och Europa. Din Ihram kommer fram i perfekt skick, redo för din heliga resa.",
+    "zones": {
+      "title": "Leveranszoner & Tidsramar",
+      "sweden": {
+        "region": "Sverige 🇸🇪",
+        "timeframe": "3-7 arbetsdagar",
+        "cost": "49 SEK",
+        "description": "Snabb inrikesfrakt över alla regioner i Sverige. Beställ före kl 14 för bearbetning samma dag.",
+        "method": "PostNord, DHL eller UPS"
+      },
+      "nordic": {
+        "region": "Nordiska Länder 🇳🇴🇩🇰🇫🇮",
+        "timeframe": "7-14 arbetsdagar",
+        "cost": "89 SEK",
+        "description": "Pålitlig leverans till Norge, Danmark och Finland med full spårningssupport.",
+        "method": "Internationella transportörer"
+      },
+      "eu": {
+        "region": "Europeiska Unionen 🇪🇺",
+        "timeframe": "7-14 arbetsdagar",
+        "cost": "99 SEK",
+        "description": "Omfattande täckning över alla EU-medlemsländer med förhandsklarering.",
+        "method": "Expressfrakt internationellt"
+      }
+    },
+    "freeShipping": "Fri frakt på beställningar över 50€ till alla destinationer",
+    "tip": {
+      "title": "💡 Pilgrimsfärdsplaneringstips",
+      "text": "Beställ din Ihram minst 3-4 veckor före resan för att undvika stress i sista minuten och säkerställa att du har tid för eventuella justeringar eller ersättningar om det behövs."
+    },
+    "features": {
+      "title": "Fraktfunktioner",
+      "secure": {
+        "title": "Säker Förpackning",
+        "description": "Din Ihram förpackas noggrant i skyddande, miljövänliga material"
+      },
+      "tracking": {
+        "title": "Spårning Inkluderad",
+        "description": "Full spårningsinformation tillhandahålls för alla leveranser"
+      },
+      "processing": {
+        "title": "Bearbetningstid",
+        "description": "Beställningar bearbetas inom 1-2 arbetsdagar"
+      },
+      "free": {
+        "title": "Fri Frakt",
+        "description": "Beställningar över 50€ kvalificerar för fri frakt"
+      }
+    },
+    "orderProcessing": {
+      "title": "Orderbearbetning",
+      "processingTimes": "Bearbetningstider",
+      "p1": "Beställningar måndag-fredag: Bearbetas samma dag om beställt före kl 14 CET",
+      "p2": "Helgbeställningar: Bearbetas nästa arbetsdag",
+      "p3": "Kvalitetskontroll och förpackning: 24-48 timmar",
+      "whatHappens": "Vad Händer Sedan?",
+      "s1": "Orderbekräftelse skickas omedelbart via e-post",
+      "s2": "Bearbetningsmeddelande inom 24 timmar",
+      "s3": "Fraktbekräftelse med spårningsnummer",
+      "s4": "Leverans till din adress"
+    },
+    "deliveryInfo": {
+      "title": "Leveransinformation",
+      "methods": "Leveransmetoder",
+      "m1": "Standardleverans till din dörr",
+      "m2": "Signatur krävs för beställningar över 200€",
+      "m3": "Leverans till säker plats tillgänglig på begäran",
+      "m4": "Postboxleverans ej tillgänglig",
+      "tracking": "Spårning & Uppdateringar",
+      "t1": "Realtidsspårning via SMS och e-post",
+      "t2": "Leveransfönstermeddelanden",
+      "t3": "Ombokningsalternativ vid misslyckad leverans",
+      "t4": "Kundtjänstsupport"
+    },
+    "special": {
+      "title": "Särskilda Omständigheter & Helgleverans",
+      "ramadan": {
+        "title": "Ramadan & Hajj-säsong",
+        "description": "Under högsäsong för pilgrimsfärder upplever vi högre ordervolymer. Vi rekommenderar att beställa minst 2-3 veckor före avresedatum.",
+        "hajj": "Hajj-säsong: Beställ 3+ veckor tidigt",
+        "umrah": "Umrah (Ramadan): Beställ 2+ veckor tidigt",
+        "express": "Expressfrakt tillgänglig på begäran"
+      },
+      "holidays": {
+        "title": "Helgperioder",
+        "description": "Frakt kan försenas under stora helgdagar i Sverige och destinationsländer.",
+        "christmas": "Jul/Nyår: 2-3 dagars extra tid",
+        "easter": "Påskhelger: 1-2 dagars extra tid",
+        "midsummer": "Midsommar (Sverige): Bearbetning försenad",
+        "notify": "Vi meddelar dig om eventuella förseningar"
+      }
+    },
+    "questions": {
+      "title": "Frågor Om Frakt?",
+      "description": "Vårt kundtjänstteam finns här för att hjälpa till med eventuella fraktfrågor eller speciella leveranskrav för dina pilgrimsfärdsförberedelser.",
+      "email": "E-postsupport",
+      "whatsapp": "WhatsApp"
+    }
+  },
+  "cart": {
+    "title": "Varukorg",
+    "empty": "Din varukorg är tom",
+    "total": "Totalt",
+    "checkout": "Till Kassan",
+    "remove": "Ta bort",
+    "continueShopping": "Fortsätt Handla"
+  },
+  "common": {
+    "loading": "Laddar...",
+    "error": "Fel",
+    "success": "Klart",
+    "backToBlog": "Tillbaka till Bloggen"
+  },
+  "seo": {
+    "home": {
+      "title": "Pure Ihram – Premium Ihram för Hajj & Umrah | 15€ + Frakt",
+      "description": "Köp premium, bekväm Ihram för Hajj och Umrah. Endast 15€ + frakt. Snabb leverans till Sverige, Norden och alla EU-länder."
+    },
+    "shop": {
+      "title": "Köp Ihram Hajj Handduksset – Premium Mikrofiber | Pure Ihram",
+      "description": "Premium Ihram Hajj Handduksset. Mjuk mikrofiber, snabbtorkande, antimikrobiell. 115×230 cm, 1400g. Endast 15€ + frakt till Sverige & EU."
+    },
+    "blog": {
+      "title": "Hajj & Umrah Guider – Lär dig om Ihram | Pure Ihram",
+      "description": "Viktiga guider för Hajj och Umrah. Lär dig hur du bär Ihram, Sunnah-handlingar, viktiga duas och förberedelsechecklistor."
+    },
+    "about": {
+      "title": "Om Pure Ihram – Vårt Uppdrag & Historia",
+      "description": "Lär dig om Pure Ihrams uppdrag att göra kvalitets-Ihram prisvärd och tillgänglig för alla muslimer i Europa. 15€ + frakt."
+    },
+    "contact": {
+      "title": "Kontakta Pure Ihram – Kundsupport",
+      "description": "Kontakta Pure Ihram. Frågor om beställningar, frakt eller bulkköp? Vi finns här för att hjälpa."
+    },
+    "shipping": {
+      "title": "Frakt & Leverans – Pure Ihram",
+      "description": "Snabb leverans över Sverige (3-7 dagar), Norden och EU (7-14 dagar). Fri frakt på beställningar över 50€."
+    }
+  }
+}

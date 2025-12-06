@@ -1,16 +1,21 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { CartDrawer } from "@/components/shop/CartDrawer";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [checkingOut, setCheckingOut] = useState(false);
   const location = useLocation();
   const { toast } = useToast();
+  const { t, i18n } = useTranslation();
+  
+  const isSwedish = i18n.language === 'sv';
 
   const handleCheckout = async () => {
     const cartItems = JSON.parse(localStorage.getItem('ihram-cart') || '[]');
@@ -22,31 +27,24 @@ const Navbar = () => {
 
     setCheckingOut(true);
     try {
-      console.log('Starting checkout with items:', cartItems);
-      
       const { data, error } = await supabase.functions.invoke('create-checkout', {
         body: { 
           items: cartItems.map((item: any) => ({ id: item.id, quantity: item.quantity }))
         }
       });
 
-      console.log('Checkout response:', { data, error });
-
       if (error) {
-        console.error('Checkout error:', error);
         toast({ title: "Checkout failed", description: error.message || "Unable to create checkout session.", variant: "destructive" });
         return;
       }
 
       if (data?.url) {
-        // Clear cart after successful checkout
         localStorage.removeItem('ihram-cart');
         window.location.href = data.url;
       } else {
         toast({ title: "Checkout error", description: "No checkout URL received.", variant: "destructive" });
       }
     } catch (error) {
-      console.error('Error creating checkout:', error);
       const message = error instanceof Error ? error.message : 'Unknown error';
       toast({ title: "Checkout failed", description: message, variant: "destructive" });
     } finally {
@@ -54,16 +52,16 @@ const Navbar = () => {
     }
   }
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (paths: string[]) => paths.some(path => location.pathname === path);
 
   const navigation = [
-    { name: "Home", href: "/" },
-    { name: "Shop", href: "/shop" },
-    { name: "Guides & Knowledge", href: "/blog" },
-    { name: "Shipping", href: "/shipping" },  
-    { name: "Track Order", href: "/guest-order-lookup" },
-    { name: "About", href: "/about" },
-    { name: "Contact", href: "/contact" },
+    { name: t('nav.home'), href: isSwedish ? '/sv' : '/', paths: ['/', '/sv'] },
+    { name: t('nav.shop'), href: isSwedish ? '/sv/butik' : '/shop', paths: ['/shop', '/sv/butik'] },
+    { name: t('nav.blog'), href: isSwedish ? '/sv/blogg' : '/blog', paths: ['/blog', '/sv/blogg'] },
+    { name: t('nav.shipping'), href: isSwedish ? '/sv/frakt' : '/shipping', paths: ['/shipping', '/sv/frakt'] },
+    { name: t('nav.trackOrder'), href: isSwedish ? '/sv/spara-order' : '/guest-order-lookup', paths: ['/guest-order-lookup', '/sv/spara-order'] },
+    { name: t('nav.about'), href: isSwedish ? '/sv/om-oss' : '/about', paths: ['/about', '/sv/om-oss'] },
+    { name: t('nav.contact'), href: isSwedish ? '/sv/kontakt' : '/contact', paths: ['/contact', '/sv/kontakt'] },
   ];
 
   return (
@@ -71,7 +69,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
+          <Link to={isSwedish ? '/sv' : '/'} className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-gradient-primary rounded-full flex items-center justify-center">
               <span className="text-white font-bold text-sm">I</span>
             </div>
@@ -86,7 +84,7 @@ const Navbar = () => {
                   key={item.name}
                   to={item.href}
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                    isActive(item.href)
+                    isActive(item.paths)
                       ? "text-primary bg-secondary"
                       : "text-muted-foreground hover:text-foreground hover:bg-muted"
                   }`}
@@ -97,8 +95,11 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Cart and Mobile menu button */}
-          <div className="flex items-center space-x-4">
+          {/* Language Switcher, Cart and Mobile menu button */}
+          <div className="flex items-center space-x-2">
+            <div className="hidden md:block">
+              <LanguageSwitcher />
+            </div>
             <CartDrawer onCheckout={handleCheckout} checkingOut={checkingOut} />
 
             {/* Mobile menu button */}
@@ -123,7 +124,7 @@ const Navbar = () => {
                   key={item.name}
                   to={item.href}
                   className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                    isActive(item.href)
+                    isActive(item.paths)
                       ? "text-primary bg-secondary"
                       : "text-muted-foreground hover:text-foreground hover:bg-background"
                   }`}
@@ -132,6 +133,9 @@ const Navbar = () => {
                   {item.name}
                 </Link>
               ))}
+              <div className="px-3 py-2">
+                <LanguageSwitcher variant="mobile" />
+              </div>
             </div>
           </div>
         )}
