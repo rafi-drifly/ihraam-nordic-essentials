@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -11,76 +13,87 @@ import essentialDuas from "@/assets/blog/essential-duas.png";
 import spiritualMeaning from "@/assets/blog/spiritual-meaning.png";
 
 const Blog = () => {
+  const { t } = useTranslation();
+  const location = useLocation();
+  const localePrefix = location.pathname.startsWith('/sv') ? '/sv' : '';
+
   const blogPosts = [
     {
       id: 1,
-      title: "How to Wear Ihram – A Simple Guide for Pilgrims",
-      excerpt: "A step-by-step guide to properly wearing the Ihram garments, ensuring comfort and adherence to Islamic guidelines during your pilgrimage.",
-      author: "Pure Ihram Team",
-      readTime: "5 min read",
-      date: "October 5, 2025",
-      category: "Guide",
+      title: t('blog.posts.howToWear.title'),
+      excerpt: t('blog.posts.howToWear.excerpt'),
+      author: t('blog.posts.howToWear.author'),
+      readTime: t('blog.posts.howToWear.readTime'),
+      date: t('blog.posts.howToWear.date'),
+      category: t('blog.categories.guide'),
       image: howToWearIhram,
-      content: "Learn the proper way to wear your Ihram cloth with our comprehensive guide..."
+      link: "/blog/how-to-wear-ihram"
     },
     {
       id: 2,
-      title: "Sunnah Acts Before Entering Ihram",
-      excerpt: "Discover the recommended Sunnah practices to perform before entering the state of Ihram, including personal hygiene and spiritual preparation.",
-      author: "Islamic Scholar",
-      readTime: "7 min read",
-      date: "March 10, 2024",
-      category: "Sunnah",
+      title: t('blog.posts.sunnahActs.title'),
+      excerpt: t('blog.posts.sunnahActs.excerpt'),
+      author: t('blog.posts.sunnahActs.author'),
+      readTime: t('blog.posts.sunnahActs.readTime'),
+      date: t('blog.posts.sunnahActs.date'),
+      category: t('blog.categories.sunnah'),
       image: sunnahActs,
-      content: "Before entering the sacred state of Ihram, there are several Sunnah acts..."
+      link: "/blog/sunnah-acts-before-ihram"
     },
     {
       id: 3,
-      title: "Checklist for Umrah Preparation (Clothes, Duas, Documents)",
-      excerpt: "Complete checklist covering everything you need for Umrah - from essential documents to clothing requirements and important duas to memorize.",
-      author: "Travel Expert",
-      readTime: "10 min read",
-      date: "March 5, 2024",
-      category: "Preparation",
+      title: t('blog.posts.checklist.title'),
+      excerpt: t('blog.posts.checklist.excerpt'),
+      author: t('blog.posts.checklist.author'),
+      readTime: t('blog.posts.checklist.readTime'),
+      date: t('blog.posts.checklist.date'),
+      category: t('blog.categories.preparation'),
       image: umrahChecklist,
-      content: "Preparing for Umrah requires careful planning and organization..."
+      link: "/blog/umrah-preparation-checklist"
     },
     {
       id: 4,
-      title: "Common Mistakes Pilgrims Make in Ihram",
-      excerpt: "Avoid these common errors that pilgrims often make while in the state of Ihram, helping you maintain the sanctity of your pilgrimage.",
-      author: "Hajj Guide",
-      readTime: "6 min read",
-      date: "February 28, 2024",
-      category: "Tips",
+      title: t('blog.posts.commonMistakes.title'),
+      excerpt: t('blog.posts.commonMistakes.excerpt'),
+      author: t('blog.posts.commonMistakes.author'),
+      readTime: t('blog.posts.commonMistakes.readTime'),
+      date: t('blog.posts.commonMistakes.date'),
+      category: t('blog.categories.tips'),
       image: commonMistakes,
-      content: "During Hajj and Umrah, pilgrims may unknowingly make mistakes..."
+      link: "/blog/common-mistakes-ihram"
     },
     {
       id: 5,
-      title: "Essential Duas for Umrah (With Transliteration & Meaning)",
-      excerpt: "A pilgrim's guide to the most beloved supplications during Umrah — from departure to Tawaf and beyond, with Arabic, transliteration, and English meaning.",
-      author: "Pure Ihram Team",
-      readTime: "15 min read",
-      date: "March 15, 2024",
-      category: "Guide",
+      title: t('blog.posts.essentialDuas.title'),
+      excerpt: t('blog.posts.essentialDuas.excerpt'),
+      author: t('blog.posts.essentialDuas.author'),
+      readTime: t('blog.posts.essentialDuas.readTime'),
+      date: t('blog.posts.essentialDuas.date'),
+      category: t('blog.categories.guide'),
       image: essentialDuas,
-      content: "Complete guide to essential duas during Umrah journey..."
+      link: "/blog/essential-duas-umrah"
     },
     {
       id: 6,
-      title: "The Spiritual Meaning of Ihram – Equality Before Allah",
-      excerpt: "Explore the deeper spiritual significance of Ihram and how it represents the equality of all believers in the sight of Allah.",
-      author: "Islamic Scholar",
-      readTime: "8 min read",
-      date: "February 20, 2024",
-      category: "Spiritual",
+      title: t('blog.posts.spiritualMeaning.title'),
+      excerpt: t('blog.posts.spiritualMeaning.excerpt'),
+      author: t('blog.posts.spiritualMeaning.author'),
+      readTime: t('blog.posts.spiritualMeaning.readTime'),
+      date: t('blog.posts.spiritualMeaning.date'),
+      category: t('blog.categories.spiritual'),
       image: spiritualMeaning,
-      content: "The white garments of Ihram symbolize purity and equality..."
+      link: "/blog/spiritual-meaning-ihram"
     }
   ];
 
-  const categories = ["All", "Guide", "Sunnah", "Preparation", "Tips", "Spiritual"];
+  const categories = [
+    { key: "all", label: t('blog.categories.all') },
+    { key: "guide", label: t('blog.categories.guide') },
+    { key: "sunnah", label: t('blog.categories.sunnah') },
+    { key: "preparation", label: t('blog.categories.preparation') },
+    { key: "tips", label: t('blog.categories.tips') },
+    { key: "spiritual", label: t('blog.categories.spiritual') }
+  ];
 
   return (
     <div className="min-h-screen py-8">
@@ -88,11 +101,10 @@ const Blog = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            Guides & Knowledge
+            {t('blog.title')}
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Essential guidance and knowledge for your sacred journey. Learn about Hajj, Umrah, 
-            and the spiritual significance of pilgrimage from Islamic scholars and experienced guides.
+            {t('blog.subtitle')}
           </p>
         </div>
 
@@ -101,10 +113,9 @@ const Blog = () => {
           <Card className="bg-accent/5 border-accent/20">
             <CardContent className="p-8 text-center">
               <blockquote className="text-lg italic text-foreground mb-4">
-                "And proclaim to the people the Hajj; they will come to you on foot and on every lean camel; 
-                they will come from every distant pass."
+                {t('blog.quranVerse')}
               </blockquote>
-              <cite className="text-sm text-muted-foreground">— Qur'an 22:27</cite>
+              <cite className="text-sm text-muted-foreground">{t('blog.quranVerseCite')}</cite>
             </CardContent>
           </Card>
         </div>
@@ -114,12 +125,12 @@ const Blog = () => {
           <div className="flex flex-wrap gap-2 justify-center">
             {categories.map((category) => (
               <Button
-                key={category}
-                variant={category === "All" ? "default" : "outline"}
+                key={category.key}
+                variant={category.key === "all" ? "default" : "outline"}
                 size="sm"
                 className="rounded-full"
               >
-                {category}
+                {category.label}
               </Button>
             ))}
           </div>
@@ -147,47 +158,11 @@ const Blog = () => {
                     {post.readTime}
                   </div>
                 </div>
-                {post.id === 1 ? (
-                  <Link to="/blog/how-to-wear-ihram">
-                    <CardTitle className="text-lg group-hover:text-primary transition-colors line-clamp-2 cursor-pointer">
-                      {post.title}
-                    </CardTitle>
-                  </Link>
-                ) : post.id === 2 ? (
-                  <Link to="/blog/sunnah-acts-before-ihram">
-                    <CardTitle className="text-lg group-hover:text-primary transition-colors line-clamp-2 cursor-pointer">
-                      {post.title}
-                    </CardTitle>
-                  </Link>
-                ) : post.id === 3 ? (
-                  <Link to="/blog/umrah-preparation-checklist">
-                    <CardTitle className="text-lg group-hover:text-primary transition-colors line-clamp-2 cursor-pointer">
-                      {post.title}
-                    </CardTitle>
-                  </Link>
-                ) : post.id === 4 ? (
-                  <Link to="/blog/common-mistakes-ihram">
-                    <CardTitle className="text-lg group-hover:text-primary transition-colors line-clamp-2 cursor-pointer">
-                      {post.title}
-                    </CardTitle>
-                  </Link>
-                ) : post.id === 5 ? (
-                  <Link to="/blog/essential-duas-umrah">
-                    <CardTitle className="text-lg group-hover:text-primary transition-colors line-clamp-2 cursor-pointer">
-                      {post.title}
-                    </CardTitle>
-                  </Link>
-                ) : post.id === 6 ? (
-                  <Link to="/blog/spiritual-meaning-ihram">
-                    <CardTitle className="text-lg group-hover:text-primary transition-colors line-clamp-2 cursor-pointer">
-                      {post.title}
-                    </CardTitle>
-                  </Link>
-                ) : (
-                  <CardTitle className="text-lg group-hover:text-primary transition-colors line-clamp-2">
+                <Link to={`${localePrefix}${post.link}`}>
+                  <CardTitle className="text-lg group-hover:text-primary transition-colors line-clamp-2 cursor-pointer">
                     {post.title}
                   </CardTitle>
-                )}
+                </Link>
               </CardHeader>
               
               <CardContent>
@@ -200,54 +175,12 @@ const Blog = () => {
                     <User className="h-3 w-3 mr-1" />
                     {post.author}
                   </div>
-                  {post.id === 1 ? (
-                    <Link to="/blog/how-to-wear-ihram">
-                      <Button size="sm" variant="ghost" className="group-hover:text-primary">
-                        Read More
-                        <ArrowRight className="h-3 w-3 ml-1" />
-                      </Button>
-                    </Link>
-                  ) : post.id === 2 ? (
-                    <Link to="/blog/sunnah-acts-before-ihram">
-                      <Button size="sm" variant="ghost" className="group-hover:text-primary">
-                        Read More
-                        <ArrowRight className="h-3 w-3 ml-1" />
-                      </Button>
-                    </Link>
-                  ) : post.id === 3 ? (
-                    <Link to="/blog/umrah-preparation-checklist">
-                      <Button size="sm" variant="ghost" className="group-hover:text-primary">
-                        Read More
-                        <ArrowRight className="h-3 w-3 ml-1" />
-                      </Button>
-                    </Link>
-                  ) : post.id === 4 ? (
-                    <Link to="/blog/common-mistakes-ihram">
-                      <Button size="sm" variant="ghost" className="group-hover:text-primary">
-                        Read More
-                        <ArrowRight className="h-3 w-3 ml-1" />
-                      </Button>
-                    </Link>
-                  ) : post.id === 5 ? (
-                    <Link to="/blog/essential-duas-umrah">
-                      <Button size="sm" variant="ghost" className="group-hover:text-primary">
-                        Read More
-                        <ArrowRight className="h-3 w-3 ml-1" />
-                      </Button>
-                    </Link>
-                  ) : post.id === 6 ? (
-                    <Link to="/blog/spiritual-meaning-ihram">
-                      <Button size="sm" variant="ghost" className="group-hover:text-primary">
-                        Read More
-                        <ArrowRight className="h-3 w-3 ml-1" />
-                      </Button>
-                    </Link>
-                  ) : (
+                  <Link to={`${localePrefix}${post.link}`}>
                     <Button size="sm" variant="ghost" className="group-hover:text-primary">
-                      Read More
+                      {t('blog.readMore')}
                       <ArrowRight className="h-3 w-3 ml-1" />
                     </Button>
-                  )}
+                  </Link>
                 </div>
                 
                 <div className="text-xs text-muted-foreground mt-2">
@@ -263,10 +196,9 @@ const Blog = () => {
           <Card className="bg-gradient-subtle border-0">
             <CardContent className="p-8 text-center">
               <blockquote className="text-xl italic text-foreground mb-4">
-                "Whoever performs Hajj for the sake of Allah and does not utter any obscene 
-                speech or do any evil deed, will return as pure as the day his mother gave birth to him."
+                {t('blog.hadithQuote')}
               </blockquote>
-              <cite className="text-sm text-muted-foreground">— Bukhari & Muslim</cite>
+              <cite className="text-sm text-muted-foreground">{t('blog.hadithCite')}</cite>
             </CardContent>
           </Card>
         </div>
@@ -275,20 +207,19 @@ const Blog = () => {
         <Card className="bg-muted">
           <CardContent className="p-8 text-center">
             <h3 className="text-2xl font-bold text-foreground mb-4">
-              Stay Updated with Islamic Knowledge
+              {t('blog.newsletter.title')}
             </h3>
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Subscribe to receive the latest articles, guides, and spiritual insights 
-              to help you prepare for your pilgrimage journey.
+              {t('blog.newsletter.subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
               <input
                 type="email"
-                placeholder="Enter your email"
+                placeholder={t('blog.newsletter.placeholder')}
                 className="flex-1 px-4 py-2 rounded-lg border border-border bg-background text-foreground"
               />
               <Button className="bg-gradient-primary hover:opacity-90 transition-opacity">
-                Subscribe
+                {t('blog.newsletter.subscribe')}
               </Button>
             </div>
           </CardContent>
