@@ -6,7 +6,6 @@ import { Minus, Plus, ShoppingCart, Star, Check, X, ChevronLeft, ChevronRight } 
 import { useCart } from "@/hooks/useCart";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import { GuestEmailModal } from "@/components/checkout/GuestEmailModal";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import ihraamProduct from "@/assets/ihraam-product.jpg";
 import ihraamWorn from "@/assets/ihraam-worn.jpg";
@@ -34,7 +33,6 @@ const Shop = () => {
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
-  const [showEmailModal, setShowEmailModal] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
   const {
     addItem
@@ -95,30 +93,14 @@ const Shop = () => {
   };
   const handleCheckout = async () => {
     if (!product || checkoutLoading) return;
-
-    // Always show email modal for guest checkout
-    setShowEmailModal(true);
-  };
-  const handleGuestEmailSubmit = async (guestEmail: string) => {
-    setShowEmailModal(false);
-    await processCheckout(guestEmail);
-  };
-  const processCheckout = async (guestEmail?: string) => {
-    if (!product) return;
     setCheckoutLoading(true);
     try {
       const checkoutItems = [{
         id: product.id,
         quantity: quantity
       }];
-      const {
-        data,
-        error
-      } = await supabase.functions.invoke('create-checkout', {
-        body: {
-          items: checkoutItems,
-          guestEmail
-        }
+      const { data, error } = await supabase.functions.invoke('create-checkout', {
+        body: { items: checkoutItems }
       });
       if (error) throw error;
       if (data?.url) {
@@ -163,8 +145,6 @@ const Shop = () => {
     setSelectedImageIndex((selectedImageIndex - 1 + allImages.length) % allImages.length);
   };
   return <>
-      <GuestEmailModal open={showEmailModal} onOpenChange={setShowEmailModal} onSubmit={handleGuestEmailSubmit} />
-      
       {/* Image Lightbox */}
       <Dialog open={selectedImageIndex !== null} onOpenChange={() => setSelectedImageIndex(null)}>
         <DialogContent className="max-w-5xl p-0 bg-background/95 backdrop-blur">
