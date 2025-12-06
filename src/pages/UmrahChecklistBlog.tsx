@@ -4,25 +4,29 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Clock, User, ArrowLeft, ShoppingCart, Check } from "lucide-react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { useTranslation } from "react-i18next";
 
 const UmrahChecklistBlog = () => {
+  const { t, i18n } = useTranslation();
+  const localePrefix = i18n.language === 'sv' ? '/sv' : '';
+
   const post = {
-    title: "Checklist for Umrah Preparation (Clothes, Duas, Documents)",
-    excerpt: "A complete guide to help you prepare mentally, physically, and spiritually before departing for Umrah.",
-    author: "Travel Expert",
-    readTime: "15 min read",
-    date: "March 5, 2024",
-    category: "Preparation",
+    title: t('blog.posts.checklist.title'),
+    excerpt: t('blog.posts.checklist.excerpt'),
+    author: t('blog.posts.checklist.author'),
+    readTime: t('blog.posts.checklist.readTime'),
+    date: t('blog.posts.checklist.date'),
+    category: t('blog.categories.preparation'),
   };
 
   return (
     <div className="min-h-screen py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back Button */}
-        <Link to="/blog">
+        <Link to={`${localePrefix}/blog`}>
           <Button variant="ghost" className="mb-8 hover:text-primary">
             <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Blog
+            {t('blogPost.backToBlog')}
           </Button>
         </Link>
 
@@ -54,7 +58,7 @@ const UmrahChecklistBlog = () => {
         <article className="prose prose-lg max-w-none">
           {/* Introduction */}
           <section className="mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">🌙 Introduction</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-4">🌙 {t('blogPost.introduction')}</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
               Preparing for Umrah is both exciting and humbling. It's a journey that begins long before your flight — with careful planning, spiritual focus, and readiness of heart.
             </p>
@@ -143,7 +147,7 @@ const UmrahChecklistBlog = () => {
                     <p className="text-muted-foreground">2 sets of Ihram garments (2 white unstitched cloths each)</p>
                   </div>
                   <div className="ml-7 mb-3">
-                    <Link to="/shop" className="text-primary hover:underline text-sm">
+                    <Link to={`${localePrefix}/shop`} className="text-primary hover:underline text-sm">
                       Recommended: Pure Ihram Quick-Dry Set (115×230 cm) →
                     </Link>
                   </div>
@@ -355,173 +359,136 @@ const UmrahChecklistBlog = () => {
             </h2>
             <div className="bg-muted p-6 rounded-lg">
               <ul className="space-y-2 text-muted-foreground ml-4">
-                <li>📱 Mobile phone & charger</li>
-                <li>🔋 Portable power bank</li>
-                <li>🔌 Travel adapter (Saudi plug type G)</li>
-                <li>🎧 Noise-free earbuds for Qur'an recitation</li>
-                <li>💧 Reusable water bottle</li>
-                <li>🧎 Small travel prayer mat</li>
-                <li>☂️ Lightweight umbrella for shade</li>
+                <li className="flex items-start gap-2">
+                  <Check className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                  Phone with offline Quran & Dua app
+                </li>
+                <li className="flex items-start gap-2">
+                  <Check className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                  Power bank (10,000 mAh+)
+                </li>
+                <li className="flex items-start gap-2">
+                  <Check className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                  Universal plug adapter (Saudi Arabia uses Type G)
+                </li>
+                <li className="flex items-start gap-2">
+                  <Check className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                  Lightweight foldable prayer mat
+                </li>
+                <li className="flex items-start gap-2">
+                  <Check className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                  Ziplock bags for wet items
+                </li>
               </ul>
             </div>
           </section>
 
-          {/* Section 6: Health & Safety */}
+          {/* Section 6: Final Checklist */}
           <section className="mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-4">
-              🧺 6️⃣ Health & Safety
+              ✅ 6️⃣ Final Packing Checklist
             </h2>
-            <div className="bg-muted p-6 rounded-lg mb-6">
-              <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
-                <li>Any prescription medicines in original packaging</li>
-                <li>Pain relief / fever tablets</li>
-                <li>Bandages and antiseptic cream</li>
-                <li>Small snacks for energy (dates, nuts, energy bars)</li>
-                <li>Face masks and hand sanitizer</li>
-                <li>Hydration tablets</li>
-              </ul>
+            <div className="bg-muted p-6 rounded-lg">
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <h4 className="font-semibold text-foreground mb-3">Documents:</h4>
+                  <ul className="space-y-1 text-muted-foreground">
+                    <li>☑️ Passport & Visa</li>
+                    <li>☑️ Flight tickets</li>
+                    <li>☑️ Hotel booking</li>
+                    <li>☑️ Vaccination certificate</li>
+                    <li>☑️ Travel insurance</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-foreground mb-3">Clothing:</h4>
+                  <ul className="space-y-1 text-muted-foreground">
+                    <li>☑️ 2x Ihram sets</li>
+                    <li>☑️ Casual thobes/abayas</li>
+                    <li>☑️ Sandals/slippers</li>
+                    <li>☑️ Sleepwear</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-foreground mb-3">Toiletries:</h4>
+                  <ul className="space-y-1 text-muted-foreground">
+                    <li>☑️ Unscented soap/shampoo</li>
+                    <li>☑️ Toothbrush & paste</li>
+                    <li>☑️ Towel</li>
+                    <li>☑️ First aid</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-foreground mb-3">Tech & Others:</h4>
+                  <ul className="space-y-1 text-muted-foreground">
+                    <li>☑️ Phone + charger</li>
+                    <li>☑️ Power bank</li>
+                    <li>☑️ Adapter plug</li>
+                    <li>☑️ Dua booklet</li>
+                  </ul>
+                </div>
+              </div>
             </div>
-
-            <div className="bg-accent/10 p-4 rounded-lg border-l-4" style={{ borderLeftColor: '#2C7A7B' }}>
-              <p className="text-foreground">
-                <strong>💡</strong> Stay hydrated — Saudi weather can be extremely dry and hot.
-              </p>
-            </div>
-          </section>
-
-          {/* Section 7: Sunnah Acts */}
-          <section className="mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">
-              🕊️ 7️⃣ Recommended Sunnah Acts Before Ihram
-            </h2>
-            <p className="text-muted-foreground leading-relaxed mb-4">
-              Before entering Ihram, perform:
-            </p>
-            <div className="bg-muted p-6 rounded-lg mb-6">
-              <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
-                <li>Ghusl (full bath)</li>
-                <li>Trim nails and unwanted hair</li>
-                <li>Apply perfume to the body (not the Ihram)</li>
-                <li>Pray two rak'ahs if time permits</li>
-                <li>Make niyyah and recite Talbiyah</li>
-              </ul>
-            </div>
-
-            <Link to="/blog/sunnah-acts-before-ihram">
-              <Card className="hover:shadow-lg transition-shadow">
-                <CardContent className="p-4 flex items-center justify-between">
-                  <span className="text-foreground font-medium">
-                    👉 Read full guide: Sunnah Acts Before Entering Ihram
-                  </span>
-                  <ArrowLeft className="h-4 w-4 rotate-180" />
-                </CardContent>
-              </Card>
-            </Link>
-          </section>
-
-          {/* Section 8: Packing Summary */}
-          <section className="mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">
-              🎒 8️⃣ Packing Checklist Summary
-            </h2>
-            
-            <Card className="shadow-sm">
-              <CardContent className="p-0">
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead className="font-semibold">Category</TableHead>
-                      <TableHead className="font-semibold">Must-Haves</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    <TableRow>
-                      <TableCell className="font-medium">Documents</TableCell>
-                      <TableCell>Passport, Visa, Hotel, Insurance</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-medium">Clothing</TableCell>
-                      <TableCell>Ihram, Abaya, Sandals, Thobe</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-medium">Toiletries</TableCell>
-                      <TableCell>Unscented essentials</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-medium">Health</TableCell>
-                      <TableCell>Medication, First aid, Water bottle</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-medium">Spiritual</TableCell>
-                      <TableCell>Dua book, Tasbeeh, Qur'an app</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-medium">Technology</TableCell>
-                      <TableCell>Phone, Charger, Adapter</TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
-              </CardContent>
-            </Card>
           </section>
 
           {/* Spiritual Reflection */}
           <section className="mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">💭 Spiritual Reflection</h2>
-            <p className="text-muted-foreground leading-relaxed mb-4">
-              Remember — Umrah is not just a trip; it's a sacred calling.
-            </p>
-            <p className="text-muted-foreground leading-relaxed mb-6">
-              When you organize your bag, your body, and your heart — you are answering the call of Allah:
-            </p>
-            
-            <Card className="bg-accent/5 border-l-4 mb-6" style={{ borderLeftColor: '#2C7A7B' }}>
+            <h2 className="text-3xl font-bold text-foreground mb-4">
+              💭 {t('blogPost.spiritualReflection')}
+            </h2>
+            <Card className="bg-accent/5 border-accent/20">
               <CardContent className="p-6">
                 <blockquote className="text-lg italic text-foreground mb-2">
-                  "And complete the Hajj and Umrah for Allah."
+                  "Take provisions, but indeed, the best provision is Taqwa (God-consciousness)."
                 </blockquote>
-                <cite className="text-sm text-muted-foreground">— Qur'an 2:196</cite>
+                <cite className="text-sm text-muted-foreground">— Qur'an 2:197</cite>
               </CardContent>
             </Card>
-
-            <p className="text-muted-foreground leading-relaxed italic">
-              Prepare your soul with the same care you pack your suitcase — and your journey will be blessed with ease and acceptance, insha'Allah.
-            </p>
           </section>
 
           {/* Related Reading */}
           <section className="mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-4">
-              🏷️ Internal Links
+              📚 {t('blogPost.relatedReading')}
             </h2>
             <div className="grid gap-4">
-              <Link to="/shop">
+              <Link to={`${localePrefix}/blog/how-to-wear-ihram`}>
                 <Card className="hover:shadow-lg transition-shadow">
                   <CardContent className="p-4 flex items-center justify-between">
                     <span className="text-foreground font-medium">
-                      Shop Ihram Hajj Towel Set
+                      {t('blogPost.howToWearLink')}
+                    </span>
+                    <ArrowLeft className="h-4 w-4 rotate-180" />
+                  </CardContent>
+                </Card>
+              </Link>
+              <Link to={`${localePrefix}/blog/sunnah-acts-before-ihram`}>
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardContent className="p-4 flex items-center justify-between">
+                    <span className="text-foreground font-medium">
+                      {t('blogPost.sunnahActsLink')}
+                    </span>
+                    <ArrowLeft className="h-4 w-4 rotate-180" />
+                  </CardContent>
+                </Card>
+              </Link>
+              <Link to={`${localePrefix}/blog/essential-duas-umrah`}>
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardContent className="p-4 flex items-center justify-between">
+                    <span className="text-foreground font-medium">
+                      {t('blogPost.duasLink')}
+                    </span>
+                    <ArrowLeft className="h-4 w-4 rotate-180" />
+                  </CardContent>
+                </Card>
+              </Link>
+              <Link to={`${localePrefix}/shop`}>
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardContent className="p-4 flex items-center justify-between">
+                    <span className="text-foreground font-medium">
+                      {t('blogPost.shopTowelSet')}
                     </span>
                     <ShoppingCart className="h-4 w-4" />
-                  </CardContent>
-                </Card>
-              </Link>
-              <Link to="/blog/sunnah-acts-before-ihram">
-                <Card className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-4 flex items-center justify-between">
-                    <span className="text-foreground font-medium">
-                      Sunnah Acts Before Entering Ihram
-                    </span>
-                    <ArrowLeft className="h-4 w-4 rotate-180" />
-                  </CardContent>
-                </Card>
-              </Link>
-              <Link to="/blog/how-to-wear-ihram">
-                <Card className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-4 flex items-center justify-between">
-                    <span className="text-foreground font-medium">
-                      How to Wear Ihram – Step-by-Step Guide
-                    </span>
-                    <ArrowLeft className="h-4 w-4 rotate-180" />
                   </CardContent>
                 </Card>
               </Link>
@@ -533,15 +500,15 @@ const UmrahChecklistBlog = () => {
         <Card className="bg-gradient-subtle border-0 mt-12">
           <CardContent className="p-8 text-center">
             <h3 className="text-2xl font-bold text-foreground mb-4">
-              Ready for Your Umrah Journey?
+              {t('blogPost.prepareForJourney')}
             </h3>
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Get your premium Ihram set and prepare for a blessed pilgrimage with comfort and confidence.
+              {t('blogPost.orderCtaAlt')}
             </p>
-            <Link to="/shop">
+            <Link to={`${localePrefix}/shop`}>
               <Button size="lg" className="bg-gradient-primary hover:opacity-90 transition-opacity">
                 <ShoppingCart className="h-5 w-5 mr-2" />
-                Shop Ihram Set
+                {t('blogPost.shopIhramSet')}
               </Button>
             </Link>
           </CardContent>

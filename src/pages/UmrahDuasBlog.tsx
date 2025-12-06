@@ -3,30 +3,34 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Lightbulb } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 const UmrahDuasBlog = () => {
+  const { t, i18n } = useTranslation();
+  const localePrefix = i18n.language === 'sv' ? '/sv' : '';
+
   return (
     <div className="min-h-screen py-8">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back Button */}
-        <Link to="/blog">
+        <Link to={`${localePrefix}/blog`}>
           <Button variant="ghost" className="mb-6">
             <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Guides
+            {t('blogPost.backToGuides')}
           </Button>
         </Link>
 
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-4">
-            <Badge variant="secondary">Guide</Badge>
-            <span className="text-sm text-muted-foreground">15 min read</span>
+            <Badge variant="secondary">{t('blog.categories.guide')}</Badge>
+            <span className="text-sm text-muted-foreground">{t('blog.posts.essentialDuas.readTime')}</span>
           </div>
           <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            📖 Essential Duas for Umrah (With Transliteration & Meaning)
+            📖 {t('blog.posts.essentialDuas.title')}
           </h1>
           <p className="text-xl text-muted-foreground leading-relaxed">
-            A pilgrim's guide to the most beloved supplications during Umrah — from departure to Tawaf and beyond.
+            {t('blog.posts.essentialDuas.excerpt')}
           </p>
         </div>
 
@@ -34,7 +38,7 @@ const UmrahDuasBlog = () => {
         <Card className="mb-8 bg-accent/5 border-accent/20">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <span>🌙</span> Introduction
+              <span>🌙</span> {t('blogPost.introduction')}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -352,19 +356,19 @@ const UmrahDuasBlog = () => {
                   Astaghfirullāha rabbī min kulli dhanbin wa atūbu ilayh
                 </p>
                 <p className="text-muted-foreground">
-                  → "I seek forgiveness from Allah, my Lord, for all my sins and turn to Him in repentance."
+                  "I seek Allah's forgiveness, my Lord, for every sin and I repent to Him."
                 </p>
               </div>
             </div>
             
             <div>
-              <p className="font-semibold text-foreground mb-3">For Ease:</p>
+              <p className="font-semibold text-foreground mb-3">For Protection:</p>
               <div className="bg-accent/10 rounded-lg p-4">
                 <p className="text-lg text-foreground italic mb-2">
-                  Allāhumma yassir wa lā tuʿassir, wa tammim bil khayr
+                  Allāhumma innī aʿūdhu bika min al-hammi wal-ḥuzn
                 </p>
                 <p className="text-muted-foreground">
-                  → "O Allah, make it easy and do not make it difficult, and bless it with goodness."
+                  "O Allah, I seek refuge in You from worry and grief."
                 </p>
               </div>
             </div>
@@ -373,10 +377,10 @@ const UmrahDuasBlog = () => {
               <p className="font-semibold text-foreground mb-3">For Guidance:</p>
               <div className="bg-accent/10 rounded-lg p-4">
                 <p className="text-lg text-foreground italic mb-2">
-                  Allāhumma inni as'aluka hudā, wa tuqā, wal-ʿafāfa, wal-ghinā
+                  Allāhumma ihdinī wa saddidnī
                 </p>
                 <p className="text-muted-foreground">
-                  → "O Allah, I ask You for guidance, piety, chastity, and sufficiency."
+                  "O Allah, guide me and keep me on the right path."
                 </p>
               </div>
             </div>
@@ -387,18 +391,15 @@ const UmrahDuasBlog = () => {
         <Card className="mb-8 bg-gradient-subtle border-0">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <span>💭</span> Spiritual Reflection
+              <span>💭</span> {t('blogPost.spiritualReflection')}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-foreground leading-relaxed">
-              Every dua made in Makkah is multiplied — so speak from your heart.
+              These duas are not mere rituals — they are conversations with Allah.
             </p>
             <p className="text-foreground leading-relaxed">
-              Ask for forgiveness, health, guidance, and sincerity.
-            </p>
-            <p className="text-foreground leading-relaxed">
-              Remember: Allah loves when you call upon Him often and personally.
+              Every word brings you closer to Him, and every supplication is an opportunity to be forgiven, uplifted, and renewed.
             </p>
             <div className="bg-background rounded-lg p-6 border-l-4 border-primary mt-4">
               <blockquote className="text-base italic text-foreground mb-2">
@@ -412,28 +413,33 @@ const UmrahDuasBlog = () => {
         {/* Related Reading */}
         <Card className="mb-8">
           <CardHeader>
-            <CardTitle>🏷️ Related Reading</CardTitle>
+            <CardTitle>🏷️ {t('blogPost.relatedReading')}</CardTitle>
           </CardHeader>
           <CardContent>
             <ul className="space-y-2">
               <li>
-                <Link to="/blog/umrah-preparation-checklist" className="text-primary hover:underline">
-                  Checklist for Umrah Preparation →
+                <Link to={`${localePrefix}/blog/how-to-wear-ihram`} className="text-primary hover:underline">
+                  {t('blogPost.howToWearLink')} →
                 </Link>
               </li>
               <li>
-                <Link to="/blog/sunnah-acts-before-ihram" className="text-primary hover:underline">
-                  Sunnah Acts Before Entering Ihram →
+                <Link to={`${localePrefix}/blog/sunnah-acts-before-ihram`} className="text-primary hover:underline">
+                  {t('blogPost.sunnahActsLink')} →
                 </Link>
               </li>
               <li>
-                <Link to="/blog/how-to-wear-ihram" className="text-primary hover:underline">
-                  How to Wear Ihram →
+                <Link to={`${localePrefix}/blog/umrah-preparation-checklist`} className="text-primary hover:underline">
+                  {t('blogPost.checklistLink')} →
                 </Link>
               </li>
               <li>
-                <Link to="/shop" className="text-primary hover:underline">
-                  Shop Ihram Set →
+                <Link to={`${localePrefix}/blog/common-mistakes-ihram`} className="text-primary hover:underline">
+                  {t('blogPost.mistakesLink')} →
+                </Link>
+              </li>
+              <li>
+                <Link to={`${localePrefix}/blog/spiritual-meaning-ihram`} className="text-primary hover:underline">
+                  {t('blogPost.spiritualMeaningLink')} →
                 </Link>
               </li>
             </ul>
@@ -442,10 +448,10 @@ const UmrahDuasBlog = () => {
 
         {/* Back to Blog */}
         <div className="text-center">
-          <Link to="/blog">
+          <Link to={`${localePrefix}/blog`}>
             <Button variant="outline" size="lg">
               <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to All Guides
+              {t('blogPost.backToAllGuides')}
             </Button>
           </Link>
         </div>
