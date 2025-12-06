@@ -53,10 +53,7 @@ serve(async (req) => {
       console.log("No auth header - guest checkout");
     }
 
-    // Require guestEmail if no authenticated user
-    if (!user?.email && !guestEmail) {
-      throw new Error("Guest email is required for checkout");
-    }
+    // Guest email is now optional - Stripe Checkout will collect it
 
     // Find or create Stripe customer
     let customerId;

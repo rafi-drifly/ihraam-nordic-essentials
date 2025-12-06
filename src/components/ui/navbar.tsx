@@ -3,13 +3,11 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { CartDrawer } from "@/components/shop/CartDrawer";
-import { GuestEmailModal } from "@/components/checkout/GuestEmailModal";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [showEmailModal, setShowEmailModal] = useState(false);
   const [checkingOut, setCheckingOut] = useState(false);
   const location = useLocation();
   const { toast } = useToast();
@@ -22,26 +20,13 @@ const Navbar = () => {
       return;
     }
 
-    // Always show email modal for guest checkout
-    setShowEmailModal(true);
-  };
-
-  const handleGuestEmailSubmit = async (guestEmail: string) => {
-    setShowEmailModal(false);
-    await processCheckout(guestEmail);
-  };
-
-  const processCheckout = async (guestEmail?: string) => {
-    const cartItems = JSON.parse(localStorage.getItem('ihram-cart') || '[]');
-
     setCheckingOut(true);
     try {
       console.log('Starting checkout with items:', cartItems);
       
       const { data, error } = await supabase.functions.invoke('create-checkout', {
         body: { 
-          items: cartItems.map((item: any) => ({ id: item.id, quantity: item.quantity })),
-          guestEmail
+          items: cartItems.map((item: any) => ({ id: item.id, quantity: item.quantity }))
         }
       });
 
@@ -67,7 +52,7 @@ const Navbar = () => {
     } finally {
       setCheckingOut(false);
     }
-  };
+  }
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -151,12 +136,6 @@ const Navbar = () => {
           </div>
         )}
       </div>
-      
-      <GuestEmailModal
-        open={showEmailModal}
-        onOpenChange={setShowEmailModal}
-        onSubmit={handleGuestEmailSubmit}
-      />
     </nav>
   );
 };
