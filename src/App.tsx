@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -27,43 +28,45 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <CartProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <ScrollToTop />
-          <div className="min-h-screen flex flex-col">
-            <Navbar />
-            <main className="flex-1">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/shop" element={<Shop />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/blog/how-to-wear-ihram" element={<BlogPost />} />
-              <Route path="/blog/sunnah-acts-before-ihram" element={<SunnahActsBlog />} />
-              <Route path="/blog/umrah-preparation-checklist" element={<UmrahChecklistBlog />} />
-              <Route path="/blog/common-mistakes-ihram" element={<IhramMistakesBlog />} />
-              <Route path="/blog/essential-duas-umrah" element={<UmrahDuasBlog />} />
-              <Route path="/blog/spiritual-meaning-ihram" element={<IhramSpiritualMeaningBlog />} />
-              <Route path="/blog/:slug" element={<BlogPost />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/shipping" element={<Shipping />} />
-              <Route path="/order-success" element={<OrderSuccess />} />
-              <Route path="/guest-order-lookup" element={<GuestOrderLookup />} />
-              <Route path="/cart" element={<Cart />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-            </main>
-            <Footer />
-          </div>
-        </BrowserRouter>
-      </TooltipProvider>
-    </CartProvider>
-  </QueryClientProvider>
+  <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+    <QueryClientProvider client={queryClient}>
+      <CartProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <ScrollToTop />
+            <div className="min-h-screen flex flex-col">
+              <Navbar />
+              <main className="flex-1">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/shop" element={<Shop />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/how-to-wear-ihram" element={<BlogPost />} />
+                <Route path="/blog/sunnah-acts-before-ihram" element={<SunnahActsBlog />} />
+                <Route path="/blog/umrah-preparation-checklist" element={<UmrahChecklistBlog />} />
+                <Route path="/blog/common-mistakes-ihram" element={<IhramMistakesBlog />} />
+                <Route path="/blog/essential-duas-umrah" element={<UmrahDuasBlog />} />
+                <Route path="/blog/spiritual-meaning-ihram" element={<IhramSpiritualMeaningBlog />} />
+                <Route path="/blog/:slug" element={<BlogPost />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/shipping" element={<Shipping />} />
+                <Route path="/order-success" element={<OrderSuccess />} />
+                <Route path="/guest-order-lookup" element={<GuestOrderLookup />} />
+                <Route path="/cart" element={<Cart />} />
+                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+              </main>
+              <Footer />
+            </div>
+          </BrowserRouter>
+        </TooltipProvider>
+      </CartProvider>
+    </QueryClientProvider>
+  </Suspense>
 );
 
 export default App;
