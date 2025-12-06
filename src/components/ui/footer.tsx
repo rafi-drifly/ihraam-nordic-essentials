@@ -1,9 +1,20 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Mail, Phone, MapPin } from "lucide-react";
 
 const Footer = () => {
   const { t } = useTranslation();
+  const location = useLocation();
+  
+  // Get locale prefix for links
+  const localePrefix = location.pathname.startsWith('/sv') ? '/sv' : '';
+
+  const getLocalizedHref = (href: string) => {
+    if (href === '/') {
+      return localePrefix || '/';
+    }
+    return `${localePrefix}${href}`;
+  };
 
   const quickLinks = [
     { name: t('footer.links.home'), href: "/" },
@@ -38,7 +49,7 @@ const Footer = () => {
               {quickLinks.map((link) => (
                 <li key={link.href}>
                   <Link
-                    to={link.href}
+                    to={getLocalizedHref(link.href)}
                     className="text-muted-foreground hover:text-foreground text-sm transition-colors"
                   >
                     {link.name}
