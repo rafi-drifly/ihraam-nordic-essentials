@@ -1,0 +1,89 @@
+{
+  "nav": {
+    "home": "Home",
+    "shop": "Shop",
+    "blog": "Guides & Knowledge",
+    "shipping": "Shipping",
+    "trackOrder": "Track Order",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "footer": {
+    "description": "Premium Ihram garments for your sacred journey. Crafted with care, delivered with devotion.",
+    "quickLinks": "Quick Links",
+    "serviceAreas": "Service Areas",
+    "contactUs": "Contact Us",
+    "areas": {
+      "sweden": "Sweden (2-4 days)",
+      "uk": "United Kingdom (5-7 days)",
+      "europe": "Europe (5-10 days)",
+      "worldwide": "Worldwide (7-14 days)"
+    },
+    "copyright": "© {{year}} Pure Ihram. All rights reserved.",
+    "quote": "\"And proclaim to the people the Hajj; they will come to you on foot and on every lean camel; they will come from every distant pass.\" - Quran 22:27"
+  },
+  "home": {
+    "hero": {
+      "title": "Begin Your Sacred Journey",
+      "subtitle": "Premium Ihram garments crafted for comfort, purity, and devotion. Start your pilgrimage with the finest quality.",
+      "cta": "Shop Now",
+      "learnMore": "Learn More"
+    },
+    "benefits": {
+      "title": "Why Choose Pure Ihram?",
+      "quality": {
+        "title": "Premium Quality",
+        "description": "100% cotton, soft and breathable fabric perfect for the sacred journey"
+      },
+      "shipping": {
+        "title": "Fast Shipping",
+        "description": "Quick delivery to Sweden, UK, Europe and worldwide"
+      },
+      "authentic": {
+        "title": "Authentic Design",
+        "description": "Traditional Ihram design following Sunnah specifications"
+      }
+    },
+    "guides": {
+      "title": "Guides & Knowledge",
+      "subtitle": "Prepare for your sacred journey with our comprehensive guides",
+      "viewAll": "View All Guides"
+    }
+  },
+  "shop": {
+    "addToCart": "Add to Cart",
+    "buyNow": "Buy Now",
+    "inStock": "In Stock",
+    "outOfStock": "Out of Stock",
+    "quantity": "Quantity",
+    "specifications": "Technical Specifications",
+    "features": "Key Features",
+    "shippingInfo": "Shipping Information",
+    "careInstructions": "Care Instructions"
+  },
+  "about": {
+    "title": "About Pure Ihram",
+    "mission": "Our Mission",
+    "story": "Our Story",
+    "values": "Our Values"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We're here to help with any questions about your order or our products",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "submit": "Send Message"
+    }
+  },
+  "shipping": {
+    "title": "Shipping Information",
+    "subtitle": "Fast and reliable delivery worldwide"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Try Again"
+  }
+}
