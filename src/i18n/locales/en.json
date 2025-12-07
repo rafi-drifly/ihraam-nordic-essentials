@@ -266,21 +266,21 @@
       "sweden": {
         "region": "Sweden 🇸🇪",
         "timeframe": "3-7 business days",
-        "cost": "49 SEK",
+        "cost": "5€",
         "description": "Fast domestic shipping across all regions of Sweden. Order by 2 PM for same-day processing.",
         "method": "PostNord, DHL, or UPS"
       },
       "nordic": {
         "region": "Nordic Countries 🇳🇴🇩🇰🇫🇮",
         "timeframe": "7-14 business days",
-        "cost": "89 SEK",
+        "cost": "9€",
         "description": "Reliable delivery to Norway, Denmark, and Finland with full tracking support.",
         "method": "International carriers"
       },
       "eu": {
         "region": "European Union 🇪🇺",
         "timeframe": "7-14 business days",
-        "cost": "99 SEK",
+        "cost": "10€",
         "description": "Comprehensive coverage across all EU member countries with customs pre-clearance.",
         "method": "Express international shipping"
       }

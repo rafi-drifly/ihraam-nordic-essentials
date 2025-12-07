@@ -266,21 +266,21 @@
       "sweden": {
         "region": "Sverige 🇸🇪",
         "timeframe": "3-7 arbetsdagar",
-        "cost": "49 SEK",
+        "cost": "5€",
         "description": "Snabb inrikesfrakt i alla regioner i Sverige. Beställ före kl 14 för samma dags behandling.",
         "method": "PostNord, DHL eller UPS"
       },
       "nordic": {
         "region": "Nordiska Länder 🇳🇴🇩🇰🇫🇮",
         "timeframe": "7-14 arbetsdagar",
-        "cost": "89 SEK",
+        "cost": "9€",
         "description": "Pålitlig leverans till Norge, Danmark och Finland med full spårningssupport.",
         "method": "Internationella transportörer"
       },
       "eu": {
         "region": "Europeiska Unionen 🇪🇺",
         "timeframe": "7-14 arbetsdagar",
-        "cost": "99 SEK",
+        "cost": "10€",
         "description": "Omfattande täckning i alla EU-medlemsländer med tullförhandsklarering.",
         "method": "Express internationell frakt"
       }
