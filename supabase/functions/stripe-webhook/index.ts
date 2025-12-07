@@ -46,7 +46,11 @@ serve(async (req) => {
       // Get items from metadata
       const itemsJson = session.metadata?.items;
       const userId = session.metadata?.user_id || null;
-      const shippingCost = parseFloat(session.metadata?.shipping_cost || "5");
+      
+      // Get actual shipping cost from Stripe session (amount is in cents)
+      const shippingCost = session.shipping_cost?.amount_total 
+        ? session.shipping_cost.amount_total / 100 
+        : 5;
       
       if (!itemsJson) {
         console.error("No items found in session metadata");
