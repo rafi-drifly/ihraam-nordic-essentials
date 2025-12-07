@@ -25,6 +25,7 @@
       "shop": "Shop",
       "blog": "Guides & Knowledge",
       "shipping": "Shipping & Delivery",
+      "partners": "For Mosques & Agencies",
       "about": "About Us",
       "contact": "Contact"
     },
@@ -544,5 +545,126 @@
     "duasLink": "Essential Duas for Umrah",
     "mistakesLink": "Common Mistakes Pilgrims Make in Ihram",
     "spiritualMeaningLink": "The Spiritual Meaning of Ihram – Equality Before Allah"
+  },
+  "partners": {
+    "hero": {
+      "badge": "B2B Partnership",
+      "title": "Partner with Pure Ihram – Serve Your Pilgrims, Support Your Masjid",
+      "subtitle": "Offer high-quality Ihram to your community at an affordable price, while creating a halal income stream for your masjid or agency.",
+      "ctaPrimary": "Contact us for wholesale pricing",
+      "ctaSecondary": "Request a sample set"
+    },
+    "whoFor": {
+      "title": "Who Is This For?",
+      "subtitle": "We partner with organisations serving the Muslim community across Europe",
+      "mosques": {
+        "title": "Mosques & Islamic Centres",
+        "description": "Provide Ihram sets to your congregation and create a sustainable income stream for your masjid."
+      },
+      "agencies": {
+        "title": "Hajj & Umrah Agencies",
+        "description": "Bundle quality Ihram sets with your travel packages and enhance your pilgrimage offerings."
+      },
+      "organizers": {
+        "title": "Group Organisers",
+        "description": "Equip your travel groups with premium Ihram sets at competitive wholesale prices."
+      }
+    },
+    "howItWorks": {
+      "title": "How the Partnership Works",
+      "subtitle": "A simple 3-step model that benefits everyone",
+      "step1": {
+        "title": "Buy at Partner Price",
+        "description": "Access exclusive wholesale pricing based on your order volume."
+      },
+      "step2": {
+        "title": "Sell or Bundle",
+        "description": "Sell in your masjid shop or include in your Hajj/Umrah packages."
+      },
+      "step3": {
+        "title": "Keep the Margin",
+        "description": "The profit supports your masjid or agency as halal income."
+      }
+    },
+    "pricing": {
+      "title": "Example Pricing Model",
+      "subtitle": "See how the partnership can benefit your organisation",
+      "breakdown": {
+        "title": "Price Breakdown",
+        "retail": "Retail Price",
+        "partner": "Partner Price (example)",
+        "sellPrice": "You Sell At",
+        "margin": "Your Margin Per Set",
+        "note": "Actual partner pricing depends on order volume"
+      },
+      "example": {
+        "title": "100 Sets Example",
+        "description": "If your masjid or agency orders 100 Ihram sets and sells at €18–€20 each:",
+        "benefit": "Halal benefit for your organisation"
+      }
+    },
+    "product": {
+      "title": "Product Details",
+      "subtitle": "Premium quality Ihram trusted by thousands of pilgrims",
+      "name": "Ihram Hajj Towel Set",
+      "specs": {
+        "size": "Size",
+        "weight": "Weight",
+        "material": "Material",
+        "materialType": "Microfiber Polyester"
+      },
+      "featuresTitle": "Key Features",
+      "features": {
+        "quickDry": "Quick-drying technology",
+        "soft": "Ultra-soft and comfortable",
+        "hypoallergenic": "Hypoallergenic material",
+        "antimicrobial": "Antimicrobial treatment",
+        "durable": "Durable and long-lasting"
+      }
+    },
+    "europe": {
+      "title": "Based in Europe",
+      "description": "We are a Sweden-based supplier serving mosques and agencies across Europe. Benefit from shorter shipping times, reliable quality control, and local customer support.",
+      "features": {
+        "shipping": "Fast shipping across all EU countries",
+        "quality": "European quality standards",
+        "support": "Local customer support in English & Swedish"
+      },
+      "coverage": {
+        "title": "Countries We Serve",
+        "allEU": "All EU Countries"
+      }
+    },
+    "contact": {
+      "title": "Start Your Partnership",
+      "description": "Ready to serve your community with quality Ihram? Contact us to discuss wholesale pricing and partnership opportunities.",
+      "email": "Email",
+      "phone": "Phone",
+      "location": "Location"
+    },
+    "form": {
+      "name": "Your Name",
+      "namePlaceholder": "Enter your full name",
+      "organisation": "Organisation Name",
+      "organisationPlaceholder": "Mosque, agency, or group name",
+      "role": "Your Role",
+      "rolePlaceholder": "e.g., Imam, Manager, Coordinator",
+      "country": "Country",
+      "countryPlaceholder": "Your country",
+      "email": "Email Address",
+      "emailPlaceholder": "your@email.com",
+      "phone": "Phone Number",
+      "phonePlaceholder": "+46 70 123 4567",
+      "pilgrims": "Estimated Pilgrims Per Year",
+      "pilgrimsPlaceholder": "Select estimated number",
+      "message": "Message (Optional)",
+      "messagePlaceholder": "Tell us about your organisation and partnership interests...",
+      "submit": "Send Partnership Request",
+      "sending": "Sending...",
+      "successTitle": "Request Sent!",
+      "successMessage": "Thank you for your interest. We'll get back to you within 24-48 hours.",
+      "errorTitle": "Failed to Send",
+      "errorMessage": "Something went wrong. Please try again or contact us directly."
+    }
   }
 }
