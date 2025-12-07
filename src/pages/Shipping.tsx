@@ -2,59 +2,47 @@ import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Truck, Package, Shield, Clock, MapPin, Euro } from "lucide-react";
-
 const Shipping = () => {
-  const { t } = useTranslation();
-
-  const shippingZones = [
-    {
-      region: t('shipping.zones.sweden.region'),
-      timeframe: t('shipping.zones.sweden.timeframe'),
-      cost: t('shipping.zones.sweden.cost'),
-      description: t('shipping.zones.sweden.description'),
-      method: t('shipping.zones.sweden.method')
-    },
-    {
-      region: t('shipping.zones.nordic.region'),
-      timeframe: t('shipping.zones.nordic.timeframe'),
-      cost: t('shipping.zones.nordic.cost'),
-      description: t('shipping.zones.nordic.description'),
-      method: t('shipping.zones.nordic.method')
-    },
-    {
-      region: t('shipping.zones.eu.region'),
-      timeframe: t('shipping.zones.eu.timeframe'),
-      cost: t('shipping.zones.eu.cost'),
-      description: t('shipping.zones.eu.description'),
-      method: t('shipping.zones.eu.method')
-    }
-  ];
-
-  const features = [
-    {
-      icon: <Package className="h-6 w-6 text-primary" />,
-      title: t('shipping.features.packaging.title'),
-      description: t('shipping.features.packaging.description')
-    },
-    {
-      icon: <Shield className="h-6 w-6 text-primary" />,
-      title: t('shipping.features.tracking.title'),
-      description: t('shipping.features.tracking.description')
-    },
-    {
-      icon: <Clock className="h-6 w-6 text-primary" />,
-      title: t('shipping.features.processing.title'),
-      description: t('shipping.features.processing.description')
-    },
-    {
-      icon: <Euro className="h-6 w-6 text-primary" />,
-      title: t('shipping.features.free.title'),
-      description: t('shipping.features.free.description')
-    }
-  ];
-
-  return (
-    <div className="min-h-screen py-8">
+  const {
+    t
+  } = useTranslation();
+  const shippingZones = [{
+    region: t('shipping.zones.sweden.region'),
+    timeframe: t('shipping.zones.sweden.timeframe'),
+    cost: t('shipping.zones.sweden.cost'),
+    description: t('shipping.zones.sweden.description'),
+    method: t('shipping.zones.sweden.method')
+  }, {
+    region: t('shipping.zones.nordic.region'),
+    timeframe: t('shipping.zones.nordic.timeframe'),
+    cost: t('shipping.zones.nordic.cost'),
+    description: t('shipping.zones.nordic.description'),
+    method: t('shipping.zones.nordic.method')
+  }, {
+    region: t('shipping.zones.eu.region'),
+    timeframe: t('shipping.zones.eu.timeframe'),
+    cost: t('shipping.zones.eu.cost'),
+    description: t('shipping.zones.eu.description'),
+    method: t('shipping.zones.eu.method')
+  }];
+  const features = [{
+    icon: <Package className="h-6 w-6 text-primary" />,
+    title: t('shipping.features.packaging.title'),
+    description: t('shipping.features.packaging.description')
+  }, {
+    icon: <Shield className="h-6 w-6 text-primary" />,
+    title: t('shipping.features.tracking.title'),
+    description: t('shipping.features.tracking.description')
+  }, {
+    icon: <Clock className="h-6 w-6 text-primary" />,
+    title: t('shipping.features.processing.title'),
+    description: t('shipping.features.processing.description')
+  }, {
+    icon: <Euro className="h-6 w-6 text-primary" />,
+    title: t('shipping.features.free.title'),
+    description: t('shipping.features.free.description')
+  }];
+  return <div className="min-h-screen py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
@@ -73,8 +61,7 @@ const Shipping = () => {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {shippingZones.map((zone, index) => (
-              <Card key={index} className="relative hover:shadow-lg transition-shadow">
+            {shippingZones.map((zone, index) => <Card key={index} className="relative hover:shadow-lg transition-shadow">
                 <CardHeader className="text-center">
                   <div className="flex justify-center mb-2">
                     <Badge variant="secondary" className="text-sm">
@@ -88,17 +75,11 @@ const Shipping = () => {
                   <p className="text-muted-foreground mb-2">{zone.description}</p>
                   <p className="text-sm text-muted-foreground">{zone.method}</p>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
 
           <div className="mt-8 text-center space-y-4">
-            <div className="inline-flex items-center space-x-2 bg-accent/10 px-4 py-2 rounded-lg">
-              <Truck className="h-5 w-5 text-accent" />
-              <span className="text-accent font-medium">
-                {t('shipping.freeShipping')}
-              </span>
-            </div>
+            
 
             {/* Pilgrimage Tip */}
             <div className="bg-primary/10 rounded-lg p-4 max-w-2xl mx-auto">
@@ -117,8 +98,7 @@ const Shipping = () => {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {features.map((feature, index) => (
-              <Card key={index} className="text-center hover:shadow-lg transition-shadow">
+            {features.map((feature, index) => <Card key={index} className="text-center hover:shadow-lg transition-shadow">
                 <CardContent className="p-6">
                   <div className="flex justify-center mb-4">
                     {feature.icon}
@@ -130,8 +110,7 @@ const Shipping = () => {
                     {feature.description}
                   </p>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
 
@@ -242,24 +221,16 @@ const Shipping = () => {
               {t('shipping.support.description')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="mailto:pureihraam@gmail.com"
-                className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition-opacity"
-              >
+              <a href="mailto:pureihraam@gmail.com" className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition-opacity">
                 {t('shipping.support.email')}
               </a>
-              <a
-                href="https://wa.me/46720131476"
-                className="inline-flex items-center justify-center px-6 py-3 border border-border rounded-lg hover:bg-muted-foreground/10 transition-colors"
-              >
+              <a href="https://wa.me/46720131476" className="inline-flex items-center justify-center px-6 py-3 border border-border rounded-lg hover:bg-muted-foreground/10 transition-colors">
                 {t('shipping.support.whatsapp')}
               </a>
             </div>
           </CardContent>
         </Card>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default Shipping;
