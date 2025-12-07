@@ -21,6 +21,7 @@ const Footer = () => {
     { name: t('footer.links.shop'), href: "/shop" },
     { name: t('footer.links.blog'), href: "/blog" },
     { name: t('footer.links.shipping'), href: "/shipping" },
+    { name: t('footer.links.partners'), href: "/partners" },
     { name: t('footer.links.about'), href: "/about" },
     { name: t('footer.links.contact'), href: "/contact" },
   ];

@@ -23,6 +23,7 @@ import IhramSpiritualMeaningBlog from "./pages/IhramSpiritualMeaningBlog";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Shipping from "./pages/Shipping";
+import Partners from "./pages/Partners";
 import OrderSuccess from "./pages/OrderSuccess";
 import GuestOrderLookup from "./pages/GuestOrderLookup";
 import Cart from "./pages/Cart";
@@ -46,6 +47,7 @@ const AppRoutes = () => (
     <Route path="/about" element={<About />} />
     <Route path="/contact" element={<Contact />} />
     <Route path="/shipping" element={<Shipping />} />
+    <Route path="/partners" element={<Partners />} />
     <Route path="/order-success" element={<OrderSuccess />} />
     <Route path="/guest-order-lookup" element={<GuestOrderLookup />} />
     <Route path="/cart" element={<Cart />} />
@@ -63,6 +65,7 @@ const AppRoutes = () => (
     <Route path="/sv/about" element={<About />} />
     <Route path="/sv/contact" element={<Contact />} />
     <Route path="/sv/shipping" element={<Shipping />} />
+    <Route path="/sv/partners" element={<Partners />} />
     <Route path="/sv/order-success" element={<OrderSuccess />} />
     <Route path="/sv/guest-order-lookup" element={<GuestOrderLookup />} />
     <Route path="/sv/cart" element={<Cart />} />

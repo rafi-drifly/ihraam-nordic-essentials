@@ -25,6 +25,7 @@
       "shop": "Butik",
       "blog": "Guider & Kunskap",
       "shipping": "Frakt & Leverans",
+      "partners": "För Moskéer & Byråer",
       "about": "Om Oss",
       "contact": "Kontakt"
     },
@@ -544,5 +545,126 @@
     "duasLink": "Viktiga Duas för Umrah",
     "mistakesLink": "Vanliga Misstag Pilgrimer Gör i Ihram",
     "spiritualMeaningLink": "Den Andliga Betydelsen av Ihram – Jämlikhet Inför Allah"
+  },
+  "partners": {
+    "hero": {
+      "badge": "B2B-Partnerskap",
+      "title": "Bli Partner med Pure Ihram – Betjäna Era Pilgrimer, Stöd Er Moské",
+      "subtitle": "Erbjud högkvalitativ Ihram till er församling till ett prisvärt pris, samtidigt som ni skapar en halal inkomstkälla för er moské eller byrå.",
+      "ctaPrimary": "Kontakta oss för grossistpriser",
+      "ctaSecondary": "Begär ett provset"
+    },
+    "whoFor": {
+      "title": "Vem Är Detta För?",
+      "subtitle": "Vi samarbetar med organisationer som betjänar den muslimska gemenskapen i Europa",
+      "mosques": {
+        "title": "Moskéer & Islamiska Centra",
+        "description": "Tillhandahåll Ihram-set till er församling och skapa en hållbar inkomstkälla för er moské."
+      },
+      "agencies": {
+        "title": "Hajj & Umrah-Byråer",
+        "description": "Inkludera kvalitativa Ihram-set i era resepaket och förbättra era pilgrimserbjudanden."
+      },
+      "organizers": {
+        "title": "Grupparrangörer",
+        "description": "Utrusta era resegrupper med premium Ihram-set till konkurrenskraftiga grossistpriser."
+      }
+    },
+    "howItWorks": {
+      "title": "Hur Partnerskapet Fungerar",
+      "subtitle": "En enkel 3-stegsmodell som gynnar alla",
+      "step1": {
+        "title": "Köp till Partnerpris",
+        "description": "Få tillgång till exklusiva grossistpriser baserat på er ordervolym."
+      },
+      "step2": {
+        "title": "Sälj eller Inkludera",
+        "description": "Sälj i er moskébutik eller inkludera i era Hajj/Umrah-paket."
+      },
+      "step3": {
+        "title": "Behåll Marginalen",
+        "description": "Vinsten stöder er moské eller byrå som halal inkomst."
+      }
+    },
+    "pricing": {
+      "title": "Exempel på Prismodell",
+      "subtitle": "Se hur partnerskapet kan gynna er organisation",
+      "breakdown": {
+        "title": "Prisuppdelning",
+        "retail": "Butikspris",
+        "partner": "Partnerpris (exempel)",
+        "sellPrice": "Ni Säljer För",
+        "margin": "Er Marginal Per Set",
+        "note": "Faktiskt partnerpris beror på ordervolym"
+      },
+      "example": {
+        "title": "100 Set-Exempel",
+        "description": "Om er moské eller byrå beställer 100 Ihram-set och säljer för €18–€20 styck:",
+        "benefit": "Halal-fördel för er organisation"
+      }
+    },
+    "product": {
+      "title": "Produktdetaljer",
+      "subtitle": "Premiumkvalitet Ihram som tusentals pilgrimer litar på",
+      "name": "Ihram Hajj Handduksset",
+      "specs": {
+        "size": "Storlek",
+        "weight": "Vikt",
+        "material": "Material",
+        "materialType": "Mikrofiber Polyester"
+      },
+      "featuresTitle": "Nyckelegenskaper",
+      "features": {
+        "quickDry": "Snabbtorkande teknologi",
+        "soft": "Ultramjuk och bekväm",
+        "hypoallergenic": "Hypoallergent material",
+        "antimicrobial": "Antimikrobiell behandling",
+        "durable": "Hållbar och långvarig"
+      }
+    },
+    "europe": {
+      "title": "Baserad i Europa",
+      "description": "Vi är en Sverige-baserad leverantör som betjänar moskéer och byråer i hela Europa. Dra nytta av kortare leveranstider, pålitlig kvalitetskontroll och lokal kundsupport.",
+      "features": {
+        "shipping": "Snabb frakt i alla EU-länder",
+        "quality": "Europeisk kvalitetsstandard",
+        "support": "Lokal kundsupport på engelska & svenska"
+      },
+      "coverage": {
+        "title": "Länder Vi Betjänar",
+        "allEU": "Alla EU-Länder"
+      }
+    },
+    "contact": {
+      "title": "Starta Ert Partnerskap",
+      "description": "Redo att betjäna er församling med kvalitets-Ihram? Kontakta oss för att diskutera grossistpriser och partnerskapsmöjligheter.",
+      "email": "E-post",
+      "phone": "Telefon",
+      "location": "Plats"
+    },
+    "form": {
+      "name": "Ditt Namn",
+      "namePlaceholder": "Ange ditt fullständiga namn",
+      "organisation": "Organisationsnamn",
+      "organisationPlaceholder": "Moské, byrå eller gruppnamn",
+      "role": "Din Roll",
+      "rolePlaceholder": "t.ex. Imam, Chef, Koordinator",
+      "country": "Land",
+      "countryPlaceholder": "Ditt land",
+      "email": "E-postadress",
+      "emailPlaceholder": "din@epost.se",
+      "phone": "Telefonnummer",
+      "phonePlaceholder": "+46 70 123 4567",
+      "pilgrims": "Uppskattat Antal Pilgrimer Per År",
+      "pilgrimsPlaceholder": "Välj uppskattat antal",
+      "message": "Meddelande (Valfritt)",
+      "messagePlaceholder": "Berätta om er organisation och partnerskapsintresse...",
+      "submit": "Skicka Partnerskapsförfrågan",
+      "sending": "Skickar...",
+      "successTitle": "Förfrågan Skickad!",
+      "successMessage": "Tack för ert intresse. Vi återkommer inom 24-48 timmar.",
+      "errorTitle": "Kunde Inte Skicka",
+      "errorMessage": "Något gick fel. Försök igen eller kontakta oss direkt."
+    }
   }
 }
