@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import { Check, Truck, Heart, Star, ArrowRight } from "lucide-react";
+import { Check, Truck, Heart, Star, ArrowRight, Building2 } from "lucide-react";
 import ihraamProduct from "@/assets/hero-product.avif";
 import heroPattern from "@/assets/hero-pattern.jpg";
 import spiritualMeaning from "@/assets/blog/spiritual-meaning.png";
@@ -110,6 +110,13 @@ const Home = () => {
                   <Link to="/about">{t('home.hero.learnMore')}</Link>
                 </Button>
               </div>
+              <Link 
+                to="/partners"
+                className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors mt-4 text-sm"
+              >
+                <Building2 className="h-4 w-4" />
+                {t('home.hero.partnersLink')}
+              </Link>
             </div>
 
             {/* Product Images */}
