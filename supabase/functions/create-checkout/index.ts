@@ -14,6 +14,43 @@ interface CheckoutRequest {
   }>;
 }
 
+// Define shipping options by region
+const shippingOptions: Stripe.Checkout.SessionCreateParams.ShippingOption[] = [
+  {
+    shipping_rate_data: {
+      type: 'fixed_amount',
+      fixed_amount: { amount: 500, currency: 'eur' }, // 5€
+      display_name: 'Shipping to Sweden',
+      delivery_estimate: {
+        minimum: { unit: 'business_day', value: 3 },
+        maximum: { unit: 'business_day', value: 7 },
+      },
+    },
+  },
+  {
+    shipping_rate_data: {
+      type: 'fixed_amount',
+      fixed_amount: { amount: 900, currency: 'eur' }, // 9€
+      display_name: 'Shipping to Nordic Countries',
+      delivery_estimate: {
+        minimum: { unit: 'business_day', value: 7 },
+        maximum: { unit: 'business_day', value: 14 },
+      },
+    },
+  },
+  {
+    shipping_rate_data: {
+      type: 'fixed_amount',
+      fixed_amount: { amount: 1000, currency: 'eur' }, // 10€
+      display_name: 'Shipping to European Union',
+      delivery_estimate: {
+        minimum: { unit: 'business_day', value: 7 },
+        maximum: { unit: 'business_day', value: 14 },
+      },
+    },
+  },
+];
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -74,9 +111,7 @@ serve(async (req) => {
       throw new Error("No products found");
     }
 
-    const shippingCost = 5; // 5€
-
-    // Create line items for Stripe checkout
+    // Create line items for Stripe checkout (products only, shipping handled separately)
     const lineItems = items.map(item => {
       const product = products.find(p => p.id === item.id);
       if (!product) {
@@ -96,20 +131,7 @@ serve(async (req) => {
       };
     });
 
-    // Add shipping
-    lineItems.push({
-      price_data: {
-        currency: 'eur',
-        product_data: {
-          name: 'Shipping',
-          description: 'Standard shipping to Europe',
-        },
-        unit_amount: Math.round(shippingCost * 100),
-      },
-      quantity: 1,
-    });
-
-    // Create checkout session - order will be created in webhook after payment
+    // Create checkout session with shipping options
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
       customer_email: customerId ? undefined : undefined, // Let Stripe collect email
@@ -121,6 +143,7 @@ serve(async (req) => {
       shipping_address_collection: {
         allowed_countries: ['SE', 'NO', 'DK', 'FI', 'DE', 'NL', 'BE', 'FR', 'AT', 'IT', 'ES'],
       },
+      shipping_options: shippingOptions,
       phone_number_collection: {
         enabled: true,
       },
@@ -132,7 +155,6 @@ serve(async (req) => {
       metadata: {
         user_id: user?.id || '',
         items: JSON.stringify(items),
-        shipping_cost: shippingCost.toString(),
       },
     });
 
