@@ -40,8 +40,9 @@
       "priceAmount": "15€",
       "priceSuffix": "+ shipping",
       "description": "Lightweight, thin, and comfortable Ihram (Ihraam) cloth for your sacred journey. Made with the intention of earning ajr and making pilgrimage accessible to all.",
-      "cta": "Order Your Ihram",
-      "learnMore": "Learn More"
+    "cta": "Order Your Ihram",
+    "learnMore": "Learn More",
+    "partnersLink": "For Mosques & Hajj/Umrah Agencies →"
     },
     "quranVerse1": "\"And proclaim to the people the Hajj; they will come to you on foot and on every lean camel; they will come from every distant pass.\"",
     "quranVerse1Cite": "— Qur'an 22:27",
