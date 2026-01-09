@@ -18,6 +18,7 @@ import detail6 from "@/assets/product/detail-6.avif";
 import detail7 from "@/assets/product/detail-7.avif";
 import detail8 from "@/assets/product/detail-8.avif";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
+import { calculateShipping, SHIPPING_RATES } from "@/lib/shipping";
 
 interface Product {
   id: string;
@@ -319,7 +320,7 @@ const Shop = () => {
                 <CardContent className="p-4">
                   <h3 className="font-semibold mb-2">{t('shop.shippingInfo.title')}</h3>
                   <ul className="text-sm text-muted-foreground space-y-1">
-                    <li>🇸🇪 {t('shop.shippingInfo.sweden')}</li>
+                    <li>🇸🇪 Sweden: €{calculateShipping(quantity)} ({quantity} × €{SHIPPING_RATES.sweden})</li>
                     <li>🇪🇺 {t('shop.shippingInfo.nordic')}</li>
                     <li>📦 {t('shop.shippingInfo.tracking')}</li>
                   </ul>

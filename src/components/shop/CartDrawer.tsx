@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ShoppingCart, Minus, Plus, Trash2 } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { Badge } from "@/components/ui/badge";
+import { calculateShipping, SHIPPING_RATES } from "@/lib/shipping";
 
 interface CartDrawerProps {
   onCheckout: () => void;
@@ -88,9 +89,17 @@ export const CartDrawer = ({ onCheckout, checkingOut = false }: CartDrawerProps)
               </div>
 
               <div className="border-t pt-4">
+                <div className="flex justify-between items-center text-sm text-muted-foreground mb-1">
+                  <span>Subtotal:</span>
+                  <span>{getTotalPrice().toFixed(2)}€</span>
+                </div>
+                <div className="flex justify-between items-center text-sm text-muted-foreground mb-2">
+                  <span>Shipping ({getTotalItems()} × €{SHIPPING_RATES.sweden}):</span>
+                  <span>{calculateShipping(getTotalItems()).toFixed(2)}€</span>
+                </div>
                 <div className="flex justify-between items-center mb-4">
                   <span className="font-semibold">Total:</span>
-                  <span className="font-bold text-lg">{getTotalPrice().toFixed(2)}€</span>
+                  <span className="font-bold text-lg">{(getTotalPrice() + calculateShipping(getTotalItems())).toFixed(2)}€</span>
                 </div>
                 <Button 
                   onClick={onCheckout} 
