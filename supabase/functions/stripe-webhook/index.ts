@@ -7,6 +7,9 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
+// Shipping rate per item in EUR
+const SHIPPING_RATE_PER_ITEM = 9;
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -46,11 +49,12 @@ serve(async (req) => {
       // Get items from metadata
       const itemsJson = session.metadata?.items;
       const userId = session.metadata?.user_id || null;
+      const totalQuantity = parseInt(session.metadata?.total_quantity || "1", 10);
+      const shippingRatePerItem = parseFloat(session.metadata?.shipping_rate_per_item || SHIPPING_RATE_PER_ITEM.toString());
       
-      // Get actual shipping cost from Stripe session (amount is in cents)
-      const shippingCost = session.shipping_cost?.amount_total 
-        ? session.shipping_cost.amount_total / 100 
-        : 5;
+      // Calculate shipping cost based on quantity
+      const shippingCost = shippingRatePerItem * totalQuantity;
+      console.log("Calculated shipping cost:", shippingCost, "EUR for", totalQuantity, "items at", shippingRatePerItem, "EUR/item");
       
       if (!itemsJson) {
         console.error("No items found in session metadata");
@@ -88,12 +92,14 @@ serve(async (req) => {
         throw productsError;
       }
 
-      // Calculate total amount
+      // Calculate total amount (subtotal + shipping)
       const subtotal = items.reduce((total: number, item: { id: string; quantity: number }) => {
         const product = products?.find(p => p.id === item.id);
         return total + (product ? product.price * item.quantity : 0);
       }, 0);
       const totalAmount = subtotal + shippingCost;
+
+      console.log("Order totals - Subtotal:", subtotal, "Shipping:", shippingCost, "Total:", totalAmount);
 
       // Create order
       const { data: order, error: orderError } = await supabaseClient

@@ -1,9 +1,9 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useCart } from "@/hooks/useCart";
 import { ShoppingCart, ArrowLeft, Minus, Plus, Trash2 } from "lucide-react";
+import { calculateShipping, SHIPPING_RATES } from "@/lib/shipping";
 
 const Cart = () => {
   const { items, updateQuantity, removeItem, getTotalItems, getTotalPrice } = useCart();
@@ -96,13 +96,13 @@ const Cart = () => {
                     <span>{getTotalPrice().toFixed(2)}€</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Shipping</span>
-                    <span>5.00€</span>
+                    <span>Shipping ({getTotalItems()} × €{SHIPPING_RATES.sweden})</span>
+                    <span>{calculateShipping(getTotalItems()).toFixed(2)}€</span>
                   </div>
                   <div className="border-t pt-4">
                     <div className="flex justify-between items-center">
                       <span className="font-semibold text-lg">Total:</span>
-                      <span className="font-bold text-lg">{(getTotalPrice() + 5).toFixed(2)}€</span>
+                      <span className="font-bold text-lg">{(getTotalPrice() + calculateShipping(getTotalItems())).toFixed(2)}€</span>
                     </div>
                   </div>
                   <Link to="/shop">

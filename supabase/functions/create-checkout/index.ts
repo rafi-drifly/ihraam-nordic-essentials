@@ -14,42 +14,12 @@ interface CheckoutRequest {
   }>;
 }
 
-// Define shipping options by region
-const shippingOptions: Stripe.Checkout.SessionCreateParams.ShippingOption[] = [
-  {
-    shipping_rate_data: {
-      type: 'fixed_amount',
-      fixed_amount: { amount: 500, currency: 'eur' }, // 5€
-      display_name: 'Shipping to Sweden',
-      delivery_estimate: {
-        minimum: { unit: 'business_day', value: 3 },
-        maximum: { unit: 'business_day', value: 7 },
-      },
-    },
-  },
-  {
-    shipping_rate_data: {
-      type: 'fixed_amount',
-      fixed_amount: { amount: 900, currency: 'eur' }, // 9€
-      display_name: 'Shipping to Nordic Countries',
-      delivery_estimate: {
-        minimum: { unit: 'business_day', value: 7 },
-        maximum: { unit: 'business_day', value: 14 },
-      },
-    },
-  },
-  {
-    shipping_rate_data: {
-      type: 'fixed_amount',
-      fixed_amount: { amount: 1000, currency: 'eur' }, // 10€
-      display_name: 'Shipping to European Union',
-      delivery_estimate: {
-        minimum: { unit: 'business_day', value: 7 },
-        maximum: { unit: 'business_day', value: 14 },
-      },
-    },
-  },
-];
+// Shipping rates per item in cents by region
+const SHIPPING_RATES_CENTS = {
+  sweden: 900,   // €9 per item
+  nordic: 900,   // €9 per item (NO, DK, FI)
+  eu: 1000,      // €10 per item
+};
 
 serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -68,6 +38,10 @@ serve(async (req) => {
 
     const { items }: CheckoutRequest = await req.json();
     console.log("Checkout request:", { items });
+
+    // Calculate total quantity for shipping
+    const totalQuantity = items.reduce((sum, item) => sum + item.quantity, 0);
+    console.log("Total quantity for shipping:", totalQuantity);
 
     // Get user if authenticated (optional for guest checkout)
     const authHeader = req.headers.get("Authorization");
@@ -111,8 +85,8 @@ serve(async (req) => {
       throw new Error("No products found");
     }
 
-    // Create line items for Stripe checkout (products only, shipping handled separately)
-    const lineItems = items.map(item => {
+    // Create line items for Stripe checkout (products only)
+    const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = items.map(item => {
       const product = products.find(p => p.id === item.id);
       if (!product) {
         throw new Error(`Product not found: ${item.id}`);
@@ -131,7 +105,23 @@ serve(async (req) => {
       };
     });
 
-    // Create checkout session with shipping options
+    // Add shipping as a line item - €9 per item for Sweden (default)
+    // This scales with quantity automatically
+    lineItems.push({
+      price_data: {
+        currency: 'eur',
+        product_data: {
+          name: 'Shipping',
+          description: `Shipping to Sweden (${totalQuantity} item${totalQuantity > 1 ? 's' : ''} × €9)`,
+        },
+        unit_amount: SHIPPING_RATES_CENTS.sweden, // €9 per item
+      },
+      quantity: totalQuantity, // Multiply by quantity
+    });
+
+    console.log("Total shipping:", (SHIPPING_RATES_CENTS.sweden / 100) * totalQuantity, "EUR for", totalQuantity, "items");
+
+    // Create checkout session with shipping as line item
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
       customer_email: customerId ? undefined : undefined, // Let Stripe collect email
@@ -143,7 +133,6 @@ serve(async (req) => {
       shipping_address_collection: {
         allowed_countries: ['SE', 'NO', 'DK', 'FI', 'DE', 'NL', 'BE', 'FR', 'AT', 'IT', 'ES'],
       },
-      shipping_options: shippingOptions,
       phone_number_collection: {
         enabled: true,
       },
@@ -155,6 +144,8 @@ serve(async (req) => {
       metadata: {
         user_id: user?.id || '',
         items: JSON.stringify(items),
+        total_quantity: totalQuantity.toString(),
+        shipping_rate_per_item: (SHIPPING_RATES_CENTS.sweden / 100).toString(),
       },
     });
 
