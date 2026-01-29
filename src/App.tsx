@@ -11,6 +11,7 @@ import Footer from "@/components/ui/footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import LocaleHandler from "@/components/LocaleHandler";
 import SEOHead from "@/components/SEOHead";
+import PromoBanner from "@/components/PromoBanner";
 import Home from "./pages/Home";
 import Shop from "./pages/Shop";
 import Blog from "./pages/Blog";
@@ -87,6 +88,7 @@ const App = () => (
               <LocaleHandler />
               <SEOHead />
               <div className="min-h-screen flex flex-col">
+                <PromoBanner />
                 <Navbar />
                 <main className="flex-1">
                   <AppRoutes />
