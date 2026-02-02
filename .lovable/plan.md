@@ -1,73 +1,107 @@
 
-
-## Plan: Add "New Stock Arrived" Banner
+## Plan: Add Norwegian Language Support
 
 ### Overview
-Add a small, attractive promotional banner at the very top of the page (above the navbar) announcing new stock with fast delivery in Sweden.
+Add Norwegian as a third language option to the website, accessible via `/no/*` routes, with a proper language selector dropdown to handle three languages elegantly.
 
-### Changes
+### Files to Change
 
-#### 1. Create New Component: `src/components/PromoBanner.tsx`
+#### 1. Create Translation File: `src/i18n/locales/no.json`
+Create a complete Norwegian translation file based on the English version. This will include all 674+ translation keys covering:
+- Navigation, footer, banner
+- Home page content
+- About, Contact, Shipping pages
+- Shop and Cart content
+- Blog articles and guides
+- Order tracking and success pages
 
-A simple, dismissible banner component that:
-- Displays above the navbar
-- Shows translated text for both English and Swedish
-- Has a subtle gradient background matching the site theme
-- Can be dismissed with a close button (stores preference in localStorage)
+Sample translations:
+- "Home" -> "Hjem"
+- "Shop" -> "Butikk"  
+- "Shipping" -> "Frakt"
+- "New stock has arrived!" -> "Nytt lager har ankommet!"
 
-```text
-+------------------------------------------------------------------+
-| 🎉 New stock arrived! Delivered within a day in Sweden  |  ✕    |
-+------------------------------------------------------------------+
-```
-
-**Features:**
-- Primary/accent color gradient background
-- White text with a sparkle/package icon
-- Close button to dismiss (optional)
-- Responsive design for mobile
-
-#### 2. Update `src/App.tsx`
-
-Add the PromoBanner component above the Navbar in the layout structure:
+#### 2. Update i18n Config: `src/i18n/config.ts`
+- Import the new Norwegian translation file
+- Add `no` to resources and supportedLngs array
 
 ```text
-<div className="min-h-screen flex flex-col">
-  <PromoBanner />     ← NEW
-  <Navbar />
-  <main>...</main>
-  <Footer />
-</div>
+resources: {
+  en: { translation: en },
+  sv: { translation: sv },
+  no: { translation: no }  // NEW
+},
+supportedLngs: ['en', 'sv', 'no']  // Updated
 ```
 
-#### 3. Update Translation Files
+#### 3. Update Language Switcher: `src/components/LanguageSwitcher.tsx`
+Convert from a simple toggle button to a dropdown menu supporting three languages:
 
-**`src/i18n/locales/en.json`** - Add new banner translations:
-```json
-"banner": {
-  "newStock": "🎉 New stock has arrived! Delivered within a day in Sweden"
-}
+```text
++------------------+
+| EN | SV | NO    |  <- Language options
++------------------+
 ```
 
-**`src/i18n/locales/sv.json`** - Add Swedish translations:
-```json
-"banner": {
-  "newStock": "🎉 Nya lager har anlänt! Levereras inom en dag i Sverige"
-}
-```
+Changes:
+- Use a Popover/DropdownMenu component for language selection
+- Show current language with a globe icon
+- Display all three options with language names
+- Handle route switching for `/`, `/sv/*`, and `/no/*` paths
 
-### Design Details
+#### 4. Update Locale Handler: `src/components/LocaleHandler.tsx`
+- Add detection for `/no` route prefix
+- Sync i18n language with Norwegian routes
 
-| Aspect | Value |
-|--------|-------|
-| Background | Primary gradient or accent color |
-| Text Color | White |
-| Height | ~36-40px |
-| Position | Fixed/sticky at very top, above navbar |
-| Font Size | Small (text-sm) |
-| Icon | Sparkle, Package, or party emoji |
+#### 5. Update SEO Component: `src/components/SEOHead.tsx`
+- Add Norwegian URL generation
+- Include `hreflang="no"` tag
+- Update locale alternates for Open Graph
 
-### Result
+#### 6. Update Routes: `src/App.tsx`
+Add all Norwegian route variants:
+- `/no` -> Home
+- `/no/shop` -> Shop
+- `/no/blog` -> Blog
+- `/no/blog/[slug]` -> Blog posts
+- `/no/about` -> About
+- `/no/contact` -> Contact
+- `/no/shipping` -> Shipping
+- `/no/partners` -> Partners
+- `/no/order-success` -> Order Success
+- `/no/guest-order-lookup` -> Guest Order Lookup
+- `/no/cart` -> Cart
 
-Users visiting the site will see a subtle but noticeable banner at the very top announcing the new stock and fast Sweden delivery, creating urgency and highlighting fast fulfillment.
+#### 7. Update Sitemap: `public/sitemap.xml`
+Add Norwegian pages with proper hreflang attributes:
+- Add `hreflang="no"` links to all existing URL entries
+- Add new `/no/*` URL entries with cross-language references
 
+---
+
+### Technical Details
+
+| Component | Current | After Change |
+|-----------|---------|--------------|
+| Languages | 2 (en, sv) | 3 (en, sv, no) |
+| Route prefixes | `/`, `/sv` | `/`, `/sv`, `/no` |
+| Switcher UI | Toggle button | Dropdown menu |
+| Translation files | 2 | 3 |
+
+### Language Mapping
+| English | Swedish | Norwegian |
+|---------|---------|-----------|
+| Home | Hem | Hjem |
+| Shop | Butik | Butikk |
+| Blog | Guider & Kunskap | Guider & Kunnskap |
+| Shipping | Frakt | Frakt |
+| Track Order | Spara Order | Spor Bestilling |
+| About | Om Oss | Om Oss |
+| Contact | Kontakt | Kontakt |
+
+### Scope
+This is a significant change involving:
+- 1 new translation file (~674 lines)
+- Updates to 6 existing files
+- 14 new route definitions
+- Updated sitemap with ~40 new hreflang entries
