@@ -7,7 +7,12 @@ const Footer = () => {
   const location = useLocation();
   
   // Get locale prefix for links
-  const localePrefix = location.pathname.startsWith('/sv') ? '/sv' : '';
+  const getLocalePrefix = () => {
+    if (location.pathname.startsWith('/sv')) return '/sv';
+    if (location.pathname.startsWith('/no')) return '/no';
+    return '';
+  };
+  const localePrefix = getLocalePrefix();
 
   const getLocalizedHref = (href: string) => {
     if (href === '/') {
