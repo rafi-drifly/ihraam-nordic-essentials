@@ -16,7 +16,12 @@ const Navbar = () => {
   const { t, i18n } = useTranslation();
 
   // Get locale prefix for links
-  const localePrefix = location.pathname.startsWith('/sv') ? '/sv' : '';
+  const getLocalePrefix = () => {
+    if (location.pathname.startsWith('/sv')) return '/sv';
+    if (location.pathname.startsWith('/no')) return '/no';
+    return '';
+  };
+  const localePrefix = getLocalePrefix();
 
   const handleCheckout = async () => {
     const cartItems = JSON.parse(localStorage.getItem('ihram-cart') || '[]');
@@ -61,7 +66,7 @@ const Navbar = () => {
   }
 
   const isActive = (path: string) => {
-    const currentPath = location.pathname.replace(/^\/sv/, '') || '/';
+    const currentPath = location.pathname.replace(/^\/(sv|no)/, '') || '/';
     return currentPath === path;
   };
 

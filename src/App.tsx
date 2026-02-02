@@ -70,6 +70,24 @@ const AppRoutes = () => (
     <Route path="/sv/order-success" element={<OrderSuccess />} />
     <Route path="/sv/guest-order-lookup" element={<GuestOrderLookup />} />
     <Route path="/sv/cart" element={<Cart />} />
+    {/* Norwegian routes */}
+    <Route path="/no" element={<Home />} />
+    <Route path="/no/shop" element={<Shop />} />
+    <Route path="/no/blog" element={<Blog />} />
+    <Route path="/no/blog/how-to-wear-ihram" element={<BlogPost />} />
+    <Route path="/no/blog/sunnah-acts-before-ihram" element={<SunnahActsBlog />} />
+    <Route path="/no/blog/umrah-preparation-checklist" element={<UmrahChecklistBlog />} />
+    <Route path="/no/blog/common-mistakes-ihram" element={<IhramMistakesBlog />} />
+    <Route path="/no/blog/essential-duas-umrah" element={<UmrahDuasBlog />} />
+    <Route path="/no/blog/spiritual-meaning-ihram" element={<IhramSpiritualMeaningBlog />} />
+    <Route path="/no/blog/:slug" element={<BlogPost />} />
+    <Route path="/no/about" element={<About />} />
+    <Route path="/no/contact" element={<Contact />} />
+    <Route path="/no/shipping" element={<Shipping />} />
+    <Route path="/no/partners" element={<Partners />} />
+    <Route path="/no/order-success" element={<OrderSuccess />} />
+    <Route path="/no/guest-order-lookup" element={<GuestOrderLookup />} />
+    <Route path="/no/cart" element={<Cart />} />
     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
     <Route path="*" element={<NotFound />} />
   </Routes>
