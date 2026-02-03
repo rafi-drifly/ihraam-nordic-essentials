@@ -51,11 +51,24 @@ serve(async (req) => {
       const userId = session.metadata?.user_id || null;
       const totalQuantity = parseInt(session.metadata?.total_quantity || "1", 10);
       const shippingRatePerItem = parseFloat(session.metadata?.shipping_rate_per_item || SHIPPING_RATE_PER_ITEM.toString());
+      const donationAmount = parseFloat(session.metadata?.donation_amount || "0");
+      const isStandaloneDonation = session.metadata?.standalone_donation === "true";
       
       // Calculate shipping cost based on quantity
       const shippingCost = shippingRatePerItem * totalQuantity;
       console.log("Calculated shipping cost:", shippingCost, "EUR for", totalQuantity, "items at", shippingRatePerItem, "EUR/item");
+      console.log("Donation amount:", donationAmount);
       
+      // Skip order creation for standalone donations (no items)
+      if (isStandaloneDonation) {
+        console.log("Standalone donation completed - no order to create");
+        // You could add donation tracking here if desired
+        return new Response(JSON.stringify({ received: true, type: "standalone_donation" }), {
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+          status: 200,
+        });
+      }
+
       if (!itemsJson) {
         console.error("No items found in session metadata");
         return new Response("No items found", { status: 400 });
@@ -92,14 +105,14 @@ serve(async (req) => {
         throw productsError;
       }
 
-      // Calculate total amount (subtotal + shipping)
+      // Calculate total amount (subtotal + shipping + donation)
       const subtotal = items.reduce((total: number, item: { id: string; quantity: number }) => {
         const product = products?.find(p => p.id === item.id);
         return total + (product ? product.price * item.quantity : 0);
       }, 0);
-      const totalAmount = subtotal + shippingCost;
+      const totalAmount = subtotal + shippingCost + donationAmount;
 
-      console.log("Order totals - Subtotal:", subtotal, "Shipping:", shippingCost, "Total:", totalAmount);
+      console.log("Order totals - Subtotal:", subtotal, "Shipping:", shippingCost, "Donation:", donationAmount, "Total:", totalAmount);
 
       // Create order
       const { data: order, error: orderError } = await supabaseClient
@@ -112,7 +125,8 @@ serve(async (req) => {
           status: 'paid',
           shipping_address: shippingAddress,
           order_number: `ORD-${Date.now()}`,
-          lookup_token: crypto.randomUUID()
+          lookup_token: crypto.randomUUID(),
+          donation_amount: donationAmount,
         })
         .select()
         .single();

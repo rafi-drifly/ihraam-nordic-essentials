@@ -63,6 +63,7 @@ export type Database = {
         Row: {
           created_at: string
           currency: string
+          donation_amount: number | null
           guest_email: string | null
           id: string
           lookup_token: string | null
@@ -77,6 +78,7 @@ export type Database = {
         Insert: {
           created_at?: string
           currency?: string
+          donation_amount?: number | null
           guest_email?: string | null
           id?: string
           lookup_token?: string | null
@@ -91,6 +93,7 @@ export type Database = {
         Update: {
           created_at?: string
           currency?: string
+          donation_amount?: number | null
           guest_email?: string | null
           id?: string
           lookup_token?: string | null

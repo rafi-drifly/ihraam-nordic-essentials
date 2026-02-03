@@ -709,5 +709,65 @@
     "shippingAddress": "Leveringsadresse",
     "items": "Bestilte Varer",
     "trackAnother": "Spor En Annen Bestilling"
+  },
+  "cart": {
+    "title": "Handlekurv",
+    "continueShopping": "Fortsett å Handle",
+    "empty": "Handlekurven din er tom",
+    "emptyDesc": "Legg til produkter i handlekurven for å komme i gang.",
+    "startShopping": "Begynn å Handle",
+    "orderSummary": "Ordresammendrag",
+    "items": "Artikler ({{count}})",
+    "shipping": "Frakt",
+    "total": "Totalt",
+    "checkout": "Gå til Kassen"
+  },
+  "donation": {
+    "pageTitle": "Støtt Vårt Oppdrag",
+    "seoTitle": "Støtt Vårt Oppdrag | Pure Ihram",
+    "seoDescription": "Støtt Pure Ihrams oppdrag om å tjene pilegrimer, støtte moskeer og tilby rimelig Ihram gjennom frivillige donasjoner.",
+    "hero": {
+      "title": "Støtt Vårt Oppdrag",
+      "subtitle": "Hjelp oss å holde Ihram rimelig og tilgjengelig for alle pilegrimer"
+    },
+    "why": {
+      "affordable": "Hold Ihram Rimelig",
+      "affordableDesc": "Din donasjon hjelper oss å opprettholde lave priser slik at hver pilegrim har råd til kvalitets-Ihram for sin hellige reise.",
+      "masjids": "Støtt Moskeer",
+      "masjidsDesc": "Vi samarbeider med moskeer for å tilby utdanningsmateriale og støtte deres fellesskap.",
+      "education": "Islamsk Utdanning",
+      "educationDesc": "Donasjoner finansierer gratis utdanningsinnhold om Hajj, Umrah og riktig pilegrimspraksis."
+    },
+    "transparency": "Donasjoner er helt frivillige og ikke nødvendige for kjøp. 100% av donasjonene går til vårt oppdrag om å tjene det muslimske samfunnet.",
+    "chooseAmount": "Velg Donasjonsbeløp",
+    "minAmount": "Minimumsdonasjon er €1",
+    "amounts": {
+      "custom": "Egendefinert",
+      "customPlaceholder": "Skriv inn beløp"
+    },
+    "cta": "Doner Nå",
+    "quote": "\"Eksempelet på de som bruker sin rikdom på Allahs vei er som et frø som vokser syv aks; i hvert aks er det hundre korn.\"",
+    "quoteCite": "— Koranen 2:261",
+    "checkout": {
+      "title": "Støtt Vårt Oppdrag (Valgfritt)",
+      "subtitle": "Hjelp oss å holde Ihram rimelig for alle",
+      "remove": "Fjern donasjon",
+      "lineItem": "Frivillig Donasjon",
+      "thankYou": "Takk! Din donasjon på €{{amount}} vil støtte vårt oppdrag."
+    },
+    "success": {
+      "title": "Takk for Din Støtte!",
+      "subtitle": "Din generøsitet gjør en forskjell",
+      "message": "Din donasjon vil hjelpe oss å holde Ihram rimelig, støtte moskeer og tilby islamsk utdanningsinnhold for pilegrimer over hele verden.",
+      "hadith": "\"De beste av mennesker er de som er mest nyttige for folk.\"",
+      "hadithCite": "— Al-Mu'jam al-Awsat",
+      "impact": "Måtte Allah akseptere din sadaqah og multiplisere din belønning.",
+      "browseProducts": "Bla Gjennom Produkter",
+      "backHome": "Tilbake til Hjem"
+    }
+  },
+  "common": {
+    "error": "Feil",
+    "loading": "Laster..."
   }
 }

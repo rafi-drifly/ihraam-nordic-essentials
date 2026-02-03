@@ -28,6 +28,8 @@ import Partners from "./pages/Partners";
 import OrderSuccess from "./pages/OrderSuccess";
 import GuestOrderLookup from "./pages/GuestOrderLookup";
 import Cart from "./pages/Cart";
+import SupportOurMission from "./pages/SupportOurMission";
+import DonationSuccess from "./pages/DonationSuccess";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -52,6 +54,8 @@ const AppRoutes = () => (
     <Route path="/order-success" element={<OrderSuccess />} />
     <Route path="/guest-order-lookup" element={<GuestOrderLookup />} />
     <Route path="/cart" element={<Cart />} />
+    <Route path="/support-our-mission" element={<SupportOurMission />} />
+    <Route path="/donation-success" element={<DonationSuccess />} />
     {/* Swedish routes */}
     <Route path="/sv" element={<Home />} />
     <Route path="/sv/shop" element={<Shop />} />
@@ -70,6 +74,8 @@ const AppRoutes = () => (
     <Route path="/sv/order-success" element={<OrderSuccess />} />
     <Route path="/sv/guest-order-lookup" element={<GuestOrderLookup />} />
     <Route path="/sv/cart" element={<Cart />} />
+    <Route path="/sv/support-our-mission" element={<SupportOurMission />} />
+    <Route path="/sv/donation-success" element={<DonationSuccess />} />
     {/* Norwegian routes */}
     <Route path="/no" element={<Home />} />
     <Route path="/no/shop" element={<Shop />} />
@@ -88,6 +94,8 @@ const AppRoutes = () => (
     <Route path="/no/order-success" element={<OrderSuccess />} />
     <Route path="/no/guest-order-lookup" element={<GuestOrderLookup />} />
     <Route path="/no/cart" element={<Cart />} />
+    <Route path="/no/support-our-mission" element={<SupportOurMission />} />
+    <Route path="/no/donation-success" element={<DonationSuccess />} />
     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
     <Route path="*" element={<NotFound />} />
   </Routes>
