@@ -1,36 +1,86 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useCart } from "@/hooks/useCart";
 import { ShoppingCart, ArrowLeft, Minus, Plus, Trash2 } from "lucide-react";
 import { calculateShipping, SHIPPING_RATES } from "@/lib/shipping";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
+import DonationSection from "@/components/shop/DonationSection";
 
 const Cart = () => {
-  const { items, updateQuantity, removeItem, getTotalItems, getTotalPrice } = useCart();
+  const { t } = useTranslation();
+  const location = useLocation();
+  const { toast } = useToast();
+  const { items, updateQuantity, removeItem, getTotalItems, getTotalPrice, clearCart } = useCart();
+  const [selectedDonation, setSelectedDonation] = useState(0);
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
+
+  const getLocalePrefix = () => {
+    if (location.pathname.startsWith('/sv')) return '/sv';
+    if (location.pathname.startsWith('/no')) return '/no';
+    return '';
+  };
+  const localePrefix = getLocalePrefix();
+
+  const getTotalWithDonation = () => {
+    return getTotalPrice() + calculateShipping(getTotalItems()) + selectedDonation;
+  };
+
+  const handleCheckout = async () => {
+    if (items.length === 0 || checkoutLoading) return;
+    setCheckoutLoading(true);
+    try {
+      const checkoutItems = items.map(item => ({ id: item.id, quantity: item.quantity }));
+      const { data, error } = await supabase.functions.invoke('create-checkout', {
+        body: { 
+          items: checkoutItems,
+          donation: selectedDonation > 0 ? selectedDonation : undefined
+        }
+      });
+      if (error) throw error;
+      if (data?.url) {
+        window.location.href = data.url;
+      } else {
+        throw new Error("No checkout URL received");
+      }
+    } catch (error) {
+      console.error('Error creating checkout:', error);
+      toast({
+        title: t('common.error'),
+        description: "Failed to create checkout session. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setCheckoutLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen py-8">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-4 mb-8">
-          <Link to="/shop">
+          <Link to={`${localePrefix}/shop`}>
             <Button variant="outline" size="sm">
               <ArrowLeft className="h-4 w-4 mr-2" />
-              Continue Shopping
+              {t('cart.continueShopping')}
             </Button>
           </Link>
-          <h1 className="text-3xl font-bold">Shopping Cart</h1>
+          <h1 className="text-3xl font-bold">{t('cart.title')}</h1>
         </div>
 
         {items.length === 0 ? (
           <Card>
             <CardContent className="text-center py-12">
               <ShoppingCart className="h-16 w-16 mx-auto mb-4 text-muted-foreground opacity-50" />
-              <h2 className="text-xl font-semibold mb-2">Your cart is empty</h2>
+              <h2 className="text-xl font-semibold mb-2">{t('cart.empty')}</h2>
               <p className="text-muted-foreground mb-6">
-                Add some items to your cart to get started.
+                {t('cart.emptyDesc')}
               </p>
-              <Link to="/shop">
-                <Button>Start Shopping</Button>
+              <Link to={`${localePrefix}/shop`}>
+                <Button>{t('cart.startShopping')}</Button>
               </Link>
             </CardContent>
           </Card>
@@ -85,33 +135,48 @@ const Cart = () => {
             </div>
 
             {/* Order Summary */}
-            <div className="lg:col-span-1">
+            <div className="lg:col-span-1 space-y-4">
               <Card>
                 <CardHeader>
-                  <CardTitle>Order Summary</CardTitle>
+                  <CardTitle>{t('cart.orderSummary')}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex justify-between">
-                    <span>Items ({getTotalItems()})</span>
+                    <span>{t('cart.items', { count: getTotalItems() })}</span>
                     <span>{getTotalPrice().toFixed(2)}€</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Shipping ({getTotalItems()} × €{SHIPPING_RATES.sweden})</span>
+                    <span>{t('cart.shipping')} ({getTotalItems()} × €{SHIPPING_RATES.sweden})</span>
                     <span>{calculateShipping(getTotalItems()).toFixed(2)}€</span>
                   </div>
+                  {selectedDonation > 0 && (
+                    <div className="flex justify-between text-primary">
+                      <span>{t('donation.checkout.lineItem')}</span>
+                      <span>{selectedDonation.toFixed(2)}€</span>
+                    </div>
+                  )}
                   <div className="border-t pt-4">
                     <div className="flex justify-between items-center">
-                      <span className="font-semibold text-lg">Total:</span>
-                      <span className="font-bold text-lg">{(getTotalPrice() + calculateShipping(getTotalItems())).toFixed(2)}€</span>
+                      <span className="font-semibold text-lg">{t('cart.total')}:</span>
+                      <span className="font-bold text-lg">{getTotalWithDonation().toFixed(2)}€</span>
                     </div>
                   </div>
-                  <Link to="/shop">
-                    <Button className="w-full" size="lg">
-                      Proceed to Checkout
-                    </Button>
-                  </Link>
+                  <Button 
+                    className="w-full bg-gradient-primary hover:opacity-90" 
+                    size="lg"
+                    onClick={handleCheckout}
+                    disabled={checkoutLoading}
+                  >
+                    {checkoutLoading ? t('common.loading') : t('cart.checkout')}
+                  </Button>
                 </CardContent>
               </Card>
+
+              {/* Donation Section */}
+              <DonationSection 
+                selectedDonation={selectedDonation}
+                onDonationChange={setSelectedDonation}
+              />
             </div>
           </div>
         )}

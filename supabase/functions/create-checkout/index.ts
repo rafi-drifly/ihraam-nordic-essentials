@@ -12,6 +12,7 @@ interface CheckoutRequest {
     id: string;
     quantity: number;
   }>;
+  donation?: number; // Optional donation amount in EUR
 }
 
 // Shipping rates per item in cents by region
@@ -36,12 +37,13 @@ serve(async (req) => {
       apiVersion: "2025-08-27.basil",
     });
 
-    const { items }: CheckoutRequest = await req.json();
-    console.log("Checkout request:", { items });
+    const { items, donation }: CheckoutRequest = await req.json();
+    console.log("Checkout request:", { items, donation });
 
     // Calculate total quantity for shipping
     const totalQuantity = items.reduce((sum, item) => sum + item.quantity, 0);
     console.log("Total quantity for shipping:", totalQuantity);
+    console.log("Donation amount:", donation || 0);
 
     // Get user if authenticated (optional for guest checkout)
     const authHeader = req.headers.get("Authorization");
@@ -121,6 +123,22 @@ serve(async (req) => {
 
     console.log("Total shipping:", (SHIPPING_RATES_CENTS.sweden / 100) * totalQuantity, "EUR for", totalQuantity, "items");
 
+    // Add optional donation as a separate line item
+    if (donation && donation > 0) {
+      lineItems.push({
+        price_data: {
+          currency: 'eur',
+          product_data: {
+            name: 'Voluntary Donation – Support Our Mission',
+            description: 'Thank you for supporting Pure Ihram\'s mission',
+          },
+          unit_amount: Math.round(donation * 100), // Convert to cents
+        },
+        quantity: 1,
+      });
+      console.log("Donation added:", donation, "EUR");
+    }
+
     // Create checkout session with shipping as line item
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
@@ -146,6 +164,8 @@ serve(async (req) => {
         items: JSON.stringify(items),
         total_quantity: totalQuantity.toString(),
         shipping_rate_per_item: (SHIPPING_RATES_CENTS.sweden / 100).toString(),
+        donation: donation && donation > 0 ? "true" : "false",
+        donation_amount: donation && donation > 0 ? donation.toString() : "0",
       },
     });
 

@@ -670,5 +670,65 @@
       "errorTitle": "Kunde Inte Skicka",
       "errorMessage": "Något gick fel. Försök igen eller kontakta oss direkt."
     }
+  },
+  "cart": {
+    "title": "Varukorg",
+    "continueShopping": "Fortsätt Handla",
+    "empty": "Din varukorg är tom",
+    "emptyDesc": "Lägg till produkter i varukorgen för att komma igång.",
+    "startShopping": "Börja Handla",
+    "orderSummary": "Ordersammanfattning",
+    "items": "Artiklar ({{count}})",
+    "shipping": "Frakt",
+    "total": "Totalt",
+    "checkout": "Gå till Kassan"
+  },
+  "donation": {
+    "pageTitle": "Stöd Vårt Uppdrag",
+    "seoTitle": "Stöd Vårt Uppdrag | Pure Ihram",
+    "seoDescription": "Stöd Pure Ihrams uppdrag att tjäna pilgrimer, stödja moskéer och tillhandahålla prisvärd Ihram genom frivilliga donationer.",
+    "hero": {
+      "title": "Stöd Vårt Uppdrag",
+      "subtitle": "Hjälp oss att hålla Ihram prisvärd och tillgänglig för alla pilgrimer"
+    },
+    "why": {
+      "affordable": "Håll Ihram Prisvärd",
+      "affordableDesc": "Din donation hjälper oss att hålla låga priser så att varje pilgrim har råd med kvalitets-Ihram för sin heliga resa.",
+      "masjids": "Stöd Moskéer",
+      "masjidsDesc": "Vi samarbetar med moskéer för att tillhandahålla utbildningsmaterial och stödja deras församlingar.",
+      "education": "Islamisk Utbildning",
+      "educationDesc": "Donationer finansierar gratis utbildningsinnehåll om Hajj, Umrah och korrekta pilgrimspraxis."
+    },
+    "transparency": "Donationer är helt frivilliga och krävs inte för köp. 100% av donationerna går till vårt uppdrag att tjäna det muslimska samhället.",
+    "chooseAmount": "Välj Ditt Donationsbelopp",
+    "minAmount": "Minsta donation är €1",
+    "amounts": {
+      "custom": "Valfritt",
+      "customPlaceholder": "Ange belopp"
+    },
+    "cta": "Donera Nu",
+    "quote": "\"Liknelsen för dem som spenderar sina ägodelar på Allahs väg är som ett frö som växer sju ax; i varje ax finns hundra korn.\"",
+    "quoteCite": "— Koranen 2:261",
+    "checkout": {
+      "title": "Stöd Vårt Uppdrag (Valfritt)",
+      "subtitle": "Hjälp oss att hålla Ihram prisvärd för alla",
+      "remove": "Ta bort donation",
+      "lineItem": "Frivillig Donation",
+      "thankYou": "Tack! Din donation på €{{amount}} kommer att stödja vårt uppdrag."
+    },
+    "success": {
+      "title": "Tack för Ditt Stöd!",
+      "subtitle": "Din generositet gör skillnad",
+      "message": "Din donation hjälper oss att hålla Ihram prisvärd, stödja moskéer och tillhandahålla islamiskt utbildningsinnehåll för pilgrimer runt om i världen.",
+      "hadith": "\"De bästa av människor är de som är mest nyttiga för människor.\"",
+      "hadithCite": "— Al-Mu'jam al-Awsat",
+      "impact": "Må Allah acceptera din sadaqah och multiplicera din belöning.",
+      "browseProducts": "Bläddra Produkter",
+      "backHome": "Tillbaka till Hem"
+    }
+  },
+  "common": {
+    "error": "Fel",
+    "loading": "Laddar..."
   }
 }

@@ -432,4 +432,36 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
+
+  <!-- Support Our Mission Pages -->
+  <url>
+    <loc>https://www.pureihram.com/support-our-mission</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/support-our-mission"/>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/support-our-mission"/>
+    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/support-our-mission"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/support-our-mission"/>
+    <lastmod>2025-02-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.pureihram.com/sv/support-our-mission</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/support-our-mission"/>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/support-our-mission"/>
+    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/support-our-mission"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/support-our-mission"/>
+    <lastmod>2025-02-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.pureihram.com/no/support-our-mission</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/support-our-mission"/>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/support-our-mission"/>
+    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/support-our-mission"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/support-our-mission"/>
+    <lastmod>2025-02-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>

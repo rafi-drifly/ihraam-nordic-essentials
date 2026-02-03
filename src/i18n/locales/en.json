@@ -670,5 +670,65 @@
       "errorTitle": "Failed to Send",
       "errorMessage": "Something went wrong. Please try again or contact us directly."
     }
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "continueShopping": "Continue Shopping",
+    "empty": "Your cart is empty",
+    "emptyDesc": "Add some items to your cart to get started.",
+    "startShopping": "Start Shopping",
+    "orderSummary": "Order Summary",
+    "items": "Items ({{count}})",
+    "shipping": "Shipping",
+    "total": "Total",
+    "checkout": "Proceed to Checkout"
+  },
+  "donation": {
+    "pageTitle": "Support Our Mission",
+    "seoTitle": "Support Our Mission | Pure Ihram",
+    "seoDescription": "Support Pure Ihram's mission to serve pilgrims, support masjids, and provide affordable Ihram through voluntary donations.",
+    "hero": {
+      "title": "Support Our Mission",
+      "subtitle": "Help us keep Ihram affordable and accessible for all pilgrims"
+    },
+    "why": {
+      "affordable": "Keep Ihram Affordable",
+      "affordableDesc": "Your donation helps us maintain low prices so every pilgrim can afford quality Ihram for their sacred journey.",
+      "masjids": "Support Masjids",
+      "masjidsDesc": "We partner with mosques to provide educational materials and support their communities.",
+      "education": "Islamic Education",
+      "educationDesc": "Donations fund free educational content about Hajj, Umrah, and proper pilgrimage practices."
+    },
+    "transparency": "Donations are completely voluntary and not required to purchase. 100% of donations go toward our mission to serve the Muslim community.",
+    "chooseAmount": "Choose Your Donation Amount",
+    "minAmount": "Minimum donation is €1",
+    "amounts": {
+      "custom": "Custom",
+      "customPlaceholder": "Enter amount"
+    },
+    "cta": "Donate Now",
+    "quote": "\"The example of those who spend their wealth in the way of Allah is like a seed which grows seven spikes; in each spike is a hundred grains.\"",
+    "quoteCite": "— Qur'an 2:261",
+    "checkout": {
+      "title": "Support Our Mission (Optional)",
+      "subtitle": "Help us keep Ihram affordable for all",
+      "remove": "Remove donation",
+      "lineItem": "Voluntary Donation",
+      "thankYou": "Thank you! Your €{{amount}} donation will help support our mission."
+    },
+    "success": {
+      "title": "Thank You for Your Support!",
+      "subtitle": "Your generosity makes a difference",
+      "message": "Your donation will help us keep Ihram affordable, support mosques, and provide Islamic educational content for pilgrims around the world.",
+      "hadith": "\"The best of people are those who are most beneficial to people.\"",
+      "hadithCite": "— Al-Mu'jam al-Awsat",
+      "impact": "May Allah accept your sadaqah and multiply your reward.",
+      "browseProducts": "Browse Products",
+      "backHome": "Back to Home"
+    }
+  },
+  "common": {
+    "error": "Error",
+    "loading": "Loading..."
   }
 }
