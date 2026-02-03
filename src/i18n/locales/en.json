@@ -681,7 +681,8 @@
     "items": "Items ({{count}})",
     "shipping": "Shipping",
     "total": "Total",
-    "checkout": "Proceed to Checkout"
+    "checkout": "Proceed to Checkout",
+    "viewCart": "View Cart"
   },
   "donation": {
     "pageTitle": "Support Our Mission",

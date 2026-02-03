@@ -684,7 +684,9 @@
     "shippingNote": "Beregnes ved betaling",
     "total": "Totalt",
     "checkout": "Gå til Betaling",
-    "continueShopping": "Fortsett å Handle"
+    "continueShopping": "Fortsett å Handle",
+    "viewCart": "Se Handlekurv",
+    "orderSummary": "Ordresammendrag"
   },
   "orderSuccess": {
     "title": "Bestilling Bekreftet!",

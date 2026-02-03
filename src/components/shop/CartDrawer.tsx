@@ -4,7 +4,8 @@ import { ShoppingCart, Minus, Plus, Trash2 } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { Badge } from "@/components/ui/badge";
 import { calculateShipping, SHIPPING_RATES } from "@/lib/shipping";
-
+import { Link, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 interface CartDrawerProps {
   onCheckout: () => void;
   checkingOut?: boolean;
@@ -12,6 +13,15 @@ interface CartDrawerProps {
 
 export const CartDrawer = ({ onCheckout, checkingOut = false }: CartDrawerProps) => {
   const { items, updateQuantity, removeItem, getTotalItems, getTotalPrice } = useCart();
+  const { t } = useTranslation();
+  const location = useLocation();
+  
+  const getLocalePrefix = () => {
+    if (location.pathname.startsWith('/sv')) return '/sv';
+    if (location.pathname.startsWith('/no')) return '/no';
+    return '';
+  };
+  const localePrefix = getLocalePrefix();
 
   return (
     <Sheet>
@@ -101,13 +111,22 @@ export const CartDrawer = ({ onCheckout, checkingOut = false }: CartDrawerProps)
                   <span className="font-semibold">Total:</span>
                   <span className="font-bold text-lg">{(getTotalPrice() + calculateShipping(getTotalItems())).toFixed(2)}€</span>
                 </div>
+                <Link to={`${localePrefix}/cart`} className="block w-full mb-2">
+                  <Button 
+                    variant="outline"
+                    className="w-full"
+                    size="lg"
+                  >
+                    {t('cart.viewCart', 'View Cart')}
+                  </Button>
+                </Link>
                 <Button 
                   onClick={onCheckout} 
                   className="w-full bg-gradient-primary hover:opacity-90"
                   size="lg"
                   disabled={checkingOut}
                 >
-                  {checkingOut ? "Creating Checkout..." : "Proceed to Checkout"}
+                  {checkingOut ? t('common.loading', 'Creating Checkout...') : t('cart.checkout', 'Proceed to Checkout')}
                 </Button>
               </div>
             </>
