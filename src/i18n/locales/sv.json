@@ -681,7 +681,8 @@
     "items": "Artiklar ({{count}})",
     "shipping": "Frakt",
     "total": "Totalt",
-    "checkout": "Gå till Kassan"
+    "checkout": "Gå till Kassan",
+    "viewCart": "Visa Varukorg"
   },
   "donation": {
     "pageTitle": "Stöd Vårt Uppdrag",
