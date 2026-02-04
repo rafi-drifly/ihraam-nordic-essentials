@@ -7,7 +7,7 @@
     "shop": "Shop",
     "blog": "Guides & Knowledge",
     "shipping": "Shipping",
-    "trackOrder": "Track Order",
+    "supportMission": "Support Our Mission",
     "about": "About",
     "contact": "Contact"
   },
@@ -29,6 +29,7 @@
       "blog": "Guides & Knowledge",
       "shipping": "Shipping & Delivery",
       "partners": "For Mosques & Agencies",
+      "supportMission": "Support Our Mission",
       "about": "About Us",
       "contact": "Contact"
     },

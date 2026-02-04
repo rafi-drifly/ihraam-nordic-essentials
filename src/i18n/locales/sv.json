@@ -7,7 +7,7 @@
     "shop": "Butik",
     "blog": "Guider & Kunskap",
     "shipping": "Frakt",
-    "trackOrder": "Spåra Order",
+    "supportMission": "Stöd vårt uppdrag",
     "about": "Om Oss",
     "contact": "Kontakt"
   },
@@ -29,6 +29,7 @@
       "blog": "Guider & Kunskap",
       "shipping": "Frakt & Leverans",
       "partners": "För Moskéer & Byråer",
+      "supportMission": "Stöd vårt uppdrag",
       "about": "Om Oss",
       "contact": "Kontakt"
     },
