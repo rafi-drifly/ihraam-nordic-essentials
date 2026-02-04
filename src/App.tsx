@@ -12,6 +12,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import LocaleHandler from "@/components/LocaleHandler";
 import SEOHead from "@/components/SEOHead";
 import PromoBanner from "@/components/PromoBanner";
+import MobileDonationBar from "@/components/MobileDonationBar";
 import Home from "./pages/Home";
 import Shop from "./pages/Shop";
 import Blog from "./pages/Blog";
@@ -30,6 +31,9 @@ import GuestOrderLookup from "./pages/GuestOrderLookup";
 import Cart from "./pages/Cart";
 import SupportOurMission from "./pages/SupportOurMission";
 import DonationSuccess from "./pages/DonationSuccess";
+import DonationCancel from "./pages/DonationCancel";
+import Transparency from "./pages/Transparency";
+import MosqueSupport from "./pages/MosqueSupport";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -56,6 +60,9 @@ const AppRoutes = () => (
     <Route path="/cart" element={<Cart />} />
     <Route path="/support-our-mission" element={<SupportOurMission />} />
     <Route path="/donation-success" element={<DonationSuccess />} />
+    <Route path="/donation-cancel" element={<DonationCancel />} />
+    <Route path="/transparency" element={<Transparency />} />
+    <Route path="/mosque-support" element={<MosqueSupport />} />
     {/* Swedish routes */}
     <Route path="/sv" element={<Home />} />
     <Route path="/sv/shop" element={<Shop />} />
@@ -76,6 +83,9 @@ const AppRoutes = () => (
     <Route path="/sv/cart" element={<Cart />} />
     <Route path="/sv/support-our-mission" element={<SupportOurMission />} />
     <Route path="/sv/donation-success" element={<DonationSuccess />} />
+    <Route path="/sv/donation-cancel" element={<DonationCancel />} />
+    <Route path="/sv/transparency" element={<Transparency />} />
+    <Route path="/sv/mosque-support" element={<MosqueSupport />} />
     {/* Norwegian routes */}
     <Route path="/no" element={<Home />} />
     <Route path="/no/shop" element={<Shop />} />
@@ -96,6 +106,9 @@ const AppRoutes = () => (
     <Route path="/no/cart" element={<Cart />} />
     <Route path="/no/support-our-mission" element={<SupportOurMission />} />
     <Route path="/no/donation-success" element={<DonationSuccess />} />
+    <Route path="/no/donation-cancel" element={<DonationCancel />} />
+    <Route path="/no/transparency" element={<Transparency />} />
+    <Route path="/no/mosque-support" element={<MosqueSupport />} />
     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
     <Route path="*" element={<NotFound />} />
   </Routes>
@@ -116,10 +129,11 @@ const App = () => (
               <div className="min-h-screen flex flex-col">
                 <PromoBanner />
                 <Navbar />
-                <main className="flex-1">
+                <main className="flex-1 pb-20 md:pb-0">
                   <AppRoutes />
                 </main>
                 <Footer />
+                <MobileDonationBar />
               </div>
             </BrowserRouter>
           </TooltipProvider>

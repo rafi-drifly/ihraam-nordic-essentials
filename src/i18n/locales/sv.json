@@ -8,6 +8,8 @@
     "blog": "Guider & Kunskap",
     "shipping": "Frakt",
     "supportMission": "Stöd vårt uppdrag",
+    "transparency": "Transparens",
+    "donate": "Donera",
     "about": "Om Oss",
     "contact": "Kontakt"
   },
@@ -690,18 +692,18 @@
     "seoTitle": "Stöd Vårt Uppdrag | Pure Ihram",
     "seoDescription": "Stöd Pure Ihrams uppdrag att tjäna pilgrimer, stödja moskéer och tillhandahålla prisvärd Ihram genom frivilliga donationer.",
     "hero": {
-      "title": "Stöd Vårt Uppdrag",
-      "subtitle": "Hjälp oss att hålla Ihram prisvärd och tillgänglig för alla pilgrimer"
+      "title": "Stöd Vårt Uppdrag (Amanah)",
+      "subtitle": "Vi håller Ihram prisvärd, stödjer moskéer och finansierar projekt för behövande globalt. Detta är folks pengar, och vi är ansvariga inför Allah (سبحانه وتعالى)."
     },
     "why": {
       "affordable": "Håll Ihram Prisvärd",
-      "affordableDesc": "Din donation hjälper oss att hålla låga priser så att varje pilgrim har råd med kvalitets-Ihram för sin heliga resa.",
-      "masjids": "Stöd Moskéer",
-      "masjidsDesc": "Vi samarbetar med moskéer för att tillhandahålla utbildningsmaterial och stödja deras församlingar.",
-      "education": "Islamisk Utbildning",
-      "educationDesc": "Donationer finansierar gratis utbildningsinnehåll om Hajj, Umrah och korrekta pilgrimspraxis."
+      "affordableDesc": "Donationer hjälper oss att hålla priserna tillgängliga och minska hinder för tillbedjan.",
+      "masjids": "Gratis Ihram till Moskéer",
+      "masjidsDesc": "Vi tillhandahåller Ihram till moskéer. Moskéer kan sälja dem och behålla pengarna för moskébehov och utveckling.",
+      "education": "Projekt för Behövande Världen Över",
+      "educationDesc": "Donationer stödjer verifierade projekt där människor lider över hela världen."
     },
-    "transparency": "Donationer är helt frivilliga och krävs inte för köp. 100% av donationerna går till vårt uppdrag att tjäna det muslimska samhället.",
+    "transparency": "Din donation stödjer vårt uppdrag och kan även täcka nödvändiga leveranskostnader som frakt/förpackning och Stripe-betalningsavgifter. Vi publicerar månatliga rapporter med en uppdelning.",
     "chooseAmount": "Välj Ditt Donationsbelopp",
     "minAmount": "Minsta donation är €1",
     "amounts": {
@@ -721,13 +723,123 @@
     "success": {
       "title": "Tack för Ditt Stöd!",
       "subtitle": "Din generositet gör skillnad",
-      "message": "Din donation hjälper oss att hålla Ihram prisvärd, stödja moskéer och tillhandahålla islamiskt utbildningsinnehåll för pilgrimer runt om i världen.",
+      "seoTitle": "Donation Lyckades | Pure Ihram",
+      "message": "Din donation hjälper oss att hålla Ihram prisvärd, stödja moskéer och ge hjälp till behövande runt om i världen.",
       "hadith": "\"De bästa av människor är de som är mest nyttiga för människor.\"",
       "hadithCite": "— Al-Mu'jam al-Awsat",
       "impact": "Må Allah acceptera din sadaqah och multiplicera din belöning.",
       "browseProducts": "Bläddra Produkter",
-      "backHome": "Tillbaka till Hem"
+      "backHome": "Tillbaka till Hem",
+      "viewTransparency": "Visa Transparens",
+      "whatNext": {
+        "title": "Vad händer nu?",
+        "step1": "Du kommer att få ett kvitto via e-post från Stripe.",
+        "step2": "Din donation kommer att inkluderas i vår månatliga transparensrapport.",
+        "step3": "Vi kommer att använda ditt bidrag enligt våra uppdragsprioriteringar."
+      }
     }
+  },
+  "donationCancel": {
+    "seoTitle": "Donation Avbruten | Pure Ihram",
+    "title": "Donation Avbruten",
+    "subtitle": "Inga bekymmer — ditt kort debiterades inte.",
+    "message": "Om du ändrade dig är det helt okej. Donationer är frivilliga och det finns ingen press att bidra.",
+    "noCharge": "Din betalningsmetod debiterades inte. Du kan försöka igen när som helst.",
+    "tryAgain": "Försök Igen",
+    "browseProducts": "Bläddra Produkter",
+    "needHelp": {
+      "title": "Behöver du hjälp?",
+      "message": "Om du upplevde några problem eller har frågor, finns vi här för att hjälpa.",
+      "contactUs": "Kontakta oss →"
+    }
+  },
+  "transparency": {
+    "seoTitle": "Transparensdashboard | Pure Ihram",
+    "seoDescription": "Se våra månatliga donationsrapporter med fullständiga uppdelningar av hur medel används.",
+    "backToDonation": "Tillbaka till Donation",
+    "hero": {
+      "title": "Transparensdashboard",
+      "subtitle": "Vi tror på full ansvarighet. Här är exakt hur donationer används varje månad."
+    },
+    "summary": {
+      "totalReceived": "Totalt Mottaget",
+      "needyProjects": "Projekt för Behövande",
+      "mosqueProgram": "Mosképrogram",
+      "shipping": "Frakt",
+      "stripeFees": "Stripe-avgifter",
+      "operations": "Drift"
+    },
+    "reports": {
+      "title": "Månatliga Rapporter",
+      "verified": "Verifierad",
+      "received": "Mottaget",
+      "needy": "Projekt för Behövande",
+      "mosque": "Mosképrogram",
+      "shipping": "Frakt",
+      "stripe": "Stripe-avgifter",
+      "ops": "Drift",
+      "notes": "Anteckningar",
+      "download": "Ladda ner"
+    },
+    "amanah": {
+      "title": "Vårt Åtagande till Amanah",
+      "text": "Detta är folks pengar (Amanah). Vi är ansvariga inför Allah för varje öre. Vi strävar efter att vara transparenta, ansvarsfulla och redovisande i allt vi gör.",
+      "quote": "\"Sannerligen befaller Allah er att återlämna förtroenden till dem de tillhör.\" — Koranen 4:58"
+    }
+  },
+  "mosqueSupport": {
+    "seoTitle": "Moskéstödsprogram | Pure Ihram",
+    "seoDescription": "Begär gratis eller subventionerade Ihram-set för din moské eller islamiska center.",
+    "backToDonation": "Tillbaka till Donation",
+    "hero": {
+      "title": "Moskéstödsprogram",
+      "subtitle": "Vi levererar Ihram till moskéer (gratis eller subventionerat). Moskéer kan sälja dem och behålla intäkterna för moskébehov."
+    },
+    "howItWorks": {
+      "title": "Hur Det Fungerar",
+      "step1": {
+        "title": "Skicka Förfrågan",
+        "desc": "Fyll i formuläret med dina moskédetaljer"
+      },
+      "step2": {
+        "title": "Vi Granskar",
+        "desc": "Vi granskar och kontaktar dig inom 48 timmar"
+      },
+      "step3": {
+        "title": "Ta Emot Ihram",
+        "desc": "Sälj och behåll intäkterna för moskéutveckling"
+      }
+    },
+    "form": {
+      "title": "Begär Ihram för Din Moské",
+      "mosqueName": "Moské/Islamiskt Center Namn",
+      "mosqueNamePlaceholder": "t.ex. Islamiskt Center i Stockholm",
+      "countryCity": "Land/Stad",
+      "countryCityPlaceholder": "t.ex. Sverige, Stockholm",
+      "contactPerson": "Kontaktperson",
+      "contactPersonPlaceholder": "Ditt fullständiga namn",
+      "email": "E-post",
+      "emailPlaceholder": "moske@exempel.se",
+      "phone": "Telefonnummer",
+      "phonePlaceholder": "+46 70 123 4567",
+      "website": "Webbplats/Sociala Länkar (Valfritt)",
+      "websitePlaceholder": "https://...",
+      "estimatedNeed": "Uppskattat Behov",
+      "estimatedNeedPlaceholder": "Välj antal",
+      "sets": "set",
+      "notes": "Anteckningar (Valfritt)",
+      "notesPlaceholder": "Hur kommer intäkterna att stödja moskén?",
+      "submit": "Skicka Förfrågan",
+      "requiredFields": "Vänligen fyll i alla obligatoriska fält.",
+      "error": "Kunde inte skicka förfrågan. Vänligen försök igen."
+    },
+    "success": {
+      "title": "Förfrågan Skickad!",
+      "message": "Vi har tagit emot din förfrågan och kontaktar dig inom 48 timmar.",
+      "dua": "Må Allah välsigna din moské och gemenskap. Ameen.",
+      "backHome": "Tillbaka till Hem"
+    },
+    "trustNote": "Detta program finansieras av donationer. Vi prioriterar moskéer baserat på behov och tillgängliga medel."
   },
   "common": {
     "error": "Fel",
