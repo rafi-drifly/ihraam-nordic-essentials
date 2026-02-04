@@ -1,9 +1,9 @@
-import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation, Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Heart, ArrowRight, Home } from "lucide-react";
+import { Heart, ArrowRight, Home, Eye, CheckCircle } from "lucide-react";
 
 const DonationSuccess = () => {
   const { t } = useTranslation();
@@ -18,57 +18,92 @@ const DonationSuccess = () => {
   const localePrefix = getLocalePrefix();
 
   return (
-    <div className="min-h-screen py-12">
-      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-8">
-          <div className="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-green-100 mb-6">
-            <Heart className="h-10 w-10 text-green-600" />
-          </div>
-          <h1 className="text-3xl font-bold text-foreground mb-2">
-            {t('donation.success.title')}
-          </h1>
-          <p className="text-lg text-muted-foreground">
-            {t('donation.success.subtitle')}
-          </p>
-        </div>
+    <>
+      <Helmet>
+        <title>{t('donation.success.seoTitle')}</title>
+      </Helmet>
 
-        <Card className="mb-8">
-          <CardContent className="p-8 text-center">
-            <p className="text-muted-foreground mb-6">
-              {t('donation.success.message')}
-            </p>
-            
-            <div className="bg-accent/10 border border-accent/20 rounded-lg p-4 mb-6">
-              <blockquote className="text-sm italic text-muted-foreground">
-                {t('donation.success.hadith')}
-              </blockquote>
-              <cite className="text-xs text-muted-foreground block mt-2">
-                {t('donation.success.hadithCite')}
-              </cite>
+      <div className="min-h-screen py-12">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <div className="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-green-100 mb-6">
+              <Heart className="h-10 w-10 text-green-600" />
             </div>
-
-            <p className="text-sm text-muted-foreground">
-              {t('donation.success.impact')}
+            <h1 className="text-3xl font-bold text-foreground mb-2">
+              {t('donation.success.title')}
+            </h1>
+            <p className="text-lg text-muted-foreground">
+              {t('donation.success.subtitle')}
             </p>
-          </CardContent>
-        </Card>
+          </div>
 
-        <div className="flex gap-4 justify-center">
-          <Button asChild variant="outline">
-            <Link to={`${localePrefix}/shop`}>
-              <ArrowRight className="h-4 w-4 mr-2" />
-              {t('donation.success.browseProducts')}
-            </Link>
-          </Button>
-          <Button asChild className="bg-gradient-primary hover:opacity-90">
-            <Link to={`${localePrefix}/`}>
-              <Home className="h-4 w-4 mr-2" />
-              {t('donation.success.backHome')}
-            </Link>
-          </Button>
+          <Card className="mb-8">
+            <CardContent className="p-8">
+              <p className="text-muted-foreground mb-6 text-center">
+                {t('donation.success.message')}
+              </p>
+              
+              {/* What Happens Next */}
+              <div className="bg-primary/5 border border-primary/20 rounded-lg p-6 mb-6">
+                <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+                  <CheckCircle className="h-5 w-5 text-primary" />
+                  {t('donation.success.whatNext.title')}
+                </h3>
+                <ul className="space-y-3 text-sm text-muted-foreground">
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary font-medium">1.</span>
+                    {t('donation.success.whatNext.step1')}
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary font-medium">2.</span>
+                    {t('donation.success.whatNext.step2')}
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary font-medium">3.</span>
+                    {t('donation.success.whatNext.step3')}
+                  </li>
+                </ul>
+              </div>
+
+              {/* Hadith Quote */}
+              <div className="bg-accent/10 border border-accent/20 rounded-lg p-4 mb-6">
+                <blockquote className="text-sm italic text-muted-foreground text-center">
+                  {t('donation.success.hadith')}
+                </blockquote>
+                <cite className="text-xs text-muted-foreground block mt-2 text-center">
+                  {t('donation.success.hadithCite')}
+                </cite>
+              </div>
+
+              <p className="text-sm text-muted-foreground text-center">
+                {t('donation.success.impact')}
+              </p>
+            </CardContent>
+          </Card>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button asChild variant="outline">
+              <Link to={`${localePrefix}/transparency`}>
+                <Eye className="h-4 w-4 mr-2" />
+                {t('donation.success.viewTransparency')}
+              </Link>
+            </Button>
+            <Button asChild variant="outline">
+              <Link to={`${localePrefix}/shop`}>
+                <ArrowRight className="h-4 w-4 mr-2" />
+                {t('donation.success.browseProducts')}
+              </Link>
+            </Button>
+            <Button asChild className="bg-gradient-primary hover:opacity-90">
+              <Link to={`${localePrefix}/`}>
+                <Home className="h-4 w-4 mr-2" />
+                {t('donation.success.backHome')}
+              </Link>
+            </Button>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

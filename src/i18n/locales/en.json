@@ -8,6 +8,8 @@
     "blog": "Guides & Knowledge",
     "shipping": "Shipping",
     "supportMission": "Support Our Mission",
+    "transparency": "Transparency",
+    "donate": "Donate",
     "about": "About",
     "contact": "Contact"
   },
@@ -690,18 +692,18 @@
     "seoTitle": "Support Our Mission | Pure Ihram",
     "seoDescription": "Support Pure Ihram's mission to serve pilgrims, support masjids, and provide affordable Ihram through voluntary donations.",
     "hero": {
-      "title": "Support Our Mission",
-      "subtitle": "Help us keep Ihram affordable and accessible for all pilgrims"
+      "title": "Support Our Mission (Amanah)",
+      "subtitle": "We keep Ihrams affordable, support mosques, and fund needy projects globally. This is people's money, and we are answerable to Allah (سبحانه وتعالى)."
     },
     "why": {
       "affordable": "Keep Ihram Affordable",
-      "affordableDesc": "Your donation helps us maintain low prices so every pilgrim can afford quality Ihram for their sacred journey.",
-      "masjids": "Support Masjids",
-      "masjidsDesc": "We partner with mosques to provide educational materials and support their communities.",
-      "education": "Islamic Education",
-      "educationDesc": "Donations fund free educational content about Hajj, Umrah, and proper pilgrimage practices."
+      "affordableDesc": "Donations help us keep prices accessible and reduce barriers for worship.",
+      "masjids": "Free Ihrams to Mosques",
+      "masjidsDesc": "We provide Ihrams to mosques. Mosques can sell them and keep the money for mosque needs and development.",
+      "education": "Needy Projects Worldwide",
+      "educationDesc": "Donations support verified projects where people are suffering across the globe."
     },
-    "transparency": "Donations are completely voluntary and not required to purchase. 100% of donations go toward our mission to serve the Muslim community.",
+    "transparency": "Your donation supports our mission and may also cover essential delivery costs like shipping/packaging and Stripe payment processing fees. We publish monthly reports with a breakdown.",
     "chooseAmount": "Choose Your Donation Amount",
     "minAmount": "Minimum donation is €1",
     "amounts": {
@@ -721,13 +723,123 @@
     "success": {
       "title": "Thank You for Your Support!",
       "subtitle": "Your generosity makes a difference",
-      "message": "Your donation will help us keep Ihram affordable, support mosques, and provide Islamic educational content for pilgrims around the world.",
+      "seoTitle": "Donation Successful | Pure Ihram",
+      "message": "Your donation will help us keep Ihram affordable, support mosques, and provide assistance to those in need around the world.",
       "hadith": "\"The best of people are those who are most beneficial to people.\"",
       "hadithCite": "— Al-Mu'jam al-Awsat",
       "impact": "May Allah accept your sadaqah and multiply your reward.",
       "browseProducts": "Browse Products",
-      "backHome": "Back to Home"
+      "backHome": "Back to Home",
+      "viewTransparency": "View Transparency",
+      "whatNext": {
+        "title": "What happens next?",
+        "step1": "You will receive a receipt via email from Stripe.",
+        "step2": "Your donation will be included in our monthly transparency report.",
+        "step3": "We will use your contribution according to our mission priorities."
+      }
     }
+  },
+  "donationCancel": {
+    "seoTitle": "Donation Cancelled | Pure Ihram",
+    "title": "Donation Cancelled",
+    "subtitle": "No worries — your card was not charged.",
+    "message": "If you changed your mind, that's completely okay. Donations are voluntary and there is no pressure to contribute.",
+    "noCharge": "Your payment method was not charged. You can try again anytime.",
+    "tryAgain": "Try Again",
+    "browseProducts": "Browse Products",
+    "needHelp": {
+      "title": "Need help?",
+      "message": "If you experienced any issues or have questions, we're here to help.",
+      "contactUs": "Contact us →"
+    }
+  },
+  "transparency": {
+    "seoTitle": "Transparency Dashboard | Pure Ihram",
+    "seoDescription": "View our monthly donation reports with full breakdowns of how funds are used.",
+    "backToDonation": "Back to Donation",
+    "hero": {
+      "title": "Transparency Dashboard",
+      "subtitle": "We believe in full accountability. Here's exactly how donations are used each month."
+    },
+    "summary": {
+      "totalReceived": "Total Received",
+      "needyProjects": "Needy Projects",
+      "mosqueProgram": "Mosque Program",
+      "shipping": "Shipping",
+      "stripeFees": "Stripe Fees",
+      "operations": "Operations"
+    },
+    "reports": {
+      "title": "Monthly Reports",
+      "verified": "Verified",
+      "received": "Received",
+      "needy": "Needy Projects",
+      "mosque": "Mosque Program",
+      "shipping": "Shipping",
+      "stripe": "Stripe Fees",
+      "ops": "Operations",
+      "notes": "Notes",
+      "download": "Download"
+    },
+    "amanah": {
+      "title": "Our Commitment to Amanah",
+      "text": "This is people's money (Amanah). We are answerable to Allah for every cent. We strive to be transparent, responsible, and accountable in all that we do.",
+      "quote": "\"Indeed, Allah commands you to render trusts to whom they are due.\" — Qur'an 4:58"
+    }
+  },
+  "mosqueSupport": {
+    "seoTitle": "Mosque Support Program | Pure Ihram",
+    "seoDescription": "Request free or subsidized Ihram sets for your mosque or Islamic center.",
+    "backToDonation": "Back to Donation",
+    "hero": {
+      "title": "Mosque Support Program",
+      "subtitle": "We supply Ihrams to mosques (free or subsidized). Mosques can sell them and keep proceeds for mosque needs."
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "step1": {
+        "title": "Submit Request",
+        "desc": "Fill out the form with your mosque details"
+      },
+      "step2": {
+        "title": "We Review",
+        "desc": "We'll review and contact you within 48 hours"
+      },
+      "step3": {
+        "title": "Receive Ihrams",
+        "desc": "Sell and keep proceeds for mosque development"
+      }
+    },
+    "form": {
+      "title": "Request Ihrams for Your Mosque",
+      "mosqueName": "Mosque/Islamic Center Name",
+      "mosqueNamePlaceholder": "e.g., Islamic Center of Stockholm",
+      "countryCity": "Country/City",
+      "countryCityPlaceholder": "e.g., Sweden, Stockholm",
+      "contactPerson": "Contact Person",
+      "contactPersonPlaceholder": "Your full name",
+      "email": "Email",
+      "emailPlaceholder": "mosque@example.com",
+      "phone": "Phone Number",
+      "phonePlaceholder": "+46 70 123 4567",
+      "website": "Website/Social Link (Optional)",
+      "websitePlaceholder": "https://...",
+      "estimatedNeed": "Estimated Need",
+      "estimatedNeedPlaceholder": "Select quantity",
+      "sets": "sets",
+      "notes": "Notes (Optional)",
+      "notesPlaceholder": "How will proceeds support the mosque?",
+      "submit": "Submit Request",
+      "requiredFields": "Please fill in all required fields.",
+      "error": "Failed to submit request. Please try again."
+    },
+    "success": {
+      "title": "Request Submitted!",
+      "message": "We've received your request and will contact you within 48 hours.",
+      "dua": "May Allah bless your mosque and community. Ameen.",
+      "backHome": "Back to Home"
+    },
+    "trustNote": "This program is funded by donations. We prioritize mosques based on need and available funds."
   },
   "common": {
     "error": "Error",

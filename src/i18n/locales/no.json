@@ -8,6 +8,8 @@
     "blog": "Guider & Kunnskap",
     "shipping": "Frakt",
     "supportMission": "Støtt vårt oppdrag",
+    "transparency": "Åpenhet",
+    "donate": "Doner",
     "about": "Om Oss",
     "contact": "Kontakt"
   },
@@ -730,18 +732,18 @@
     "seoTitle": "Støtt Vårt Oppdrag | Pure Ihram",
     "seoDescription": "Støtt Pure Ihrams oppdrag om å tjene pilegrimer, støtte moskeer og tilby rimelig Ihram gjennom frivillige donasjoner.",
     "hero": {
-      "title": "Støtt Vårt Oppdrag",
-      "subtitle": "Hjelp oss å holde Ihram rimelig og tilgjengelig for alle pilegrimer"
+      "title": "Støtt Vårt Oppdrag (Amanah)",
+      "subtitle": "Vi holder Ihram rimelig, støtter moskeer og finansierer prosjekter for trengende globalt. Dette er folks penger, og vi er ansvarlige overfor Allah (سبحانه وتعالى)."
     },
     "why": {
       "affordable": "Hold Ihram Rimelig",
-      "affordableDesc": "Din donasjon hjelper oss å opprettholde lave priser slik at hver pilegrim har råd til kvalitets-Ihram for sin hellige reise.",
-      "masjids": "Støtt Moskeer",
-      "masjidsDesc": "Vi samarbeider med moskeer for å tilby utdanningsmateriale og støtte deres fellesskap.",
-      "education": "Islamsk Utdanning",
-      "educationDesc": "Donasjoner finansierer gratis utdanningsinnhold om Hajj, Umrah og riktig pilegrimspraksis."
+      "affordableDesc": "Donasjoner hjelper oss å holde prisene tilgjengelige og redusere barrierer for tilbedelse.",
+      "masjids": "Gratis Ihram til Moskeer",
+      "masjidsDesc": "Vi gir Ihram til moskeer. Moskeer kan selge dem og beholde pengene til moskeens behov og utvikling.",
+      "education": "Prosjekter for Trengende Verden Over",
+      "educationDesc": "Donasjoner støtter verifiserte prosjekter der folk lider over hele verden."
     },
-    "transparency": "Donasjoner er helt frivillige og ikke nødvendige for kjøp. 100% av donasjonene går til vårt oppdrag om å tjene det muslimske samfunnet.",
+    "transparency": "Din donasjon støtter vårt oppdrag og kan også dekke nødvendige leveringskostnader som frakt/emballasje og Stripe-behandlingsgebyrer. Vi publiserer månedlige rapporter med en oversikt.",
     "chooseAmount": "Velg Donasjonsbeløp",
     "minAmount": "Minimumsdonasjon er €1",
     "amounts": {
@@ -761,13 +763,123 @@
     "success": {
       "title": "Takk for Din Støtte!",
       "subtitle": "Din generøsitet gjør en forskjell",
-      "message": "Din donasjon vil hjelpe oss å holde Ihram rimelig, støtte moskeer og tilby islamsk utdanningsinnhold for pilegrimer over hele verden.",
+      "seoTitle": "Donasjon Vellykket | Pure Ihram",
+      "message": "Din donasjon vil hjelpe oss å holde Ihram rimelig, støtte moskeer og gi hjelp til trengende rundt om i verden.",
       "hadith": "\"De beste av mennesker er de som er mest nyttige for folk.\"",
       "hadithCite": "— Al-Mu'jam al-Awsat",
       "impact": "Måtte Allah akseptere din sadaqah og multiplisere din belønning.",
       "browseProducts": "Bla Gjennom Produkter",
-      "backHome": "Tilbake til Hjem"
+      "backHome": "Tilbake til Hjem",
+      "viewTransparency": "Se Åpenhet",
+      "whatNext": {
+        "title": "Hva skjer nå?",
+        "step1": "Du vil motta en kvittering via e-post fra Stripe.",
+        "step2": "Din donasjon vil bli inkludert i vår månedlige åpenhetsrapport.",
+        "step3": "Vi vil bruke ditt bidrag i henhold til våre oppdragsprioriteringer."
+      }
     }
+  },
+  "donationCancel": {
+    "seoTitle": "Donasjon Kansellert | Pure Ihram",
+    "title": "Donasjon Kansellert",
+    "subtitle": "Ingen bekymringer — kortet ditt ble ikke belastet.",
+    "message": "Hvis du ombestemte deg, er det helt greit. Donasjoner er frivillige og det er ingen press om å bidra.",
+    "noCharge": "Betalingsmetoden din ble ikke belastet. Du kan prøve igjen når som helst.",
+    "tryAgain": "Prøv Igjen",
+    "browseProducts": "Bla Gjennom Produkter",
+    "needHelp": {
+      "title": "Trenger du hjelp?",
+      "message": "Hvis du opplevde problemer eller har spørsmål, er vi her for å hjelpe.",
+      "contactUs": "Kontakt oss →"
+    }
+  },
+  "transparency": {
+    "seoTitle": "Åpenhetsdashboard | Pure Ihram",
+    "seoDescription": "Se våre månedlige donasjonsrapporter med fullstendige oversikter over hvordan midler brukes.",
+    "backToDonation": "Tilbake til Donasjon",
+    "hero": {
+      "title": "Åpenhetsdashboard",
+      "subtitle": "Vi tror på full ansvarlighet. Her er nøyaktig hvordan donasjoner brukes hver måned."
+    },
+    "summary": {
+      "totalReceived": "Totalt Mottatt",
+      "needyProjects": "Prosjekter for Trengende",
+      "mosqueProgram": "Moskeprogram",
+      "shipping": "Frakt",
+      "stripeFees": "Stripe-gebyrer",
+      "operations": "Drift"
+    },
+    "reports": {
+      "title": "Månedlige Rapporter",
+      "verified": "Verifisert",
+      "received": "Mottatt",
+      "needy": "Prosjekter for Trengende",
+      "mosque": "Moskeprogram",
+      "shipping": "Frakt",
+      "stripe": "Stripe-gebyrer",
+      "ops": "Drift",
+      "notes": "Notater",
+      "download": "Last ned"
+    },
+    "amanah": {
+      "title": "Vår Forpliktelse til Amanah",
+      "text": "Dette er folks penger (Amanah). Vi er ansvarlige overfor Allah for hver øre. Vi streber etter å være transparente, ansvarlige og regnskapsmessige i alt vi gjør.",
+      "quote": "\"Sannelig befaler Allah dere å levere tilbake tilliten til de den tilhører.\" — Koranen 4:58"
+    }
+  },
+  "mosqueSupport": {
+    "seoTitle": "Moskestøtteprogram | Pure Ihram",
+    "seoDescription": "Be om gratis eller subsidierte Ihram-sett for din moské eller islamske senter.",
+    "backToDonation": "Tilbake til Donasjon",
+    "hero": {
+      "title": "Moskestøtteprogram",
+      "subtitle": "Vi leverer Ihram til moskeer (gratis eller subsidiert). Moskeer kan selge dem og beholde inntektene til moskeens behov."
+    },
+    "howItWorks": {
+      "title": "Hvordan Det Fungerer",
+      "step1": {
+        "title": "Send Forespørsel",
+        "desc": "Fyll ut skjemaet med moskedetaljene dine"
+      },
+      "step2": {
+        "title": "Vi Gjennomgår",
+        "desc": "Vi gjennomgår og kontakter deg innen 48 timer"
+      },
+      "step3": {
+        "title": "Motta Ihram",
+        "desc": "Selg og behold inntektene til moskeutvikling"
+      }
+    },
+    "form": {
+      "title": "Be om Ihram for Din Moské",
+      "mosqueName": "Moske/Islamsk Senter Navn",
+      "mosqueNamePlaceholder": "f.eks. Islamsk Senter i Oslo",
+      "countryCity": "Land/By",
+      "countryCityPlaceholder": "f.eks. Norge, Oslo",
+      "contactPerson": "Kontaktperson",
+      "contactPersonPlaceholder": "Ditt fulle navn",
+      "email": "E-post",
+      "emailPlaceholder": "moske@eksempel.no",
+      "phone": "Telefonnummer",
+      "phonePlaceholder": "+47 90 123 456",
+      "website": "Nettside/Sosiale Lenker (Valgfritt)",
+      "websitePlaceholder": "https://...",
+      "estimatedNeed": "Estimert Behov",
+      "estimatedNeedPlaceholder": "Velg antall",
+      "sets": "sett",
+      "notes": "Notater (Valgfritt)",
+      "notesPlaceholder": "Hvordan vil inntektene støtte moskeen?",
+      "submit": "Send Forespørsel",
+      "requiredFields": "Vennligst fyll ut alle obligatoriske felt.",
+      "error": "Kunne ikke sende forespørsel. Vennligst prøv igjen."
+    },
+    "success": {
+      "title": "Forespørsel Sendt!",
+      "message": "Vi har mottatt forespørselen din og vil kontakte deg innen 48 timer.",
+      "dua": "Måtte Allah velsigne moskeen og fellesskapet ditt. Ameen.",
+      "backHome": "Tilbake til Hjem"
+    },
+    "trustNote": "Dette programmet er finansiert av donasjoner. Vi prioriterer moskeer basert på behov og tilgjengelige midler."
   },
   "common": {
     "error": "Feil",

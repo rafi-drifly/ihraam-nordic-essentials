@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Heart } from "lucide-react";
 import { CartDrawer } from "@/components/shop/CartDrawer";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
@@ -11,9 +11,19 @@ import LanguageSwitcher from "@/components/LanguageSwitcher";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [checkingOut, setCheckingOut] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const { toast } = useToast();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
+
+  // Scroll detection for sticky header effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Get locale prefix for links
   const getLocalePrefix = () => {
@@ -50,7 +60,6 @@ const Navbar = () => {
       }
 
       if (data?.url) {
-        // Clear cart after successful checkout
         localStorage.removeItem('ihram-cart');
         window.location.href = data.url;
       } else {
@@ -76,6 +85,7 @@ const Navbar = () => {
     { name: t('nav.blog'), href: "/blog" },
     { name: t('nav.shipping'), href: "/shipping" },  
     { name: t('nav.supportMission'), href: "/support-our-mission" },
+    { name: t('nav.transparency'), href: "/transparency" },
     { name: t('nav.about'), href: "/about" },
     { name: t('nav.contact'), href: "/contact" },
   ];
@@ -88,7 +98,9 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-background border-b border-border sticky top-0 z-50">
+    <nav className={`bg-background sticky top-0 z-50 transition-all duration-200 ${
+      isScrolled ? 'border-b border-border shadow-sm' : 'border-b border-transparent'
+    }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -100,7 +112,7 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <div className="ml-10 flex items-baseline space-x-4">
               {navigation.map((item) => (
                 <Link
@@ -118,13 +130,26 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Language Switcher, Cart and Mobile menu button */}
+          {/* Language Switcher, Donate CTA, Cart and Mobile menu button */}
           <div className="flex items-center space-x-2">
             <LanguageSwitcher />
+            
+            {/* Donate CTA Button - Desktop */}
+            <Button
+              asChild
+              size="sm"
+              className="hidden sm:flex bg-gradient-primary hover:opacity-90 text-white"
+            >
+              <Link to={getLocalizedHref("/support-our-mission")}>
+                <Heart className="h-4 w-4 mr-1" />
+                {t('nav.donate')}
+              </Link>
+            </Button>
+            
             <CartDrawer onCheckout={handleCheckout} checkingOut={checkingOut} />
 
             {/* Mobile menu button */}
-            <div className="md:hidden">
+            <div className="lg:hidden">
               <Button
                 variant="ghost"
                 size="sm"
@@ -138,7 +163,7 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-muted rounded-lg mt-2">
               {navigation.map((item) => (
                 <Link
