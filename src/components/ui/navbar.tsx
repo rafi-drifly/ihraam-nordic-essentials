@@ -75,7 +75,7 @@ const Navbar = () => {
     { name: t('nav.shop'), href: "/shop" },
     { name: t('nav.blog'), href: "/blog" },
     { name: t('nav.shipping'), href: "/shipping" },  
-    { name: t('nav.trackOrder'), href: "/guest-order-lookup" },
+    { name: t('nav.supportMission'), href: "/support-our-mission" },
     { name: t('nav.about'), href: "/about" },
     { name: t('nav.contact'), href: "/contact" },
   ];
