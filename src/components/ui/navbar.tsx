@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Heart } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { CartDrawer } from "@/components/shop/CartDrawer";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
@@ -134,17 +134,6 @@ const Navbar = () => {
           <div className="flex items-center space-x-2">
             <LanguageSwitcher />
             
-            {/* Donate CTA Button - Desktop */}
-            <Button
-              asChild
-              size="sm"
-              className="hidden sm:flex bg-gradient-primary hover:opacity-90 text-white"
-            >
-              <Link to={getLocalizedHref("/support-our-mission")}>
-                <Heart className="h-4 w-4 mr-1" />
-                {t('nav.donate')}
-              </Link>
-            </Button>
             
             <CartDrawer onCheckout={handleCheckout} checkingOut={checkingOut} />
 
