@@ -12,7 +12,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import LocaleHandler from "@/components/LocaleHandler";
 import SEOHead from "@/components/SEOHead";
 import PromoBanner from "@/components/PromoBanner";
-import MobileDonationBar from "@/components/MobileDonationBar";
+
 import Home from "./pages/Home";
 import Shop from "./pages/Shop";
 import Blog from "./pages/Blog";
@@ -129,11 +129,11 @@ const App = () => (
               <div className="min-h-screen flex flex-col">
                 <PromoBanner />
                 <Navbar />
-                <main className="flex-1 pb-20 md:pb-0">
+                <main className="flex-1">
                   <AppRoutes />
                 </main>
                 <Footer />
-                <MobileDonationBar />
+                
               </div>
             </BrowserRouter>
           </TooltipProvider>
