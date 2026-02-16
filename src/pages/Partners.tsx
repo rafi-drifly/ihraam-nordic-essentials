@@ -30,7 +30,7 @@ import { supabase } from "@/integrations/supabase/client";
 const Partners = () => {
   const { t, i18n } = useTranslation();
   const location = useLocation();
-  const localePrefix = location.pathname.startsWith('/sv') ? '/sv' : '';
+  const localePrefix = location.pathname.startsWith('/sv') ? '/sv' : location.pathname.startsWith('/no') ? '/no' : '';
   
   const [formData, setFormData] = useState({
     name: "",
@@ -122,10 +122,14 @@ const Partners = () => {
 
   const seoTitle = i18n.language === 'sv' 
     ? 'Grossist Ihram för Moskéer & Hajj/Umrah-byråer | Pure Ihram'
+    : i18n.language === 'no'
+    ? 'Engros Ihram for Moskeer & Hajj/Umrah-byråer | Pure Ihram'
     : 'Wholesale Ihram for Mosques & Hajj/Umrah Agencies | Pure Ihram';
   
   const seoDescription = i18n.language === 'sv'
     ? 'Bli partner med Pure Ihram för att leverera högkvalitativa Ihram-set till era pilgrimer. Perfekt för moskéer och Hajj/Umrah-byråer i Europa med speciella grossistpriser.'
+    : i18n.language === 'no'
+    ? 'Bli partner med Pure Ihram for å levere høykvalitets Ihram-sett til deres pilegrimer. Perfekt for moskeer og Hajj/Umrah-byråer i Europa med spesielle engrospriser.'
     : 'Partner with Pure Ihram to supply high-quality Ihram sets to your pilgrims. Ideal for mosques and Hajj/Umrah agencies across Europe with special wholesale pricing.';
 
   return (

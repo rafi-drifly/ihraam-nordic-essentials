@@ -43,7 +43,7 @@ const Home = () => {
       image: spiritualMeaning,
       title: t('home.guides.articles.spiritual.title'),
       description: t('home.guides.articles.spiritual.description'),
-      link: "/blog/the-spiritual-meaning-of-ihram"
+      link: "/blog/spiritual-meaning-ihram"
     },
     {
       image: howToWear,
@@ -55,25 +55,25 @@ const Home = () => {
       image: sunnahActs,
       title: t('home.guides.articles.sunnah.title'),
       description: t('home.guides.articles.sunnah.description'),
-      link: "/blog/sunnah-acts-before-entering-ihram"
+      link: "/blog/sunnah-acts-before-ihram"
     },
     {
       image: umrahChecklist,
       title: t('home.guides.articles.checklist.title'),
       description: t('home.guides.articles.checklist.description'),
-      link: "/blog/checklist-for-umrah-preparation"
+      link: "/blog/umrah-preparation-checklist"
     },
     {
       image: essentialDuas,
       title: t('home.guides.articles.duas.title'),
       description: t('home.guides.articles.duas.description'),
-      link: "/blog/essential-duas-for-umrah"
+      link: "/blog/essential-duas-umrah"
     },
     {
       image: commonMistakes,
       title: t('home.guides.articles.mistakes.title'),
       description: t('home.guides.articles.mistakes.description'),
-      link: "/blog/common-mistakes-pilgrims-make-in-ihram"
+      link: "/blog/common-mistakes-ihram"
     }
   ];
 
