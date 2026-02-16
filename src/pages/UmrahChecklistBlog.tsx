@@ -5,10 +5,11 @@ import { Badge } from "@/components/ui/badge";
 import { Clock, User, ArrowLeft, ShoppingCart, Check } from "lucide-react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useTranslation } from "react-i18next";
+import SEOHead from "@/components/SEOHead";
 
 const UmrahChecklistBlog = () => {
   const { t, i18n } = useTranslation();
-  const localePrefix = i18n.language === 'sv' ? '/sv' : '';
+  const localePrefix = i18n.language === 'sv' ? '/sv' : i18n.language === 'no' ? '/no' : '';
 
   const post = {
     title: t('blog.posts.checklist.title'),
@@ -21,6 +22,10 @@ const UmrahChecklistBlog = () => {
 
   return (
     <div className="min-h-screen py-12">
+      <SEOHead 
+        title="Umrah Preparation Checklist – Complete Guide | Pure Ihram"
+        description="Complete Umrah checklist covering travel documents, clothing, toiletries, spiritual preparation, and essential items to pack for your pilgrimage."
+      />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back Button */}
         <Link to={`${localePrefix}/blog`}>

@@ -13,7 +13,7 @@ const SEOHead = ({ title, description, path }: SEOHeadProps) => {
   const location = useLocation();
   const currentLang = i18n.language;
   
-  const baseUrl = 'https://pureihram.com';
+  const baseUrl = 'https://www.pureihram.com';
   const currentPath = path || location.pathname;
   
   // Remove locale prefix for canonical path

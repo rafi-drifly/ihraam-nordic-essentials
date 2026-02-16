@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Clock, User, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import SEOHead from "@/components/SEOHead";
 import howToWearIhram from "@/assets/blog/how-to-wear-ihram.png";
 import sunnahActs from "@/assets/blog/sunnah-acts.png";
 import umrahChecklist from "@/assets/blog/umrah-checklist.png";
@@ -15,7 +16,7 @@ import spiritualMeaning from "@/assets/blog/spiritual-meaning.png";
 const Blog = () => {
   const { t } = useTranslation();
   const location = useLocation();
-  const localePrefix = location.pathname.startsWith('/sv') ? '/sv' : '';
+  const localePrefix = location.pathname.startsWith('/sv') ? '/sv' : location.pathname.startsWith('/no') ? '/no' : '';
 
   const blogPosts = [
     {
@@ -97,6 +98,10 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen py-8">
+      <SEOHead 
+        title="Hajj & Umrah Guides – Ihram Tips & Duas | Pure Ihram"
+        description="Read expert guides on Ihram, Hajj, and Umrah preparation. Includes step-by-step instructions, duas, checklists, and common mistakes to avoid."
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">

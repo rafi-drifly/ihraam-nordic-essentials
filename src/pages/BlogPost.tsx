@@ -4,11 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Clock, User, ArrowLeft } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import SEOHead from "@/components/SEOHead";
 
 const BlogPost = () => {
   const { slug } = useParams();
   const { t, i18n } = useTranslation();
-  const localePrefix = i18n.language === 'sv' ? '/sv' : '';
+  const localePrefix = i18n.language === 'sv' ? '/sv' : i18n.language === 'no' ? '/no' : '';
 
   const post = {
     title: t('blog.posts.howToWear.title'),
@@ -21,6 +22,10 @@ const BlogPost = () => {
 
   return (
     <div className="min-h-screen py-12">
+      <SEOHead 
+        title="How to Wear Ihram – Step-by-Step Guide | Pure Ihram"
+        description="Learn how to wear Ihram correctly for Hajj and Umrah. Step-by-step guide covering preparation, wrapping techniques, and practical tips for pilgrims."
+      />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back Button */}
         <Link to={`${localePrefix}/blog`}>

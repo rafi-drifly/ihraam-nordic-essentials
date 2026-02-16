@@ -4,13 +4,18 @@ import { ArrowLeft, Lightbulb } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
+import SEOHead from "@/components/SEOHead";
 
 const UmrahDuasBlog = () => {
   const { t, i18n } = useTranslation();
-  const localePrefix = i18n.language === 'sv' ? '/sv' : '';
+  const localePrefix = i18n.language === 'sv' ? '/sv' : i18n.language === 'no' ? '/no' : '';
 
   return (
     <div className="min-h-screen py-8">
+      <SEOHead 
+        title="Essential Duas for Umrah – Complete Guide | Pure Ihram"
+        description="Memorize the most important duas for Umrah with Arabic text, transliteration, and English meaning. Covers Talbiyah, Tawaf, Sa'i, and more."
+      />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back Button */}
         <Link to={`${localePrefix}/blog`}>
