@@ -12,6 +12,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import LocaleHandler from "@/components/LocaleHandler";
 import SEOHead from "@/components/SEOHead";
 import PromoBanner from "@/components/PromoBanner";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 import Home from "./pages/Home";
 import Shop from "./pages/Shop";
@@ -133,7 +134,7 @@ const App = () => (
                   <AppRoutes />
                 </main>
                 <Footer />
-                
+                <WhatsAppButton />
               </div>
             </BrowserRouter>
           </TooltipProvider>
