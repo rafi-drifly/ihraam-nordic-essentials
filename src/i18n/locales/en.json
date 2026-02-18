@@ -844,5 +844,149 @@
   "common": {
     "error": "Error",
     "loading": "Loading..."
+  },
+  "returns": {
+    "hero": {
+      "title": "Returns & Exchanges",
+      "subtitle": "Clear, fair, and transparent—so you can shop with confidence."
+    },
+    "cards": {
+      "withdrawal": {
+        "title": "14-Day Right of Withdrawal",
+        "description": "You have 14 days from delivery to return for any reason."
+      },
+      "shipping": {
+        "title": "Customer Pays Return Shipping",
+        "description": "For change-of-mind returns, the customer covers return postage."
+      },
+      "exchanges": {
+        "title": "Easy Size Exchanges",
+        "description": "Need a different size? We make swaps simple, subject to stock."
+      },
+      "defective": {
+        "title": "We Cover Defective/Wrong Items",
+        "description": "If we made a mistake or the item is defective, we pay return shipping."
+      }
+    },
+    "howTo": {
+      "title": "How to Return",
+      "cta": "Start a Return"
+    },
+    "steps": {
+      "step1": {
+        "title": "Email Us",
+        "description": "Contact support@pureihraam.com with your order number to start the process."
+      },
+      "step2": {
+        "title": "Pack the Item",
+        "description": "Ensure the item is unused, unwashed, and in its original packaging with tags where applicable."
+      },
+      "step3": {
+        "title": "Ship to Our Address",
+        "description": "Send the package to our return address using a tracked shipping method."
+      },
+      "step4": {
+        "title": "Refund After Inspection",
+        "description": "Once we receive and inspect the item, your refund is processed within 14 days."
+      }
+    },
+    "address": {
+      "label": "Return Address",
+      "trackNote": "Please use a tracked shipping method and keep your receipt."
+    },
+    "exchanges": {
+      "title": "Exchanges",
+      "point1": "We accept size exchanges, subject to stock availability.",
+      "point2": "Customer pays: return shipping to us + shipping for the replacement item.",
+      "point3": "Contact us with your order number and desired size to get started.",
+      "cta": "Start an Exchange"
+    },
+    "refunds": {
+      "title": "Refunds",
+      "method": "Refunds are issued to your original payment method.",
+      "timeline": "We process refunds within 14 days after receiving your return notice. We may wait until the item is received or proof of shipment is provided.",
+      "shippingRefund": "Standard outbound shipping is refunded. Express shipping upgrades beyond standard rate are not refunded."
+    },
+    "conditions": {
+      "title": "Condition, Hygiene & Fairness",
+      "inspect": "You may inspect the item as you would in a store — try it on to check fit and quality.",
+      "valueReduction": "If the item has been used more than necessary for inspection, a value reduction may apply.",
+      "unused": "Returns must be unused, unwashed, free of odors and stains, and in original condition."
+    },
+    "defective": {
+      "title": "Wrong Item, Damaged, or Defective?",
+      "photos": "Please send photos of the issue along with your order number to support@pureihraam.com.",
+      "weCover": "We cover return shipping costs for defective, damaged, or incorrectly shipped items.",
+      "cta": "Report an Issue"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "triedOn": {
+        "question": "Can I return if I tried it on?",
+        "answer": "Yes. You can inspect the item as you would in a store. As long as it's unused, unwashed, and in original condition, you can return it within 14 days."
+      },
+      "whoPays": {
+        "question": "Who pays for return shipping?",
+        "answer": "For change-of-mind returns, the customer pays return shipping. If the item is defective or we sent the wrong item, we cover return shipping."
+      },
+      "refundTime": {
+        "question": "How long does a refund take?",
+        "answer": "We process refunds within 14 days after receiving your return notice. We may wait until the item arrives or proof of shipment is provided."
+      },
+      "sizeExchange": {
+        "question": "Can I exchange for a different size?",
+        "answer": "Yes! Contact us with your order number and desired size. Exchanges are subject to stock availability. You pay return shipping and shipping for the replacement."
+      },
+      "originalShipping": {
+        "question": "Do you refund original shipping?",
+        "answer": "Yes, standard outbound delivery cost is refunded. If you chose an express upgrade, only the standard shipping portion is refunded."
+      },
+      "damaged": {
+        "question": "What if my order arrives damaged?",
+        "answer": "Contact us immediately with photos and your order number. We'll cover return shipping and send a replacement or issue a full refund."
+      }
+    },
+    "contact": {
+      "title": "Need Help?",
+      "email": "Email",
+      "responseTime": "We respond within 24–48 hours.",
+      "orderReminder": "Please include your order number in all correspondence."
+    },
+    "dialog": {
+      "title": "Return / Exchange Request",
+      "subtitle": "Fill out the form below and we'll guide you through the process.",
+      "name": "Full Name",
+      "namePlaceholder": "Your full name",
+      "email": "Email Address",
+      "emailPlaceholder": "your@email.com",
+      "orderNumber": "Order Number",
+      "orderNumberPlaceholder": "e.g. PI-12345",
+      "requestType": "Request Type",
+      "typeReturn": "Return",
+      "typeExchange": "Exchange",
+      "typeIssue": "Report an Issue",
+      "reason": "Reason (optional)",
+      "reasonPlaceholder": "Select a reason",
+      "reasons": {
+        "changedMind": "Changed my mind",
+        "wrongSize": "Wrong size",
+        "defective": "Defective item",
+        "wrongItem": "Wrong item received",
+        "damaged": "Damaged in shipping",
+        "other": "Other"
+      },
+      "message": "Message (optional)",
+      "messagePlaceholder": "Any additional details...",
+      "submit": "Submit Request",
+      "successTitle": "Request Submitted!",
+      "successMessage": "Thank you! Please email your request details to support@pureihraam.com with your order number. We'll respond within 24–48 hours with next steps.",
+      "close": "Close"
+    }
+  },
+  "footer": {
+    "links": {
+      "returns": "Returns & Exchanges"
+    },
+    "returnsBadge": "14-day returns • Easy exchanges • Customer pays return shipping (change of mind)"
   }
 }

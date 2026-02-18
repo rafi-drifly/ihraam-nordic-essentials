@@ -35,6 +35,7 @@ import DonationSuccess from "./pages/DonationSuccess";
 import DonationCancel from "./pages/DonationCancel";
 import Transparency from "./pages/Transparency";
 import MosqueSupport from "./pages/MosqueSupport";
+import Returns from "./pages/Returns";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -64,6 +65,7 @@ const AppRoutes = () => (
     <Route path="/donation-cancel" element={<DonationCancel />} />
     <Route path="/transparency" element={<Transparency />} />
     <Route path="/mosque-support" element={<MosqueSupport />} />
+    <Route path="/returns" element={<Returns />} />
     {/* Swedish routes */}
     <Route path="/sv" element={<Home />} />
     <Route path="/sv/shop" element={<Shop />} />
@@ -87,6 +89,7 @@ const AppRoutes = () => (
     <Route path="/sv/donation-cancel" element={<DonationCancel />} />
     <Route path="/sv/transparency" element={<Transparency />} />
     <Route path="/sv/mosque-support" element={<MosqueSupport />} />
+    <Route path="/sv/returns" element={<Returns />} />
     {/* Norwegian routes */}
     <Route path="/no" element={<Home />} />
     <Route path="/no/shop" element={<Shop />} />
@@ -110,6 +113,7 @@ const AppRoutes = () => (
     <Route path="/no/donation-cancel" element={<DonationCancel />} />
     <Route path="/no/transparency" element={<Transparency />} />
     <Route path="/no/mosque-support" element={<MosqueSupport />} />
+    <Route path="/no/returns" element={<Returns />} />
     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
     <Route path="*" element={<NotFound />} />
   </Routes>

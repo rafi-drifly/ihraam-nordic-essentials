@@ -28,6 +28,7 @@ const Footer = () => {
     { name: t('footer.links.shipping'), href: "/shipping" },
     { name: t('footer.links.partners'), href: "/partners" },
     { name: t('footer.links.supportMission'), href: "/support-our-mission" },
+    { name: t('footer.links.returns'), href: "/returns" },
     { name: t('footer.links.about'), href: "/about" },
     { name: t('footer.links.contact'), href: "/contact" },
   ];
@@ -99,7 +100,14 @@ const Footer = () => {
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t border-border mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+        {/* Trust Badge */}
+        <div className="border-t border-border mt-8 pt-6 pb-2">
+          <p className="text-center text-xs text-muted-foreground">
+            {t('footer.returnsBadge')}
+          </p>
+        </div>
+
+        <div className="border-t border-border pt-6 flex flex-col md:flex-row justify-between items-center">
           <p className="text-muted-foreground text-sm">
             {t('footer.copyright')}
           </p>

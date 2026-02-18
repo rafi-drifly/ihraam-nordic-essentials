@@ -884,5 +884,149 @@
   "common": {
     "error": "Feil",
     "loading": "Laster..."
+  },
+  "returns": {
+    "hero": {
+      "title": "Retur & Bytte",
+      "subtitle": "Tydelig, rettferdig og transparent — slik at du kan handle med tillit."
+    },
+    "cards": {
+      "withdrawal": {
+        "title": "14 dagers angrerett",
+        "description": "Du har 14 dager fra levering til å returnere av hvilken som helst grunn."
+      },
+      "shipping": {
+        "title": "Kunden betaler returfrakten",
+        "description": "Ved angrereturer dekker kunden returfraktkostnaden."
+      },
+      "exchanges": {
+        "title": "Enkle størrelsesbytter",
+        "description": "Trenger du en annen størrelse? Vi gjør bytter enkelt, avhengig av lagerstatus."
+      },
+      "defective": {
+        "title": "Vi dekker defekte/feil varer",
+        "description": "Hvis vi har gjort en feil eller varen er defekt, betaler vi returfrakten."
+      }
+    },
+    "howTo": {
+      "title": "Slik returnerer du",
+      "cta": "Start en retur"
+    },
+    "steps": {
+      "step1": {
+        "title": "Send oss e-post",
+        "description": "Kontakt support@pureihraam.com med ordrenummeret ditt for å starte prosessen."
+      },
+      "step2": {
+        "title": "Pakk varen",
+        "description": "Sørg for at varen er ubrukt, uvasket og i originalemballasjen med merker der det gjelder."
+      },
+      "step3": {
+        "title": "Send til vår adresse",
+        "description": "Send pakken til vår returadresse med en sporbar fraktmetode."
+      },
+      "step4": {
+        "title": "Refusjon etter inspeksjon",
+        "description": "Når vi har mottatt og inspisert varen, behandles refusjonen din innen 14 dager."
+      }
+    },
+    "address": {
+      "label": "Returadresse",
+      "trackNote": "Vennligst bruk sporbar frakt og ta vare på kvitteringen."
+    },
+    "exchanges": {
+      "title": "Bytter",
+      "point1": "Vi aksepterer størrelsesbytter, avhengig av lagertilgjengelighet.",
+      "point2": "Kunden betaler: returfrakt til oss + frakt for erstatningsvaren.",
+      "point3": "Kontakt oss med ordrenummeret ditt og ønsket størrelse for å komme i gang.",
+      "cta": "Start et bytte"
+    },
+    "refunds": {
+      "title": "Refusjoner",
+      "method": "Refusjoner utstedes til din opprinnelige betalingsmetode.",
+      "timeline": "Vi behandler refusjoner innen 14 dager etter at vi har mottatt din returmelding. Vi kan vente til varen er mottatt eller bevis på forsendelse er gitt.",
+      "shippingRefund": "Standard utgående frakt refunderes. Ekspressoppgraderinger utover standardpris refunderes ikke."
+    },
+    "conditions": {
+      "title": "Tilstand, Hygiene & Rettferdighet",
+      "inspect": "Du kan inspisere varen som du ville gjort i en butikk — prøv den for å sjekke passform og kvalitet.",
+      "valueReduction": "Hvis varen har blitt brukt mer enn nødvendig for inspeksjon, kan et verdifradrag gjelde.",
+      "unused": "Returer må være ubrukte, uvaskede, fri for lukt og flekker, og i original tilstand."
+    },
+    "defective": {
+      "title": "Feil vare, skadet eller defekt?",
+      "photos": "Vennligst send bilder av problemet sammen med ordrenummeret ditt til support@pureihraam.com.",
+      "weCover": "Vi dekker returfraktkostnader for defekte, skadede eller feilsendte varer.",
+      "cta": "Rapporter et problem"
+    },
+    "faq": {
+      "title": "Ofte Stilte Spørsmål",
+      "triedOn": {
+        "question": "Kan jeg returnere hvis jeg prøvde den?",
+        "answer": "Ja. Du kan inspisere varen som du ville gjort i en butikk. Så lenge den er ubrukt, uvasket og i original tilstand, kan du returnere den innen 14 dager."
+      },
+      "whoPays": {
+        "question": "Hvem betaler returfrakten?",
+        "answer": "Ved angrereturer betaler kunden returfrakten. Hvis varen er defekt eller vi sendte feil vare, dekker vi returfrakten."
+      },
+      "refundTime": {
+        "question": "Hvor lang tid tar en refusjon?",
+        "answer": "Vi behandler refusjoner innen 14 dager etter at vi har mottatt din returmelding. Vi kan vente til varen har ankommet eller bevis på forsendelse er gitt."
+      },
+      "sizeExchange": {
+        "question": "Kan jeg bytte til en annen størrelse?",
+        "answer": "Ja! Kontakt oss med ordrenummeret ditt og ønsket størrelse. Bytter er avhengig av lagertilgjengelighet. Du betaler returfrakt og frakt for erstatningen."
+      },
+      "originalShipping": {
+        "question": "Refunderes den opprinnelige frakten?",
+        "answer": "Ja, standard leveringskostnad refunderes. Hvis du valgte ekspressoppgradering, refunderes bare standardfraktdelen."
+      },
+      "damaged": {
+        "question": "Hva hvis bestillingen min ankommer skadet?",
+        "answer": "Kontakt oss umiddelbart med bilder og ordrenummeret ditt. Vi dekker returfrakten og sender en erstatning eller utsteder full refusjon."
+      }
+    },
+    "contact": {
+      "title": "Trenger du hjelp?",
+      "email": "E-post",
+      "responseTime": "Vi svarer innen 24–48 timer.",
+      "orderReminder": "Vennligst inkluder ordrenummeret ditt i all korrespondanse."
+    },
+    "dialog": {
+      "title": "Retur- / Bytteforespørsel",
+      "subtitle": "Fyll ut skjemaet nedenfor, så veileder vi deg gjennom prosessen.",
+      "name": "Fullt navn",
+      "namePlaceholder": "Ditt fulle navn",
+      "email": "E-postadresse",
+      "emailPlaceholder": "din@epost.no",
+      "orderNumber": "Ordrenummer",
+      "orderNumberPlaceholder": "f.eks. PI-12345",
+      "requestType": "Type forespørsel",
+      "typeReturn": "Retur",
+      "typeExchange": "Bytte",
+      "typeIssue": "Rapporter et problem",
+      "reason": "Årsak (valgfritt)",
+      "reasonPlaceholder": "Velg en årsak",
+      "reasons": {
+        "changedMind": "Ombestemt meg",
+        "wrongSize": "Feil størrelse",
+        "defective": "Defekt vare",
+        "wrongItem": "Feil vare mottatt",
+        "damaged": "Skadet under frakt",
+        "other": "Annet"
+      },
+      "message": "Melding (valgfritt)",
+      "messagePlaceholder": "Eventuelle tilleggsdetaljer...",
+      "submit": "Send forespørsel",
+      "successTitle": "Forespørsel sendt!",
+      "successMessage": "Takk! Vennligst send returdetaljene dine til support@pureihraam.com med ordrenummeret ditt. Vi svarer innen 24–48 timer med neste steg.",
+      "close": "Lukk"
+    }
+  },
+  "footer": {
+    "links": {
+      "returns": "Retur & Bytte"
+    },
+    "returnsBadge": "14 dagers retur • Enkle bytter • Kunden betaler returfrakt (angre)"
   }
 }
