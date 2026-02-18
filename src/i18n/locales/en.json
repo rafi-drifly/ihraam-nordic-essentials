@@ -984,11 +984,5 @@
       "successMessage": "Thank you! Please email your request details to support@pureihraam.com with your order number. We'll respond within 24–48 hours with next steps.",
       "close": "Close"
     }
-  },
-  "footer": {
-    "links": {
-      "returns": "Returns & Exchanges"
-    },
-    "returnsBadge": "14-day returns • Easy exchanges • Customer pays return shipping (change of mind)"
   }
 }

@@ -984,11 +984,5 @@
       "successMessage": "Tack! Vänligen maila dina returdetaljer till support@pureihraam.com med ditt ordernummer. Vi svarar inom 24–48 timmar med nästa steg.",
       "close": "Stäng"
     }
-  },
-  "footer": {
-    "links": {
-      "returns": "Returer & Byten"
-    },
-    "returnsBadge": "14 dagars retur • Enkla byten • Kunden betalar returfrakt (ånger)"
   }
 }
