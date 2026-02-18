@@ -1,21 +1,17 @@
 
 
-## Add New Google Analytics Tag
-
-### What's Changing
-
-Add your new Google Analytics tag (`G-8EFBK4ECRN`) to `index.html` alongside the existing tag (`G-WD5SLJDED8`).
-
-Since both tags share the same `gtag()` function and `dataLayer`, the cleanest approach is to add a second `gtag('config', ...)` line rather than duplicating the entire script block.
+## Install Google Tag Manager (GTM-PJJH38CH)
 
 ### File: `index.html`
 
-- Add `gtag('config', 'G-8EFBK4ECRN');` on line 33, right after the existing `gtag('config', 'G-WD5SLJDED8');`
-- This sends page view data to both GA4 properties simultaneously
+Two additions:
 
-### Additional Cleanup (while we're in this file)
+1. **In `<head>` (as high as possible, before existing gtag scripts):** Insert the GTM head snippet right after the opening `<head>` and `<meta charset>` tag (around line 4).
 
-- **Line 14**: Fix the canonical URL from `https://pureihram.com/` to `https://www.pureihram.com/` -- this was missed in the earlier SEO fix (the `SEOHead` React component overrides it dynamically, but the static HTML fallback should also be correct)
+2. **Right after `<body>` tag:** Insert the GTM noscript fallback immediately after `<body>` (around line 35).
 
-No new files or dependencies needed. Single file change.
+### Notes
+- The existing Google Analytics gtag scripts (G-WD5SLJDED8 and G-8EFBK4ECRN) will remain -- they work independently of GTM.
+- Since this is a single-page app, all routes automatically get GTM since there's only one `index.html`.
+- No other files need changes.
 
