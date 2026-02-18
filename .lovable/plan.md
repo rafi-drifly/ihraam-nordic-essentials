@@ -1,40 +1,21 @@
 
 
-## Update Email Address and Add WhatsApp Floating Button
+## Add New Google Analytics Tag
 
-### 1. Replace Email Address Everywhere
+### What's Changing
 
-Change `pureihraam@gmail.com` to `support@pureihraam.com` in these 5 files:
+Add your new Google Analytics tag (`G-8EFBK4ECRN`) to `index.html` alongside the existing tag (`G-WD5SLJDED8`).
 
-- **src/components/ui/footer.tsx** (line 87) -- Footer contact section
-- **src/pages/Contact.tsx** (lines 106-107) -- Contact methods card
-- **src/pages/Shipping.tsx** (line 224) -- Support email link
-- **src/pages/Partners.tsx** (lines 422-424) -- Partnership contact email
-- **supabase/functions/send-order-confirmation/index.ts** (line 112) -- Order confirmation email footer
+Since both tags share the same `gtag()` function and `dataLayer`, the cleanest approach is to add a second `gtag('config', ...)` line rather than duplicating the entire script block.
 
-Also update `src/components/donation/GovernanceSection.tsx` (line 39-40) which already shows `support@pureihram.com` -- will standardize to `support@pureihraam.com` to match.
+### File: `index.html`
 
-### 2. Add Floating WhatsApp Button
+- Add `gtag('config', 'G-8EFBK4ECRN');` on line 33, right after the existing `gtag('config', 'G-WD5SLJDED8');`
+- This sends page view data to both GA4 properties simultaneously
 
-Create a new component `src/components/WhatsAppButton.tsx` -- a fixed floating green WhatsApp icon in the bottom-right corner of the screen. It will:
+### Additional Cleanup (while we're in this file)
 
-- Use the WhatsApp brand green color (#25D366)
-- Link to `https://wa.me/46720131476` with a pre-filled message like "Hi, I have a question about my order"
-- Be visible on all pages (added to `App.tsx`)
-- Have a subtle hover animation and shadow
-- Be responsive (slightly smaller on mobile)
-- Include proper accessibility (`aria-label`)
+- **Line 14**: Fix the canonical URL from `https://pureihram.com/` to `https://www.pureihram.com/` -- this was missed in the earlier SEO fix (the `SEOHead` React component overrides it dynamically, but the static HTML fallback should also be correct)
 
-### Technical Summary
-
-| File | Change |
-|---|---|
-| `src/components/ui/footer.tsx` | Update email |
-| `src/pages/Contact.tsx` | Update email |
-| `src/pages/Shipping.tsx` | Update email |
-| `src/pages/Partners.tsx` | Update email |
-| `src/components/donation/GovernanceSection.tsx` | Standardize email |
-| `supabase/functions/send-order-confirmation/index.ts` | Update email in HTML template |
-| `src/components/WhatsAppButton.tsx` | New floating button component |
-| `src/App.tsx` | Import and render WhatsAppButton |
+No new files or dependencies needed. Single file change.
 
