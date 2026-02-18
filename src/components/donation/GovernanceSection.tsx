@@ -36,8 +36,8 @@ const GovernanceSection = ({ localePrefix }: GovernanceSectionProps) => {
                   <Mail className="h-5 w-5 text-muted-foreground" />
                   <div>
                     <p className="text-sm text-muted-foreground">Email</p>
-                    <a href="mailto:support@pureihram.com" className="text-primary hover:underline">
-                      support@pureihram.com
+                    <a href="mailto:support@pureihraam.com" className="text-primary hover:underline">
+                      support@pureihraam.com
                     </a>
                   </div>
                 </div>
