@@ -1024,11 +1024,5 @@
       "successMessage": "Takk! Vennligst send returdetaljene dine til support@pureihraam.com med ordrenummeret ditt. Vi svarer innen 24–48 timer med neste steg.",
       "close": "Lukk"
     }
-  },
-  "footer": {
-    "links": {
-      "returns": "Retur & Bytte"
-    },
-    "returnsBadge": "14 dagers retur • Enkle bytter • Kunden betaler returfrakt (angre)"
   }
 }
