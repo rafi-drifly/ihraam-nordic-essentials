@@ -1,23 +1,28 @@
 
+## Fix: Remove Duplicate Footer Keys in Translation Files
 
-## Fix Missing Footer Translation Keys
+### Problem
+All three locale files (`en.json`, `sv.json`, `no.json`) have a **duplicate `footer` key** at the end of the file. In JSON, when a key appears twice, the second one overwrites the first. The duplicate only contains `links.returns` and `returnsBadge`, so it replaces the full footer object (with description, quickLinks, serviceAreas, copyright, quote, etc.), breaking the entire footer.
 
-The footer component references two translation keys that were never added to the locale files:
-- `footer.links.returns` -- used for the "Returns & Exchanges" link
-- `footer.returnsBadge` -- used for the trust badge text
+### Fix
 
-### Changes
+**`src/i18n/locales/en.json`** (lines 987-993)
+Remove the trailing duplicate block:
+```json
+  "footer": {
+    "links": {
+      "returns": "Returns & Exchanges"
+    },
+    "returnsBadge": "14-day returns • Easy exchanges • Customer pays return shipping (change of mind)"
+  }
+```
+The `returns` key and `returnsBadge` already exist in the original `footer` object at lines 28-39.
 
-**`src/i18n/locales/en.json`** -- Add inside `footer.links`:
-- `"returns": "Returns & Exchanges"`
-- Add `"returnsBadge": "14-day returns · Easy exchanges · Customer pays return shipping (change of mind)"` inside `footer`
+**`src/i18n/locales/sv.json`** (lines 987-993)
+Remove the same trailing duplicate block (Swedish version). Already present at lines 28-39.
 
-**`src/i18n/locales/sv.json`** -- Add:
-- `"returns": "Returer & Byten"` inside `footer.links`
-- `"returnsBadge": "14 dagars returrätt · Enkla byten · Kunden betalar returfrakten (ångerrätt)"` inside `footer`
+**`src/i18n/locales/no.json`** (lines 1027-1033)
+Remove the same trailing duplicate block (Norwegian version). Already present at lines 28-39.
 
-**`src/i18n/locales/no.json`** -- Add:
-- `"returns": "Retur & Bytte"` inside `footer.links`
-- `"returnsBadge": "14 dagers returrett · Enkle bytter · Kunden betaler returfrakten (angrerett)"` inside `footer`
-
-Three small edits, no new files.
+### Result
+All footer text (description, quick links, service areas, copyright, quote, returns badge) will render correctly in all three languages.
