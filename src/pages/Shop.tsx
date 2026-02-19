@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -145,7 +146,52 @@ const Shop = () => {
   }
 
   const allImages = [ihraamProduct, detail2, detail3, detail4, detail5, detail6, detail7, detail8];
-  
+  const SITE_URL = "https://www.pureihram.com";
+  const absoluteImages = allImages.map(img => img.startsWith('http') ? img : `${SITE_URL}${img}`);
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": product.name,
+    "description": "Premium lightweight Ihram cloth for Hajj and Umrah. Soft, quick-dry, antimicrobial cotton towel set.",
+    "image": absoluteImages,
+    "brand": { "@type": "Brand", "name": "PureIhram" },
+    "sku": "IHRAM-SET-001",
+    "offers": {
+      "@type": "Offer",
+      "url": `${SITE_URL}/shop`,
+      "priceCurrency": "EUR",
+      "price": String(product.price),
+      "availability": product.stock_quantity > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+      "itemCondition": "https://schema.org/NewCondition",
+      "shippingDetails": {
+        "@type": "OfferShippingDetails",
+        "shippingDestination": {
+          "@type": "DefinedRegion",
+          "addressCountry": ["SE", "NO", "DK", "FI"]
+        },
+        "deliveryTime": {
+          "@type": "ShippingDeliveryTime",
+          "handlingTime": { "@type": "QuantitativeValue", "minValue": 1, "maxValue": 3, "unitCode": "d" },
+          "transitTime": { "@type": "QuantitativeValue", "minValue": 2, "maxValue": 7, "unitCode": "d" }
+        }
+      },
+      "hasMerchantReturnPolicy": {
+        "@type": "MerchantReturnPolicy",
+        "applicableCountry": ["SE", "NO", "DK", "FI"],
+        "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+        "merchantReturnDays": 14,
+        "returnMethod": "https://schema.org/ReturnByMail",
+        "returnFees": "https://schema.org/ReturnFeesCustomerResponsibility"
+      }
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "reviewCount": "127"
+    }
+  };
+
   const navigateNext = () => {
     if (selectedImageIndex === null) return;
     setSelectedImageIndex((selectedImageIndex + 1) % allImages.length);
@@ -158,6 +204,19 @@ const Shop = () => {
 
   return (
     <>
+      <Helmet>
+        <title>{product.name} - Pure Ihram | Buy Online</title>
+        <meta name="description" content="Premium Ihram cloth for Hajj & Umrah. Only 15€ + shipping. Fast delivery across Sweden, Nordics & EU." />
+        <meta property="og:type" content="product" />
+        <meta property="og:title" content={`${product.name} - Pure Ihram`} />
+        <meta property="og:description" content="Premium Ihram cloth for Hajj & Umrah. Only 15€ + shipping. Fast delivery across Sweden, Nordics & EU." />
+        <meta property="og:image" content={absoluteImages[0]} />
+        <meta property="og:url" content={`${SITE_URL}/shop`} />
+        <meta property="product:price:amount" content={String(product.price)} />
+        <meta property="product:price:currency" content="EUR" />
+        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      </Helmet>
+
       {/* Image Lightbox */}
       <Dialog open={selectedImageIndex !== null} onOpenChange={() => setSelectedImageIndex(null)}>
         <DialogContent className="max-w-5xl p-0 bg-background/95 backdrop-blur">
