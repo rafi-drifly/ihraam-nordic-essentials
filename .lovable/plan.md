@@ -1,41 +1,68 @@
 
 
-## Fix: Google Merchant Center "Invalid image encoding" for Product Feed
+## Expose Product Images via Supabase Storage for Google Merchant Center
 
-### Root Cause
+### Current Situation
+Product images are **not** stored in Supabase Storage -- they are local assets bundled by Vite (`src/assets/*.jpg` and `src/assets/product/*.avif`). The `products` table has an `images` column but it only contains local paths (`/src/assets/ihraam-product.jpg`, `/src/assets/ihraam-worn.jpg`), not public URLs.
 
-The product detail images are all in **AVIF format** (`.avif`), which is **not accepted by Google Merchant Center**. Google only accepts: JPEG, PNG, GIF, BMP, TIFF, or WebP.
+There are currently **no storage buckets** in the Supabase project.
 
-Additionally, the image URLs in the JSON-LD structured data are constructed from Vite-hashed asset paths (e.g., `/assets/detail-2-abc123.avif`), which:
-- Have unpredictable hashed filenames that change on every build
-- Are in AVIF format, rejected by Google Merchant
+**Important note**: This project uses Vite/React, not Next.js, so there is no `/_next/image` optimizer. The issue is that Vite hashes filenames at build time and detail images are in AVIF format (unsupported by Google Merchant).
 
-### Solution
+### Plan
 
-1. **Copy all product images to `public/` as stable-URL files**
-   - Copy `src/assets/ihraam-product.jpg` to `public/product/main.jpg`
-   - Copy detail images to `public/product/detail-2.avif` through `detail-8.avif`
+**Step 1: Create a public Supabase Storage bucket**
 
-   Since AVIF is not accepted by Google, the detail images need to be converted. However, since we cannot convert image formats in Lovable, we will:
-   - Use the main product image (`og-image.jpg`, which is JPEG) as the `image_link`
-   - Only include the main JPEG image in the structured data for Google Merchant, removing the AVIF detail images from the feed
+Create a `product-images` bucket with public read access via SQL migration:
+- Bucket: `product-images`, public: `true`
+- RLS policy: allow public `SELECT` on `storage.objects` for this bucket
 
-2. **Update `src/pages/Shop.tsx` structured data**
-   - Change the `image` array in JSON-LD to only include the JPEG image with a stable public URL: `https://www.pureihram.com/og-image.jpg`
-   - Keep the AVIF images for the on-page gallery (browsers support AVIF fine), but exclude them from structured data
-   - Update `og:image` to use the same stable URL
+**Step 2: You upload your images manually**
 
-### Changes
+After the bucket is created, you will need to upload your product images (as JPEG or WebP, NOT AVIF) to the bucket via the Supabase Dashboard. The resulting URLs will be:
+```
+https://cimjybhmilaecqhnqrby.supabase.co/storage/v1/object/public/product-images/main.jpg
+https://cimjybhmilaecqhnqrby.supabase.co/storage/v1/object/public/product-images/detail-2.jpg
+...
+```
 
-**`src/pages/Shop.tsx`**
-- Replace the dynamic `absoluteImages` array in the JSON-LD with a single stable JPEG URL: `["https://www.pureihram.com/og-image.jpg"]`
-- The on-page image gallery continues to use the Vite-imported AVIF assets (no visual change)
+**Step 3: Update the `products` table**
 
-### Result
-- `image_link` will point to `https://www.pureihram.com/og-image.jpg` -- a direct, publicly accessible JPEG file with correct `Content-Type: image/jpeg` headers
-- No AVIF images in the product feed, resolving the "Invalid image encoding" error
-- The on-page shopping experience remains unchanged
+Update the `images` array in the `products` table to contain the full Supabase Storage URLs instead of local paths.
 
-### Follow-up Recommendation
-To include multiple product images in the Google Merchant feed, you would need to convert the AVIF detail images to JPEG or WebP and host them in the `public/` folder (or a CDN/Supabase Storage bucket). This can be done outside Lovable using any image converter, then uploading the converted files.
+**Step 4: Create an edge function `product-images`**
+
+Since Lovable/Vite projects cannot create API routes like `/api/...`, we will create a Supabase Edge Function that returns the JSON format you described:
+
+```json
+{
+  "product_id": "pure-ihram-hajj-towel-set",
+  "image_link": "https://cimjybhmilaecqhnqrby.supabase.co/storage/v1/object/public/product-images/main.jpg",
+  "additional_images": [
+    "https://cimjybhmilaecqhnqrby.supabase.co/storage/v1/object/public/product-images/detail-2.jpg",
+    ...
+  ]
+}
+```
+
+It will read from the `products` table `images` column to return the URLs dynamically.
+
+**Step 5: Update Shop.tsx structured data**
+
+Update the JSON-LD `image` array and `og:image` to use the Supabase Storage URLs from the product data instead of the hardcoded `og-image.jpg` path.
+
+### What You Need To Do
+
+After implementation, you will need to:
+1. Convert your AVIF detail images to JPEG or WebP
+2. Upload them to the `product-images` bucket in the Supabase Dashboard
+3. Use the returned Supabase Storage URLs in your Google Merchant Center CSV feed
+
+### Technical Details
+
+- Storage bucket created via SQL migration with public access
+- Edge function at `product-images` reads from the `products` table
+- `verify_jwt = false` for the edge function (public endpoint)
+- JSON-LD in Shop.tsx will dynamically use the storage URLs from the product record
+- Config updated in `supabase/config.toml`
 
