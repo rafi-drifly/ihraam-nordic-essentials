@@ -147,14 +147,14 @@ const Shop = () => {
 
   const allImages = [ihraamProduct, detail2, detail3, detail4, detail5, detail6, detail7, detail8];
   const SITE_URL = "https://www.pureihram.com";
-  const absoluteImages = allImages.map(img => img.startsWith('http') ? img : `${SITE_URL}${img}`);
+  const merchantImages = [`${SITE_URL}/og-image.jpg`];
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
     "name": product.name,
     "description": "Premium lightweight Ihram cloth for Hajj and Umrah. Soft, quick-dry, antimicrobial cotton towel set.",
-    "image": absoluteImages,
+    "image": merchantImages,
     "brand": { "@type": "Brand", "name": "PureIhram" },
     "sku": "IHRAM-SET-001",
     "offers": {
@@ -210,7 +210,7 @@ const Shop = () => {
         <meta property="og:type" content="product" />
         <meta property="og:title" content={`${product.name} - Pure Ihram`} />
         <meta property="og:description" content="Premium Ihram cloth for Hajj & Umrah. Only 15€ + shipping. Fast delivery across Sweden, Nordics & EU." />
-        <meta property="og:image" content={absoluteImages[0]} />
+        <meta property="og:image" content={merchantImages[0]} />
         <meta property="og:url" content={`${SITE_URL}/shop`} />
         <meta property="product:price:amount" content={String(product.price)} />
         <meta property="product:price:currency" content="EUR" />
