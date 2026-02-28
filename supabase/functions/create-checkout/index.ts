@@ -12,15 +12,21 @@ interface CheckoutRequest {
     id: string;
     quantity: number;
   }>;
-  donation?: number; // Optional donation amount in EUR
+  donation?: number;
 }
 
-// Shipping rates per item in cents by region
-const SHIPPING_RATES_CENTS = {
-  sweden: 900,   // €9 per item
-  nordic: 900,   // €9 per item (NO, DK, FI)
-  eu: 1000,      // €10 per item
-};
+// Sweden shipping rules (in cents):
+// 1 item: 900 (€9), 2 items: 900 (€9 flat), 3+: 0 (free)
+function getShippingCents(totalQuantity: number): number {
+  if (totalQuantity >= 3) return 0;
+  return 900; // €9 flat for 1 or 2 items
+}
+
+function getBundleType(qty: number): string {
+  if (qty >= 3) return '3-pack';
+  if (qty === 2) return '2-pack';
+  return 'single';
+}
 
 serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -40,10 +46,10 @@ serve(async (req) => {
     const { items, donation }: CheckoutRequest = await req.json();
     console.log("Checkout request:", { items, donation });
 
-    // Calculate total quantity for shipping
     const totalQuantity = items.reduce((sum, item) => sum + item.quantity, 0);
-    console.log("Total quantity for shipping:", totalQuantity);
-    console.log("Donation amount:", donation || 0);
+    const shippingCents = getShippingCents(totalQuantity);
+    const bundleType = getBundleType(totalQuantity);
+    console.log("Total qty:", totalQuantity, "Shipping:", shippingCents / 100, "EUR, Bundle:", bundleType);
 
     // Get user if authenticated (optional for guest checkout)
     const authHeader = req.headers.get("Authorization");
@@ -52,12 +58,9 @@ serve(async (req) => {
       const token = authHeader.replace("Bearer ", "");
       const { data } = await supabaseClient.auth.getUser(token);
       user = data.user;
-      console.log("Authenticated user:", user?.id);
-    } else {
-      console.log("No auth header - guest checkout");
     }
 
-    // Find or create Stripe customer if user is authenticated
+    // Find or create Stripe customer
     let customerId;
     if (user?.email) {
       const customers = await stripe.customers.list({ email: user.email, limit: 1 });
@@ -79,20 +82,13 @@ serve(async (req) => {
       .select('*')
       .in('id', productIds);
 
-    if (productsError) {
-      throw new Error(`Error fetching products: ${productsError.message}`);
-    }
+    if (productsError) throw new Error(`Error fetching products: ${productsError.message}`);
+    if (!products || products.length === 0) throw new Error("No products found");
 
-    if (!products || products.length === 0) {
-      throw new Error("No products found");
-    }
-
-    // Create line items for Stripe checkout (products only)
+    // Create line items
     const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = items.map(item => {
       const product = products.find(p => p.id === item.id);
-      if (!product) {
-        throw new Error(`Product not found: ${item.id}`);
-      }
+      if (!product) throw new Error(`Product not found: ${item.id}`);
 
       return {
         price_data: {
@@ -101,29 +97,30 @@ serve(async (req) => {
             name: product.name,
             description: product.description,
           },
-          unit_amount: Math.round(product.price * 100), // Convert to cents
+          unit_amount: Math.round(product.price * 100),
         },
         quantity: item.quantity,
       };
     });
 
-    // Add shipping as a line item - €9 per item for Sweden (default)
-    // This scales with quantity automatically
-    lineItems.push({
-      price_data: {
-        currency: 'eur',
-        product_data: {
-          name: 'Shipping',
-          description: `Shipping to Sweden (${totalQuantity} item${totalQuantity > 1 ? 's' : ''} × €9)`,
+    // Add shipping as a line item (if not free)
+    if (shippingCents > 0) {
+      lineItems.push({
+        price_data: {
+          currency: 'eur',
+          product_data: {
+            name: 'Shipping',
+            description: `Delivery to Sweden (${totalQuantity} set${totalQuantity > 1 ? 's' : ''})`,
+          },
+          unit_amount: shippingCents,
         },
-        unit_amount: SHIPPING_RATES_CENTS.sweden, // €9 per item
-      },
-      quantity: totalQuantity, // Multiply by quantity
-    });
+        quantity: 1, // flat rate, not per-item
+      });
+    }
 
-    console.log("Total shipping:", (SHIPPING_RATES_CENTS.sweden / 100) * totalQuantity, "EUR for", totalQuantity, "items");
+    console.log("Shipping:", shippingCents / 100, "EUR");
 
-    // Add optional donation as a separate line item
+    // Add optional donation
     if (donation && donation > 0) {
       lineItems.push({
         price_data: {
@@ -132,17 +129,15 @@ serve(async (req) => {
             name: 'Voluntary Donation – Support Our Mission',
             description: 'Thank you for supporting Pure Ihram\'s mission',
           },
-          unit_amount: Math.round(donation * 100), // Convert to cents
+          unit_amount: Math.round(donation * 100),
         },
         quantity: 1,
       });
-      console.log("Donation added:", donation, "EUR");
     }
 
-    // Create checkout session with shipping as line item
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
-      customer_email: customerId ? undefined : undefined, // Let Stripe collect email
+      customer_email: customerId ? undefined : undefined,
       line_items: lineItems,
       mode: "payment",
       currency: "eur",
@@ -151,9 +146,7 @@ serve(async (req) => {
       shipping_address_collection: {
         allowed_countries: ['SE', 'NO', 'DK', 'FI', 'DE', 'NL', 'BE', 'FR', 'AT', 'IT', 'ES'],
       },
-      phone_number_collection: {
-        enabled: true,
-      },
+      phone_number_collection: { enabled: true },
       custom_text: {
         shipping_address: {
           message: "We ship to Sweden, Nordic countries, and EU. Delivery time: 3-14 business days.",
@@ -163,7 +156,8 @@ serve(async (req) => {
         user_id: user?.id || '',
         items: JSON.stringify(items),
         total_quantity: totalQuantity.toString(),
-        shipping_rate_per_item: (SHIPPING_RATES_CENTS.sweden / 100).toString(),
+        bundle_type: bundleType,
+        shipping_eur: (shippingCents / 100).toString(),
         donation: donation && donation > 0 ? "true" : "false",
         donation_amount: donation && donation > 0 ? donation.toString() : "0",
       },
