@@ -89,26 +89,31 @@ serve(async (req) => {
     // Create line items
     // If bundlePrice is provided, use it as the total product price (in EUR).
     // Calculate unit_amount per item from bundlePrice, otherwise use DB price.
-    const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = items.map(item => {
-      const product = products.find(p => p.id === item.id);
-      if (!product) throw new Error(`Product not found: ${item.id}`);
+    // Build a single bundle-aware line item
+    const product = products[0];
+    if (!product) throw new Error("No product found");
 
-      const unitAmountCents = bundlePrice
-        ? Math.round((bundlePrice / totalQuantity) * 100)
-        : Math.round(product.price * 100);
+    let bundleName = product.name;
+    if (totalQuantity === 2) bundleName = `${product.name} – 2-Pack (Best Value)`;
+    else if (totalQuantity >= 3) bundleName = `${product.name} – 3-Pack (Free Delivery)`;
 
-      return {
+    const totalPriceCents = bundlePrice
+      ? Math.round(bundlePrice * 100)
+      : Math.round(product.price * totalQuantity * 100);
+
+    const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [
+      {
         price_data: {
           currency: 'eur',
           product_data: {
-            name: product.name,
+            name: bundleName,
             description: product.description,
           },
-          unit_amount: unitAmountCents,
+          unit_amount: totalPriceCents,
         },
-        quantity: item.quantity,
-      };
-    });
+        quantity: 1,
+      },
+    ];
 
     // Add shipping as a line item (if not free)
     if (shippingCents > 0) {
