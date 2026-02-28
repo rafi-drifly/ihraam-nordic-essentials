@@ -7,11 +7,13 @@ import { CartDrawer } from "@/components/shop/CartDrawer";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { useShippingDestination } from "@/hooks/useShippingDestination";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [checkingOut, setCheckingOut] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { destination } = useShippingDestination();
   const location = useLocation();
   const { toast } = useToast();
   const { t } = useTranslation();
@@ -48,7 +50,8 @@ const Navbar = () => {
       const { data, error } = await supabase.functions.invoke('create-checkout', {
         body: { 
           items: cartItems.map((item: any) => ({ id: item.id, quantity: item.quantity })),
-          locale: location.pathname.startsWith('/sv') ? 'sv' : location.pathname.startsWith('/no') ? 'no' : 'en'
+          locale: location.pathname.startsWith('/sv') ? 'sv' : location.pathname.startsWith('/no') ? 'no' : 'en',
+          shippingCountry: destination
         }
       });
 

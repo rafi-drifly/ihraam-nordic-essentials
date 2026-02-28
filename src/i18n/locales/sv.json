@@ -408,6 +408,14 @@
       "trustMission": "Transparent uppdrag",
       "shippingBullet": "1–2 set: 9 € leverans · 3+ set: GRATIS leverans"
     },
+    "destination": {
+      "label": "Levereras till:",
+      "sweden": "Sverige",
+      "norway": "Norge",
+      "norwayCustomsNote": "Norge ligger utanför EU. Import-moms/tullavgifter kan tillkomma vid leverans.",
+      "norwayShippingSame": "Norge: Frakten är densamma för 1–2 set.",
+      "norwayShippingBullet": "1–2 sett: 39 € leverans · 3+ sett: 49 € leverans"
+    },
     "specifications": {
       "title": "Tekniska Specifikationer",
       "material": "Material",
@@ -699,9 +707,19 @@
     "orderSummary": "Ordersammanfattning",
     "items": "Artiklar ({{count}})",
     "shipping": "Frakt",
+    "shippingTo": "Frakt ({{country}})",
+    "subtotal": "Delsumma",
     "total": "Totalt",
     "checkout": "Gå till Kassan",
-    "viewCart": "Visa Varukorg"
+    "viewCart": "Visa Varukorg",
+    "upsell": {
+      "seQty1": "Lägg till 1 till för att behålla frakten på 9 € (Bäst Värde 2-Pack)",
+      "seQty2": "Lägg till 1 till för att låsa upp GRATIS leverans (3-Pack)",
+      "noQty1": "Lägg till 1 till — frakten är densamma (Bäst Värde 2-Pack)",
+      "noQty2": "Köper du 3? Frakten blir 49 € — fortfarande bäst värde per set.",
+      "switchTo2Pack": "Byt till 2-Pack",
+      "switchTo3Pack": "Byt till 3-Pack"
+    }
   },
   "donation": {
     "pageTitle": "Stöd Vårt Uppdrag",
