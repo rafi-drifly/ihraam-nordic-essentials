@@ -48,13 +48,12 @@ const Cart = () => {
     setCheckoutLoading(true);
     try {
       const checkoutItems = items.map(item => ({ id: item.id, quantity: item.quantity }));
-      const { i18n } = useTranslation();
       const { data, error } = await supabase.functions.invoke('create-checkout', {
         body: { 
           items: checkoutItems,
           donation: selectedDonation > 0 ? selectedDonation : undefined,
           bundlePrice: getBundlePrice(totalItems),
-          locale: i18n.language
+          locale: location.pathname.startsWith('/sv') ? 'sv' : location.pathname.startsWith('/no') ? 'no' : 'en'
         }
       });
       if (error) throw error;

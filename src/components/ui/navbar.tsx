@@ -45,11 +45,10 @@ const Navbar = () => {
     try {
       console.log('Starting checkout with items:', cartItems);
       
-      const { i18n } = useTranslation();
       const { data, error } = await supabase.functions.invoke('create-checkout', {
         body: { 
           items: cartItems.map((item: any) => ({ id: item.id, quantity: item.quantity })),
-          locale: i18n.language
+          locale: location.pathname.startsWith('/sv') ? 'sv' : location.pathname.startsWith('/no') ? 'no' : 'en'
         }
       });
 

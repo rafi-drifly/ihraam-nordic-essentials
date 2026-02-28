@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Check, Truck, Heart, Star, ArrowRight, Building2 } from "lucide-react";
 import ihraamProduct from "@/assets/hero-product.avif";
 import heroPattern from "@/assets/hero-pattern.jpg";
@@ -14,6 +14,8 @@ import commonMistakes from "@/assets/blog/common-mistakes.png";
 
 const Home = () => {
   const { t } = useTranslation();
+  const location = useLocation();
+  const localePrefix = location.pathname.startsWith('/sv') ? '/sv' : location.pathname.startsWith('/no') ? '/no' : '';
 
   const benefits = [
     {
@@ -43,37 +45,37 @@ const Home = () => {
       image: spiritualMeaning,
       title: t('home.guides.articles.spiritual.title'),
       description: t('home.guides.articles.spiritual.description'),
-      link: "/blog/spiritual-meaning-ihram"
+      link: `${localePrefix}/blog/spiritual-meaning-ihram`
     },
     {
       image: howToWear,
       title: t('home.guides.articles.howToWear.title'),
       description: t('home.guides.articles.howToWear.description'),
-      link: "/blog/how-to-wear-ihram"
+      link: `${localePrefix}/blog/how-to-wear-ihram`
     },
     {
       image: sunnahActs,
       title: t('home.guides.articles.sunnah.title'),
       description: t('home.guides.articles.sunnah.description'),
-      link: "/blog/sunnah-acts-before-ihram"
+      link: `${localePrefix}/blog/sunnah-acts-before-ihram`
     },
     {
       image: umrahChecklist,
       title: t('home.guides.articles.checklist.title'),
       description: t('home.guides.articles.checklist.description'),
-      link: "/blog/umrah-preparation-checklist"
+      link: `${localePrefix}/blog/umrah-preparation-checklist`
     },
     {
       image: essentialDuas,
       title: t('home.guides.articles.duas.title'),
       description: t('home.guides.articles.duas.description'),
-      link: "/blog/essential-duas-umrah"
+      link: `${localePrefix}/blog/essential-duas-umrah`
     },
     {
       image: commonMistakes,
       title: t('home.guides.articles.mistakes.title'),
       description: t('home.guides.articles.mistakes.description'),
-      link: "/blog/common-mistakes-ihram"
+      link: `${localePrefix}/blog/common-mistakes-ihram`
     }
   ];
 
@@ -104,14 +106,14 @@ const Home = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button asChild size="lg" className="bg-gradient-primary hover:opacity-90 transition-opacity">
-                  <Link to="/shop">{t('home.hero.cta')}</Link>
+                  <Link to={`${localePrefix}/shop`}>{t('home.hero.cta')}</Link>
                 </Button>
                 <Button asChild variant="outline" size="lg">
-                  <Link to="/about">{t('home.hero.learnMore')}</Link>
+                  <Link to={`${localePrefix}/about`}>{t('home.hero.learnMore')}</Link>
                 </Button>
               </div>
               <Link 
-                to="/partners"
+                to={`${localePrefix}/partners`}
                 className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors mt-4 text-sm"
               >
                 <Building2 className="h-4 w-4" />
@@ -279,7 +281,7 @@ const Home = () => {
           {/* View All CTA */}
           <div className="text-center">
             <Button asChild variant="outline" size="lg" className="group">
-              <Link to="/blog" className="inline-flex items-center gap-2">
+              <Link to={`${localePrefix}/blog`} className="inline-flex items-center gap-2">
                 {t('home.guides.viewAll')}
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Link>
@@ -298,7 +300,7 @@ const Home = () => {
             {t('home.cta.description')}
           </p>
           <Button asChild size="lg" className="bg-gradient-primary hover:opacity-90 transition-opacity">
-            <Link to="/shop">{t('home.cta.button')}</Link>
+            <Link to={`${localePrefix}/shop`}>{t('home.cta.button')}</Link>
           </Button>
         </div>
       </section>

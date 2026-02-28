@@ -396,6 +396,18 @@
     "creatingCheckout": "Creating Checkout...",
     "addedToCart": "Added to cart",
     "addedToCartDesc": "{{quantity}} x {{name}} added to your cart.",
+    "bundle": {
+      "chooseBundle": "Choose your bundle:",
+      "single": "Single",
+      "bestValue": "Best Value",
+      "freeDelivery": "Free Delivery",
+      "delivery": "delivery",
+      "youSave": "You save €{{amount}} vs singles",
+      "trustSoft": "Soft, breathable, suitable for Hajj & Umrah",
+      "trustShipping": "Fast shipping within Sweden",
+      "trustMission": "Transparent mission",
+      "shippingBullet": "1–2 sets: €9 delivery · 3+ sets: FREE delivery"
+    },
     "specifications": {
       "title": "Technical Specifications",
       "material": "Material",
@@ -847,7 +859,8 @@
   },
   "common": {
     "error": "Error",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "whatsappButton": "Contact us on WhatsApp"
   },
   "returns": {
     "hero": {

@@ -396,6 +396,18 @@
     "creatingCheckout": "Oppretter Betaling...",
     "addedToCart": "Lagt i handlekurven",
     "addedToCartDesc": "{{quantity}} x {{name}} lagt til i handlekurven din.",
+    "bundle": {
+      "chooseBundle": "Velg din pakke:",
+      "single": "Enkelt",
+      "bestValue": "Beste Verdi",
+      "freeDelivery": "Gratis Levering",
+      "delivery": "levering",
+      "youSave": "Du sparer €{{amount}} sammenlignet med enkeltpakker",
+      "trustSoft": "Myk, pustende, egnet for Hajj & Umrah",
+      "trustShipping": "Rask levering i Sverige",
+      "trustMission": "Transparent misjon",
+      "shippingBullet": "1–2 sett: 9 € levering · 3+ sett: GRATIS levering"
+    },
     "specifications": {
       "title": "Tekniske Spesifikasjoner",
       "material": "Materiale",
@@ -887,7 +899,8 @@
   },
   "common": {
     "error": "Feil",
-    "loading": "Laster..."
+    "loading": "Laster...",
+    "whatsappButton": "Kontakt oss på WhatsApp"
   },
   "returns": {
     "hero": {
