@@ -35,7 +35,7 @@ const Navbar = () => {
   };
   const localePrefix = getLocalePrefix();
 
-  const handleCheckout = async () => {
+  const handleCheckout = async (promoCode?: string, shippingCity?: string) => {
     const cartItems = JSON.parse(localStorage.getItem('ihram-cart') || '[]');
     
     if (cartItems.length === 0) {
@@ -51,7 +51,9 @@ const Navbar = () => {
         body: { 
           items: cartItems.map((item: any) => ({ id: item.id, quantity: item.quantity })),
           locale: location.pathname.startsWith('/sv') ? 'sv' : location.pathname.startsWith('/no') ? 'no' : 'en',
-          shippingCountry: destination
+          shippingCountry: destination,
+          promoCode,
+          shippingCity
         }
       });
 

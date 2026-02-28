@@ -719,6 +719,17 @@
       "noQty2": "Buying 3? Shipping becomes €49 — still best value per set.",
       "switchTo2Pack": "Switch to 2-Pack",
       "switchTo3Pack": "Switch to 3-Pack"
+    },
+    "promo": {
+      "placeholder": "Enter promo code",
+      "apply": "Apply",
+      "applied": "Promo code applied! Free delivery for Uppsala.",
+      "removed": "Promo code removed.",
+      "invalidCity": "This promo code is only valid for Uppsala deliveries.",
+      "invalidCode": "Invalid promo code.",
+      "cityLabel": "Confirm your delivery city",
+      "cityPlaceholder": "Enter your city",
+      "freeDelivery": "Free delivery (promo)"
     }
   },
   "donation": {

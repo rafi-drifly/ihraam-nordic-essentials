@@ -13,6 +13,8 @@ interface CheckoutRequest {
   bundlePrice?: number;
   locale?: string;
   shippingCountry?: 'SE' | 'NO';
+  promoCode?: string;
+  shippingCity?: string;
 }
 
 const bundleLabels: Record<string, { twoPack: string; threePack: string }> = {
@@ -59,12 +61,30 @@ serve(async (req) => {
       apiVersion: "2025-08-27.basil",
     });
 
-    const { items, donation, bundlePrice, locale, shippingCountry }: CheckoutRequest = await req.json();
+    const { items, donation, bundlePrice, locale, shippingCountry, promoCode, shippingCity }: CheckoutRequest = await req.json();
     const country = shippingCountry || 'SE';
-    console.log("Checkout request:", { items, donation, bundlePrice, locale, country });
+    console.log("Checkout request:", { items, donation, bundlePrice, locale, country, promoCode, shippingCity });
+
+    // Validate FREEDELIVERY-UPPSALA promo code
+    let promoFreeShipping = false;
+    if (promoCode && promoCode.toUpperCase() === 'FREEDELIVERY-UPPSALA') {
+      if (!shippingCity || shippingCity.toLowerCase().trim() !== 'uppsala') {
+        return new Response(
+          JSON.stringify({ error: "This promo code is only valid for Uppsala deliveries." }),
+          { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 400 }
+        );
+      }
+      promoFreeShipping = true;
+      console.log("Promo FREEDELIVERY-UPPSALA validated for Uppsala");
+    } else if (promoCode) {
+      return new Response(
+        JSON.stringify({ error: "Invalid promo code." }),
+        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 400 }
+      );
+    }
 
     const totalQuantity = items.reduce((sum, item) => sum + item.quantity, 0);
-    const shippingCents = getShippingCents(totalQuantity, country);
+    const shippingCents = promoFreeShipping ? 0 : getShippingCents(totalQuantity, country);
     const bundleType = getBundleType(totalQuantity);
     console.log("Total qty:", totalQuantity, "Shipping:", shippingCents / 100, "EUR, Bundle:", bundleType, "Country:", country);
 
@@ -166,7 +186,7 @@ serve(async (req) => {
       line_items: lineItems,
       mode: "payment",
       currency: "eur",
-      allow_promotion_codes: true,
+      
       success_url: `${req.headers.get("origin")}/order-success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${req.headers.get("origin")}/cart`,
       shipping_address_collection: {
