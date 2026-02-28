@@ -1,68 +1,104 @@
 
 
-## Expose Product Images via Supabase Storage for Google Merchant Center
+## Pricing + Bundle System for PureIhram
 
-### Current Situation
-Product images are **not** stored in Supabase Storage -- they are local assets bundled by Vite (`src/assets/*.jpg` and `src/assets/product/*.avif`). The `products` table has an `images` column but it only contains local paths (`/src/assets/ihraam-product.jpg`, `/src/assets/ihraam-worn.jpg`), not public URLs.
+### Overview
+Replace the current single-quantity selector on the Shop page with three selectable bundle cards (Single, 2-Pack, 3-Pack), add dynamic upsell banners in the Cart page and Cart Drawer, update shipping logic (new Sweden tiered rules), and update the Stripe checkout edge function to match.
 
-There are currently **no storage buckets** in the Supabase project.
+### Current State
+- **Product price in DB**: 15 EUR (needs updating to 20 EUR)
+- **Shipping**: flat 9 EUR per item everywhere
+- **Shop page**: quantity picker + "Add to Cart" / "Buy Now" buttons
+- **Cart**: line items with subtotal/shipping/total, donation section
+- **CartDrawer**: mini cart in a sheet, no upsell banners
 
-**Important note**: This project uses Vite/React, not Next.js, so there is no `/_next/image` optimizer. The issue is that Vite hashes filenames at build time and detail images are in AVIF format (unsupported by Google Merchant).
+---
 
-### Plan
+### Changes
 
-**Step 1: Create a public Supabase Storage bucket**
+#### 1. Update product price in database
+SQL migration to update the product price from 15 to 20 EUR.
 
-Create a `product-images` bucket with public read access via SQL migration:
-- Bucket: `product-images`, public: `true`
-- RLS policy: allow public `SELECT` on `storage.objects` for this bucket
+#### 2. New shipping logic (`src/lib/shipping.ts`)
+Replace the flat per-item rate with the new Sweden tiered rules:
+- 1 item: 9 EUR
+- 2 items: 9 EUR (flat, not per-item)
+- 3+ items: 0 EUR (free)
 
-**Step 2: You upload your images manually**
+For non-Sweden, keep "calculated at checkout" messaging. The `calculateShipping` function will accept quantity and return the correct amount.
 
-After the bucket is created, you will need to upload your product images (as JPEG or WebP, NOT AVIF) to the bucket via the Supabase Dashboard. The resulting URLs will be:
-```
-https://cimjybhmilaecqhnqrby.supabase.co/storage/v1/object/public/product-images/main.jpg
-https://cimjybhmilaecqhnqrby.supabase.co/storage/v1/object/public/product-images/detail-2.jpg
-...
-```
+#### 3. Bundle pricing config (`src/lib/bundles.ts` -- new file)
+Define bundle configuration:
 
-**Step 3: Update the `products` table**
-
-Update the `images` array in the `products` table to contain the full Supabase Storage URLs instead of local paths.
-
-**Step 4: Create an edge function `product-images`**
-
-Since Lovable/Vite projects cannot create API routes like `/api/...`, we will create a Supabase Edge Function that returns the JSON format you described:
-
-```json
-{
-  "product_id": "pure-ihram-hajj-towel-set",
-  "image_link": "https://cimjybhmilaecqhnqrby.supabase.co/storage/v1/object/public/product-images/main.jpg",
-  "additional_images": [
-    "https://cimjybhmilaecqhnqrby.supabase.co/storage/v1/object/public/product-images/detail-2.jpg",
-    ...
-  ]
-}
+```text
+BUNDLES = [
+  { qty: 1, label: "Single",     unitPrice: 20, totalPrice: 20, shipping: 9,  savings: 0,  badge: null },
+  { qty: 2, label: "2-Pack",     unitPrice: 19.5, totalPrice: 39, shipping: 9, savings: 1,  badge: "Best Value" },
+  { qty: 3, label: "3-Pack",     unitPrice: 19, totalPrice: 57, shipping: 0, savings: 3,  badge: "Free Delivery" },
+]
 ```
 
-It will read from the `products` table `images` column to return the URLs dynamically.
+Savings calculated vs buying singles (e.g., 2-Pack saves 2x20 - 39 = 1 EUR product + the shipping difference).
 
-**Step 5: Update Shop.tsx structured data**
+#### 4. Redesign Shop page (`src/pages/Shop.tsx`)
+Replace the quantity picker section with three selectable bundle cards:
 
-Update the JSON-LD `image` array and `og:image` to use the Supabase Storage URLs from the product data instead of the hardcoded `og-image.jpg` path.
+- Each card is a bordered card, selected state highlighted
+- Shows: bundle name, price, shipping note for Sweden, savings vs singles
+- "Most popular" badge on 2-Pack
+- Trust bullets beneath: "Soft, breathable, suitable for Hajj and Umrah", "Fast shipping within Sweden", "Transparent mission"
+- "Add to Cart" button adds the selected bundle quantity
+- "Buy Now" sends the bundle directly to Stripe checkout
+- Update headline/subtext copy as specified
+- Update meta description to reflect new pricing
 
-### What You Need To Do
+#### 5. Cart page upsell banners (`src/pages/Cart.tsx`)
+Add a dynamic upsell banner above the order summary:
+- If 1 item in cart: "Add 1 more to keep shipping at 9 EUR (Best Value 2-Pack)"
+- If 2 items: "Add 1 more to unlock FREE delivery (3-Pack)"
+- Each banner has a CTA button that adds 1 more item to cart
+- Update shipping display to use new tiered logic
 
-After implementation, you will need to:
-1. Convert your AVIF detail images to JPEG or WebP
-2. Upload them to the `product-images` bucket in the Supabase Dashboard
-3. Use the returned Supabase Storage URLs in your Google Merchant Center CSV feed
+#### 6. Cart Drawer upsell (`src/components/shop/CartDrawer.tsx`)
+Same upsell banner logic as the cart page, displayed above the totals section. Update shipping calculation to use new logic.
+
+#### 7. Update Stripe checkout edge function (`supabase/functions/create-checkout/index.ts`)
+- Apply new shipping rules: qty 1 = 900 cents, qty 2 = 900 cents, qty >= 3 = 0 cents
+- Add `bundle_type` to metadata: "single", "2-pack", or "3-pack"
+- Use the bundle total price (not unit price x qty) for the product line item to ensure correct pricing for bundles
+
+#### 8. Analytics tracking
+Add a simple `trackEvent` utility function. Fire events at key points:
+- `view_bundle_option`: when Shop page loads
+- `add_to_cart_single` / `add_to_cart_2pack` / `add_to_cart_3pack`: on add to cart
+- `cart_upsell_clicked`: when upsell CTA is clicked
+- `checkout_started`: when checkout button is clicked
+
+These will log to `console.log` initially (can be wired to GA4/Plausible later).
+
+#### 9. i18n updates (`src/i18n/locales/en.json`)
+Add new translation keys for bundle labels, upsell copy, trust bullets, shipping messages. Only update `en.json` (Swedish/Norwegian can be translated later).
+
+---
 
 ### Technical Details
 
-- Storage bucket created via SQL migration with public access
-- Edge function at `product-images` reads from the `products` table
-- `verify_jwt = false` for the edge function (public endpoint)
-- JSON-LD in Shop.tsx will dynamically use the storage URLs from the product record
-- Config updated in `supabase/config.toml`
+**Files created:**
+- `src/lib/bundles.ts` -- bundle config and helpers
+- `src/lib/analytics.ts` -- lightweight event tracking utility
+
+**Files modified:**
+- `src/lib/shipping.ts` -- new tiered Sweden shipping logic
+- `src/pages/Shop.tsx` -- bundle cards UI, trust bullets, new copy
+- `src/pages/Cart.tsx` -- upsell banner, updated shipping display
+- `src/components/shop/CartDrawer.tsx` -- upsell banner, updated shipping
+- `supabase/functions/create-checkout/index.ts` -- new shipping + bundle metadata
+- `src/i18n/locales/en.json` -- new translation keys
+- `src/hooks/useCart.tsx` -- no changes needed (already supports quantity)
+
+**Database migration:**
+- Update product price from 15 to 20 EUR
+
+**Edge function redeployment:**
+- `create-checkout` will be redeployed automatically
 
