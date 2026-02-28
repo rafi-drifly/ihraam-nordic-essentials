@@ -1,0 +1,1 @@
+UPDATE products SET description = 'Premium quality Ihraam set made from 100% Microfiber Polyester. Lightweight, comfortable, and perfectly suited for your sacred pilgrimage to Makkah. The set includes both the Izaar (lower garment) and Ridaa (upper garment), pre-cut to traditional specifications.' WHERE id = '36acffbc-41ea-4512-8621-174cd8d9b00c';

@@ -45,7 +45,7 @@
       "title": "Pure & Comfortable",
       "titleHighlight": "Ihram",
       "price": "Only",
-      "priceAmount": "15€",
+      "priceAmount": "20€",
       "priceSuffix": "+ shipping",
       "description": "Lightweight, thin, and comfortable Ihram (Ihraam) cloth for your sacred journey. Made with the intention of earning ajr and making pilgrimage accessible to all.",
     "cta": "Order Your Ihram",
@@ -59,11 +59,11 @@
       "subtitle": "Quality, accessibility, and comfort for every pilgrim",
       "affordable": {
         "title": "Affordable for All",
-        "description": "Quality Ihram (Ihraam) at just 15€ + shipping. Making pilgrimage accessible regardless of financial situation, with the sincere intention of earning ajr in the Akhirah."
+        "description": "Quality Ihram (Ihraam) at just 20€ + shipping. Making pilgrimage accessible regardless of financial situation, with the sincere intention of earning ajr in the Akhirah."
       },
       "comfortable": {
         "title": "Comfortable & Durable",
-        "description": "Premium 100% cotton fabric that's soft, breathable, and long-lasting. Pre-washed and ready to use, ensuring comfort throughout your sacred journey."
+        "description": "Premium 100% Microfiber Polyester fabric that's soft, breathable, and long-lasting. Pre-washed and ready to use, ensuring comfort throughout your sacred journey."
       },
       "delivery": {
         "title": "Delivered Across Europe",
@@ -75,7 +75,7 @@
       "subtitle": "Designed with the pilgrim's comfort and spiritual focus in mind",
       "lightweight": {
         "title": "Lightweight & Comfortable",
-        "description": "Made from premium cotton, thin and breathable for maximum comfort during your pilgrimage."
+        "description": "Made from premium microfiber, thin and breathable for maximum comfort during your pilgrimage."
       },
       "intention": {
         "title": "Made with Intention",
@@ -87,7 +87,7 @@
       },
       "affordable": {
         "title": "Affordable Quality",
-        "description": "High-quality Ihraam at just 15€ + shipping, making it accessible for every pilgrim."
+        "description": "High-quality Ihraam at just 20€ + shipping, making it accessible for every pilgrim."
       }
     },
     "quranVerse2": "\"And Hajj to the House is a duty that mankind owes to Allah, for those who can afford the journey.\"",
@@ -132,11 +132,11 @@
   },
   "about": {
     "title": "About Pure Ihram",
-    "subtitle": "Pure Ihram was founded to make Ihram (Ihraam) affordable (15€ + shipping) and accessible to all. This is not about profit but about earning ajr (reward) in the Akhirah by serving the Muslim community and making the sacred pilgrimage accessible to believers across Europe.",
+    "subtitle": "Pure Ihram was founded to make Ihram (Ihraam) affordable (20€ + shipping) and accessible to all. This is not about profit but about earning ajr (reward) in the Akhirah by serving the Muslim community and making the sacred pilgrimage accessible to believers across Europe.",
     "story": {
       "title": "Our Story",
       "p1": "Pure Ihram was born from a simple yet profound realization: too many Muslims across Europe were struggling to find affordable, quality Ihram (Ihraam) cloth for their pilgrimage to the holy cities of Makkah and Madinah.",
-      "p2": "Having witnessed fellow believers paying excessive prices for basic pilgrimage essentials, we made a commitment to provide premium Ihram cloth at an honest, accessible price of just 15€.",
+      "p2": "Having witnessed fellow believers paying excessive prices for basic pilgrimage essentials, we made a commitment to provide premium Ihram cloth at an honest, accessible price of just 20€.",
       "p3": "Our mission extends beyond commerce – every sale is made with the sincere intention of earning ajr (reward) in the Akhirah while helping our brothers and sisters fulfill their religious obligations without financial burden.",
       "p4": "Today, we're proud to serve thousands of pilgrims across Sweden, the Nordic countries, and the European Union, ensuring that distance and cost never become barriers to spiritual fulfillment."
     },
@@ -155,7 +155,7 @@
       },
       "accessibility": {
         "title": "Accessibility",
-        "description": "We believe every Muslim should have access to quality Ihram (Ihraam) cloth at 15€, regardless of their financial situation."
+        "description": "We believe every Muslim should have access to quality Ihram (Ihraam) cloth at 20€, regardless of their financial situation."
       },
       "trust": {
         "title": "Trust",
@@ -167,8 +167,8 @@
       "p1": "During Hajj and Umrah, pilgrims face intense physical and spiritual demands. Your Ihram should be the least of your concerns – comfortable, breathable, and durable enough to withstand the journey ahead.",
       "p2": "We source our fabric from trusted suppliers who understand the sacred nature of these garments. Every piece is inspected, pre-washed, and prepared with the care befitting its holy purpose.",
       "cotton": {
-        "title": "Premium Cotton",
-        "description": "100% natural cotton fibers for maximum breathability and comfort"
+        "title": "Premium Microfiber",
+        "description": "100% Microfiber Polyester for maximum breathability and comfort"
       },
       "preTreated": {
         "title": "Pre-Treated",
@@ -274,26 +274,26 @@
       "sweden": {
         "region": "Sweden 🇸🇪",
         "timeframe": "3-7 business days",
-        "cost": "5€",
-        "description": "Fast domestic shipping across all regions of Sweden. Order by 2 PM for same-day processing.",
+        "cost": "€9 (1–2 sets) / Free (3+ sets)",
+        "description": "€9 flat delivery for 1–2 Ihram sets. Buy 3 or more and get free delivery in Sweden.",
         "method": "PostNord, DHL, or UPS"
       },
       "nordic": {
         "region": "Nordic Countries 🇳🇴🇩🇰🇫🇮",
         "timeframe": "7-14 business days",
-        "cost": "9€",
+        "cost": "Calculated at checkout",
         "description": "Reliable delivery to Norway, Denmark, and Finland with full tracking support.",
         "method": "International carriers"
       },
       "eu": {
         "region": "European Union 🇪🇺",
         "timeframe": "7-14 business days",
-        "cost": "10€",
+        "cost": "Calculated at checkout",
         "description": "Comprehensive coverage across all EU member countries with customs pre-clearance.",
         "method": "Express international shipping"
       }
     },
-    "freeShipping": "Free shipping on orders over 50€ to all destinations",
+    "freeShipping": "Buy 3+ Ihram sets and get free delivery in Sweden",
     "tip": {
       "title": "💡 Pilgrimage Planning Tip",
       "description": "Order your Ihram at least 3-4 weeks before travel to avoid last-minute stress and ensure you have time for any adjustments or replacements if needed."
@@ -314,7 +314,7 @@
       },
       "free": {
         "title": "Free Shipping",
-        "description": "Orders over 50€ qualify for free shipping"
+        "description": "Buy 3+ sets and get free delivery in Sweden"
       }
     },
     "orderProcessing": {
@@ -384,6 +384,8 @@
     "notFound": "Product not found",
     "fastDelivery": "Fast Delivery",
     "reviews": "reviews",
+    "bundleHeading": "Pure Ihram Sets — Simple bundles, fair delivery",
+    "bundleSubtitle": "Save more when you buy 2 or 3. In Sweden: €9 delivery for 1–2 sets, free delivery from 3 sets.",
     "description": "Stay cool, clean, and comfortable on your sacred journey. The Pure Ihram Hajj Towel Set combines Sunnah simplicity with modern microfiber performance — soft, absorbent, and made to last through every step of Hajj or Umrah.",
     "plusShipping": "+ shipping",
     "stock": "Stock:",

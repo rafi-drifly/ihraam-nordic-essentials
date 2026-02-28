@@ -44,12 +44,12 @@ const SEOHead = ({ title, description, path }: SEOHeadProps) => {
     
   const getDefaultDescription = () => {
     if (currentLang === 'sv') {
-      return 'Köp högkvalitativ Ihram (Ihraam) för endast 15€. Snabb leverans till Sverige, Norden och hela EU. 100% bomull, bekväm och traditionell design för din pilgrimsfärd.';
+      return 'Köp högkvalitativ Ihram (Ihraam) för endast 20€. Snabb leverans till Sverige, Norden och hela EU. 100% mikrofiber polyester, bekväm och traditionell design för din pilgrimsfärd.';
     }
     if (currentLang === 'no') {
-      return 'Kjøp høykvalitets Ihram (Ihraam) for kun 15€. Rask levering til Norge, Norden og hele EU. 100% bomull, komfortabel og tradisjonell design for din pilegrimsreise.';
+      return 'Kjøp høykvalitets Ihram (Ihraam) for kun 20€. Rask levering til Norge, Norden og hele EU. 100% mikrofiber polyester, komfortabel og tradisjonell design for din pilegrimsreise.';
     }
-    return 'Buy high-quality Ihram (Ihraam) for just 15€. Fast delivery to Sweden, Nordics, and all EU. 100% cotton, comfortable and traditional design for your pilgrimage.';
+    return 'Buy high-quality Ihram (Ihraam) for just 20€. Fast delivery to Sweden, Nordics, and all EU. 100% Microfiber Polyester, comfortable and traditional design for your pilgrimage.';
   };
 
   const getLocale = () => {
