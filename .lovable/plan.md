@@ -1,104 +1,107 @@
 
 
-## Pricing + Bundle System for PureIhram
+## Fix Price, Shipping, Translation, and Material Inconsistencies
 
-### Overview
-Replace the current single-quantity selector on the Shop page with three selectable bundle cards (Single, 2-Pack, 3-Pack), add dynamic upsell banners in the Cart page and Cart Drawer, update shipping logic (new Sweden tiered rules), and update the Stripe checkout edge function to match.
+### Issue 1: Price Consistency (15 EUR to 20 EUR)
 
-### Current State
-- **Product price in DB**: 15 EUR (needs updating to 20 EUR)
-- **Shipping**: flat 9 EUR per item everywhere
-- **Shop page**: quantity picker + "Add to Cart" / "Buy Now" buttons
-- **Cart**: line items with subtotal/shipping/total, donation section
-- **CartDrawer**: mini cart in a sheet, no upsell banners
+All occurrences of "15EUR" need to change to "20EUR" across all three locale files and the SEO component.
+
+**`src/i18n/locales/en.json`** (4 changes):
+- Line 48: `"priceAmount": "15€"` to `"20€"`
+- Line 62: `"Quality Ihram (Ihraam) at just 15€ + shipping..."` to `"...at just 20€ + shipping..."`
+- Line 90: `"High-quality Ihraam at just 15€ + shipping..."` to `"...at just 20€ + shipping..."`
+- Line 135 (about.subtitle): `"affordable (15€ + shipping)"` to `"affordable (20€ + shipping)"`
+- Line 139 (about.story.p2): `"accessible price of just 15€"` to `"...just 20€"`
+- Line 158 (about.values.accessibility.description): `"Ihram (Ihraam) cloth at 15€"` to `"...at 20€"`
+
+**`src/i18n/locales/sv.json`** (same keys, Swedish text):
+- Line 48: `"priceAmount": "15€"` to `"20€"`
+- Line 62: `"15€ + frakt"` to `"20€ + frakt"`
+- Line 90: `"15€ + frakt"` to `"20€ + frakt"`
+- Line 135 (about.subtitle): `"15€ + frakt"` to `"20€ + frakt"`
+- About story p2 and values accessibility: all `15€` to `20€`
+
+**`src/i18n/locales/no.json`** (same keys, Norwegian text):
+- Same pattern as above -- all `15€` to `20€`
+
+**`src/pages/Home.tsx`** (1 change):
+- Line 161: hardcoded `"15€"` to `"20€"`
+
+**`src/components/SEOHead.tsx`** (3 changes):
+- Line 47: Swedish meta description `15€` to `20€`
+- Line 50: Norwegian meta description `15€` to `20€`
+- Line 52: English meta description `15€` to `20€`
 
 ---
 
-### Changes
+### Issue 2: Shipping Page Outdated Prices
 
-#### 1. Update product price in database
-SQL migration to update the product price from 15 to 20 EUR.
+Update the shipping zone data in `en.json` (and `sv.json`, `no.json`):
 
-#### 2. New shipping logic (`src/lib/shipping.ts`)
-Replace the flat per-item rate with the new Sweden tiered rules:
-- 1 item: 9 EUR
-- 2 items: 9 EUR (flat, not per-item)
-- 3+ items: 0 EUR (free)
+**`src/i18n/locales/en.json`** shipping zones:
+- Sweden cost: `"5€"` to `"€9 (1–2 sets) / Free (3+ sets)"`
+- Sweden description: update to mention tiered pricing
+- Nordic cost: `"9€"` to `"Calculated at checkout"`
+- EU cost: `"10€"` to `"Calculated at checkout"`
+- Remove outdated `"freeShipping"` line about "orders over 50EUR"
+- Update `shipping.features.free.description` to `"Buy 3+ sets and get free delivery in Sweden"`
 
-For non-Sweden, keep "calculated at checkout" messaging. The `calculateShipping` function will accept quantity and return the correct amount.
+Same changes mirrored in `sv.json` and `no.json`.
 
-#### 3. Bundle pricing config (`src/lib/bundles.ts` -- new file)
-Define bundle configuration:
+---
 
-```text
-BUNDLES = [
-  { qty: 1, label: "Single",     unitPrice: 20, totalPrice: 20, shipping: 9,  savings: 0,  badge: null },
-  { qty: 2, label: "2-Pack",     unitPrice: 19.5, totalPrice: 39, shipping: 9, savings: 1,  badge: "Best Value" },
-  { qty: 3, label: "3-Pack",     unitPrice: 19, totalPrice: 57, shipping: 0, savings: 3,  badge: "Free Delivery" },
-]
+### Issue 3: Swedish Translation for Shop Bundle Heading
+
+The Shop page heading and subtitle (lines 242-246 in `Shop.tsx`) are hardcoded English strings, not using `t()`.
+
+**`src/pages/Shop.tsx`**:
+- Line 242: Replace `"Pure Ihram Sets — Simple bundles, fair delivery"` with `{t('shop.bundleHeading')}`
+- Line 245: Replace the subtitle with `{t('shop.bundleSubtitle')}`
+
+**`src/i18n/locales/en.json`** -- add new keys:
+- `"shop.bundleHeading": "Pure Ihram Sets — Simple bundles, fair delivery"`
+- `"shop.bundleSubtitle": "Save more when you buy 2 or 3. In Sweden: €9 delivery for 1–2 sets, free delivery from 3 sets."`
+
+**`src/i18n/locales/sv.json`** -- add Swedish translations:
+- `"shop.bundleHeading": "Pure Ihram Set — Enkla paket, rättvis leverans"`
+- `"shop.bundleSubtitle": "Spara mer när du köper 2 eller 3. I Sverige: 9 € leverans för 1–2 set, fri leverans från 3 set."`
+
+**`src/i18n/locales/no.json`** -- add Norwegian translations:
+- `"shop.bundleHeading": "Pure Ihram Sett — Enkle pakker, rettferdig levering"`
+- `"shop.bundleSubtitle": "Spar mer når du kjøper 2 eller 3. I Sverige: 9 € levering for 1–2 sett, gratis levering fra 3 sett."`
+
+---
+
+### Issue 4: Material Inconsistency (100% Cotton vs Microfiber Polyester)
+
+The product description in the Supabase `products` table says "100% cotton". The shop spec table says "100% Microfiber Polyester". The Stripe checkout uses the DB description, so Google/Stripe shows "100% cotton".
+
+**Database migration**: Update the product description to replace "100% cotton" with "100% Microfiber Polyester":
+
+```sql
+UPDATE products
+SET description = 'Premium quality Ihraam set made from 100% Microfiber Polyester. Lightweight, comfortable, and perfectly suited for your sacred pilgrimage to Makkah. The set includes both the Izaar (lower garment) and Ridaa (upper garment), pre-cut to traditional specifications.'
+WHERE id = '36acffbc-41ea-4512-8621-174cd8d9b00c';
 ```
 
-Savings calculated vs buying singles (e.g., 2-Pack saves 2x20 - 39 = 1 EUR product + the shipping difference).
+Also update the `en.json` "comfortable" description and About page "quality" section that mentions "100% cotton":
+- `home.whyChoose.comfortable.description`: "Premium 100% cotton fabric" to "Premium 100% Microfiber Polyester fabric"
+- `home.benefits.lightweight.description`: "Made from premium cotton" to "Made from premium microfiber"
+- `about.quality.cotton.title`: "Premium Cotton" to "Premium Microfiber"
+- `about.quality.cotton.description`: "100% natural cotton fibers" to "100% Microfiber Polyester"
 
-#### 4. Redesign Shop page (`src/pages/Shop.tsx`)
-Replace the quantity picker section with three selectable bundle cards:
-
-- Each card is a bordered card, selected state highlighted
-- Shows: bundle name, price, shipping note for Sweden, savings vs singles
-- "Most popular" badge on 2-Pack
-- Trust bullets beneath: "Soft, breathable, suitable for Hajj and Umrah", "Fast shipping within Sweden", "Transparent mission"
-- "Add to Cart" button adds the selected bundle quantity
-- "Buy Now" sends the bundle directly to Stripe checkout
-- Update headline/subtext copy as specified
-- Update meta description to reflect new pricing
-
-#### 5. Cart page upsell banners (`src/pages/Cart.tsx`)
-Add a dynamic upsell banner above the order summary:
-- If 1 item in cart: "Add 1 more to keep shipping at 9 EUR (Best Value 2-Pack)"
-- If 2 items: "Add 1 more to unlock FREE delivery (3-Pack)"
-- Each banner has a CTA button that adds 1 more item to cart
-- Update shipping display to use new tiered logic
-
-#### 6. Cart Drawer upsell (`src/components/shop/CartDrawer.tsx`)
-Same upsell banner logic as the cart page, displayed above the totals section. Update shipping calculation to use new logic.
-
-#### 7. Update Stripe checkout edge function (`supabase/functions/create-checkout/index.ts`)
-- Apply new shipping rules: qty 1 = 900 cents, qty 2 = 900 cents, qty >= 3 = 0 cents
-- Add `bundle_type` to metadata: "single", "2-pack", or "3-pack"
-- Use the bundle total price (not unit price x qty) for the product line item to ensure correct pricing for bundles
-
-#### 8. Analytics tracking
-Add a simple `trackEvent` utility function. Fire events at key points:
-- `view_bundle_option`: when Shop page loads
-- `add_to_cart_single` / `add_to_cart_2pack` / `add_to_cart_3pack`: on add to cart
-- `cart_upsell_clicked`: when upsell CTA is clicked
-- `checkout_started`: when checkout button is clicked
-
-These will log to `console.log` initially (can be wired to GA4/Plausible later).
-
-#### 9. i18n updates (`src/i18n/locales/en.json`)
-Add new translation keys for bundle labels, upsell copy, trust bullets, shipping messages. Only update `en.json` (Swedish/Norwegian can be translated later).
+Same changes in `sv.json` and `no.json`.
 
 ---
 
-### Technical Details
+### Summary of Files Changed
 
-**Files created:**
-- `src/lib/bundles.ts` -- bundle config and helpers
-- `src/lib/analytics.ts` -- lightweight event tracking utility
-
-**Files modified:**
-- `src/lib/shipping.ts` -- new tiered Sweden shipping logic
-- `src/pages/Shop.tsx` -- bundle cards UI, trust bullets, new copy
-- `src/pages/Cart.tsx` -- upsell banner, updated shipping display
-- `src/components/shop/CartDrawer.tsx` -- upsell banner, updated shipping
-- `supabase/functions/create-checkout/index.ts` -- new shipping + bundle metadata
-- `src/i18n/locales/en.json` -- new translation keys
-- `src/hooks/useCart.tsx` -- no changes needed (already supports quantity)
-
-**Database migration:**
-- Update product price from 15 to 20 EUR
-
-**Edge function redeployment:**
-- `create-checkout` will be redeployed automatically
-
+| File | Changes |
+|------|---------|
+| `src/i18n/locales/en.json` | Price 15 to 20, shipping costs, bundle keys, material references |
+| `src/i18n/locales/sv.json` | Same + Swedish bundle heading/subtitle translations |
+| `src/i18n/locales/no.json` | Same + Norwegian bundle heading/subtitle translations |
+| `src/pages/Home.tsx` | Hardcoded "15EUR" to "20EUR" (line 161) |
+| `src/pages/Shop.tsx` | Extract heading/subtitle to i18n keys |
+| `src/components/SEOHead.tsx` | Update meta descriptions from 15 to 20 |
+| Database migration | Update product description to "Microfiber Polyester" |
