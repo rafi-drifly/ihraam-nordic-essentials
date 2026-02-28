@@ -45,7 +45,7 @@
       "title": "Ren & Bekväm",
       "titleHighlight": "Ihram",
       "price": "Endast",
-      "priceAmount": "15€",
+      "priceAmount": "20€",
       "priceSuffix": "+ frakt",
       "description": "Lätt, tunn och bekväm Ihram (Ihraam)-duk för din heliga resa. Tillverkad med avsikten att tjäna ajr och göra pilgrimsfärden tillgänglig för alla.",
       "cta": "Beställ Din Ihram",
@@ -59,11 +59,11 @@
       "subtitle": "Kvalitet, tillgänglighet och komfort för varje pilgrim",
       "affordable": {
         "title": "Prisvärd för Alla",
-        "description": "Kvalitets-Ihram (Ihraam) för endast 15€ + frakt. Gör pilgrimsfärden tillgänglig oavsett ekonomisk situation, med den uppriktiga avsikten att tjäna ajr i Akhirah."
+        "description": "Kvalitets-Ihram (Ihraam) för endast 20€ + frakt. Gör pilgrimsfärden tillgänglig oavsett ekonomisk situation, med den uppriktiga avsikten att tjäna ajr i Akhirah."
       },
       "comfortable": {
         "title": "Bekväm & Hållbar",
-        "description": "Premium 100% bomullstyg som är mjukt, andningsbart och långvarigt. Förtvättad och redo att använda, vilket säkerställer komfort under hela din heliga resa."
+        "description": "Premium 100% Mikrofiber Polyester-tyg som är mjukt, andningsbart och långvarigt. Förtvättad och redo att använda, vilket säkerställer komfort under hela din heliga resa."
       },
       "delivery": {
         "title": "Leverans i Hela Europa",
@@ -75,7 +75,7 @@
       "subtitle": "Designad med pilgrimernas komfort och andliga fokus i åtanke",
       "lightweight": {
         "title": "Lätt & Bekväm",
-        "description": "Tillverkad av premiumbomull, tunn och andningsbar för maximal komfort under din pilgrimsfärd."
+        "description": "Tillverkad av premium mikrofiber, tunn och andningsbar för maximal komfort under din pilgrimsfärd."
       },
       "intention": {
         "title": "Tillverkad med Avsikt",
@@ -87,7 +87,7 @@
       },
       "affordable": {
         "title": "Prisvärd Kvalitet",
-        "description": "Högkvalitativ Ihraam för endast 15€ + frakt, tillgänglig för varje pilgrim."
+        "description": "Högkvalitativ Ihraam för endast 20€ + frakt, tillgänglig för varje pilgrim."
       }
     },
     "quranVerse2": "\"Och vallfärden till Huset är en plikt gentemot Allah för den som har möjlighet att genomföra den.\"",
@@ -132,11 +132,11 @@
   },
   "about": {
     "title": "Om Pure Ihram",
-    "subtitle": "Pure Ihram grundades för att göra Ihram (Ihraam) prisvärd (15€ + frakt) och tillgänglig för alla. Detta handlar inte om vinst utan om att tjäna ajr (belöning) i Akhirah genom att tjäna den muslimska gemenskapen och göra den heliga pilgrimsfärden tillgänglig för troende i hela Europa.",
+    "subtitle": "Pure Ihram grundades för att göra Ihram (Ihraam) prisvärd (20€ + frakt) och tillgänglig för alla. Detta handlar inte om vinst utan om att tjäna ajr (belöning) i Akhirah genom att tjäna den muslimska gemenskapen och göra den heliga pilgrimsfärden tillgänglig för troende i hela Europa.",
     "story": {
       "title": "Vår Historia",
       "p1": "Pure Ihram föddes ur en enkel men djupgående insikt: alltför många muslimer i Europa hade svårt att hitta prisvärd, kvalitativ Ihram (Ihraam)-duk för sin pilgrimsfärd till de heliga städerna Mekka och Medina.",
-      "p2": "Efter att ha bevittnat medtroende betala överdrivna priser för grundläggande pilgrimsessentialer, gjorde vi ett åtagande att tillhandahålla premium Ihram-duk till ett ärligt, tillgängligt pris på endast 15€.",
+      "p2": "Efter att ha bevittnat medtroende betala överdrivna priser för grundläggande pilgrimsessentialer, gjorde vi ett åtagande att tillhandahålla premium Ihram-duk till ett ärligt, tillgängligt pris på endast 20€.",
       "p3": "Vårt uppdrag sträcker sig bortom handel – varje försäljning görs med den uppriktiga avsikten att tjäna ajr (belöning) i Akhirah samtidigt som vi hjälper våra bröder och systrar att uppfylla sina religiösa plikter utan ekonomisk börda.",
       "p4": "Idag är vi stolta över att betjäna tusentals pilgrimer i Sverige, de nordiska länderna och Europeiska unionen, och säkerställer att avstånd och kostnad aldrig blir hinder för andlig uppfyllelse."
     },
@@ -155,7 +155,7 @@
       },
       "accessibility": {
         "title": "Tillgänglighet",
-        "description": "Vi tror att varje muslim bör ha tillgång till kvalitativ Ihram (Ihraam)-duk för 15€, oavsett ekonomisk situation."
+        "description": "Vi tror att varje muslim bör ha tillgång till kvalitativ Ihram (Ihraam)-duk för 20€, oavsett ekonomisk situation."
       },
       "trust": {
         "title": "Förtroende",
@@ -167,8 +167,8 @@
       "p1": "Under Hajj och Umrah möter pilgrimer intensiva fysiska och andliga krav. Din Ihram bör vara det minsta av dina bekymmer – bekväm, andningsbar och hållbar nog att klara resan framför dig.",
       "p2": "Vi köper vårt tyg från betrodda leverantörer som förstår den heliga naturen av dessa plagg. Varje plagg inspekteras, förtvättas och förbereds med den omsorg som dess heliga syfte förtjänar.",
       "cotton": {
-        "title": "Premium Bomull",
-        "description": "100% naturliga bomullsfibrer för maximal andningsbarhet och komfort"
+        "title": "Premium Mikrofiber",
+        "description": "100% Mikrofiber Polyester för maximal andningsbarhet och komfort"
       },
       "preTreated": {
         "title": "Förbehandlad",
@@ -274,26 +274,26 @@
       "sweden": {
         "region": "Sverige 🇸🇪",
         "timeframe": "3-7 arbetsdagar",
-        "cost": "5€",
-        "description": "Snabb inrikesfrakt i alla regioner i Sverige. Beställ före kl 14 för samma dags behandling.",
+        "cost": "9 € (1–2 set) / Gratis (3+ set)",
+        "description": "9 € leverans för 1–2 Ihram-set. Köp 3 eller fler och få fri leverans i Sverige.",
         "method": "PostNord, DHL eller UPS"
       },
       "nordic": {
         "region": "Nordiska Länder 🇳🇴🇩🇰🇫🇮",
         "timeframe": "7-14 arbetsdagar",
-        "cost": "9€",
+        "cost": "Beräknas i kassan",
         "description": "Pålitlig leverans till Norge, Danmark och Finland med full spårningssupport.",
         "method": "Internationella transportörer"
       },
       "eu": {
         "region": "Europeiska Unionen 🇪🇺",
         "timeframe": "7-14 arbetsdagar",
-        "cost": "10€",
+        "cost": "Beräknas i kassan",
         "description": "Omfattande täckning i alla EU-medlemsländer med tullförhandsklarering.",
         "method": "Express internationell frakt"
       }
     },
-    "freeShipping": "Fri frakt på beställningar över 50€ till alla destinationer",
+    "freeShipping": "Köp 3+ Ihram-set och få fri leverans i Sverige",
     "tip": {
       "title": "💡 Tips för Pilgrimsplanering",
       "description": "Beställ din Ihram minst 3-4 veckor före resan för att undvika stress i sista minuten och säkerställa att du har tid för eventuella justeringar eller ersättningar om det behövs."
@@ -314,7 +314,7 @@
       },
       "free": {
         "title": "Fri Frakt",
-        "description": "Beställningar över 50€ kvalificerar för fri frakt"
+        "description": "Köp 3+ set och få fri leverans i Sverige"
       }
     },
     "orderProcessing": {
@@ -384,6 +384,8 @@
     "notFound": "Produkten hittades inte",
     "fastDelivery": "Snabb Leverans",
     "reviews": "recensioner",
+    "bundleHeading": "Pure Ihram Set — Enkla paket, rättvis leverans",
+    "bundleSubtitle": "Spara mer när du köper 2 eller 3. I Sverige: 9 € leverans för 1–2 set, fri leverans från 3 set.",
     "description": "Håll dig sval, ren och bekväm på din heliga resa. Pure Ihram Hajj Handduksset kombinerar Sunnah enkelhet med modern mikrofiber prestanda — mjuk, absorberande och gjord för att hålla genom varje steg av Hajj eller Umrah.",
     "plusShipping": "+ frakt",
     "stock": "Lager:",

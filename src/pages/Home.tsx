@@ -158,7 +158,7 @@ const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
             <Card className="text-center border-0 shadow-lg hover:shadow-xl transition-shadow">
               <CardContent className="p-8">
-                <div className="text-4xl font-bold text-primary mb-2">15€</div>
+                <div className="text-4xl font-bold text-primary mb-2">20€</div>
                 <h3 className="text-xl font-semibold text-foreground mb-4">{t('home.whyChoose.affordable.title')}</h3>
                 <p className="text-muted-foreground leading-relaxed">
                   {t('home.whyChoose.affordable.description')}

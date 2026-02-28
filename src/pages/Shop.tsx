@@ -239,10 +239,10 @@ const Shop = () => {
           {/* Headline */}
           <div className="text-center mb-10">
             <h1 className="text-3xl lg:text-4xl font-bold text-foreground mb-2">
-              Pure Ihram Sets — Simple bundles, fair delivery
+              {t('shop.bundleHeading')}
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Save more when you buy 2 or 3. In Sweden: €9 delivery for 1–2 sets, free delivery from 3 sets.
+              {t('shop.bundleSubtitle')}
             </p>
           </div>
 
