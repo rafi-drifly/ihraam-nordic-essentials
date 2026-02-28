@@ -747,18 +747,6 @@
     "items": "Bestilte Varer",
     "trackAnother": "Spor En Annen Bestilling"
   },
-  "cart": {
-    "title": "Handlekurv",
-    "continueShopping": "Fortsett å Handle",
-    "empty": "Handlekurven din er tom",
-    "emptyDesc": "Legg til produkter i handlekurven for å komme i gang.",
-    "startShopping": "Begynn å Handle",
-    "orderSummary": "Ordresammendrag",
-    "items": "Artikler ({{count}})",
-    "shipping": "Frakt",
-    "total": "Totalt",
-    "checkout": "Gå til Kassen"
-  },
   "donation": {
     "pageTitle": "Støtt Vårt Oppdrag",
     "seoTitle": "Støtt Vårt Oppdrag | Pure Ihram",
