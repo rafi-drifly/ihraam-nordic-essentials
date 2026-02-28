@@ -1,25 +1,38 @@
 
 
-## Fix Stripe Checkout Descriptions for All Bundles
+## Add Swedish and Norwegian Translations for Stripe Bundle Names
 
-### Problem
-The 3-Pack checkout looks different from Single and 2-Pack because:
-1. No shipping line item appears (free delivery)
-2. The product name is just "Ihram Set" with quantity 3, which doesn't reflect the bundle
-
-### Solution
-Update the `create-checkout` edge function to show bundle-aware product names in Stripe, making all bundles look consistent and clear.
+### Approach
+Pass the user's current locale from the frontend to the `create-checkout` edge function, then use locale-specific bundle names in the Stripe line items.
 
 ### Changes
 
-**`supabase/functions/create-checkout/index.ts`**
+#### 1. Edge function: `supabase/functions/create-checkout/index.ts`
 
-Update the line item creation (lines 92-111) to:
-- Include the bundle type in the product name: "Ihram Set" for single, "Ihram Set -- 2-Pack (Best Value)" for 2-pack, "Ihram Set -- 3-Pack (Free Delivery)" for 3-pack
-- Use `quantity: 1` with the full bundle price as `unit_amount` instead of splitting per-item -- so the customer sees one clean line like "Ihram Set -- 3-Pack (Free Delivery) ... EUR60.00" rather than "3 x EUR20.00"
-- Keep the shipping line item logic the same (appears for 1-2 items, hidden for 3+)
+Add a `locale` field to the checkout request interface. Add a translation map for bundle labels:
 
-This way all three options show a single, clear product line in Stripe checkout with the bundle name and total price.
+```text
+Locale  | 2-Pack label              | 3-Pack label
+--------|---------------------------|---------------------------
+en      | 2-Pack (Best Value)       | 3-Pack (Free Delivery)
+sv      | 2-Pack (Basta Varde)      | 3-Pack (Fri Frakt)
+no      | 2-Pack (Best Verdi)       | 3-Pack (Gratis Frakt)
+```
+
+Use the locale (defaulting to `"en"`) to pick the correct label when building `bundleName`.
+
+#### 2. Frontend callers -- pass `locale`
+
+Three files invoke `create-checkout` and need to include the current locale in the request body:
+
+- **`src/pages/Shop.tsx`** -- already has `useTranslation()`, pass `i18n.language`
+- **`src/pages/Cart.tsx`** -- add `useTranslation()` import, pass `i18n.language`
+- **`src/components/ui/navbar.tsx`** -- add `useTranslation()` import, pass `i18n.language`
+
+Each call adds `locale: i18n.language` (or derived from the URL prefix) to the request body.
 
 ### Files Modified
-- `supabase/functions/create-checkout/index.ts` -- bundle-aware line item names and single-line pricing
+- `supabase/functions/create-checkout/index.ts` -- locale-aware bundle names
+- `src/pages/Shop.tsx` -- pass locale
+- `src/pages/Cart.tsx` -- pass locale
+- `src/components/ui/navbar.tsx` -- pass locale
