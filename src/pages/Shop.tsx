@@ -101,8 +101,9 @@ const Shop = () => {
     setCheckoutLoading(true);
     try {
       const checkoutItems = [{ id: product.id, quantity: bundle.qty }];
+      const { i18n } = useTranslation();
       const { data, error } = await supabase.functions.invoke('create-checkout', {
-        body: { items: checkoutItems, bundlePrice: bundle.totalPrice }
+        body: { items: checkoutItems, bundlePrice: bundle.totalPrice, locale: i18n.language }
       });
       if (error) throw error;
       if (data?.url) {

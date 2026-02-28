@@ -14,7 +14,14 @@ interface CheckoutRequest {
   }>;
   donation?: number;
   bundlePrice?: number;
+  locale?: string;
 }
+
+const bundleLabels: Record<string, { twoPack: string; threePack: string }> = {
+  en: { twoPack: '2-Pack (Best Value)', threePack: '3-Pack (Free Delivery)' },
+  sv: { twoPack: '2-Pack (Bästa Värde)', threePack: '3-Pack (Fri Frakt)' },
+  no: { twoPack: '2-Pack (Best Verdi)', threePack: '3-Pack (Gratis Frakt)' },
+};
 
 // Sweden shipping rules (in cents):
 // 1 item: 900 (€9), 2 items: 900 (€9 flat), 3+: 0 (free)
@@ -44,7 +51,7 @@ serve(async (req) => {
       apiVersion: "2025-08-27.basil",
     });
 
-    const { items, donation, bundlePrice }: CheckoutRequest = await req.json();
+    const { items, donation, bundlePrice, locale }: CheckoutRequest = await req.json();
     console.log("Checkout request:", { items, donation, bundlePrice });
 
     const totalQuantity = items.reduce((sum, item) => sum + item.quantity, 0);
@@ -93,9 +100,10 @@ serve(async (req) => {
     const product = products[0];
     if (!product) throw new Error("No product found");
 
+    const labels = bundleLabels[locale || 'en'] || bundleLabels.en;
     let bundleName = product.name;
-    if (totalQuantity === 2) bundleName = `${product.name} – 2-Pack (Best Value)`;
-    else if (totalQuantity >= 3) bundleName = `${product.name} – 3-Pack (Free Delivery)`;
+    if (totalQuantity === 2) bundleName = `${product.name} – ${labels.twoPack}`;
+    else if (totalQuantity >= 3) bundleName = `${product.name} – ${labels.threePack}`;
 
     const totalPriceCents = bundlePrice
       ? Math.round(bundlePrice * 100)
