@@ -396,6 +396,18 @@
     "creatingCheckout": "Skapar Kassa...",
     "addedToCart": "Tillagd i kundvagn",
     "addedToCartDesc": "{{quantity}} x {{name}} tillagd i din kundvagn.",
+    "bundle": {
+      "chooseBundle": "Välj ditt paket:",
+      "single": "Enkelt",
+      "bestValue": "Bäst Värde",
+      "freeDelivery": "Fri Leverans",
+      "delivery": "leverans",
+      "youSave": "Du sparar €{{amount}} jämfört med enskilda",
+      "trustSoft": "Mjukt, andningsbart, lämpligt för Hajj & Umrah",
+      "trustShipping": "Snabb leverans inom Sverige",
+      "trustMission": "Transparent uppdrag",
+      "shippingBullet": "1–2 set: 9 € leverans · 3+ set: GRATIS leverans"
+    },
     "specifications": {
       "title": "Tekniska Specifikationer",
       "material": "Material",
@@ -847,7 +859,8 @@
   },
   "common": {
     "error": "Fel",
-    "loading": "Laddar..."
+    "loading": "Laddar...",
+    "whatsappButton": "Kontakta oss på WhatsApp"
   },
   "returns": {
     "hero": {

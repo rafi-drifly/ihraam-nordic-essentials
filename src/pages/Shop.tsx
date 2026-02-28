@@ -37,7 +37,8 @@ interface Product {
 const Shop = () => {
   const { t } = useTranslation();
   const location = useLocation();
-  const localePrefix = location.pathname.startsWith('/sv') ? '/sv' : '';
+  const localePrefix = location.pathname.startsWith('/sv') ? '/sv' : location.pathname.startsWith('/no') ? '/no' : '';
+  const { i18n } = useTranslation();
   
   const [selectedBundle, setSelectedBundle] = useState<number>(1); // index into BUNDLES, default to 2-Pack
   const [product, setProduct] = useState<Product | null>(null);
@@ -101,7 +102,6 @@ const Shop = () => {
     setCheckoutLoading(true);
     try {
       const checkoutItems = [{ id: product.id, quantity: bundle.qty }];
-      const { i18n } = useTranslation();
       const { data, error } = await supabase.functions.invoke('create-checkout', {
         body: { items: checkoutItems, bundlePrice: bundle.totalPrice, locale: i18n.language }
       });
@@ -280,11 +280,13 @@ const Shop = () => {
 
               {/* Bundle Cards */}
               <div className="space-y-3">
-                <h3 className="font-semibold text-lg">Choose your bundle:</h3>
+              <h3 className="font-semibold text-lg">{t('shop.bundle.chooseBundle')}</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {BUNDLES.map((b, idx) => {
                     const isSelected = selectedBundle === idx;
                     const totalYouPay = b.totalPrice + b.shipping;
+                    const badgeKey = b.qty === 2 ? 'shop.bundle.bestValue' : b.qty >= 3 ? 'shop.bundle.freeDelivery' : '';
+                    const labelKey = b.qty === 1 ? 'shop.bundle.single' : b.label;
                     return (
                       <button
                         key={b.qty}
@@ -295,22 +297,22 @@ const Shop = () => {
                             : 'border-border hover:border-primary/50 bg-background'
                         }`}
                       >
-                        {b.badge && (
+                        {badgeKey && (
                           <Badge
                             variant={b.badgeVariant || 'default'}
                             className="absolute -top-2.5 left-1/2 -translate-x-1/2 text-xs whitespace-nowrap"
                           >
-                            {b.badge}
+                            {t(badgeKey)}
                           </Badge>
                         )}
                         <div className="mt-1">
-                          <p className="font-bold text-lg">{b.label}</p>
+                          <p className="font-bold text-lg">{b.qty === 1 ? t('shop.bundle.single') : b.label}</p>
                           <p className="text-2xl font-bold text-foreground mt-1">€{b.totalPrice}</p>
                           <p className="text-sm text-muted-foreground mt-1">
                             {b.shipping === 0 ? (
-                              <span className="text-primary font-medium">Free delivery 🇸🇪</span>
+                              <span className="text-primary font-medium">{t('shop.bundle.freeDelivery')} 🇸🇪</span>
                             ) : (
-                              <span>+ €{b.shipping} delivery 🇸🇪</span>
+                              <span>+ €{b.shipping} {t('shop.bundle.delivery')} 🇸🇪</span>
                             )}
                           </p>
                           <p className="text-xs text-muted-foreground mt-0.5">
@@ -318,7 +320,7 @@ const Shop = () => {
                           </p>
                           {b.savings > 0 && (
                             <p className="text-xs font-medium text-primary mt-1">
-                              You save €{b.savings} vs singles
+                              {t('shop.bundle.youSave', { amount: b.savings })}
                             </p>
                           )}
                         </div>
@@ -332,15 +334,15 @@ const Shop = () => {
               <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
                 <div className="flex items-center gap-1.5">
                   <Check className="h-4 w-4 text-primary" />
-                  <span>Soft, breathable, suitable for Hajj & Umrah</span>
+                  <span>{t('shop.bundle.trustSoft')}</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <Truck className="h-4 w-4 text-primary" />
-                  <span>Fast shipping within Sweden</span>
+                  <span>{t('shop.bundle.trustShipping')}</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <Package className="h-4 w-4 text-primary" />
-                  <span>Transparent mission</span>
+                  <span>{t('shop.bundle.trustMission')}</span>
                 </div>
               </div>
 
