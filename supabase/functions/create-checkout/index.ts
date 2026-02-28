@@ -13,6 +13,7 @@ interface CheckoutRequest {
     quantity: number;
   }>;
   donation?: number;
+  bundlePrice?: number;
 }
 
 // Sweden shipping rules (in cents):
@@ -43,8 +44,8 @@ serve(async (req) => {
       apiVersion: "2025-08-27.basil",
     });
 
-    const { items, donation }: CheckoutRequest = await req.json();
-    console.log("Checkout request:", { items, donation });
+    const { items, donation, bundlePrice }: CheckoutRequest = await req.json();
+    console.log("Checkout request:", { items, donation, bundlePrice });
 
     const totalQuantity = items.reduce((sum, item) => sum + item.quantity, 0);
     const shippingCents = getShippingCents(totalQuantity);
@@ -86,9 +87,15 @@ serve(async (req) => {
     if (!products || products.length === 0) throw new Error("No products found");
 
     // Create line items
+    // If bundlePrice is provided, use it as the total product price (in EUR).
+    // Calculate unit_amount per item from bundlePrice, otherwise use DB price.
     const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = items.map(item => {
       const product = products.find(p => p.id === item.id);
       if (!product) throw new Error(`Product not found: ${item.id}`);
+
+      const unitAmountCents = bundlePrice
+        ? Math.round((bundlePrice / totalQuantity) * 100)
+        : Math.round(product.price * 100);
 
       return {
         price_data: {
@@ -97,7 +104,7 @@ serve(async (req) => {
             name: product.name,
             description: product.description,
           },
-          unit_amount: Math.round(product.price * 100),
+          unit_amount: unitAmountCents,
         },
         quantity: item.quantity,
       };
@@ -158,6 +165,8 @@ serve(async (req) => {
         total_quantity: totalQuantity.toString(),
         bundle_type: bundleType,
         shipping_eur: (shippingCents / 100).toString(),
+        shipping_country: 'SE',
+        shipping_fee_applied: (shippingCents / 100).toString(),
         donation: donation && donation > 0 ? "true" : "false",
         donation_amount: donation && donation > 0 ? donation.toString() : "0",
       },

@@ -43,9 +43,9 @@ export const CartDrawer = ({ onCheckout, checkingOut = false }: CartDrawerProps)
         <div className="rounded-lg border border-primary/30 bg-primary/5 p-3 flex items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <Gift className="h-4 w-4 text-primary flex-shrink-0" />
-            <p className="text-xs font-medium">Add 1 more — keep shipping at €9</p>
+            <p className="text-xs font-medium">Add 1 more — keep shipping at €9 (Best Value 2-Pack)</p>
           </div>
-          <Button size="sm" variant="outline" onClick={handleUpsellClick} className="text-xs h-7 px-2">+ Add</Button>
+          <Button size="sm" variant="outline" onClick={handleUpsellClick} className="text-xs h-7 px-2">Switch to 2-Pack</Button>
         </div>
       );
     }
@@ -54,9 +54,9 @@ export const CartDrawer = ({ onCheckout, checkingOut = false }: CartDrawerProps)
         <div className="rounded-lg border border-primary/30 bg-primary/5 p-3 flex items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <Gift className="h-4 w-4 text-primary flex-shrink-0" />
-            <p className="text-xs font-medium">Add 1 more — <span className="text-primary font-bold">FREE delivery!</span></p>
+            <p className="text-xs font-medium">Add 1 more — <span className="text-primary font-bold">FREE delivery!</span> (3-Pack)</p>
           </div>
-          <Button size="sm" variant="outline" onClick={handleUpsellClick} className="text-xs h-7 px-2">+ Add</Button>
+          <Button size="sm" variant="outline" onClick={handleUpsellClick} className="text-xs h-7 px-2">Switch to 3-Pack</Button>
         </div>
       );
     }
