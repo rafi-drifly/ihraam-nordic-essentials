@@ -39,7 +39,7 @@ const Shop = () => {
   const location = useLocation();
   const localePrefix = location.pathname.startsWith('/sv') ? '/sv' : '';
   
-  const [selectedBundle, setSelectedBundle] = useState<number>(0); // index into BUNDLES
+  const [selectedBundle, setSelectedBundle] = useState<number>(1); // index into BUNDLES, default to 2-Pack
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
@@ -102,7 +102,7 @@ const Shop = () => {
     try {
       const checkoutItems = [{ id: product.id, quantity: bundle.qty }];
       const { data, error } = await supabase.functions.invoke('create-checkout', {
-        body: { items: checkoutItems }
+        body: { items: checkoutItems, bundlePrice: bundle.totalPrice }
       });
       if (error) throw error;
       if (data?.url) {

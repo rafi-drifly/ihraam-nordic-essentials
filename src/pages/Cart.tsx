@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useCart } from "@/hooks/useCart";
 import { ShoppingCart, ArrowLeft, Minus, Plus, Trash2, Gift } from "lucide-react";
 import { calculateShipping } from "@/lib/shipping";
+import { getBundlePrice } from "@/lib/bundles";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import DonationSection from "@/components/shop/DonationSection";
@@ -50,7 +51,8 @@ const Cart = () => {
       const { data, error } = await supabase.functions.invoke('create-checkout', {
         body: { 
           items: checkoutItems,
-          donation: selectedDonation > 0 ? selectedDonation : undefined
+          donation: selectedDonation > 0 ? selectedDonation : undefined,
+          bundlePrice: getBundlePrice(totalItems)
         }
       });
       if (error) throw error;
@@ -82,7 +84,7 @@ const Cart = () => {
               <p className="text-sm font-medium">Add 1 more to keep shipping at €9 <span className="text-primary">(Best Value 2-Pack)</span></p>
             </div>
             <Button size="sm" variant="outline" onClick={handleUpsellClick} className="whitespace-nowrap">
-              + Add 1
+              Switch to 2-Pack
             </Button>
           </CardContent>
         </Card>
@@ -97,7 +99,7 @@ const Cart = () => {
               <p className="text-sm font-medium">Add 1 more to unlock <span className="text-primary font-bold">FREE delivery</span> (3-Pack)</p>
             </div>
             <Button size="sm" variant="outline" onClick={handleUpsellClick} className="whitespace-nowrap">
-              + Add 1
+              Switch to 3-Pack
             </Button>
           </CardContent>
         </Card>

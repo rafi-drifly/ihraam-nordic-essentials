@@ -24,18 +24,18 @@ export const BUNDLES: Bundle[] = [
   {
     qty: 2,
     label: '2-Pack',
-    totalPrice: 39,
+    totalPrice: 38,
     shipping: 9,
-    savings: 10, // (2×20+9) - (39+9) = 1 product + 0 shipping saved => total saved vs 2 singles with shipping
+    savings: 11, // (2×29) - (38+9) = 58 - 47 = 11
     badge: 'Best Value',
     badgeVariant: 'default',
   },
   {
     qty: 3,
     label: '3-Pack',
-    totalPrice: 57,
+    totalPrice: 60,
     shipping: 0,
-    savings: 12, // (3×20+9) - (57+0) = 3 product + 9 shipping saved => total saved vs 3 singles with shipping
+    savings: 27, // (3×29) - (60+0) = 87 - 60 = 27
     badge: 'Free Delivery',
     badgeVariant: 'secondary',
   },
@@ -59,6 +59,6 @@ export function getBundlePrice(qty: number): number {
   const bundle = BUNDLES.find(b => b.qty === qty);
   if (bundle) return bundle.totalPrice;
   // For quantities > 3, use 3-pack price per unit
-  if (qty > 3) return Math.round((57 / 3) * qty);
+  if (qty > 3) return Math.round((60 / 3) * qty);
   return UNIT_PRICE * qty;
 }
