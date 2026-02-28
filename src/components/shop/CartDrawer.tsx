@@ -4,6 +4,7 @@ import { ShoppingCart, Minus, Plus, Trash2, Gift } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { Badge } from "@/components/ui/badge";
 import { calculateShipping } from "@/lib/shipping";
+import { useShippingDestination } from "@/hooks/useShippingDestination";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { trackEvent } from "@/lib/analytics";
@@ -17,6 +18,7 @@ export const CartDrawer = ({ onCheckout, checkingOut = false }: CartDrawerProps)
   const { items, updateQuantity, removeItem, addItem, getTotalItems, getTotalPrice } = useCart();
   const { t } = useTranslation();
   const location = useLocation();
+  const { destination } = useShippingDestination();
   
   const getLocalePrefix = () => {
     if (location.pathname.startsWith('/sv')) return '/sv';
@@ -26,8 +28,11 @@ export const CartDrawer = ({ onCheckout, checkingOut = false }: CartDrawerProps)
   const localePrefix = getLocalePrefix();
 
   const totalItems = getTotalItems();
-  const shipping = calculateShipping(totalItems);
+  const shipping = calculateShipping(totalItems, destination);
   const subtotal = getTotalPrice();
+
+  const destFlag = destination === 'NO' ? '🇳🇴' : '🇸🇪';
+  const destLabel = destination === 'NO' ? t('shop.destination.norway') : t('shop.destination.sweden');
 
   const handleUpsellClick = () => {
     trackEvent('cart_upsell_clicked', { currentQty: totalItems });
@@ -38,14 +43,41 @@ export const CartDrawer = ({ onCheckout, checkingOut = false }: CartDrawerProps)
   };
 
   const renderUpsellBanner = () => {
+    if (destination === 'NO') {
+      if (totalItems === 1) {
+        return (
+          <div className="rounded-lg border border-primary/30 bg-primary/5 p-3 flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2">
+              <Gift className="h-4 w-4 text-primary flex-shrink-0" />
+              <p className="text-xs font-medium">{t('cart.upsell.noQty1')}</p>
+            </div>
+            <Button size="sm" variant="outline" onClick={handleUpsellClick} className="text-xs h-7 px-2">{t('cart.upsell.switchTo2Pack')}</Button>
+          </div>
+        );
+      }
+      if (totalItems === 2) {
+        return (
+          <div className="rounded-lg border border-primary/30 bg-primary/5 p-3 flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2">
+              <Gift className="h-4 w-4 text-primary flex-shrink-0" />
+              <p className="text-xs font-medium">{t('cart.upsell.noQty2')}</p>
+            </div>
+            <Button size="sm" variant="outline" onClick={handleUpsellClick} className="text-xs h-7 px-2">{t('cart.upsell.switchTo3Pack')}</Button>
+          </div>
+        );
+      }
+      return null;
+    }
+
+    // Sweden upsells
     if (totalItems === 1) {
       return (
         <div className="rounded-lg border border-primary/30 bg-primary/5 p-3 flex items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <Gift className="h-4 w-4 text-primary flex-shrink-0" />
-            <p className="text-xs font-medium">Add 1 more — keep shipping at €9 (Best Value 2-Pack)</p>
+            <p className="text-xs font-medium">{t('cart.upsell.seQty1')}</p>
           </div>
-          <Button size="sm" variant="outline" onClick={handleUpsellClick} className="text-xs h-7 px-2">Switch to 2-Pack</Button>
+          <Button size="sm" variant="outline" onClick={handleUpsellClick} className="text-xs h-7 px-2">{t('cart.upsell.switchTo2Pack')}</Button>
         </div>
       );
     }
@@ -54,9 +86,9 @@ export const CartDrawer = ({ onCheckout, checkingOut = false }: CartDrawerProps)
         <div className="rounded-lg border border-primary/30 bg-primary/5 p-3 flex items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <Gift className="h-4 w-4 text-primary flex-shrink-0" />
-            <p className="text-xs font-medium">Add 1 more — <span className="text-primary font-bold">FREE delivery!</span> (3-Pack)</p>
+            <p className="text-xs font-medium">{t('cart.upsell.seQty2')}</p>
           </div>
-          <Button size="sm" variant="outline" onClick={handleUpsellClick} className="text-xs h-7 px-2">Switch to 3-Pack</Button>
+          <Button size="sm" variant="outline" onClick={handleUpsellClick} className="text-xs h-7 px-2">{t('cart.upsell.switchTo3Pack')}</Button>
         </div>
       );
     }
@@ -80,9 +112,9 @@ export const CartDrawer = ({ onCheckout, checkingOut = false }: CartDrawerProps)
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>
-          <SheetTitle>Shopping Cart</SheetTitle>
+          <SheetTitle>{t('cart.title', 'Shopping Cart')}</SheetTitle>
           <SheetDescription>
-            {totalItems === 0 ? "Your cart is empty" : `${totalItems} item(s) in your cart`}
+            {totalItems === 0 ? t('cart.empty', 'Your cart is empty') : `${totalItems} item(s) in your cart`}
           </SheetDescription>
         </SheetHeader>
 
@@ -90,12 +122,11 @@ export const CartDrawer = ({ onCheckout, checkingOut = false }: CartDrawerProps)
           {items.length === 0 ? (
             <div className="text-center text-muted-foreground py-8">
               <ShoppingCart className="h-12 w-12 mx-auto mb-4 opacity-50" />
-              <p>Your cart is empty</p>
-              <p className="text-sm">Add some items to get started!</p>
+              <p>{t('cart.empty', 'Your cart is empty')}</p>
+              <p className="text-sm">{t('cart.emptyDesc', 'Add some items to get started!')}</p>
             </div>
           ) : (
             <>
-              {/* Upsell Banner */}
               {renderUpsellBanner()}
 
               <div className="space-y-4 max-h-96 overflow-y-auto">
@@ -124,15 +155,20 @@ export const CartDrawer = ({ onCheckout, checkingOut = false }: CartDrawerProps)
 
               <div className="border-t pt-4">
                 <div className="flex justify-between items-center text-sm text-muted-foreground mb-1">
-                  <span>Subtotal:</span>
+                  <span>{t('cart.subtotal', 'Subtotal')}:</span>
                   <span>{subtotal.toFixed(2)}€</span>
                 </div>
                 <div className="flex justify-between items-center text-sm text-muted-foreground mb-2">
-                  <span>{shipping === 0 ? 'Shipping (Free! 🇸🇪)' : `Shipping (Sweden)`}:</span>
+                  <span>
+                    {shipping === 0
+                      ? `${t('shop.bundle.freeDelivery')} ${destFlag}`
+                      : `${t('cart.shippingTo', { country: destLabel })}`
+                    }:
+                  </span>
                   <span>{shipping === 0 ? 'FREE' : `${shipping.toFixed(2)}€`}</span>
                 </div>
                 <div className="flex justify-between items-center mb-4">
-                  <span className="font-semibold">Total:</span>
+                  <span className="font-semibold">{t('cart.total', 'Total')}:</span>
                   <span className="font-bold text-lg">{(subtotal + shipping).toFixed(2)}€</span>
                 </div>
                 <Link to={`${localePrefix}/cart`} className="block w-full mb-2">

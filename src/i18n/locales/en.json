@@ -408,6 +408,14 @@
       "trustMission": "Transparent mission",
       "shippingBullet": "1–2 sets: €9 delivery · 3+ sets: FREE delivery"
     },
+    "destination": {
+      "label": "Delivering to:",
+      "sweden": "Sweden",
+      "norway": "Norway",
+      "norwayCustomsNote": "Norway is outside the EU. Import VAT/customs fees may apply on delivery.",
+      "norwayShippingSame": "Norway: Shipping stays the same for 1–2 sets.",
+      "norwayShippingBullet": "1–2 sets: €39 delivery · 3+ sets: €49 delivery"
+    },
     "specifications": {
       "title": "Technical Specifications",
       "material": "Material",
@@ -699,9 +707,19 @@
     "orderSummary": "Order Summary",
     "items": "Items ({{count}})",
     "shipping": "Shipping",
+    "shippingTo": "Shipping ({{country}})",
+    "subtotal": "Subtotal",
     "total": "Total",
     "checkout": "Proceed to Checkout",
-    "viewCart": "View Cart"
+    "viewCart": "View Cart",
+    "upsell": {
+      "seQty1": "Add 1 more to keep shipping at €9 (Best Value 2-Pack)",
+      "seQty2": "Add 1 more to unlock FREE delivery (3-Pack)",
+      "noQty1": "Add 1 more — shipping stays the same (Best Value 2-Pack)",
+      "noQty2": "Buying 3? Shipping becomes €49 — still best value per set.",
+      "switchTo2Pack": "Switch to 2-Pack",
+      "switchTo3Pack": "Switch to 3-Pack"
+    }
   },
   "donation": {
     "pageTitle": "Support Our Mission",

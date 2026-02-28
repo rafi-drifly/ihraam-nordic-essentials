@@ -408,6 +408,14 @@
       "trustMission": "Transparent misjon",
       "shippingBullet": "1–2 sett: 9 € levering · 3+ sett: GRATIS levering"
     },
+    "destination": {
+      "label": "Leveres til:",
+      "sweden": "Sverige",
+      "norway": "Norge",
+      "norwayCustomsNote": "Norge er utenfor EU. Import-MVA/tollavgifter kan påløpe ved levering.",
+      "norwayShippingSame": "Norge: Frakten er den samme for 1–2 sett.",
+      "norwayShippingBullet": "1–2 sett: 39 € levering · 3+ sett: 49 € levering"
+    },
     "specifications": {
       "title": "Tekniske Spesifikasjoner",
       "material": "Materiale",
@@ -693,19 +701,27 @@
   "cart": {
     "title": "Handlekurv",
     "empty": "Handlekurven din er tom",
-    "emptyDescription": "Legg til noen produkter i handlekurven for å komme i gang.",
+    "emptyDesc": "Legg til noen produkter i handlekurven for å komme i gang.",
     "startShopping": "Start Shopping",
-    "items": "{{count}} vare",
-    "items_plural": "{{count}} varer",
+    "items": "Varer ({{count}})",
     "remove": "Fjern",
     "subtotal": "Delsum",
     "shipping": "Frakt",
+    "shippingTo": "Frakt ({{country}})",
     "shippingNote": "Beregnes ved betaling",
     "total": "Totalt",
     "checkout": "Gå til Betaling",
     "continueShopping": "Fortsett å Handle",
     "viewCart": "Se Handlekurv",
-    "orderSummary": "Ordresammendrag"
+    "orderSummary": "Ordresammendrag",
+    "upsell": {
+      "seQty1": "Legg til 1 til for å beholde frakten på 9 € (Beste Verdi 2-Pack)",
+      "seQty2": "Legg til 1 til for å låse opp GRATIS levering (3-Pack)",
+      "noQty1": "Legg til 1 til — frakten er den samme (Beste Verdi 2-Pack)",
+      "noQty2": "Kjøper du 3? Frakten blir 49 € — fortsatt best verdi per sett.",
+      "switchTo2Pack": "Bytt til 2-Pack",
+      "switchTo3Pack": "Bytt til 3-Pack"
+    }
   },
   "orderSuccess": {
     "title": "Bestilling Bekreftet!",
