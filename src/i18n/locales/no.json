@@ -721,6 +721,17 @@
       "noQty2": "Kjøper du 3? Frakten blir 49 € — fortsatt best verdi per sett.",
       "switchTo2Pack": "Bytt til 2-Pack",
       "switchTo3Pack": "Bytt til 3-Pack"
+    },
+    "promo": {
+      "placeholder": "Skriv inn rabattkode",
+      "apply": "Bruk",
+      "applied": "Rabattkode brukt! Gratis levering til Uppsala.",
+      "removed": "Rabattkode fjernet.",
+      "invalidCity": "Denne rabattkoden gjelder kun for leveranser til Uppsala.",
+      "invalidCode": "Ugyldig rabattkode.",
+      "cityLabel": "Bekreft leveringsbyen din",
+      "cityPlaceholder": "Skriv inn byen din",
+      "freeDelivery": "Gratis levering (rabattkode)"
     }
   },
   "orderSuccess": {

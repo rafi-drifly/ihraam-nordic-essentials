@@ -3,8 +3,9 @@ import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { useCart } from "@/hooks/useCart";
-import { ShoppingCart, ArrowLeft, Minus, Plus, Trash2, Gift, AlertTriangle } from "lucide-react";
+import { ShoppingCart, ArrowLeft, Minus, Plus, Trash2, Gift, AlertTriangle, Tag, X, Check } from "lucide-react";
 import { calculateShipping } from "@/lib/shipping";
 import { getBundlePrice } from "@/lib/bundles";
 import { useShippingDestination } from "@/hooks/useShippingDestination";
@@ -21,6 +22,11 @@ const Cart = () => {
   const [selectedDonation, setSelectedDonation] = useState(0);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
   const { destination } = useShippingDestination();
+  const [promoInput, setPromoInput] = useState("");
+  const [appliedPromo, setAppliedPromo] = useState<string | null>(null);
+  const [promoCity, setPromoCity] = useState("");
+  const [showCityInput, setShowCityInput] = useState(false);
+  const [promoError, setPromoError] = useState<string | null>(null);
 
   const getLocalePrefix = () => {
     if (location.pathname.startsWith('/sv')) return '/sv';
@@ -30,7 +36,8 @@ const Cart = () => {
   const localePrefix = getLocalePrefix();
 
   const totalItems = getTotalItems();
-  const shipping = calculateShipping(totalItems, destination);
+  const promoFreeShipping = appliedPromo === 'FREEDELIVERY-UPPSALA' && promoCity.toLowerCase().trim() === 'uppsala';
+  const shipping = promoFreeShipping ? 0 : calculateShipping(totalItems, destination);
   const subtotal = getTotalPrice();
 
   const getTotalWithDonation = () => subtotal + shipping + selectedDonation;
@@ -41,6 +48,36 @@ const Cart = () => {
       const firstItem = items[0];
       addItem({ id: firstItem.id, name: firstItem.name, price: firstItem.price, image: firstItem.image }, 1);
     }
+  };
+
+  const handleApplyPromo = () => {
+    setPromoError(null);
+    const code = promoInput.trim().toUpperCase();
+    if (code === 'FREEDELIVERY-UPPSALA') {
+      setShowCityInput(true);
+    } else {
+      setPromoError(t('cart.promo.invalidCode'));
+    }
+  };
+
+  const handleConfirmCity = () => {
+    setPromoError(null);
+    if (promoCity.toLowerCase().trim() === 'uppsala') {
+      setAppliedPromo('FREEDELIVERY-UPPSALA');
+      setShowCityInput(false);
+      toast({ title: t('cart.promo.applied') });
+    } else {
+      setPromoError(t('cart.promo.invalidCity'));
+    }
+  };
+
+  const handleRemovePromo = () => {
+    setAppliedPromo(null);
+    setPromoInput("");
+    setPromoCity("");
+    setShowCityInput(false);
+    setPromoError(null);
+    toast({ title: t('cart.promo.removed') });
   };
 
   const handleCheckout = async () => {
@@ -55,10 +92,20 @@ const Cart = () => {
           donation: selectedDonation > 0 ? selectedDonation : undefined,
           bundlePrice: getBundlePrice(totalItems),
           locale: location.pathname.startsWith('/sv') ? 'sv' : location.pathname.startsWith('/no') ? 'no' : 'en',
-          shippingCountry: destination
+          shippingCountry: destination,
+          promoCode: appliedPromo || undefined,
+          shippingCity: appliedPromo ? promoCity : undefined
         }
       });
       if (error) throw error;
+      if (data?.error) {
+        toast({
+          title: t('common.error'),
+          description: data.error,
+          variant: "destructive"
+        });
+        return;
+      }
       if (data?.url) {
         window.location.href = data.url;
       } else {
@@ -220,7 +267,9 @@ const Cart = () => {
                   </div>
                   <div className="flex justify-between">
                     <span>
-                      {shipping === 0 ? (
+                      {promoFreeShipping ? (
+                        <span className="text-primary font-medium">{t('cart.promo.freeDelivery')}</span>
+                      ) : shipping === 0 ? (
                         <span className="text-primary font-medium">{t('shop.bundle.freeDelivery')} {destFlag}</span>
                       ) : (
                         <span>{t('cart.shippingTo', { country: destLabel })} — €{shipping}</span>
@@ -228,6 +277,56 @@ const Cart = () => {
                     </span>
                     <span>{shipping === 0 ? 'FREE' : `${shipping.toFixed(2)}€`}</span>
                   </div>
+
+                  {/* Promo Code Section */}
+                  {appliedPromo ? (
+                    <div className="flex items-center justify-between rounded-lg border border-primary/30 bg-primary/5 p-3">
+                      <div className="flex items-center gap-2">
+                        <Check className="h-4 w-4 text-primary" />
+                        <span className="text-sm font-medium">{appliedPromo}</span>
+                      </div>
+                      <Button variant="ghost" size="sm" onClick={handleRemovePromo} className="h-7 w-7 p-0">
+                        <X className="h-3 w-3" />
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className="space-y-2">
+                      <div className="flex gap-2">
+                        <Input
+                          placeholder={t('cart.promo.placeholder')}
+                          value={promoInput}
+                          onChange={(e) => setPromoInput(e.target.value)}
+                          onKeyDown={(e) => e.key === 'Enter' && handleApplyPromo()}
+                          className="text-sm"
+                        />
+                        <Button variant="outline" size="sm" onClick={handleApplyPromo} disabled={!promoInput.trim()}>
+                          <Tag className="h-3 w-3 mr-1" />
+                          {t('cart.promo.apply')}
+                        </Button>
+                      </div>
+                      {showCityInput && (
+                        <div className="space-y-2">
+                          <label className="text-xs text-muted-foreground">{t('cart.promo.cityLabel')}</label>
+                          <div className="flex gap-2">
+                            <Input
+                              placeholder={t('cart.promo.cityPlaceholder')}
+                              value={promoCity}
+                              onChange={(e) => setPromoCity(e.target.value)}
+                              onKeyDown={(e) => e.key === 'Enter' && handleConfirmCity()}
+                              className="text-sm"
+                            />
+                            <Button variant="outline" size="sm" onClick={handleConfirmCity} disabled={!promoCity.trim()}>
+                              <Check className="h-3 w-3" />
+                            </Button>
+                          </div>
+                        </div>
+                      )}
+                      {promoError && (
+                        <p className="text-xs text-destructive">{promoError}</p>
+                      )}
+                    </div>
+                  )}
+
                   {selectedDonation > 0 && (
                     <div className="flex justify-between text-primary">
                       <span>{t('donation.checkout.lineItem')}</span>
