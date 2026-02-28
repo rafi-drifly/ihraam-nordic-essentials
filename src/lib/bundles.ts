@@ -24,9 +24,9 @@ export const BUNDLES: Bundle[] = [
   {
     qty: 2,
     label: '2-Pack',
-    totalPrice: 38,
+    totalPrice: 40,
     shipping: 9,
-    savings: 11, // (2×29) - (38+9) = 58 - 47 = 11
+    savings: 9, // (2×29) - (40+9) = 58 - 49 = 9
     badge: 'Best Value',
     badgeVariant: 'default',
   },
