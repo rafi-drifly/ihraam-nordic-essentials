@@ -344,15 +344,10 @@ const Shop = () => {
                             </p>
                           )}
                           {b.qty >= 3 && b.savings > 0 && destination !== 'NO' && (
-                            <div className="mt-1">
-                              <p className="text-xs font-medium text-primary">
-                                {t('shop.bundle.savingsVsSeparate', { amount: b.savings, qty: b.qty })}
-                              </p>
-                              <p className="text-[10px] text-muted-foreground mt-0.5">
-                                {t('shop.bundle.savingsBreakdown', { qty: b.qty, singleDelivered: 29, separateTotal: 87, bundleLabel: '3-Pack', bundleDelivered: totalYouPay })}
-                              </p>
-                            </div>
-                          )}
+                             <p className="text-xs font-medium text-primary mt-1">
+                               {t('shop.bundle.savingsVsSeparate', { amount: b.savings, qty: b.qty })}
+                             </p>
+                           )}
                           {destination === 'NO' && b.savings > 0 && (
                             <p className="text-xs font-medium text-primary mt-1">
                               {t('shop.bundle.youSave', { amount: b.savings })}
