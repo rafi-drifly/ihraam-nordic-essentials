@@ -926,7 +926,7 @@
     "steps": {
       "step1": {
         "title": "Maila oss",
-        "description": "Kontakta support@pureihram.com med ditt ordernummer för att starta processen."
+        "description": "Kontakta support@pureihraam.com med ditt ordernummer för att starta processen."
       },
       "step2": {
         "title": "Packa varan",
@@ -966,7 +966,7 @@
     },
     "defective": {
       "title": "Fel vara, skadad eller defekt?",
-      "photos": "Skicka foton av problemet tillsammans med ditt ordernummer till support@pureihram.com.",
+      "photos": "Skicka foton av problemet tillsammans med ditt ordernummer till support@pureihraam.com.",
       "weCover": "Vi täcker returfraktkostnader för defekta, skadade eller felaktigt skickade varor.",
       "cta": "Rapportera ett problem"
     },
@@ -1030,7 +1030,7 @@
       "messagePlaceholder": "Eventuella ytterligare detaljer...",
       "submit": "Skicka förfrågan",
       "successTitle": "Förfrågan skickad!",
-      "successMessage": "Tack! Vänligen maila dina returdetaljer till support@pureihram.com med ditt ordernummer. Vi svarar inom 24–48 timmar med nästa steg.",
+      "successMessage": "Tack! Vänligen maila dina returdetaljer till support@pureihraam.com med ditt ordernummer. Vi svarar inom 24–48 timmar med nästa steg.",
       "close": "Stäng"
     }
   }

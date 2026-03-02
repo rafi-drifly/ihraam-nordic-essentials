@@ -246,7 +246,7 @@ const Returns = () => {
                 {t("returns.contact.title")}
               </h3>
               <p className="text-muted-foreground mb-2">
-                {t("returns.contact.email")}: <a href="mailto:support@pureihram.com" className="text-primary underline">support@pureihram.com</a>
+                {t("returns.contact.email")}: <a href="mailto:support@pureihraam.com" className="text-primary underline">support@pureihraam.com</a>
               </p>
               <p className="text-sm text-muted-foreground mb-4">
                 {t("returns.contact.responseTime")}

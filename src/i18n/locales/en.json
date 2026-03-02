@@ -926,7 +926,7 @@
     "steps": {
       "step1": {
         "title": "Email Us",
-        "description": "Contact support@pureihram.com with your order number to start the process."
+        "description": "Contact support@pureihraam.com with your order number to start the process."
       },
       "step2": {
         "title": "Pack the Item",
@@ -966,7 +966,7 @@
     },
     "defective": {
       "title": "Wrong Item, Damaged, or Defective?",
-      "photos": "Please send photos of the issue along with your order number to support@pureihram.com.",
+      "photos": "Please send photos of the issue along with your order number to support@pureihraam.com.",
       "weCover": "We cover return shipping costs for defective, damaged, or incorrectly shipped items.",
       "cta": "Report an Issue"
     },
@@ -1030,7 +1030,7 @@
       "messagePlaceholder": "Any additional details...",
       "submit": "Submit Request",
       "successTitle": "Request Submitted!",
-      "successMessage": "Thank you! Please email your request details to support@pureihram.com with your order number. We'll respond within 24–48 hours with next steps.",
+      "successMessage": "Thank you! Please email your request details to support@pureihraam.com with your order number. We'll respond within 24–48 hours with next steps.",
       "close": "Close"
     }
   }

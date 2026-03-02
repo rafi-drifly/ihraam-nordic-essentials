@@ -28,7 +28,7 @@ const DonationFAQ = () => {
     },
     {
       question: "What if I made a mistake or want a refund?",
-      answer: "We understand mistakes happen. Contact us at support@pureihram.com within 14 days of your donation, and we'll process a refund. Please include your transaction details."
+      answer: "We understand mistakes happen. Contact us at support@pureihraam.com within 14 days of your donation, and we'll process a refund. Please include your transaction details."
     }
   ];
 
