@@ -201,9 +201,7 @@ export const CartDrawer = ({ onCheckout, checkingOut = false }: CartDrawerProps)
                   <span>
                     {promoFreeShipping
                       ? t('cart.promo.freeDelivery')
-                      : shipping === 0
-                        ? `${t('shop.bundle.freeDelivery')} ${destFlag}`
-                        : `${t('cart.shippingTo', { country: destLabel })}`
+                      : `${t('cart.shippingTo', { country: destLabel })}`
                     }:
                   </span>
                   <span>{shipping === 0 ? 'FREE' : `${shipping.toFixed(2)}€`}</span>

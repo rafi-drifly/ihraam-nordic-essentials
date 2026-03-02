@@ -44,7 +44,7 @@ const Shop = () => {
   const { destination, setDestination } = useShippingDestination();
   const bundles = getBundlesForDestination(destination);
   
-  const [selectedBundle, setSelectedBundle] = useState<number>(1);
+  const [selectedBundle, setSelectedBundle] = useState<number>(2);
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
@@ -310,7 +310,7 @@ const Shop = () => {
                   {bundles.map((b, idx) => {
                     const isSelected = selectedBundle === idx;
                     const totalYouPay = b.totalPrice + b.shipping;
-                    const badgeKey = b.qty === 2 ? 'shop.bundle.bestValue' : (b.qty >= 3 && b.shipping === 0) ? 'shop.bundle.freeDelivery' : '';
+                    const badgeKey = b.qty === 2 ? 'shop.bundle.bestValue' : b.qty >= 3 ? 'shop.bundle.mostPopular' : '';
                     return (
                       <button
                         key={b.qty}
@@ -333,16 +333,27 @@ const Shop = () => {
                           <p className="font-bold text-lg">{b.qty === 1 ? t('shop.bundle.single') : b.label}</p>
                           <p className="text-2xl font-bold text-foreground mt-1">€{b.totalPrice}</p>
                           <p className="text-sm text-muted-foreground mt-1">
-                            {b.shipping === 0 ? (
-                              <span className="text-primary font-medium">{t('shop.bundle.freeDelivery')} {destFlag}</span>
-                            ) : (
-                              <span>+ €{b.shipping} {t('shop.bundle.delivery')} {destFlag}</span>
-                            )}
+                            <span>+ €{b.shipping} {t('shop.bundle.delivery')} {destFlag}</span>
                           </p>
                           <p className="text-xs text-muted-foreground mt-0.5">
                             Total: €{totalYouPay}
                           </p>
-                          {b.savings > 0 && (
+                          {b.qty === 2 && b.savings > 0 && destination !== 'NO' && (
+                            <p className="text-xs font-medium text-primary mt-1">
+                              {t('shop.bundle.save2Pack', { amount: b.savings })}
+                            </p>
+                          )}
+                          {b.qty >= 3 && b.savings > 0 && destination !== 'NO' && (
+                            <div className="mt-1">
+                              <p className="text-xs font-medium text-primary">
+                                {t('shop.bundle.savingsVsSeparate', { amount: b.savings, qty: b.qty })}
+                              </p>
+                              <p className="text-[10px] text-muted-foreground mt-0.5">
+                                {t('shop.bundle.savingsBreakdown', { qty: b.qty, singleDelivered: 29, separateTotal: 87, bundleLabel: '3-Pack', bundleDelivered: totalYouPay })}
+                              </p>
+                            </div>
+                          )}
+                          {destination === 'NO' && b.savings > 0 && (
                             <p className="text-xs font-medium text-primary mt-1">
                               {t('shop.bundle.youSave', { amount: b.savings })}
                             </p>
@@ -353,7 +364,17 @@ const Shop = () => {
                   })}
                 </div>
 
-                {/* Norway shipping note */}
+                {/* Shipping note */}
+                {destination === 'SE' && (
+                  <div className="mt-2 space-y-1">
+                    <p className="text-xs text-muted-foreground">
+                      {t('shop.bundle.shippingNote')}
+                    </p>
+                    <p className="text-xs text-muted-foreground italic">
+                      {t('shop.bundle.whyBundles')}
+                    </p>
+                  </div>
+                )}
                 {destination === 'NO' && (
                   <p className="text-xs text-muted-foreground mt-1">
                     {t('shop.destination.norwayShippingSame')}
@@ -456,7 +477,7 @@ const Shop = () => {
                 <CardContent className="p-4">
                   <h3 className="font-semibold mb-2">{t('shop.shippingInfo.title')}</h3>
                   <ul className="text-sm text-muted-foreground space-y-1">
-                    <li>🇸🇪 {t('shop.bundle.shippingBullet')}</li>
+                    <li>🇸🇪 {t('shop.bundle.shippingNote')}</li>
                     <li>🇳🇴 {t('shop.destination.norwayShippingBullet')}</li>
                     <li>🇪🇺 {t('shop.shippingInfo.nordic')}</li>
                     <li>📦 {t('shop.shippingInfo.tracking')}</li>

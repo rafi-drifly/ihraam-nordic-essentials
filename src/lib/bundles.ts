@@ -20,12 +20,12 @@ export const BUNDLES: Bundle[] = [
     badge: null, badgeVariant: null,
   },
   {
-    qty: 2, label: '2-Pack', totalPrice: 40, shipping: 9, savings: 9,
+    qty: 2, label: '2-Pack', totalPrice: 38, shipping: 9, savings: 2,
     badge: 'Best Value', badgeVariant: 'default',
   },
   {
-    qty: 3, label: '3-Pack', totalPrice: 60, shipping: 0, savings: 27,
-    badge: 'Free Delivery', badgeVariant: 'secondary',
+    qty: 3, label: '3-Pack', totalPrice: 60, shipping: 9, savings: 18,
+    badge: 'Most Popular', badgeVariant: 'secondary',
   },
 ];
 
