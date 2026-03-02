@@ -20,7 +20,7 @@ export const BUNDLES: Bundle[] = [
     badge: null, badgeVariant: null,
   },
   {
-    qty: 2, label: '2-Pack', totalPrice: 38, shipping: 9, savings: 2,
+    qty: 2, label: '2-Pack', totalPrice: 38, shipping: 9, savings: 9,
     badge: 'Best Value', badgeVariant: 'default',
   },
   {
