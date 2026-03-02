@@ -404,7 +404,7 @@
       "freeDelivery": "Gratis Levering",
       "delivery": "levering",
       "youSave": "Du sparer €{{amount}} sammenlignet med enkeltpakker",
-      "save2Pack": "Spar €{{amount}} mot å kjøpe 2 enkle i én bestilling.",
+      "save2Pack": "Spar på frakt — én levering i stedet for to.",
       "savingsVsSeparate": "Spar €{{amount}} mot å bestille {{qty}} enkle separat ({{qty}} leveringer).",
       "shippingNote": "Levering i Sverige: 9 € per bestilling (ingen ekstra avgift for 2 eller 3 sett).",
       "whyBundles": "Pakker hjelper deg å bare betale levering én gang.",
