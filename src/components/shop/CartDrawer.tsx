@@ -6,7 +6,6 @@ import { ShoppingCart, Minus, Plus, Trash2, Gift, Tag, X, Check } from "lucide-r
 import { useCart } from "@/hooks/useCart";
 import { Badge } from "@/components/ui/badge";
 import { calculateShipping } from "@/lib/shipping";
-import { useShippingDestination } from "@/hooks/useShippingDestination";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { trackEvent } from "@/lib/analytics";
@@ -22,7 +21,6 @@ export const CartDrawer = ({ onCheckout, checkingOut = false }: CartDrawerProps)
   const { t } = useTranslation();
   const { toast } = useToast();
   const location = useLocation();
-  const { destination } = useShippingDestination();
   const [promoInput, setPromoInput] = useState("");
   const [appliedPromo, setAppliedPromo] = useState<string | null>(null);
   const [promoCity, setPromoCity] = useState("");
@@ -38,11 +36,10 @@ export const CartDrawer = ({ onCheckout, checkingOut = false }: CartDrawerProps)
 
   const totalItems = getTotalItems();
   const promoFreeShipping = appliedPromo === 'FREEDELIVERY-UPPSALA' && promoCity.toLowerCase().trim() === 'uppsala';
-  const shipping = promoFreeShipping ? 0 : calculateShipping(totalItems, destination);
+  const shipping = promoFreeShipping ? 0 : calculateShipping(totalItems);
   const subtotal = getTotalPrice();
 
-  const destFlag = destination === 'NO' ? '🇳🇴' : '🇸🇪';
-  const destLabel = destination === 'NO' ? t('shop.destination.norway') : t('shop.destination.sweden');
+  const destLabel = t('shop.destination.sweden');
 
   const handleApplyPromo = () => {
     setPromoError(null);
@@ -82,33 +79,6 @@ export const CartDrawer = ({ onCheckout, checkingOut = false }: CartDrawerProps)
   };
 
   const renderUpsellBanner = () => {
-    if (destination === 'NO') {
-      if (totalItems === 1) {
-        return (
-          <div className="rounded-lg border border-primary/30 bg-primary/5 p-3 flex items-center justify-between gap-2">
-            <div className="flex items-center gap-2">
-              <Gift className="h-4 w-4 text-primary flex-shrink-0" />
-              <p className="text-xs font-medium">{t('cart.upsell.noQty1')}</p>
-            </div>
-            <Button size="sm" variant="outline" onClick={handleUpsellClick} className="text-xs h-7 px-2">{t('cart.upsell.switchTo2Pack')}</Button>
-          </div>
-        );
-      }
-      if (totalItems === 2) {
-        return (
-          <div className="rounded-lg border border-primary/30 bg-primary/5 p-3 flex items-center justify-between gap-2">
-            <div className="flex items-center gap-2">
-              <Gift className="h-4 w-4 text-primary flex-shrink-0" />
-              <p className="text-xs font-medium">{t('cart.upsell.noQty2')}</p>
-            </div>
-            <Button size="sm" variant="outline" onClick={handleUpsellClick} className="text-xs h-7 px-2">{t('cart.upsell.switchTo3Pack')}</Button>
-          </div>
-        );
-      }
-      return null;
-    }
-
-    // Sweden upsells
     if (totalItems === 1) {
       return (
         <div className="rounded-lg border border-primary/30 bg-primary/5 p-3 flex items-center justify-between gap-2">

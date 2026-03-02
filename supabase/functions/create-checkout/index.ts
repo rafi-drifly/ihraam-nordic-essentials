@@ -12,32 +12,16 @@ interface CheckoutRequest {
   donation?: number;
   bundlePrice?: number;
   locale?: string;
-  shippingCountry?: 'SE' | 'NO';
+  shippingCountry?: string;
   promoCode?: string;
   shippingCity?: string;
 }
 
 const bundleLabels: Record<string, { twoPack: string; threePack: string }> = {
-  en: { twoPack: '2-Pack (Best Value)', threePack: '3-Pack (Free Delivery)' },
-  sv: { twoPack: '2-Pack (Bästa Värde)', threePack: '3-Pack (Fri Frakt)' },
-  no: { twoPack: '2-Pack (Best Verdi)', threePack: '3-Pack (Gratis Frakt)' },
+  en: { twoPack: '2-Pack (Best Value)', threePack: '3-Pack (Most Popular)' },
+  sv: { twoPack: '2-Pack (Bästa Värde)', threePack: '3-Pack (Mest Populär)' },
+  no: { twoPack: '2-Pack (Beste Verdi)', threePack: '3-Pack (Mest Populær)' },
 };
-
-// Shipping rules in cents
-function getShippingCents(totalQuantity: number, country: string): number {
-  if (country === 'NO') {
-    return totalQuantity >= 3 ? 4900 : 3900;
-  }
-  // Sweden: flat €9 regardless of quantity
-  return 900;
-}
-
-function getShippingDescription(totalQuantity: number, country: string): string {
-  if (country === 'NO') {
-    return `Delivery to Norway (${totalQuantity} set${totalQuantity > 1 ? 's' : ''})`;
-  }
-  return `Delivery to Sweden (${totalQuantity} set${totalQuantity > 1 ? 's' : ''})`;
-}
 
 function getBundleType(qty: number): string {
   if (qty >= 3) return '3-pack';
@@ -60,9 +44,8 @@ serve(async (req) => {
       apiVersion: "2025-08-27.basil",
     });
 
-    const { items, donation, bundlePrice, locale, shippingCountry, promoCode, shippingCity }: CheckoutRequest = await req.json();
-    const country = shippingCountry || 'SE';
-    console.log("Checkout request:", { items, donation, bundlePrice, locale, country, promoCode, shippingCity });
+    const { items, donation, bundlePrice, locale, promoCode, shippingCity }: CheckoutRequest = await req.json();
+    console.log("Checkout request:", { items, donation, bundlePrice, locale, promoCode, shippingCity });
 
     // Validate FREEDELIVERY-UPPSALA promo code
     let promoFreeShipping = false;
@@ -83,9 +66,9 @@ serve(async (req) => {
     }
 
     const totalQuantity = items.reduce((sum, item) => sum + item.quantity, 0);
-    const shippingCents = promoFreeShipping ? 0 : getShippingCents(totalQuantity, country);
+    const shippingCents = promoFreeShipping ? 0 : 900; // flat €9 for Sweden
     const bundleType = getBundleType(totalQuantity);
-    console.log("Total qty:", totalQuantity, "Shipping:", shippingCents / 100, "EUR, Bundle:", bundleType, "Country:", country);
+    console.log("Total qty:", totalQuantity, "Shipping: €", shippingCents / 100, "Bundle:", bundleType);
 
     // Get user if authenticated
     const authHeader = req.headers.get("Authorization");
@@ -151,7 +134,7 @@ serve(async (req) => {
           currency: 'eur',
           product_data: {
             name: 'Shipping',
-            description: getShippingDescription(totalQuantity, country),
+            description: `Delivery to Sweden (${totalQuantity} set${totalQuantity > 1 ? 's' : ''})`,
           },
           unit_amount: shippingCents,
         },
@@ -174,26 +157,20 @@ serve(async (req) => {
       });
     }
 
-    // Norway customs note
-    const shippingAddressMessage = country === 'NO'
-      ? "Norway is outside the EU. Import VAT/customs fees may apply on delivery. Delivery time: 7-14 business days."
-      : "We ship to Sweden, Nordic countries, and EU. Delivery time: 3-14 business days.";
-
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
       customer_email: customerId ? undefined : undefined,
       line_items: lineItems,
       mode: "payment",
       currency: "eur",
-      
       success_url: `${req.headers.get("origin")}/order-success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${req.headers.get("origin")}/cart`,
       shipping_address_collection: {
-        allowed_countries: ['SE', 'NO', 'DK', 'FI', 'DE', 'NL', 'BE', 'FR', 'AT', 'IT', 'ES'],
+        allowed_countries: ['SE'],
       },
       phone_number_collection: { enabled: true },
       custom_text: {
-        shipping_address: { message: shippingAddressMessage },
+        shipping_address: { message: "We ship to Sweden. Delivery time: 3-7 business days." },
       },
       metadata: {
         user_id: user?.id || '',
@@ -201,7 +178,7 @@ serve(async (req) => {
         total_quantity: totalQuantity.toString(),
         bundle_type: bundleType,
         shipping_eur: (shippingCents / 100).toString(),
-        shipping_country: country,
+        shipping_country: 'SE',
         shipping_fee_applied: (shippingCents / 100).toString(),
         donation: donation && donation > 0 ? "true" : "false",
         donation_amount: donation && donation > 0 ? donation.toString() : "0",
