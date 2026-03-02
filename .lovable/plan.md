@@ -1,62 +1,86 @@
 
 
-## Validate FREEDELIVERY-UPPSALA Promo Code (Pre-Checkout)
+## Update Sweden (SE) Pricing, Bundles, and Messaging
 
-### Problem
-With `allow_promotion_codes: true`, Stripe handles promo codes on its own checkout page. The edge function never sees the code or the customer's city, so server-side validation there is impossible.
+### Overview
+Update the Sweden bundle pricing, shipping rules, savings messaging, badge labels, upsell banners, and checkout logic to match the new pricing structure. Norway pricing remains unchanged.
 
-### Chosen Approach: Frontend Promo Code Input + Edge Function Validation
+---
 
-Move promo code handling from Stripe's UI to your own Cart page so the edge function can validate city + code before creating the session.
+### 1. Update `src/lib/bundles.ts` -- New SE bundle prices and badges
 
-### Changes
+Current SE bundles:
+- Single: €20, shipping €9, savings €0, no badge
+- 2-Pack: €40, shipping €9, savings €9, badge "Best Value"
+- 3-Pack: €60, shipping €0, savings €27, badge "Free Delivery"
 
-#### 1. Cart Page (`src/pages/Cart.tsx`) -- Add promo code input
-- Add a text input + "Apply" button for promo codes
-- Store applied promo code in state
-- Pass `promoCode` to the checkout function call
-- Show success/error feedback when applying
+New SE bundles:
+- Single: €20, shipping €9, savings €0, no badge
+- 2-Pack: €38, shipping €9, savings €2, badge "Best Value"
+- 3-Pack: €60, shipping €9, savings €18 (vs 3 separate orders), badge "Most Popular"
 
-#### 2. Cart Drawer (`src/components/shop/CartDrawer.tsx`) -- Same promo input
-- Add condensed promo code input in the drawer
-- Pass `promoCode` to checkout
+Update `BUNDLES` array accordingly. The `getBundlePrice` function also needs updating to return €38 for qty 2.
 
-#### 3. Edge Function (`supabase/functions/create-checkout/index.ts`)
-- Add `promoCode` and `shippingCity` to `CheckoutRequest` interface
-- Remove `allow_promotion_codes: true`
-- Before session creation, validate:
-  - If `promoCode === "FREEDELIVERY-UPPSALA"` (case-insensitive) and `shippingCountry !== 'SE'` or city doesn't match "Uppsala" (case-insensitive), return error: `"This promo code is only valid for Uppsala deliveries."`
-  - If valid, set shipping to EUR0 and use Stripe `discounts` param with a coupon, or simply remove the shipping line item
-- Since city isn't known pre-checkout (Stripe collects it), we need to either:
-  - **Option A**: Ask for city on the Cart page (add a city input when promo is applied)
-  - **Option B**: Trust `shippingCountry: 'SE'` as sufficient and skip city validation (simpler but less strict)
+### 2. Update `src/lib/shipping.ts` -- Flat €9 for all SE quantities
 
-**Recommended**: Option A -- when user enters "FREEDELIVERY-UPPSALA", show a city confirmation input. Frontend sends `shippingCity: "Uppsala"` to edge function. Edge function validates match.
+Change the Sweden shipping rule: remove the "free for 3+" logic. All SE orders pay €9 flat regardless of quantity.
 
-#### 4. Validation Logic in Edge Function
-```text
-if promoCode matches "FREEDELIVERY-UPPSALA" (case-insensitive):
-  if shippingCity (lowercased) !== "uppsala":
-    return 400 { error: "This promo code is only valid for Uppsala deliveries." }
-  else:
-    set shippingCents = 0
-    (optionally apply a Stripe coupon via discounts param)
+```
+// Before: if (safeQuantity >= 3) return 0;
+// After:  return 9; (always for SE)
 ```
 
-#### 5. Translations (`en.json`, `sv.json`, `no.json`)
-- `cart.promo.placeholder`: "Enter promo code"
-- `cart.promo.apply`: "Apply"
-- `cart.promo.applied`: "Promo code applied!"
-- `cart.promo.invalidCity`: "This promo code is only valid for Uppsala deliveries."
-- `cart.promo.cityLabel`: "Confirm your city"
+Also update `getShippingLabel` to remove the "Free delivery" case for Sweden.
 
-### Files Modified (5 files)
-1. `src/pages/Cart.tsx` -- promo code input + city confirmation
-2. `src/components/shop/CartDrawer.tsx` -- promo code input
-3. `supabase/functions/create-checkout/index.ts` -- validation + remove `allow_promotion_codes`
-4. `src/i18n/locales/en.json` -- new promo keys
-5. `src/i18n/locales/sv.json` -- Swedish translations
-6. `src/i18n/locales/no.json` -- Norwegian translations
+### 3. Update `supabase/functions/create-checkout/index.ts` -- Match new shipping logic
 
-### Important Note
-This removes `allow_promotion_codes: true` from Stripe Checkout, meaning ALL promo codes must now be handled through your own Cart UI and edge function. Any future promo codes will also need validation logic in the edge function.
+Update `getShippingCents` so SE always returns 900 (€9) regardless of quantity. Update bundle price handling so qty 2 uses €38.
+
+### 4. Update Shop page bundle cards (`src/pages/Shop.tsx`)
+
+- Default selected bundle index: change from `1` (2-Pack) to `2` (3-Pack, "Most Popular")
+- Update the badge logic: 3-Pack should show "Most Popular" (new translation key) instead of "Free Delivery"
+- Add a shipping info line below bundle cards: "Sweden delivery: €9 per order (no extra fee for 2 or 3 sets)."
+- Add a "Why bundles?" note: "Bundles help you pay delivery only once."
+- For 3-Pack savings, show the breakdown: "3 separate single orders: €29 x 3 = €87. 3-Pack delivered: €69."
+- For 2-Pack savings: "Save €2 vs buying 2 singles in one order"
+
+### 5. Update Cart upsell banners (`src/pages/Cart.tsx` and `src/components/shop/CartDrawer.tsx`)
+
+New SE upsell messages:
+- qty=1: "Add 1 more -- still only €9 delivery (2-Pack Best Value)" with "Switch to 2-Pack" button
+- qty=2: "Add 1 more -- still only €9 delivery (3-Pack Most Popular)" with "Switch to 3-Pack" button
+
+### 6. Update translation files (`en.json`, `sv.json`, `no.json`)
+
+New/updated keys:
+- `shop.bundle.mostPopular`: "Most Popular" / "Mest Populär" / "Mest Populaer"
+- `shop.bundle.youSave`: Update to generic "Save €{{amount}}" (used for 2-Pack)
+- `shop.bundle.savingsVsSeparate`: "Save €{{amount}} vs ordering {{qty}} singles separately ({{qty}} deliveries)."
+- `shop.bundle.savingsBreakdown`: "{{qty}} separate single orders: €{{singleDelivered}} x {{qty}} = €{{separateTotal}}. {{bundleLabel}} delivered: €{{bundleDelivered}}."
+- `shop.bundle.shippingNote`: "Sweden delivery: €9 per order (no extra fee for 2 or 3 sets)."
+- `shop.bundle.whyBundles`: "Bundles help you pay delivery only once."
+- `cart.upsell.seQty1`: "Add 1 more -- still only €9 delivery (2-Pack Best Value)"
+- `cart.upsell.seQty2`: "Add 1 more -- still only €9 delivery (3-Pack Most Popular)"
+
+### 7. Files modified (summary)
+
+| File | Change |
+|------|--------|
+| `src/lib/bundles.ts` | Update BUNDLES array (2-Pack price €38, 3-Pack shipping €9, new badges/savings) |
+| `src/lib/shipping.ts` | SE always returns €9 (remove free-for-3+ logic) |
+| `supabase/functions/create-checkout/index.ts` | SE shipping always 900 cents; handle €38 for 2-pack |
+| `src/pages/Shop.tsx` | Default to 3-Pack, new badge logic, shipping note, why-bundles note, savings breakdown |
+| `src/pages/Cart.tsx` | Updated upsell banner text for SE |
+| `src/components/shop/CartDrawer.tsx` | Updated upsell banner text for SE |
+| `src/i18n/locales/en.json` | New translation keys |
+| `src/i18n/locales/sv.json` | New translation keys (Swedish) |
+| `src/i18n/locales/no.json` | New translation keys (Norwegian) |
+
+### Test cases after implementation
+- SE Single: €20 + €9 = €29
+- SE 2-Pack: €38 + €9 = €47
+- SE 3-Pack: €60 + €9 = €69
+- Norway pricing unchanged (€39/€49 shipping tiers)
+- Promo code FREEDELIVERY-UPPSALA still zeroes shipping only
+
