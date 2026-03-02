@@ -57,8 +57,14 @@ const Partners = () => {
     setIsSubmitting(true);
 
     try {
-      const { error } = await supabase.functions.invoke('partner-inquiry', {
-        body: formData
+      const contactBody = {
+        name: formData.name,
+        email: formData.email,
+        subject: `Partner Inquiry - ${formData.organisation}`,
+        message: `Organization: ${formData.organisation}\nRole: ${formData.role}\nCountry: ${formData.country}\nPhone: ${formData.phone}\nPilgrims per year: ${formData.pilgrimsPerYear}\n\n${formData.message}`,
+      };
+      const { error } = await supabase.functions.invoke('contact-form', {
+        body: contactBody
       });
 
       if (error) throw error;
