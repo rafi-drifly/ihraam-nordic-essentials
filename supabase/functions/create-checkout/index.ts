@@ -28,8 +28,7 @@ function getShippingCents(totalQuantity: number, country: string): number {
   if (country === 'NO') {
     return totalQuantity >= 3 ? 4900 : 3900;
   }
-  // Sweden: 1-2 = €9, 3+ = free
-  if (totalQuantity >= 3) return 0;
+  // Sweden: flat €9 regardless of quantity
   return 900;
 }
 

@@ -22,9 +22,8 @@ export function calculateShipping(quantity: number, destination: ShippingDestina
     return safeQuantity >= 3 ? 49 : 39;
   }
 
-  // Sweden (default)
-  if (safeQuantity >= 3) return 0;
-  return 9; // €9 flat for 1 or 2 items
+  // Sweden (default) — flat €9 regardless of quantity
+  return 9;
 }
 
 /**
@@ -35,8 +34,6 @@ export function getShippingLabel(quantity: number, destination: ShippingDestinat
     if (quantity >= 3) return '€49 delivery to Norway';
     return '€39 delivery to Norway';
   }
-  if (quantity >= 3) return 'Free delivery in Sweden';
-  if (quantity === 2) return 'Only €9 delivery in Sweden';
   return '€9 delivery in Sweden';
 }
 
