@@ -1,39 +1,21 @@
 // Shipping rates in EUR
 export const SHIPPING_RATES = {
-  sweden: 9,   // flat for 1-2 items, free for 3+
-  norway_12: 39, // flat for 1-2 items
-  norway_3plus: 49, // flat for 3+ items
+  sweden: 9,   // flat per order
   nordic: 9,   // per item (DK, FI)
   eu: 10,      // per item
 } as const;
 
-export type ShippingDestination = 'SE' | 'NO';
-export type ShippingRegion = 'sweden' | 'norway' | 'nordic' | 'eu';
-
 /**
- * Calculate shipping cost based on quantity and destination.
- * Sweden: 1-2 items €9 flat, 3+ free
- * Norway: 1-2 items €39 flat, 3+ items €49 flat
+ * Calculate shipping cost — Sweden only, flat €9.
  */
-export function calculateShipping(quantity: number, destination: ShippingDestination = 'SE'): number {
-  const safeQuantity = Math.max(1, Math.floor(quantity));
-
-  if (destination === 'NO') {
-    return safeQuantity >= 3 ? 49 : 39;
-  }
-
-  // Sweden (default) — flat €9 regardless of quantity
+export function calculateShipping(quantity: number): number {
   return 9;
 }
 
 /**
  * Get shipping display text
  */
-export function getShippingLabel(quantity: number, destination: ShippingDestination = 'SE'): string {
-  if (destination === 'NO') {
-    if (quantity >= 3) return '€49 delivery to Norway';
-    return '€39 delivery to Norway';
-  }
+export function getShippingLabel(quantity: number): string {
   return '€9 delivery in Sweden';
 }
 

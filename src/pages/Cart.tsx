@@ -5,10 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useCart } from "@/hooks/useCart";
-import { ShoppingCart, ArrowLeft, Minus, Plus, Trash2, Gift, AlertTriangle, Tag, X, Check } from "lucide-react";
+import { ShoppingCart, ArrowLeft, Minus, Plus, Trash2, Gift, Tag, X, Check } from "lucide-react";
 import { calculateShipping } from "@/lib/shipping";
 import { getBundlePrice } from "@/lib/bundles";
-import { useShippingDestination } from "@/hooks/useShippingDestination";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import DonationSection from "@/components/shop/DonationSection";
@@ -21,7 +20,6 @@ const Cart = () => {
   const { items, updateQuantity, removeItem, getTotalItems, getTotalPrice, addItem, clearCart } = useCart();
   const [selectedDonation, setSelectedDonation] = useState(0);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
-  const { destination } = useShippingDestination();
   const [promoInput, setPromoInput] = useState("");
   const [appliedPromo, setAppliedPromo] = useState<string | null>(null);
   const [promoCity, setPromoCity] = useState("");
@@ -37,7 +35,7 @@ const Cart = () => {
 
   const totalItems = getTotalItems();
   const promoFreeShipping = appliedPromo === 'FREEDELIVERY-UPPSALA' && promoCity.toLowerCase().trim() === 'uppsala';
-  const shipping = promoFreeShipping ? 0 : calculateShipping(totalItems, destination);
+  const shipping = promoFreeShipping ? 0 : calculateShipping(totalItems);
   const subtotal = getTotalPrice();
 
   const getTotalWithDonation = () => subtotal + shipping + selectedDonation;
@@ -92,18 +90,14 @@ const Cart = () => {
           donation: selectedDonation > 0 ? selectedDonation : undefined,
           bundlePrice: getBundlePrice(totalItems),
           locale: location.pathname.startsWith('/sv') ? 'sv' : location.pathname.startsWith('/no') ? 'no' : 'en',
-          shippingCountry: destination,
+          shippingCountry: 'SE',
           promoCode: appliedPromo || undefined,
           shippingCity: appliedPromo ? promoCity : undefined
         }
       });
       if (error) throw error;
       if (data?.error) {
-        toast({
-          title: t('common.error'),
-          description: data.error,
-          variant: "destructive"
-        });
+        toast({ title: t('common.error'), description: data.error, variant: "destructive" });
         return;
       }
       if (data?.url) {
@@ -113,53 +107,14 @@ const Cart = () => {
       }
     } catch (error) {
       console.error('Error creating checkout:', error);
-      toast({
-        title: t('common.error'),
-        description: "Failed to create checkout session. Please try again.",
-        variant: "destructive"
-      });
+      toast({ title: t('common.error'), description: "Failed to create checkout session. Please try again.", variant: "destructive" });
     } finally {
       setCheckoutLoading(false);
     }
   };
 
-  // Upsell banner logic
+  // Sweden-only upsell banners
   const renderUpsellBanner = () => {
-    if (destination === 'NO') {
-      if (totalItems === 1) {
-        return (
-          <Card className="border-primary/30 bg-primary/5">
-            <CardContent className="p-4 flex items-center justify-between gap-3">
-              <div className="flex items-center gap-2">
-                <Gift className="h-5 w-5 text-primary flex-shrink-0" />
-                <p className="text-sm font-medium">{t('cart.upsell.noQty1')}</p>
-              </div>
-              <Button size="sm" variant="outline" onClick={handleUpsellClick} className="whitespace-nowrap">
-                {t('cart.upsell.switchTo2Pack')}
-              </Button>
-            </CardContent>
-          </Card>
-        );
-      }
-      if (totalItems === 2) {
-        return (
-          <Card className="border-primary/30 bg-primary/5">
-            <CardContent className="p-4 flex items-center justify-between gap-3">
-              <div className="flex items-center gap-2">
-                <Gift className="h-5 w-5 text-primary flex-shrink-0" />
-                <p className="text-sm font-medium">{t('cart.upsell.noQty2')}</p>
-              </div>
-              <Button size="sm" variant="outline" onClick={handleUpsellClick} className="whitespace-nowrap">
-                {t('cart.upsell.switchTo3Pack')}
-              </Button>
-            </CardContent>
-          </Card>
-        );
-      }
-      return null;
-    }
-
-    // Sweden upsells
     if (totalItems === 1) {
       return (
         <Card className="border-primary/30 bg-primary/5">
@@ -193,9 +148,6 @@ const Cart = () => {
     return null;
   };
 
-  const destFlag = destination === 'NO' ? '🇳🇴' : '🇸🇪';
-  const destLabel = destination === 'NO' ? t('shop.destination.norway') : t('shop.destination.sweden');
-
   return (
     <div className="min-h-screen py-8">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -224,7 +176,6 @@ const Cart = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Cart Items */}
             <div className="lg:col-span-2 space-y-4">
-              {/* Upsell Banner */}
               {renderUpsellBanner()}
 
               {items.map((item) => (
@@ -270,7 +221,7 @@ const Cart = () => {
                       {promoFreeShipping ? (
                         <span className="text-primary font-medium">{t('cart.promo.freeDelivery')}</span>
                       ) : (
-                        <span>{t('cart.shippingTo', { country: destLabel })} — €{shipping}</span>
+                        <span>{t('cart.shippingTo', { country: t('shop.destination.sweden') })} — €{shipping}</span>
                       )}
                     </span>
                     <span>{shipping === 0 ? 'FREE' : `${shipping.toFixed(2)}€`}</span>
@@ -337,16 +288,6 @@ const Cart = () => {
                       <span className="font-bold text-lg">{getTotalWithDonation().toFixed(2)}€</span>
                     </div>
                   </div>
-
-                  {/* Norway customs notice */}
-                  {destination === 'NO' && (
-                    <div className="flex items-start gap-2 rounded-lg border border-amber-200 bg-amber-50 dark:bg-amber-950/20 dark:border-amber-800 p-3">
-                      <AlertTriangle className="h-4 w-4 text-amber-600 mt-0.5 flex-shrink-0" />
-                      <p className="text-xs text-amber-800 dark:text-amber-200">
-                        {t('shop.destination.norwayCustomsNote')}
-                      </p>
-                    </div>
-                  )}
 
                   <Button 
                     className="w-full bg-gradient-primary hover:opacity-90" 

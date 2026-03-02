@@ -5,12 +5,11 @@ import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ShoppingCart, Star, Check, X, ChevronLeft, ChevronRight, Package, Truck, AlertTriangle } from "lucide-react";
+import { ShoppingCart, Star, Check, X, ChevronLeft, ChevronRight, Package, Truck } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import ihraamProduct from "@/assets/ihraam-product.jpg";
 import detail2 from "@/assets/product/detail-2.avif";
 import detail3 from "@/assets/product/detail-3.avif";
@@ -20,9 +19,7 @@ import detail6 from "@/assets/product/detail-6.avif";
 import detail7 from "@/assets/product/detail-7.avif";
 import detail8 from "@/assets/product/detail-8.avif";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
-import { getBundlesForDestination, getBundlePrice, type Bundle } from "@/lib/bundles";
-import { calculateShipping } from "@/lib/shipping";
-import { useShippingDestination } from "@/hooks/useShippingDestination";
+import { BUNDLES, getBundlePrice, type Bundle } from "@/lib/bundles";
 import { trackEvent } from "@/lib/analytics";
 
 interface Product {
@@ -41,10 +38,9 @@ const Shop = () => {
   const location = useLocation();
   const localePrefix = location.pathname.startsWith('/sv') ? '/sv' : location.pathname.startsWith('/no') ? '/no' : '';
   
-  const { destination, setDestination } = useShippingDestination();
-  const bundles = getBundlesForDestination(destination);
+  const bundles = BUNDLES;
   
-  const [selectedBundle, setSelectedBundle] = useState<number>(2);
+  const [selectedBundle, setSelectedBundle] = useState<number>(1);
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
@@ -111,7 +107,7 @@ const Shop = () => {
           items: checkoutItems, 
           bundlePrice: bundle.totalPrice, 
           locale: i18n.language,
-          shippingCountry: destination
+          shippingCountry: 'SE'
         }
       });
       if (error) throw error;
@@ -173,7 +169,7 @@ const Shop = () => {
       "itemCondition": "https://schema.org/NewCondition",
       "shippingDetails": {
         "@type": "OfferShippingDetails",
-        "shippingDestination": { "@type": "DefinedRegion", "addressCountry": ["SE", "NO", "DK", "FI"] },
+        "shippingDestination": { "@type": "DefinedRegion", "addressCountry": ["SE"] },
         "deliveryTime": {
           "@type": "ShippingDeliveryTime",
           "handlingTime": { "@type": "QuantitativeValue", "minValue": 1, "maxValue": 3, "unitCode": "d" },
@@ -182,7 +178,7 @@ const Shop = () => {
       },
       "hasMerchantReturnPolicy": {
         "@type": "MerchantReturnPolicy",
-        "applicableCountry": ["SE", "NO", "DK", "FI"],
+        "applicableCountry": ["SE"],
         "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
         "merchantReturnDays": 14,
         "returnMethod": "https://schema.org/ReturnByMail",
@@ -201,16 +197,14 @@ const Shop = () => {
     setSelectedImageIndex((selectedImageIndex - 1 + allImages.length) % allImages.length);
   };
 
-  const destFlag = destination === 'NO' ? '🇳🇴' : '🇸🇪';
-
   return (
     <>
       <Helmet>
         <title>{product.name} - Pure Ihram | Buy Online</title>
-        <meta name="description" content="Premium Ihram sets from €20. Save with 2-Pack (€39) or 3-Pack (€57, free delivery in Sweden). Fast shipping across Nordics & EU." />
+        <meta name="description" content="Premium Ihram sets from €20. Save with 2-Pack (€38) or 3-Pack (€60). €9 delivery in Sweden." />
         <meta property="og:type" content="product" />
         <meta property="og:title" content={`${product.name} - Pure Ihram`} />
-        <meta property="og:description" content="Premium Ihram sets from €20. Save with bundles. Free delivery on 3-Pack in Sweden." />
+        <meta property="og:description" content="Premium Ihram sets from €20. Save with bundles. €9 delivery in Sweden." />
         <meta property="og:image" content={storageImages[0]} />
         <meta property="og:url" content={`${SITE_URL}/shop`} />
         <meta property="product:price:amount" content="20" />
@@ -289,20 +283,6 @@ const Shop = () => {
                 <p className="text-muted-foreground leading-relaxed">{t('shop.description')}</p>
               </div>
 
-              {/* Destination Selector */}
-              <div className="flex items-center gap-3">
-                <span className="text-sm font-medium text-foreground">{t('shop.destination.label')}</span>
-                <Select value={destination} onValueChange={(v) => setDestination(v as 'SE' | 'NO')}>
-                  <SelectTrigger className="w-[180px]">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="SE">🇸🇪 {t('shop.destination.sweden')}</SelectItem>
-                    <SelectItem value="NO">🇳🇴 {t('shop.destination.norway')}</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
               {/* Bundle Cards */}
               <div className="space-y-3">
                 <h3 className="font-semibold text-lg">{t('shop.bundle.chooseBundle')}</h3>
@@ -333,26 +313,21 @@ const Shop = () => {
                           <p className="font-bold text-lg">{b.qty === 1 ? t('shop.bundle.single') : b.label}</p>
                           <p className="text-2xl font-bold text-foreground mt-1">€{b.totalPrice}</p>
                           <p className="text-sm text-muted-foreground mt-1">
-                            <span>+ €{b.shipping} {t('shop.bundle.delivery')} {destFlag}</span>
+                            <span>+ €{b.shipping} {t('shop.bundle.delivery')} 🇸🇪</span>
                           </p>
                           <p className="text-xs text-muted-foreground mt-0.5">
                             Total: €{totalYouPay}
                           </p>
-                          {b.qty === 2 && b.savings > 0 && destination !== 'NO' && (
+                          {b.qty === 2 && b.savings > 0 && (
                             <p className="text-xs font-medium text-primary mt-1">
                               {t('shop.bundle.save2Pack', { amount: b.savings })}
                             </p>
                           )}
-                          {b.qty >= 3 && b.savings > 0 && destination !== 'NO' && (
+                          {b.qty >= 3 && b.savings > 0 && (
                              <p className="text-xs font-medium text-primary mt-1">
                                {t('shop.bundle.savingsVsSeparate', { amount: b.savings, qty: b.qty })}
                              </p>
                            )}
-                          {destination === 'NO' && b.savings > 0 && (
-                            <p className="text-xs font-medium text-primary mt-1">
-                              {t('shop.bundle.youSave', { amount: b.savings })}
-                            </p>
-                          )}
                         </div>
                       </button>
                     );
@@ -360,21 +335,14 @@ const Shop = () => {
                 </div>
 
                 {/* Shipping note */}
-                {destination === 'SE' && (
-                  <div className="mt-2 space-y-1">
-                    <p className="text-xs text-muted-foreground">
-                      {t('shop.bundle.shippingNote')}
-                    </p>
-                    <p className="text-xs text-muted-foreground italic">
-                      {t('shop.bundle.whyBundles')}
-                    </p>
-                  </div>
-                )}
-                {destination === 'NO' && (
-                  <p className="text-xs text-muted-foreground mt-1">
-                    {t('shop.destination.norwayShippingSame')}
+                <div className="mt-2 space-y-1">
+                  <p className="text-xs text-muted-foreground">
+                    {t('shop.bundle.shippingNote')}
                   </p>
-                )}
+                  <p className="text-xs text-muted-foreground italic">
+                    {t('shop.bundle.whyBundles')}
+                  </p>
+                </div>
               </div>
 
               {/* Trust Bullets */}
@@ -392,16 +360,6 @@ const Shop = () => {
                   <span>{t('shop.bundle.trustMission')}</span>
                 </div>
               </div>
-
-              {/* Norway customs notice */}
-              {destination === 'NO' && (
-                <div className="flex items-start gap-2 rounded-lg border border-amber-200 bg-amber-50 dark:bg-amber-950/20 dark:border-amber-800 p-3">
-                  <AlertTriangle className="h-4 w-4 text-amber-600 mt-0.5 flex-shrink-0" />
-                  <p className="text-xs text-amber-800 dark:text-amber-200">
-                    {t('shop.destination.norwayCustomsNote')}
-                  </p>
-                </div>
-              )}
 
               {/* Add to Cart / Buy Now */}
               <div className="space-y-3">
@@ -473,7 +431,6 @@ const Shop = () => {
                   <h3 className="font-semibold mb-2">{t('shop.shippingInfo.title')}</h3>
                   <ul className="text-sm text-muted-foreground space-y-1">
                     <li>🇸🇪 {t('shop.bundle.shippingNote')}</li>
-                    <li>🇳🇴 {t('shop.destination.norwayShippingBullet')}</li>
                     <li>🇪🇺 {t('shop.shippingInfo.nordic')}</li>
                     <li>📦 {t('shop.shippingInfo.tracking')}</li>
                   </ul>

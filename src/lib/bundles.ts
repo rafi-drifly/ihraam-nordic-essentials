@@ -1,5 +1,3 @@
-import type { ShippingDestination } from './shipping';
-
 export interface Bundle {
   qty: number;
   label: string;
@@ -13,14 +11,14 @@ export interface Bundle {
 // Single unit price = €20
 export const UNIT_PRICE = 20;
 
-// Sweden bundles (default)
+// Sweden-only bundles
 export const BUNDLES: Bundle[] = [
   {
     qty: 1, label: 'Single', totalPrice: 20, shipping: 9, savings: 0,
     badge: null, badgeVariant: null,
   },
   {
-    qty: 2, label: '2-Pack', totalPrice: 40, shipping: 9, savings: 9,
+    qty: 2, label: '2-Pack', totalPrice: 38, shipping: 9, savings: 9,
     badge: 'Best Value', badgeVariant: 'default',
   },
   {
@@ -28,33 +26,6 @@ export const BUNDLES: Bundle[] = [
     badge: 'Most Popular', badgeVariant: 'secondary',
   },
 ];
-
-// Norway bundles
-// Savings = (qty × single_delivered_NO) - (bundle_total + bundle_shipping)
-// Single delivered NO = 20 + 39 = 59
-export const BUNDLES_NO: Bundle[] = [
-  {
-    qty: 1, label: 'Single', totalPrice: 20, shipping: 39, savings: 0,
-    badge: null, badgeVariant: null,
-  },
-  {
-    qty: 2, label: '2-Pack', totalPrice: 40, shipping: 39,
-    savings: 39, // 2×59=118 - (40+39)=79 = 39
-    badge: 'Best Value', badgeVariant: 'default',
-  },
-  {
-    qty: 3, label: '3-Pack', totalPrice: 60, shipping: 49,
-    savings: 68, // 3×59=177 - (60+49)=109 = 68
-    badge: null, badgeVariant: null,
-  },
-];
-
-/**
- * Get bundles array for a given destination
- */
-export function getBundlesForDestination(destination: ShippingDestination = 'SE'): Bundle[] {
-  return destination === 'NO' ? BUNDLES_NO : BUNDLES;
-}
 
 /**
  * Get the bundle type string for metadata
