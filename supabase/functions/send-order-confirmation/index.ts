@@ -41,6 +41,7 @@ const handler = async (req: Request): Promise<Response> => {
     const emailResponse = await resend.emails.send({
       from: "Pure Ihram <orders@resend.dev>",
       to: [email],
+      bcc: ["support@pureihram.com"],
       subject: `Order Confirmation - ${orderNumber}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -109,7 +110,7 @@ const handler = async (req: Request): Promise<Response> => {
             <div style="text-align: center; margin-top: 30px;">
               <p style="color: #6b7280; font-size: 14px;">
                 Barakallahu feeki for choosing Pure Ihram<br>
-                <a href="mailto:support@pureihraam.com" style="color: #0f766e;">support@pureihraam.com</a>
+                <a href="mailto:support@pureihram.com" style="color: #0f766e;">support@pureihram.com</a>
               </p>
             </div>
           </div>

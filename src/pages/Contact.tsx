@@ -103,8 +103,8 @@ const Contact = () => {
       icon: <Mail className="h-6 w-6 text-primary" />,
       title: t('contact.methods.email.title'),
       description: t('contact.methods.email.description'),
-      contact: "support@pureihraam.com",
-      action: "mailto:support@pureihraam.com"
+      contact: "support@pureihram.com",
+      action: "mailto:support@pureihram.com"
     },
     {
       icon: <MessageCircle className="h-6 w-6 text-primary" />,
