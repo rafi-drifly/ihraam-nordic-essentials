@@ -18,15 +18,13 @@ export const EUROPE_COUNTRIES = [
 
 export type EuropeCountry = typeof EUROPE_COUNTRIES[number];
 
-export const COUNTRY_FLAGS: Record<EuropeCountry, string> = {
-  AT: '🇦🇹', BE: '🇧🇪', BG: '🇧🇬', HR: '🇭🇷', CY: '🇨🇾',
-  CZ: '🇨🇿', DK: '🇩🇰', EE: '🇪🇪', FI: '🇫🇮', FR: '🇫🇷',
-  DE: '🇩🇪', GR: '🇬🇷', HU: '🇭🇺', IE: '🇮🇪', IT: '🇮🇹',
-  LV: '🇱🇻', LT: '🇱🇹', LU: '🇱🇺', MT: '🇲🇹', NL: '🇳🇱',
-  PL: '🇵🇱', PT: '🇵🇹', RO: '🇷🇴', SK: '🇸🇰', SI: '🇸🇮',
-  ES: '🇪🇸', SE: '🇸🇪', GB: '🇬🇧', NO: '🇳🇴', IS: '🇮🇸',
-  LI: '🇱🇮', CH: '🇨🇭',
-};
+/**
+ * Convert a 2-letter country code to its flag emoji.
+ * Works by mapping A-Z to regional indicator symbols (U+1F1E6..U+1F1FF).
+ */
+export function countryFlag(code: string): string {
+  return [...code.toUpperCase()].map(c => String.fromCodePoint(0x1F1E6 + c.charCodeAt(0) - 65)).join('');
+}
 
 // Country names for display
 export const COUNTRY_NAMES: Record<EuropeCountry, string> = {
