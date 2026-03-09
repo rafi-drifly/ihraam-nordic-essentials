@@ -96,7 +96,7 @@ const AdminOrders = () => {
       await supabase
         .from('orders')
         .update({ 
-          status: 'shipped',
+          status: 'ready_to_ship',
           extra_shipping_status: 'not_required' 
         })
         .eq('id', order.id);
