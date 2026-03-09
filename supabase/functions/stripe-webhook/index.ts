@@ -132,9 +132,9 @@ serve(async (req) => {
       const totalAmount = subtotal + baseShippingFee + donationAmount;
 
       // Determine order status based on shipping country
-      // Sweden = ready_to_ship, Europe = paid_pending_shipping_review
-      const orderStatus = shippingCountry === 'SE' ? 'paid' : 'paid';
-      const extraShippingStatus = shippingCountry === 'SE' ? 'not_required' : 'not_required';
+      // Sweden = paid (no review needed), Rest of Europe = paid_pending_shipping_review
+      const orderStatus = shippingCountry === 'SE' ? 'paid' : 'paid_pending_shipping_review';
+      const extraShippingStatus = 'not_required';
 
       console.log("Order totals - Subtotal:", subtotal, "Shipping:", baseShippingFee, "Donation:", donationAmount, "Total:", totalAmount);
       console.log("Shipping country:", shippingCountry, "Status:", orderStatus);
