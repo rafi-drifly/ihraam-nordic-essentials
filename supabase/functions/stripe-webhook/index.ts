@@ -297,7 +297,7 @@ async function handleExtraShippingPayment(supabaseClient: any, session: Stripe.C
     .from('orders')
     .update({
       extra_shipping_status: 'paid',
-      status: 'paid',
+      status: 'ready_to_ship',
     })
     .eq('id', orderId);
 
