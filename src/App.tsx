@@ -37,6 +37,9 @@ import Transparency from "./pages/Transparency";
 import MosqueSupport from "./pages/MosqueSupport";
 import Returns from "./pages/Returns";
 import NotFound from "./pages/NotFound";
+import AdminLogin from "./pages/admin/AdminLogin";
+import AdminOrders from "./pages/admin/Orders";
+import AdminInventory from "./pages/admin/Inventory";
 
 const queryClient = new QueryClient();
 
@@ -114,6 +117,10 @@ const AppRoutes = () => (
     <Route path="/no/transparency" element={<Transparency />} />
     <Route path="/no/mosque-support" element={<MosqueSupport />} />
     <Route path="/no/returns" element={<Returns />} />
+    {/* Admin routes */}
+    <Route path="/admin" element={<AdminLogin />} />
+    <Route path="/admin/orders" element={<AdminOrders />} />
+    <Route path="/admin/inventory" element={<AdminInventory />} />
     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
     <Route path="*" element={<NotFound />} />
   </Routes>

@@ -5,10 +5,13 @@ import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ShoppingCart, Star, Check, X, ChevronLeft, ChevronRight, Package, Truck } from "lucide-react";
+import { ShoppingCart, Star, Check, X, ChevronLeft, ChevronRight, Package, Truck, Globe, Info } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { EUROPE_COUNTRIES, COUNTRY_NAMES, requiresShippingDisclosure, type EuropeCountry } from "@/lib/shipping";
+import { SHIPPING_DISCLOSURE } from "@/lib/bundles";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import ihraamProduct from "@/assets/ihraam-product.jpg";
 import detail2 from "@/assets/product/detail-2.avif";
@@ -45,8 +48,13 @@ const Shop = () => {
   const [loading, setLoading] = useState(true);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+  const [shippingCountry, setShippingCountry] = useState<string>('SE');
   const { addItem } = useCart();
   const { toast } = useToast();
+  
+  const showDisclosure = requiresShippingDisclosure(shippingCountry);
+  const disclosureLang = (i18n.language as 'en' | 'sv' | 'no') || 'en';
+  const disclosureText = SHIPPING_DISCLOSURE[disclosureLang] || SHIPPING_DISCLOSURE.en;
 
   useEffect(() => {
     fetchProduct();
@@ -98,7 +106,7 @@ const Shop = () => {
 
   const handleCheckout = async () => {
     if (!product || checkoutLoading) return;
-    trackEvent('checkout_started', { qty: bundle.qty, bundleType: bundle.label });
+    trackEvent('checkout_started', { qty: bundle.qty, bundleType: bundle.label, country: shippingCountry });
     setCheckoutLoading(true);
     try {
       const checkoutItems = [{ id: product.id, quantity: bundle.qty }];
@@ -107,7 +115,7 @@ const Shop = () => {
           items: checkoutItems, 
           bundlePrice: bundle.totalPrice, 
           locale: i18n.language,
-          shippingCountry: 'SE'
+          shippingCountry: shippingCountry
         }
       });
       if (error) throw error;
@@ -332,6 +340,33 @@ const Shop = () => {
                       </button>
                     );
                   })}
+                </div>
+
+                {/* Country Selector */}
+                <div className="mt-4 space-y-3">
+                  <div className="flex items-center gap-2">
+                    <Globe className="w-4 h-4 text-primary" />
+                    <span className="text-sm font-medium">Delivering to:</span>
+                  </div>
+                  <Select value={shippingCountry} onValueChange={setShippingCountry}>
+                    <SelectTrigger className="w-full">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {EUROPE_COUNTRIES.map((code) => (
+                        <SelectItem key={code} value={code}>
+                          {code === 'SE' ? '🇸🇪 ' : '🌍 '}{COUNTRY_NAMES[code]}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  
+                  {showDisclosure && (
+                    <div className="flex gap-2 p-3 rounded-lg border border-primary/20 bg-primary/5">
+                      <Info className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                      <p className="text-xs text-muted-foreground">{disclosureText}</p>
+                    </div>
+                  )}
                 </div>
 
                 {/* Shipping note */}

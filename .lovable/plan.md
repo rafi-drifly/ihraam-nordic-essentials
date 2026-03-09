@@ -1,123 +1,45 @@
 
+## Partner Form Test Results and Email Updates
 
-## Europe-Wide Shipping with Shipping Adjustment Approval
+### Test Results
+The partner inquiry form was tested end-to-end successfully:
+- Filled all fields (Name, Organisation, Role, Country, Email, Phone, Message)
+- Form submitted to the `contact-form` edge function
+- Received HTTP 200 with `{"success":true,"message":"Message sent successfully!"}`
+- Form cleared after submission
+- The form works correctly through the `contact-form` function (fixed in the previous session)
 
-Expanding PureIhram from Sweden-only to all of Europe, with an admin workflow for requesting extra shipping fees when actual costs exceed the base delivery fee.
+### Email Address Issues Found
 
----
+The user wants all emails to go to **support@pureihram.com** (single 'a'). Here's what needs to change:
 
-### Overview
+#### 1. Contact/Partner Form (Web3Forms)
+The contact form sends via **Web3Forms** -- the recipient email is configured in the **Web3Forms dashboard**, not in the code. You'll need to log into your [Web3Forms account](https://web3forms.com/) and update the recipient email to `support@pureihram.com`.
 
-**Current State**: Sweden-only (flat €9 shipping)  
-**Target State**: All of Europe, €9 base fee shown, with approval workflow for additional shipping costs
+#### 2. Order Confirmation Email -- Add BCC to Support
+Currently, the `send-order-confirmation` edge function only emails the **customer**. It does not notify the business. Update the function to also BCC `support@pureihram.com` so you receive a copy of every order confirmation.
 
----
+**File**: `supabase/functions/send-order-confirmation/index.ts`
+- Add `bcc: ["support@pureihram.com"]` to the Resend email send call
+- Update the footer contact email from `support@pureihraam.com` to `support@pureihram.com`
 
-### Database Changes
+#### 3. Update All Hardcoded Email References
+Replace `support@pureihraam.com` (double 'a') with `support@pureihram.com` (single 'a') across all files:
 
-**New tables:**
+- `src/components/ui/footer.tsx` (line 88)
+- `src/components/donation/GovernanceSection.tsx` (lines 39-40)
+- `src/pages/Contact.tsx` (lines 106-107)
+- `src/pages/Returns.tsx` (line 249)
+- `src/pages/Shipping.tsx` (line 224)
+- `src/pages/Partners.tsx` (lines 428-429)
+- `src/i18n/locales/en.json` (lines 929, 969, 1033)
+- `src/i18n/locales/sv.json` (lines 929, 969, 1031)
+- `src/i18n/locales/no.json` (lines 955, 995, 1059)
 
-1. `inventory` — Track stock on hand
-   - `product_key` (text, PK) — e.g. "ihram_set"
-   - `stock_on_hand` (int)
-   - `low_stock_threshold` (int, default 20)
-   - `updated_at` (timestamp)
+`DonationFAQ.tsx` already uses the correct `support@pureihram.com`.
 
-2. `stripe_events` — Idempotency for webhooks
-   - `event_id` (text, PK)
-   - `created_at` (timestamp)
-
-3. `stock_movements` — Audit log
-   - `id` (uuid, PK)
-   - `product_key` (text)
-   - `delta` (int)
-   - `reason` (text) — "order_paid", "manual_adjustment", "refund_restock"
-   - `related_order_id` (uuid, nullable)
-   - `created_at` (timestamp)
-
-**Modify `orders` table** — Add columns:
-- `stripe_session_id` (text)
-- `stripe_payment_intent_id` (text)
-- `shipping_name` (text)
-- `shipping_country` (text)
-- `bundle_type` (text)
-- `quantity` (int)
-- `base_shipping_fee_eur` (numeric, default 9)
-- `extra_shipping_fee_eur` (numeric, default 0)
-- `extra_shipping_status` (text, default "not_required")
-- Update `status` column to support new values
-
----
-
-### Edge Functions
-
-1. **`create-checkout`** (update)
-   - Expand `allowed_countries` to all European countries
-   - Include `base_shipping_fee_eur` in metadata
-   - Update shipping description text for non-SE countries
-
-2. **`stripe-webhook`** (update)
-   - Add idempotency check via `stripe_events` table
-   - Extract and store shipping country, bundle_type, quantity, base_shipping_fee
-   - Set status to `paid_pending_shipping_review` for non-SE orders
-   - Decrement inventory atomically + log stock_movements
-   - Send internal alert email to `support@pureihraam.com`
-   - Check low stock threshold and send warning email if needed
-   - Handle "Additional Shipping" payment completion
-
-3. **`create-extra-shipping-payment`** (new)
-   - Create Stripe Payment Link or Checkout Session for extra shipping
-   - Store `order_id` in metadata
-   - Return payment URL for admin to send to customer
-
-4. **`send-shipping-adjustment-email`** (new)
-   - Send email to customer explaining extra shipping cost
-   - Include payment link
-
----
-
-### Frontend Changes
-
-1. **Shop page** — Add country selector (SE vs Rest of Europe)
-   - Show disclosure text for non-SE: "If shipping costs more than €9, we'll email you for approval before dispatch"
-
-2. **Cart page** — Pass selected country to checkout
-   - Show same disclosure for non-SE destinations
-
-3. **Order Success page** — Update confirmation text for Europe orders
-
-4. **Admin pages** (new, password-protected)
-   - `/admin/inventory` — View/edit stock, adjust threshold
-   - `/admin/orders` — List orders with status badges, actions:
-     - Mark ready to ship
-     - Request extra shipping (enter amount, generate link, email customer)
-
----
-
-### Security
-
-- Admin pages protected by password (simple localStorage check for MVP)
-- No public access to admin routes
-- Service role key used for database writes in webhooks
-
----
-
-### Summary of Files
-
-| File | Action |
-|------|--------|
-| `src/lib/bundles.ts` | Minor update for Europe disclosure |
-| `src/lib/shipping.ts` | Add Europe countries list |
-| `src/pages/Shop.tsx` | Add country selector + disclosure |
-| `src/pages/Cart.tsx` | Pass country, show disclosure |
-| `src/pages/OrderSuccess.tsx` | Update messaging |
-| `src/pages/admin/Inventory.tsx` | New admin page |
-| `src/pages/admin/Orders.tsx` | New admin page |
-| `src/pages/admin/AdminLogin.tsx` | Simple password gate |
-| `src/App.tsx` | Add admin routes |
-| `supabase/functions/create-checkout/index.ts` | Europe countries support |
-| `supabase/functions/stripe-webhook/index.ts` | Idempotency, stock, alerts |
-| `supabase/functions/create-extra-shipping-payment/index.ts` | New |
-| `supabase/functions/send-shipping-adjustment-email/index.ts` | New |
-| Database migration | New tables + order columns |
-
+#### 4. Summary of Changes
+- ~15 files updated with corrected email address
+- 1 edge function updated to BCC support on new orders
+- Edge function redeployed
+- Web3Forms dashboard update required (manual step for user)

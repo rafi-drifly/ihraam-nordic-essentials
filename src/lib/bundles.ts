@@ -11,7 +11,7 @@ export interface Bundle {
 // Single unit price = €20
 export const UNIT_PRICE = 20;
 
-// Sweden-only bundles
+// Bundles (shipping is base €9 for all of Europe)
 export const BUNDLES: Bundle[] = [
   {
     qty: 1, label: 'Single', totalPrice: 20, shipping: 9, savings: 0,
@@ -45,3 +45,12 @@ export function getBundlePrice(qty: number): number {
   if (qty > 3) return Math.round((60 / 3) * qty);
   return UNIT_PRICE * qty;
 }
+
+/**
+ * Shipping disclosure text for non-SE countries
+ */
+export const SHIPPING_DISCLOSURE = {
+  en: "If shipping to your address costs more than the €9 delivery fee shown at checkout, PureIhram.com will email you the difference with a secure payment link for your approval before we dispatch your order.",
+  sv: "Om frakten till din adress kostar mer än leveransavgiften på €9 som visas i kassan, kommer PureIhram.com att e-posta dig skillnaden med en säker betalningslänk för ditt godkännande innan vi skickar din beställning.",
+  no: "Hvis frakt til din adresse koster mer enn leveringsgebyret på €9 som vises ved kassen, vil PureIhram.com sende deg differansen med en sikker betalingslenke for din godkjenning før vi sender bestillingen din.",
+};

@@ -1,28 +1,61 @@
 // Shipping rates in EUR
 export const SHIPPING_RATES = {
   sweden: 9,   // flat per order
-  nordic: 9,   // per item (DK, FI)
-  eu: 10,      // per item
+  europe: 9,   // base fee per order (actual may vary)
 } as const;
 
+// European countries list (Stripe allowed_countries format)
+export const EUROPE_COUNTRIES = [
+  'AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 
+  'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 
+  'SE', // Sweden
+  'GB', // UK
+  'NO', // Norway (EEA)
+  'IS', // Iceland (EEA)
+  'LI', // Liechtenstein (EEA)
+  'CH', // Switzerland
+] as const;
+
+export type EuropeCountry = typeof EUROPE_COUNTRIES[number];
+
+// Country names for display
+export const COUNTRY_NAMES: Record<EuropeCountry, string> = {
+  AT: 'Austria', BE: 'Belgium', BG: 'Bulgaria', HR: 'Croatia', CY: 'Cyprus',
+  CZ: 'Czech Republic', DK: 'Denmark', EE: 'Estonia', FI: 'Finland', FR: 'France',
+  DE: 'Germany', GR: 'Greece', HU: 'Hungary', IE: 'Ireland', IT: 'Italy',
+  LV: 'Latvia', LT: 'Lithuania', LU: 'Luxembourg', MT: 'Malta', NL: 'Netherlands',
+  PL: 'Poland', PT: 'Portugal', RO: 'Romania', SK: 'Slovakia', SI: 'Slovenia',
+  ES: 'Spain', SE: 'Sweden', GB: 'United Kingdom', NO: 'Norway', IS: 'Iceland',
+  LI: 'Liechtenstein', CH: 'Switzerland',
+};
+
 /**
- * Calculate shipping cost — Sweden only, flat €9.
+ * Calculate shipping cost — €9 flat for all of Europe (base fee)
  */
-export function calculateShipping(quantity: number): number {
+export function calculateShipping(quantity: number, country: string = 'SE'): number {
   return 9;
 }
 
 /**
  * Get shipping display text
  */
-export function getShippingLabel(quantity: number): string {
-  return '€9 delivery in Sweden';
+export function getShippingLabel(quantity: number, country: string = 'SE'): string {
+  if (country === 'SE') {
+    return '€9 delivery in Sweden';
+  }
+  return '€9 base delivery fee';
 }
 
 /**
- * Get shipping rate per item for a region (legacy compat)
+ * Check if a country is in our Europe list
  */
-export function getShippingRatePerItem(region: 'sweden' | 'nordic' | 'eu' = 'sweden'): number {
-  const rates = { sweden: 9, nordic: 9, eu: 10 };
-  return rates[region];
+export function isEuropeCountry(country: string): boolean {
+  return EUROPE_COUNTRIES.includes(country as EuropeCountry);
+}
+
+/**
+ * Check if country requires shipping adjustment disclosure
+ */
+export function requiresShippingDisclosure(country: string): boolean {
+  return country !== 'SE';
 }

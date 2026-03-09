@@ -5,16 +5,17 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useCart } from "@/hooks/useCart";
-import { ShoppingCart, ArrowLeft, Minus, Plus, Trash2, Gift, Tag, X, Check } from "lucide-react";
-import { calculateShipping } from "@/lib/shipping";
-import { getBundlePrice } from "@/lib/bundles";
+import { ShoppingCart, ArrowLeft, Minus, Plus, Trash2, Gift, Tag, X, Check, Globe, Info } from "lucide-react";
+import { calculateShipping, EUROPE_COUNTRIES, COUNTRY_NAMES, requiresShippingDisclosure, type EuropeCountry } from "@/lib/shipping";
+import { getBundlePrice, SHIPPING_DISCLOSURE } from "@/lib/bundles";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import DonationSection from "@/components/shop/DonationSection";
 import { trackEvent } from "@/lib/analytics";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const Cart = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const location = useLocation();
   const { toast } = useToast();
   const { items, updateQuantity, removeItem, getTotalItems, getTotalPrice, addItem, clearCart } = useCart();
@@ -25,6 +26,11 @@ const Cart = () => {
   const [promoCity, setPromoCity] = useState("");
   const [showCityInput, setShowCityInput] = useState(false);
   const [promoError, setPromoError] = useState<string | null>(null);
+  const [shippingCountry, setShippingCountry] = useState<string>('SE');
+  
+  const showDisclosure = requiresShippingDisclosure(shippingCountry);
+  const disclosureLang = (i18n.language as 'en' | 'sv' | 'no') || 'en';
+  const disclosureText = SHIPPING_DISCLOSURE[disclosureLang] || SHIPPING_DISCLOSURE.en;
 
   const getLocalePrefix = () => {
     if (location.pathname.startsWith('/sv')) return '/sv';
@@ -90,7 +96,7 @@ const Cart = () => {
           donation: selectedDonation > 0 ? selectedDonation : undefined,
           bundlePrice: getBundlePrice(totalItems),
           locale: location.pathname.startsWith('/sv') ? 'sv' : location.pathname.startsWith('/no') ? 'no' : 'en',
-          shippingCountry: 'SE',
+          shippingCountry: shippingCountry,
           promoCode: appliedPromo || undefined,
           shippingCity: appliedPromo ? promoCity : undefined
         }
@@ -216,16 +222,43 @@ const Cart = () => {
                     <span>{t('cart.items', { count: totalItems })}</span>
                     <span>{subtotal.toFixed(2)}€</span>
                   </div>
+                  {/* Country Selector */}
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <Globe className="w-4 h-4 text-primary" />
+                      <span className="text-sm font-medium">Delivering to:</span>
+                    </div>
+                    <Select value={shippingCountry} onValueChange={setShippingCountry}>
+                      <SelectTrigger className="w-full">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {EUROPE_COUNTRIES.map((code) => (
+                          <SelectItem key={code} value={code}>
+                            {code === 'SE' ? '🇸🇪 ' : '🌍 '}{COUNTRY_NAMES[code]}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
                   <div className="flex justify-between">
                     <span>
                       {promoFreeShipping ? (
                         <span className="text-primary font-medium">{t('cart.promo.freeDelivery')}</span>
                       ) : (
-                        <span>{t('cart.shippingTo', { country: t('shop.destination.sweden') })} — €{shipping}</span>
+                        <span>Shipping — €{shipping}</span>
                       )}
                     </span>
                     <span>{shipping === 0 ? 'FREE' : `${shipping.toFixed(2)}€`}</span>
                   </div>
+
+                  {showDisclosure && (
+                    <div className="flex gap-2 p-3 rounded-lg border border-primary/20 bg-primary/5">
+                      <Info className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                      <p className="text-xs text-muted-foreground">{disclosureText}</p>
+                    </div>
+                  )}
 
                   {/* Promo Code Section */}
                   {appliedPromo ? (

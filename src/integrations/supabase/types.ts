@@ -14,6 +14,27 @@ export type Database = {
   }
   public: {
     Tables: {
+      inventory: {
+        Row: {
+          low_stock_threshold: number
+          product_key: string
+          stock_on_hand: number
+          updated_at: string
+        }
+        Insert: {
+          low_stock_threshold?: number
+          product_key: string
+          stock_on_hand?: number
+          updated_at?: string
+        }
+        Update: {
+          low_stock_threshold?: number
+          product_key?: string
+          stock_on_hand?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       order_items: {
         Row: {
           created_at: string
@@ -61,46 +82,73 @@ export type Database = {
       }
       orders: {
         Row: {
+          base_shipping_fee_eur: number | null
+          bundle_type: string | null
           created_at: string
           currency: string
           donation_amount: number | null
+          extra_shipping_fee_eur: number | null
+          extra_shipping_status: string | null
           guest_email: string | null
           id: string
           lookup_token: string | null
           notes: string | null
           order_number: string
+          quantity: number | null
           shipping_address: Json
+          shipping_country: string | null
+          shipping_name: string | null
           status: Database["public"]["Enums"]["order_status"]
+          stripe_payment_intent_id: string | null
+          stripe_session_id: string | null
           total_amount: number
           updated_at: string
           user_id: string | null
         }
         Insert: {
+          base_shipping_fee_eur?: number | null
+          bundle_type?: string | null
           created_at?: string
           currency?: string
           donation_amount?: number | null
+          extra_shipping_fee_eur?: number | null
+          extra_shipping_status?: string | null
           guest_email?: string | null
           id?: string
           lookup_token?: string | null
           notes?: string | null
           order_number: string
+          quantity?: number | null
           shipping_address: Json
+          shipping_country?: string | null
+          shipping_name?: string | null
           status?: Database["public"]["Enums"]["order_status"]
+          stripe_payment_intent_id?: string | null
+          stripe_session_id?: string | null
           total_amount: number
           updated_at?: string
           user_id?: string | null
         }
         Update: {
+          base_shipping_fee_eur?: number | null
+          bundle_type?: string | null
           created_at?: string
           currency?: string
           donation_amount?: number | null
+          extra_shipping_fee_eur?: number | null
+          extra_shipping_status?: string | null
           guest_email?: string | null
           id?: string
           lookup_token?: string | null
           notes?: string | null
           order_number?: string
+          quantity?: number | null
           shipping_address?: Json
+          shipping_country?: string | null
+          shipping_name?: string | null
           status?: Database["public"]["Enums"]["order_status"]
+          stripe_payment_intent_id?: string | null
+          stripe_session_id?: string | null
           total_amount?: number
           updated_at?: string
           user_id?: string | null
@@ -214,6 +262,56 @@ export type Database = {
           phone?: string | null
           updated_at?: string
           user_id?: string
+        }
+        Relationships: []
+      }
+      stock_movements: {
+        Row: {
+          created_at: string
+          delta: number
+          id: string
+          product_key: string
+          reason: string
+          related_order_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          delta: number
+          id?: string
+          product_key: string
+          reason: string
+          related_order_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          delta?: number
+          id?: string
+          product_key?: string
+          reason?: string
+          related_order_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "stock_movements_related_order_id_fkey"
+            columns: ["related_order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      stripe_events: {
+        Row: {
+          created_at: string
+          event_id: string
+        }
+        Insert: {
+          created_at?: string
+          event_id: string
+        }
+        Update: {
+          created_at?: string
+          event_id?: string
         }
         Relationships: []
       }
