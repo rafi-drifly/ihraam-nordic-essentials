@@ -96,7 +96,7 @@ const Cart = () => {
           donation: selectedDonation > 0 ? selectedDonation : undefined,
           bundlePrice: getBundlePrice(totalItems),
           locale: location.pathname.startsWith('/sv') ? 'sv' : location.pathname.startsWith('/no') ? 'no' : 'en',
-          shippingCountry: 'SE',
+          shippingCountry: shippingCountry,
           promoCode: appliedPromo || undefined,
           shippingCity: appliedPromo ? promoCity : undefined
         }
