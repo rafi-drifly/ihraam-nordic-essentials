@@ -117,6 +117,10 @@ const AppRoutes = () => (
     <Route path="/no/transparency" element={<Transparency />} />
     <Route path="/no/mosque-support" element={<MosqueSupport />} />
     <Route path="/no/returns" element={<Returns />} />
+    {/* Admin routes */}
+    <Route path="/admin" element={<AdminLogin />} />
+    <Route path="/admin/orders" element={<AdminOrders />} />
+    <Route path="/admin/inventory" element={<AdminInventory />} />
     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
     <Route path="*" element={<NotFound />} />
   </Routes>

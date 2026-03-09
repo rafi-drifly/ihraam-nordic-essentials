@@ -222,16 +222,43 @@ const Cart = () => {
                     <span>{t('cart.items', { count: totalItems })}</span>
                     <span>{subtotal.toFixed(2)}€</span>
                   </div>
+                  {/* Country Selector */}
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <Globe className="w-4 h-4 text-primary" />
+                      <span className="text-sm font-medium">Delivering to:</span>
+                    </div>
+                    <Select value={shippingCountry} onValueChange={setShippingCountry}>
+                      <SelectTrigger className="w-full">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {EUROPE_COUNTRIES.map((code) => (
+                          <SelectItem key={code} value={code}>
+                            {code === 'SE' ? '🇸🇪 ' : '🌍 '}{COUNTRY_NAMES[code]}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
                   <div className="flex justify-between">
                     <span>
                       {promoFreeShipping ? (
                         <span className="text-primary font-medium">{t('cart.promo.freeDelivery')}</span>
                       ) : (
-                        <span>{t('cart.shippingTo', { country: t('shop.destination.sweden') })} — €{shipping}</span>
+                        <span>Shipping — €{shipping}</span>
                       )}
                     </span>
                     <span>{shipping === 0 ? 'FREE' : `${shipping.toFixed(2)}€`}</span>
                   </div>
+
+                  {showDisclosure && (
+                    <div className="flex gap-2 p-3 rounded-lg border border-primary/20 bg-primary/5">
+                      <Info className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                      <p className="text-xs text-muted-foreground">{disclosureText}</p>
+                    </div>
+                  )}
 
                   {/* Promo Code Section */}
                   {appliedPromo ? (
