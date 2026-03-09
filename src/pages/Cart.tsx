@@ -236,7 +236,7 @@ const Cart = () => {
                       <SelectContent>
                         {EUROPE_COUNTRIES.map((code) => (
                           <SelectItem key={code} value={code}>
-                            {COUNTRY_FLAGS[code]} {COUNTRY_NAMES[code]}
+                            {countryFlag(code)} {COUNTRY_NAMES[code]}
                           </SelectItem>
                         ))}
                       </SelectContent>
