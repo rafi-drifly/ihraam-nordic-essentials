@@ -10,7 +10,7 @@ import { useCart } from "@/hooks/useCart";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { EUROPE_COUNTRIES, COUNTRY_NAMES, requiresShippingDisclosure, type EuropeCountry } from "@/lib/shipping";
+import { EUROPE_COUNTRIES, COUNTRY_NAMES, countryFlag, requiresShippingDisclosure, type EuropeCountry } from "@/lib/shipping";
 import { SHIPPING_DISCLOSURE, CUSTOMS_DISCLOSURE } from "@/lib/bundles";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import ihraamProduct from "@/assets/ihraam-product.jpg";
@@ -209,10 +209,10 @@ const Shop = () => {
     <>
       <Helmet>
         <title>{product.name} - Pure Ihram | Buy Online</title>
-        <meta name="description" content="Premium Ihram sets from €20. Save with 2-Pack (€38) or 3-Pack (€60). €9 delivery in Sweden." />
+        <meta name="description" content="Premium Ihram sets from \u20AC20. Save with 2-Pack (\u20AC38) or 3-Pack (\u20AC60). \u20AC9 delivery in Sweden." />
         <meta property="og:type" content="product" />
         <meta property="og:title" content={`${product.name} - Pure Ihram`} />
-        <meta property="og:description" content="Premium Ihram sets from €20. Save with bundles. €9 delivery in Sweden." />
+        <meta property="og:description" content="Premium Ihram sets from \u20AC20. Save with bundles. \u20AC9 delivery in Sweden." />
         <meta property="og:image" content={storageImages[0]} />
         <meta property="og:url" content={`${SITE_URL}/shop`} />
         <meta property="product:price:amount" content="20" />
@@ -319,12 +319,12 @@ const Shop = () => {
                         )}
                         <div className="mt-1">
                           <p className="font-bold text-lg">{b.qty === 1 ? t('shop.bundle.single') : b.label}</p>
-                          <p className="text-2xl font-bold text-foreground mt-1">€{b.totalPrice}</p>
+                          <p className="text-2xl font-bold text-foreground mt-1">{"\u20AC"}{b.totalPrice}</p>
                           <p className="text-sm text-muted-foreground mt-1">
-                            <span>+ €{b.shipping} {t('shop.bundle.delivery')} 🇸🇪</span>
+                            <span>+ {"\u20AC"}{b.shipping} {t('shop.bundle.delivery')} {countryFlag('SE')}</span>
                           </p>
                           <p className="text-xs text-muted-foreground mt-0.5">
-                            Total: €{totalYouPay}
+                            Total: {"\u20AC"}{totalYouPay}
                           </p>
                           {b.qty === 2 && b.savings > 0 && (
                             <p className="text-xs font-medium text-primary mt-1">
@@ -355,7 +355,7 @@ const Shop = () => {
                     <SelectContent>
                       {EUROPE_COUNTRIES.map((code) => (
                         <SelectItem key={code} value={code}>
-                          {code === 'SE' ? '🇸🇪 ' : '🌍 '}{COUNTRY_NAMES[code]}
+                          {countryFlag(code)} {COUNTRY_NAMES[code]}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -406,7 +406,7 @@ const Shop = () => {
               <div className="space-y-3">
                 <Button size="lg" className="w-full bg-gradient-primary hover:opacity-90 transition-opacity" onClick={handleAddToCart} disabled={product.stock_quantity < bundle.qty}>
                   <ShoppingCart className="w-5 h-5 mr-2" />
-                  {t('shop.addToCart')} — €{bundle.totalPrice}
+                  {t('shop.addToCart')} — {"\u20AC"}{bundle.totalPrice}
                 </Button>
                 <Button variant="outline" size="lg" className="w-full" onClick={handleCheckout} disabled={product.stock_quantity < bundle.qty || checkoutLoading}>
                   {checkoutLoading ? t('shop.creatingCheckout') : t('shop.buyNow')}
@@ -471,9 +471,9 @@ const Shop = () => {
                 <CardContent className="p-4">
                   <h3 className="font-semibold mb-2">{t('shop.shippingInfo.title')}</h3>
                   <ul className="text-sm text-muted-foreground space-y-1">
-                    <li>🇸🇪 {t('shop.bundle.shippingNote')}</li>
-                    <li>🇪🇺 {t('shop.shippingInfo.nordic')}</li>
-                    <li>📦 {t('shop.shippingInfo.tracking')}</li>
+                    <li>{countryFlag('SE')} {t('shop.bundle.shippingNote')}</li>
+                    <li>{countryFlag('EU')} {t('shop.shippingInfo.nordic')}</li>
+                    <li>{"\uD83D\uDCE6"} {t('shop.shippingInfo.tracking')}</li>
                   </ul>
                 </CardContent>
               </Card>
@@ -483,10 +483,10 @@ const Shop = () => {
                 <CardContent className="p-4">
                   <h3 className="font-semibold mb-2" style={{ color: '#2C7A7B' }}>{t('shop.careInstructions.title')}</h3>
                   <ul className="text-sm text-muted-foreground space-y-1">
-                    <li>• {t('shop.careInstructions.wash')}</li>
-                    <li>• {t('shop.careInstructions.bleach')}</li>
-                    <li>• {t('shop.careInstructions.dry')}</li>
-                    <li>• {t('shop.careInstructions.iron')}</li>
+                    <li>{"\u2022"} {t('shop.careInstructions.wash')}</li>
+                    <li>{"\u2022"} {t('shop.careInstructions.bleach')}</li>
+                    <li>{"\u2022"} {t('shop.careInstructions.dry')}</li>
+                    <li>{"\u2022"} {t('shop.careInstructions.iron')}</li>
                   </ul>
                 </CardContent>
               </Card>
