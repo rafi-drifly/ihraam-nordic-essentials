@@ -15,7 +15,7 @@ import { trackEvent } from "@/lib/analytics";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const Cart = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const location = useLocation();
   const { toast } = useToast();
   const { items, updateQuantity, removeItem, getTotalItems, getTotalPrice, addItem, clearCart } = useCart();
@@ -26,6 +26,11 @@ const Cart = () => {
   const [promoCity, setPromoCity] = useState("");
   const [showCityInput, setShowCityInput] = useState(false);
   const [promoError, setPromoError] = useState<string | null>(null);
+  const [shippingCountry, setShippingCountry] = useState<string>('SE');
+  
+  const showDisclosure = requiresShippingDisclosure(shippingCountry);
+  const disclosureLang = (i18n.language as 'en' | 'sv' | 'no') || 'en';
+  const disclosureText = SHIPPING_DISCLOSURE[disclosureLang] || SHIPPING_DISCLOSURE.en;
 
   const getLocalePrefix = () => {
     if (location.pathname.startsWith('/sv')) return '/sv';
