@@ -1,45 +1,53 @@
 
-## Partner Form Test Results and Email Updates
 
-### Test Results
-The partner inquiry form was tested end-to-end successfully:
-- Filled all fields (Name, Organisation, Role, Country, Email, Phone, Message)
-- Form submitted to the `contact-form` edge function
-- Received HTTP 200 with `{"success":true,"message":"Message sent successfully!"}`
-- Form cleared after submission
-- The form works correctly through the `contact-form` function (fixed in the previous session)
+## Norway Shipping Adjustment Flow
 
-### Email Address Issues Found
+### Current State
+Norway (NO) is already in `EUROPE_COUNTRIES` and the shipping disclosure shows for non-SE countries. The extra shipping payment infrastructure (edge functions, admin UI) already exists. However, two critical gaps prevent the approval flow from working properly:
 
-The user wants all emails to go to **support@pureihram.com** (single 'a'). Here's what needs to change:
+1. **Order status enum** only has `pending | paid | shipped | delivered | cancelled` — missing `paid_pending_shipping_review`, `awaiting_extra_shipping_payment`, `ready_to_ship`
+2. **Webhook** sets ALL orders to `status: 'paid'` regardless of country (should be `paid_pending_shipping_review` for non-SE)
+3. **No Norway-specific customs note** about import VAT
 
-#### 1. Contact/Partner Form (Web3Forms)
-The contact form sends via **Web3Forms** -- the recipient email is configured in the **Web3Forms dashboard**, not in the code. You'll need to log into your [Web3Forms account](https://web3forms.com/) and update the recipient email to `support@pureihram.com`.
+### Changes
 
-#### 2. Order Confirmation Email -- Add BCC to Support
-Currently, the `send-order-confirmation` edge function only emails the **customer**. It does not notify the business. Update the function to also BCC `support@pureihram.com` so you receive a copy of every order confirmation.
+#### 1. Database Migration
+Add new values to the `order_status` enum:
+- `paid_pending_shipping_review`
+- `awaiting_extra_shipping_payment`
+- `ready_to_ship`
 
-**File**: `supabase/functions/send-order-confirmation/index.ts`
-- Add `bcc: ["support@pureihram.com"]` to the Resend email send call
-- Update the footer contact email from `support@pureihraam.com` to `support@pureihram.com`
+#### 2. Stripe Webhook (`supabase/functions/stripe-webhook/index.ts`)
+- Set `status = 'paid_pending_shipping_review'` for non-SE orders (including Norway)
+- Set `status = 'paid'` for SE orders (no review needed)
+- When extra shipping is paid, set `status = 'ready_to_ship'`
 
-#### 3. Update All Hardcoded Email References
-Replace `support@pureihraam.com` (double 'a') with `support@pureihram.com` (single 'a') across all files:
+#### 3. Admin Orders UI (`src/pages/admin/Orders.tsx`)
+- Add new status colors for `paid_pending_shipping_review`, `awaiting_extra_shipping_payment`, `ready_to_ship`
+- Update filter logic to show pending-review orders prominently
+- Show "Request Extra Shipping" button for `paid_pending_shipping_review` orders
+- Show "Mark Ready to Ship" for `paid_pending_shipping_review` (when no extra needed)
+- Update `handleMarkReadyToShip` to set `status: 'ready_to_ship'` instead of `'shipped'`
 
-- `src/components/ui/footer.tsx` (line 88)
-- `src/components/donation/GovernanceSection.tsx` (lines 39-40)
-- `src/pages/Contact.tsx` (lines 106-107)
-- `src/pages/Returns.tsx` (line 249)
-- `src/pages/Shipping.tsx` (line 224)
-- `src/pages/Partners.tsx` (lines 428-429)
-- `src/i18n/locales/en.json` (lines 929, 969, 1033)
-- `src/i18n/locales/sv.json` (lines 929, 969, 1031)
-- `src/i18n/locales/no.json` (lines 955, 995, 1059)
+#### 4. Norway Customs Disclosure (`src/lib/bundles.ts`)
+Add `CUSTOMS_DISCLOSURE` for Norway:
+- en: "Norway is outside the EU. Import VAT/customs fees may apply on delivery."
+- sv/no translations
 
-`DonationFAQ.tsx` already uses the correct `support@pureihram.com`.
+#### 5. Shop + Cart UI
+- Show customs note when `shippingCountry === 'NO'` in addition to the existing shipping disclosure
+- Update `src/pages/Shop.tsx` and `src/pages/Cart.tsx`
 
-#### 4. Summary of Changes
-- ~15 files updated with corrected email address
-- 1 edge function updated to BCC support on new orders
-- Edge function redeployed
-- Web3Forms dashboard update required (manual step for user)
+#### 6. Types Update (`src/integrations/supabase/types.ts`)
+Will auto-update after migration, but the admin page uses `string` type so no blocking issue.
+
+### Files Modified
+| File | Change |
+|------|--------|
+| DB migration | Add 3 enum values to `order_status` |
+| `supabase/functions/stripe-webhook/index.ts` | Country-based status logic |
+| `src/pages/admin/Orders.tsx` | New status handling + colors |
+| `src/lib/bundles.ts` | Add `CUSTOMS_DISCLOSURE` |
+| `src/pages/Shop.tsx` | Show customs note for NO |
+| `src/pages/Cart.tsx` | Show customs note for NO |
+
