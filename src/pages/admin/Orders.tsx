@@ -295,11 +295,11 @@ const AdminOrders = () => {
 
                     {/* Actions */}
                     <div className="flex flex-wrap gap-2 pt-2 border-t">
-                      {order.status === 'paid' && order.extra_shipping_status !== 'requested' && (
+                      {(order.status === 'paid' || order.status === 'paid_pending_shipping_review') && order.extra_shipping_status !== 'requested' && (
                         <>
                           <Button size="sm" onClick={() => handleMarkReadyToShip(order)}>
                             <Truck className="w-4 h-4 mr-1" />
-                            Mark Shipped
+                            Mark Ready to Ship
                           </Button>
                           {order.shipping_country && order.shipping_country !== 'SE' && (
                             <Button size="sm" variant="outline" onClick={() => setSelectedOrder(order)}>
@@ -309,17 +309,17 @@ const AdminOrders = () => {
                           )}
                         </>
                       )}
-                      {order.extra_shipping_status === 'requested' && (
+                      {order.status === 'awaiting_extra_shipping_payment' && order.extra_shipping_status === 'requested' && (
                         <span className="flex items-center gap-2 text-sm text-yellow-600">
                           <Clock className="w-4 h-4" />
                           Awaiting customer payment
                         </span>
                       )}
-                      {order.extra_shipping_status === 'paid' && order.status === 'paid' && (
-                        <Button size="sm" onClick={() => handleMarkReadyToShip(order)}>
-                          <CheckCircle className="w-4 h-4 mr-1" />
-                          Extra Paid - Mark Shipped
-                        </Button>
+                      {order.extra_shipping_status === 'paid' && (order.status === 'paid' || order.status === 'ready_to_ship') && (
+                        <span className="flex items-center gap-2 text-sm text-green-600">
+                          <CheckCircle className="w-4 h-4" />
+                          Extra shipping paid — Ready to ship
+                        </span>
                       )}
                     </div>
                   </div>

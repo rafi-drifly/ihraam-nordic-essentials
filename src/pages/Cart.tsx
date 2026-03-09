@@ -259,6 +259,12 @@ const Cart = () => {
                       <p className="text-xs text-muted-foreground">{disclosureText}</p>
                     </div>
                   )}
+                  {shippingCountry === 'NO' && (
+                    <div className="flex gap-2 p-3 rounded-lg border border-destructive/20 bg-destructive/5">
+                      <Info className="w-4 h-4 text-destructive flex-shrink-0 mt-0.5" />
+                      <p className="text-xs text-muted-foreground">{(CUSTOMS_DISCLOSURE as any)[disclosureLang] || CUSTOMS_DISCLOSURE.en}</p>
+                    </div>
+                  )}
 
                   {/* Promo Code Section */}
                   {appliedPromo ? (
