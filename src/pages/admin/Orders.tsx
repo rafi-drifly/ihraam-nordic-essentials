@@ -30,9 +30,23 @@ interface Order {
 const statusColors: Record<string, string> = {
   pending: "bg-yellow-500",
   paid: "bg-green-500",
+  paid_pending_shipping_review: "bg-orange-500",
+  awaiting_extra_shipping_payment: "bg-yellow-500",
+  ready_to_ship: "bg-blue-500",
   shipped: "bg-blue-500",
   delivered: "bg-purple-500",
   cancelled: "bg-red-500",
+};
+
+const statusLabels: Record<string, string> = {
+  paid: "Paid",
+  paid_pending_shipping_review: "Pending Review",
+  awaiting_extra_shipping_payment: "Awaiting Extra Payment",
+  ready_to_ship: "Ready to Ship",
+  shipped: "Shipped",
+  delivered: "Delivered",
+  cancelled: "Cancelled",
+  pending: "Pending",
 };
 
 const extraShippingColors: Record<string, string> = {
