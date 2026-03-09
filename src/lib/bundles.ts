@@ -54,3 +54,12 @@ export const SHIPPING_DISCLOSURE = {
   sv: "Om frakten till din adress kostar mer än leveransavgiften på €9 som visas i kassan, kommer PureIhram.com att e-posta dig skillnaden med en säker betalningslänk för ditt godkännande innan vi skickar din beställning.",
   no: "Hvis frakt til din adresse koster mer enn leveringsgebyret på €9 som vises ved kassen, vil PureIhram.com sende deg differansen med en sikker betalingslenke for din godkjenning før vi sender bestillingen din.",
 };
+
+/**
+ * Customs disclosure for Norway (outside EU)
+ */
+export const CUSTOMS_DISCLOSURE = {
+  en: "Norway is outside the EU. Import VAT/customs fees may apply on delivery.",
+  sv: "Norge ligger utanför EU. Importmoms/tullavgifter kan tillkomma vid leverans.",
+  no: "Norge er utenfor EU. Import-MVA/tollavgifter kan påløpe ved levering.",
+};

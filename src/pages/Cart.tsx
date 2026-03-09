@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { useCart } from "@/hooks/useCart";
 import { ShoppingCart, ArrowLeft, Minus, Plus, Trash2, Gift, Tag, X, Check, Globe, Info } from "lucide-react";
 import { calculateShipping, EUROPE_COUNTRIES, COUNTRY_NAMES, requiresShippingDisclosure, type EuropeCountry } from "@/lib/shipping";
-import { getBundlePrice, SHIPPING_DISCLOSURE } from "@/lib/bundles";
+import { getBundlePrice, SHIPPING_DISCLOSURE, CUSTOMS_DISCLOSURE } from "@/lib/bundles";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import DonationSection from "@/components/shop/DonationSection";
@@ -257,6 +257,12 @@ const Cart = () => {
                     <div className="flex gap-2 p-3 rounded-lg border border-primary/20 bg-primary/5">
                       <Info className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
                       <p className="text-xs text-muted-foreground">{disclosureText}</p>
+                    </div>
+                  )}
+                  {shippingCountry === 'NO' && (
+                    <div className="flex gap-2 p-3 rounded-lg border border-destructive/20 bg-destructive/5">
+                      <Info className="w-4 h-4 text-destructive flex-shrink-0 mt-0.5" />
+                      <p className="text-xs text-muted-foreground">{(CUSTOMS_DISCLOSURE as any)[disclosureLang] || CUSTOMS_DISCLOSURE.en}</p>
                     </div>
                   )}
 

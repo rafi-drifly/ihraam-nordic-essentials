@@ -323,7 +323,15 @@ export type Database = {
       generate_order_number: { Args: never; Returns: string }
     }
     Enums: {
-      order_status: "pending" | "paid" | "shipped" | "delivered" | "cancelled"
+      order_status:
+        | "pending"
+        | "paid"
+        | "shipped"
+        | "delivered"
+        | "cancelled"
+        | "paid_pending_shipping_review"
+        | "awaiting_extra_shipping_payment"
+        | "ready_to_ship"
       payment_status: "pending" | "succeeded" | "failed" | "refunded"
     }
     CompositeTypes: {
@@ -452,7 +460,16 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      order_status: ["pending", "paid", "shipped", "delivered", "cancelled"],
+      order_status: [
+        "pending",
+        "paid",
+        "shipped",
+        "delivered",
+        "cancelled",
+        "paid_pending_shipping_review",
+        "awaiting_extra_shipping_payment",
+        "ready_to_ship",
+      ],
       payment_status: ["pending", "succeeded", "failed", "refunded"],
     },
   },

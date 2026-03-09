@@ -30,9 +30,23 @@ interface Order {
 const statusColors: Record<string, string> = {
   pending: "bg-yellow-500",
   paid: "bg-green-500",
+  paid_pending_shipping_review: "bg-orange-500",
+  awaiting_extra_shipping_payment: "bg-yellow-500",
+  ready_to_ship: "bg-blue-500",
   shipped: "bg-blue-500",
   delivered: "bg-purple-500",
   cancelled: "bg-red-500",
+};
+
+const statusLabels: Record<string, string> = {
+  paid: "Paid",
+  paid_pending_shipping_review: "Pending Review",
+  awaiting_extra_shipping_payment: "Awaiting Extra Payment",
+  ready_to_ship: "Ready to Ship",
+  shipped: "Shipped",
+  delivered: "Delivered",
+  cancelled: "Cancelled",
+  pending: "Pending",
 };
 
 const extraShippingColors: Record<string, string> = {
@@ -82,7 +96,7 @@ const AdminOrders = () => {
       await supabase
         .from('orders')
         .update({ 
-          status: 'shipped',
+          status: 'ready_to_ship',
           extra_shipping_status: 'not_required' 
         })
         .eq('id', order.id);
@@ -147,8 +161,8 @@ const AdminOrders = () => {
     );
   }
 
-  const paidOrders = orders.filter(o => o.status === 'paid');
-  const europeOrders = paidOrders.filter(o => o.shipping_country && o.shipping_country !== 'SE');
+  const paidOrders = orders.filter(o => ['paid', 'paid_pending_shipping_review', 'ready_to_ship'].includes(o.status));
+  const europeOrders = orders.filter(o => o.shipping_country && o.shipping_country !== 'SE');
 
   return (
     <div className="min-h-screen bg-muted/50 p-4 md:p-8">
@@ -185,8 +199,10 @@ const AdminOrders = () => {
           </Card>
           <Card>
             <CardContent className="p-4 text-center">
-              <p className="text-sm text-muted-foreground">Paid (Awaiting Ship)</p>
-              <p className="text-3xl font-bold text-green-600">{paidOrders.length}</p>
+              <p className="text-sm text-muted-foreground">Pending Review</p>
+              <p className="text-3xl font-bold text-orange-600">
+                {orders.filter(o => o.status === 'paid_pending_shipping_review').length}
+              </p>
             </CardContent>
           </Card>
           <Card>
@@ -221,7 +237,7 @@ const AdminOrders = () => {
                       <div className="flex items-center gap-3">
                         <span className="font-mono font-medium">{order.order_number}</span>
                         <Badge className={statusColors[order.status] || "bg-gray-500"}>
-                          {order.status}
+                          {statusLabels[order.status] || order.status}
                         </Badge>
                         {order.shipping_country && order.shipping_country !== 'SE' && (
                           <Badge variant="outline" className="border-blue-500 text-blue-600">
@@ -279,11 +295,11 @@ const AdminOrders = () => {
 
                     {/* Actions */}
                     <div className="flex flex-wrap gap-2 pt-2 border-t">
-                      {order.status === 'paid' && order.extra_shipping_status !== 'requested' && (
+                      {(order.status === 'paid' || order.status === 'paid_pending_shipping_review') && order.extra_shipping_status !== 'requested' && (
                         <>
                           <Button size="sm" onClick={() => handleMarkReadyToShip(order)}>
                             <Truck className="w-4 h-4 mr-1" />
-                            Mark Shipped
+                            Mark Ready to Ship
                           </Button>
                           {order.shipping_country && order.shipping_country !== 'SE' && (
                             <Button size="sm" variant="outline" onClick={() => setSelectedOrder(order)}>
@@ -293,17 +309,17 @@ const AdminOrders = () => {
                           )}
                         </>
                       )}
-                      {order.extra_shipping_status === 'requested' && (
+                      {order.status === 'awaiting_extra_shipping_payment' && order.extra_shipping_status === 'requested' && (
                         <span className="flex items-center gap-2 text-sm text-yellow-600">
                           <Clock className="w-4 h-4" />
                           Awaiting customer payment
                         </span>
                       )}
-                      {order.extra_shipping_status === 'paid' && order.status === 'paid' && (
-                        <Button size="sm" onClick={() => handleMarkReadyToShip(order)}>
-                          <CheckCircle className="w-4 h-4 mr-1" />
-                          Extra Paid - Mark Shipped
-                        </Button>
+                      {order.extra_shipping_status === 'paid' && (order.status === 'paid' || order.status === 'ready_to_ship') && (
+                        <span className="flex items-center gap-2 text-sm text-green-600">
+                          <CheckCircle className="w-4 h-4" />
+                          Extra shipping paid — Ready to ship
+                        </span>
                       )}
                     </div>
                   </div>

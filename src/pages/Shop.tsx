@@ -11,7 +11,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { EUROPE_COUNTRIES, COUNTRY_NAMES, requiresShippingDisclosure, type EuropeCountry } from "@/lib/shipping";
-import { SHIPPING_DISCLOSURE } from "@/lib/bundles";
+import { SHIPPING_DISCLOSURE, CUSTOMS_DISCLOSURE } from "@/lib/bundles";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import ihraamProduct from "@/assets/ihraam-product.jpg";
 import detail2 from "@/assets/product/detail-2.avif";
@@ -365,6 +365,12 @@ const Shop = () => {
                     <div className="flex gap-2 p-3 rounded-lg border border-primary/20 bg-primary/5">
                       <Info className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
                       <p className="text-xs text-muted-foreground">{disclosureText}</p>
+                    </div>
+                  )}
+                  {shippingCountry === 'NO' && (
+                    <div className="flex gap-2 p-3 rounded-lg border border-destructive/20 bg-destructive/5">
+                      <Info className="w-4 h-4 text-destructive flex-shrink-0 mt-0.5" />
+                      <p className="text-xs text-muted-foreground">{(CUSTOMS_DISCLOSURE as any)[disclosureLang] || CUSTOMS_DISCLOSURE.en}</p>
                     </div>
                   )}
                 </div>
