@@ -11,7 +11,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { EUROPE_COUNTRIES, COUNTRY_NAMES, requiresShippingDisclosure, type EuropeCountry } from "@/lib/shipping";
-import { SHIPPING_DISCLOSURE } from "@/lib/bundles";
+import { SHIPPING_DISCLOSURE, CUSTOMS_DISCLOSURE } from "@/lib/bundles";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import ihraamProduct from "@/assets/ihraam-product.jpg";
 import detail2 from "@/assets/product/detail-2.avif";
