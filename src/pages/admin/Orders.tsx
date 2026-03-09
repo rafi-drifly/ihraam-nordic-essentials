@@ -237,7 +237,7 @@ const AdminOrders = () => {
                       <div className="flex items-center gap-3">
                         <span className="font-mono font-medium">{order.order_number}</span>
                         <Badge className={statusColors[order.status] || "bg-gray-500"}>
-                          {order.status}
+                          {statusLabels[order.status] || order.status}
                         </Badge>
                         {order.shipping_country && order.shipping_country !== 'SE' && (
                           <Badge variant="outline" className="border-blue-500 text-blue-600">
