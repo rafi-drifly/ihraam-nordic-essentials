@@ -37,6 +37,9 @@ import Transparency from "./pages/Transparency";
 import MosqueSupport from "./pages/MosqueSupport";
 import Returns from "./pages/Returns";
 import NotFound from "./pages/NotFound";
+import AdminLogin from "./pages/admin/AdminLogin";
+import AdminOrders from "./pages/admin/Orders";
+import AdminInventory from "./pages/admin/Inventory";
 
 const queryClient = new QueryClient();
 
