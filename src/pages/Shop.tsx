@@ -48,8 +48,13 @@ const Shop = () => {
   const [loading, setLoading] = useState(true);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+  const [shippingCountry, setShippingCountry] = useState<string>('SE');
   const { addItem } = useCart();
   const { toast } = useToast();
+  
+  const showDisclosure = requiresShippingDisclosure(shippingCountry);
+  const disclosureLang = (i18n.language as 'en' | 'sv' | 'no') || 'en';
+  const disclosureText = SHIPPING_DISCLOSURE[disclosureLang] || SHIPPING_DISCLOSURE.en;
 
   useEffect(() => {
     fetchProduct();
