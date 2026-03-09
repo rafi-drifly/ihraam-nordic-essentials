@@ -161,8 +161,8 @@ const AdminOrders = () => {
     );
   }
 
-  const paidOrders = orders.filter(o => o.status === 'paid');
-  const europeOrders = paidOrders.filter(o => o.shipping_country && o.shipping_country !== 'SE');
+  const paidOrders = orders.filter(o => ['paid', 'paid_pending_shipping_review', 'ready_to_ship'].includes(o.status));
+  const europeOrders = orders.filter(o => o.shipping_country && o.shipping_country !== 'SE');
 
   return (
     <div className="min-h-screen bg-muted/50 p-4 md:p-8">
