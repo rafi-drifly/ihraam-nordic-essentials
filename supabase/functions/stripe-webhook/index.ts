@@ -7,8 +7,8 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-// Shipping rate per item in EUR
-const SHIPPING_RATE_PER_ITEM = 9;
+const ORDER_ALERT_EMAIL = "support@pureihraam.com";
+const LOW_STOCK_THRESHOLD_FALLBACK = 20;
 
 serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -41,28 +41,46 @@ serve(async (req) => {
       return new Response("Webhook signature verification failed", { status: 400 });
     }
 
-    console.log("Webhook event type:", event.type);
+    console.log("Webhook event type:", event.type, "Event ID:", event.id);
+
+    // Idempotency check
+    const { data: existingEvent } = await supabaseClient
+      .from('stripe_events')
+      .select('event_id')
+      .eq('event_id', event.id)
+      .single();
+
+    if (existingEvent) {
+      console.log("Event already processed:", event.id);
+      return new Response(JSON.stringify({ received: true, duplicate: true }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        status: 200,
+      });
+    }
+
+    // Record event for idempotency
+    await supabaseClient.from('stripe_events').insert({ event_id: event.id });
 
     if (event.type === "checkout.session.completed") {
       const session = event.data.object as Stripe.Checkout.Session;
       
-      // Get items from metadata
+      // Check if this is an extra shipping payment
+      if (session.metadata?.payment_type === 'extra_shipping') {
+        return await handleExtraShippingPayment(supabaseClient, session);
+      }
+      
+      // Regular order payment
       const itemsJson = session.metadata?.items;
       const userId = session.metadata?.user_id || null;
       const totalQuantity = parseInt(session.metadata?.total_quantity || "1", 10);
-      const shippingRatePerItem = parseFloat(session.metadata?.shipping_rate_per_item || SHIPPING_RATE_PER_ITEM.toString());
+      const bundleType = session.metadata?.bundle_type || 'single';
+      const baseShippingFee = parseFloat(session.metadata?.base_shipping_fee_eur || "9");
       const donationAmount = parseFloat(session.metadata?.donation_amount || "0");
       const isStandaloneDonation = session.metadata?.standalone_donation === "true";
       
-      // Calculate shipping cost based on quantity
-      const shippingCost = shippingRatePerItem * totalQuantity;
-      console.log("Calculated shipping cost:", shippingCost, "EUR for", totalQuantity, "items at", shippingRatePerItem, "EUR/item");
-      console.log("Donation amount:", donationAmount);
-      
-      // Skip order creation for standalone donations (no items)
+      // Skip order creation for standalone donations
       if (isStandaloneDonation) {
         console.log("Standalone donation completed - no order to create");
-        // You could add donation tracking here if desired
         return new Response(JSON.stringify({ received: true, type: "standalone_donation" }), {
           headers: { ...corsHeaders, "Content-Type": "application/json" },
           status: 200,
@@ -84,6 +102,7 @@ serve(async (req) => {
 
       // Get shipping address from Stripe
       const shippingDetails = session.shipping_details;
+      const shippingCountry = shippingDetails?.address?.country || 'SE';
       const shippingAddress = shippingDetails ? {
         name: shippingDetails.name,
         line1: shippingDetails.address?.line1,
@@ -105,16 +124,22 @@ serve(async (req) => {
         throw productsError;
       }
 
-      // Calculate total amount (subtotal + shipping + donation)
+      // Calculate total amount
       const subtotal = items.reduce((total: number, item: { id: string; quantity: number }) => {
         const product = products?.find(p => p.id === item.id);
         return total + (product ? product.price * item.quantity : 0);
       }, 0);
-      const totalAmount = subtotal + shippingCost + donationAmount;
+      const totalAmount = subtotal + baseShippingFee + donationAmount;
 
-      console.log("Order totals - Subtotal:", subtotal, "Shipping:", shippingCost, "Donation:", donationAmount, "Total:", totalAmount);
+      // Determine order status based on shipping country
+      // Sweden = ready_to_ship, Europe = paid_pending_shipping_review
+      const orderStatus = shippingCountry === 'SE' ? 'paid' : 'paid';
+      const extraShippingStatus = shippingCountry === 'SE' ? 'not_required' : 'not_required';
 
-      // Create order
+      console.log("Order totals - Subtotal:", subtotal, "Shipping:", baseShippingFee, "Donation:", donationAmount, "Total:", totalAmount);
+      console.log("Shipping country:", shippingCountry, "Status:", orderStatus);
+
+      // Create order with new fields
       const { data: order, error: orderError } = await supabaseClient
         .from('orders')
         .insert({
@@ -122,11 +147,20 @@ serve(async (req) => {
           guest_email: customerEmail,
           total_amount: totalAmount,
           currency: 'EUR',
-          status: 'paid',
+          status: orderStatus,
           shipping_address: shippingAddress,
           order_number: `ORD-${Date.now()}`,
           lookup_token: crypto.randomUUID(),
           donation_amount: donationAmount,
+          stripe_session_id: session.id,
+          stripe_payment_intent_id: session.payment_intent as string,
+          shipping_name: shippingDetails?.name || null,
+          shipping_country: shippingCountry,
+          bundle_type: bundleType,
+          quantity: totalQuantity,
+          base_shipping_fee_eur: baseShippingFee,
+          extra_shipping_fee_eur: 0,
+          extra_shipping_status: extraShippingStatus,
         })
         .select()
         .single();
@@ -175,7 +209,45 @@ serve(async (req) => {
         throw paymentError;
       }
 
-      // Get full order details for email
+      // Decrement inventory and log stock movement
+      const { data: inventory, error: inventoryError } = await supabaseClient
+        .from('inventory')
+        .select('*')
+        .eq('product_key', 'ihram_set')
+        .single();
+
+      if (!inventoryError && inventory) {
+        const newStock = inventory.stock_on_hand - totalQuantity;
+        
+        // Update inventory
+        await supabaseClient
+          .from('inventory')
+          .update({ stock_on_hand: newStock })
+          .eq('product_key', 'ihram_set');
+
+        // Log stock movement
+        await supabaseClient
+          .from('stock_movements')
+          .insert({
+            product_key: 'ihram_set',
+            delta: -totalQuantity,
+            reason: 'order_paid',
+            related_order_id: order.id,
+          });
+
+        console.log("Inventory updated: ", inventory.stock_on_hand, "->", newStock);
+
+        // Check low stock threshold
+        const threshold = inventory.low_stock_threshold || LOW_STOCK_THRESHOLD_FALLBACK;
+        if (newStock <= threshold) {
+          await sendLowStockAlert(supabaseClient, newStock, threshold);
+        }
+      }
+
+      // Send internal order alert email
+      await sendOrderAlertEmail(supabaseClient, order, shippingAddress, customerEmail, totalQuantity, bundleType, baseShippingFee);
+
+      // Get full order details for customer email
       const { data: fullOrder, error: fullOrderError } = await supabaseClient
         .from('orders')
         .select('*, order_items(*, products(name))')
@@ -183,7 +255,7 @@ serve(async (req) => {
         .single();
 
       if (!fullOrderError && fullOrder) {
-        // Send confirmation email
+        // Send confirmation email to customer
         try {
           await supabaseClient.functions.invoke('send-order-confirmation', {
             body: {
@@ -194,11 +266,10 @@ serve(async (req) => {
           console.log("Confirmation email sent to:", customerEmail);
         } catch (emailError) {
           console.error("Error sending confirmation email:", emailError);
-          // Don't fail the webhook for email errors
         }
       }
 
-      console.log(`Order ${order.id} created and marked as paid`);
+      console.log(`Order ${order.id} created and marked as ${orderStatus}`);
     }
 
     return new Response(JSON.stringify({ received: true }), {
@@ -213,3 +284,123 @@ serve(async (req) => {
     });
   }
 });
+
+async function handleExtraShippingPayment(supabaseClient: any, session: Stripe.Checkout.Session) {
+  const orderId = session.metadata?.order_id;
+  if (!orderId) {
+    console.error("No order_id in extra shipping payment metadata");
+    return new Response("No order_id found", { status: 400 });
+  }
+
+  // Update order status
+  const { error } = await supabaseClient
+    .from('orders')
+    .update({
+      extra_shipping_status: 'paid',
+      status: 'paid',
+    })
+    .eq('id', orderId);
+
+  if (error) {
+    console.error("Error updating order for extra shipping:", error);
+    throw error;
+  }
+
+  console.log("Extra shipping paid for order:", orderId);
+  return new Response(JSON.stringify({ received: true, type: "extra_shipping_paid" }), {
+    headers: { ...corsHeaders, "Content-Type": "application/json" },
+    status: 200,
+  });
+}
+
+async function sendOrderAlertEmail(supabaseClient: any, order: any, shippingAddress: any, customerEmail: string, quantity: number, bundleType: string, baseShippingFee: number) {
+  try {
+    const resendApiKey = Deno.env.get("RESEND_API_KEY");
+    if (!resendApiKey) {
+      console.log("No RESEND_API_KEY, skipping order alert");
+      return;
+    }
+
+    const addressSummary = [
+      shippingAddress.name,
+      shippingAddress.line1,
+      shippingAddress.line2,
+      `${shippingAddress.postal_code} ${shippingAddress.city}`,
+      shippingAddress.country
+    ].filter(Boolean).join(', ');
+
+    const html = `
+      <h2>New PureIhram Order</h2>
+      <p><strong>Order ID:</strong> ${order.id}</p>
+      <p><strong>Order Number:</strong> ${order.order_number}</p>
+      <p><strong>Customer Email:</strong> ${customerEmail}</p>
+      <p><strong>Bundle Type:</strong> ${bundleType}</p>
+      <p><strong>Quantity:</strong> ${quantity}</p>
+      <p><strong>Country:</strong> ${shippingAddress.country || 'N/A'}</p>
+      <p><strong>Address:</strong> ${addressSummary}</p>
+      <p><strong>Base Shipping Fee:</strong> €${baseShippingFee}</p>
+      <p><strong>Total Paid:</strong> €${order.total_amount}</p>
+      <p><strong>Status:</strong> ${order.status}</p>
+      ${order.donation_amount > 0 ? `<p><strong>Donation:</strong> €${order.donation_amount}</p>` : ''}
+    `;
+
+    const response = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${resendApiKey}`,
+      },
+      body: JSON.stringify({
+        from: "PureIhram Orders <noreply@pureihram.com>",
+        to: [ORDER_ALERT_EMAIL],
+        subject: `New PureIhram Order - ${order.order_number}`,
+        html: html,
+      }),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("Order alert email failed:", errorText);
+    } else {
+      console.log("Order alert email sent to:", ORDER_ALERT_EMAIL);
+    }
+  } catch (error) {
+    console.error("Error sending order alert:", error);
+  }
+}
+
+async function sendLowStockAlert(supabaseClient: any, currentStock: number, threshold: number) {
+  try {
+    const resendApiKey = Deno.env.get("RESEND_API_KEY");
+    if (!resendApiKey) {
+      console.log("No RESEND_API_KEY, skipping low stock alert");
+      return;
+    }
+
+    const html = `
+      <h2>⚠️ LOW STOCK ALERT</h2>
+      <p>Ihram Set inventory is running low!</p>
+      <p><strong>Current Stock:</strong> ${currentStock}</p>
+      <p><strong>Threshold:</strong> ${threshold}</p>
+      <p>Please restock soon to avoid stockouts.</p>
+    `;
+
+    await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${resendApiKey}`,
+      },
+      body: JSON.stringify({
+        from: "PureIhram Alerts <noreply@pureihram.com>",
+        to: [ORDER_ALERT_EMAIL],
+        subject: `⚠️ LOW STOCK ALERT - ${currentStock} Ihram Sets remaining`,
+        html: html,
+      }),
+    });
+
+    console.log("Low stock alert sent");
+  } catch (error) {
+    console.error("Error sending low stock alert:", error);
+  }
+}

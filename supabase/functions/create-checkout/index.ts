@@ -17,6 +17,13 @@ interface CheckoutRequest {
   shippingCity?: string;
 }
 
+// European countries list
+const EUROPE_COUNTRIES = [
+  'AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 
+  'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 
+  'SE', 'GB', 'NO', 'IS', 'LI', 'CH'
+] as const;
+
 const bundleLabels: Record<string, { twoPack: string; threePack: string }> = {
   en: { twoPack: '2-Pack (Best Value)', threePack: '3-Pack (Most Popular)' },
   sv: { twoPack: '2-Pack (Bästa Värde)', threePack: '3-Pack (Mest Populär)' },
@@ -44,10 +51,10 @@ serve(async (req) => {
       apiVersion: "2025-08-27.basil",
     });
 
-    const { items, donation, bundlePrice, locale, promoCode, shippingCity }: CheckoutRequest = await req.json();
-    console.log("Checkout request:", { items, donation, bundlePrice, locale, promoCode, shippingCity });
+    const { items, donation, bundlePrice, locale, promoCode, shippingCity, shippingCountry }: CheckoutRequest = await req.json();
+    console.log("Checkout request:", { items, donation, bundlePrice, locale, promoCode, shippingCity, shippingCountry });
 
-    // Validate FREEDELIVERY-UPPSALA promo code
+    // Validate FREEDELIVERY-UPPSALA promo code (Sweden only)
     let promoFreeShipping = false;
     if (promoCode && promoCode.toUpperCase() === 'FREEDELIVERY-UPPSALA') {
       if (!shippingCity || shippingCity.toLowerCase().trim() !== 'uppsala') {
@@ -66,7 +73,8 @@ serve(async (req) => {
     }
 
     const totalQuantity = items.reduce((sum, item) => sum + item.quantity, 0);
-    const shippingCents = promoFreeShipping ? 0 : 900; // flat €9 for Sweden
+    const baseShippingFee = 9; // €9 base for all of Europe
+    const shippingCents = promoFreeShipping ? 0 : baseShippingFee * 100;
     const bundleType = getBundleType(totalQuantity);
     console.log("Total qty:", totalQuantity, "Shipping: €", shippingCents / 100, "Bundle:", bundleType);
 
@@ -134,7 +142,7 @@ serve(async (req) => {
           currency: 'eur',
           product_data: {
             name: 'Shipping',
-            description: `Delivery to Sweden (${totalQuantity} set${totalQuantity > 1 ? 's' : ''})`,
+            description: `Base delivery fee (${totalQuantity} set${totalQuantity > 1 ? 's' : ''})`,
           },
           unit_amount: shippingCents,
         },
@@ -157,6 +165,12 @@ serve(async (req) => {
       });
     }
 
+    // Determine shipping text based on destination
+    const isSweden = shippingCountry === 'SE';
+    const shippingMessage = isSweden 
+      ? "We ship to Sweden. Delivery time: 3-7 business days."
+      : "Shipping across Europe. If actual shipping exceeds €9, we'll email you for approval before dispatch.";
+
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
       customer_email: customerId ? undefined : undefined,
@@ -166,22 +180,22 @@ serve(async (req) => {
       success_url: `${req.headers.get("origin")}/order-success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${req.headers.get("origin")}/cart`,
       shipping_address_collection: {
-        allowed_countries: ['SE'],
+        allowed_countries: EUROPE_COUNTRIES as unknown as Stripe.Checkout.SessionCreateParams.ShippingAddressCollection.AllowedCountry[],
       },
       phone_number_collection: { enabled: true },
       custom_text: {
-        shipping_address: { message: "We ship to Sweden. Delivery time: 3-7 business days." },
+        shipping_address: { message: shippingMessage },
       },
       metadata: {
         user_id: user?.id || '',
         items: JSON.stringify(items),
         total_quantity: totalQuantity.toString(),
         bundle_type: bundleType,
-        shipping_eur: (shippingCents / 100).toString(),
-        shipping_country: 'SE',
+        base_shipping_fee_eur: (baseShippingFee).toString(),
         shipping_fee_applied: (shippingCents / 100).toString(),
         donation: donation && donation > 0 ? "true" : "false",
         donation_amount: donation && donation > 0 ? donation.toString() : "0",
+        pricing_currency: 'EUR',
       },
     });
 
