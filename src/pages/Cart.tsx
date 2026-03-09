@@ -13,7 +13,7 @@ import { useToast } from "@/hooks/use-toast";
 import DonationSection from "@/components/shop/DonationSection";
 import { trackEvent } from "@/lib/analytics";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { COUNTRY_FLAGS } from "@/lib/shipping";
+
 
 const Cart = () => {
   const { t, i18n } = useTranslation();
