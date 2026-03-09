@@ -20,3 +20,9 @@ verify_jwt = false
 
 [functions.product-images]
 verify_jwt = false
+
+[functions.create-extra-shipping-payment]
+verify_jwt = false
+
+[functions.send-shipping-adjustment-email]
+verify_jwt = false
