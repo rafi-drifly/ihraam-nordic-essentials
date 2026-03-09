@@ -18,6 +18,16 @@ export const EUROPE_COUNTRIES = [
 
 export type EuropeCountry = typeof EUROPE_COUNTRIES[number];
 
+export const COUNTRY_FLAGS: Record<EuropeCountry, string> = {
+  AT: '🇦🇹', BE: '🇧🇪', BG: '🇧🇬', HR: '🇭🇷', CY: '🇨🇾',
+  CZ: '🇨🇿', DK: '🇩🇰', EE: '🇪🇪', FI: '🇫🇮', FR: '🇫🇷',
+  DE: '🇩🇪', GR: '🇬🇷', HU: '🇭🇺', IE: '🇮🇪', IT: '🇮🇹',
+  LV: '🇱🇻', LT: '🇱🇹', LU: '🇱🇺', MT: '🇲🇹', NL: '🇳🇱',
+  PL: '🇵🇱', PT: '🇵🇹', RO: '🇷🇴', SK: '🇸🇰', SI: '🇸🇮',
+  ES: '🇪🇸', SE: '🇸🇪', GB: '🇬🇧', NO: '🇳🇴', IS: '🇮🇸',
+  LI: '🇱🇮', CH: '🇨🇭',
+};
+
 // Country names for display
 export const COUNTRY_NAMES: Record<EuropeCountry, string> = {
   AT: 'Austria', BE: 'Belgium', BG: 'Bulgaria', HR: 'Croatia', CY: 'Cyprus',
