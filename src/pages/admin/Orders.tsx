@@ -199,8 +199,10 @@ const AdminOrders = () => {
           </Card>
           <Card>
             <CardContent className="p-4 text-center">
-              <p className="text-sm text-muted-foreground">Paid (Awaiting Ship)</p>
-              <p className="text-3xl font-bold text-green-600">{paidOrders.length}</p>
+              <p className="text-sm text-muted-foreground">Pending Review</p>
+              <p className="text-3xl font-bold text-orange-600">
+                {orders.filter(o => o.status === 'paid_pending_shipping_review').length}
+              </p>
             </CardContent>
           </Card>
           <Card>
