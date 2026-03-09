@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useCart } from "@/hooks/useCart";
 import { ShoppingCart, ArrowLeft, Minus, Plus, Trash2, Gift, Tag, X, Check, Globe, Info } from "lucide-react";
-import { calculateShipping, EUROPE_COUNTRIES, COUNTRY_NAMES, requiresShippingDisclosure, type EuropeCountry } from "@/lib/shipping";
+import { calculateShipping, EUROPE_COUNTRIES, COUNTRY_NAMES, COUNTRY_FLAGS, requiresShippingDisclosure, type EuropeCountry } from "@/lib/shipping";
 import { getBundlePrice, SHIPPING_DISCLOSURE, CUSTOMS_DISCLOSURE } from "@/lib/bundles";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
