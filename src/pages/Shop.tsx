@@ -106,7 +106,7 @@ const Shop = () => {
 
   const handleCheckout = async () => {
     if (!product || checkoutLoading) return;
-    trackEvent('checkout_started', { qty: bundle.qty, bundleType: bundle.label });
+    trackEvent('checkout_started', { qty: bundle.qty, bundleType: bundle.label, country: shippingCountry });
     setCheckoutLoading(true);
     try {
       const checkoutItems = [{ id: product.id, quantity: bundle.qty }];
@@ -115,7 +115,7 @@ const Shop = () => {
           items: checkoutItems, 
           bundlePrice: bundle.totalPrice, 
           locale: i18n.language,
-          shippingCountry: 'SE'
+          shippingCountry: shippingCountry
         }
       });
       if (error) throw error;
