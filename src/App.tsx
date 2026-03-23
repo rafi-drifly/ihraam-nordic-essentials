@@ -122,6 +122,8 @@ const AppRoutes = () => (
     <Route path="/no/transparency" element={<Transparency />} />
     <Route path="/no/mosque-support" element={<MosqueSupport />} />
     <Route path="/no/returns" element={<Returns />} />
+    <Route path="/no/guides" element={<Navigate to="/no/blog" replace />} />
+    <Route path="/no/support" element={<Navigate to="/no/contact" replace />} />
     {/* Admin routes */}
     <Route path="/admin" element={<AdminLogin />} />
     <Route path="/admin/orders" element={<AdminOrders />} />
