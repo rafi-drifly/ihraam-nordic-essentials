@@ -70,6 +70,8 @@ const AppRoutes = () => (
     <Route path="/transparency" element={<Transparency />} />
     <Route path="/mosque-support" element={<MosqueSupport />} />
     <Route path="/returns" element={<Returns />} />
+    <Route path="/guides" element={<Navigate to="/blog" replace />} />
+    <Route path="/support" element={<Navigate to="/contact" replace />} />
     {/* Swedish routes */}
     <Route path="/sv" element={<Home />} />
     <Route path="/sv/shop" element={<Shop />} />
