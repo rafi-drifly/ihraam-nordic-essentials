@@ -26,7 +26,6 @@ const PromoBanner = () => {
     <div className="bg-primary text-primary-foreground sticky top-0 z-50">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-center gap-2 py-2 text-sm relative">
-          <Sparkles className="h-4 w-4 flex-shrink-0" />
           <span className="text-center font-medium">
             {t('banner.newStock')}
           </span>

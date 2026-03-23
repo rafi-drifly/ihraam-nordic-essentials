@@ -25,12 +25,10 @@ const Footer = () => {
     { name: t('footer.links.home'), href: "/" },
     { name: t('footer.links.shop'), href: "/shop" },
     { name: t('footer.links.blog'), href: "/blog" },
-    { name: t('footer.links.shipping'), href: "/shipping" },
-    { name: t('footer.links.partners'), href: "/partners" },
-    { name: t('footer.links.supportMission'), href: "/support-our-mission" },
-    { name: t('footer.links.returns'), href: "/returns" },
-    { name: t('footer.links.about'), href: "/about" },
+    { name: t('nav.ourMission'), href: "/about" },
     { name: t('footer.links.contact'), href: "/contact" },
+    { name: t('footer.links.returns'), href: "/returns" },
+    { name: t('footer.links.partners'), href: "/partners" },
   ];
 
   return (

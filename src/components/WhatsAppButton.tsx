@@ -1,8 +1,16 @@
 import { MessageCircle } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router-dom";
+
+const VISIBLE_PATHS = ['/shop', '/contact', '/cart'];
 
 const WhatsAppButton = () => {
   const { t } = useTranslation();
+  const location = useLocation();
+  
+  const normalizedPath = location.pathname.replace(/^\/(sv|no)/, '') || '/';
+  if (!VISIBLE_PATHS.includes(normalizedPath)) return null;
+
   return (
     <a
       href="https://wa.me/46720131476?text=Hi%2C%20I%20have%20a%20question%20about%20my%20order"
