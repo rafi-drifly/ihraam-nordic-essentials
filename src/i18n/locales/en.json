@@ -1,6 +1,6 @@
 {
   "banner": {
-    "newStock": "🎉 New stock has arrived! Delivered within a day in Sweden"
+    "newStock": "New stock has arrived! Delivered within a day in Sweden"
   },
   "nav": {
     "home": "Home",
@@ -11,7 +11,8 @@
     "transparency": "Transparency",
     "donate": "Donate",
     "about": "About",
-    "contact": "Contact"
+    "contact": "Contact",
+    "ourMission": "Our Mission"
   },
   "footer": {
     "description": "Providing pure, comfortable Ihram (Ihraam) cloth for pilgrims across Sweden, the Nordics, and Europe. Made with the intention of reward and accessibility for all.",

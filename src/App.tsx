@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { Navigate } from "react-router-dom";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -69,6 +70,8 @@ const AppRoutes = () => (
     <Route path="/transparency" element={<Transparency />} />
     <Route path="/mosque-support" element={<MosqueSupport />} />
     <Route path="/returns" element={<Returns />} />
+    <Route path="/guides" element={<Navigate to="/blog" replace />} />
+    <Route path="/support" element={<Navigate to="/contact" replace />} />
     {/* Swedish routes */}
     <Route path="/sv" element={<Home />} />
     <Route path="/sv/shop" element={<Shop />} />
@@ -93,6 +96,8 @@ const AppRoutes = () => (
     <Route path="/sv/transparency" element={<Transparency />} />
     <Route path="/sv/mosque-support" element={<MosqueSupport />} />
     <Route path="/sv/returns" element={<Returns />} />
+    <Route path="/sv/guides" element={<Navigate to="/sv/blog" replace />} />
+    <Route path="/sv/support" element={<Navigate to="/sv/contact" replace />} />
     {/* Norwegian routes */}
     <Route path="/no" element={<Home />} />
     <Route path="/no/shop" element={<Shop />} />
@@ -117,6 +122,8 @@ const AppRoutes = () => (
     <Route path="/no/transparency" element={<Transparency />} />
     <Route path="/no/mosque-support" element={<MosqueSupport />} />
     <Route path="/no/returns" element={<Returns />} />
+    <Route path="/no/guides" element={<Navigate to="/no/blog" replace />} />
+    <Route path="/no/support" element={<Navigate to="/no/contact" replace />} />
     {/* Admin routes */}
     <Route path="/admin" element={<AdminLogin />} />
     <Route path="/admin/orders" element={<AdminOrders />} />

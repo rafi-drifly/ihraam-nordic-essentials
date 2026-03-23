@@ -2,15 +2,11 @@ import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link, useLocation } from "react-router-dom";
-import { Check, Truck, Heart, Star, ArrowRight, Building2 } from "lucide-react";
+import { Check, Truck, Heart, Star, ArrowRight } from "lucide-react";
 import ihraamProduct from "@/assets/hero-product.avif";
-import heroPattern from "@/assets/hero-pattern.jpg";
 import spiritualMeaning from "@/assets/blog/spiritual-meaning.png";
 import howToWear from "@/assets/blog/how-to-wear-ihram.png";
 import sunnahActs from "@/assets/blog/sunnah-acts.png";
-import umrahChecklist from "@/assets/blog/umrah-checklist.png";
-import essentialDuas from "@/assets/blog/essential-duas.png";
-import commonMistakes from "@/assets/blog/common-mistakes.png";
 
 const Home = () => {
   const { t } = useTranslation();
@@ -58,38 +54,13 @@ const Home = () => {
       title: t('home.guides.articles.sunnah.title'),
       description: t('home.guides.articles.sunnah.description'),
       link: `${localePrefix}/blog/sunnah-acts-before-ihram`
-    },
-    {
-      image: umrahChecklist,
-      title: t('home.guides.articles.checklist.title'),
-      description: t('home.guides.articles.checklist.description'),
-      link: `${localePrefix}/blog/umrah-preparation-checklist`
-    },
-    {
-      image: essentialDuas,
-      title: t('home.guides.articles.duas.title'),
-      description: t('home.guides.articles.duas.description'),
-      link: `${localePrefix}/blog/essential-duas-umrah`
-    },
-    {
-      image: commonMistakes,
-      title: t('home.guides.articles.mistakes.title'),
-      description: t('home.guides.articles.mistakes.description'),
-      link: `${localePrefix}/blog/common-mistakes-ihram`
     }
   ];
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section
-        className="relative bg-gradient-hero py-20 lg:py-32 overflow-hidden"
-        style={{
-          backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.8)), url(${heroPattern})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-        }}
-      >
+      <section className="bg-muted py-14 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Text Content */}
@@ -104,35 +75,21 @@ const Home = () => {
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                 {t('home.hero.description')}
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild size="lg" className="bg-gradient-primary hover:opacity-90 transition-opacity">
-                  <Link to={`${localePrefix}/shop`}>{t('home.hero.cta')}</Link>
-                </Button>
-                <Button asChild variant="outline" size="lg">
-                  <Link to={`${localePrefix}/about`}>{t('home.hero.learnMore')}</Link>
-                </Button>
-              </div>
-              <Link 
-                to={`${localePrefix}/partners`}
-                className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors mt-4 text-sm"
-              >
-                <Building2 className="h-4 w-4" />
-                {t('home.hero.partnersLink')}
-              </Link>
+              <Button asChild size="lg" className="bg-gradient-primary hover:opacity-90 transition-opacity">
+                <Link to={`${localePrefix}/shop`}>{t('home.hero.cta')}</Link>
+              </Button>
             </div>
 
-            {/* Product Images */}
+            {/* Product Image */}
             <div className="animate-slide-up">
-              <div className="relative">
-                <img src={ihraamProduct} alt="Pure white Ihram (Ihraam) cloth laid flat" className="rounded-2xl shadow-2xl w-full" />
-              </div>
+              <img src={ihraamProduct} alt="Pure white Ihram (Ihraam) cloth laid flat" className="rounded-2xl shadow-2xl w-full" />
             </div>
           </div>
         </div>
       </section>
 
       {/* Quran Verse Section */}
-      <section className="py-16 bg-accent/5">
+      <section className="py-12 bg-accent/5">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Card className="border-accent/20 bg-background/50">
             <CardContent className="p-8">
@@ -145,56 +102,10 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Product Highlights Section */}
-      <section className="py-20 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-              {t('home.whyChoose.title')}
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              {t('home.whyChoose.subtitle')}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            <Card className="text-center border-0 shadow-lg hover:shadow-xl transition-shadow">
-              <CardContent className="p-8">
-                <div className="text-4xl font-bold text-primary mb-2">20€</div>
-                <h3 className="text-xl font-semibold text-foreground mb-4">{t('home.whyChoose.affordable.title')}</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  {t('home.whyChoose.affordable.description')}
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="text-center border-0 shadow-lg hover:shadow-xl transition-shadow">
-              <CardContent className="p-8">
-                <div className="text-4xl mb-4">🌟</div>
-                <h3 className="text-xl font-semibold text-foreground mb-4">{t('home.whyChoose.comfortable.title')}</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  {t('home.whyChoose.comfortable.description')}
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="text-center border-0 shadow-lg hover:shadow-xl transition-shadow">
-              <CardContent className="p-8">
-                <div className="text-4xl mb-4">🚚</div>
-                <h3 className="text-xl font-semibold text-foreground mb-4">{t('home.whyChoose.delivery.title')}</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  {t('home.whyChoose.delivery.description')}
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
       {/* Benefits Section */}
-      <section className="py-20 bg-background">
+      <section className="py-14 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
               {t('home.benefits.title')}
             </h2>
@@ -223,24 +134,10 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Final Hadith Section */}
-      <section className="py-16 bg-gradient-subtle">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <Card className="border-0 bg-background/80">
-            <CardContent className="p-8">
-              <blockquote className="text-xl lg:text-2xl italic text-foreground mb-4 leading-relaxed">
-                {t('home.quranVerse2')}
-              </blockquote>
-              <cite className="text-sm text-muted-foreground">{t('home.quranVerse2Cite')}</cite>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
       {/* Guides & Knowledge Section */}
-      <section className="py-20 px-6 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+      <section className="py-14 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4">
               {t('home.guides.title')}
             </h2>
@@ -250,7 +147,7 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             {blogArticles.map((article, index) => (
               <Card key={index} className="group overflow-hidden border shadow-md hover:shadow-lg transition-all duration-300 rounded-2xl">
                 <div className="overflow-hidden">
@@ -278,7 +175,6 @@ const Home = () => {
             ))}
           </div>
 
-          {/* View All CTA */}
           <div className="text-center">
             <Button asChild variant="outline" size="lg" className="group">
               <Link to={`${localePrefix}/blog`} className="inline-flex items-center gap-2">
@@ -291,14 +187,11 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-muted">
+      <section className="py-14 bg-muted">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
+          <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6">
             {t('home.cta.title')}
           </h2>
-          <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-            {t('home.cta.description')}
-          </p>
           <Button asChild size="lg" className="bg-gradient-primary hover:opacity-90 transition-opacity">
             <Link to={`${localePrefix}/shop`}>{t('home.cta.button')}</Link>
           </Button>
