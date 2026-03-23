@@ -96,6 +96,8 @@ const AppRoutes = () => (
     <Route path="/sv/transparency" element={<Transparency />} />
     <Route path="/sv/mosque-support" element={<MosqueSupport />} />
     <Route path="/sv/returns" element={<Returns />} />
+    <Route path="/sv/guides" element={<Navigate to="/sv/blog" replace />} />
+    <Route path="/sv/support" element={<Navigate to="/sv/contact" replace />} />
     {/* Norwegian routes */}
     <Route path="/no" element={<Home />} />
     <Route path="/no/shop" element={<Shop />} />
