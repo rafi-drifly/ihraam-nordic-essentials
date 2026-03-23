@@ -413,94 +413,93 @@ const Shop = () => {
                 </Button>
               </div>
 
-              {/* Specifications Table */}
-              <Card className="shadow-sm">
-                <CardHeader>
-                  <CardTitle className="text-lg" style={{ color: '#2C7A7B' }}>{t('shop.specifications.title')}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <Table>
-                    <TableBody>
-                      <TableRow>
-                        <TableCell className="font-medium">{t('shop.specifications.material')}</TableCell>
-                        <TableCell>{t('shop.specifications.materialValue')}</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell className="font-medium">{t('shop.specifications.size')}</TableCell>
-                        <TableCell>{t('shop.specifications.sizeValue')}</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell className="font-medium">{t('shop.specifications.weight')}</TableCell>
-                        <TableCell>{t('shop.specifications.weightValue')}</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell className="font-medium">{t('shop.specifications.features')}</TableCell>
-                        <TableCell>{t('shop.specifications.featuresValue')}</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell className="font-medium">{t('shop.specifications.packaging')}</TableCell>
-                        <TableCell>{t('shop.specifications.packagingValue')}</TableCell>
-                      </TableRow>
-                    </TableBody>
-                  </Table>
-                </CardContent>
-              </Card>
+              {/* Collapsible Details */}
+              <div className="space-y-2">
+                <Accordion type="single" collapsible className="w-full">
+                  {/* Specifications */}
+                  <AccordionItem value="specs">
+                    <AccordionTrigger className="text-base font-semibold">{t('shop.specifications.title')}</AccordionTrigger>
+                    <AccordionContent>
+                      <Table>
+                        <TableBody>
+                          <TableRow>
+                            <TableCell className="font-medium">{t('shop.specifications.material')}</TableCell>
+                            <TableCell>{t('shop.specifications.materialValue')}</TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell className="font-medium">{t('shop.specifications.size')}</TableCell>
+                            <TableCell>{t('shop.specifications.sizeValue')}</TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell className="font-medium">{t('shop.specifications.weight')}</TableCell>
+                            <TableCell>{t('shop.specifications.weightValue')}</TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell className="font-medium">{t('shop.specifications.features')}</TableCell>
+                            <TableCell>{t('shop.specifications.featuresValue')}</TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell className="font-medium">{t('shop.specifications.packaging')}</TableCell>
+                            <TableCell>{t('shop.specifications.packagingValue')}</TableCell>
+                          </TableRow>
+                        </TableBody>
+                      </Table>
+                    </AccordionContent>
+                  </AccordionItem>
 
-              {/* Features */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">{t('shop.features.title')}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    {['soft', 'quickDry', 'antimicrobial', 'sustainable', 'sunnah'].map((feature) => (
-                      <div key={feature} className="flex items-start gap-3">
-                        <Check className="h-5 w-5 text-primary mt-0.5" />
-                        <div>
-                          <p className="font-medium">{t(`shop.features.${feature}.title`)}</p>
-                          <p className="text-sm text-muted-foreground">{t(`shop.features.${feature}.description`)}</p>
-                        </div>
+                  {/* Features */}
+                  <AccordionItem value="features">
+                    <AccordionTrigger className="text-base font-semibold">{t('shop.features.title')}</AccordionTrigger>
+                    <AccordionContent>
+                      <div className="space-y-3">
+                        {['soft', 'quickDry', 'antimicrobial', 'sustainable', 'sunnah'].map((feature) => (
+                          <div key={feature} className="flex items-start gap-3">
+                            <Check className="h-5 w-5 text-primary mt-0.5" />
+                            <div>
+                              <p className="font-medium">{t(`shop.features.${feature}.title`)}</p>
+                              <p className="text-sm text-muted-foreground">{t(`shop.features.${feature}.description`)}</p>
+                            </div>
+                          </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+                    </AccordionContent>
+                  </AccordionItem>
 
-              {/* Shipping Info */}
-              <Card className="bg-muted">
-                <CardContent className="p-4">
-                  <h3 className="font-semibold mb-2">{t('shop.shippingInfo.title')}</h3>
-                  <ul className="text-sm text-muted-foreground space-y-1">
-                    <li>{countryFlag('SE')} {t('shop.bundle.shippingNote')}</li>
-                    <li>{countryFlag('EU')} {t('shop.shippingInfo.nordic')}</li>
-                    <li>{"\uD83D\uDCE6"} {t('shop.shippingInfo.tracking')}</li>
-                  </ul>
-                </CardContent>
-              </Card>
+                  {/* Shipping Info */}
+                  <AccordionItem value="shipping">
+                    <AccordionTrigger className="text-base font-semibold">{t('shop.shippingInfo.title')}</AccordionTrigger>
+                    <AccordionContent>
+                      <ul className="text-sm text-muted-foreground space-y-2">
+                        <li className="flex items-center gap-2">
+                          <Package className="h-4 w-4 text-primary" />
+                          {t('shop.bundle.shippingNote')}
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <Globe className="h-4 w-4 text-primary" />
+                          {t('shop.shippingInfo.nordic')}
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <Truck className="h-4 w-4 text-primary" />
+                          {t('shop.shippingInfo.tracking')}
+                        </li>
+                      </ul>
+                    </AccordionContent>
+                  </AccordionItem>
 
-              {/* Care Instructions */}
-              <Card className="bg-accent/10">
-                <CardContent className="p-4">
-                  <h3 className="font-semibold mb-2" style={{ color: '#2C7A7B' }}>{t('shop.careInstructions.title')}</h3>
-                  <ul className="text-sm text-muted-foreground space-y-1">
-                    <li>{"\u2022"} {t('shop.careInstructions.wash')}</li>
-                    <li>{"\u2022"} {t('shop.careInstructions.bleach')}</li>
-                    <li>{"\u2022"} {t('shop.careInstructions.dry')}</li>
-                    <li>{"\u2022"} {t('shop.careInstructions.iron')}</li>
-                  </ul>
-                </CardContent>
-              </Card>
-
-              {/* Spiritual Reminder */}
-              <Card className="border-primary/20 bg-primary/5">
-                <CardContent className="p-4 text-center">
-                  <h3 className="font-semibold mb-2 text-primary">{t('shop.spiritualReminder.title')}</h3>
-                  <blockquote className="text-sm italic text-muted-foreground">
-                    {t('shop.spiritualReminder.quote')}
-                  </blockquote>
-                  <cite className="text-xs text-muted-foreground block mt-1">{t('shop.spiritualReminder.cite')}</cite>
-                </CardContent>
-              </Card>
+                  {/* Care Instructions */}
+                  <AccordionItem value="care">
+                    <AccordionTrigger className="text-base font-semibold">{t('shop.careInstructions.title')}</AccordionTrigger>
+                    <AccordionContent>
+                      <ul className="text-sm text-muted-foreground space-y-1">
+                        <li>• {t('shop.careInstructions.wash')}</li>
+                        <li>• {t('shop.careInstructions.bleach')}</li>
+                        <li>• {t('shop.careInstructions.dry')}</li>
+                        <li>• {t('shop.careInstructions.iron')}</li>
+                      </ul>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </div>
             </div>
           </div>
         </div>
