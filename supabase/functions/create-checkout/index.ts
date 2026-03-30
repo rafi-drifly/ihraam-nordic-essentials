@@ -165,11 +165,7 @@ serve(async (req) => {
       });
     }
 
-    // Determine shipping text based on destination
-    const isSweden = shippingCountry === 'SE';
-    const shippingMessage = isSweden 
-      ? "We ship to Sweden. Delivery time: 3-7 business days."
-      : "Shipping across Europe. If actual shipping exceeds €9, we'll email you for approval before dispatch.";
+    const shippingMessage = "We ship to Sweden (3–7 business days). For orders outside Sweden, shipping costs may vary — we'll contact you with the exact delivery fee before dispatching.";
 
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
