@@ -717,8 +717,8 @@
     "checkout": "Gå till Kassan",
     "viewCart": "Visa Varukorg",
     "upsell": {
-      "seQty1": "Lägg till 1 till — fortfarande bara 9 € leverans (2-Pack Bäst Värde)",
-      "seQty2": "Lägg till 1 till — fortfarande bara 9 € leverans (3-Pack Mest Populär)",
+      "seQty1": "Lägg till 1 till för 2-Pack — Bäst Värde",
+      "seQty2": "Lägg till 1 till för 3-Pack — Mest Populär",
       "noQty1": "Lägg till 1 till — frakten är densamma (Bäst Värde 2-Pack)",
       "noQty2": "Köper du 3? Frakten blir 49 € — fortfarande bäst värde per set.",
       "switchTo2Pack": "Byt till 2-Pack",

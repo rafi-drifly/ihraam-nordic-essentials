@@ -719,8 +719,8 @@
     "viewCart": "Se Handlekurv",
     "orderSummary": "Ordresammendrag",
     "upsell": {
-      "seQty1": "Legg til 1 til — fortsatt bare 9 € levering (2-Pack Beste Verdi)",
-      "seQty2": "Legg til 1 til — fortsatt bare 9 € levering (3-Pack Mest Populær)",
+      "seQty1": "Legg til 1 til for 2-Pack — Beste Verdi",
+      "seQty2": "Legg til 1 til for 3-Pack — Mest Populær",
       "noQty1": "Legg til 1 til — frakten er den samme (Beste Verdi 2-Pack)",
       "noQty2": "Kjøper du 3? Frakten blir 49 € — fortsatt best verdi per sett.",
       "switchTo2Pack": "Bytt til 2-Pack",
