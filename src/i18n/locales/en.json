@@ -280,8 +280,8 @@
       "nordic": {
         "region": "Nordic Countries 🇳🇴🇩🇰🇫🇮",
         "timeframe": "7-14 business days",
-        "cost": "Calculated at checkout",
-        "description": "Reliable delivery to Norway, Denmark, and Finland with full tracking support.",
+        "cost": "Shown at checkout",
+        "description": "Delivery to Norway, Denmark, and Finland. Shipping cost shown at checkout.",
         "method": "International carriers"
       },
       "eu": {
