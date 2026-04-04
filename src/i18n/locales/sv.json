@@ -287,8 +287,8 @@
       "eu": {
         "region": "Europeiska Unionen 🇪🇺",
         "timeframe": "7-14 arbetsdagar",
-        "cost": "Beräknas i kassan",
-        "description": "Omfattande täckning i alla EU-medlemsländer med tullförhandsklarering.",
+        "cost": "Visas i kassan",
+        "description": "Leverans till EU-länder. Fraktkostnad visas i kassan.",
         "method": "Express internationell frakt"
       }
     },
