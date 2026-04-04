@@ -209,10 +209,10 @@ const Shop = () => {
     <>
       <Helmet>
         <title>{product.name} - Pure Ihram | Buy Online</title>
-        <meta name="description" content="Premium Ihram sets from \u20AC20. Save with 2-Pack (\u20AC38) or 3-Pack (\u20AC60). \u20AC9 delivery in Sweden." />
+        <meta name="description" content="Premium Ihram sets from €19. Save with 2-Pack (€37) or 3-Pack (€55). Ships from Sweden." />
         <meta property="og:type" content="product" />
         <meta property="og:title" content={`${product.name} - Pure Ihram`} />
-        <meta property="og:description" content="Premium Ihram sets from \u20AC20. Save with bundles. \u20AC9 delivery in Sweden." />
+        <meta property="og:description" content="Premium Ihram sets from €19. Save with bundles. Ships from Sweden." />
         <meta property="og:image" content={storageImages[0]} />
         <meta property="og:url" content={`${SITE_URL}/shop`} />
         <meta property="product:price:amount" content="19" />
