@@ -312,8 +312,8 @@
         "description": "Bestillinger behandles innen 1-2 virkedager"
       },
       "free": {
-        "title": "Gratis Frakt",
-        "description": "Kjøp 3+ sett og få gratis levering i Sverige"
+        "title": "Tydelig Prising",
+        "description": "Fraktkostnaden vises tydelig før du betaler"
       }
     },
     "orderProcessing": {
