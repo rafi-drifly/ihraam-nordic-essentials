@@ -287,8 +287,8 @@
       "eu": {
         "region": "EU 🇪🇺",
         "timeframe": "7-14 virkedager",
-        "cost": "Beregnes i kassen",
-        "description": "Omfattende dekning over alle EU-medlemsland med tollforhåndsklarering.",
+        "cost": "Vises i kassen",
+        "description": "Levering til EU-land. Fraktkostnad vises i kassen.",
         "method": "Ekspress internasjonal frakt"
       }
     },
