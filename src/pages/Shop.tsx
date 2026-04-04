@@ -312,10 +312,7 @@ const Shop = () => {
                           <p className="font-bold text-lg">{b.qty === 1 ? t('shop.bundle.single') : b.label}</p>
                           <p className="text-2xl font-bold text-foreground mt-1">{"\u20AC"}{b.totalPrice}</p>
                           <p className="text-sm text-muted-foreground mt-1">
-                            <span>+ {"\u20AC"}{b.shipping} {t('shop.bundle.delivery')} {countryFlag('SE')}</span>
-                          </p>
-                          <p className="text-xs text-muted-foreground mt-0.5">
-                            Total: {"\u20AC"}{totalYouPay}
+                            {t('shop.plusShipping')}
                           </p>
                           {b.qty === 2 && b.savings > 0 && (
                             <p className="text-xs font-medium text-primary mt-1">
