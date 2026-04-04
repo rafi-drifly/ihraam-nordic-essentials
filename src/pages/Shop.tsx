@@ -215,7 +215,7 @@ const Shop = () => {
         <meta property="og:description" content="Premium Ihram sets from \u20AC20. Save with bundles. \u20AC9 delivery in Sweden." />
         <meta property="og:image" content={storageImages[0]} />
         <meta property="og:url" content={`${SITE_URL}/shop`} />
-        <meta property="product:price:amount" content="20" />
+        <meta property="product:price:amount" content="19" />
         <meta property="product:price:currency" content="EUR" />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
