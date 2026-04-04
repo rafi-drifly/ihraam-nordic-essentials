@@ -48,10 +48,7 @@ export function calculateShipping(quantity: number, country: string = 'SE'): num
  * Get shipping display text
  */
 export function getShippingLabel(quantity: number, country: string = 'SE'): string {
-  if (country === 'SE') {
-    return '€9 delivery in Sweden';
-  }
-  return '€9 base delivery fee';
+  return 'Shipping shown at checkout';
 }
 
 /**

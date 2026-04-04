@@ -173,7 +173,7 @@ const Shop = () => {
       "@type": "Offer",
       "url": `${SITE_URL}/shop`,
       "priceCurrency": "EUR",
-      "price": "20",
+      "price": "19",
       "availability": product.stock_quantity > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
       "itemCondition": "https://schema.org/NewCondition",
       "shippingDetails": {
@@ -209,13 +209,13 @@ const Shop = () => {
     <>
       <Helmet>
         <title>{product.name} - Pure Ihram | Buy Online</title>
-        <meta name="description" content="Premium Ihram sets from \u20AC20. Save with 2-Pack (\u20AC38) or 3-Pack (\u20AC60). \u20AC9 delivery in Sweden." />
+        <meta name="description" content="Premium Ihram sets from €19. Save with 2-Pack (€37) or 3-Pack (€55). Ships from Sweden." />
         <meta property="og:type" content="product" />
         <meta property="og:title" content={`${product.name} - Pure Ihram`} />
-        <meta property="og:description" content="Premium Ihram sets from \u20AC20. Save with bundles. \u20AC9 delivery in Sweden." />
+        <meta property="og:description" content="Premium Ihram sets from €19. Save with bundles. Ships from Sweden." />
         <meta property="og:image" content={storageImages[0]} />
         <meta property="og:url" content={`${SITE_URL}/shop`} />
-        <meta property="product:price:amount" content="20" />
+        <meta property="product:price:amount" content="19" />
         <meta property="product:price:currency" content="EUR" />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
@@ -312,10 +312,7 @@ const Shop = () => {
                           <p className="font-bold text-lg">{b.qty === 1 ? t('shop.bundle.single') : b.label}</p>
                           <p className="text-2xl font-bold text-foreground mt-1">{"\u20AC"}{b.totalPrice}</p>
                           <p className="text-sm text-muted-foreground mt-1">
-                            <span>+ {"\u20AC"}{b.shipping} {t('shop.bundle.delivery')} {countryFlag('SE')}</span>
-                          </p>
-                          <p className="text-xs text-muted-foreground mt-0.5">
-                            Total: {"\u20AC"}{totalYouPay}
+                            {t('shop.plusShipping')}
                           </p>
                           {b.qty === 2 && b.savings > 0 && (
                             <p className="text-xs font-medium text-primary mt-1">

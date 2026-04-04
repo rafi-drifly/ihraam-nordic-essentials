@@ -253,7 +253,7 @@
       },
       "shipping": {
         "question": "Hvor lang tid tar frakt?",
-        "answer": "Sverige: 3-7 virkedager, Nordiske land: 7-14 virkedager, EU: 7-14 virkedager. Gratis frakt på bestillinger over 50€."
+        "answer": "Sverige: 3-7 virkedager, Nordiske land: 7-14 virkedager, EU: 7-14 virkedager. Fraktkostnad vises i kassen."
       },
       "included": {
         "question": "Hva er inkludert i Ihram-settet?",
@@ -273,26 +273,26 @@
       "sweden": {
         "region": "Sverige 🇸🇪",
         "timeframe": "3-7 virkedager",
-        "cost": "9 € (1–2 sett) / Gratis (3+ sett)",
-        "description": "9 € leverans for 1–2 Ihram-sett. Kjøp 3 eller flere og få gratis levering i Sverige.",
+        "cost": "Vises i kassen",
+        "description": "Pålitelig levering over hele Sverige med sporing.",
         "method": "PostNord, DHL eller UPS"
       },
       "nordic": {
         "region": "Nordiske Land 🇳🇴🇩🇰🇫🇮",
         "timeframe": "7-14 virkedager",
-        "cost": "Beregnes i kassen",
-        "description": "Pålitelig levering til Norge, Danmark og Finland med full sporingsstøtte.",
+        "cost": "Vises i kassen",
+        "description": "Levering til Norge, Danmark og Finland. Fraktkostnad vises i kassen.",
         "method": "Internasjonale fraktselskaper"
       },
       "eu": {
         "region": "EU 🇪🇺",
         "timeframe": "7-14 virkedager",
-        "cost": "Beregnes i kassen",
-        "description": "Omfattende dekning over alle EU-medlemsland med tollforhåndsklarering.",
+        "cost": "Vises i kassen",
+        "description": "Levering til EU-land. Fraktkostnad vises i kassen.",
         "method": "Ekspress internasjonal frakt"
       }
     },
-    "freeShipping": "Kjøp 3+ Ihram-sett og få gratis levering i Sverige",
+    "freeShipping": "Fraktkostnaden vises alltid tydelig i kassen",
     "tip": {
       "title": "💡 Pilegrimsplanleggingstips",
       "description": "Bestill din Ihram minst 3-4 uker før reisen for å unngå stress i siste liten og sikre at du har tid til eventuelle justeringer eller erstatninger om nødvendig."
@@ -312,8 +312,8 @@
         "description": "Bestillinger behandles innen 1-2 virkedager"
       },
       "free": {
-        "title": "Gratis Frakt",
-        "description": "Kjøp 3+ sett og få gratis levering i Sverige"
+        "title": "Tydelig Prising",
+        "description": "Fraktkostnaden vises tydelig før du betaler"
       }
     },
     "orderProcessing": {
@@ -384,7 +384,7 @@
     "fastDelivery": "Rask Levering",
     "reviews": "anmeldelser",
     "bundleHeading": "Pure Ihram Sett — Enkle pakker, rettferdig levering",
-    "bundleSubtitle": "Spar mer når du kjøper 2 eller 3. Sverige: 9 € levering per bestilling.",
+    "bundleSubtitle": "Spar mer når du kjøper 2 eller 3. Frakt vises i kassen.",
     "description": "Hold deg kjølig, ren og komfortabel på din hellige reise. Pure Ihram Hajj-håndklesettet kombinerer Sunnah-enkelhet med moderne mikrofiberytelse — mykt, absorberende og laget for å vare gjennom hvert steg av Hajj eller Umrah.",
     "plusShipping": "+ frakt",
     "stock": "Lager:",
@@ -405,12 +405,12 @@
       "youSave": "Du sparer €{{amount}} sammenlignet med enkeltpakker",
       "save2Pack": "Spar på frakt — én levering i stedet for to.",
       "savingsVsSeparate": "Spar €{{amount}} mot å bestille {{qty}} enkle separat ({{qty}} leveringer).",
-      "shippingNote": "Levering i Sverige: 9 € per bestilling (ingen ekstra avgift for 2 eller 3 sett).",
-      "whyBundles": "Pakker hjelper deg å bare betale levering én gang.",
+      "shippingNote": "Frakt beregnes basert på destinasjon. Vises tydelig i kassen.",
+      "whyBundles": "Pakker hjelper deg spare — én levering i stedet for flere.",
       "trustSoft": "Myk, pustende, egnet for Hajj & Umrah",
-      "trustShipping": "Rask levering i Sverige",
+      "trustShipping": "Sendes fra Sverige",
       "trustMission": "Transparent misjon",
-      "shippingBullet": "Sverige: 9 € levering per bestilling"
+      "shippingBullet": "Frakt vises i kassen"
     },
     "destination": {
       "label": "Leveres til:",
@@ -719,8 +719,8 @@
     "viewCart": "Se Handlekurv",
     "orderSummary": "Ordresammendrag",
     "upsell": {
-      "seQty1": "Legg til 1 til — fortsatt bare 9 € levering (2-Pack Beste Verdi)",
-      "seQty2": "Legg til 1 til — fortsatt bare 9 € levering (3-Pack Mest Populær)",
+      "seQty1": "Legg til 1 til for 2-Pack — Beste Verdi",
+      "seQty2": "Legg til 1 til for 3-Pack — Mest Populær",
       "noQty1": "Legg til 1 til — frakten er den samme (Beste Verdi 2-Pack)",
       "noQty2": "Kjøper du 3? Frakten blir 49 € — fortsatt best verdi per sett.",
       "switchTo2Pack": "Bytt til 2-Pack",

@@ -253,7 +253,7 @@
       },
       "shipping": {
         "question": "How long does shipping take?",
-        "answer": "Sweden: 3-7 business days, Nordic countries: 7-14 business days, EU: 7-14 business days. Free shipping on orders over 50€."
+        "answer": "Sweden: 3-7 business days, Nordic countries: 7-14 business days, EU: 7-14 business days. Shipping cost is shown at checkout."
       },
       "included": {
         "question": "What's included in the Ihram set?",
@@ -273,26 +273,26 @@
       "sweden": {
         "region": "Sweden 🇸🇪",
         "timeframe": "3-7 business days",
-        "cost": "€9 (1–2 sets) / Free (3+ sets)",
-        "description": "€9 flat delivery for 1–2 Ihram sets. Buy 3 or more and get free delivery in Sweden.",
+        "cost": "Shown at checkout",
+        "description": "Reliable delivery across Sweden with tracking included.",
         "method": "PostNord, DHL, or UPS"
       },
       "nordic": {
         "region": "Nordic Countries 🇳🇴🇩🇰🇫🇮",
         "timeframe": "7-14 business days",
-        "cost": "Calculated at checkout",
-        "description": "Reliable delivery to Norway, Denmark, and Finland with full tracking support.",
+        "cost": "Shown at checkout",
+        "description": "Delivery to Norway, Denmark, and Finland. Shipping cost shown at checkout.",
         "method": "International carriers"
       },
       "eu": {
         "region": "European Union 🇪🇺",
         "timeframe": "7-14 business days",
-        "cost": "Calculated at checkout",
-        "description": "Comprehensive coverage across all EU member countries with customs pre-clearance.",
+        "cost": "Shown at checkout",
+        "description": "Delivery across EU countries. Shipping cost shown at checkout.",
         "method": "Express international shipping"
       }
     },
-    "freeShipping": "Buy 3+ Ihram sets and get free delivery in Sweden",
+    "freeShipping": "Shipping cost is always shown clearly at checkout",
     "tip": {
       "title": "💡 Pilgrimage Planning Tip",
       "description": "Order your Ihram at least 3-4 weeks before travel to avoid last-minute stress and ensure you have time for any adjustments or replacements if needed."
@@ -312,8 +312,8 @@
         "description": "Orders processed within 1-2 business days"
       },
       "free": {
-        "title": "Free Shipping",
-        "description": "Buy 3+ sets and get free delivery in Sweden"
+        "title": "Clear Pricing",
+        "description": "Shipping cost is shown clearly before you pay"
       }
     },
     "orderProcessing": {
@@ -384,7 +384,7 @@
     "fastDelivery": "Fast Delivery",
     "reviews": "reviews",
     "bundleHeading": "Pure Ihram Sets — Simple bundles, fair delivery",
-    "bundleSubtitle": "Save more when you buy 2 or 3. Sweden: €9 delivery per order.",
+    "bundleSubtitle": "Save more when you buy 2 or 3. Shipping shown at checkout.",
     "description": "Lightweight, comfortable Ihram cloth for your Hajj or Umrah journey. Soft microfiber, quick-dry, and easy to care for.",
     "plusShipping": "+ shipping",
     "stock": "Stock:",
@@ -405,12 +405,12 @@
       "youSave": "You save €{{amount}} vs singles",
       "save2Pack": "Save on shipping — one delivery instead of two.",
       "savingsVsSeparate": "Save €{{amount}} vs ordering {{qty}} singles separately ({{qty}} deliveries).",
-      "shippingNote": "Sweden delivery: €9 per order (no extra fee for 2 or 3 sets).",
-      "whyBundles": "Bundles help you pay delivery only once.",
+      "shippingNote": "Shipping is calculated based on your destination. Shown clearly at checkout.",
+      "whyBundles": "Bundles help you save — one delivery instead of multiple.",
       "trustSoft": "Soft, breathable, suitable for Hajj & Umrah",
-      "trustShipping": "Fast shipping within Sweden",
+      "trustShipping": "Ships from Sweden",
       "trustMission": "Transparent mission",
-      "shippingBullet": "Sweden: €9 delivery per order"
+      "shippingBullet": "Shipping shown at checkout"
     },
     "destination": {
       "label": "Delivering to:",
@@ -717,8 +717,8 @@
     "checkout": "Proceed to Checkout",
     "viewCart": "View Cart",
     "upsell": {
-      "seQty1": "Add 1 more — still only €9 delivery (2-Pack Best Value)",
-      "seQty2": "Add 1 more — still only €9 delivery (3-Pack Most Popular)",
+      "seQty1": "Add 1 more for the 2-Pack — Best Value",
+      "seQty2": "Add 1 more for the 3-Pack — Most Popular",
       "noQty1": "Add 1 more — shipping stays the same (Best Value 2-Pack)",
       "noQty2": "Buying 3? Shipping becomes €49 — still best value per set.",
       "switchTo2Pack": "Switch to 2-Pack",
