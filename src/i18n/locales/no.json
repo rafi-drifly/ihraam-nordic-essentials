@@ -71,23 +71,23 @@
       }
     },
     "benefits": {
-      "title": "Hvorfor Velge Vår Ihram?",
-      "subtitle": "Designet med pilegrimers komfort og åndelige fokus i tankene",
+      "title": "Hvorfor Velge Pure Ihram?",
+      "subtitle": "Enkelt, ærlig og bygget rundt pilegrimens behov.",
       "lightweight": {
-        "title": "Lett & Komfortabel",
-        "description": "Laget av premium mikrofiber, tynn og pustende for maksimal komfort under pilegrimsreisen."
+        "title": "Enkelt å Bestille",
+        "description": "Velg pakken din, betal med Stripe og motta Ihram hjemme. Ingen stress."
       },
       "intention": {
-        "title": "Laget med Intensjon",
-        "description": "Hvert plagg er forberedt med oppriktig intensjon om belønning i Akhirah og tilgjengelighet for alle."
+        "title": "Rolig, Respektfull Service",
+        "description": "Vi holder det ærlig — ingen hype, ingen press. Bare et kvalitetsprodukt og tydelig kommunikasjon."
       },
       "fastDelivery": {
-        "title": "Rask EU-Levering",
-        "description": "Rask levering over hele Sverige (3-7 dager) og alle nordiske/EU-land (7-14 dager)."
+        "title": "Levering fra Sverige",
+        "description": "Sendes fra Sverige. 3–7 dager innenlands, 7–14 dager over Europa."
       },
       "affordable": {
-        "title": "Rimelig Kvalitet",
-        "description": "Høykvalitets Ihraam for kun 20€ + frakt, gjør det tilgjengelig for hver pilegrim."
+        "title": "Ærlig Prising",
+        "description": "Fra €20 per sett. Det du ser er det du betaler — ingen skjulte avgifter."
       }
     },
     "quranVerse2": "\"Og pilegrimsreisen til Huset er en plikt som menneskeheten skylder Allah, for de som har råd til reisen.\"",
