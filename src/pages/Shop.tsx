@@ -165,7 +165,7 @@ const Shop = () => {
     "@context": "https://schema.org",
     "@type": "Product",
     "name": product.name,
-    "description": "Premium lightweight Ihram cloth for Hajj and Umrah. Soft, quick-dry, antimicrobial cotton towel set.",
+    "description": "Ihram cloth set for Hajj and Umrah. Lightweight, quick-dry microfiber. Delivered from Sweden.",
     "image": storageImages,
     "brand": { "@type": "Brand", "name": "PureIhram" },
     "sku": "IHRAM-SET-001",
@@ -193,8 +193,7 @@ const Shop = () => {
         "returnMethod": "https://schema.org/ReturnByMail",
         "returnFees": "https://schema.org/ReturnFeesCustomerResponsibility"
       }
-    },
-    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5", "reviewCount": "127" }
+    }
   };
 
   const navigateNext = () => {
