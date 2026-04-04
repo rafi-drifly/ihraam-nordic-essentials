@@ -1,7 +1,7 @@
 {
   "banner": {
-    "newStock": "Ihram-set från €20 — levereras över hela Europa",
-    "promoText": "Ihram-set från €20 — levereras över hela Europa"
+    "newStock": "Ihram-set från €19 — levereras över hela Europa",
+    "promoText": "Ihram-set från €19 — levereras över hela Europa"
   },
   "nav": {
     "home": "Hem",
@@ -58,7 +58,7 @@
       "subtitle": "Kvalitet, tillgänglighet och komfort för varje pilgrim",
       "affordable": {
         "title": "Prisvärd för Alla",
-        "description": "Kvalitets-Ihram (Ihraam) för endast 20€ + frakt. Gör pilgrimsfärden tillgänglig oavsett ekonomisk situation, med den uppriktiga avsikten att tjäna ajr i Akhirah."
+        "description": "Kvalitets-Ihram (Ihraam) för endast €19 + frakt. Gör pilgrimsfärden tillgänglig oavsett ekonomisk situation, med den uppriktiga avsikten att tjäna ajr i Akhirah."
       },
       "comfortable": {
         "title": "Bekväm & Hållbar",
@@ -86,7 +86,7 @@
       },
       "affordable": {
         "title": "Ärlig Prissättning",
-        "description": "Från €20 per set. Det du ser är det du betalar — inga dolda avgifter."
+        "description": "Från €19 per set. Det du ser är det du betalar — inga dolda avgifter."
       }
     },
     "quranVerse2": "\"Och vallfärden till Huset är en plikt gentemot Allah för den som har möjlighet att genomföra den.\"",
@@ -131,11 +131,11 @@
   },
   "about": {
     "title": "Om Pure Ihram",
-    "subtitle": "Pure Ihram grundades för att göra Ihram (Ihraam) prisvärd (20€ + frakt) och tillgänglig för alla. Detta handlar inte om vinst utan om att tjäna ajr (belöning) i Akhirah genom att tjäna den muslimska gemenskapen och göra den heliga pilgrimsfärden tillgänglig för troende i hela Europa.",
+    "subtitle": "Pure Ihram grundades för att göra Ihram (Ihraam) prisvärd (€19 + frakt) och tillgänglig för alla. Detta handlar inte om vinst utan om att tjäna ajr (belöning) i Akhirah genom att tjäna den muslimska gemenskapen och göra den heliga pilgrimsfärden tillgänglig för troende i hela Europa.",
     "story": {
       "title": "Vår Historia",
       "p1": "Pure Ihram föddes ur en enkel men djupgående insikt: alltför många muslimer i Europa hade svårt att hitta prisvärd, kvalitativ Ihram (Ihraam)-duk för sin pilgrimsfärd till de heliga städerna Mekka och Medina.",
-      "p2": "Efter att ha bevittnat medtroende betala överdrivna priser för grundläggande pilgrimsessentialer, gjorde vi ett åtagande att tillhandahålla premium Ihram-duk till ett ärligt, tillgängligt pris på endast 20€.",
+      "p2": "Efter att ha bevittnat medtroende betala överdrivna priser för grundläggande pilgrimsessentialer, gjorde vi ett åtagande att tillhandahålla premium Ihram-duk till ett ärligt, tillgängligt pris på endast €19.",
       "p3": "Vårt uppdrag sträcker sig bortom handel – varje försäljning görs med den uppriktiga avsikten att tjäna ajr (belöning) i Akhirah samtidigt som vi hjälper våra bröder och systrar att uppfylla sina religiösa plikter utan ekonomisk börda.",
       "p4": "Idag är vi stolta över att betjäna tusentals pilgrimer i Sverige, de nordiska länderna och Europeiska unionen, och säkerställer att avstånd och kostnad aldrig blir hinder för andlig uppfyllelse."
     },
@@ -154,7 +154,7 @@
       },
       "accessibility": {
         "title": "Tillgänglighet",
-        "description": "Vi tror att varje muslim bör ha tillgång till kvalitativ Ihram (Ihraam)-duk för 20€, oavsett ekonomisk situation."
+        "description": "Vi tror att varje muslim bör ha tillgång till kvalitativ Ihram (Ihraam)-duk för €19, oavsett ekonomisk situation."
       },
       "trust": {
         "title": "Förtroende",
@@ -634,7 +634,7 @@
       },
       "example": {
         "title": "100 Set-Exempel",
-        "description": "Om er moské eller byrå beställer 100 Ihram-set och säljer för €18–€20 styck:",
+        "description": "Om er moské eller byrå beställer 100 Ihram-set och säljer för €17–€19 styck:",
         "benefit": "Halal-fördel för er organisation"
       }
     },
