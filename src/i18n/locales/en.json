@@ -253,7 +253,7 @@
       },
       "shipping": {
         "question": "How long does shipping take?",
-        "answer": "Sweden: 3-7 business days, Nordic countries: 7-14 business days, EU: 7-14 business days. Free shipping on orders over 50€."
+        "answer": "Sweden: 3-7 business days, Nordic countries: 7-14 business days, EU: 7-14 business days. Shipping cost is shown at checkout."
       },
       "included": {
         "question": "What's included in the Ihram set?",
