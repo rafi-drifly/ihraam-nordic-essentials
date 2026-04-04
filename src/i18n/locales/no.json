@@ -1,6 +1,7 @@
 {
   "banner": {
-    "newStock": "Nytt lager har ankommet! Levert innen en dag i Sverige"
+    "newStock": "Ihram-sett fra €20 — levert over hele Europa",
+    "promoText": "Ihram-sett fra €20 — levert over hele Europa"
   },
   "nav": {
     "home": "Hjem",
@@ -38,18 +39,15 @@
       "returns": "Retur & Bytte"
     },
     "returnsBadge": "14 dagers returrett · Enkle bytter · Kunden betaler returfrakten (angrerett)",
-    "copyright": "© 2025 Pure Ihram. Alle rettigheter reservert.",
-    "quote": "\"Ta med proviant, men den beste provianten er Taqwa (gudsbevissthet).\" — Koranen 2:197"
+    "copyright": "© 2026 Pure Ihram. Alle rettigheter reservert."
   },
   "home": {
     "hero": {
-      "title": "Ren & Komfortabel",
-      "titleHighlight": "Ihram",
-      "price": "Kun",
-      "priceAmount": "20€",
-      "priceSuffix": "+ frakt",
-      "description": "Lett, tynn og komfortabel Ihram (Ihraam) for din hellige reise. Laget med intensjonen om å tjene ajr og gjøre pilegrimsreisen tilgjengelig for alle.",
-      "cta": "Bestill Din Ihram",
+      "title": "Ihram for Hajj & Umrah",
+      "titleHighlight": "Levert fra Sverige",
+      "description": "Lett, komfortabel Ihram til en rettferdig pris. Tydelig prising, ærlig service og pålitelig levering over hele Europa.",
+      "cta": "Handle Nå",
+      "trustLine": "Tydelig prising · Basert i Sverige · 3–7 dagers levering",
       "learnMore": "Les Mer",
       "partnersLink": "For Moskeer & Hajj/Umrah-byråer →"
     },
@@ -72,23 +70,23 @@
       }
     },
     "benefits": {
-      "title": "Hvorfor Velge Vår Ihram?",
-      "subtitle": "Designet med pilegrimers komfort og åndelige fokus i tankene",
+      "title": "Hvorfor Velge Pure Ihram?",
+      "subtitle": "Enkelt, ærlig og bygget rundt pilegrimens behov.",
       "lightweight": {
-        "title": "Lett & Komfortabel",
-        "description": "Laget av premium mikrofiber, tynn og pustende for maksimal komfort under pilegrimsreisen."
+        "title": "Enkelt å Bestille",
+        "description": "Velg pakken din, betal med Stripe og motta Ihram hjemme. Ingen stress."
       },
       "intention": {
-        "title": "Laget med Intensjon",
-        "description": "Hvert plagg er forberedt med oppriktig intensjon om belønning i Akhirah og tilgjengelighet for alle."
+        "title": "Rolig, Respektfull Service",
+        "description": "Vi holder det ærlig — ingen hype, ingen press. Bare et kvalitetsprodukt og tydelig kommunikasjon."
       },
       "fastDelivery": {
-        "title": "Rask EU-Levering",
-        "description": "Rask levering over hele Sverige (3-7 dager) og alle nordiske/EU-land (7-14 dager)."
+        "title": "Levering fra Sverige",
+        "description": "Sendes fra Sverige. 3–7 dager innenlands, 7–14 dager over Europa."
       },
       "affordable": {
-        "title": "Rimelig Kvalitet",
-        "description": "Høykvalitets Ihraam for kun 20€ + frakt, gjør det tilgjengelig for hver pilegrim."
+        "title": "Ærlig Prising",
+        "description": "Fra €20 per sett. Det du ser er det du betaler — ingen skjulte avgifter."
       }
     },
     "quranVerse2": "\"Og pilegrimsreisen til Huset er en plikt som menneskeheten skylder Allah, for de som har råd til reisen.\"",
@@ -126,8 +124,8 @@
       }
     },
     "cta": {
-      "title": "Klar for Din Åndelige Reise?",
-      "description": "Bestill din premium Ihram i dag og begynn pilegrimsreisen med komfort og ro i sinnet.",
+      "title": "Klar til å Bestille?",
+      "description": "Få din Ihram levert til døren — enkelt, ærlig og pålitelig.",
       "button": "Handle Nå"
     }
   },
@@ -259,11 +257,11 @@
       },
       "included": {
         "question": "Hva er inkludert i Ihram-settet?",
-        "answer": "To usydde hvite bomullsplagg: Izaar (underplagg) og Ridaa (overplagg), hver måler 115cm x 200cm."
+        "answer": "To usydde hvite plagg: Izaar (underplagg) og Ridaa (overplagg)."
       },
       "returns": {
         "question": "Kan jeg returnere eller bytte?",
-        "answer": "Ja, vi tilbyr retur innen 30 dager hvis ubrukt og i original emballasje. Din tilfredshet er viktig for oss."
+        "answer": "Ja, vi tilbyr retur innen 14 dager hvis ubrukt og i original emballasje."
       }
     }
   },

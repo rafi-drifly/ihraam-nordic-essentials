@@ -1,6 +1,7 @@
 {
   "banner": {
-    "newStock": "New stock has arrived! Delivered within a day in Sweden"
+    "newStock": "Ihram sets from €20 — delivered across Europe",
+    "promoText": "Ihram sets from €20 — delivered across Europe"
   },
   "nav": {
     "home": "Home",
@@ -38,20 +39,17 @@
       "returns": "Returns & Exchanges"
     },
     "returnsBadge": "14-day returns · Easy exchanges · Customer pays return shipping (change of mind)",
-    "copyright": "© 2025 Pure Ihram. All rights reserved.",
-    "quote": "\"Take provisions, but the best provision is Taqwa (God-consciousness).\" — Qur'an 2:197"
+    "copyright": "© 2026 Pure Ihram. All rights reserved."
   },
   "home": {
     "hero": {
-      "title": "Pure & Comfortable",
-      "titleHighlight": "Ihram",
-      "price": "Only",
-      "priceAmount": "20€",
-      "priceSuffix": "+ shipping",
-      "description": "Lightweight, thin, and comfortable Ihram (Ihraam) cloth for your sacred journey. Made with the intention of earning ajr and making pilgrimage accessible to all.",
-    "cta": "Order Your Ihram",
-    "learnMore": "Learn More",
-    "partnersLink": "For Mosques & Hajj/Umrah Agencies →"
+      "title": "Ihram for Hajj & Umrah",
+      "titleHighlight": "Delivered from Sweden",
+      "description": "Lightweight, comfortable Ihram cloth at a fair price. Clear pricing, honest service, and reliable delivery across Europe.",
+      "cta": "Shop Now",
+      "trustLine": "Clear pricing · Sweden-based · 3–7 day delivery",
+      "learnMore": "Learn More",
+      "partnersLink": "For Mosques & Hajj/Umrah Agencies →"
     },
     "quranVerse1": "\"And proclaim to the people the Hajj; they will come to you on foot and on every lean camel; they will come from every distant pass.\"",
     "quranVerse1Cite": "— Qur'an 22:27",
@@ -72,23 +70,23 @@
       }
     },
     "benefits": {
-      "title": "Why Choose Our Ihram?",
-      "subtitle": "Designed with the pilgrim's comfort and spiritual focus in mind",
+      "title": "Why Choose Pure Ihram?",
+      "subtitle": "Simple, honest, and built around the pilgrim's needs.",
       "lightweight": {
-        "title": "Lightweight & Comfortable",
-        "description": "Made from premium microfiber, thin and breathable for maximum comfort during your pilgrimage."
+        "title": "Simple to Order",
+        "description": "Pick your bundle, checkout with Stripe, and receive your Ihram at home. No hassle."
       },
       "intention": {
-        "title": "Made with Intention",
-        "description": "Every piece is prepared with the sincere intention of reward in the Akhirah and accessibility for all."
+        "title": "Calm, Respectful Service",
+        "description": "We keep things honest — no hype, no pressure. Just a quality product and clear communication."
       },
       "fastDelivery": {
-        "title": "Fast EU Delivery",
-        "description": "Quick delivery across Sweden (3-7 days) and all Nordic/EU countries (7-14 days)."
+        "title": "Sweden-Based Delivery",
+        "description": "Ships from Sweden. 3–7 days domestic, 7–14 days across Europe."
       },
       "affordable": {
-        "title": "Affordable Quality",
-        "description": "High-quality Ihraam at just 20€ + shipping, making it accessible for every pilgrim."
+        "title": "Honest Pricing",
+        "description": "From €20 per set. What you see is what you pay — no hidden fees."
       }
     },
     "quranVerse2": "\"And Hajj to the House is a duty that mankind owes to Allah, for those who can afford the journey.\"",
@@ -126,8 +124,8 @@
       }
     },
     "cta": {
-      "title": "Ready for Your Spiritual Journey?",
-      "description": "Order your premium Ihram today and begin your pilgrimage with comfort and peace of mind.",
+      "title": "Ready to Order?",
+      "description": "Get your Ihram delivered to your door — simple, honest, and reliable.",
       "button": "Shop Now"
     }
   },
@@ -259,11 +257,11 @@
       },
       "included": {
         "question": "What's included in the Ihram set?",
-        "answer": "Two unstitched white cotton pieces: Izaar (lower garment) and Ridaa (upper garment), each measuring 115cm x 200cm."
+        "answer": "Two unstitched white pieces: Izaar (lower garment) and Ridaa (upper garment)."
       },
       "returns": {
         "question": "Can I return or exchange?",
-        "answer": "Yes, we offer returns within 30 days if unused and in original packaging. Your satisfaction is important to us."
+        "answer": "Yes, we offer returns within 14 days if unused and in original packaging."
       }
     }
   },
@@ -387,7 +385,7 @@
     "reviews": "reviews",
     "bundleHeading": "Pure Ihram Sets — Simple bundles, fair delivery",
     "bundleSubtitle": "Save more when you buy 2 or 3. Sweden: €9 delivery per order.",
-    "description": "Stay cool, clean, and comfortable on your sacred journey. The Pure Ihram Hajj Towel Set combines Sunnah simplicity with modern microfiber performance — soft, absorbent, and made to last through every step of Hajj or Umrah.",
+    "description": "Lightweight, comfortable Ihram cloth for your Hajj or Umrah journey. Soft microfiber, quick-dry, and easy to care for.",
     "plusShipping": "+ shipping",
     "stock": "Stock:",
     "available": "available",

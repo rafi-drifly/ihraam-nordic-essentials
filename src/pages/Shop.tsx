@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ShoppingCart, Star, Check, X, ChevronLeft, ChevronRight, Package, Truck, Globe, Info } from "lucide-react";
+import { ShoppingCart, Check, X, ChevronLeft, ChevronRight, Package, Truck, Globe, Info } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useCart } from "@/hooks/useCart";
 import { supabase } from "@/integrations/supabase/client";
@@ -165,7 +165,7 @@ const Shop = () => {
     "@context": "https://schema.org",
     "@type": "Product",
     "name": product.name,
-    "description": "Premium lightweight Ihram cloth for Hajj and Umrah. Soft, quick-dry, antimicrobial cotton towel set.",
+    "description": "Ihram cloth set for Hajj and Umrah. Lightweight, quick-dry microfiber. Delivered from Sweden.",
     "image": storageImages,
     "brand": { "@type": "Brand", "name": "PureIhram" },
     "sku": "IHRAM-SET-001",
@@ -193,8 +193,7 @@ const Shop = () => {
         "returnMethod": "https://schema.org/ReturnByMail",
         "returnFees": "https://schema.org/ReturnFeesCustomerResponsibility"
       }
-    },
-    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5", "reviewCount": "127" }
+    }
   };
 
   const navigateNext = () => {
@@ -279,15 +278,7 @@ const Shop = () => {
             {/* Product Info */}
             <div className="space-y-6">
               <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <Badge variant="secondary" className="bg-accent text-accent-foreground">
-                    {t('shop.fastDelivery')}
-                  </Badge>
-                  <div className="flex items-center gap-1">
-                    {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-accent text-accent" />)}
-                    <span className="text-sm text-muted-foreground ml-1">(127 {t('shop.reviews')})</span>
-                  </div>
-                </div>
+              <div>
                 <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-2">{product.name}</h2>
                 <p className="text-muted-foreground leading-relaxed">{t('shop.description')}</p>
               </div>
@@ -373,13 +364,16 @@ const Shop = () => {
 
               {/* Add to Cart / Buy Now */}
               <div className="space-y-3">
-                <Button size="lg" className="w-full bg-gradient-primary hover:opacity-90 transition-opacity" onClick={handleAddToCart} disabled={product.stock_quantity < bundle.qty}>
+                <Button size="lg" className="w-full bg-primary hover:bg-primary/90 transition-colors" onClick={handleAddToCart} disabled={product.stock_quantity < bundle.qty}>
                   <ShoppingCart className="w-5 h-5 mr-2" />
                   {t('shop.addToCart')} — {"\u20AC"}{bundle.totalPrice}
                 </Button>
                 <Button variant="outline" size="lg" className="w-full" onClick={handleCheckout} disabled={product.stock_quantity < bundle.qty || checkoutLoading}>
                   {checkoutLoading ? t('shop.creatingCheckout') : t('shop.buyNow')}
                 </Button>
+                <p className="text-xs text-center text-muted-foreground">
+                  {t('shop.trustLine', 'Shipped from Sweden · Secure checkout via Stripe')}
+                </p>
               </div>
 
               {/* Collapsible Details */}

@@ -113,17 +113,6 @@ const Blog = () => {
           </p>
         </div>
 
-        {/* Islamic Quote */}
-        <div className="mb-12">
-          <Card className="bg-accent/5 border-accent/20">
-            <CardContent className="p-8 text-center">
-              <blockquote className="text-lg italic text-foreground mb-4">
-                {t('blog.quranVerse')}
-              </blockquote>
-              <cite className="text-sm text-muted-foreground">{t('blog.quranVerseCite')}</cite>
-            </CardContent>
-          </Card>
-        </div>
 
         {/* Category Filter */}
         <div className="mb-8">
@@ -144,7 +133,7 @@ const Blog = () => {
         {/* Blog Posts Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {blogPosts.map((post) => (
-            <Card key={post.id} className="group hover:shadow-lg transition-all duration-300 overflow-hidden">
+            <Card key={post.id} className="group border border-border shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
               <div className="aspect-video bg-muted overflow-hidden">
                 <img 
                   src={post.image} 
@@ -196,16 +185,11 @@ const Blog = () => {
           ))}
         </div>
 
-        {/* Spiritual Quote Section */}
-        <div className="mb-16">
-          <Card className="bg-gradient-subtle border-0">
-            <CardContent className="p-8 text-center">
-              <blockquote className="text-xl italic text-foreground mb-4">
-                {t('blog.hadithQuote')}
-              </blockquote>
-              <cite className="text-sm text-muted-foreground">{t('blog.hadithCite')}</cite>
-            </CardContent>
-          </Card>
+        {/* Quick Links */}
+        <div className="mb-16 flex flex-wrap justify-center gap-6 text-sm">
+          <Link to={`${localePrefix}/shop`} className="text-primary font-medium hover:underline">{t('nav.shop')} →</Link>
+          <Link to={`${localePrefix}/shipping`} className="text-primary font-medium hover:underline">{t('footer.links.shipping') || 'Shipping'} →</Link>
+          <Link to={`${localePrefix}/contact`} className="text-primary font-medium hover:underline">{t('nav.contact')} →</Link>
         </div>
 
         {/* Newsletter Signup */}
