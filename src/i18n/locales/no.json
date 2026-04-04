@@ -1,7 +1,7 @@
 {
   "banner": {
-    "newStock": "Ihram-sett fra €20 — levert over hele Europa",
-    "promoText": "Ihram-sett fra €20 — levert over hele Europa"
+    "newStock": "Ihram-sett fra €19 — levert over hele Europa",
+    "promoText": "Ihram-sett fra €19 — levert over hele Europa"
   },
   "nav": {
     "home": "Hjem",
@@ -58,7 +58,7 @@
       "subtitle": "Kvalitet, tilgjengelighet og komfort for hver pilegrim",
       "affordable": {
         "title": "Rimelig for Alle",
-        "description": "Kvalitets-Ihram (Ihraam) for kun 20€ + frakt. Gjør pilegrimsreisen tilgjengelig uansett økonomisk situasjon, med oppriktig intensjon om å tjene ajr i Akhirah."
+        "description": "Kvalitets-Ihram (Ihraam) for kun €19 + frakt. Gjør pilegrimsreisen tilgjengelig uansett økonomisk situasjon, med oppriktig intensjon om å tjene ajr i Akhirah."
       },
       "comfortable": {
         "title": "Komfortabel & Holdbar",
@@ -86,7 +86,7 @@
       },
       "affordable": {
         "title": "Ærlig Prising",
-        "description": "Fra €20 per sett. Det du ser er det du betaler — ingen skjulte avgifter."
+        "description": "Fra €19 per sett. Det du ser er det du betaler — ingen skjulte avgifter."
       }
     },
     "quranVerse2": "\"Og pilegrimsreisen til Huset er en plikt som menneskeheten skylder Allah, for de som har råd til reisen.\"",
@@ -131,11 +131,11 @@
   },
   "about": {
     "title": "Om Pure Ihram",
-    "subtitle": "Pure Ihram ble grunnlagt for å gjøre Ihram (Ihraam) rimelig (20€ + frakt) og tilgjengelig for alle. Dette handler ikke om profitt, men om å tjene ajr (belønning) i Akhirah ved å tjene det muslimske samfunnet og gjøre den hellige pilegrimsreisen tilgjengelig for troende over hele Europa.",
+    "subtitle": "Pure Ihram ble grunnlagt for å gjøre Ihram (Ihraam) rimelig (€19 + frakt) og tilgjengelig for alle. Dette handler ikke om profitt, men om å tjene ajr (belønning) i Akhirah ved å tjene det muslimske samfunnet og gjøre den hellige pilegrimsreisen tilgjengelig for troende over hele Europa.",
     "story": {
       "title": "Vår Historie",
       "p1": "Pure Ihram ble født fra en enkel, men dyp erkjennelse: for mange muslimer over hele Europa slet med å finne rimelig, kvalitets Ihram (Ihraam) for sin pilegrimsreise til de hellige byene Mekka og Medina.",
-      "p2": "Etter å ha sett medsøsken betale overdrevne priser for grunnleggende pilegrimsutstyr, forpliktet vi oss til å tilby premium Ihram til en ærlig, tilgjengelig pris på kun 20€.",
+      "p2": "Etter å ha sett medsøsken betale overdrevne priser for grunnleggende pilegrimsutstyr, forpliktet vi oss til å tilby premium Ihram til en ærlig, tilgjengelig pris på kun €19.",
       "p3": "Vårt oppdrag strekker seg utover handel – hvert salg gjøres med oppriktig intensjon om å tjene ajr (belønning) i Akhirah samtidig som vi hjelper våre brødre og søstre å oppfylle sine religiøse plikter uten økonomisk byrde.",
       "p4": "I dag er vi stolte av å betjene tusenvis av pilegrimer over hele Sverige, de nordiske landene og EU, og sikrer at avstand og kostnad aldri blir barrierer for åndelig oppfyllelse."
     },
@@ -154,7 +154,7 @@
       },
       "accessibility": {
         "title": "Tilgjengelighet",
-        "description": "Vi tror hver muslim bør ha tilgang til kvalitets Ihram (Ihraam) til 20€, uansett deres økonomiske situasjon."
+        "description": "Vi tror hver muslim bør ha tilgang til kvalitets Ihram (Ihraam) til €19, uansett deres økonomiske situasjon."
       },
       "trust": {
         "title": "Tillit",
@@ -634,7 +634,7 @@
       },
       "example": {
         "title": "100 Sett Eksempel",
-        "description": "Hvis din moské eller byrå bestiller 100 Ihram-sett og selger for €18–€20 per stk:",
+        "description": "Hvis din moské eller byrå bestiller 100 Ihram-sett og selger for €17–€19 per stk:",
         "benefit": "Halal gevinst for din organisasjon"
       }
     },

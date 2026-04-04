@@ -8,21 +8,21 @@ export interface Bundle {
   badgeVariant: 'default' | 'secondary' | 'destructive' | 'outline' | null;
 }
 
-// Single unit price = €20
-export const UNIT_PRICE = 20;
+// Single unit price = €19
+export const UNIT_PRICE = 19;
 
 // Bundles (shipping is base €9 for all of Europe)
 export const BUNDLES: Bundle[] = [
   {
-    qty: 1, label: 'Single', totalPrice: 20, shipping: 9, savings: 0,
+    qty: 1, label: 'Single', totalPrice: 19, shipping: 9, savings: 0,
     badge: null, badgeVariant: null,
   },
   {
-    qty: 2, label: '2-Pack', totalPrice: 40, shipping: 9, savings: 0,
+    qty: 2, label: '2-Pack', totalPrice: 37, shipping: 9, savings: 1,
     badge: 'Best Value', badgeVariant: 'default',
   },
   {
-    qty: 3, label: '3-Pack', totalPrice: 60, shipping: 9, savings: 18,
+    qty: 3, label: '3-Pack', totalPrice: 55, shipping: 9, savings: 2,
     badge: 'Most Popular', badgeVariant: 'secondary',
   },
 ];
@@ -42,7 +42,7 @@ export function getBundleType(qty: number): string {
 export function getBundlePrice(qty: number): number {
   const bundle = BUNDLES.find(b => b.qty === qty);
   if (bundle) return bundle.totalPrice;
-  if (qty > 3) return Math.round((60 / 3) * qty);
+  if (qty > 3) return Math.round((55 / 3) * qty);
   return UNIT_PRICE * qty;
 }
 

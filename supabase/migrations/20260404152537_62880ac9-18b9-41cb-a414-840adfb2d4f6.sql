@@ -1,0 +1,1 @@
+UPDATE public.products SET price = 19 WHERE price = 20;
