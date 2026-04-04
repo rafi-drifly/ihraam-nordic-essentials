@@ -173,7 +173,7 @@ const Shop = () => {
       "@type": "Offer",
       "url": `${SITE_URL}/shop`,
       "priceCurrency": "EUR",
-      "price": "20",
+      "price": "19",
       "availability": product.stock_quantity > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
       "itemCondition": "https://schema.org/NewCondition",
       "shippingDetails": {
