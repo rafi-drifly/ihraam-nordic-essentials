@@ -312,8 +312,8 @@
         "description": "Beställningar behandlas inom 1-2 arbetsdagar"
       },
       "free": {
-        "title": "Fri Frakt",
-        "description": "Köp 3+ set och få fri leverans i Sverige"
+        "title": "Tydlig Prissättning",
+        "description": "Fraktkostnaden visas tydligt innan du betalar"
       }
     },
     "orderProcessing": {
