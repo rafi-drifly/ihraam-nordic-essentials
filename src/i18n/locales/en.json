@@ -405,12 +405,12 @@
       "youSave": "You save €{{amount}} vs singles",
       "save2Pack": "Save on shipping — one delivery instead of two.",
       "savingsVsSeparate": "Save €{{amount}} vs ordering {{qty}} singles separately ({{qty}} deliveries).",
-      "shippingNote": "Sweden delivery: €9 per order (no extra fee for 2 or 3 sets).",
-      "whyBundles": "Bundles help you pay delivery only once.",
+      "shippingNote": "Shipping is calculated based on your destination. Shown clearly at checkout.",
+      "whyBundles": "Bundles help you save — one delivery instead of multiple.",
       "trustSoft": "Soft, breathable, suitable for Hajj & Umrah",
-      "trustShipping": "Fast shipping within Sweden",
+      "trustShipping": "Ships from Sweden",
       "trustMission": "Transparent mission",
-      "shippingBullet": "Sweden: €9 delivery per order"
+      "shippingBullet": "Shipping shown at checkout"
     },
     "destination": {
       "label": "Delivering to:",
