@@ -278,10 +278,10 @@ const Shop = () => {
             {/* Product Info */}
             <div className="space-y-6">
               <div>
-                <div>
-                  <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-2">{product.name}</h2>
-                  <p className="text-muted-foreground leading-relaxed">{t('shop.description')}</p>
-                </div>
+              <div>
+                <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-2">{product.name}</h2>
+                <p className="text-muted-foreground leading-relaxed">{t('shop.description')}</p>
+              </div>
 
               {/* Bundle Cards */}
               <div className="space-y-3">
