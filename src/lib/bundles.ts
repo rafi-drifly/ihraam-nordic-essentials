@@ -42,7 +42,7 @@ export function getBundleType(qty: number): string {
 export function getBundlePrice(qty: number): number {
   const bundle = BUNDLES.find(b => b.qty === qty);
   if (bundle) return bundle.totalPrice;
-  if (qty > 3) return Math.round((60 / 3) * qty);
+  if (qty > 3) return Math.round((55 / 3) * qty);
   return UNIT_PRICE * qty;
 }
 
