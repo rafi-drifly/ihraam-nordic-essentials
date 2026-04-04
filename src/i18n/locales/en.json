@@ -70,23 +70,23 @@
       }
     },
     "benefits": {
-      "title": "Why Choose Our Ihram?",
-      "subtitle": "Designed with the pilgrim's comfort and spiritual focus in mind",
+      "title": "Why Choose Pure Ihram?",
+      "subtitle": "Simple, honest, and built around the pilgrim's needs.",
       "lightweight": {
-        "title": "Lightweight & Comfortable",
-        "description": "Made from premium microfiber, thin and breathable for maximum comfort during your pilgrimage."
+        "title": "Simple to Order",
+        "description": "Pick your bundle, checkout with Stripe, and receive your Ihram at home. No hassle."
       },
       "intention": {
-        "title": "Made with Intention",
-        "description": "Every piece is prepared with the sincere intention of reward in the Akhirah and accessibility for all."
+        "title": "Calm, Respectful Service",
+        "description": "We keep things honest — no hype, no pressure. Just a quality product and clear communication."
       },
       "fastDelivery": {
-        "title": "Fast EU Delivery",
-        "description": "Quick delivery across Sweden (3-7 days) and all Nordic/EU countries (7-14 days)."
+        "title": "Sweden-Based Delivery",
+        "description": "Ships from Sweden. 3–7 days domestic, 7–14 days across Europe."
       },
       "affordable": {
-        "title": "Affordable Quality",
-        "description": "High-quality Ihraam at just 20€ + shipping, making it accessible for every pilgrim."
+        "title": "Honest Pricing",
+        "description": "From €20 per set. What you see is what you pay — no hidden fees."
       }
     },
     "quranVerse2": "\"And Hajj to the House is a duty that mankind owes to Allah, for those who can afford the journey.\"",
