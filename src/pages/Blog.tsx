@@ -133,7 +133,7 @@ const Blog = () => {
         {/* Blog Posts Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {blogPosts.map((post) => (
-            <Card key={post.id} className="group hover:shadow-lg transition-all duration-300 overflow-hidden">
+            <Card key={post.id} className="group border border-border shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
               <div className="aspect-video bg-muted overflow-hidden">
                 <img 
                   src={post.image} 
