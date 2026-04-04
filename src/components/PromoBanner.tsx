@@ -27,7 +27,7 @@ const PromoBanner = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-center gap-2 py-2 text-sm relative">
           <span className="text-center font-medium">
-            {t('banner.newStock')}
+            {t('banner.promoText', 'Ihram sets from €20 — delivered across Europe')}
           </span>
           <button
             onClick={handleDismiss}

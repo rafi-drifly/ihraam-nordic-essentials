@@ -109,11 +109,6 @@ const Footer = () => {
           <p className="text-muted-foreground text-sm">
             {t('footer.copyright')}
           </p>
-          <div className="mt-4 md:mt-0">
-            <p className="text-muted-foreground text-xs italic max-w-md">
-              {t('footer.quote')}
-            </p>
-          </div>
         </div>
       </div>
     </footer>

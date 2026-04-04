@@ -185,16 +185,11 @@ const Blog = () => {
           ))}
         </div>
 
-        {/* Spiritual Quote Section */}
-        <div className="mb-16">
-          <Card className="bg-gradient-subtle border-0">
-            <CardContent className="p-8 text-center">
-              <blockquote className="text-xl italic text-foreground mb-4">
-                {t('blog.hadithQuote')}
-              </blockquote>
-              <cite className="text-sm text-muted-foreground">{t('blog.hadithCite')}</cite>
-            </CardContent>
-          </Card>
+        {/* Quick Links */}
+        <div className="mb-16 flex flex-wrap justify-center gap-6 text-sm">
+          <Link to={`${localePrefix}/shop`} className="text-primary font-medium hover:underline">{t('nav.shop')} →</Link>
+          <Link to={`${localePrefix}/shipping`} className="text-primary font-medium hover:underline">{t('footer.links.shipping') || 'Shipping'} →</Link>
+          <Link to={`${localePrefix}/contact`} className="text-primary font-medium hover:underline">{t('nav.contact')} →</Link>
         </div>
 
         {/* Newsletter Signup */}

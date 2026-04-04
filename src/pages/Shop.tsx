@@ -364,13 +364,16 @@ const Shop = () => {
 
               {/* Add to Cart / Buy Now */}
               <div className="space-y-3">
-                <Button size="lg" className="w-full bg-gradient-primary hover:opacity-90 transition-opacity" onClick={handleAddToCart} disabled={product.stock_quantity < bundle.qty}>
+                <Button size="lg" className="w-full bg-primary hover:bg-primary/90 transition-colors" onClick={handleAddToCart} disabled={product.stock_quantity < bundle.qty}>
                   <ShoppingCart className="w-5 h-5 mr-2" />
                   {t('shop.addToCart')} — {"\u20AC"}{bundle.totalPrice}
                 </Button>
                 <Button variant="outline" size="lg" className="w-full" onClick={handleCheckout} disabled={product.stock_quantity < bundle.qty || checkoutLoading}>
                   {checkoutLoading ? t('shop.creatingCheckout') : t('shop.buyNow')}
                 </Button>
+                <p className="text-xs text-center text-muted-foreground">
+                  {t('shop.trustLine', 'Shipped from Sweden · Secure checkout via Stripe')}
+                </p>
               </div>
 
               {/* Collapsible Details */}
