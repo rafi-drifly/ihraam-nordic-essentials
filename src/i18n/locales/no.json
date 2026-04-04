@@ -43,15 +43,14 @@
   },
   "home": {
     "hero": {
-      "title": "Ren & Komfortabel",
-      "titleHighlight": "Ihram",
-      "price": "Kun",
-      "priceAmount": "20€",
-      "priceSuffix": "+ frakt",
-      "description": "Lett, tynn og komfortabel Ihram (Ihraam) for din hellige reise. Laget med intensjonen om å tjene ajr og gjøre pilegrimsreisen tilgjengelig for alle.",
-      "cta": "Bestill Din Ihram",
+      "title": "Ihram for Hajj & Umrah",
+      "titleHighlight": "Levert fra Sverige",
+      "description": "Lett, komfortabel Ihram til en rettferdig pris. Tydelig prising, ærlig service og pålitelig levering over hele Europa.",
+      "cta": "Handle Nå",
+      "trustLine": "Tydelig prising · Basert i Sverige · 3–7 dagers levering",
       "learnMore": "Les Mer",
       "partnersLink": "For Moskeer & Hajj/Umrah-byråer →"
+    },
     },
     "quranVerse1": "\"Og forkynn for menneskene pilegrimsreisen; de skal komme til deg til fots og på hver mager kamel; de skal komme fra hver fjern vei.\"",
     "quranVerse1Cite": "— Koranen 22:27",
