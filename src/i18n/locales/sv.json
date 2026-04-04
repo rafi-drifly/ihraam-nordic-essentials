@@ -43,15 +43,14 @@
   },
   "home": {
     "hero": {
-      "title": "Ren & Bekväm",
-      "titleHighlight": "Ihram",
-      "price": "Endast",
-      "priceAmount": "20€",
-      "priceSuffix": "+ frakt",
-      "description": "Lätt, tunn och bekväm Ihram (Ihraam)-duk för din heliga resa. Tillverkad med avsikten att tjäna ajr och göra pilgrimsfärden tillgänglig för alla.",
-      "cta": "Beställ Din Ihram",
+      "title": "Ihram för Hajj & Umrah",
+      "titleHighlight": "Levererad från Sverige",
+      "description": "Lätt, bekväm Ihram-duk till ett rättvist pris. Tydlig prissättning, ärlig service och pålitlig leverans i hela Europa.",
+      "cta": "Handla Nu",
+      "trustLine": "Tydlig prissättning · Svenskbaserad · 3–7 dagars leverans",
       "learnMore": "Läs Mer",
       "partnersLink": "För Moskéer & Hajj/Umrah-byråer →"
+    },
     },
     "quranVerse1": "\"Och kungör för människorna vallfärden; de skall komma till dig till fots och på alla slags utmärglade riddjur; de skall komma från alla fjärran håll.\"",
     "quranVerse1Cite": "— Koranen 22:27",
