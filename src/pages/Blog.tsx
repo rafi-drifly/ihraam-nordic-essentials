@@ -113,17 +113,6 @@ const Blog = () => {
           </p>
         </div>
 
-        {/* Islamic Quote */}
-        <div className="mb-12">
-          <Card className="bg-accent/5 border-accent/20">
-            <CardContent className="p-8 text-center">
-              <blockquote className="text-lg italic text-foreground mb-4">
-                {t('blog.quranVerse')}
-              </blockquote>
-              <cite className="text-sm text-muted-foreground">{t('blog.quranVerseCite')}</cite>
-            </CardContent>
-          </Card>
-        </div>
 
         {/* Category Filter */}
         <div className="mb-8">
