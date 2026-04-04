@@ -278,18 +278,10 @@ const Shop = () => {
             {/* Product Info */}
             <div className="space-y-6">
               <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <Badge variant="secondary" className="bg-accent text-accent-foreground">
-                    {t('shop.fastDelivery')}
-                  </Badge>
-                  <div className="flex items-center gap-1">
-                    {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-accent text-accent" />)}
-                    <span className="text-sm text-muted-foreground ml-1">(127 {t('shop.reviews')})</span>
-                  </div>
+                <div>
+                  <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-2">{product.name}</h2>
+                  <p className="text-muted-foreground leading-relaxed">{t('shop.description')}</p>
                 </div>
-                <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-2">{product.name}</h2>
-                <p className="text-muted-foreground leading-relaxed">{t('shop.description')}</p>
-              </div>
 
               {/* Bundle Cards */}
               <div className="space-y-3">
