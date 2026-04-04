@@ -280,8 +280,8 @@
       "nordic": {
         "region": "Nordiske Land 🇳🇴🇩🇰🇫🇮",
         "timeframe": "7-14 virkedager",
-        "cost": "Beregnes i kassen",
-        "description": "Pålitelig levering til Norge, Danmark og Finland med full sporingsstøtte.",
+        "cost": "Vises i kassen",
+        "description": "Levering til Norge, Danmark og Finland. Fraktkostnad vises i kassen.",
         "method": "Internasjonale fraktselskaper"
       },
       "eu": {
