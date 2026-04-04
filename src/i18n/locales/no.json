@@ -405,12 +405,12 @@
       "youSave": "Du sparer €{{amount}} sammenlignet med enkeltpakker",
       "save2Pack": "Spar på frakt — én levering i stedet for to.",
       "savingsVsSeparate": "Spar €{{amount}} mot å bestille {{qty}} enkle separat ({{qty}} leveringer).",
-      "shippingNote": "Levering i Sverige: 9 € per bestilling (ingen ekstra avgift for 2 eller 3 sett).",
-      "whyBundles": "Pakker hjelper deg å bare betale levering én gang.",
+      "shippingNote": "Frakt beregnes basert på destinasjon. Vises tydelig i kassen.",
+      "whyBundles": "Pakker hjelper deg spare — én levering i stedet for flere.",
       "trustSoft": "Myk, pustende, egnet for Hajj & Umrah",
-      "trustShipping": "Rask levering i Sverige",
+      "trustShipping": "Sendes fra Sverige",
       "trustMission": "Transparent misjon",
-      "shippingBullet": "Sverige: 9 € levering per bestilling"
+      "shippingBullet": "Frakt vises i kassen"
     },
     "destination": {
       "label": "Leveres til:",

@@ -405,12 +405,12 @@
       "youSave": "Du sparar €{{amount}} jämfört med enskilda",
       "save2Pack": "Spara på frakt — en leverans istället för två.",
       "savingsVsSeparate": "Spara €{{amount}} mot att beställa {{qty}} enskilda separat ({{qty}} leveranser).",
-      "shippingNote": "Leverans i Sverige: 9 € per beställning (ingen extra avgift för 2 eller 3 set).",
-      "whyBundles": "Paket hjälper dig att bara betala leverans en gång.",
+      "shippingNote": "Frakt beräknas utifrån destination. Visas tydligt i kassan.",
+      "whyBundles": "Paket hjälper dig spara — en leverans istället för flera.",
       "trustSoft": "Mjukt, andningsbart, lämpligt för Hajj & Umrah",
-      "trustShipping": "Snabb leverans inom Sverige",
+      "trustShipping": "Skickas från Sverige",
       "trustMission": "Transparent uppdrag",
-      "shippingBullet": "Sverige: 9 € leverans per beställning"
+      "shippingBullet": "Frakt visas i kassan"
     },
     "destination": {
       "label": "Levereras till:",
