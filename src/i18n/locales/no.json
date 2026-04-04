@@ -253,7 +253,7 @@
       },
       "shipping": {
         "question": "Hvor lang tid tar frakt?",
-        "answer": "Sverige: 3-7 virkedager, Nordiske land: 7-14 virkedager, EU: 7-14 virkedager. Gratis frakt på bestillinger over 50€."
+        "answer": "Sverige: 3-7 virkedager, Nordiske land: 7-14 virkedager, EU: 7-14 virkedager. Fraktkostnad vises i kassen."
       },
       "included": {
         "question": "Hva er inkludert i Ihram-settet?",
