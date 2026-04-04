@@ -43,15 +43,13 @@
   },
   "home": {
     "hero": {
-      "title": "Pure & Comfortable",
-      "titleHighlight": "Ihram",
-      "price": "Only",
-      "priceAmount": "20€",
-      "priceSuffix": "+ shipping",
-      "description": "Lightweight, thin, and comfortable Ihram (Ihraam) cloth for your sacred journey. Made with the intention of earning ajr and making pilgrimage accessible to all.",
-    "cta": "Order Your Ihram",
-    "learnMore": "Learn More",
-    "partnersLink": "For Mosques & Hajj/Umrah Agencies →"
+      "title": "Ihram for Hajj & Umrah",
+      "titleHighlight": "Delivered from Sweden",
+      "description": "Lightweight, comfortable Ihram cloth at a fair price. Clear pricing, honest service, and reliable delivery across Europe.",
+      "cta": "Shop Now",
+      "trustLine": "Clear pricing · Sweden-based · 3–7 day delivery",
+      "learnMore": "Learn More",
+      "partnersLink": "For Mosques & Hajj/Umrah Agencies →"
     },
     "quranVerse1": "\"And proclaim to the people the Hajj; they will come to you on foot and on every lean camel; they will come from every distant pass.\"",
     "quranVerse1Cite": "— Qur'an 22:27",
