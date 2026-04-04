@@ -312,8 +312,8 @@
         "description": "Orders processed within 1-2 business days"
       },
       "free": {
-        "title": "Free Shipping",
-        "description": "Buy 3+ sets and get free delivery in Sweden"
+        "title": "Clear Pricing",
+        "description": "Shipping cost is shown clearly before you pay"
       }
     },
     "orderProcessing": {
