@@ -717,8 +717,8 @@
     "checkout": "Proceed to Checkout",
     "viewCart": "View Cart",
     "upsell": {
-      "seQty1": "Add 1 more — still only €9 delivery (2-Pack Best Value)",
-      "seQty2": "Add 1 more — still only €9 delivery (3-Pack Most Popular)",
+      "seQty1": "Add 1 more for the 2-Pack — Best Value",
+      "seQty2": "Add 1 more for the 3-Pack — Most Popular",
       "noQty1": "Add 1 more — shipping stays the same (Best Value 2-Pack)",
       "noQty2": "Buying 3? Shipping becomes €49 — still best value per set.",
       "switchTo2Pack": "Switch to 2-Pack",
