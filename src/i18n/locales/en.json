@@ -287,8 +287,8 @@
       "eu": {
         "region": "European Union 🇪🇺",
         "timeframe": "7-14 business days",
-        "cost": "Calculated at checkout",
-        "description": "Comprehensive coverage across all EU member countries with customs pre-clearance.",
+        "cost": "Shown at checkout",
+        "description": "Delivery across EU countries. Shipping cost shown at checkout.",
         "method": "Express international shipping"
       }
     },
