@@ -58,7 +58,7 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="">
       {/* Hero Section */}
       <section className="bg-muted py-14 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

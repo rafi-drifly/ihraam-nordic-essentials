@@ -11,7 +11,7 @@ const IhramSpiritualMeaningBlog = () => {
   const localePrefix = i18n.language === 'sv' ? '/sv' : i18n.language === 'no' ? '/no' : '';
 
   return (
-    <div className="min-h-screen py-8">
+    <div className="py-8">
       <SEOHead 
         title="The Spiritual Meaning of Ihram | Pure Ihram"
         description="Explore the deep spiritual significance of Ihram in Islam. Learn how the white garments symbolize equality, humility, and devotion before Allah."

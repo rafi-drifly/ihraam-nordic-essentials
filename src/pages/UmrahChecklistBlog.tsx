@@ -21,7 +21,7 @@ const UmrahChecklistBlog = () => {
   };
 
   return (
-    <div className="min-h-screen py-12">
+    <div className="py-12">
       <SEOHead 
         title="Umrah Preparation Checklist – Complete Guide | Pure Ihram"
         description="Complete Umrah checklist covering travel documents, clothing, toiletries, spiritual preparation, and essential items to pack for your pilgrimage."

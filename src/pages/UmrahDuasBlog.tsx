@@ -11,7 +11,7 @@ const UmrahDuasBlog = () => {
   const localePrefix = i18n.language === 'sv' ? '/sv' : i18n.language === 'no' ? '/no' : '';
 
   return (
-    <div className="min-h-screen py-8">
+    <div className="py-8">
       <SEOHead 
         title="Essential Duas for Umrah – Complete Guide | Pure Ihram"
         description="Memorize the most important duas for Umrah with Arabic text, transliteration, and English meaning. Covers Talbiyah, Tawaf, Sa'i, and more."

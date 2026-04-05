@@ -97,7 +97,7 @@ Additional Notes: ${formData.notes || 'N/A'}
         <Helmet>
           <title>{t('mosqueSupport.seoTitle')}</title>
         </Helmet>
-        <div className="min-h-screen py-12">
+        <div className="py-12">
           <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-green-100 mb-6">
               <Check className="h-10 w-10 text-green-600" />
@@ -133,7 +133,7 @@ Additional Notes: ${formData.notes || 'N/A'}
         <meta name="description" content={t('mosqueSupport.seoDescription')} />
       </Helmet>
 
-      <div className="min-h-screen py-12">
+      <div className="py-12">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Back Navigation */}
           <div className="mb-6">
