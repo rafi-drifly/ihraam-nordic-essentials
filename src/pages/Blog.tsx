@@ -97,7 +97,7 @@ const Blog = () => {
   ];
 
   return (
-    <div className="min-h-screen py-8">
+    <div className="py-8">
       <SEOHead 
         title="Hajj & Umrah Guides – Ihram Tips & Duas | Pure Ihram"
         description="Read expert guides on Ihram, Hajj, and Umrah preparation. Includes step-by-step instructions, duas, checklists, and common mistakes to avoid."

@@ -139,7 +139,7 @@ const Partners = () => {
     : 'Partner with Pure Ihram to supply high-quality Ihram sets to your pilgrims. Ideal for mosques and Hajj/Umrah agencies across Europe with special wholesale pricing.';
 
   return (
-    <div className="min-h-screen">
+    <div className="">
       <SEOHead title={seoTitle} description={seoDescription} />
       
       {/* Hero Section */}

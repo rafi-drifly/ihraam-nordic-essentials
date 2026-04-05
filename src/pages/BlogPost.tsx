@@ -21,7 +21,7 @@ const BlogPost = () => {
   };
 
   return (
-    <div className="min-h-screen py-12">
+    <div className="py-12">
       <SEOHead 
         title="How to Wear Ihram – Step-by-Step Guide | Pure Ihram"
         description="Learn how to wear Ihram correctly for Hajj and Umrah. Step-by-step guide covering preparation, wrapping techniques, and practical tips for pilgrims."
