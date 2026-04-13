@@ -262,11 +262,11 @@ const Partners = () => {
                       </div>
                       <div className="flex justify-between items-center py-3 border-b border-border">
                         <span className="text-muted-foreground">{t('partners.pricing.breakdown.sellPrice')}</span>
-                        <span className="font-semibold text-foreground">€18–€20</span>
+                        <span className="font-semibold text-foreground">€18-€20</span>
                       </div>
                       <div className="flex justify-between items-center py-3">
                         <span className="text-muted-foreground">{t('partners.pricing.breakdown.margin')}</span>
-                        <span className="font-bold text-primary text-lg">€5–€7</span>
+                        <span className="font-bold text-primary text-lg">€5-€7</span>
                       </div>
                     </div>
                     <p className="text-sm text-muted-foreground mt-4 italic">
@@ -538,10 +538,10 @@ const Partners = () => {
                         <SelectValue placeholder={t('partners.form.pilgrimsPlaceholder')} />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="1-50">1–50</SelectItem>
-                        <SelectItem value="51-100">51–100</SelectItem>
-                        <SelectItem value="101-250">101–250</SelectItem>
-                        <SelectItem value="251-500">251–500</SelectItem>
+                        <SelectItem value="1-50">1-50</SelectItem>
+                        <SelectItem value="51-100">51-100</SelectItem>
+                        <SelectItem value="101-250">101-250</SelectItem>
+                        <SelectItem value="251-500">251-500</SelectItem>
                         <SelectItem value="500+">500+</SelectItem>
                       </SelectContent>
                     </Select>

@@ -290,7 +290,7 @@ const DonationForm = ({ localePrefix }: DonationFormProps) => {
               disabled={loading || getFinalAmount() < 1}
             >
               <Lock className="h-5 w-5 mr-2" />
-              {loading ? t('common.loading') : `Donate Securely – €${getFinalAmount().toFixed(2)}`}
+              {loading ? t('common.loading') : `Donate Securely - €${getFinalAmount().toFixed(2)}`}
               {frequency === 'monthly' && '/month'}
             </Button>
 

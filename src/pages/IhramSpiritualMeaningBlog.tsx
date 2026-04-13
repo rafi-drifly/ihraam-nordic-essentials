@@ -69,7 +69,7 @@ const IhramSpiritualMeaningBlog = () => {
         <Card className="mb-6">
           <CardHeader>
             <CardTitle className="text-xl">
-              🕋 1️⃣ The Essence of Ihram – A Garment of the Soul
+              🕋 1️⃣ The Essence of Ihram - A Garment of the Soul
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">

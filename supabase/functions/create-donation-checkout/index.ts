@@ -52,7 +52,7 @@ serve(async (req) => {
       'where-needed': 'Where Most Needed'
     };
 
-    const productDescription = `Voluntary Donation – ${directionLabels[direction] || 'Support Our Mission'}`;
+    const productDescription = `Voluntary Donation - ${directionLabels[direction] || 'Support Our Mission'}`;
 
     // Common metadata
     const metadata = {
@@ -75,7 +75,7 @@ serve(async (req) => {
             price_data: {
               currency: 'eur',
               product_data: {
-                name: `Monthly Donation – ${directionLabels[direction] || 'Support Our Mission'}`,
+                name: `Monthly Donation - ${directionLabels[direction] || 'Support Our Mission'}`,
                 description: 'Recurring monthly donation to Pure Ihram\'s mission.',
               },
               unit_amount: amountInCents,

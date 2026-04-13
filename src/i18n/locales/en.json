@@ -47,7 +47,7 @@
       "titleHighlight": "Delivered from Sweden",
       "description": "Lightweight, comfortable Ihram cloth at a fair price. Clear pricing, honest service, and reliable delivery across Europe.",
       "cta": "Shop Now",
-      "trustLine": "Clear pricing · Sweden-based · 3–7 day delivery",
+      "trustLine": "Clear pricing · Sweden-based · 3-7 day delivery",
       "learnMore": "Learn More",
       "partnersLink": "For Mosques & Hajj/Umrah Agencies →"
     },
@@ -82,7 +82,7 @@
       },
       "fastDelivery": {
         "title": "Sweden-Based Delivery",
-        "description": "Ships from Sweden. 3–7 days domestic, 7–14 days across Europe."
+        "description": "Ships from Sweden. 3-7 days domestic, 7-14 days across Europe."
       },
       "affordable": {
         "title": "Honest Pricing",
@@ -98,11 +98,11 @@
       "readMore": "Read More",
       "articles": {
         "spiritual": {
-          "title": "The Spiritual Meaning of Ihram – Equality Before Allah",
+          "title": "The Spiritual Meaning of Ihram - Equality Before Allah",
           "description": "Explore the deeper significance of Ihram and how it represents humility and unity among believers."
         },
         "howToWear": {
-          "title": "How to Wear Ihram – Step-by-Step Guide for Pilgrims",
+          "title": "How to Wear Ihram - Step-by-Step Guide for Pilgrims",
           "description": "Learn the correct way to wear Ihram garments with Sunnah guidance and comfort tips."
         },
         "sunnah": {
@@ -136,7 +136,7 @@
       "title": "Our Story",
       "p1": "Pure Ihram was born from a simple yet profound realization: too many Muslims across Europe were struggling to find affordable, quality Ihram (Ihraam) cloth for their pilgrimage to the holy cities of Makkah and Madinah.",
       "p2": "Having witnessed fellow believers paying excessive prices for basic pilgrimage essentials, we made a commitment to provide premium Ihram cloth at an honest, accessible price of just €19.",
-      "p3": "Our mission extends beyond commerce – every sale is made with the sincere intention of earning ajr (reward) in the Akhirah while helping our brothers and sisters fulfill their religious obligations without financial burden.",
+      "p3": "Our mission extends beyond commerce - every sale is made with the sincere intention of earning ajr (reward) in the Akhirah while helping our brothers and sisters fulfill their religious obligations without financial burden.",
       "p4": "Today, we're proud to serve thousands of pilgrims across Sweden, the Nordic countries, and the European Union, ensuring that distance and cost never become barriers to spiritual fulfillment."
     },
     "promise": {
@@ -163,7 +163,7 @@
     },
     "quality": {
       "title": "Why Quality Matters",
-      "p1": "During Hajj and Umrah, pilgrims face intense physical and spiritual demands. Your Ihram should be the least of your concerns – comfortable, breathable, and durable enough to withstand the journey ahead.",
+      "p1": "During Hajj and Umrah, pilgrims face intense physical and spiritual demands. Your Ihram should be the least of your concerns - comfortable, breathable, and durable enough to withstand the journey ahead.",
       "p2": "We source our fabric from trusted suppliers who understand the sacred nature of these garments. Every piece is inspected, pre-washed, and prepared with the care befitting its holy purpose.",
       "cotton": {
         "title": "Premium Microfiber",
@@ -417,8 +417,8 @@
       "sweden": "Sweden",
       "norway": "Norway",
       "norwayCustomsNote": "Norway is outside the EU. Import VAT/customs fees may apply on delivery.",
-      "norwayShippingSame": "Norway: Shipping stays the same for 1–2 sets.",
-      "norwayShippingBullet": "1–2 sets: €39 delivery · 3+ sets: €49 delivery"
+      "norwayShippingSame": "Norway: Shipping stays the same for 1-2 sets.",
+      "norwayShippingBullet": "1-2 sets: €39 delivery · 3+ sets: €49 delivery"
     },
     "specifications": {
       "title": "Technical Specifications",
@@ -491,7 +491,7 @@
     },
     "posts": {
       "howToWear": {
-        "title": "How to Wear Ihram – A Simple Guide for Pilgrims",
+        "title": "How to Wear Ihram - A Simple Guide for Pilgrims",
         "excerpt": "A step-by-step guide to properly wearing the Ihram garments, ensuring comfort and adherence to Islamic guidelines during your pilgrimage.",
         "author": "Pure Ihram Team",
         "readTime": "5 min read",
@@ -526,7 +526,7 @@
         "date": "March 15, 2024"
       },
       "spiritualMeaning": {
-        "title": "The Spiritual Meaning of Ihram – Equality Before Allah",
+        "title": "The Spiritual Meaning of Ihram - Equality Before Allah",
         "excerpt": "Explore the deeper spiritual significance of Ihram and how it represents the equality of all believers in the sight of Allah.",
         "author": "Islamic Scholar",
         "readTime": "8 min read",
@@ -573,18 +573,18 @@
     "ameen": "- Ameen",
     "forComfortAndDurability": "For comfort and durability",
     "choosePureIhram": "Choose the Pure Ihram Quick-Dry Set (115×230 cm)",
-    "howToWearLink": "How to Wear Ihram – Step-by-Step Guide",
+    "howToWearLink": "How to Wear Ihram - Step-by-Step Guide",
     "shopTowelSet": "Shop the Pure Ihram Hajj Towel Set",
     "sunnahActsLink": "Sunnah Acts Before Entering Ihram",
     "checklistLink": "Checklist for Umrah Preparation",
     "duasLink": "Essential Duas for Umrah",
     "mistakesLink": "Common Mistakes Pilgrims Make in Ihram",
-    "spiritualMeaningLink": "The Spiritual Meaning of Ihram – Equality Before Allah"
+    "spiritualMeaningLink": "The Spiritual Meaning of Ihram - Equality Before Allah"
   },
   "partners": {
     "hero": {
       "badge": "B2B Partnership",
-      "title": "Partner with Pure Ihram – Serve Your Pilgrims, Support Your Masjid",
+      "title": "Partner with Pure Ihram - Serve Your Pilgrims, Support Your Masjid",
       "subtitle": "Offer high-quality Ihram to your community at an affordable price, while creating a halal income stream for your masjid or agency.",
       "ctaPrimary": "Contact us for wholesale pricing",
       "ctaSecondary": "Request a sample set"
@@ -634,7 +634,7 @@
       },
       "example": {
         "title": "100 Sets Example",
-        "description": "If your masjid or agency orders 100 Ihram sets and sells at €17–€19 each:",
+        "description": "If your masjid or agency orders 100 Ihram sets and sells at €17-€19 each:",
         "benefit": "Halal benefit for your organisation"
       }
     },
@@ -999,7 +999,7 @@
     "contact": {
       "title": "Need Help?",
       "email": "Email",
-      "responseTime": "We respond within 24–48 hours.",
+      "responseTime": "We respond within 24-48 hours.",
       "orderReminder": "Please include your order number in all correspondence."
     },
     "dialog": {
@@ -1029,7 +1029,7 @@
       "messagePlaceholder": "Any additional details...",
       "submit": "Submit Request",
       "successTitle": "Request Submitted!",
-      "successMessage": "Thank you! Please email your request details to support@pureihraam.com with your order number. We'll respond within 24–48 hours with next steps.",
+      "successMessage": "Thank you! Please email your request details to support@pureihraam.com with your order number. We'll respond within 24-48 hours with next steps.",
       "close": "Close"
     }
   }

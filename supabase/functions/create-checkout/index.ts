@@ -117,8 +117,8 @@ serve(async (req) => {
 
     const labels = bundleLabels[locale || 'en'] || bundleLabels.en;
     let bundleName = product.name;
-    if (totalQuantity === 2) bundleName = `${product.name} – ${labels.twoPack}`;
-    else if (totalQuantity >= 3) bundleName = `${product.name} – ${labels.threePack}`;
+    if (totalQuantity === 2) bundleName = `${product.name} - ${labels.twoPack}`;
+    else if (totalQuantity >= 3) bundleName = `${product.name} - ${labels.threePack}`;
 
     const totalPriceCents = bundlePrice
       ? Math.round(bundlePrice * 100)
@@ -156,7 +156,7 @@ serve(async (req) => {
         price_data: {
           currency: 'eur',
           product_data: {
-            name: 'Voluntary Donation – Support Our Mission',
+            name: 'Voluntary Donation - Support Our Mission',
             description: 'Thank you for supporting Pure Ihram\'s mission',
           },
           unit_amount: Math.round(donation * 100),
@@ -165,7 +165,7 @@ serve(async (req) => {
       });
     }
 
-    const shippingMessage = "We ship to Sweden (3–7 business days). For orders outside Sweden, shipping costs may vary - we'll contact you with the exact delivery fee before dispatching.";
+    const shippingMessage = "We ship to Sweden (3-7 business days). For orders outside Sweden, shipping costs may vary - we'll contact you with the exact delivery fee before dispatching.";
 
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
