@@ -33,6 +33,8 @@ const Partners = () => {
   const location = useLocation();
   const localePrefix = location.pathname.startsWith('/sv') ? '/sv' : location.pathname.startsWith('/no') ? '/no' : '';
   
+  useEffect(() => { trackPartnerPageView(); }, []);
+
   const [formData, setFormData] = useState({
     name: "",
     organisation: "",
