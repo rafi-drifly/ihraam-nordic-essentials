@@ -24,7 +24,7 @@ const BlogPost = () => {
   return (
     <div className="py-12">
       <SEOHead 
-        title="How to Wear Ihram – Step-by-Step Guide | Pure Ihram"
+        title="How to Wear Ihram - Step-by-Step Guide | Pure Ihram"
         description="Learn how to wear Ihram correctly for Hajj and Umrah. Step-by-step guide covering preparation, wrapping techniques, and practical tips for pilgrims."
       />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -105,8 +105,8 @@ const BlogPost = () => {
                   Two unstitched white cotton cloths:
                 </p>
                 <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
-                  <li><strong>Izar (lower garment)</strong> – covers the waist down to the ankles.</li>
-                  <li><strong>Rida' (upper garment)</strong> – covers from the shoulders to the waist.</li>
+                  <li><strong>Izar (lower garment)</strong> - covers the waist down to the ankles.</li>
+                  <li><strong>Rida' (upper garment)</strong> - covers from the shoulders to the waist.</li>
                 </ul>
                 <p className="text-muted-foreground leading-relaxed mt-3">
                   At Pure Ihram, our cloth sets are made from lightweight, breathable cotton, pre-washed and ready for your sacred journey.

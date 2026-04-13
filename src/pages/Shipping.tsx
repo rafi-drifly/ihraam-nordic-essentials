@@ -182,7 +182,7 @@ const Shipping = () => {
               </div>
               <div>
                 <p className="text-sm text-muted-foreground italic">
-                  {t('shipping.peakNote', 'During peak seasons (Hajj/Ramadan), we recommend ordering 2–3 weeks before your departure.')}
+                  {t('shipping.peakNote', 'During peak seasons (Hajj/Ramadan), we recommend ordering 2-3 weeks before your departure.')}
                 </p>
               </div>
             </CardContent>

@@ -13,7 +13,7 @@ const UmrahDuasBlog = () => {
   return (
     <div className="py-8">
       <SEOHead 
-        title="Essential Duas for Umrah – Complete Guide | Pure Ihram"
+        title="Essential Duas for Umrah - Complete Guide | Pure Ihram"
         description="Memorize the most important duas for Umrah with Arabic text, transliteration, and English meaning. Covers Talbiyah, Tawaf, Sa'i, and more."
       />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

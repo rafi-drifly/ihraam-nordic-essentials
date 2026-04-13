@@ -99,7 +99,7 @@ const Blog = () => {
   return (
     <div className="py-8">
       <SEOHead 
-        title="Hajj & Umrah Guides – Ihram Tips & Duas | Pure Ihram"
+        title="Hajj & Umrah Guides - Ihram Tips & Duas | Pure Ihram"
         description="Read expert guides on Ihram, Hajj, and Umrah preparation. Includes step-by-step instructions, duas, checklists, and common mistakes to avoid."
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

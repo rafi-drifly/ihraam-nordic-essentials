@@ -34,12 +34,12 @@ const SEOHead = ({ title, description, path }: SEOHeadProps) => {
 
   const getDefaultTitle = () => {
     if (currentLang === 'sv') {
-      return 'Pure Ihram – Premium Ihram-Kläder för Hajj & Umrah | Köp Online i Sverige';
+      return 'Pure Ihram - Premium Ihram-Kläder för Hajj & Umrah | Köp Online i Sverige';
     }
     if (currentLang === 'no') {
-      return 'Pure Ihram – Premium Ihram-Klær for Hajj & Umrah | Kjøp Online i Norge';
+      return 'Pure Ihram - Premium Ihram-Klær for Hajj & Umrah | Kjøp Online i Norge';
     }
-    return 'Pure Ihram – Premium Ihram Garments for Hajj & Umrah | Buy Online in Europe';
+    return 'Pure Ihram - Premium Ihram Garments for Hajj & Umrah | Buy Online in Europe';
   };
     
   const getDefaultDescription = () => {

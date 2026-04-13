@@ -24,7 +24,7 @@ const UmrahChecklistBlog = () => {
   return (
     <div className="py-12">
       <SEOHead 
-        title="Umrah Preparation Checklist – Complete Guide | Pure Ihram"
+        title="Umrah Preparation Checklist - Complete Guide | Pure Ihram"
         description="Complete Umrah checklist covering travel documents, clothing, toiletries, spiritual preparation, and essential items to pack for your pilgrimage."
       />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -181,7 +181,7 @@ const UmrahChecklistBlog = () => {
                 <div className="space-y-2">
                   <div className="flex items-start gap-2">
                     <Check className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                    <p className="text-muted-foreground">2–3 modest abayas or long dresses</p>
+                    <p className="text-muted-foreground">2-3 modest abayas or long dresses</p>
                   </div>
                   <div className="flex items-start gap-2">
                     <Check className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
