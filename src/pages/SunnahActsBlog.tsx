@@ -65,7 +65,7 @@ const SunnahActsBlog = () => {
           <section className="mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-4">{t('blogPost.introduction')}</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Every sacred journey begins with preparation — not only of luggage and documents, but of the heart and soul. Before donning the white garments of Ihram, the Prophet ﷺ taught us a series of Sunnah acts that purify the body, refine intention, and welcome the pilgrim into a state of humility and devotion.
+              Every sacred journey begins with preparation - not only of luggage and documents, but of the heart and soul. Before donning the white garments of Ihram, the Prophet ﷺ taught us a series of Sunnah acts that purify the body, refine intention, and welcome the pilgrim into a state of humility and devotion.
             </p>
             
             <Card className="bg-accent/5 border-accent/20 mb-6">
@@ -73,7 +73,7 @@ const SunnahActsBlog = () => {
                 <blockquote className="text-lg italic text-foreground mb-2">
                   "And proclaim to the people the Hajj; they will come to you on foot and on every lean camel; they will come from every distant pass."
                 </blockquote>
-                <cite className="text-sm text-muted-foreground">— Qur'an 22:27</cite>
+                <cite className="text-sm text-muted-foreground">- Qur'an 22:27</cite>
               </CardContent>
             </Card>
           </section>
@@ -95,7 +95,7 @@ const SunnahActsBlog = () => {
                 <blockquote className="text-base italic text-foreground mb-2">
                   "When the Messenger of Allah ﷺ intended to enter Ihram, he performed ghusl."
                 </blockquote>
-                <cite className="text-sm text-muted-foreground">— Sahih Muslim</cite>
+                <cite className="text-sm text-muted-foreground">- Sahih Muslim</cite>
               </CardContent>
             </Card>
 
@@ -132,7 +132,7 @@ const SunnahActsBlog = () => {
                 <blockquote className="text-base italic text-foreground mb-2">
                   "The fitrah consists of five things: circumcision, shaving the pubic hair, trimming the moustache, cutting the nails, and plucking the underarm hair."
                 </blockquote>
-                <cite className="text-sm text-muted-foreground">— Sahih al-Bukhari</cite>
+                <cite className="text-sm text-muted-foreground">- Sahih al-Bukhari</cite>
               </CardContent>
             </Card>
 
@@ -155,7 +155,7 @@ const SunnahActsBlog = () => {
                 <blockquote className="text-base italic text-foreground mb-2">
                   "I used to apply perfume to the Messenger of Allah ﷺ before he entered Ihram, and again when he exited Ihram."
                 </blockquote>
-                <cite className="text-sm text-muted-foreground">— Sahih al-Bukhari</cite>
+                <cite className="text-sm text-muted-foreground">- Sahih al-Bukhari</cite>
               </CardContent>
             </Card>
 
@@ -177,7 +177,7 @@ const SunnahActsBlog = () => {
               After ghusl and grooming, wear your Ihram garments:
             </p>
             <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4 mb-6">
-              <li><strong>Men:</strong> Two unstitched white pieces — Izar (lower) and Rida' (upper).</li>
+              <li><strong>Men:</strong> Two unstitched white pieces - Izar (lower) and Rida' (upper).</li>
               <li><strong>Women:</strong> Modest, simple clothing covering the body without adornment.</li>
             </ul>
 
@@ -212,12 +212,12 @@ const SunnahActsBlog = () => {
                 <blockquote className="text-base italic text-foreground mb-2">
                   "The Prophet ﷺ entered Ihram after praying two rak'ahs at Dhul-Hulaifah."
                 </blockquote>
-                <cite className="text-sm text-muted-foreground">— Reported by al-Bayhaqi</cite>
+                <cite className="text-sm text-muted-foreground">- Reported by al-Bayhaqi</cite>
               </CardContent>
             </Card>
 
             <p className="text-muted-foreground leading-relaxed">
-              If time permits, pray two rak'ahs before entering Ihram — a moment to purify intention and ask Allah for sincerity and acceptance.
+              If time permits, pray two rak'ahs before entering Ihram - a moment to purify intention and ask Allah for sincerity and acceptance.
             </p>
           </section>
 
@@ -297,7 +297,7 @@ const SunnahActsBlog = () => {
               💭 {t('blogPost.spiritualReflection')}
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
-              Each Sunnah act before Ihram — from bathing to prayer — is a renewal of the soul. It's as if the pilgrim stands before Allah saying:
+              Each Sunnah act before Ihram - from bathing to prayer - is a renewal of the soul. It's as if the pilgrim stands before Allah saying:
             </p>
             <Card className="bg-accent/5 border-accent/20 mb-6">
               <CardContent className="p-6">
@@ -312,7 +312,7 @@ const SunnahActsBlog = () => {
                 <blockquote className="text-lg italic text-foreground mb-2">
                   "Take provisions, but indeed, the best provision is Taqwa (God-consciousness)."
                 </blockquote>
-                <cite className="text-sm text-muted-foreground">— Qur'an 2:197</cite>
+                <cite className="text-sm text-muted-foreground">- Qur'an 2:197</cite>
               </CardContent>
             </Card>
           </section>

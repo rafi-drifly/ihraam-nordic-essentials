@@ -48,10 +48,10 @@ const UmrahDuasBlog = () => {
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-foreground leading-relaxed">
-              Umrah is not just a physical journey to the holy lands of Makkah — it's a spiritual conversation with Allah.
+              Umrah is not just a physical journey to the holy lands of Makkah - it's a spiritual conversation with Allah.
             </p>
             <p className="text-foreground leading-relaxed">
-              Each step of Umrah — from wearing Ihram to performing Tawaf — offers an opportunity to draw nearer through dua (supplication).
+              Each step of Umrah - from wearing Ihram to performing Tawaf - offers an opportunity to draw nearer through dua (supplication).
             </p>
             <p className="text-foreground leading-relaxed">
               This guide gathers the most important duas to memorize, recite, and reflect upon during your Umrah journey, 
@@ -61,7 +61,7 @@ const UmrahDuasBlog = () => {
               <blockquote className="text-base italic text-foreground mb-2">
                 "And when My servants ask you concerning Me, indeed I am near. I respond to the call of the supplicant when he calls upon Me."
               </blockquote>
-              <cite className="text-sm text-muted-foreground">— Qur'an 2:186</cite>
+              <cite className="text-sm text-muted-foreground">- Qur'an 2:186</cite>
             </div>
           </CardContent>
         </Card>
@@ -99,7 +99,7 @@ const UmrahDuasBlog = () => {
               <div className="bg-primary/10 border border-primary/20 rounded-lg p-4">
                 <p className="flex items-start gap-2 text-sm text-foreground">
                   <Lightbulb className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                  <span><strong>Tip:</strong> Recite this whenever you step out of your home — it invites divine protection throughout your travels.</span>
+                  <span><strong>Tip:</strong> Recite this whenever you step out of your home - it invites divine protection throughout your travels.</span>
                 </p>
               </div>
             </div>
@@ -195,7 +195,7 @@ const UmrahDuasBlog = () => {
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-foreground leading-relaxed">
-              This is one of the most emotional and powerful moments of your life — make heartfelt dua.
+              This is one of the most emotional and powerful moments of your life - make heartfelt dua.
             </p>
             
             <div className="space-y-3">
@@ -221,7 +221,7 @@ const UmrahDuasBlog = () => {
               <div className="bg-primary/10 border border-primary/20 rounded-lg p-4">
                 <p className="flex items-start gap-2 text-sm text-foreground">
                   <Lightbulb className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                  <span><strong>Tip:</strong> You may also make personal dua — for forgiveness, family, and acceptance — as all supplications here are answered, insha'Allah.</span>
+                  <span><strong>Tip:</strong> You may also make personal dua - for forgiveness, family, and acceptance - as all supplications here are answered, insha'Allah.</span>
                 </p>
               </div>
             </div>
@@ -237,7 +237,7 @@ const UmrahDuasBlog = () => {
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-foreground leading-relaxed">
-              There is no fixed dua — you can recite Qur'an, dhikr, or any personal supplication.
+              There is no fixed dua - you can recite Qur'an, dhikr, or any personal supplication.
             </p>
             <p className="text-foreground leading-relaxed">
               However, between the Yemeni Corner (Rukn al-Yamani) and the Black Stone (Hajar al-Aswad), recite this Sunnah dua:
@@ -401,7 +401,7 @@ const UmrahDuasBlog = () => {
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-foreground leading-relaxed">
-              These duas are not mere rituals — they are conversations with Allah.
+              These duas are not mere rituals - they are conversations with Allah.
             </p>
             <p className="text-foreground leading-relaxed">
               Every word brings you closer to Him, and every supplication is an opportunity to be forgiven, uplifted, and renewed.
@@ -410,7 +410,7 @@ const UmrahDuasBlog = () => {
               <blockquote className="text-base italic text-foreground mb-2">
                 "Call upon Me; I will respond to you."
               </blockquote>
-              <cite className="text-sm text-muted-foreground">— Qur'an 40:60</cite>
+              <cite className="text-sm text-muted-foreground">- Qur'an 40:60</cite>
             </div>
           </CardContent>
         </Card>

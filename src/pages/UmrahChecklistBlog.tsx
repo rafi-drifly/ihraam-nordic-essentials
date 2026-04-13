@@ -66,10 +66,10 @@ const UmrahChecklistBlog = () => {
           <section className="mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-4">🌙 {t('blogPost.introduction')}</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Preparing for Umrah is both exciting and humbling. It's a journey that begins long before your flight — with careful planning, spiritual focus, and readiness of heart.
+              Preparing for Umrah is both exciting and humbling. It's a journey that begins long before your flight - with careful planning, spiritual focus, and readiness of heart.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              To make your experience smooth and fulfilling, here's a comprehensive Umrah checklist — covering everything from travel documents and clothing to dua lists and essential items to pack.
+              To make your experience smooth and fulfilling, here's a comprehensive Umrah checklist - covering everything from travel documents and clothing to dua lists and essential items to pack.
             </p>
             <p className="text-muted-foreground leading-relaxed font-semibold">
               This guide will help ensure you can focus entirely on worship, not logistics.
@@ -141,7 +141,7 @@ const UmrahChecklistBlog = () => {
               🧳 2️⃣ Clothing Checklist
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
-              Clothing for Umrah should be simple, modest, and comfortable — prioritizing spiritual focus over fashion.
+              Clothing for Umrah should be simple, modest, and comfortable - prioritizing spiritual focus over fashion.
             </p>
 
             <div className="space-y-6">
@@ -223,7 +223,7 @@ const UmrahChecklistBlog = () => {
 
             <div className="bg-accent/10 p-4 rounded-lg border-l-4 mt-6" style={{ borderLeftColor: '#2C7A7B' }}>
               <p className="text-foreground">
-                <strong>💡 Tip:</strong> Keep one full set of Ihram and essentials in your carry-on — in case of luggage delay.
+                <strong>💡 Tip:</strong> Keep one full set of Ihram and essentials in your carry-on - in case of luggage delay.
               </p>
             </div>
           </section>
@@ -297,7 +297,7 @@ const UmrahChecklistBlog = () => {
               🕋 4️⃣ Spiritual Preparation
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
-              Before the journey, focus on heart and intention — your goal is closeness to Allah, not tourism.
+              Before the journey, focus on heart and intention - your goal is closeness to Allah, not tourism.
             </p>
 
             <div className="bg-muted p-6 rounded-lg mb-6">
@@ -447,7 +447,7 @@ const UmrahChecklistBlog = () => {
                 <blockquote className="text-lg italic text-foreground mb-2">
                   "Take provisions, but indeed, the best provision is Taqwa (God-consciousness)."
                 </blockquote>
-                <cite className="text-sm text-muted-foreground">— Qur'an 2:197</cite>
+                <cite className="text-sm text-muted-foreground">- Qur'an 2:197</cite>
               </CardContent>
             </Card>
           </section>

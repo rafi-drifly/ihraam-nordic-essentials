@@ -318,7 +318,7 @@ const AdminOrders = () => {
                       {order.extra_shipping_status === 'paid' && (order.status === 'paid' || order.status === 'ready_to_ship') && (
                         <span className="flex items-center gap-2 text-sm text-green-600">
                           <CheckCircle className="w-4 h-4" />
-                          Extra shipping paid — Ready to ship
+                          Extra shipping paid - Ready to ship
                         </span>
                       )}
                     </div>

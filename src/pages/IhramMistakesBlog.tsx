@@ -49,7 +49,7 @@ const IhramMistakesBlog = () => {
           <CardContent className="space-y-4">
             <p className="text-foreground leading-relaxed">
               Entering the state of Ihram is one of the most sacred acts of worship in Hajj and Umrah. 
-              It marks the pilgrim's full surrender — leaving behind worldly distinctions and standing equal before Allah.
+              It marks the pilgrim's full surrender - leaving behind worldly distinctions and standing equal before Allah.
             </p>
             <p className="text-foreground leading-relaxed">
               However, many pilgrims unknowingly commit small errors that can reduce the reward or even 
@@ -57,13 +57,13 @@ const IhramMistakesBlog = () => {
             </p>
             <p className="text-foreground leading-relaxed">
               This guide highlights the most common mistakes people make during Ihram and offers tips on 
-              how to avoid them — so your journey remains pure, peaceful, and accepted, insha'Allah.
+              how to avoid them - so your journey remains pure, peaceful, and accepted, insha'Allah.
             </p>
             <div className="bg-background rounded-lg p-6 border-l-4 border-primary mt-6">
               <blockquote className="text-base italic text-foreground mb-2">
                 "Take provisions, but indeed, the best provision is Taqwa (God-consciousness)."
               </blockquote>
-              <cite className="text-sm text-muted-foreground">— Qur'an 2:197</cite>
+              <cite className="text-sm text-muted-foreground">- Qur'an 2:197</cite>
             </div>
           </CardContent>
         </Card>
@@ -78,7 +78,7 @@ const IhramMistakesBlog = () => {
           <CardContent className="space-y-4">
             <p className="text-foreground leading-relaxed">
               Once you've made your niyyah (intention) and entered Ihram, using any product with fragrance 
-              becomes prohibited — including perfume, deodorant, soap, lotion, or wet wipes with scent.
+              becomes prohibited - including perfume, deodorant, soap, lotion, or wet wipes with scent.
             </p>
             <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-4">
               <p className="font-semibold text-foreground mb-2 flex items-center gap-2">
@@ -147,7 +147,7 @@ const IhramMistakesBlog = () => {
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-foreground leading-relaxed">
-              Men's Ihram must consist of two unstitched white garments — one for the lower body (Izar) 
+              Men's Ihram must consist of two unstitched white garments - one for the lower body (Izar) 
               and one for the upper body (Rida').
             </p>
             <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-4">
@@ -188,7 +188,7 @@ const IhramMistakesBlog = () => {
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-foreground leading-relaxed">
-              Men in Ihram should not cover their heads with hats, scarves, or cloth — this is a direct 
+              Men in Ihram should not cover their heads with hats, scarves, or cloth - this is a direct 
               violation of Ihram rules.
             </p>
             <p className="text-muted-foreground">
@@ -224,7 +224,7 @@ const IhramMistakesBlog = () => {
               <blockquote className="text-muted-foreground italic">
                 "A woman in Ihram must not cover her face or wear gloves."
               </blockquote>
-              <cite className="text-sm text-muted-foreground mt-2 block">— Sahih al-Bukhari</cite>
+              <cite className="text-sm text-muted-foreground mt-2 block">- Sahih al-Bukhari</cite>
             </div>
             <div className="bg-primary/10 border border-primary/20 rounded-lg p-4">
               <p className="font-semibold text-foreground mb-2 flex items-center gap-2">
@@ -248,7 +248,7 @@ const IhramMistakesBlog = () => {
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-foreground leading-relaxed">
-              Ihram is not only about clothing — it's about purifying character.
+              Ihram is not only about clothing - it's about purifying character.
             </p>
             <p className="text-muted-foreground">
               Many pilgrims forget that arguing, gossiping, or showing frustration contradicts the spirit of Ihram.
@@ -258,7 +258,7 @@ const IhramMistakesBlog = () => {
                 "So whoever has made Hajj obligatory upon himself, there is [to be for him] no sexual relations, 
                 no disobedience, and no disputing during Hajj."
               </blockquote>
-              <cite className="text-sm text-muted-foreground mt-2 block">— Qur'an 2:197</cite>
+              <cite className="text-sm text-muted-foreground mt-2 block">- Qur'an 2:197</cite>
             </div>
             <div className="bg-primary/10 border border-primary/20 rounded-lg p-4">
               <p className="font-semibold text-foreground mb-2 flex items-center gap-2">
@@ -266,7 +266,7 @@ const IhramMistakesBlog = () => {
                 What to do instead:
               </p>
               <p className="text-muted-foreground">
-                Stay calm, smile often, and remember — every delay, heatwave, or crowd is part of your test.
+                Stay calm, smile often, and remember - every delay, heatwave, or crowd is part of your test.
               </p>
             </div>
           </CardContent>
@@ -290,7 +290,7 @@ const IhramMistakesBlog = () => {
                 What to do instead:
               </p>
               <p className="text-muted-foreground mb-2">
-                Repeat the Talbiyah regularly — after prayers, when walking, or boarding vehicles — until you begin Tawaf.
+                Repeat the Talbiyah regularly - after prayers, when walking, or boarding vehicles - until you begin Tawaf.
               </p>
               <p className="text-muted-foreground">
                 Keep your heart alive with it.
@@ -367,7 +367,7 @@ const IhramMistakesBlog = () => {
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-foreground leading-relaxed">
-              Some pilgrims treat Ihram like a uniform — chatting loudly, scrolling on phones, or joking excessively.
+              Some pilgrims treat Ihram like a uniform - chatting loudly, scrolling on phones, or joking excessively.
             </p>
             <p className="text-muted-foreground">
               Remember, you are standing before Allah, and this time is sacred.
@@ -378,7 +378,7 @@ const IhramMistakesBlog = () => {
                 What to do instead:
               </p>
               <p className="text-muted-foreground mb-2">
-                Maintain khushu' (focus) — use the time for dhikr, Qur'an, and reflection.
+                Maintain khushu' (focus) - use the time for dhikr, Qur'an, and reflection.
               </p>
               <p className="text-muted-foreground">
                 Remind yourself that these moments may never return.
@@ -409,7 +409,7 @@ const IhramMistakesBlog = () => {
                 "Whoever performs Hajj for the sake of Allah and does not commit obscene or sinful acts, 
                 he will return like the day his mother gave birth to him."
               </blockquote>
-              <cite className="text-sm text-muted-foreground">— Sahih al-Bukhari</cite>
+              <cite className="text-sm text-muted-foreground">- Sahih al-Bukhari</cite>
             </div>
           </CardContent>
         </Card>

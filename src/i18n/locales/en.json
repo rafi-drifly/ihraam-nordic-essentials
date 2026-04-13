@@ -1,7 +1,7 @@
 {
   "banner": {
-    "newStock": "Ihram sets from €19 — delivered across Europe",
-    "promoText": "Ihram sets from €19 — delivered across Europe"
+    "newStock": "Ihram sets from €19 - delivered across Europe",
+    "promoText": "Ihram sets from €19 - delivered across Europe"
   },
   "nav": {
     "home": "Home",
@@ -52,7 +52,7 @@
       "partnersLink": "For Mosques & Hajj/Umrah Agencies →"
     },
     "quranVerse1": "\"And proclaim to the people the Hajj; they will come to you on foot and on every lean camel; they will come from every distant pass.\"",
-    "quranVerse1Cite": "— Qur'an 22:27",
+    "quranVerse1Cite": "- Qur'an 22:27",
     "whyChoose": {
       "title": "Why Choose Pure Ihram?",
       "subtitle": "Quality, accessibility, and comfort for every pilgrim",
@@ -78,7 +78,7 @@
       },
       "intention": {
         "title": "Calm, Respectful Service",
-        "description": "We keep things honest — no hype, no pressure. Just a quality product and clear communication."
+        "description": "We keep things honest - no hype, no pressure. Just a quality product and clear communication."
       },
       "fastDelivery": {
         "title": "Sweden-Based Delivery",
@@ -86,14 +86,14 @@
       },
       "affordable": {
         "title": "Honest Pricing",
-        "description": "From €19 per set. What you see is what you pay — no hidden fees."
+        "description": "From €19 per set. What you see is what you pay - no hidden fees."
       }
     },
     "quranVerse2": "\"And Hajj to the House is a duty that mankind owes to Allah, for those who can afford the journey.\"",
-    "quranVerse2Cite": "— Qur'an 3:97",
+    "quranVerse2Cite": "- Qur'an 3:97",
     "guides": {
       "title": "Guides & Knowledge",
-      "subtitle": "Learn everything you need before your pilgrimage — from Sunnah acts and packing tips to the spiritual meaning of Ihram.",
+      "subtitle": "Learn everything you need before your pilgrimage - from Sunnah acts and packing tips to the spiritual meaning of Ihram.",
       "viewAll": "View All Guides",
       "readMore": "Read More",
       "articles": {
@@ -107,11 +107,11 @@
         },
         "sunnah": {
           "title": "Sunnah Acts Before Entering Ihram",
-          "description": "Prepare your body and heart before Ihram through ghusl, perfume, and prayer — following the Sunnah."
+          "description": "Prepare your body and heart before Ihram through ghusl, perfume, and prayer - following the Sunnah."
         },
         "checklist": {
           "title": "Checklist for Umrah Preparation (Clothes, Duas, Documents)",
-          "description": "A complete guide to what you need before your journey — from essentials to spiritual preparation."
+          "description": "A complete guide to what you need before your journey - from essentials to spiritual preparation."
         },
         "duas": {
           "title": "Essential Duas for Umrah (With Transliteration & Meaning)",
@@ -125,7 +125,7 @@
     },
     "cta": {
       "title": "Ready to Order?",
-      "description": "Get your Ihram delivered to your door — simple, honest, and reliable.",
+      "description": "Get your Ihram delivered to your door - simple, honest, and reliable.",
       "button": "Shop Now"
     }
   },
@@ -143,7 +143,7 @@
       "title": "Our Promise",
       "text": "\"We promise to provide every Muslim with access to pure, comfortable Ihram (Ihraam) cloth at a price that honors both quality and affordability. Our commitment is not just to your pilgrimage, but to your spiritual journey and the barakah it brings.\"",
       "hadith": "\"The most beloved of people to Allah are those who are most beneficial to the people.\"",
-      "hadithCite": "— Al-Mu'jam al-Awsat"
+      "hadithCite": "- Al-Mu'jam al-Awsat"
     },
     "values": {
       "title": "Our Values",
@@ -383,7 +383,7 @@
     "notFound": "Product not found",
     "fastDelivery": "Fast Delivery",
     "reviews": "reviews",
-    "bundleHeading": "Pure Ihram Sets — Simple bundles, fair delivery",
+    "bundleHeading": "Pure Ihram Sets - Simple bundles, fair delivery",
     "bundleSubtitle": "Save more when you buy 2 or 3. Shipping shown at checkout.",
     "description": "Lightweight, comfortable Ihram cloth for your Hajj or Umrah journey. Soft microfiber, quick-dry, and easy to care for.",
     "plusShipping": "+ shipping",
@@ -403,10 +403,10 @@
       "freeDelivery": "Free Delivery",
       "delivery": "delivery",
       "youSave": "You save €{{amount}} vs singles",
-      "save2Pack": "Save on shipping — one delivery instead of two.",
+      "save2Pack": "Save on shipping - one delivery instead of two.",
       "savingsVsSeparate": "Save €{{amount}} vs ordering {{qty}} singles separately ({{qty}} deliveries).",
       "shippingNote": "Shipping is calculated based on your destination. Shown clearly at checkout.",
-      "whyBundles": "Bundles help you save — one delivery instead of multiple.",
+      "whyBundles": "Bundles help you save - one delivery instead of multiple.",
       "trustSoft": "Soft, breathable, suitable for Hajj & Umrah",
       "trustShipping": "Ships from Sweden",
       "trustMission": "Transparent mission",
@@ -472,14 +472,14 @@
     "spiritualReminder": {
       "title": "Spiritual Reminder",
       "quote": "\"The best of pilgrims is he who has the best provision and the most pious intention.\"",
-      "cite": "— Hadith"
+      "cite": "- Hadith"
     }
   },
   "blog": {
     "title": "Guides & Knowledge",
     "subtitle": "Essential guidance and knowledge for your sacred journey. Learn about Hajj, Umrah, and the spiritual significance of pilgrimage from Islamic scholars and experienced guides.",
     "quranVerse": "\"And proclaim to the people the Hajj; they will come to you on foot and on every lean camel; they will come from every distant pass.\"",
-    "quranVerseCite": "— Qur'an 22:27",
+    "quranVerseCite": "- Qur'an 22:27",
     "readMore": "Read More",
     "categories": {
       "all": "All",
@@ -520,7 +520,7 @@
       },
       "essentialDuas": {
         "title": "Essential Duas for Umrah (With Transliteration & Meaning)",
-        "excerpt": "A pilgrim's guide to the most beloved supplications during Umrah — from departure to Tawaf and beyond, with Arabic, transliteration, and English meaning.",
+        "excerpt": "A pilgrim's guide to the most beloved supplications during Umrah - from departure to Tawaf and beyond, with Arabic, transliteration, and English meaning.",
         "author": "Pure Ihram Team",
         "readTime": "15 min read",
         "date": "March 15, 2024"
@@ -534,7 +534,7 @@
       }
     },
     "hadithQuote": "\"Whoever performs Hajj for the sake of Allah and does not utter any obscene speech or do any evil deed, will return as pure as the day his mother gave birth to him.\"",
-    "hadithCite": "— Bukhari & Muslim",
+    "hadithCite": "- Bukhari & Muslim",
     "newsletter": {
       "title": "Stay Updated with Islamic Knowledge",
       "subtitle": "Subscribe to receive the latest articles, guides, and spiritual insights to help you prepare for your pilgrimage journey.",
@@ -569,8 +569,8 @@
     "spiritualReminder": "Spiritual Reminder",
     "spiritualReflection": "Spiritual Reflection",
     "closingMessage": "Closing Message",
-    "closingDua": "May Allah accept your pilgrimage, forgive your sins, and return you purified — just as you were born.",
-    "ameen": "— Ameen",
+    "closingDua": "May Allah accept your pilgrimage, forgive your sins, and return you purified - just as you were born.",
+    "ameen": "- Ameen",
     "forComfortAndDurability": "For comfort and durability",
     "choosePureIhram": "Choose the Pure Ihram Quick-Dry Set (115×230 cm)",
     "howToWearLink": "How to Wear Ihram – Step-by-Step Guide",
@@ -717,10 +717,10 @@
     "checkout": "Proceed to Checkout",
     "viewCart": "View Cart",
     "upsell": {
-      "seQty1": "Add 1 more for the 2-Pack — Best Value",
-      "seQty2": "Add 1 more for the 3-Pack — Most Popular",
-      "noQty1": "Add 1 more — shipping stays the same (Best Value 2-Pack)",
-      "noQty2": "Buying 3? Shipping becomes €49 — still best value per set.",
+      "seQty1": "Add 1 more for the 2-Pack - Best Value",
+      "seQty2": "Add 1 more for the 3-Pack - Most Popular",
+      "noQty1": "Add 1 more - shipping stays the same (Best Value 2-Pack)",
+      "noQty2": "Buying 3? Shipping becomes €49 - still best value per set.",
       "switchTo2Pack": "Switch to 2-Pack",
       "switchTo3Pack": "Switch to 3-Pack"
     },
@@ -761,7 +761,7 @@
     },
     "cta": "Donate Now",
     "quote": "\"The example of those who spend their wealth in the way of Allah is like a seed which grows seven spikes; in each spike is a hundred grains.\"",
-    "quoteCite": "— Qur'an 2:261",
+    "quoteCite": "- Qur'an 2:261",
     "checkout": {
       "title": "Support Our Mission (Optional)",
       "subtitle": "Help us keep Ihram affordable for all",
@@ -775,7 +775,7 @@
       "seoTitle": "Donation Successful | Pure Ihram",
       "message": "Your donation will help us keep Ihram affordable, support mosques, and provide assistance to those in need around the world.",
       "hadith": "\"The best of people are those who are most beneficial to people.\"",
-      "hadithCite": "— Al-Mu'jam al-Awsat",
+      "hadithCite": "- Al-Mu'jam al-Awsat",
       "impact": "May Allah accept your sadaqah and multiply your reward.",
       "browseProducts": "Browse Products",
       "backHome": "Back to Home",
@@ -791,7 +791,7 @@
   "donationCancel": {
     "seoTitle": "Donation Cancelled | Pure Ihram",
     "title": "Donation Cancelled",
-    "subtitle": "No worries — your card was not charged.",
+    "subtitle": "No worries - your card was not charged.",
     "message": "If you changed your mind, that's completely okay. Donations are voluntary and there is no pressure to contribute.",
     "noCharge": "Your payment method was not charged. You can try again anytime.",
     "tryAgain": "Try Again",
@@ -833,7 +833,7 @@
     "amanah": {
       "title": "Our Commitment to Amanah",
       "text": "This is people's money (Amanah). We are answerable to Allah for every cent. We strive to be transparent, responsible, and accountable in all that we do.",
-      "quote": "\"Indeed, Allah commands you to render trusts to whom they are due.\" — Qur'an 4:58"
+      "quote": "\"Indeed, Allah commands you to render trusts to whom they are due.\" - Qur'an 4:58"
     }
   },
   "mosqueSupport": {
@@ -898,7 +898,7 @@
   "returns": {
     "hero": {
       "title": "Returns & Exchanges",
-      "subtitle": "Clear, fair, and transparent—so you can shop with confidence."
+      "subtitle": "Clear, fair, and transparent-so you can shop with confidence."
     },
     "cards": {
       "withdrawal": {
@@ -959,7 +959,7 @@
     },
     "conditions": {
       "title": "Condition, Hygiene & Fairness",
-      "inspect": "You may inspect the item as you would in a store — try it on to check fit and quality.",
+      "inspect": "You may inspect the item as you would in a store - try it on to check fit and quality.",
       "valueReduction": "If the item has been used more than necessary for inspection, a value reduction may apply.",
       "unused": "Returns must be unused, unwashed, free of odors and stains, and in original condition."
     },

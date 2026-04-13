@@ -65,7 +65,7 @@ const BlogPost = () => {
           <section className="mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-4">{t('blogPost.introduction')}</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Embarking on the journey of Hajj or Umrah is one of the most spiritual experiences in a Muslim's life. Before stepping into Ihram, every pilgrim prepares physically and spiritually — purifying the body, making intention (niyyah), and adorning the two humble white garments that symbolize equality, humility, and devotion to Allah.
+              Embarking on the journey of Hajj or Umrah is one of the most spiritual experiences in a Muslim's life. Before stepping into Ihram, every pilgrim prepares physically and spiritually - purifying the body, making intention (niyyah), and adorning the two humble white garments that symbolize equality, humility, and devotion to Allah.
             </p>
             <p className="text-muted-foreground leading-relaxed">
               In this guide, we'll walk you through everything you need to know about how to wear Ihram, its Islamic significance, and practical tips to stay comfortable throughout your pilgrimage.
@@ -75,7 +75,7 @@ const BlogPost = () => {
           <section className="mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-4">{t('blogPost.whatIsIhram')}</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
-              The word Ihram (إحرام) means "to make sacred" — it's both a spiritual state and the simple two-piece garment that marks the beginning of your pilgrimage.
+              The word Ihram (إحرام) means "to make sacred" - it's both a spiritual state and the simple two-piece garment that marks the beginning of your pilgrimage.
             </p>
             
             <Card className="bg-accent/5 border-accent/20 mb-6">
@@ -83,12 +83,12 @@ const BlogPost = () => {
                 <blockquote className="text-lg italic text-foreground mb-2">
                   "And proclaim to the people the Hajj; they will come to you on foot and on every lean camel; they will come from every distant pass."
                 </blockquote>
-                <cite className="text-sm text-muted-foreground">— Qur'an 22:27</cite>
+                <cite className="text-sm text-muted-foreground">- Qur'an 22:27</cite>
               </CardContent>
             </Card>
 
             <p className="text-muted-foreground leading-relaxed">
-              When a pilgrim enters Ihram, they leave behind worldly distinctions — wealth, status, and pride — standing equal before Allah.
+              When a pilgrim enters Ihram, they leave behind worldly distinctions - wealth, status, and pride - standing equal before Allah.
             </p>
           </section>
 
@@ -149,7 +149,7 @@ const BlogPost = () => {
                     <p className="text-sm italic text-foreground">
                       The Prophet ﷺ would perform ghusl before entering Ihram and apply fragrance to his body.
                     </p>
-                    <cite className="text-xs text-muted-foreground">— Sahih Muslim</cite>
+                    <cite className="text-xs text-muted-foreground">- Sahih Muslim</cite>
                   </CardContent>
                 </Card>
               </div>
@@ -163,7 +163,7 @@ const BlogPost = () => {
                   <li>Use a belt if needed for support.</li>
                 </ul>
                 <p className="text-sm bg-muted p-4 rounded-lg">
-                  <strong>Tip:</strong> Keep the izar slightly loose to allow airflow — especially in hot climates.
+                  <strong>Tip:</strong> Keep the izar slightly loose to allow airflow - especially in hot climates.
                 </p>
               </div>
 
@@ -172,7 +172,7 @@ const BlogPost = () => {
                 <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
                   <li>Drape the rida' over your shoulders.</li>
                   <li>The cloth should cover both shoulders and upper arms.</li>
-                  <li>For tawaf al-umrah, it's Sunnah to expose the right shoulder (idhtiba') — this means placing the rida' under your right arm and over the left shoulder during tawaf only.</li>
+                  <li>For tawaf al-umrah, it's Sunnah to expose the right shoulder (idhtiba') - this means placing the rida' under your right arm and over the left shoulder during tawaf only.</li>
                   <li>After tawaf, return the rida' to cover both shoulders.</li>
                 </ul>
               </div>
@@ -208,7 +208,7 @@ const BlogPost = () => {
           <section className="mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-4">{t('blogPost.womenGuidelines')}</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Women do not have a specific Ihram garment — they wear modest, simple, non-adorned clothing that covers the body completely (without gloves or face veil).
+              Women do not have a specific Ihram garment - they wear modest, simple, non-adorned clothing that covers the body completely (without gloves or face veil).
             </p>
             <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
               <li>Use a light scarf or shawl for comfort and ventilation.</li>
@@ -231,7 +231,7 @@ const BlogPost = () => {
           <section className="mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-4">{t('blogPost.practicalTips')}</h2>
             <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
-              <li>Choose lightweight cotton Ihram — especially if traveling in summer.</li>
+              <li>Choose lightweight cotton Ihram - especially if traveling in summer.</li>
               <li>Keep a spare Ihram set for long journeys or emergencies.</li>
               <li>Fold carefully after use and store in a clean bag.</li>
               <li>Stay hydrated and avoid overcrowded areas when possible.</li>
@@ -241,14 +241,14 @@ const BlogPost = () => {
           <section className="mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-4">{t('blogPost.spiritualReminder')}</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
-              Ihram is not just about two white cloths — it's about purifying your heart and disconnecting from worldly distractions.
+              Ihram is not just about two white cloths - it's about purifying your heart and disconnecting from worldly distractions.
             </p>
             <Card className="bg-accent/5 border-accent/20">
               <CardContent className="p-6">
                 <blockquote className="text-lg italic text-foreground mb-2">
                   "Take provisions, but indeed, the best provision is Taqwa (God-consciousness)."
                 </blockquote>
-                <cite className="text-sm text-muted-foreground">— Qur'an 2:197</cite>
+                <cite className="text-sm text-muted-foreground">- Qur'an 2:197</cite>
               </CardContent>
             </Card>
           </section>
@@ -256,14 +256,14 @@ const BlogPost = () => {
           <section className="mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-4">{t('blogPost.closingMessage')}</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              At Pure Ihram, we believe Ihram should be simple, comfortable, and accessible to everyone. Our lightweight, pre-washed cotton Ihram sets are made with the intention of ease and reward — so you can focus on your worship, not discomfort.
+              At Pure Ihram, we believe Ihram should be simple, comfortable, and accessible to everyone. Our lightweight, pre-washed cotton Ihram sets are made with the intention of ease and reward - so you can focus on your worship, not discomfort.
             </p>
             <Card className="bg-accent/5 border-accent/20">
               <CardContent className="p-6">
                 <blockquote className="text-lg italic text-foreground mb-2">
                   "The most beloved of people to Allah are those who bring the most benefit to others."
                 </blockquote>
-                <cite className="text-sm text-muted-foreground">— Prophet Muhammad ﷺ (Al-Mu'jam al-Awsat)</cite>
+                <cite className="text-sm text-muted-foreground">- Prophet Muhammad ﷺ (Al-Mu'jam al-Awsat)</cite>
               </CardContent>
             </Card>
           </section>
