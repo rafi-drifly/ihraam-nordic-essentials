@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Clock, User, ArrowLeft, ShoppingCart } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import SEOHead from "@/components/SEOHead";
+import { trackBlogCtaClick } from "@/lib/analytics";
 
 const SunnahActsBlog = () => {
   const { t, i18n } = useTranslation();
@@ -190,7 +191,7 @@ const SunnahActsBlog = () => {
                     {t('blogPost.choosePureIhram')}
                   </p>
                 </div>
-                <Link to={`${localePrefix}/shop`}>
+                <Link to={`${localePrefix}/shop`} onClick={() => trackBlogCtaClick('sunnah-acts-umrah', 'shop_now')}>
                   <Button className="bg-gradient-primary hover:opacity-90 transition-opacity">
                     <ShoppingCart className="h-4 w-4 mr-2" />
                     {t('blogPost.shopNow')}
@@ -367,7 +368,7 @@ const SunnahActsBlog = () => {
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
               {t('blogPost.orderCtaAlt')}
             </p>
-            <Link to={`${localePrefix}/shop`}>
+            <Link to={`${localePrefix}/shop`} onClick={() => trackBlogCtaClick('sunnah-acts-umrah', 'shop_now')}>
               <Button size="lg" className="bg-gradient-primary hover:opacity-90 transition-opacity">
                 <ShoppingCart className="h-5 w-5 mr-2" />
                 {t('blogPost.shopIhramSet')}
