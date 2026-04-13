@@ -11,7 +11,7 @@ import { getBundlePrice, SHIPPING_DISCLOSURE, CUSTOMS_DISCLOSURE } from "@/lib/b
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import DonationSection from "@/components/shop/DonationSection";
-import { trackEvent } from "@/lib/analytics";
+import { trackEvent, trackBeginCheckout } from "@/lib/analytics";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 
@@ -87,7 +87,7 @@ const Cart = () => {
 
   const handleCheckout = async () => {
     if (items.length === 0 || checkoutLoading) return;
-    trackEvent('checkout_started', { totalItems, subtotal });
+    trackBeginCheckout({ total: subtotal, item_count: totalItems });
     setCheckoutLoading(true);
     try {
       const checkoutItems = items.map(item => ({ id: item.id, quantity: item.quantity }));

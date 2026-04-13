@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle, Package, ArrowRight, Key } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
+import { trackPurchase } from "@/lib/analytics";
 
 const PaymentSuccess = () => {
   const [searchParams] = useSearchParams();
@@ -18,9 +19,14 @@ const PaymentSuccess = () => {
   const isGuestOrder = true;
 
   useEffect(() => {
-    // Clear cart after successful payment
     if (sessionId) {
       clearCart();
+      trackPurchase({
+        order_id: orderNumber,
+        total: 0, // actual total not available client-side
+        item_count: 1,
+        payment_method: 'stripe',
+      });
     }
   }, [sessionId, clearCart]);
 

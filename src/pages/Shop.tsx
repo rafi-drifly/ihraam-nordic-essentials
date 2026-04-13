@@ -24,7 +24,7 @@ import detail7 from "@/assets/product/detail-7.avif";
 import detail8 from "@/assets/product/detail-8.avif";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { BUNDLES, getBundlePrice, type Bundle } from "@/lib/bundles";
-import { trackEvent } from "@/lib/analytics";
+import { trackEvent, trackViewItem, trackAddToCart, trackBeginCheckout } from "@/lib/analytics";
 
 interface Product {
   id: string;
@@ -59,7 +59,7 @@ const Shop = () => {
 
   useEffect(() => {
     fetchProduct();
-    trackEvent('view_bundle_option');
+    trackViewItem({ id: 'ihram-set', name: 'Pure Ihram Set', price: 19 });
   }, []);
 
   useEffect(() => {
@@ -90,8 +90,7 @@ const Shop = () => {
 
   const handleAddToCart = () => {
     if (!product) return;
-    const eventName = bundle.qty === 1 ? 'add_to_cart_single' : bundle.qty === 2 ? 'add_to_cart_2pack' : 'add_to_cart_3pack';
-    trackEvent(eventName, { qty: bundle.qty, price: bundle.totalPrice });
+    trackAddToCart({ id: 'ihram-set', name: 'Pure Ihram Set', price: bundle.totalPrice, quantity: bundle.qty });
     
     addItem({
       id: product.id,
@@ -107,7 +106,7 @@ const Shop = () => {
 
   const handleCheckout = async () => {
     if (!product || checkoutLoading) return;
-    trackEvent('checkout_started', { qty: bundle.qty, bundleType: bundle.label, country: shippingCountry });
+    trackBeginCheckout({ total: bundle.totalPrice, item_count: bundle.qty });
     setCheckoutLoading(true);
     try {
       const checkoutItems = [{ id: product.id, quantity: bundle.qty }];
