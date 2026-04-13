@@ -248,7 +248,7 @@ const Cart = () => {
                       {promoFreeShipping ? (
                         <span className="text-primary font-medium">{t('cart.promo.freeDelivery')}</span>
                       ) : (
-                        <span>Shipping — €{shipping}</span>
+                        <span>Shipping - €{shipping}</span>
                       )}
                     </span>
                     <span>{shipping === 0 ? 'FREE' : `${shipping.toFixed(2)}€`}</span>

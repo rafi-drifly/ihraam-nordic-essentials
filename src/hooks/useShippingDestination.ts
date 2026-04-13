@@ -1,5 +1,5 @@
 /**
- * Hook for shipping destination — now supports all of Europe.
+ * Hook for shipping destination - now supports all of Europe.
  */
 import { useState } from "react";
 

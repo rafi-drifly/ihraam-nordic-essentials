@@ -1,7 +1,7 @@
 {
   "banner": {
-    "newStock": "Ihram-set från €19 — levereras över hela Europa",
-    "promoText": "Ihram-set från €19 — levereras över hela Europa"
+    "newStock": "Ihram-set från €19 - levereras över hela Europa",
+    "promoText": "Ihram-set från €19 - levereras över hela Europa"
   },
   "nav": {
     "home": "Hem",
@@ -52,7 +52,7 @@
       "partnersLink": "För Moskéer & Hajj/Umrah-byråer →"
     },
     "quranVerse1": "\"Och kungör för människorna vallfärden; de skall komma till dig till fots och på alla slags utmärglade riddjur; de skall komma från alla fjärran håll.\"",
-    "quranVerse1Cite": "— Koranen 22:27",
+    "quranVerse1Cite": "- Koranen 22:27",
     "whyChoose": {
       "title": "Varför Välja Pure Ihram?",
       "subtitle": "Kvalitet, tillgänglighet och komfort för varje pilgrim",
@@ -78,7 +78,7 @@
       },
       "intention": {
         "title": "Lugn, Respektfull Service",
-        "description": "Vi håller det ärligt — ingen hype, ingen press. Bara en kvalitetsprodukt och tydlig kommunikation."
+        "description": "Vi håller det ärligt - ingen hype, ingen press. Bara en kvalitetsprodukt och tydlig kommunikation."
       },
       "fastDelivery": {
         "title": "Leverans från Sverige",
@@ -86,14 +86,14 @@
       },
       "affordable": {
         "title": "Ärlig Prissättning",
-        "description": "Från €19 per set. Det du ser är det du betalar — inga dolda avgifter."
+        "description": "Från €19 per set. Det du ser är det du betalar - inga dolda avgifter."
       }
     },
     "quranVerse2": "\"Och vallfärden till Huset är en plikt gentemot Allah för den som har möjlighet att genomföra den.\"",
-    "quranVerse2Cite": "— Koranen 3:97",
+    "quranVerse2Cite": "- Koranen 3:97",
     "guides": {
       "title": "Guider & Kunskap",
-      "subtitle": "Lär dig allt du behöver inför din pilgrimsfärd — från Sunnah-handlingar och packningstips till den andliga betydelsen av Ihram.",
+      "subtitle": "Lär dig allt du behöver inför din pilgrimsfärd - från Sunnah-handlingar och packningstips till den andliga betydelsen av Ihram.",
       "viewAll": "Visa Alla Guider",
       "readMore": "Läs Mer",
       "articles": {
@@ -107,11 +107,11 @@
         },
         "sunnah": {
           "title": "Sunnah-Handlingar Innan Man Går In i Ihram",
-          "description": "Förbered kropp och hjärta innan Ihram genom ghusl, parfym och bön — enligt Sunnah."
+          "description": "Förbered kropp och hjärta innan Ihram genom ghusl, parfym och bön - enligt Sunnah."
         },
         "checklist": {
           "title": "Checklista för Umrah-Förberedelse (Kläder, Duas, Dokument)",
-          "description": "En komplett guide till vad du behöver inför din resa — från nödvändigheter till andlig förberedelse."
+          "description": "En komplett guide till vad du behöver inför din resa - från nödvändigheter till andlig förberedelse."
         },
         "duas": {
           "title": "Viktiga Duas för Umrah (Med Translitteration & Betydelse)",
@@ -125,7 +125,7 @@
     },
     "cta": {
       "title": "Redo att Beställa?",
-      "description": "Få din Ihram levererad till dörren — enkelt, ärligt och pålitligt.",
+      "description": "Få din Ihram levererad till dörren - enkelt, ärligt och pålitligt.",
       "button": "Handla Nu"
     }
   },
@@ -143,7 +143,7 @@
       "title": "Vårt Löfte",
       "text": "\"Vi lovar att ge varje muslim tillgång till ren, bekväm Ihram (Ihraam)-duk till ett pris som hedrar både kvalitet och prisvärdhet. Vårt åtagande gäller inte bara din pilgrimsfärd, utan din andliga resa och den barakah den medför.\"",
       "hadith": "\"De mest älskade av människor hos Allah är de som är mest nyttiga för människor.\"",
-      "hadithCite": "— Al-Mu'jam al-Awsat"
+      "hadithCite": "- Al-Mu'jam al-Awsat"
     },
     "values": {
       "title": "Våra Värderingar",
@@ -383,9 +383,9 @@
     "notFound": "Produkten hittades inte",
     "fastDelivery": "Snabb Leverans",
     "reviews": "recensioner",
-    "bundleHeading": "Pure Ihram Set — Enkla paket, rättvis leverans",
+    "bundleHeading": "Pure Ihram Set - Enkla paket, rättvis leverans",
     "bundleSubtitle": "Spara mer när du köper 2 eller 3. Frakt visas i kassan.",
-    "description": "Håll dig sval, ren och bekväm på din heliga resa. Pure Ihram Hajj Handduksset kombinerar Sunnah enkelhet med modern mikrofiber prestanda — mjuk, absorberande och gjord för att hålla genom varje steg av Hajj eller Umrah.",
+    "description": "Håll dig sval, ren och bekväm på din heliga resa. Pure Ihram Hajj Handduksset kombinerar Sunnah enkelhet med modern mikrofiber prestanda - mjuk, absorberande och gjord för att hålla genom varje steg av Hajj eller Umrah.",
     "plusShipping": "+ frakt",
     "stock": "Lager:",
     "available": "tillgängliga",
@@ -403,10 +403,10 @@
       "freeDelivery": "Fri Leverans",
       "delivery": "leverans",
       "youSave": "Du sparar €{{amount}} jämfört med enskilda",
-      "save2Pack": "Spara på frakt — en leverans istället för två.",
+      "save2Pack": "Spara på frakt - en leverans istället för två.",
       "savingsVsSeparate": "Spara €{{amount}} mot att beställa {{qty}} enskilda separat ({{qty}} leveranser).",
       "shippingNote": "Frakt beräknas utifrån destination. Visas tydligt i kassan.",
-      "whyBundles": "Paket hjälper dig spara — en leverans istället för flera.",
+      "whyBundles": "Paket hjälper dig spara - en leverans istället för flera.",
       "trustSoft": "Mjukt, andningsbart, lämpligt för Hajj & Umrah",
       "trustShipping": "Skickas från Sverige",
       "trustMission": "Transparent uppdrag",
@@ -472,14 +472,14 @@
     "spiritualReminder": {
       "title": "Andlig Påminnelse",
       "quote": "\"Den bästa pilgrimerna är den som har den bästa förnödenheten och den mest fromma avsikten.\"",
-      "cite": "— Hadith"
+      "cite": "- Hadith"
     }
   },
   "blog": {
     "title": "Guider & Kunskap",
     "subtitle": "Viktig vägledning och kunskap för din heliga resa. Lär dig om Hajj, Umrah och pilgrimsfärdens andliga betydelse från islamiska lärda och erfarna guider.",
     "quranVerse": "\"Och kungör för människorna vallfärden; de skall komma till dig till fots och på alla slags utmärglade riddjur; de skall komma från alla fjärran håll.\"",
-    "quranVerseCite": "— Koranen 22:27",
+    "quranVerseCite": "- Koranen 22:27",
     "readMore": "Läs Mer",
     "categories": {
       "all": "Alla",
@@ -520,7 +520,7 @@
       },
       "essentialDuas": {
         "title": "Viktiga Duas för Umrah (Med Translitteration & Betydelse)",
-        "excerpt": "En pilgrims guide till de mest älskade bönerna under Umrah — från avresa till Tawaf och vidare, med arabiska, translitteration och engelsk betydelse.",
+        "excerpt": "En pilgrims guide till de mest älskade bönerna under Umrah - från avresa till Tawaf och vidare, med arabiska, translitteration och engelsk betydelse.",
         "author": "Pure Ihram Team",
         "readTime": "15 min läsning",
         "date": "15 mars 2024"
@@ -534,7 +534,7 @@
       }
     },
     "hadithQuote": "\"Den som utför Hajj för Allahs skull och inte yttrar något obscent tal eller gör någon ond handling, kommer att återvända ren som den dag hans moder födde honom.\"",
-    "hadithCite": "— Bukhari & Muslim",
+    "hadithCite": "- Bukhari & Muslim",
     "newsletter": {
       "title": "Håll Dig Uppdaterad med Islamisk Kunskap",
       "subtitle": "Prenumerera för att få de senaste artiklarna, guiderna och andliga insikterna för att hjälpa dig förbereda dig för din pilgrimsresa.",
@@ -569,8 +569,8 @@
     "spiritualReminder": "Andlig Påminnelse",
     "spiritualReflection": "Andlig Reflektion",
     "closingMessage": "Avslutande Meddelande",
-    "closingDua": "Må Allah acceptera din pilgrimsfärd, förlåta dina synder och låta dig återvända renad — precis som den dag du föddes.",
-    "ameen": "— Ameen",
+    "closingDua": "Må Allah acceptera din pilgrimsfärd, förlåta dina synder och låta dig återvända renad - precis som den dag du föddes.",
+    "ameen": "- Ameen",
     "forComfortAndDurability": "För komfort och hållbarhet",
     "choosePureIhram": "Välj Pure Ihram Snabbtorkande Set (115×230 cm)",
     "howToWearLink": "Hur Man Bär Ihram – Steg-för-Steg Guide",
@@ -717,10 +717,10 @@
     "checkout": "Gå till Kassan",
     "viewCart": "Visa Varukorg",
     "upsell": {
-      "seQty1": "Lägg till 1 till för 2-Pack — Bäst Värde",
-      "seQty2": "Lägg till 1 till för 3-Pack — Mest Populär",
-      "noQty1": "Lägg till 1 till — frakten är densamma (Bäst Värde 2-Pack)",
-      "noQty2": "Köper du 3? Frakten blir 49 € — fortfarande bäst värde per set.",
+      "seQty1": "Lägg till 1 till för 2-Pack - Bäst Värde",
+      "seQty2": "Lägg till 1 till för 3-Pack - Mest Populär",
+      "noQty1": "Lägg till 1 till - frakten är densamma (Bäst Värde 2-Pack)",
+      "noQty2": "Köper du 3? Frakten blir 49 € - fortfarande bäst värde per set.",
       "switchTo2Pack": "Byt till 2-Pack",
       "switchTo3Pack": "Byt till 3-Pack"
     },
@@ -761,7 +761,7 @@
     },
     "cta": "Donera Nu",
     "quote": "\"Liknelsen för dem som spenderar sina ägodelar på Allahs väg är som ett frö som växer sju ax; i varje ax finns hundra korn.\"",
-    "quoteCite": "— Koranen 2:261",
+    "quoteCite": "- Koranen 2:261",
     "checkout": {
       "title": "Stöd Vårt Uppdrag (Valfritt)",
       "subtitle": "Hjälp oss att hålla Ihram prisvärd för alla",
@@ -775,7 +775,7 @@
       "seoTitle": "Donation Lyckades | Pure Ihram",
       "message": "Din donation hjälper oss att hålla Ihram prisvärd, stödja moskéer och ge hjälp till behövande runt om i världen.",
       "hadith": "\"De bästa av människor är de som är mest nyttiga för människor.\"",
-      "hadithCite": "— Al-Mu'jam al-Awsat",
+      "hadithCite": "- Al-Mu'jam al-Awsat",
       "impact": "Må Allah acceptera din sadaqah och multiplicera din belöning.",
       "browseProducts": "Bläddra Produkter",
       "backHome": "Tillbaka till Hem",
@@ -791,7 +791,7 @@
   "donationCancel": {
     "seoTitle": "Donation Avbruten | Pure Ihram",
     "title": "Donation Avbruten",
-    "subtitle": "Inga bekymmer — ditt kort debiterades inte.",
+    "subtitle": "Inga bekymmer - ditt kort debiterades inte.",
     "message": "Om du ändrade dig är det helt okej. Donationer är frivilliga och det finns ingen press att bidra.",
     "noCharge": "Din betalningsmetod debiterades inte. Du kan försöka igen när som helst.",
     "tryAgain": "Försök Igen",
@@ -833,7 +833,7 @@
     "amanah": {
       "title": "Vårt Åtagande till Amanah",
       "text": "Detta är folks pengar (Amanah). Vi är ansvariga inför Allah för varje öre. Vi strävar efter att vara transparenta, ansvarsfulla och redovisande i allt vi gör.",
-      "quote": "\"Sannerligen befaller Allah er att återlämna förtroenden till dem de tillhör.\" — Koranen 4:58"
+      "quote": "\"Sannerligen befaller Allah er att återlämna förtroenden till dem de tillhör.\" - Koranen 4:58"
     }
   },
   "mosqueSupport": {
@@ -898,7 +898,7 @@
   "returns": {
     "hero": {
       "title": "Returer & Byten",
-      "subtitle": "Tydligt, rättvist och transparent — så att du kan handla med förtroende."
+      "subtitle": "Tydligt, rättvist och transparent - så att du kan handla med förtroende."
     },
     "cards": {
       "withdrawal": {
@@ -959,7 +959,7 @@
     },
     "conditions": {
       "title": "Skick, Hygien & Rättvisa",
-      "inspect": "Du får inspektera varan som du skulle göra i en butik — prova den för att kontrollera passform och kvalitet.",
+      "inspect": "Du får inspektera varan som du skulle göra i en butik - prova den för att kontrollera passform och kvalitet.",
       "valueReduction": "Om varan har använts mer än nödvändigt för inspektion kan ett värdeavdrag tillämpas.",
       "unused": "Returer måste vara oanvända, otvättade, fria från lukt och fläckar, och i originalskick."
     },

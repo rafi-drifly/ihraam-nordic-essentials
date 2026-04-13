@@ -110,7 +110,7 @@ const DonationForm = ({ localePrefix }: DonationFormProps) => {
   };
 
   const directionInfo = {
-    'mosque': 'Supports our Mosque Support Program — mosques receive Ihrams and keep proceeds for their needs.',
+    'mosque': 'Supports our Mosque Support Program - mosques receive Ihrams and keep proceeds for their needs.',
     'needy': 'Goes directly to verified humanitarian projects for those suffering worldwide.',
     'where-needed': 'We allocate where it\'s needed most based on current priorities.'
   };

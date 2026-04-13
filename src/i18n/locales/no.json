@@ -1,7 +1,7 @@
 {
   "banner": {
-    "newStock": "Ihram-sett fra €19 — levert over hele Europa",
-    "promoText": "Ihram-sett fra €19 — levert over hele Europa"
+    "newStock": "Ihram-sett fra €19 - levert over hele Europa",
+    "promoText": "Ihram-sett fra €19 - levert over hele Europa"
   },
   "nav": {
     "home": "Hjem",
@@ -52,7 +52,7 @@
       "partnersLink": "For Moskeer & Hajj/Umrah-byråer →"
     },
     "quranVerse1": "\"Og forkynn for menneskene pilegrimsreisen; de skal komme til deg til fots og på hver mager kamel; de skal komme fra hver fjern vei.\"",
-    "quranVerse1Cite": "— Koranen 22:27",
+    "quranVerse1Cite": "- Koranen 22:27",
     "whyChoose": {
       "title": "Hvorfor Velge Pure Ihram?",
       "subtitle": "Kvalitet, tilgjengelighet og komfort for hver pilegrim",
@@ -78,7 +78,7 @@
       },
       "intention": {
         "title": "Rolig, Respektfull Service",
-        "description": "Vi holder det ærlig — ingen hype, ingen press. Bare et kvalitetsprodukt og tydelig kommunikasjon."
+        "description": "Vi holder det ærlig - ingen hype, ingen press. Bare et kvalitetsprodukt og tydelig kommunikasjon."
       },
       "fastDelivery": {
         "title": "Levering fra Sverige",
@@ -86,14 +86,14 @@
       },
       "affordable": {
         "title": "Ærlig Prising",
-        "description": "Fra €19 per sett. Det du ser er det du betaler — ingen skjulte avgifter."
+        "description": "Fra €19 per sett. Det du ser er det du betaler - ingen skjulte avgifter."
       }
     },
     "quranVerse2": "\"Og pilegrimsreisen til Huset er en plikt som menneskeheten skylder Allah, for de som har råd til reisen.\"",
-    "quranVerse2Cite": "— Koranen 3:97",
+    "quranVerse2Cite": "- Koranen 3:97",
     "guides": {
       "title": "Guider & Kunnskap",
-      "subtitle": "Lær alt du trenger før pilegrimsreisen — fra Sunnah-handlinger og pakketips til den åndelige betydningen av Ihram.",
+      "subtitle": "Lær alt du trenger før pilegrimsreisen - fra Sunnah-handlinger og pakketips til den åndelige betydningen av Ihram.",
       "viewAll": "Se Alle Guider",
       "readMore": "Les Mer",
       "articles": {
@@ -107,11 +107,11 @@
         },
         "sunnah": {
           "title": "Sunnah-Handlinger Før Man Går Inn i Ihram",
-          "description": "Forbered kropp og hjerte før Ihram gjennom ghusl, parfyme og bønn — i henhold til Sunnah."
+          "description": "Forbered kropp og hjerte før Ihram gjennom ghusl, parfyme og bønn - i henhold til Sunnah."
         },
         "checklist": {
           "title": "Sjekkliste for Umrah-Forberedelse (Klær, Duaer, Dokumenter)",
-          "description": "En komplett guide til hva du trenger før reisen — fra nødvendigheter til åndelig forberedelse."
+          "description": "En komplett guide til hva du trenger før reisen - fra nødvendigheter til åndelig forberedelse."
         },
         "duas": {
           "title": "Essensielle Duaer for Umrah (Med Translitterasjon & Betydning)",
@@ -125,7 +125,7 @@
     },
     "cta": {
       "title": "Klar til å Bestille?",
-      "description": "Få din Ihram levert til døren — enkelt, ærlig og pålitelig.",
+      "description": "Få din Ihram levert til døren - enkelt, ærlig og pålitelig.",
       "button": "Handle Nå"
     }
   },
@@ -143,7 +143,7 @@
       "title": "Vårt Løfte",
       "text": "\"Vi lover å gi hver muslim tilgang til ren, komfortabel Ihram (Ihraam) til en pris som ærer både kvalitet og rimelighet. Vår forpliktelse er ikke bare til pilegrimsreisen din, men til din åndelige reise og barakah den bringer.\"",
       "hadith": "\"De mest elskede av mennesker for Allah er de som er mest nyttige for folk.\"",
-      "hadithCite": "— Al-Mu'jam al-Awsat"
+      "hadithCite": "- Al-Mu'jam al-Awsat"
     },
     "values": {
       "title": "Våre Verdier",
@@ -383,9 +383,9 @@
     "notFound": "Produkt ikke funnet",
     "fastDelivery": "Rask Levering",
     "reviews": "anmeldelser",
-    "bundleHeading": "Pure Ihram Sett — Enkle pakker, rettferdig levering",
+    "bundleHeading": "Pure Ihram Sett - Enkle pakker, rettferdig levering",
     "bundleSubtitle": "Spar mer når du kjøper 2 eller 3. Frakt vises i kassen.",
-    "description": "Hold deg kjølig, ren og komfortabel på din hellige reise. Pure Ihram Hajj-håndklesettet kombinerer Sunnah-enkelhet med moderne mikrofiberytelse — mykt, absorberende og laget for å vare gjennom hvert steg av Hajj eller Umrah.",
+    "description": "Hold deg kjølig, ren og komfortabel på din hellige reise. Pure Ihram Hajj-håndklesettet kombinerer Sunnah-enkelhet med moderne mikrofiberytelse - mykt, absorberende og laget for å vare gjennom hvert steg av Hajj eller Umrah.",
     "plusShipping": "+ frakt",
     "stock": "Lager:",
     "available": "tilgjengelig",
@@ -403,10 +403,10 @@
       "freeDelivery": "Gratis Levering",
       "delivery": "levering",
       "youSave": "Du sparer €{{amount}} sammenlignet med enkeltpakker",
-      "save2Pack": "Spar på frakt — én levering i stedet for to.",
+      "save2Pack": "Spar på frakt - én levering i stedet for to.",
       "savingsVsSeparate": "Spar €{{amount}} mot å bestille {{qty}} enkle separat ({{qty}} leveringer).",
       "shippingNote": "Frakt beregnes basert på destinasjon. Vises tydelig i kassen.",
-      "whyBundles": "Pakker hjelper deg spare — én levering i stedet for flere.",
+      "whyBundles": "Pakker hjelper deg spare - én levering i stedet for flere.",
       "trustSoft": "Myk, pustende, egnet for Hajj & Umrah",
       "trustShipping": "Sendes fra Sverige",
       "trustMission": "Transparent misjon",
@@ -472,14 +472,14 @@
     "spiritualReminder": {
       "title": "Åndelig Påminnelse",
       "quote": "\"Den beste av pilegrimer er den som har den beste provianten og den mest fromme intensjonen.\"",
-      "cite": "— Hadith"
+      "cite": "- Hadith"
     }
   },
   "blog": {
     "title": "Guider & Kunnskap",
     "subtitle": "Essensiell veiledning og kunnskap for din hellige reise. Lær om Hajj, Umrah og den åndelige betydningen av pilegrimsreisen fra islamske lærde og erfarne guider.",
     "quranVerse": "\"Og forkynn for menneskene pilegrimsreisen; de skal komme til deg til fots og på hver mager kamel; de skal komme fra hver fjern vei.\"",
-    "quranVerseCite": "— Koranen 22:27",
+    "quranVerseCite": "- Koranen 22:27",
     "readMore": "Les Mer",
     "categories": {
       "all": "Alle",
@@ -520,7 +520,7 @@
       },
       "essentialDuas": {
         "title": "Essensielle Duaer for Umrah (Med Translitterasjon & Betydning)",
-        "excerpt": "En pilegrims guide til de mest elskede bønnene under Umrah — fra avreise til Tawaf og videre, med arabisk, translitterasjon og norsk betydning.",
+        "excerpt": "En pilegrims guide til de mest elskede bønnene under Umrah - fra avreise til Tawaf og videre, med arabisk, translitterasjon og norsk betydning.",
         "author": "Pure Ihram Team",
         "readTime": "15 min lesing",
         "date": "15. mars 2024"
@@ -534,7 +534,7 @@
       }
     },
     "hadithQuote": "\"Den som utfører Hajj for Allahs skyld og ikke uttaler noen uanstendig tale eller gjør noen ond gjerning, vil vende tilbake like ren som den dagen moren fødte ham.\"",
-    "hadithCite": "— Bukhari & Muslim",
+    "hadithCite": "- Bukhari & Muslim",
     "newsletter": {
       "title": "Hold Deg Oppdatert med Islamsk Kunnskap",
       "subtitle": "Abonner for å motta de siste artiklene, guidene og åndelige innsikter for å hjelpe deg forberede pilegrimsreisen.",
@@ -569,8 +569,8 @@
     "spiritualReminder": "Åndelig Påminnelse",
     "spiritualReflection": "Åndelig Refleksjon",
     "closingMessage": "Avsluttende Melding",
-    "closingDua": "Måtte Allah akseptere din pilegrimsreise, tilgi dine synder og returnere deg renset — akkurat som du ble født.",
-    "ameen": "— Ameen",
+    "closingDua": "Måtte Allah akseptere din pilegrimsreise, tilgi dine synder og returnere deg renset - akkurat som du ble født.",
+    "ameen": "- Ameen",
     "forComfortAndDurability": "For komfort og holdbarhet",
     "choosePureIhram": "Velg Pure Ihram Hurtigtørre-Sett (115×230 cm)",
     "howToWearLink": "Hvordan Ta På Ihram – Steg-for-Steg Guide",
@@ -719,10 +719,10 @@
     "viewCart": "Se Handlekurv",
     "orderSummary": "Ordresammendrag",
     "upsell": {
-      "seQty1": "Legg til 1 til for 2-Pack — Beste Verdi",
-      "seQty2": "Legg til 1 til for 3-Pack — Mest Populær",
-      "noQty1": "Legg til 1 til — frakten er den samme (Beste Verdi 2-Pack)",
-      "noQty2": "Kjøper du 3? Frakten blir 49 € — fortsatt best verdi per sett.",
+      "seQty1": "Legg til 1 til for 2-Pack - Beste Verdi",
+      "seQty2": "Legg til 1 til for 3-Pack - Mest Populær",
+      "noQty1": "Legg til 1 til - frakten er den samme (Beste Verdi 2-Pack)",
+      "noQty2": "Kjøper du 3? Frakten blir 49 € - fortsatt best verdi per sett.",
       "switchTo2Pack": "Bytt til 2-Pack",
       "switchTo3Pack": "Bytt til 3-Pack"
     },
@@ -787,7 +787,7 @@
     },
     "cta": "Doner Nå",
     "quote": "\"Eksempelet på de som bruker sin rikdom på Allahs vei er som et frø som vokser syv aks; i hvert aks er det hundre korn.\"",
-    "quoteCite": "— Koranen 2:261",
+    "quoteCite": "- Koranen 2:261",
     "checkout": {
       "title": "Støtt Vårt Oppdrag (Valgfritt)",
       "subtitle": "Hjelp oss å holde Ihram rimelig for alle",
@@ -801,7 +801,7 @@
       "seoTitle": "Donasjon Vellykket | Pure Ihram",
       "message": "Din donasjon vil hjelpe oss å holde Ihram rimelig, støtte moskeer og gi hjelp til trengende rundt om i verden.",
       "hadith": "\"De beste av mennesker er de som er mest nyttige for folk.\"",
-      "hadithCite": "— Al-Mu'jam al-Awsat",
+      "hadithCite": "- Al-Mu'jam al-Awsat",
       "impact": "Måtte Allah akseptere din sadaqah og multiplisere din belønning.",
       "browseProducts": "Bla Gjennom Produkter",
       "backHome": "Tilbake til Hjem",
@@ -817,7 +817,7 @@
   "donationCancel": {
     "seoTitle": "Donasjon Kansellert | Pure Ihram",
     "title": "Donasjon Kansellert",
-    "subtitle": "Ingen bekymringer — kortet ditt ble ikke belastet.",
+    "subtitle": "Ingen bekymringer - kortet ditt ble ikke belastet.",
     "message": "Hvis du ombestemte deg, er det helt greit. Donasjoner er frivillige og det er ingen press om å bidra.",
     "noCharge": "Betalingsmetoden din ble ikke belastet. Du kan prøve igjen når som helst.",
     "tryAgain": "Prøv Igjen",
@@ -859,7 +859,7 @@
     "amanah": {
       "title": "Vår Forpliktelse til Amanah",
       "text": "Dette er folks penger (Amanah). Vi er ansvarlige overfor Allah for hver øre. Vi streber etter å være transparente, ansvarlige og regnskapsmessige i alt vi gjør.",
-      "quote": "\"Sannelig befaler Allah dere å levere tilbake tilliten til de den tilhører.\" — Koranen 4:58"
+      "quote": "\"Sannelig befaler Allah dere å levere tilbake tilliten til de den tilhører.\" - Koranen 4:58"
     }
   },
   "mosqueSupport": {
@@ -924,7 +924,7 @@
   "returns": {
     "hero": {
       "title": "Retur & Bytte",
-      "subtitle": "Tydelig, rettferdig og transparent — slik at du kan handle med tillit."
+      "subtitle": "Tydelig, rettferdig og transparent - slik at du kan handle med tillit."
     },
     "cards": {
       "withdrawal": {
@@ -985,7 +985,7 @@
     },
     "conditions": {
       "title": "Tilstand, Hygiene & Rettferdighet",
-      "inspect": "Du kan inspisere varen som du ville gjort i en butikk — prøv den for å sjekke passform og kvalitet.",
+      "inspect": "Du kan inspisere varen som du ville gjort i en butikk - prøv den for å sjekke passform og kvalitet.",
       "valueReduction": "Hvis varen har blitt brukt mer enn nødvendig for inspeksjon, kan et verdifradrag gjelde.",
       "unused": "Returer må være ubrukte, uvaskede, fri for lukt og flekker, og i original tilstand."
     },

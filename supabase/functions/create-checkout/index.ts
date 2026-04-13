@@ -165,7 +165,7 @@ serve(async (req) => {
       });
     }
 
-    const shippingMessage = "We ship to Sweden (3–7 business days). For orders outside Sweden, shipping costs may vary — we'll contact you with the exact delivery fee before dispatching.";
+    const shippingMessage = "We ship to Sweden (3–7 business days). For orders outside Sweden, shipping costs may vary - we'll contact you with the exact delivery fee before dispatching.";
 
     const session = await stripe.checkout.sessions.create({
       customer: customerId,

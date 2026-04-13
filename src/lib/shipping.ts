@@ -38,7 +38,7 @@ export const COUNTRY_NAMES: Record<EuropeCountry, string> = {
 };
 
 /**
- * Calculate shipping cost — €9 flat for all of Europe (base fee)
+ * Calculate shipping cost - €9 flat for all of Europe (base fee)
  */
 export function calculateShipping(quantity: number, country: string = 'SE'): number {
   return 9;

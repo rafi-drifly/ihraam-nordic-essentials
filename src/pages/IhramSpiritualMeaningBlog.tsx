@@ -48,7 +48,7 @@ const IhramSpiritualMeaningBlog = () => {
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-foreground leading-relaxed">
-              Before every pilgrim begins the sacred journey of Hajj or Umrah, there is a powerful transformation — 
+              Before every pilgrim begins the sacred journey of Hajj or Umrah, there is a powerful transformation - 
               from individual identity to collective humility.
             </p>
             <p className="text-foreground leading-relaxed">
@@ -60,7 +60,7 @@ const IhramSpiritualMeaningBlog = () => {
                 "O mankind! We have created you from a male and a female and made you into nations and tribes so that 
                 you may know one another. Verily, the most noble of you in the sight of Allah is the most righteous of you."
               </blockquote>
-              <cite className="text-sm text-muted-foreground">— Qur'an 49:13</cite>
+              <cite className="text-sm text-muted-foreground">- Qur'an 49:13</cite>
             </div>
           </CardContent>
         </Card>
@@ -77,11 +77,11 @@ const IhramSpiritualMeaningBlog = () => {
               "Ihram" literally means <em>to make sacred</em>.
             </p>
             <p className="text-foreground leading-relaxed">
-              It is not merely clothing — it's a state of purity and devotion that envelops both body and spirit.
+              It is not merely clothing - it's a state of purity and devotion that envelops both body and spirit.
             </p>
             <p className="text-foreground leading-relaxed">
               When you put on Ihram, you leave behind your status, wealth, and nationality. You stand before Allah 
-              just as you were born — equal, humble, and dependent on His mercy.
+              just as you were born - equal, humble, and dependent on His mercy.
             </p>
             <div className="bg-primary/10 border border-primary/20 rounded-lg p-4">
               <p className="text-foreground italic">
@@ -103,7 +103,7 @@ const IhramSpiritualMeaningBlog = () => {
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-foreground leading-relaxed">
-              No matter where you come from — a king or a laborer, a scholar or a student — in Ihram, you are all the same.
+              No matter where you come from - a king or a laborer, a scholar or a student - in Ihram, you are all the same.
             </p>
             <p className="text-foreground leading-relaxed">
               The white unstitched garments worn by men and the modest attire worn by women erase every sign of 
@@ -113,18 +113,18 @@ const IhramSpiritualMeaningBlog = () => {
               In that crowd of millions circling the Kaabah, no one can distinguish race, rank, or class.
             </p>
             <p className="text-foreground font-semibold">
-              This is the true spirit of Islam — equality in servitude.
+              This is the true spirit of Islam - equality in servitude.
             </p>
             <div className="bg-background rounded-lg p-6 border-l-4 border-primary mt-4">
               <blockquote className="text-base italic text-foreground mb-2">
                 "Indeed, the believers are brothers."
               </blockquote>
-              <cite className="text-sm text-muted-foreground">— Qur'an 49:10</cite>
+              <cite className="text-sm text-muted-foreground">- Qur'an 49:10</cite>
             </div>
             <div className="bg-accent/10 rounded-lg p-4 mt-4">
               <p className="text-foreground">
                 <strong>💡 Reflection:</strong><br />
-                Ihram is not only a physical garment — it's a mirror that reflects the purity of your heart and 
+                Ihram is not only a physical garment - it's a mirror that reflects the purity of your heart and 
                 the equality of all souls before Allah.
               </p>
             </div>
@@ -140,7 +140,7 @@ const IhramSpiritualMeaningBlog = () => {
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-foreground leading-relaxed">
-              Ihram also reminds us of our final journey — the moment we are wrapped in a white shroud (kafan) 
+              Ihram also reminds us of our final journey - the moment we are wrapped in a white shroud (kafan) 
               and return to our Creator.
             </p>
             <p className="text-foreground leading-relaxed">
@@ -151,12 +151,12 @@ const IhramSpiritualMeaningBlog = () => {
               <blockquote className="text-base italic text-foreground mb-2">
                 "Every soul shall taste death. And you will only be given your full reward on the Day of Resurrection."
               </blockquote>
-              <cite className="text-sm text-muted-foreground">— Qur'an 3:185</cite>
+              <cite className="text-sm text-muted-foreground">- Qur'an 3:185</cite>
             </div>
             <div className="bg-accent/10 rounded-lg p-4">
               <p className="text-foreground">
                 <strong>💭 When a pilgrim wears Ihram, he silently acknowledges:</strong><br />
-                "I may not return from this journey — let me go pure, forgiven, and free of sin."
+                "I may not return from this journey - let me go pure, forgiven, and free of sin."
               </p>
             </div>
           </CardContent>
@@ -181,10 +181,10 @@ const IhramSpiritualMeaningBlog = () => {
                 "So whoever has made Hajj obligatory upon himself, there is to be for him no sexual relations, 
                 no disobedience, and no disputing during Hajj."
               </blockquote>
-              <cite className="text-sm text-muted-foreground">— Qur'an 2:197</cite>
+              <cite className="text-sm text-muted-foreground">- Qur'an 2:197</cite>
             </div>
             <p className="text-foreground leading-relaxed">
-              Ihram teaches patience, forgiveness, and inner calm — values that every believer should carry long 
+              Ihram teaches patience, forgiveness, and inner calm - values that every believer should carry long 
               after Hajj or Umrah ends.
             </p>
             <div className="bg-primary/10 border border-primary/20 rounded-lg p-4">
@@ -210,7 +210,7 @@ const IhramSpiritualMeaningBlog = () => {
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-foreground leading-relaxed">
-              In Ihram, pilgrims stand shoulder to shoulder — white garments flowing in harmony, voices united in Talbiyah:
+              In Ihram, pilgrims stand shoulder to shoulder - white garments flowing in harmony, voices united in Talbiyah:
             </p>
             <div className="bg-accent/10 rounded-lg p-4 text-center">
               <p className="text-xl text-foreground italic">
@@ -218,7 +218,7 @@ const IhramSpiritualMeaningBlog = () => {
               </p>
             </div>
             <p className="text-foreground leading-relaxed">
-              That sound — millions chanting the same words — is a manifestation of the Ummah's unity.
+              That sound - millions chanting the same words - is a manifestation of the Ummah's unity.
             </p>
             <p className="text-foreground leading-relaxed">
               Ihram eliminates all barriers, reminding us that every believer belongs to one family, under one Creator.
@@ -227,7 +227,7 @@ const IhramSpiritualMeaningBlog = () => {
               <blockquote className="text-base italic text-foreground mb-2">
                 "This Ummah of yours is one Ummah, and I am your Lord, so worship Me."
               </blockquote>
-              <cite className="text-sm text-muted-foreground">— Qur'an 21:92</cite>
+              <cite className="text-sm text-muted-foreground">- Qur'an 21:92</cite>
             </div>
           </CardContent>
         </Card>
@@ -253,10 +253,10 @@ const IhramSpiritualMeaningBlog = () => {
               <blockquote className="text-base italic text-foreground mb-2">
                 "My Salah, my sacrifice, my life, and my death are all for Allah, Lord of the worlds."
               </blockquote>
-              <cite className="text-sm text-muted-foreground">— Qur'an 6:162</cite>
+              <cite className="text-sm text-muted-foreground">- Qur'an 6:162</cite>
             </div>
             <p className="text-foreground leading-relaxed">
-              This sincerity — <em>Ikhlas</em> — is the essence of all worship, and Ihram is its outer expression.
+              This sincerity - <em>Ikhlas</em> - is the essence of all worship, and Ihram is its outer expression.
             </p>
           </CardContent>
         </Card>
@@ -270,7 +270,7 @@ const IhramSpiritualMeaningBlog = () => {
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-foreground leading-relaxed">
-              When a pilgrim removes Ihram after completing the rites, it's not just a change of clothes — it's a rebirth.
+              When a pilgrim removes Ihram after completing the rites, it's not just a change of clothes - it's a rebirth.
             </p>
             <p className="text-foreground leading-relaxed">
               He returns purified, lighter, and filled with spiritual clarity.
@@ -279,7 +279,7 @@ const IhramSpiritualMeaningBlog = () => {
               <blockquote className="text-base italic text-foreground mb-2">
                 "Whoever performs Hajj and does not commit sin or dispute, returns as pure as the day he was born."
               </blockquote>
-              <cite className="text-sm text-muted-foreground">— Sahih al-Bukhari</cite>
+              <cite className="text-sm text-muted-foreground">- Sahih al-Bukhari</cite>
             </div>
           </CardContent>
         </Card>
@@ -299,13 +299,13 @@ const IhramSpiritualMeaningBlog = () => {
               It teaches that before Allah, we are all equal, temporary, and dependent on His mercy.
             </p>
             <p className="text-foreground leading-relaxed font-semibold">
-              Through Ihram, the pilgrim doesn't just wear purity — he becomes purity.
+              Through Ihram, the pilgrim doesn't just wear purity - he becomes purity.
             </p>
             <div className="bg-background rounded-lg p-6 border-l-4 border-primary mt-4">
               <blockquote className="text-base italic text-foreground mb-2">
-                "And whosoever honors the symbols of Allah — indeed, it is from the piety of hearts."
+                "And whosoever honors the symbols of Allah - indeed, it is from the piety of hearts."
               </blockquote>
-              <cite className="text-sm text-muted-foreground">— Qur'an 22:32</cite>
+              <cite className="text-sm text-muted-foreground">- Qur'an 22:32</cite>
             </div>
           </CardContent>
         </Card>
