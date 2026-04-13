@@ -1,49 +1,47 @@
 
 
-## Fix: Whitespace Gap, Pricing Mismatch in Meta Tags
+## Add PostHog Analytics Tracking
 
-### Issue 1: Massive whitespace gap on multiple pages
+Integrate PostHog alongside existing GA4/GTM, replacing the current stub `trackEvent` analytics with real PostHog event capture plus new event types for contact, content, and B2B tracking.
 
-The outer `<div>` in `App.tsx` (line 148) already has `min-h-screen flex flex-col` with `<main className="flex-1">` — this correctly makes the layout fill the viewport. The problem is that individual page components (Home, Shop, Contact, etc.) **also** wrap their content in `<div className="min-h-screen">`, doubling the minimum height and creating a huge gap between the first and second sections.
+### Files to change
 
-**Fix:** Remove `min-h-screen` from the outermost wrapper `<div>` in these page components:
+**1. Install dependencies**
+- `posthog-js` and `@posthog/react`
 
-| File | Line | Change |
-|------|------|--------|
-| `src/pages/Home.tsx` | 61 | `min-h-screen` → remove |
-| `src/pages/Shop.tsx` | 244 | `min-h-screen` → remove |
-| `src/pages/Contact.tsx` | 126 | `min-h-screen` → remove |
-| `src/pages/Shipping.tsx` | 57 | `min-h-screen` → remove |
-| `src/pages/About.tsx` | 27 | `min-h-screen` → remove |
-| `src/pages/Blog.tsx` | 100 | `min-h-screen` → remove |
-| `src/pages/Cart.tsx` | 159 | `min-h-screen` → remove |
-| `src/pages/Returns.tsx` | 103 | `min-h-screen` → remove |
-| `src/pages/Partners.tsx` | 142 | `min-h-screen` → remove |
-| `src/pages/BlogPost.tsx` | 24 | `min-h-screen` → remove |
-| `src/pages/UmrahChecklistBlog.tsx` | 24 | `min-h-screen` → remove |
-| `src/pages/UmrahDuasBlog.tsx` | 14 | `min-h-screen` → remove |
-| `src/pages/IhramSpiritualMeaningBlog.tsx` | 14 | `min-h-screen` → remove |
-| `src/pages/OrderSuccess.tsx` | 28 | `min-h-screen` → remove |
-| `src/pages/Transparency.tsx` | 67 | `min-h-screen` → remove |
-| `src/pages/MosqueSupport.tsx` | 100 | `min-h-screen` → remove |
+**2. `.env`** — Add two variables:
+```
+VITE_PUBLIC_POSTHOG_PROJECT_TOKEN=phc_mddpTxJxg4TeoBhGhwSUBFSWdKiDitd2w3FfWBktGkR3
+VITE_PUBLIC_POSTHOG_HOST=https://eu.i.posthog.com
+```
 
-Keep `min-h-screen` on loading/error states in Shop.tsx (lines 138, 149) and on `NotFound.tsx`, `AdminLogin.tsx`, and `Index.tsx` — those are full-page centered layouts where it's intentional.
+**3. `src/main.tsx`** — Wrap `<App />` with `<PostHogProvider>` using the env vars and the specified options (autocapture, pageview, pageleave all enabled).
 
-### Issue 2: Pricing mismatch in `index.html` meta tags
+**4. `src/lib/analytics.ts`** — Full rewrite. Replace the stub `trackEvent` with all the PostHog-backed functions specified: `trackViewItem`, `trackAddToCart`, `trackBeginCheckout`, `trackPurchase`, `trackWhatsAppClick`, `trackEmailClick`, `trackPhoneClick`, `trackContactFormSubmit`, `trackBlogCtaClick`, `trackShippingPageView`, `trackGuideToShopClick`, `trackPartnerPageView`, `trackMosqueSupportClick`, `trackGroupEnquirySubmit`, `identifyUser`, `resetUser`. Keep a backward-compatible `trackEvent` wrapper that calls `posthog.capture()` so existing call sites don't break.
 
-`index.html` lines 25 and 31 say "Only 15€" — the actual price is €19. Also says "pure cotton" which is incorrect (it's microfiber polyester).
+**5. `src/pages/Shop.tsx`** — Replace `trackEvent('view_bundle_option')` with `trackViewItem()`. Replace add-to-cart `trackEvent` calls with `trackAddToCart()`. Replace checkout `trackEvent` with `trackBeginCheckout()`.
 
-**Fix in `index.html`:**
-- Line 25: Update meta description to `"Premium Ihram (Ihraam) cloth for Hajj & Umrah. From €19 per set. Fast delivery across Sweden, Nordics & EU. Lightweight, comfortable microfiber pilgrimage garments."`
-- Line 31: Update OG description to `"Premium Ihram (Ihraam) cloth for pilgrims. From €19 per set. Fast delivery across Sweden, Nordics & EU."`
-- Line 26: Remove "Cheap Ihram Cloth" from keywords — doesn't match brand tone
+**6. `src/pages/Cart.tsx`** — Replace `trackEvent('checkout_started')` with `trackBeginCheckout()`. Replace upsell tracking.
 
-### Issue 3: No structured data (JSON-LD)
+**7. `src/components/shop/CartDrawer.tsx`** — Update upsell `trackEvent` call.
 
-The Shop page (`src/pages/Shop.tsx` lines 164-197) **already has** Product JSON-LD with correct €19 pricing, availability, shipping details, and return policy. This is already in place — no changes needed.
+**8. `src/pages/OrderSuccess.tsx`** — Add `useEffect` calling `trackPurchase()` on mount.
 
-### Summary
+**9. `src/components/WhatsAppButton.tsx`** — Add `onClick` handler calling `trackWhatsAppClick('floating_button')`.
 
-- ~16 files: remove redundant `min-h-screen`
-- 1 file (`index.html`): fix outdated pricing and material claims in meta tags
+**10. `src/pages/Contact.tsx`** — Add `trackContactFormSubmit(formData.subject)` on successful submission. Add `trackWhatsAppClick('contact_page')` / `trackEmailClick('contact_page')` / `trackPhoneClick('contact_page')` to relevant links.
+
+**11. `src/pages/Shipping.tsx`** — Add `useEffect` calling `trackShippingPageView()`.
+
+**12. `src/pages/Partners.tsx`** — Add `useEffect` calling `trackPartnerPageView()`.
+
+**13. `src/pages/MosqueSupport.tsx`** — Add `trackMosqueSupportClick()` on CTA and `trackGroupEnquirySubmit()` on form submission.
+
+**14. Blog pages** (`BlogPost.tsx`, `SunnahActsBlog.tsx`, `UmrahChecklistBlog.tsx`, `IhramMistakesBlog.tsx`, `UmrahDuasBlog.tsx`, `IhramSpiritualMeaningBlog.tsx`) — Add `trackBlogCtaClick()` on any shop/product CTA buttons.
+
+### What stays unchanged
+- All existing GA4 / GTM scripts remain untouched
+- PostHog autocapture handles baseline click/form tracking automatically
+- PostHog `capture_pageview: true` handles route-level tracking automatically
+- No backend changes needed
 
