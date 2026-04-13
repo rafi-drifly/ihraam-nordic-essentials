@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Clock, User, ArrowLeft } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import SEOHead from "@/components/SEOHead";
+import { trackBlogCtaClick } from "@/lib/analytics";
 
 const BlogPost = () => {
   const { slug } = useParams();
@@ -277,7 +278,7 @@ const BlogPost = () => {
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
               {t('blogPost.orderCta')}
             </p>
-            <Link to={`${localePrefix}/shop`}>
+            <Link to={`${localePrefix}/shop`} onClick={() => trackBlogCtaClick(slug || 'unknown', 'shop_now')}>
               <Button size="lg" className="bg-gradient-primary hover:opacity-90 transition-opacity">
                 {t('blogPost.shopIhram')}
               </Button>

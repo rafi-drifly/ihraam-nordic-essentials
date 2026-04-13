@@ -9,6 +9,7 @@ import { Mail, Phone, MessageCircle, MapPin, Clock, Loader2 } from "lucide-react
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { z } from "zod";
+import { trackContactFormSubmit, trackWhatsAppClick, trackEmailClick, trackPhoneClick } from "@/lib/analytics";
 
 // Form validation schema
 const contactSchema = z.object({
@@ -54,6 +55,8 @@ const Contact = () => {
         title: t('contact.form.success.title'),
         description: t('contact.form.success.description'),
       });
+
+      trackContactFormSubmit(validatedData.subject);
 
       setFormData({
         name: "",
@@ -104,21 +107,24 @@ const Contact = () => {
       title: t('contact.methods.email.title'),
       description: t('contact.methods.email.description'),
       contact: "support@pureihraam.com",
-      action: "mailto:support@pureihraam.com"
+      action: "mailto:support@pureihraam.com",
+      onClick: () => trackEmailClick('contact_page'),
     },
     {
       icon: <MessageCircle className="h-6 w-6 text-primary" />,
       title: t('contact.methods.whatsapp.title'),
       description: t('contact.methods.whatsapp.description'),
       contact: "+46720131476",
-      action: "https://wa.me/46720131476"
+      action: "https://wa.me/46720131476",
+      onClick: () => trackWhatsAppClick('contact_page'),
     },
     {
       icon: <Phone className="h-6 w-6 text-primary" />,
       title: t('contact.methods.call.title'),
       description: t('contact.methods.call.description'),
       contact: "+46720131476",
-      action: "tel:+46720131476"
+      action: "tel:+46720131476",
+      onClick: () => trackPhoneClick('contact_page'),
     }
   ];
 
@@ -156,6 +162,7 @@ const Contact = () => {
                       </p>
                       <a
                         href={method.action}
+                        onClick={method.onClick}
                         className="text-primary hover:text-primary/80 font-medium text-sm"
                       >
                         {method.contact}

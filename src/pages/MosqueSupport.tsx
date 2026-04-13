@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Building2, ArrowLeft, Check, Heart } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { trackGroupEnquirySubmit } from "@/lib/analytics";
 
 const MosqueSupport = () => {
   const { t } = useTranslation();
@@ -78,6 +79,10 @@ Additional Notes: ${formData.notes || 'N/A'}
 
       if (error) throw error;
       
+      trackGroupEnquirySubmit({
+        organization_type: 'mosque',
+        estimated_quantity: parseInt(formData.estimatedNeed) || 0,
+      });
       setSubmitted(true);
     } catch (error) {
       console.error('Error submitting mosque request:', error);

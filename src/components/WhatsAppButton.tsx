@@ -1,6 +1,7 @@
 import { MessageCircle } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
+import { trackWhatsAppClick } from "@/lib/analytics";
 
 const VISIBLE_PATHS = ['/shop', '/contact', '/cart'];
 
@@ -17,6 +18,7 @@ const WhatsAppButton = () => {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={t('common.whatsappButton')}
+      onClick={() => trackWhatsAppClick('floating_button')}
       className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
       style={{ backgroundColor: "#25D366" }}
     >

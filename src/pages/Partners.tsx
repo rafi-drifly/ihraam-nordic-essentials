@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 import { 
@@ -18,6 +18,7 @@ import {
   Shield
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { trackPartnerPageView } from "@/lib/analytics";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -32,6 +33,8 @@ const Partners = () => {
   const location = useLocation();
   const localePrefix = location.pathname.startsWith('/sv') ? '/sv' : location.pathname.startsWith('/no') ? '/no' : '';
   
+  useEffect(() => { trackPartnerPageView(); }, []);
+
   const [formData, setFormData] = useState({
     name: "",
     organisation: "",

@@ -6,6 +6,7 @@ import { Clock, User, ArrowLeft, ShoppingCart, Check } from "lucide-react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useTranslation } from "react-i18next";
 import SEOHead from "@/components/SEOHead";
+import { trackBlogCtaClick } from "@/lib/analytics";
 
 const UmrahChecklistBlog = () => {
   const { t, i18n } = useTranslation();
@@ -510,7 +511,7 @@ const UmrahChecklistBlog = () => {
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
               {t('blogPost.orderCtaAlt')}
             </p>
-            <Link to={`${localePrefix}/shop`}>
+            <Link to={`${localePrefix}/shop`} onClick={() => trackBlogCtaClick('umrah-checklist', 'shop_now')}>
               <Button size="lg" className="bg-gradient-primary hover:opacity-90 transition-opacity">
                 <ShoppingCart className="h-5 w-5 mr-2" />
                 {t('blogPost.shopIhramSet')}

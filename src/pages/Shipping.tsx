@@ -1,10 +1,14 @@
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Package, Shield, Clock, MapPin, CheckCircle, ShoppingCart } from "lucide-react";
+import { trackShippingPageView } from "@/lib/analytics";
 
 const Shipping = () => {
   const { t } = useTranslation();
+
+  useEffect(() => { trackShippingPageView(); }, []);
 
   const shippingZones = [
     {
