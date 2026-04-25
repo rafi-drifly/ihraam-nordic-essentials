@@ -281,49 +281,153 @@ const Shop = () => {
                 <p className="text-muted-foreground leading-relaxed">{t('shop.description')}</p>
               </div>
 
-              {/* Bundle Cards */}
+              {/* Bundle Cards - mirrors the homepage ProductOffersBlock */}
               <div className="space-y-3">
-                <h3 className="font-semibold text-lg">{t('shop.bundle.chooseBundle')}</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div className="text-center mb-2">
+                  <h3
+                    className="font-bold"
+                    style={{
+                      color: "#305050",
+                      fontSize: "clamp(22px, 3vw, 28px)",
+                      lineHeight: 1.2,
+                    }}
+                  >
+                    {t('shop.bundle.chooseYourIhram')}
+                  </h3>
+                  <p
+                    className="mx-auto mt-2"
+                    style={{
+                      color: "#6B7280",
+                      fontSize: 14,
+                      lineHeight: 1.5,
+                      maxWidth: 480,
+                    }}
+                  >
+                    {t('shop.bundle.chooseSubtitle')}
+                  </p>
+                </div>
+
+                <div className="shop-offers-grid">
                   {bundles.map((b, idx) => {
                     const isSelected = selectedBundle === idx;
-                    const totalYouPay = b.totalPrice + b.shipping;
-                    const badgeKey = b.qty === 2 ? 'shop.bundle.bestValue' : b.qty >= 3 ? 'shop.bundle.mostPopular' : '';
+                    const isHighlighted = b.qty === 2;
+                    const isBestValue = b.qty >= 3;
+                    const mobileOrder = b.qty === 2 ? 1 : b.qty === 1 ? 2 : 3;
+                    const descKey =
+                      b.qty === 1 ? 'shop.bundle.descSingle' :
+                      b.qty === 2 ? 'shop.bundle.desc2Pack' :
+                      'shop.bundle.desc3Pack';
+                    const ctaKey = b.qty === 1
+                      ? 'shop.bundle.shopNow'
+                      : 'shop.bundle.shopNPack';
                     return (
                       <button
                         key={b.qty}
+                        type="button"
                         onClick={() => setSelectedBundle(idx)}
-                        className={`relative rounded-xl border-2 p-4 text-left transition-all ${
-                          isSelected
-                            ? 'border-primary bg-primary/5 shadow-md'
-                            : 'border-border hover:border-primary/50 bg-background'
-                        }`}
+                        aria-pressed={isSelected}
+                        aria-label={`${b.label}, €${b.totalPrice} plus shipping. ${t(descKey)}`}
+                        className={`shop-offer-card ${isHighlighted ? 'shop-offer-card--highlighted' : ''} ${isSelected ? 'shop-offer-card--selected' : ''}`}
+                        style={{ order: mobileOrder }}
                       >
-                        {badgeKey && (
-                          <Badge
-                            variant={b.badgeVariant || 'default'}
-                            className="absolute -top-2.5 left-1/2 -translate-x-1/2 text-xs whitespace-nowrap"
+                        {isHighlighted && (
+                          <span
+                            aria-hidden="true"
+                            className="shop-offer-badge"
+                            style={{ background: '#287777', color: '#FFFFFF' }}
                           >
-                            {t(badgeKey)}
-                          </Badge>
+                            {t('shop.bundle.mostPopular')}
+                          </span>
                         )}
-                        <div className="mt-1">
-                          <p className="font-bold text-lg">{b.qty === 1 ? t('shop.bundle.single') : b.label}</p>
-                          <p className="text-2xl font-bold text-foreground mt-1">{"\u20AC"}{b.totalPrice}</p>
-                          <p className="text-sm text-muted-foreground mt-1">
+                        {isBestValue && (
+                          <span
+                            aria-hidden="true"
+                            className="shop-offer-badge"
+                            style={{ background: '#EEBD2B', color: '#1A1A1A' }}
+                          >
+                            {t('shop.bundle.bestValue')}
+                          </span>
+                        )}
+
+                        <h4
+                          className="text-center"
+                          style={{
+                            color: '#305050',
+                            fontSize: 20,
+                            fontWeight: 600,
+                            marginBottom: 8,
+                          }}
+                        >
+                          {b.qty === 1 ? t('shop.bundle.single') + ' Set' : b.label}
+                        </h4>
+
+                        <div className="text-center" style={{ marginBottom: 4 }}>
+                          <span
+                            style={{
+                              color: '#305050',
+                              fontSize: 36,
+                              fontWeight: 700,
+                              lineHeight: 1,
+                            }}
+                          >
+                            €{b.totalPrice}
+                          </span>
+                          <span
+                            style={{
+                              color: '#6B7280',
+                              fontSize: 12,
+                              fontWeight: 400,
+                              marginLeft: 4,
+                            }}
+                          >
                             {t('shop.plusShipping')}
-                          </p>
-                          {b.qty === 2 && b.savings > 0 && (
-                            <p className="text-xs font-medium text-primary mt-1">
-                              {t('shop.bundle.save2Pack', { amount: b.savings })}
-                            </p>
-                          )}
-                          {b.qty >= 3 && b.savings > 0 && (
-                             <p className="text-xs font-medium text-primary mt-1">
-                               {t('shop.bundle.savingsVsSeparate', { amount: b.savings, qty: b.qty })}
-                             </p>
-                           )}
+                          </span>
                         </div>
+
+                        {/* Reserve vertical space so all cards align */}
+                        <div
+                          className="text-center"
+                          style={{ minHeight: 38, marginBottom: 8 }}
+                        >
+                          {b.savings > 0 && (
+                            <>
+                              <div
+                                style={{ color: '#287777', fontSize: 14, fontWeight: 700 }}
+                              >
+                                {t('shop.bundle.saveAmount', { amount: b.savings })}
+                              </div>
+                              <div
+                                style={{
+                                  color: '#6B7280',
+                                  fontSize: 11,
+                                  fontWeight: 400,
+                                  marginTop: 2,
+                                }}
+                              >
+                                {t('shop.bundle.oneShippingFee')}
+                              </div>
+                            </>
+                          )}
+                        </div>
+
+                        <p
+                          className="text-center"
+                          style={{
+                            color: '#4B5563',
+                            fontSize: 13,
+                            lineHeight: 1.45,
+                            marginBottom: 12,
+                          }}
+                        >
+                          {t(descKey)}
+                        </p>
+
+                        <span
+                          className="shop-offer-cta"
+                          aria-hidden="true"
+                        >
+                          {b.qty === 1 ? t(ctaKey) : t(ctaKey, { label: b.label })}
+                        </span>
                       </button>
                     );
                   })}
@@ -340,6 +444,80 @@ const Shop = () => {
                   </p>
                 </div>
               </div>
+
+              {/* Scoped tier styling - matches homepage ProductOffersBlock */}
+              <style>{`
+                .shop-offers-grid {
+                  display: grid;
+                  grid-template-columns: 1fr;
+                  gap: 16px;
+                }
+                @media (min-width: 640px) {
+                  .shop-offers-grid {
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 12px;
+                  }
+                  .shop-offers-grid > .shop-offer-card { order: 0 !important; }
+                }
+                .shop-offer-card {
+                  position: relative;
+                  background: #FFFFFF;
+                  border: 1px solid #E5E7EB;
+                  border-radius: 14px;
+                  padding: 20px 16px;
+                  cursor: pointer;
+                  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+                  display: flex;
+                  flex-direction: column;
+                  text-align: center;
+                  width: 100%;
+                  font-family: inherit;
+                }
+                .shop-offer-card:hover {
+                  transform: translateY(-2px);
+                  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+                }
+                .shop-offer-card--highlighted {
+                  border: 2px solid #287777;
+                  box-shadow: 0 8px 24px rgba(40, 119, 119, 0.12);
+                }
+                .shop-offer-card--highlighted:hover {
+                  transform: none;
+                }
+                .shop-offer-card--selected {
+                  border-color: #287777;
+                  box-shadow: 0 0 0 3px rgba(40, 119, 119, 0.18);
+                }
+                .shop-offer-badge {
+                  position: absolute;
+                  top: -12px;
+                  left: 50%;
+                  transform: translateX(-50%);
+                  font-size: 11px;
+                  font-weight: 600;
+                  padding: 5px 12px;
+                  border-radius: 999px;
+                  white-space: nowrap;
+                  letter-spacing: 0.01em;
+                }
+                .shop-offer-cta {
+                  display: inline-block;
+                  width: 100%;
+                  padding: 10px 12px;
+                  background: #287777;
+                  color: #FFFFFF;
+                  font-size: 14px;
+                  font-weight: 600;
+                  border-radius: 8px;
+                  margin-top: auto;
+                  transition: background-color 200ms ease;
+                }
+                .shop-offer-card:hover .shop-offer-cta { background: #205A5A; }
+                .shop-offer-card:focus-visible {
+                  outline: 3px solid #EEBD2B;
+                  outline-offset: 2px;
+                }
+              `}</style>
 
               {/* Trust Bullets */}
               <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
