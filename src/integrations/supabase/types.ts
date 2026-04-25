@@ -14,6 +14,30 @@ export type Database = {
   }
   public: {
     Tables: {
+      hajj_prep_subscribers: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          locale: string
+          source: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          locale?: string
+          source?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          locale?: string
+          source?: string | null
+        }
+        Relationships: []
+      }
       inventory: {
         Row: {
           low_stock_threshold: number
