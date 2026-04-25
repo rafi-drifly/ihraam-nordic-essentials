@@ -11,19 +11,24 @@ export interface Bundle {
 // Single unit price = €19
 export const UNIT_PRICE = 19;
 
-// Bundles (shipping is base €9 for all of Europe)
+// Bundles (shipping is base €9 for all of Europe).
+// `savings` is shipping-inclusive vs. ordering singles separately:
+//   2-Pack: (2 × (19+9)) - (37+9) = 56 - 46 = €10
+//   3-Pack: (3 × (19+9)) - (55+9) = 84 - 64 = €20
+// AUTHORITATIVE SOURCE for bundle pricing/savings used by /shop AND the
+// homepage ProductOffersBlock. Keep them in sync.
 export const BUNDLES: Bundle[] = [
   {
     qty: 1, label: 'Single', totalPrice: 19, shipping: 9, savings: 0,
     badge: null, badgeVariant: null,
   },
   {
-    qty: 2, label: '2-Pack', totalPrice: 37, shipping: 9, savings: 1,
-    badge: 'Best Value', badgeVariant: 'default',
+    qty: 2, label: '2-Pack', totalPrice: 37, shipping: 9, savings: 10,
+    badge: 'Most Popular', badgeVariant: 'default',
   },
   {
-    qty: 3, label: '3-Pack', totalPrice: 55, shipping: 9, savings: 2,
-    badge: 'Most Popular', badgeVariant: 'secondary',
+    qty: 3, label: '3-Pack', totalPrice: 55, shipping: 9, savings: 20,
+    badge: 'Best Value', badgeVariant: 'secondary',
   },
 ];
 

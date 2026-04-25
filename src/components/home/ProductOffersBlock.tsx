@@ -17,6 +17,8 @@ interface Offer {
 }
 
 // Pricing locked site-wide: €19 / €37 / €55 + flat €9 shipping.
+// AUTHORITATIVE SOURCE for prices/savings is `src/lib/bundles.ts` (BUNDLES).
+// The savings below mirror that file - update both together if pricing changes.
 // Single (1 set) = €19 + €9 = €28 total.
 // 2-Pack vs buying 2 singles: €46 vs €56  -> save €10 (one shipping fee).
 // 3-Pack vs buying 3 singles: €64 vs €84  -> save €20 (one shipping fee).
