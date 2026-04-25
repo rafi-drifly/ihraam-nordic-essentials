@@ -1,71 +1,68 @@
-## Diagnosis
+## Goal
 
-The Stripe edge function itself is **healthy** - server logs show successful `cs_live_...` sessions being created within seconds of the user's failed click. The failure is purely client-side:
+Make the /shop page reflect the same pricing structure shown in the new homepage `ProductOffersBlock` (the screenshot you attached): correct savings copy (€10 / €20), "One shipping fee for all sets" subline, "Most Popular" / "Best Value" badges, and the same brand styling - while keeping all of /shop's existing product functionality (gallery, specifications accordions, Stripe Buy Now, country selector, schema.org JSON-LD, etc.).
 
-```
-FunctionsFetchError: Failed to send a request to the Edge Function
-TypeError: Failed to fetch
-```
+## Current state on /shop (verified)
 
-This `TypeError: Failed to fetch` means the browser **blocked the request before it left the device** - almost always a CORS preflight rejection.
+In `src/pages/Shop.tsx` lines ~285-330, the bundle selector is a 3-card row inside the right product column with these issues:
 
-### Root cause
+- Uses `BUNDLES` from `src/lib/bundles.ts`, where `savings: 1` (2-pack) and `savings: 2` (3-pack) - **wrong numbers**, contradicting the new homepage (€10 / €20).
+- Renders vague copy via `t('shop.bundle.save2Pack')` ("Save on shipping - one delivery instead of two") and `t('shop.bundle.savingsVsSeparate', {...})` instead of the concrete "Save €10" + "One shipping fee for all sets" lines from the screenshot.
+- Visual treatment is small radio-style cards, not the prominent pricing tiles from the homepage.
+- Also surfaces "Save €X vs ordering N singles" math that the new design intentionally drops in favor of the cleaner "Save €10" / "Save €20" line.
 
-`@supabase/supabase-js` now sends extra request headers on every Edge Function call:
-- `x-supabase-client-platform`
-- `x-supabase-client-platform-version`
-- `x-supabase-client-runtime`
-- `x-supabase-client-runtime-version`
+## Proposed changes
 
-But every edge function in this project still declares the old, narrow allow-list:
-```ts
-"Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type"
-```
+### 1. Fix the savings source of truth
 
-When the browser's CORS preflight sees a request header that isn't in the server's `Access-Control-Allow-Headers` response, it cancels the actual fetch -> `TypeError: Failed to fetch` on the client, while the server never logs anything (which matches what we see: the user's failed click has **no corresponding entry** in the create-checkout logs).
+In `src/lib/bundles.ts`:
 
-The successful sessions in the logs (qty 3, qty 5) are likely from a different client/SDK version (e.g. an admin/server context) - the public website's bundled SDK is now newer and trips the preflight.
+- Update `BUNDLES`: `2-Pack` → `savings: 10`, `3-Pack` → `savings: 20`.
+- Swap the badges so they match the homepage / screenshot:
+  - 2-Pack → `badge: 'Most Popular'`
+  - 3-Pack → `badge: 'Best Value'`
+- Keep `totalPrice` (€19 / €37 / €55) and `shipping: 9` unchanged - pricing is locked site-wide.
 
-### The fix
+This single-source-of-truth fix prevents the homepage and shop from drifting again.
 
-Widen `Access-Control-Allow-Headers` on every edge function to match the current Supabase guidance:
+### 2. Replace the in-column bundle selector on /shop with a styled tier block
 
-```
-authorization, x-client-info, apikey, content-type,
-x-supabase-client-platform, x-supabase-client-platform-version,
-x-supabase-client-runtime, x-supabase-client-runtime-version
-```
+In `src/pages/Shop.tsx`:
 
-### Files to update
+- Replace the small selector grid (≈ lines 285-330) with a 3-card pricing tier UI that visually matches the homepage `ProductOffersBlock`:
+  - Same teal `#287777` highlighted border on the selected (default = 2-Pack) card.
+  - "Most Popular" teal pill on 2-Pack, "Best Value" gold (#EEBD2B) pill on 3-Pack.
+  - Big `€19 / €37 / €55` price + `+ shipping` muted suffix.
+  - For 2-Pack and 3-Pack: `Save €10` / `Save €20` in teal with subline "One shipping fee for all sets".
+  - Single Set keeps an empty `min-height` placeholder so the three cards line up.
+  - Mobile order: 2-Pack first, then Single, then 3-Pack (same as homepage).
+- Crucially: cards stay **selectable** (clicking a card sets `selectedBundle`) so the existing "Add to Cart" and "Buy Now" buttons below continue to work with the chosen tier. The CTA buttons themselves are not duplicated - only the tier picker is restyled. This preserves Stripe Buy Now / cart flow intact.
+- Remove the now-redundant `t('shop.bundle.save2Pack')` and `t('shop.bundle.savingsVsSeparate', ...)` lines from the cards.
+- Keep the existing `whyBundles` italic note and country/shipping disclosure logic underneath untouched.
 
-All edge functions share the same outdated CORS block - update each one:
+### 3. Translation updates
 
-1. `supabase/functions/create-checkout/index.ts` (the one breaking checkout)
-2. `supabase/functions/create-donation-checkout/index.ts`
-3. `supabase/functions/create-extra-shipping-payment/index.ts`
-4. `supabase/functions/contact-form/index.ts`
-5. `supabase/functions/guest-order-lookup/index.ts`
-6. `supabase/functions/product-images/index.ts`
-7. `supabase/functions/send-order-confirmation/index.ts`
-8. `supabase/functions/send-prep-pack/index.ts`
-9. `supabase/functions/send-shipping-adjustment-email/index.ts`
-10. `supabase/functions/stripe-webhook/index.ts` (Stripe -> server, no browser CORS issue, but harmless to align)
+In `src/i18n/locales/{en,sv,no}.json`, add (or repurpose) a small set of keys used by the new tier UI so it works in all three locales:
 
-For each, change the `corsHeaders` constant only - no logic changes.
+- `shop.bundle.saveAmount` → `"Save €{{amount}}"` (sv: `"Spara €{{amount}}"`, no: `"Spar €{{amount}}"`)
+- `shop.bundle.oneShippingFee` → `"One shipping fee for all sets"` (sv: `"En fraktavgift för alla set"`, no: `"Én fraktavgift for alle sett"`)
+- `shop.bundle.mostPopular` and `shop.bundle.bestValue` already exist - reuse as-is.
 
-### Verification
+The unused `save2Pack` and `savingsVsSeparate` keys will be left in place (harmless, avoids breaking anything else that might reference them) but no longer rendered.
 
-After deploy:
-1. Trigger "Buy Now with Stripe" on `/shop` from the preview
-2. Confirm the network tab shows a successful POST to `/functions/v1/create-checkout` (no `(failed) net::ERR_FAILED`)
-3. Confirm a new `Checkout request:` line appears in the create-checkout logs matching the click timestamp
-4. Confirm the browser is redirected to `https://checkout.stripe.com/...`
+### 4. Sync the homepage component to the same source
 
-### What this is NOT
+In `src/components/home/ProductOffersBlock.tsx`, the savings (10 / 20) are currently hardcoded in the `OFFERS` array. After step 1, this stays visually identical but I'll add a brief code comment noting that `BUNDLES` in `src/lib/bundles.ts` is the authoritative source so future edits go in one place. No visual change.
 
-- Not a Stripe key issue: live sessions are being created successfully server-side using the existing `STRIPE_SECRET_KEY`.
-- Not a payment-mode mismatch: `cs_live_` prefix confirms live key is correctly loaded.
-- Not a price/SKU bug: the request body shape is correct in the logs.
-- No frontend code change required - `Shop.tsx` and `ProductOffersBlock.tsx` are calling `supabase.functions.invoke('create-checkout')` correctly.
+## Out of scope (no changes)
 
-No database changes, no new secrets, no UI changes.
+- Pricing values (€19 / €37 / €55) and €9 base shipping - locked.
+- Stripe checkout flow, product gallery, JSON-LD, accordions, country selector - all untouched.
+- Cart drawer / cart page - already use `BUNDLES`, will automatically pick up the corrected savings if displayed anywhere.
+
+## Verification after implementation
+
+1. `/` (homepage) - "Choose your Ihram" block looks identical to your screenshot (no regression).
+2. `/shop` - bundle tiles visually match the homepage; selecting a tile updates the price shown on the "Add to Cart" / "Buy Now" buttons; Buy Now still redirects to Stripe.
+3. `/sv/shop` and `/no/shop` - savings strings render in Swedish / Norwegian respectively.
+4. Run `bunx vitest run` to confirm the existing checkout-flow test still passes (payload shape is unchanged).
