@@ -6,50 +6,51 @@ interface SEOHeadProps {
   title?: string;
   description?: string;
   path?: string;
+  jsonLd?: Record<string, unknown>[];
 }
 
-const SEOHead = ({ title, description, path }: SEOHeadProps) => {
+const SEOHead = ({ title, description, path, jsonLd }: SEOHeadProps) => {
   const { i18n } = useTranslation();
   const location = useLocation();
   const currentLang = i18n.language;
-  
+
   const baseUrl = 'https://www.pureihram.com';
   const currentPath = path || location.pathname;
-  
+
   // Remove locale prefix for canonical path
   const canonicalPath = currentPath.replace(/^\/(sv|no)/, '') || '/';
-  
+
   // Generate URLs for hreflang
   const englishUrl = `${baseUrl}${canonicalPath}`;
   const swedishUrl = `${baseUrl}/sv${canonicalPath === '/' ? '' : canonicalPath}`;
   const norwegianUrl = `${baseUrl}/no${canonicalPath === '/' ? '' : canonicalPath}`;
-  
+
   const getCurrentUrl = () => {
     if (currentLang === 'sv') return swedishUrl;
     if (currentLang === 'no') return norwegianUrl;
     return englishUrl;
   };
-  
+
   const currentUrl = getCurrentUrl();
 
   const getDefaultTitle = () => {
     if (currentLang === 'sv') {
-      return 'Pure Ihram - Premium Ihram-Kläder för Hajj & Umrah | Köp Online i Sverige';
+      return 'Köp Ihram Online - Premium Pilgrimskläder från €19 | Pure Ihram';
     }
     if (currentLang === 'no') {
-      return 'Pure Ihram - Premium Ihram-Klær for Hajj & Umrah | Kjøp Online i Norge';
+      return 'Kjøp Ihram Online - Premium Pilegrimsklær fra €19 | Pure Ihram';
     }
-    return 'Pure Ihram - Premium Ihram Garments for Hajj & Umrah | Buy Online in Europe';
+    return 'Buy Ihram Online - Premium Pilgrimage Cloth from €19 | Pure Ihram';
   };
-    
+
   const getDefaultDescription = () => {
     if (currentLang === 'sv') {
-      return 'Köp högkvalitativ Ihram (Ihraam) för endast 20€. Snabb leverans till Sverige, Norden och hela EU. 100% mikrofiber polyester, bekväm och traditionell design för din pilgrimsfärd.';
+      return 'Premium Ihram för Hajj och Umrah. Från €19. Skickas från Sverige, snabb leverans i hela Europa.';
     }
     if (currentLang === 'no') {
-      return 'Kjøp høykvalitets Ihram (Ihraam) for kun 20€. Rask levering til Norge, Norden og hele EU. 100% mikrofiber polyester, komfortabel og tradisjonell design for din pilegrimsreise.';
+      return 'Premium Ihram for Hajj og Umrah. Fra €19. Sendes fra Sverige, rask levering i hele Europa.';
     }
-    return 'Buy high-quality Ihram (Ihraam) for just 20€. Fast delivery to Sweden, Nordics, and all EU. 100% Microfiber Polyester, comfortable and traditional design for your pilgrimage.';
+    return 'Premium Ihram cloth for Hajj & Umrah. From €19. Ships from Sweden, fast delivery across Europe.';
   };
 
   const getLocale = () => {
@@ -66,25 +67,32 @@ const SEOHead = ({ title, description, path }: SEOHeadProps) => {
       <html lang={currentLang} />
       <title>{finalTitle}</title>
       <meta name="description" content={finalDescription} />
-      
+
       {/* Canonical URL */}
       <link rel="canonical" href={currentUrl} />
-      
+
       {/* Hreflang tags for SEO */}
       <link rel="alternate" hrefLang="en" href={englishUrl} />
       <link rel="alternate" hrefLang="sv" href={swedishUrl} />
       <link rel="alternate" hrefLang="no" href={norwegianUrl} />
       <link rel="alternate" hrefLang="x-default" href={englishUrl} />
-      
+
       {/* Open Graph */}
       <meta property="og:title" content={finalTitle} />
       <meta property="og:description" content={finalDescription} />
       <meta property="og:url" content={currentUrl} />
       <meta property="og:locale" content={getLocale()} />
-      
+
       {/* Twitter */}
       <meta name="twitter:title" content={finalTitle} />
       <meta name="twitter:description" content={finalDescription} />
+
+      {/* Structured data */}
+      {jsonLd?.map((schema, idx) => (
+        <script key={idx} type="application/ld+json">
+          {JSON.stringify(schema)}
+        </script>
+      ))}
     </Helmet>
   );
 };
