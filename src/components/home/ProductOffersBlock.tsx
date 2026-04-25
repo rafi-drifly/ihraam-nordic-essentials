@@ -1,101 +1,343 @@
-import { Link, useLocation } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useCart } from "@/hooks/useCart";
+import { useToast } from "@/hooks/use-toast";
+import ihraamProduct from "@/assets/hero-product.avif";
 
 interface Offer {
+  sku: "IHRAM-1" | "IHRAM-2" | "IHRAM-3";
   title: string;
-  price: string;
-  saves?: string;
+  qty: number;
+  price: number; // bundle total in EUR (excl. shipping)
+  saving?: number; // shipping-inclusive saving vs. buying singly
   description: string;
-  badge?: string;
+  ctaLabel: string;
+  badge?: { label: string; tone: "teal" | "gold" };
   highlighted?: boolean;
+  mobileOrder: number; // CSS order at <768px
 }
 
+// Pricing locked site-wide: €19 / €37 / €55 + flat €9 shipping.
+// Single (1 set) = €19 + €9 = €28 total.
+// 2-Pack vs buying 2 singles: €46 vs €56  -> save €10 (one shipping fee).
+// 3-Pack vs buying 3 singles: €64 vs €84  -> save €20 (one shipping fee).
 const OFFERS: Offer[] = [
   {
+    sku: "IHRAM-1",
     title: "Single Set",
-    price: "€19",
-    description: "One complete set (Izaar + Ridaa). Ideal for Umrah or first-time buyers.",
+    qty: 1,
+    price: 19,
+    description:
+      "One complete set (Izaar + Ridaa). Ideal for Umrah or first-time buyers.",
+    ctaLabel: "Shop now",
+    mobileOrder: 2,
   },
   {
+    sku: "IHRAM-2",
     title: "2-Pack",
-    price: "€37",
-    saves: "Save €1",
-    description: "Most pilgrims wear 2 Ihrams during Hajj - one for travel, one fresh.",
-    badge: "Most Popular",
+    qty: 2,
+    price: 37,
+    saving: 10,
+    description:
+      "Most pilgrims wear 2 Ihrams during Hajj - one for travel, one fresh.",
+    ctaLabel: "Shop 2-Pack",
+    badge: { label: "Most Popular", tone: "teal" },
     highlighted: true,
+    mobileOrder: 1,
   },
   {
+    sku: "IHRAM-3",
     title: "3-Pack",
-    price: "€55",
-    saves: "Save €2",
-    description: "For family groups, mosque pre-orders, or an extra spare.",
-    badge: "Best Value",
+    qty: 3,
+    price: 55,
+    saving: 20,
+    description:
+      "For family groups, mosque pre-orders, or an extra spare set.",
+    ctaLabel: "Shop 3-Pack",
+    badge: { label: "Best Value", tone: "gold" },
+    mobileOrder: 3,
   },
 ];
 
 export const ProductOffersBlock = () => {
+  const navigate = useNavigate();
   const location = useLocation();
+  const { addItem } = useCart();
+  const { toast } = useToast();
+
   const localePrefix = location.pathname.startsWith("/sv")
     ? "/sv"
     : location.pathname.startsWith("/no")
     ? "/no"
     : "";
 
+  const handleSelect = (offer: Offer) => {
+    addItem(
+      {
+        id: offer.sku,
+        name: `Pure Ihram - ${offer.title}`,
+        price: offer.price / offer.qty, // unit price, matches Shop convention
+        image: ihraamProduct,
+      },
+      offer.qty,
+    );
+    toast({
+      title: "Added to cart",
+      description: `${offer.title} added. Review your cart on the next page.`,
+    });
+    navigate(`${localePrefix}/shop`);
+  };
+
   return (
-    <section className="py-14 bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="bg-white" style={{ paddingTop: 80, paddingBottom: 80 }}>
+      <div
+        className="mx-auto px-4 sm:px-6 lg:px-8"
+        style={{ maxWidth: 1200 }}
+      >
+        {/* Heading */}
         <div className="text-center mb-10">
-          <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-3">
+          <h2
+            className="font-bold"
+            style={{
+              color: "#305050",
+              fontSize: "clamp(28px, 4vw, 36px)",
+              lineHeight: 1.2,
+            }}
+          >
             Choose your Ihram
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Single sets for Umrah, bundles for Hajj. + shipping calculated at checkout.
+          <p
+            className="mx-auto mt-3"
+            style={{
+              color: "#6B7280",
+              fontSize: 16,
+              lineHeight: 1.5,
+              maxWidth: 540,
+            }}
+          >
+            Single sets for Umrah, bundles for Hajj. Shipping calculated at
+            checkout.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {OFFERS.map((offer) => (
-            <Card
-              key={offer.title}
-              className={`relative border shadow-sm hover:shadow-md transition-shadow ${
-                offer.highlighted ? "border-primary border-2" : "border-border"
-              }`}
-            >
-              {offer.badge && (
-                <Badge
-                  className="absolute -top-3 left-1/2 -translate-x-1/2"
-                  variant={offer.highlighted ? "default" : "secondary"}
-                >
-                  {offer.badge}
-                </Badge>
-              )}
-              <CardContent className="p-6 text-center">
-                <h3 className="text-lg font-semibold text-foreground mb-2">{offer.title}</h3>
-                <div className="mb-1">
-                  <span className="text-4xl font-bold text-foreground">{offer.price}</span>
-                  <span className="text-sm text-muted-foreground"> + shipping</span>
-                </div>
-                {offer.saves && (
-                  <p className="text-sm text-primary font-medium mb-3">{offer.saves}</p>
+        {/* Cards grid */}
+        <div className="offers-grid">
+          {OFFERS.map((offer) => {
+            const isHighlighted = !!offer.highlighted;
+            return (
+              <div
+                key={offer.sku}
+                role="group"
+                aria-label={`${offer.title}, ${offer.price} euros plus shipping. ${offer.description}`}
+                onClick={() => handleSelect(offer)}
+                className={`offer-card ${isHighlighted ? "offer-card--highlighted" : ""}`}
+                style={{ order: offer.mobileOrder }}
+              >
+                {offer.badge && (
+                  <span
+                    aria-hidden="true"
+                    className="offer-badge"
+                    style={{
+                      background:
+                        offer.badge.tone === "teal" ? "#287777" : "#EEBD2B",
+                      color: offer.badge.tone === "teal" ? "#FFFFFF" : "#1A1A1A",
+                    }}
+                  >
+                    {offer.badge.label}
+                  </span>
                 )}
-                <p className="text-sm text-muted-foreground leading-relaxed mb-5 min-h-[3.5rem]">
+
+                <h3
+                  className="text-center"
+                  style={{
+                    color: "#305050",
+                    fontSize: 24,
+                    fontWeight: 600,
+                    marginBottom: 12,
+                  }}
+                >
+                  {offer.title}
+                </h3>
+
+                <div className="text-center" style={{ marginBottom: 4 }}>
+                  <span
+                    style={{
+                      color: "#305050",
+                      fontSize: 48,
+                      fontWeight: 700,
+                      lineHeight: 1,
+                    }}
+                  >
+                    €{offer.price}
+                  </span>
+                  <span
+                    style={{
+                      color: "#6B7280",
+                      fontSize: 14,
+                      fontWeight: 400,
+                      marginLeft: 4,
+                    }}
+                  >
+                    + shipping
+                  </span>
+                </div>
+
+                {/* Savings line - reserves vertical space on Single Set so cards align */}
+                <div
+                  className="text-center"
+                  style={{ minHeight: 44, marginBottom: 12 }}
+                >
+                  {offer.saving ? (
+                    <>
+                      <div
+                        style={{
+                          color: "#287777",
+                          fontSize: 16,
+                          fontWeight: 700,
+                        }}
+                      >
+                        Save €{offer.saving}
+                      </div>
+                      <div
+                        style={{
+                          color: "#6B7280",
+                          fontSize: 13,
+                          fontWeight: 400,
+                          marginTop: 2,
+                        }}
+                      >
+                        One shipping fee for all sets
+                      </div>
+                    </>
+                  ) : null}
+                </div>
+
+                <p
+                  className="text-center"
+                  style={{
+                    color: "#4B5563",
+                    fontSize: 15,
+                    lineHeight: 1.5,
+                    marginBottom: 24,
+                  }}
+                >
                   {offer.description}
                 </p>
-                <Button asChild className="w-full bg-primary hover:bg-primary/90">
-                  <Link to={`${localePrefix}/shop`}>Shop now</Link>
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
+
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleSelect(offer);
+                  }}
+                  className="offer-cta"
+                >
+                  {offer.ctaLabel}
+                </button>
+              </div>
+            );
+          })}
         </div>
 
-        <p className="text-center text-sm text-muted-foreground mt-8">
-          Free with every order: Pure Ihram Hajj 2026 Prep Pack - printable checklist, dua list,
-          packing guide.
+        {/* Footer line */}
+        <p
+          className="text-center mx-auto"
+          style={{
+            color: "#6B7280",
+            fontSize: 14,
+            lineHeight: 1.5,
+            maxWidth: 600,
+            marginTop: 32,
+          }}
+        >
+          Free with every order: Pure Ihram Hajj 2026 Prep Pack - printable
+          checklist, dua list, packing guide.
         </p>
       </div>
+
+      {/* Scoped styles - keeps spec hex values exact and handles responsive + hover/focus */}
+      <style>{`
+        .offers-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+        @media (min-width: 768px) {
+          .offers-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+          }
+        }
+        @media (min-width: 1024px) {
+          .offers-grid {
+            gap: 24px;
+          }
+        }
+        /* On desktop, neutralize the mobile CSS order so cards render Single | 2-Pack | 3-Pack */
+        @media (min-width: 768px) {
+          .offers-grid > .offer-card { order: 0 !important; }
+        }
+
+        .offer-card {
+          position: relative;
+          background: #FFFFFF;
+          border: 1px solid #E5E7EB;
+          border-radius: 16px;
+          padding: 32px;
+          cursor: pointer;
+          transition: transform 200ms ease, box-shadow 200ms ease;
+          display: flex;
+          flex-direction: column;
+        }
+        @media (min-width: 768px) and (max-width: 1023px) {
+          .offer-card { padding: 24px; }
+        }
+        .offer-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+        }
+        .offer-card--highlighted {
+          border: 2px solid #287777;
+          box-shadow: 0 8px 24px rgba(40, 119, 119, 0.12);
+        }
+        .offer-card--highlighted:hover {
+          transform: none;
+          box-shadow: 0 8px 24px rgba(40, 119, 119, 0.12);
+        }
+
+        .offer-badge {
+          position: absolute;
+          top: -14px;
+          left: 50%;
+          transform: translateX(-50%);
+          font-size: 12px;
+          font-weight: 600;
+          padding: 6px 14px;
+          border-radius: 999px;
+          white-space: nowrap;
+          letter-spacing: 0.01em;
+        }
+
+        .offer-cta {
+          width: 100%;
+          height: 48px;
+          background: #287777;
+          color: #FFFFFF;
+          font-size: 16px;
+          font-weight: 600;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: background-color 200ms ease;
+          margin-top: auto;
+        }
+        .offer-cta:hover {
+          background: #205A5A;
+        }
+        .offer-cta:focus-visible {
+          outline: 3px solid #EEBD2B;
+          outline-offset: 2px;
+        }
+      `}</style>
     </section>
   );
 };

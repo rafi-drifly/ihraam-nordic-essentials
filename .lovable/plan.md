@@ -1,166 +1,49 @@
+## Goal
 
-## Homepage v2 - Implementation Plan
+Rebuild the homepage pricing block per spec: 3 cards, 2-Pack first on mobile, "Most Popular" + "Best Value" badges, brand-true colors, accessible, with **honest savings copy based on shipping economics**.
 
-Apply the v2 doc to the live homepage, **respecting the brand rules** confirmed in our Q&A:
-- No fake-urgency deadlines, no "2 days" promise (use 2-4 days)
-- One named testimonial only - no star ratings or "5/5" claims
-- Lead magnet wired to Resend (auto-send PDF), no entity name, no founder name yet
-- All copy in English only for now (Swedish/Norwegian translations to follow in a later pass)
+## Pricing logic (locked, Amanah-compliant)
 
----
+Prices stay **€19 / €37 / €55** site-wide (Stripe, Shop, schema, hero unchanged). Savings come from the single €9 shipping fee being shared across multiple sets:
 
-### 1. SEO meta tags - `src/components/SEOHead.tsx` + `src/pages/Home.tsx`
+| Bundle | Price + ship | Buying singly | Saving |
+|---|---|---|---|
+| Single | €19 + €9 = €28 | - | - |
+| 2-Pack | €37 + €9 = €46 | 2 × €28 = €56 | **€10** |
+| 3-Pack | €55 + €9 = €64 | 3 × €28 = €84 | **€20** |
 
-Replace the homepage `<head>` tags via the existing `SEOHead` component:
-- **Title**: `Buy Ihram Online - Premium Pilgrimage Cloth from €19 | Pure Ihram`
-- **Description**: `Premium Ihram cloth for Hajj & Umrah. From €19. Ships from Sweden, fast delivery across Europe.`
-- **OG title**: `Pure Ihram - Premium Ihram Cloth for Hajj 2026`
-- **OG description**: `Lightweight, comfortable Ihram from €19. Ships from Sweden across the EU. Get your Hajj 2026 set today.`
+A small subhead inside Cards 2 and 3 will clarify the "one shipping fee" mechanic so the savings are transparent and verifiable.
 
-Add **Organization, Product, FAQPage JSON-LD** structured data on the homepage. (Existing canonical/www rules preserved.)
+## Files
 
----
+**Rewrite** `src/components/home/ProductOffersBlock.tsx`
+- Remove old "Save €1 / Save €2" copy entirely.
+- New layout per spec: max-width 1200px, 80px vertical padding, centered H2 + subhead, 3-col grid.
+- Cards 1 & 3: white bg, 1px #E5E7EB border, 16px radius, 32px padding, hover lift -4px + shadow.
+- Card 2 (highlighted): 2px #287777 border, soft teal shadow, no hover lift (already emphasized).
+- Badges: pill, -14px from top, `aria-hidden`. "Most Popular" = white-on-teal. "Best Value" = near-black on gold #EEBD2B.
+- Price line: `€19` 48px/700 + ` + shipping` 14px/400 inline, centered.
+- Savings line on Cards 2 & 3: "Save €10" / "Save €20" in 16px/700 #287777, plus a 13px muted note "One shipping fee for all sets" so the saving is verifiable.
+- Footer line below grid: "Free with every order: Pure Ihram Hajj 2026 Prep Pack - printable checklist, dua list, packing guide." (hyphen, not em dash).
+- CTA buttons: full-width, 48px tall, #287777 / hover #205A5A, 16px/600 white text, 8px radius, focus ring 3px solid #EEBD2B with 2px offset.
+- Whole-card click delegates to the inner CTA via a click handler on the card wrapper. Card is a `<div>` (not a button) to avoid nested-button a11y issue; CTA remains the only true interactive element. `aria-label` on the card describes the offer for screen readers.
+- Add to cart via `useCart` (id `IHRAM-1` / `IHRAM-2` / `IHRAM-3`, name, price, image from existing hero asset), then `navigate(localePrefix + "/shop")` so user reviews cart + sees donation upsell before Stripe.
 
-### 2. Promo banner - `src/components/PromoBanner.tsx` / `i18n/locales/en.json`
+**Mobile order**: 2-Pack `order: -1` at `<768px` so it stacks first; Single Set second; 3-Pack third. Badges stay attached.
 
-Update `banner.promoText` to:
-> `Hajj 2026 - order in time. Ihram from €19, ships from Sweden across the EU.`
+**Responsive**:
+- 1024px+: 3 cols, 24px gap
+- 768-1023px: 3 cols, 16px gap, 24px card padding
+- under 768px: 1 col, full-width, 2-Pack first
 
-(Plain text, no countdown date, no emoji - matches existing banner rule.)
+**Brand tokens**: hard-coded hex per spec (#287777, #305050, #EEBD2B, #4B5563, #6B7280, #E5E7EB, #205A5A). White section background.
 
----
+## Out of scope (not changing)
 
-### 3. Hero rewrite - `src/pages/Home.tsx` + `en.json`
+- `src/lib/bundles.ts` (still €19/€37/€55; the internal Shop math is unchanged - the homepage now expresses the shipping-inclusive saving, which is the more honest customer-facing number).
+- `src/pages/Shop.tsx`, Stripe products, JSON-LD, hero "From €19" copy, locales.
+- All other homepage sections.
 
-- **H1**: `Premium Ihram for Hajj 2026`
-- **Highlight (line 2)**: `From €19, Shipped from Sweden`
-- **Sub**: `Lightweight microfiber Ihram for pilgrims across Sweden, the Nordics and the EU. Free Hajj Prep Pack with every order.`
-- **CTA**: `Shop Ihram - From €19`
-- **Trust line**: `Ships from Sweden  ·  Stripe-secure checkout  ·  Free EU returns within 14 days`
-- **Secondary text link** (under CTA): `Get the Free Hajj 2026 Prep Pack` → scrolls to lead-magnet section
+## Verification
 
----
-
-### 4. NEW Social-proof block (under hero)
-
-A new minimal `TestimonialBlock` component:
-- Initials avatar in a teal circle ("MS")
-- Quote: *"A really good experience. The quality met my expectations, and I'd happily recommend Pure Ihram to anyone preparing for Hajj or Umrah."*
-- Attribution: `Mohsin Saleemi  ·  Västerås, Sweden  ·  Verified buyer`
-- **No star icons, no "5/5" rating** (per memory rule)
-- Below the quote: 3 plain trust chips with Lucide icons (no emoji): `MapPin Ships from Sweden - 2-4 day EU delivery` · `Lock Stripe-secure: Apple Pay, Klarna` · `RotateCcw 14-day free returns`
-
----
-
-### 5. NEW Product offers block (3 cards)
-
-A new `ProductOffersBlock` component on the homepage with the three SKUs, "Most Popular" highlight on the 2-pack:
-| Card | Price | Copy |
-|------|-------|------|
-| Single Set | €19 | "One complete set (Izaar + Ridaa). Ideal for Umrah or first-time buyers." |
-| 2-Pack (Most Popular) | €37 (save €1) | "Most pilgrims wear 2 Ihrams during Hajj - one for travel, one fresh." |
-| 3-Pack (Best Value) | €55 (save €2) | "For family groups, mosque pre-orders, or extra spare." |
-
-Each card "Add to cart" button uses the existing `useCart` hook with the matching SKU IDs from `lib/bundles.ts`. Below the grid, a single line: *"Free with every order: Pure Ihram Hajj 2026 Prep Pack - printable checklist, dua list, packing guide."*
-
----
-
-### 6. Why Pure Ihram (4 value props) - update existing block
-
-Rewrite the four existing benefits:
-1. **Built for the Climate** - `Lightweight, breathable microfiber that stays cool and dries fast - made for Makkah heat.`
-2. **Ships from Sweden** - `EU-based fulfilment means 2-4 day delivery, no customs surprises.`
-3. **Quality-Checked Every Set** - `Every set inspected before it leaves our warehouse. If something's wrong, we replace it.`
-4. **Built for European Pilgrims** - `Founded in Sweden to serve Muslims across the Nordics and EU - fair prices, fast shipping.`
-
-(Founder claim softened to "Founded in Sweden" per your "skip founder name" choice.)
-
----
-
-### 7. NEW Lead magnet block + Resend integration
-
-**Frontend** (`HajjPrepPackBlock` component on homepage):
-- Headline: `Going for Hajj 2026? Get our Free Pure Ihram Prep Pack.`
-- Sub: `A printable checklist, dua list, and packing guide for first-time pilgrims. Free - even if you don't buy from us.`
-- 3 bullets (12-item checklist, essential duas, day-by-day timeline)
-- Email field + button `Send the Pack`
-- Privacy note: `No spam. We'll send the pack and a few helpful Hajj tips before you go.`
-
-**Backend**:
-1. **New Supabase table** `hajj_prep_subscribers` (id, email unique, created_at, locale, source) with RLS - public insert, no public read.
-2. **New edge function** `send-prep-pack` that:
-   - Validates email with Zod
-   - Inserts the email into `hajj_prep_subscribers` (idempotent on conflict)
-   - Sends email via existing Resend integration (`RESEND_API_KEY` already in secrets) using `support@pureihraam.com` as the From address
-   - Email body: short HTML thank-you with a download link to the Prep Pack PDF
-3. **PDF asset placeholder**: I'll commit a placeholder PDF at `public/hajj-2026-prep-pack.pdf` with a note in chat that you should replace it with your real prep pack file. The download link will work as soon as you drop the real PDF at that path.
-
----
-
-### 8. NEW "How to Wear Ihram" teaser block
-
-Headline + sub + button linking to existing blog post `/blog/how-to-wear-ihram`. Uses the existing `howToWear` blog image.
-
----
-
-### 9. NEW Shipping & returns reassurance strip
-
-Five-item icon row (Lucide icons, no emoji):
-- Free EU shipping on orders over €40
-- Standard EU delivery: 2-4 business days from Sweden
-- Express shipping at checkout
-- 14-day free returns - no questions asked
-- Stripe-secure checkout: Apple Pay, Google Pay, Klarna
-
----
-
-### 10. NEW FAQ block (with FAQPage schema)
-
-Accordion (existing `Accordion` UI component) with the 7 Q&A from the doc. Wrapped in JSON-LD `FAQPage` schema for Google rich results.
-
----
-
-### 11. Final CTA section - update existing
-
-- Headline: `Ready for Hajj 2026?`  *(softened from "5 weeks away")*
-- Sub: `Get your Ihram delivered in days. From €19. Ships from Sweden.`
-- CTA: `Shop Ihram - From €19`
-
----
-
-### 12. Founder block - **SKIPPED** (per your choice)
-
-No founder photo/name added. Will revisit when you confirm details.
-
----
-
-### Files touched
-
-- `src/pages/Home.tsx` - full rewrite
-- `src/components/SEOHead.tsx` - extend to accept `jsonLd` prop array
-- `src/components/PromoBanner.tsx` (text only via i18n)
-- `src/i18n/locales/en.json` - all new strings
-- **New** `src/components/home/TestimonialBlock.tsx`
-- **New** `src/components/home/ProductOffersBlock.tsx`
-- **New** `src/components/home/HajjPrepPackForm.tsx`
-- **New** `src/components/home/HowToWearTeaser.tsx`
-- **New** `src/components/home/ShippingReassuranceStrip.tsx`
-- **New** `src/components/home/HomepageFAQ.tsx`
-- **New migration**: `hajj_prep_subscribers` table + RLS
-- **New edge function**: `supabase/functions/send-prep-pack/index.ts`
-- **New asset placeholder**: `public/hajj-2026-prep-pack.pdf`
-
-### What I will NOT do (per your decisions and brand rules)
-
-- No "order by 15 May" deadline / no "2 days" delivery claim
-- No star icons, no "5/5 verified" rating, no "trusted by pilgrims" overclaim
-- No "Pure Ihram AB / Stockholm" entity line, no founder name/photo
-- No Swedish/Norwegian translations in this pass (English only - flagging this for a follow-up loop)
-- No emojis anywhere - Lucide icons only
-
-### Open items you'll need to provide later
-
-1. **Replace** `public/hajj-2026-prep-pack.pdf` with the real prep pack file
-2. Confirm founder name/photo when ready (will add the founder block then)
-3. Confirm legal entity for the footer (will update footer then)
-4. Approve Swedish + Norwegian translations of the new copy in a follow-up loop
+After build I'll confirm: prices/Stripe still match Shop, no em/en dashes introduced, no `min-h-screen`, focus ring visible on Tab, mobile order is 2-Pack -> Single -> 3-Pack.
