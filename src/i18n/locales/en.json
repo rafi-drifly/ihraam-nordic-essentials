@@ -43,90 +43,116 @@
   },
   "home": {
     "hero": {
-      "title": "Ihram for Hajj & Umrah",
-      "titleHighlight": "Delivered from Sweden",
-      "description": "Lightweight, comfortable Ihram cloth at a fair price. Clear pricing, honest service, and reliable delivery across Europe.",
-      "cta": "Shop Now",
-      "trustLine": "Clear pricing · Sweden-based · 3-7 day delivery",
-      "learnMore": "Learn More",
-      "partnersLink": "For Mosques & Hajj/Umrah Agencies →"
-    },
-    "quranVerse1": "\"And proclaim to the people the Hajj; they will come to you on foot and on every lean camel; they will come from every distant pass.\"",
-    "quranVerse1Cite": "- Qur'an 22:27",
-    "whyChoose": {
-      "title": "Why Choose Pure Ihram?",
-      "subtitle": "Quality, accessibility, and comfort for every pilgrim",
-      "affordable": {
-        "title": "Affordable for All",
-        "description": "Quality Ihram (Ihraam) at just €19 + shipping. Making pilgrimage accessible regardless of financial situation, with the sincere intention of earning ajr in the Akhirah."
-      },
-      "comfortable": {
-        "title": "Comfortable & Durable",
-        "description": "Premium 100% Microfiber Polyester fabric that's soft, breathable, and long-lasting. Pre-washed and ready to use, ensuring comfort throughout your sacred journey."
-      },
-      "delivery": {
-        "title": "Delivered Across Europe",
-        "description": "Fast, reliable delivery across Sweden (3-7 days), Nordic countries and all EU member states (7-14 days). Secure packaging with tracking included."
-      }
+      "title": "Premium Ihram for Hajj 2026",
+      "highlight": "From €19, shipped from Sweden",
+      "description": "Lightweight microfiber Ihram for pilgrims across Sweden, the Nordics and the EU. Free Hajj Prep Pack with every order.",
+      "ctaShop": "Shop Ihram - From €19",
+      "ctaPrepPack": "Get the free Hajj 2026 Prep Pack",
+      "microcopy": "Ships from Sweden  ·  Stripe-secure checkout  ·  Free EU returns within 14 days",
+      "imageAlt": "Pure white Ihram cloth laid flat"
     },
     "benefits": {
-      "title": "Why Choose Pure Ihram?",
+      "title": "Why Pure Ihram",
       "subtitle": "Simple, honest, and built around the pilgrim's needs.",
-      "lightweight": {
-        "title": "Simple to Order",
-        "description": "Pick your bundle, checkout with Stripe, and receive your Ihram at home. No hassle."
+      "climate": {
+        "title": "Built for the climate",
+        "description": "Lightweight, breathable microfiber that stays cool and dries fast - made for Makkah heat."
       },
-      "intention": {
-        "title": "Calm, Respectful Service",
-        "description": "We keep things honest - no hype, no pressure. Just a quality product and clear communication."
+      "shipsFromSweden": {
+        "title": "Ships from Sweden",
+        "description": "EU-based fulfilment means 2-4 day delivery, no customs surprises."
       },
-      "fastDelivery": {
-        "title": "Sweden-Based Delivery",
-        "description": "Ships from Sweden. 3-7 days domestic, 7-14 days across Europe."
+      "qualityChecked": {
+        "title": "Quality-checked every set",
+        "description": "Every set inspected before it leaves our warehouse. If something's wrong, we replace it."
       },
-      "affordable": {
-        "title": "Honest Pricing",
-        "description": "From €19 per set. What you see is what you pay - no hidden fees."
+      "builtForEU": {
+        "title": "Built for European pilgrims",
+        "description": "Founded in Sweden to serve Muslims across the Nordics and EU - fair prices, fast shipping."
       }
     },
-    "quranVerse2": "\"And Hajj to the House is a duty that mankind owes to Allah, for those who can afford the journey.\"",
-    "quranVerse2Cite": "- Qur'an 3:97",
     "guides": {
-      "title": "Guides & Knowledge",
-      "subtitle": "Learn everything you need before your pilgrimage - from Sunnah acts and packing tips to the spiritual meaning of Ihram.",
-      "viewAll": "View All Guides",
-      "readMore": "Read More",
+      "title": "Guides for first-time pilgrims",
+      "subtitle": "Practical, calm guidance written by Muslims, for Muslims.",
+      "readMore": "Read more",
+      "viewAll": "View all guides",
       "articles": {
         "spiritual": {
-          "title": "The Spiritual Meaning of Ihram - Equality Before Allah",
-          "description": "Explore the deeper significance of Ihram and how it represents humility and unity among believers."
+          "title": "The spiritual meaning of Ihram",
+          "description": "What Ihram represents, why pilgrims wear it, and how it shapes the heart during Hajj and Umrah."
         },
         "howToWear": {
-          "title": "How to Wear Ihram - Step-by-Step Guide for Pilgrims",
-          "description": "Learn the correct way to wear Ihram garments with Sunnah guidance and comfort tips."
+          "title": "How to wear Ihram - step by step",
+          "description": "A simple, practical guide for first-time pilgrims, with tips for comfort during the rites."
         },
         "sunnah": {
-          "title": "Sunnah Acts Before Entering Ihram",
-          "description": "Prepare your body and heart before Ihram through ghusl, perfume, and prayer - following the Sunnah."
-        },
-        "checklist": {
-          "title": "Checklist for Umrah Preparation (Clothes, Duas, Documents)",
-          "description": "A complete guide to what you need before your journey - from essentials to spiritual preparation."
-        },
-        "duas": {
-          "title": "Essential Duas for Umrah (With Transliteration & Meaning)",
-          "description": "Memorize the most important duas for each stage of Umrah, with Arabic and English meaning."
-        },
-        "mistakes": {
-          "title": "Common Mistakes Pilgrims Make in Ihram",
-          "description": "Avoid the common errors that can affect your pilgrimage and maintain the sanctity of Ihram."
+          "title": "Sunnah acts before entering Ihram",
+          "description": "The recommended acts of preparation before putting on Ihram - rooted in the Sunnah."
         }
       }
     },
-    "cta": {
-      "title": "Ready to Order?",
-      "description": "Get your Ihram delivered to your door - simple, honest, and reliable.",
-      "button": "Shop Now"
+    "finalCta": {
+      "title": "Ready for Hajj 2026?",
+      "description": "Get your Ihram delivered in days. From €19. Ships from Sweden.",
+      "button": "Shop Ihram - From €19"
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "subtitle": "Quick answers to what most pilgrims ask before ordering.",
+      "items": [
+        {
+          "q": "How many Ihram sets do I need for Hajj?",
+          "a": "Most pilgrims wear 2 - one for travel, one kept fresh for the major rites. We recommend our 2-Pack at €37."
+        },
+        {
+          "q": "What is your Ihram made of?",
+          "a": "100% lightweight microfiber. It is breathable, fast-drying, and stays cool in Makkah's heat - better suited to Hajj weather than heavy cotton."
+        },
+        {
+          "q": "How fast do you ship?",
+          "a": "Orders ship from Sweden within 1 business day. Most EU customers receive their Ihram in 2-4 business days."
+        },
+        {
+          "q": "Do you ship outside the EU?",
+          "a": "Yes - we ship across Europe and beyond. Times and rates are calculated at checkout."
+        },
+        {
+          "q": "Can I return my Ihram if it doesn't fit?",
+          "a": "Yes. If it is unworn, you have 14 days to return it for a full refund - no questions asked."
+        },
+        {
+          "q": "Is Ihram allowed to have machine-stitched edges?",
+          "a": "Yes. The Sunnah is that Ihram be unstitched as a garment - meaning two separate pieces of cloth wrapped, not sewn into a shape like trousers. Hemmed edges to prevent fraying are not the same thing and are accepted by all schools of fiqh."
+        },
+        {
+          "q": "Do you offer bulk pricing for mosques and Hajj agencies?",
+          "a": "Yes. For groups of 10+ pilgrims, contact us for custom pricing and group delivery."
+        }
+      ]
+    },
+    "testimonial": {
+      "quote": "A really good experience. The quality met my expectations, and I'd happily recommend Pure Ihram to anyone preparing for Hajj or Umrah.",
+      "author": "Mohsin Saleemi",
+      "location": "Västerås, Sweden",
+      "verified": "Verified buyer",
+      "trust": {
+        "shipping": "Ships from Sweden - 2-4 day EU delivery",
+        "secure": "Stripe-secure: Apple Pay, Klarna",
+        "returns": "14-day free returns"
+      }
+    },
+    "howToWear": {
+      "title": "First Hajj? Here's how to wear Ihram.",
+      "body": "A simple step-by-step guide for first-time pilgrims - written by Muslims, for Muslims.",
+      "cta": "Read the full guide",
+      "imageAlt": "Step-by-step guide to wearing Ihram"
+    },
+    "shipping": {
+      "freeEu": "Free EU shipping on orders over €40",
+      "delivery": "Standard EU delivery: 2-4 business days from Sweden",
+      "express": "Express shipping at checkout",
+      "returns": "14-day free returns - no questions asked",
+      "secure": "Stripe-secure: Apple Pay, Google Pay, Klarna"
     }
   },
   "about": {
