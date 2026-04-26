@@ -1,68 +1,66 @@
-## Goal
+# SEO & i18n Head Fixes - Audit Response
 
-Make the /shop page reflect the same pricing structure shown in the new homepage `ProductOffersBlock` (the screenshot you attached): correct savings copy (€10 / €20), "One shipping fee for all sets" subline, "Most Popular" / "Best Value" badges, and the same brand styling - while keeping all of /shop's existing product functionality (gallery, specifications accordions, Stripe Buy Now, country selector, schema.org JSON-LD, etc.).
+This plan addresses every item in the 25 April audit that is fixable on a client-rendered Vite + React SPA. The structural SSR/pre-render item (#8) is explicitly out of scope and stays on the July roadmap.
 
-## Current state on /shop (verified)
+## Findings from current code
 
-In `src/pages/Shop.tsx` lines ~285-330, the bundle selector is a 3-card row inside the right product column with these issues:
+- `index.html` ships English-only head with: duplicate GA4 (`G-WD5SLJDED8` + `G-8EFBK4ECRN`), `<meta name="keywords">`, no hreflang, English canonical hardcoded.
+- `<SEOHead />` is mounted globally in `App.tsx` and uses `react-helmet-async`, so it does update `<title>`, description, canonical, hreflang, OG, and JSON-LD client-side per route. However:
+  - hreflang uses `hrefLang="sv"` / `"no"` — audit requires `sv-SE` / `nb-NO`.
+  - Canonicals do not use trailing slash on locale roots (audit wants `/sv/` and `/no/`).
+  - Static `<html lang="en">` is never rewritten (Helmet `<html lang>` does work client-side, already in SEOHead, but the initial HTML still says `en` for crawlers).
+  - No `og:locale:alternate`, no `og:type`, no `twitter:card` in SEOHead.
+  - JSON-LD lives only in `Home.tsx` (Organization, Product, FAQPage) and a few blog pages. It WILL render on `/sv` and `/no` because all three routes render `<Home />`, but values aren't localized.
 
-- Uses `BUNDLES` from `src/lib/bundles.ts`, where `savings: 1` (2-pack) and `savings: 2` (3-pack) - **wrong numbers**, contradicting the new homepage (€10 / €20).
-- Renders vague copy via `t('shop.bundle.save2Pack')` ("Save on shipping - one delivery instead of two") and `t('shop.bundle.savingsVsSeparate', {...})` instead of the concrete "Save €10" + "One shipping fee for all sets" lines from the screenshot.
-- Visual treatment is small radio-style cards, not the prominent pricing tiles from the homepage.
-- Also surfaces "Save €X vs ordering N singles" math that the new design intentionally drops in favor of the cleaner "Save €10" / "Save €20" line.
+## Changes
 
-## Proposed changes
+### 1. `index.html` - clean static defaults
+- Remove duplicate GA4 line `gtag('config', 'G-8EFBK4ECRN')` - keep only `G-WD5SLJDED8` (per memory: GTM is the canonical layer, single GA4 stream).
+- Remove `<meta name="keywords">` entirely.
+- Add `<meta property="og:type" content="website">`, `<meta property="og:url" content="https://www.pureihram.com/">`, `<meta property="og:locale" content="en_GB">`, and `og:locale:alternate` for `sv_SE` and `nb_NO`.
+- Add `<meta name="twitter:card" content="summary_large_image">`.
+- Update default `<title>` and description to match audit copy:
+  - Title: `Buy Ihram Online - Premium Pilgrimage Cloth from €19 | Pure Ihram`
+  - Description: `Premium Ihram cloth for Hajj & Umrah. From €19. Ships from Sweden, fast delivery across Europe. Trusted by pilgrims for Hajj 2026.`
+- Keep favicons, fonts, GTM block, manifest as-is.
 
-### 1. Fix the savings source of truth
+### 2. `src/components/SEOHead.tsx` - upgrade per-route head
+- Switch hreflang codes: `sv` → `sv-SE`, `no` → `nb-NO` (keep `en` and `x-default`).
+- Build canonical/hreflang URLs with trailing slash on locale roots: `/sv/` and `/no/` (English root stays `/`).
+- Update `<html lang>` via Helmet to `sv-SE` / `nb-NO` / `en` (currently passes raw `i18n.language`).
+- Add to default emit:
+  - `<meta property="og:type" content="website">`
+  - `<meta property="og:image" content="https://www.pureihram.com/og-image.jpg">`
+  - `<meta property="og:locale:alternate">` for the two non-current locales.
+  - `<meta name="twitter:card" content="summary_large_image">`
+  - `<meta name="twitter:image" content="https://www.pureihram.com/og-image.jpg">`
+- Update default English title/description strings to match audit copy (keep current Swedish/Norwegian translations, with one tweak: align Norwegian title casing).
 
-In `src/lib/bundles.ts`:
+### 3. `src/pages/Home.tsx` - localize JSON-LD + adopt audit titles
+- Pass explicit `title` and `description` props to `<SEOHead>` per locale (use `useTranslation()` so the existing `LocaleHandler` switches them):
+  - EN: as in audit.
+  - SV: `Köpa Ihram Online - Premium Pilgrimsklädnad från €19 | Pure Ihram`
+  - NO: `Kjøpe Ihram Online - Premium Pilegrimsklær fra €19 | Pure Ihram`
+- Localize the Product schema `description` and Organization `address.addressLocality` ("Stockholm").
+- Keep the existing FAQPage schema (already wired to FAQ_ITEMS). FAQ content localization is out of scope for this pass (separate i18n task).
 
-- Update `BUNDLES`: `2-Pack` → `savings: 10`, `3-Pack` → `savings: 20`.
-- Swap the badges so they match the homepage / screenshot:
-  - 2-Pack → `badge: 'Most Popular'`
-  - 3-Pack → `badge: 'Best Value'`
-- Keep `totalPrice` (€19 / €37 / €55) and `shipping: 9` unchanged - pricing is locked site-wide.
+### 4. No router changes
+- Audit wants canonicals like `https://www.pureihram.com/sv/` (trailing slash). React Router treats `/sv` and `/sv/` as the same route, so no route additions needed - we just emit the trailing-slash form in canonical/hreflang.
 
-This single-source-of-truth fix prevents the homepage and shop from drifting again.
+## Out of scope (acknowledged)
 
-### 2. Replace the in-column bundle selector on /shop with a styled tier block
+- **SSR / pre-rendering** (audit item #8): requires migrating off Vite SPA to a pre-render step or SSR framework. Tracked as July/August roadmap. Today's fixes still help Googlebot (which renders JS) and all social/OG scrapers that respect Helmet-injected tags after hydration via Lovable's edge.
+- **Body content visual verification**: the audit reviewer asked for screenshots of `/`, `/sv`, `/no`. After deploy, you can share those for sign-off; no code change needed.
+- **Full homepage i18n** (Home.tsx hardcoded English copy): already proposed in the prior i18n plan and remains pending separate approval.
 
-In `src/pages/Shop.tsx`:
+## Files touched
 
-- Replace the small selector grid (≈ lines 285-330) with a 3-card pricing tier UI that visually matches the homepage `ProductOffersBlock`:
-  - Same teal `#287777` highlighted border on the selected (default = 2-Pack) card.
-  - "Most Popular" teal pill on 2-Pack, "Best Value" gold (#EEBD2B) pill on 3-Pack.
-  - Big `€19 / €37 / €55` price + `+ shipping` muted suffix.
-  - For 2-Pack and 3-Pack: `Save €10` / `Save €20` in teal with subline "One shipping fee for all sets".
-  - Single Set keeps an empty `min-height` placeholder so the three cards line up.
-  - Mobile order: 2-Pack first, then Single, then 3-Pack (same as homepage).
-- Crucially: cards stay **selectable** (clicking a card sets `selectedBundle`) so the existing "Add to Cart" and "Buy Now" buttons below continue to work with the chosen tier. The CTA buttons themselves are not duplicated - only the tier picker is restyled. This preserves Stripe Buy Now / cart flow intact.
-- Remove the now-redundant `t('shop.bundle.save2Pack')` and `t('shop.bundle.savingsVsSeparate', ...)` lines from the cards.
-- Keep the existing `whyBundles` italic note and country/shipping disclosure logic underneath untouched.
+- `index.html`
+- `src/components/SEOHead.tsx`
+- `src/pages/Home.tsx`
 
-### 3. Translation updates
+## Verification steps after deploy
 
-In `src/i18n/locales/{en,sv,no}.json`, add (or repurpose) a small set of keys used by the new tier UI so it works in all three locales:
-
-- `shop.bundle.saveAmount` → `"Save €{{amount}}"` (sv: `"Spara €{{amount}}"`, no: `"Spar €{{amount}}"`)
-- `shop.bundle.oneShippingFee` → `"One shipping fee for all sets"` (sv: `"En fraktavgift för alla set"`, no: `"Én fraktavgift for alle sett"`)
-- `shop.bundle.mostPopular` and `shop.bundle.bestValue` already exist - reuse as-is.
-
-The unused `save2Pack` and `savingsVsSeparate` keys will be left in place (harmless, avoids breaking anything else that might reference them) but no longer rendered.
-
-### 4. Sync the homepage component to the same source
-
-In `src/components/home/ProductOffersBlock.tsx`, the savings (10 / 20) are currently hardcoded in the `OFFERS` array. After step 1, this stays visually identical but I'll add a brief code comment noting that `BUNDLES` in `src/lib/bundles.ts` is the authoritative source so future edits go in one place. No visual change.
-
-## Out of scope (no changes)
-
-- Pricing values (€19 / €37 / €55) and €9 base shipping - locked.
-- Stripe checkout flow, product gallery, JSON-LD, accordions, country selector - all untouched.
-- Cart drawer / cart page - already use `BUNDLES`, will automatically pick up the corrected savings if displayed anywhere.
-
-## Verification after implementation
-
-1. `/` (homepage) - "Choose your Ihram" block looks identical to your screenshot (no regression).
-2. `/shop` - bundle tiles visually match the homepage; selecting a tile updates the price shown on the "Add to Cart" / "Buy Now" buttons; Buy Now still redirects to Stripe.
-3. `/sv/shop` and `/no/shop` - savings strings render in Swedish / Norwegian respectively.
-4. Run `bunx vitest run` to confirm the existing checkout-flow test still passes (payload shape is unchanged).
+1. View source on `/`, `/sv`, `/no` → confirm hreflang block, single GA4, no keywords meta, correct canonical with trailing slash.
+2. Run Google Rich Results Test on `/` → Organization, Product, FAQPage all detected.
+3. Run Facebook Sharing Debugger on all three URLs → og:locale and og:image present per locale.
