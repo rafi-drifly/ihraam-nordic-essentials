@@ -207,8 +207,23 @@ const Shop = () => {
   return (
     <>
       <Helmet>
-        <title>{product.name} - Pure Ihram | Buy Online</title>
-        <meta name="description" content="Premium Ihram sets from €19. Save with 2-Pack (€37) or 3-Pack (€55). Ships from Sweden." />
+        <title>
+          {i18n.language === 'sv'
+            ? 'Köp Ihram-set - Single, 2-Pack & 3-Pack | Pure Ihram'
+            : i18n.language === 'no'
+              ? 'Kjøp Ihram-sett - Single, 2-Pack & 3-Pack | Pure Ihram'
+              : 'Shop Ihram Sets - Single, 2-Pack & 3-Pack | Pure Ihram'}
+        </title>
+        <meta
+          name="description"
+          content={
+            i18n.language === 'sv'
+              ? 'Välj ditt Ihram-set: single (€19), 2-pack (€37) eller 3-pack (€55). Lätt mikrofiber, skickas från Sverige. Säker betalning via Stripe.'
+              : i18n.language === 'no'
+                ? 'Velg ditt Ihram-sett: single (€19), 2-pack (€37) eller 3-pack (€55). Lett mikrofiber, sendes fra Sverige. Sikker betaling med Stripe.'
+                : 'Choose your Ihram set: single (€19), 2-pack (€37), or 3-pack (€55). Lightweight microfiber, ships from Sweden. Secure Stripe checkout.'
+          }
+        />
         <meta property="og:type" content="product" />
         <meta property="og:title" content={`${product.name} - Pure Ihram`} />
         <meta property="og:description" content="Premium Ihram sets from €19. Save with bundles. Ships from Sweden." />
