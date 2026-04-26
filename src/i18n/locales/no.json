@@ -153,6 +153,53 @@
       "express": "Ekspressfrakt i kassen",
       "returns": "14 dagers gratis retur - ingen spørsmål stilt",
       "secure": "Stripe-sikker: Apple Pay, Google Pay, Klarna"
+    },
+    "offers": {
+      "title": "Velg din Ihram",
+      "subtitle": "Enkeltsett for Umrah, pakker for Hajj. Frakt beregnes i kassen.",
+      "shippingSuffix": "+ frakt",
+      "saveAmount": "Spar €{{amount}}",
+      "oneShippingFee": "Én fraktavgift for alle settene",
+      "footerLine": "Gratis med hver bestilling: Pure Ihrams Hajj 2026-forberedelsespakke - utskrivbar sjekkliste, dua-liste, pakkeguide.",
+      "ariaLabel": "{{title}}, {{price}} euro pluss frakt. {{description}}",
+      "addedToCart": "Lagt til i handlekurv",
+      "addedToCartDescription": "{{title}} ble lagt til. Se gjennom handlekurven på neste side.",
+      "single": {
+        "title": "Enkelt Sett",
+        "description": "Ett komplett sett (Izaar + Ridaa). Perfekt for Umrah eller førstegangskjøpere.",
+        "cta": "Handle nå"
+      },
+      "twoPack": {
+        "title": "2-Pack",
+        "description": "De fleste pilegrimer bruker 2 Ihram-sett under Hajj - ett til reisen, ett friskt.",
+        "cta": "Handle 2-Pack",
+        "badge": "Mest Populær"
+      },
+      "threePack": {
+        "title": "3-Pack",
+        "description": "For familier, moskeers forhåndsbestillinger eller et ekstra reservesett.",
+        "cta": "Handle 3-Pack",
+        "badge": "Beste Verdi"
+      }
+    },
+    "prepPack": {
+      "title": "Skal du til Hajj 2026? Få vår gratis Pure Ihram-forberedelsespakke.",
+      "subtitle": "En utskrivbar sjekkliste, dua-liste og pakkeguide for førstegangspilegrimer. Gratis - selv om du ikke handler hos oss.",
+      "bullets": {
+        "checklist": "12-punkts pakkeliste for Hajj (det de fleste pilegrimer glemmer)",
+        "duas": "Viktige duas med translitterasjon - for ihram, tawaf, sa'i, Arafah",
+        "timeline": "Dag-for-dag forberedelsesplan for Hajj som starter 30 dager før"
+      },
+      "emailPlaceholder": "din@epost.no",
+      "emailAriaLabel": "Din e-postadresse",
+      "submit": "Send pakken",
+      "submitting": "Sender...",
+      "disclaimer": "Ingen spam. Vi sender pakken og noen nyttige Hajj-tips før du reiser.",
+      "successTitle": "Sjekk innboksen din",
+      "successBody": "Vi har sendt nedlastingslenken til forberedelsespakken til e-posten din.",
+      "errorInvalidEmail": "Vennligst oppgi en gyldig e-postadresse",
+      "errorSendTitle": "Kunne ikke sende pakken",
+      "errorSendBody": "Prøv igjen om et øyeblikk, eller kontakt support@pureihraam.com."
     }
   },
   "about": {
