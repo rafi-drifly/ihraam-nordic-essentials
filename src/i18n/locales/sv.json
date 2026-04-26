@@ -60,7 +60,7 @@
       },
       "shipsFromSweden": {
         "title": "Skickas från Sverige",
-        "description": "EU-baserad lagerhantering ger 2-4 dagars leverans, inga tullöverraskningar."
+        "description": "EU-baserad lagerhantering ger snabb leverans, inga tullöverraskningar."
       },
       "qualityChecked": {
         "title": "Kvalitetskontrollerad varje set",
@@ -110,7 +110,7 @@
         },
         {
           "q": "Hur snabbt skickar ni?",
-          "a": "Beställningar skickas från Sverige inom 1 arbetsdag. De flesta EU-kunder får sin Ihram inom 2-4 arbetsdagar."
+          "a": "Beställningar skickas från Sverige inom 1 arbetsdag. Leveranstiden varierar beroende på destination - se vår fraktsida för detaljer."
         },
         {
           "q": "Skickar ni utanför EU?",
@@ -136,7 +136,7 @@
       "location": "Västerås, Sverige",
       "verified": "Verifierad köpare",
       "trust": {
-        "shipping": "Skickas från Sverige - 2-4 dagars EU-leverans",
+        "shipping": "Skickas från Sverige · Snabb EU-leverans",
         "secure": "Stripe-säker: Apple Pay, Klarna",
         "returns": "14 dagars fri retur"
       }
@@ -149,7 +149,7 @@
     },
     "shipping": {
       "freeEu": "Fri EU-frakt på beställningar över €40",
-      "delivery": "Standardleverans inom EU: 2-4 arbetsdagar från Sverige",
+      "delivery": "Snabb EU-leverans från Sverige",
       "express": "Expressfrakt i kassan",
       "returns": "14 dagars fri retur - inga frågor ställs",
       "secure": "Stripe-säker: Apple Pay, Google Pay, Klarna"
@@ -207,10 +207,10 @@
     "subtitle": "Pure Ihram grundades för att göra Ihram (Ihraam) prisvärd (€19 + frakt) och tillgänglig för alla. Detta handlar inte om vinst utan om att tjäna ajr (belöning) i Akhirah genom att tjäna den muslimska gemenskapen och göra den heliga pilgrimsfärden tillgänglig för troende i hela Europa.",
     "story": {
       "title": "Vår Historia",
-      "p1": "Pure Ihram föddes ur en enkel men djupgående insikt: alltför många muslimer i Europa hade svårt att hitta prisvärd, kvalitativ Ihram (Ihraam)-duk för sin pilgrimsfärd till de heliga städerna Mekka och Medina.",
-      "p2": "Efter att ha bevittnat medtroende betala överdrivna priser för grundläggande pilgrimsessentialer, gjorde vi ett åtagande att tillhandahålla premium Ihram-duk till ett ärligt, tillgängligt pris på endast €19.",
-      "p3": "Vårt uppdrag sträcker sig bortom handel - varje försäljning görs med den uppriktiga avsikten att tjäna ajr (belöning) i Akhirah samtidigt som vi hjälper våra bröder och systrar att uppfylla sina religiösa plikter utan ekonomisk börda.",
-      "p4": "Idag är vi stolta över att betjäna tusentals pilgrimer i Sverige, de nordiska länderna och Europeiska unionen, och säkerställer att avstånd och kostnad aldrig blir hinder för andlig uppfyllelse."
+      "p1": "Pure Ihram började med en enkel fråga: varför betalar europeiska muslimer överdrivna priser för grundläggande pilgrimsduk? Vi grundade Pure Ihram i Sverige för att åtgärda det - premium Ihram för €19, snabbt skickat över hela EU.",
+      "p2": "Varje försäljning görs med den uppriktiga avsikten att tjäna ajr (belöning) i Akhirah. Detta är inte bara handel - det är tjänst för vår gemenskap, och säkerställer att kostnad och avstånd aldrig står mellan en troende och pilgrimsfärden.",
+      "p3": "",
+      "p4": ""
     },
     "promise": {
       "title": "Vårt Löfte",
@@ -318,7 +318,7 @@
       },
       "accessories": {
         "question": "Säljer ni också bälten eller sandaler?",
-        "answer": "Inte ännu, men vi arbetar på att utöka vår kollektion av pilgrimsessentialer. Bälten och sandaler kommer snart, In Sha Allah."
+        "answer": "För närvarande specialiserar vi oss på Ihram-duksset. För andra pilgrimsessentialer rekommenderar vi att du kollar med din lokala islamiska butik eller resebyrå."
       },
       "bulk": {
         "question": "Kan moskéer/resegrupper beställa i bulk?",
@@ -577,42 +577,42 @@
         "excerpt": "En steg-för-steg guide för att korrekt bära Ihram-kläderna, som säkerställer komfort och efterlevnad av islamiska riktlinjer under din pilgrimsfärd.",
         "author": "Pure Ihram Team",
         "readTime": "5 min läsning",
-        "date": "5 oktober 2025"
+        "date": "15 mars 2026"
       },
       "sunnahActs": {
         "title": "Sunnah-Handlingar Innan Man Går In i Ihram",
         "excerpt": "Upptäck de rekommenderade Sunnah-handlingarna att utföra innan man går in i Ihram-tillståndet, inklusive personlig hygien och andlig förberedelse.",
         "author": "Islamisk Lärd",
         "readTime": "7 min läsning",
-        "date": "10 mars 2024"
+        "date": "10 mars 2026"
       },
       "checklist": {
         "title": "Checklista för Umrah-Förberedelse (Kläder, Duas, Dokument)",
         "excerpt": "Komplett checklista som täcker allt du behöver för Umrah - från viktiga dokument till klädkrav och viktiga duas att memorera.",
         "author": "Reseexpert",
         "readTime": "10 min läsning",
-        "date": "5 mars 2024"
+        "date": "5 mars 2026"
       },
       "commonMistakes": {
         "title": "Vanliga Misstag Pilgrimer Gör i Ihram",
         "excerpt": "Undvik dessa vanliga fel som pilgrimer ofta gör i Ihram-tillståndet, vilket hjälper dig att bevara heligheten i din pilgrimsfärd.",
         "author": "Hajj Guide",
         "readTime": "6 min läsning",
-        "date": "28 februari 2024"
+        "date": "28 februari 2026"
       },
       "essentialDuas": {
         "title": "Viktiga Duas för Umrah (Med Translitteration & Betydelse)",
         "excerpt": "En pilgrims guide till de mest älskade bönerna under Umrah - från avresa till Tawaf och vidare, med arabiska, translitteration och engelsk betydelse.",
         "author": "Pure Ihram Team",
         "readTime": "15 min läsning",
-        "date": "15 mars 2024"
+        "date": "20 februari 2026"
       },
       "spiritualMeaning": {
         "title": "Den Andliga Betydelsen av Ihram - Jämlikhet Inför Allah",
         "excerpt": "Utforska den djupare andliga betydelsen av Ihram och hur den representerar jämlikheten hos alla troende inför Allah.",
         "author": "Islamisk Lärd",
         "readTime": "8 min läsning",
-        "date": "20 februari 2024"
+        "date": "15 februari 2026"
       }
     },
     "hadithQuote": "\"Den som utför Hajj för Allahs skull och inte yttrar något obscent tal eller gör någon ond handling, kommer att återvända ren som den dag hans moder födde honom.\"",
@@ -716,13 +716,13 @@
       },
       "example": {
         "title": "100 Set-Exempel",
-        "description": "Om er moské eller byrå beställer 100 Ihram-set och säljer för €17-€19 styck:",
+        "description": "Om er moské eller byrå beställer 100 Ihram-set och säljer för €19-€22 styck:",
         "benefit": "Halal-fördel för er organisation"
       }
     },
     "product": {
       "title": "Produktdetaljer",
-      "subtitle": "Premiumkvalitet Ihram som tusentals pilgrimer litar på",
+      "subtitle": "Premiumkvalitet Ihram för pilgrimer i hela Europa",
       "name": "Ihram Hajj Handduksset",
       "specs": {
         "size": "Storlek",
