@@ -254,7 +254,7 @@ const Partners = () => {
                     <div className="space-y-4">
                       <div className="flex justify-between items-center py-3 border-b border-border">
                         <span className="text-muted-foreground">{t('partners.pricing.breakdown.retail')}</span>
-                        <span className="font-semibold text-foreground">€15</span>
+                        <span className="font-semibold text-foreground">€19</span>
                       </div>
                       <div className="flex justify-between items-center py-3 border-b border-border">
                         <span className="text-muted-foreground">{t('partners.pricing.breakdown.partner')}</span>
@@ -262,11 +262,11 @@ const Partners = () => {
                       </div>
                       <div className="flex justify-between items-center py-3 border-b border-border">
                         <span className="text-muted-foreground">{t('partners.pricing.breakdown.sellPrice')}</span>
-                        <span className="font-semibold text-foreground">€18-€20</span>
+                        <span className="font-semibold text-foreground">€19-€22</span>
                       </div>
                       <div className="flex justify-between items-center py-3">
                         <span className="text-muted-foreground">{t('partners.pricing.breakdown.margin')}</span>
-                        <span className="font-bold text-primary text-lg">€5-€7</span>
+                        <span className="font-bold text-primary text-lg">€6-€9</span>
                       </div>
                     </div>
                     <p className="text-sm text-muted-foreground mt-4 italic">
@@ -279,7 +279,7 @@ const Partners = () => {
                       {t('partners.pricing.example.description')}
                     </p>
                     <div className="text-center">
-                      <div className="text-5xl font-bold mb-2">€500+</div>
+                      <div className="text-5xl font-bold mb-2">€600+</div>
                       <p className="text-primary-foreground/80">{t('partners.pricing.example.benefit')}</p>
                     </div>
                   </div>
