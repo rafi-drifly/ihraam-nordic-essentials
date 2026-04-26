@@ -9,83 +9,97 @@ interface SEOHeadProps {
   jsonLd?: Record<string, unknown>[];
 }
 
+const BASE_URL = 'https://www.pureihram.com';
+const DEFAULT_OG_IMAGE = `${BASE_URL}/og-image.jpg`;
+
+// Map our internal i18n codes to BCP-47 region codes used by hreflang and og:locale.
+const LOCALE_META: Record<'en' | 'sv' | 'no', { htmlLang: string; hreflang: string; ogLocale: string }> = {
+  en: { htmlLang: 'en', hreflang: 'en', ogLocale: 'en_GB' },
+  sv: { htmlLang: 'sv-SE', hreflang: 'sv-SE', ogLocale: 'sv_SE' },
+  no: { htmlLang: 'nb-NO', hreflang: 'nb-NO', ogLocale: 'nb_NO' },
+};
+
 const SEOHead = ({ title, description, path, jsonLd }: SEOHeadProps) => {
   const { i18n } = useTranslation();
   const location = useLocation();
-  const currentLang = i18n.language;
+  const langKey = (['sv', 'no'].includes(i18n.language) ? i18n.language : 'en') as 'en' | 'sv' | 'no';
+  const meta = LOCALE_META[langKey];
 
-  const baseUrl = 'https://www.pureihram.com';
   const currentPath = path || location.pathname;
 
-  // Remove locale prefix for canonical path
+  // Strip locale prefix to get the canonical (English) path.
   const canonicalPath = currentPath.replace(/^\/(sv|no)/, '') || '/';
 
-  // Generate URLs for hreflang
-  const englishUrl = `${baseUrl}${canonicalPath}`;
-  const swedishUrl = `${baseUrl}/sv${canonicalPath === '/' ? '' : canonicalPath}`;
-  const norwegianUrl = `${baseUrl}/no${canonicalPath === '/' ? '' : canonicalPath}`;
-
-  const getCurrentUrl = () => {
-    if (currentLang === 'sv') return swedishUrl;
-    if (currentLang === 'no') return norwegianUrl;
-    return englishUrl;
+  // Trailing slash on locale roots per audit (e.g. /sv/, /no/), but NOT on
+  // sub-paths (so /sv/shop stays /sv/shop, not /sv/shop/).
+  const buildLocalizedUrl = (prefix: '' | '/sv' | '/no') => {
+    if (canonicalPath === '/') {
+      return prefix === '' ? `${BASE_URL}/` : `${BASE_URL}${prefix}/`;
+    }
+    return `${BASE_URL}${prefix}${canonicalPath}`;
   };
 
-  const currentUrl = getCurrentUrl();
+  const englishUrl = buildLocalizedUrl('');
+  const swedishUrl = buildLocalizedUrl('/sv');
+  const norwegianUrl = buildLocalizedUrl('/no');
+
+  const currentUrl = langKey === 'sv' ? swedishUrl : langKey === 'no' ? norwegianUrl : englishUrl;
 
   const getDefaultTitle = () => {
-    if (currentLang === 'sv') {
-      return 'Köp Ihram Online - Premium Pilgrimskläder från €19 | Pure Ihram';
-    }
-    if (currentLang === 'no') {
-      return 'Kjøp Ihram Online - Premium Pilegrimsklær fra €19 | Pure Ihram';
-    }
+    if (langKey === 'sv') return 'Köpa Ihram Online - Premium Pilgrimsklädnad från €19 | Pure Ihram';
+    if (langKey === 'no') return 'Kjøpe Ihram Online - Premium Pilegrimsklær fra €19 | Pure Ihram';
     return 'Buy Ihram Online - Premium Pilgrimage Cloth from €19 | Pure Ihram';
   };
 
   const getDefaultDescription = () => {
-    if (currentLang === 'sv') {
-      return 'Premium Ihram för Hajj och Umrah. Från €19. Skickas från Sverige, snabb leverans i hela Europa.';
+    if (langKey === 'sv') {
+      return 'Premium Ihram-tyg för Hajj och Umrah. Från €19. Levereras från Sverige, snabb leverans i hela Europa. Betrodd av pilgrimer inför Hajj 2026.';
     }
-    if (currentLang === 'no') {
-      return 'Premium Ihram for Hajj og Umrah. Fra €19. Sendes fra Sverige, rask levering i hele Europa.';
+    if (langKey === 'no') {
+      return 'Premium Ihram-stoff for Hajj og Umrah. Fra €19. Sendes fra Sverige, rask levering i hele Europa. Foretrukket av pilegrimer for Hajj 2026.';
     }
-    return 'Premium Ihram cloth for Hajj & Umrah. From €19. Ships from Sweden, fast delivery across Europe.';
-  };
-
-  const getLocale = () => {
-    if (currentLang === 'sv') return 'sv_SE';
-    if (currentLang === 'no') return 'nb_NO';
-    return 'en_US';
+    return 'Premium Ihram cloth for Hajj & Umrah. From €19. Ships from Sweden, fast delivery across Europe. Trusted by pilgrims for Hajj 2026.';
   };
 
   const finalTitle = title || getDefaultTitle();
   const finalDescription = description || getDefaultDescription();
 
+  // Alternate locales for og:locale:alternate (everything except current).
+  const alternateOgLocales = (['en', 'sv', 'no'] as const)
+    .filter((l) => l !== langKey)
+    .map((l) => LOCALE_META[l].ogLocale);
+
   return (
     <Helmet>
-      <html lang={currentLang} />
+      <html lang={meta.htmlLang} />
       <title>{finalTitle}</title>
       <meta name="description" content={finalDescription} />
 
       {/* Canonical URL */}
       <link rel="canonical" href={currentUrl} />
 
-      {/* Hreflang tags for SEO */}
+      {/* Hreflang tags - BCP-47 region codes per SEO audit */}
       <link rel="alternate" hrefLang="en" href={englishUrl} />
-      <link rel="alternate" hrefLang="sv" href={swedishUrl} />
-      <link rel="alternate" hrefLang="no" href={norwegianUrl} />
+      <link rel="alternate" hrefLang="sv-SE" href={swedishUrl} />
+      <link rel="alternate" hrefLang="nb-NO" href={norwegianUrl} />
       <link rel="alternate" hrefLang="x-default" href={englishUrl} />
 
       {/* Open Graph */}
       <meta property="og:title" content={finalTitle} />
       <meta property="og:description" content={finalDescription} />
+      <meta property="og:type" content="website" />
       <meta property="og:url" content={currentUrl} />
-      <meta property="og:locale" content={getLocale()} />
+      <meta property="og:image" content={DEFAULT_OG_IMAGE} />
+      <meta property="og:locale" content={meta.ogLocale} />
+      {alternateOgLocales.map((locale) => (
+        <meta key={locale} property="og:locale:alternate" content={locale} />
+      ))}
 
       {/* Twitter */}
+      <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={finalTitle} />
       <meta name="twitter:description" content={finalDescription} />
+      <meta name="twitter:image" content={DEFAULT_OG_IMAGE} />
 
       {/* Structured data */}
       {jsonLd?.map((schema, idx) => (
