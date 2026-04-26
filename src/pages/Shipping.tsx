@@ -4,9 +4,24 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Package, Shield, Clock, MapPin, CheckCircle, ShoppingCart } from "lucide-react";
 import { trackShippingPageView } from "@/lib/analytics";
+import SEOHead from "@/components/SEOHead";
 
 const Shipping = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+
+  const seoTitle =
+    i18n.language === 'sv'
+      ? 'Frakt & Leverans - Snabb EU-frakt från Sverige | Pure Ihram'
+      : i18n.language === 'no'
+        ? 'Frakt & Levering - Rask EU-frakt fra Sverige | Pure Ihram'
+        : 'Shipping & Delivery - Fast EU Shipping from Sweden | Pure Ihram';
+
+  const seoDescription =
+    i18n.language === 'sv'
+      ? 'Snabb, pålitlig Ihram-leverans i Sverige, Norden och hela EU. Beställningar behandlas inom 1-2 arbetsdagar med full spårning.'
+      : i18n.language === 'no'
+        ? 'Rask, pålitelig Ihram-levering i Sverige, Norden og hele EU. Bestillinger behandles innen 1-2 virkedager med full sporing.'
+        : 'Fast, reliable Ihram delivery across Sweden, the Nordics, and the EU. Orders processed in 1-2 business days with full tracking.';
 
   useEffect(() => { trackShippingPageView(); }, []);
 
@@ -59,6 +74,7 @@ const Shipping = () => {
 
   return (
     <div className="py-8">
+      <SEOHead title={seoTitle} description={seoDescription} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
