@@ -75,16 +75,23 @@ const Home = () => {
     address: {
       "@type": "PostalAddress",
       addressCountry: "SE",
+      addressLocality: "Stockholm",
     },
   };
+
+  const productDescription =
+    lang === 'sv'
+      ? 'Premium lättviktig mikrofiber Ihram. Två delar (Izaar + Ridaa). Skickas från Sverige.'
+      : lang === 'no'
+        ? 'Premium lett mikrofiber Ihram. To deler (Izaar + Ridaa). Sendes fra Sverige.'
+        : 'Premium lightweight microfiber Ihram. Two pieces (Izaar + Ridaa). Ships from Sweden across the EU.';
 
   const productSchema = {
     "@context": "https://schema.org",
     "@type": "Product",
     name: "Pure Ihram - Single Set",
     image: "https://www.pureihram.com/products/single-set.jpg",
-    description:
-      "Premium lightweight microfiber Ihram. Two pieces (Izaar + Ridaa). Ships from Sweden across the EU.",
+    description: productDescription,
     brand: { "@type": "Brand", name: "Pure Ihram" },
     offers: {
       "@type": "Offer",
