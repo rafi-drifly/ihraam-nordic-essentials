@@ -13,54 +13,54 @@ import { ProductOffersBlock } from "@/components/home/ProductOffersBlock";
 import { HajjPrepPackForm } from "@/components/home/HajjPrepPackForm";
 import { HowToWearTeaser } from "@/components/home/HowToWearTeaser";
 import { ShippingReassuranceStrip } from "@/components/home/ShippingReassuranceStrip";
-import { HomepageFAQ, FAQ_ITEMS } from "@/components/home/HomepageFAQ";
+import { HomepageFAQ, useFaqItems } from "@/components/home/HomepageFAQ";
 
 const Home = () => {
   const location = useLocation();
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const lang = (['sv', 'no'].includes(i18n.language) ? i18n.language : 'en') as 'en' | 'sv' | 'no';
   const localePrefix = location.pathname.startsWith('/sv') ? '/sv' : location.pathname.startsWith('/no') ? '/no' : '';
 
   const benefits = [
     {
       icon: <Wind className="h-6 w-6 text-primary" />,
-      title: "Built for the climate",
-      description: "Lightweight, breathable microfiber that stays cool and dries fast - made for Makkah heat.",
+      title: t("home.benefits.climate.title"),
+      description: t("home.benefits.climate.description"),
     },
     {
       icon: <Truck className="h-6 w-6 text-primary" />,
-      title: "Ships from Sweden",
-      description: "EU-based fulfilment means 2-4 day delivery, no customs surprises.",
+      title: t("home.benefits.shipsFromSweden.title"),
+      description: t("home.benefits.shipsFromSweden.description"),
     },
     {
       icon: <ShieldCheck className="h-6 w-6 text-primary" />,
-      title: "Quality-checked every set",
-      description: "Every set inspected before it leaves our warehouse. If something's wrong, we replace it.",
+      title: t("home.benefits.qualityChecked.title"),
+      description: t("home.benefits.qualityChecked.description"),
     },
     {
       icon: <Heart className="h-6 w-6 text-primary" />,
-      title: "Built for European pilgrims",
-      description: "Founded in Sweden to serve Muslims across the Nordics and EU - fair prices, fast shipping.",
+      title: t("home.benefits.builtForEU.title"),
+      description: t("home.benefits.builtForEU.description"),
     },
   ];
 
   const blogArticles = [
     {
       image: spiritualMeaning,
-      title: "The spiritual meaning of Ihram",
-      description: "What Ihram represents, why pilgrims wear it, and how it shapes the heart during Hajj and Umrah.",
+      title: t("home.guides.articles.spiritual.title"),
+      description: t("home.guides.articles.spiritual.description"),
       link: `${localePrefix}/blog/spiritual-meaning-ihram`,
     },
     {
       image: howToWear,
-      title: "How to wear Ihram - step by step",
-      description: "A simple, practical guide for first-time pilgrims, with tips for comfort during the rites.",
+      title: t("home.guides.articles.howToWear.title"),
+      description: t("home.guides.articles.howToWear.description"),
       link: `${localePrefix}/blog/how-to-wear-ihram`,
     },
     {
       image: sunnahActs,
-      title: "Sunnah acts before entering Ihram",
-      description: "The recommended acts of preparation before putting on Ihram - rooted in the Sunnah.",
+      title: t("home.guides.articles.sunnah.title"),
+      description: t("home.guides.articles.sunnah.description"),
       link: `${localePrefix}/blog/sunnah-acts-before-ihram`,
     },
   ];
@@ -102,10 +102,11 @@ const Home = () => {
     },
   };
 
+  const faqItems = useFaqItems();
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: FAQ_ITEMS.map((item) => ({
+    mainEntity: faqItems.map((item) => ({
       "@type": "Question",
       name: item.q,
       acceptedAnswer: {
@@ -125,35 +126,34 @@ const Home = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-in">
               <h1 className="text-4xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
-                Premium Ihram for Hajj 2026
+                {t("home.hero.title")}
                 <span className="block text-primary text-3xl lg:text-5xl mt-2">
-                  From €19, shipped from Sweden
+                  {t("home.hero.highlight")}
                 </span>
               </h1>
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                Lightweight microfiber Ihram for pilgrims across Sweden, the Nordics and the EU.
-                Free Hajj Prep Pack with every order.
+                {t("home.hero.description")}
               </p>
               <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
                 <Button asChild size="lg" className="bg-primary hover:bg-primary/90 transition-colors">
-                  <Link to={`${localePrefix}/shop`}>Shop Ihram - From €19</Link>
+                  <Link to={`${localePrefix}/shop`}>{t("home.hero.ctaShop")}</Link>
                 </Button>
                 <a
                   href="#hajj-prep-pack"
                   className="text-sm font-medium text-primary hover:text-primary/80 inline-flex items-center gap-1"
                 >
-                  Get the free Hajj 2026 Prep Pack <ArrowRight className="h-4 w-4" />
+                  {t("home.hero.ctaPrepPack")} <ArrowRight className="h-4 w-4" />
                 </a>
               </div>
               <p className="mt-4 text-sm text-muted-foreground">
-                Ships from Sweden  ·  Stripe-secure checkout  ·  Free EU returns within 14 days
+                {t("home.hero.microcopy")}
               </p>
             </div>
 
             <div className="animate-slide-up">
               <img
                 src={ihraamProduct}
-                alt="Pure white Ihram cloth laid flat"
+                alt={t("home.hero.imageAlt")}
                 className="rounded-2xl shadow-lg w-full"
               />
             </div>
@@ -172,10 +172,10 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-              Why Pure Ihram
+              {t("home.benefits.title")}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Simple, honest, and built around the pilgrim&rsquo;s needs.
+              {t("home.benefits.subtitle")}
             </p>
           </div>
 
@@ -209,10 +209,10 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-              Guides for first-time pilgrims
+              {t("home.guides.title")}
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Practical, calm guidance written by Muslims, for Muslims.
+              {t("home.guides.subtitle")}
             </p>
           </div>
 
@@ -238,7 +238,7 @@ const Home = () => {
                     to={article.link}
                     className="inline-flex items-center gap-2 text-primary font-semibold text-sm hover:gap-3 transition-all"
                   >
-                    Read more <ArrowRight className="h-4 w-4" />
+                    {t("home.guides.readMore")} <ArrowRight className="h-4 w-4" />
                   </Link>
                 </CardContent>
               </Card>
@@ -248,7 +248,7 @@ const Home = () => {
           <div className="text-center">
             <Button asChild variant="outline" size="lg" className="group">
               <Link to={`${localePrefix}/blog`} className="inline-flex items-center gap-2">
-                View all guides
+                {t("home.guides.viewAll")}
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
@@ -263,13 +263,13 @@ const Home = () => {
       <section className="py-14 bg-muted">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-            Ready for Hajj 2026?
+            {t("home.finalCta.title")}
           </h2>
           <p className="text-muted-foreground mb-6">
-            Get your Ihram delivered in days. From €19. Ships from Sweden.
+            {t("home.finalCta.description")}
           </p>
           <Button asChild size="lg" className="bg-primary hover:bg-primary/90 transition-colors">
-            <Link to={`${localePrefix}/shop`}>Shop Ihram - From €19</Link>
+            <Link to={`${localePrefix}/shop`}>{t("home.finalCta.button")}</Link>
           </Button>
         </div>
       </section>
