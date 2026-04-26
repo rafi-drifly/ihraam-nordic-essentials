@@ -43,90 +43,116 @@
   },
   "home": {
     "hero": {
-      "title": "Ihram for Hajj & Umrah",
-      "titleHighlight": "Levert fra Sverige",
-      "description": "Lett, komfortabel Ihram til en rettferdig pris. Tydelig prising, ærlig service og pålitelig levering over hele Europa.",
-      "cta": "Handle Nå",
-      "trustLine": "Tydelig prising · Basert i Sverige · 3-7 dagers levering",
-      "learnMore": "Les Mer",
-      "partnersLink": "For Moskeer & Hajj/Umrah-byråer →"
-    },
-    "quranVerse1": "\"Og forkynn for menneskene pilegrimsreisen; de skal komme til deg til fots og på hver mager kamel; de skal komme fra hver fjern vei.\"",
-    "quranVerse1Cite": "- Koranen 22:27",
-    "whyChoose": {
-      "title": "Hvorfor Velge Pure Ihram?",
-      "subtitle": "Kvalitet, tilgjengelighet og komfort for hver pilegrim",
-      "affordable": {
-        "title": "Rimelig for Alle",
-        "description": "Kvalitets-Ihram (Ihraam) for kun €19 + frakt. Gjør pilegrimsreisen tilgjengelig uansett økonomisk situasjon, med oppriktig intensjon om å tjene ajr i Akhirah."
-      },
-      "comfortable": {
-        "title": "Komfortabel & Holdbar",
-        "description": "Premium 100% Mikrofiber Polyester-stoff som er mykt, pustende og langvarig. Forvvasket og klar til bruk, sikrer komfort gjennom hele din hellige reise."
-      },
-      "delivery": {
-        "title": "Levert Over Hele Europa",
-        "description": "Rask, pålitelig levering over hele Sverige (3-7 dager), nordiske land og alle EU-medlemsland (7-14 dager). Sikker emballasje med sporing inkludert."
-      }
+      "title": "Premium Ihram for Hajj 2026",
+      "highlight": "Fra €19, sendes fra Sverige",
+      "description": "Lett mikrofiber-Ihram for pilegrimer i Sverige, Norden og hele EU. Gratis Hajj-forberedelsespakke med hver bestilling.",
+      "ctaShop": "Handle Ihram - Fra €19",
+      "ctaPrepPack": "Få den gratis Hajj 2026-forberedelsespakken",
+      "microcopy": "Sendes fra Sverige  ·  Sikker betaling med Stripe  ·  Gratis retur i EU innen 14 dager",
+      "imageAlt": "Ren hvit Ihram-stoff lagt flatt"
     },
     "benefits": {
-      "title": "Hvorfor Velge Pure Ihram?",
+      "title": "Hvorfor Pure Ihram",
       "subtitle": "Enkelt, ærlig og bygget rundt pilegrimens behov.",
-      "lightweight": {
-        "title": "Enkelt å Bestille",
-        "description": "Velg pakken din, betal med Stripe og motta Ihram hjemme. Ingen stress."
+      "climate": {
+        "title": "Tilpasset klimaet",
+        "description": "Lett, pustende mikrofiber som holder seg kjølig og tørker raskt - laget for varmen i Mekka."
       },
-      "intention": {
-        "title": "Rolig, Respektfull Service",
-        "description": "Vi holder det ærlig - ingen hype, ingen press. Bare et kvalitetsprodukt og tydelig kommunikasjon."
+      "shipsFromSweden": {
+        "title": "Sendes fra Sverige",
+        "description": "EU-basert lagerhåndtering gir 2-4 dagers levering, ingen tolloverraskelser."
       },
-      "fastDelivery": {
-        "title": "Levering fra Sverige",
-        "description": "Sendes fra Sverige. 3-7 dager innenlands, 7-14 dager over Europa."
+      "qualityChecked": {
+        "title": "Kvalitetssjekket hvert sett",
+        "description": "Hvert sett inspiseres før det forlater lageret vårt. Er noe galt, erstatter vi det."
       },
-      "affordable": {
-        "title": "Ærlig Prising",
-        "description": "Fra €19 per sett. Det du ser er det du betaler - ingen skjulte avgifter."
+      "builtForEU": {
+        "title": "Bygget for europeiske pilegrimer",
+        "description": "Grunnlagt i Sverige for å tjene muslimer i Norden og EU - rettferdige priser, rask levering."
       }
     },
-    "quranVerse2": "\"Og pilegrimsreisen til Huset er en plikt som menneskeheten skylder Allah, for de som har råd til reisen.\"",
-    "quranVerse2Cite": "- Koranen 3:97",
     "guides": {
-      "title": "Guider & Kunnskap",
-      "subtitle": "Lær alt du trenger før pilegrimsreisen - fra Sunnah-handlinger og pakketips til den åndelige betydningen av Ihram.",
-      "viewAll": "Se Alle Guider",
-      "readMore": "Les Mer",
+      "title": "Guider for førstegangspilegrimer",
+      "subtitle": "Praktisk, rolig veiledning skrevet av muslimer, for muslimer.",
+      "readMore": "Les mer",
+      "viewAll": "Se alle guider",
       "articles": {
         "spiritual": {
-          "title": "Den Åndelige Betydningen av Ihram - Likhet for Allah",
-          "description": "Utforsk den dypere betydningen av Ihram og hvordan den representerer ydmykhet og enhet blant troende."
+          "title": "Den åndelige betydningen av Ihram",
+          "description": "Hva Ihram representerer, hvorfor pilegrimer bærer den, og hvordan den former hjertet under Hajj og Umrah."
         },
         "howToWear": {
-          "title": "Hvordan Ta På Ihram - Steg-for-Steg Guide for Pilegrimer",
-          "description": "Lær riktig måte å ta på Ihram-plagg med Sunnah-veiledning og komforttips."
+          "title": "Slik bærer du Ihram - steg for steg",
+          "description": "En enkel, praktisk guide for førstegangspilegrimer, med tips for komfort under ritene."
         },
         "sunnah": {
-          "title": "Sunnah-Handlinger Før Man Går Inn i Ihram",
-          "description": "Forbered kropp og hjerte før Ihram gjennom ghusl, parfyme og bønn - i henhold til Sunnah."
-        },
-        "checklist": {
-          "title": "Sjekkliste for Umrah-Forberedelse (Klær, Duaer, Dokumenter)",
-          "description": "En komplett guide til hva du trenger før reisen - fra nødvendigheter til åndelig forberedelse."
-        },
-        "duas": {
-          "title": "Essensielle Duaer for Umrah (Med Translitterasjon & Betydning)",
-          "description": "Memoriser de viktigste duaene for hver etappe av Umrah, med arabisk og norsk betydning."
-        },
-        "mistakes": {
-          "title": "Vanlige Feil Pilegrimer Gjør i Ihram",
-          "description": "Unngå vanlige feil som kan påvirke pilegrimsreisen din og oppretthold helligheten av Ihram."
+          "title": "Sunnah-handlinger før du tar på deg Ihram",
+          "description": "De anbefalte forberedelseshandlingene før du tar på deg Ihram - forankret i Sunnah."
         }
       }
     },
-    "cta": {
-      "title": "Klar til å Bestille?",
-      "description": "Få din Ihram levert til døren - enkelt, ærlig og pålitelig.",
-      "button": "Handle Nå"
+    "finalCta": {
+      "title": "Klar for Hajj 2026?",
+      "description": "Få din Ihram levert på få dager. Fra €19. Sendes fra Sverige.",
+      "button": "Handle Ihram - Fra €19"
+    },
+    "faq": {
+      "title": "Ofte stilte spørsmål",
+      "subtitle": "Raske svar på det de fleste pilegrimer lurer på før de bestiller.",
+      "items": [
+        {
+          "q": "Hvor mange Ihram-sett trenger jeg for Hajj?",
+          "a": "De fleste pilegrimer bærer 2 - ett til reisen, ett spart friskt til hovedritene. Vi anbefaler vårt 2-Pack for €37."
+        },
+        {
+          "q": "Hva er Ihram-en deres laget av?",
+          "a": "100 % lett mikrofiber. Den er pustende, tørker raskt og holder seg kjølig i Mekkas varme - bedre egnet til Hajj-været enn tykk bomull."
+        },
+        {
+          "q": "Hvor raskt sender dere?",
+          "a": "Bestillinger sendes fra Sverige innen 1 virkedag. De fleste EU-kunder mottar Ihram innen 2-4 virkedager."
+        },
+        {
+          "q": "Sender dere utenfor EU?",
+          "a": "Ja - vi sender over hele Europa og videre. Tider og priser beregnes i kassen."
+        },
+        {
+          "q": "Kan jeg returnere Ihram-en hvis den ikke passer?",
+          "a": "Ja. Hvis den er ubrukt, har du 14 dager på deg til å returnere den for full refusjon - ingen spørsmål stilt."
+        },
+        {
+          "q": "Er det tillatt at Ihram har maskinsydde kanter?",
+          "a": "Ja. Sunnah er at Ihram ikke er sydd som et plagg - det vil si to separate stoffstykker som vikles, ikke sydd til en form som bukser. Falsede kanter for å hindre frynsing er ikke det samme og aksepteres av alle fiqh-skoler."
+        },
+        {
+          "q": "Tilbyr dere kvantumsrabatt for moskeer og Hajj-byråer?",
+          "a": "Ja. For grupper på 10+ pilegrimer, kontakt oss for tilpasset prising og gruppelevering."
+        }
+      ]
+    },
+    "testimonial": {
+      "quote": "En virkelig god opplevelse. Kvaliteten innfridde forventningene mine, og jeg anbefaler gjerne Pure Ihram til alle som forbereder seg til Hajj eller Umrah.",
+      "author": "Mohsin Saleemi",
+      "location": "Västerås, Sverige",
+      "verified": "Verifisert kjøper",
+      "trust": {
+        "shipping": "Sendes fra Sverige - 2-4 dagers EU-levering",
+        "secure": "Stripe-sikker: Apple Pay, Klarna",
+        "returns": "14 dagers gratis retur"
+      }
+    },
+    "howToWear": {
+      "title": "Første Hajj? Slik tar du på deg Ihram.",
+      "body": "En enkel steg-for-steg-guide for førstegangspilegrimer - skrevet av muslimer, for muslimer.",
+      "cta": "Les hele guiden",
+      "imageAlt": "Steg-for-steg-guide for å ta på seg Ihram"
+    },
+    "shipping": {
+      "freeEu": "Gratis EU-frakt på bestillinger over €40",
+      "delivery": "Standard EU-levering: 2-4 virkedager fra Sverige",
+      "express": "Ekspressfrakt i kassen",
+      "returns": "14 dagers gratis retur - ingen spørsmål stilt",
+      "secure": "Stripe-sikker: Apple Pay, Google Pay, Klarna"
     }
   },
   "about": {
