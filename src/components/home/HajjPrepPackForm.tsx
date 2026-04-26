@@ -7,7 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
 export const HajjPrepPackForm = () => {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { toast } = useToast();
   const [email, setEmail] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -25,7 +25,7 @@ export const HajjPrepPackForm = () => {
     const trimmed = email.trim();
     if (!trimmed || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
       toast({
-        title: "Please enter a valid email",
+        title: t("home.prepPack.errorInvalidEmail"),
         variant: "destructive",
       });
       return;
@@ -42,8 +42,8 @@ export const HajjPrepPackForm = () => {
     } catch (err) {
       console.error("Prep pack signup failed:", err);
       toast({
-        title: "Could not send the pack",
-        description: "Please try again in a moment, or contact support@pureihraam.com.",
+        title: t("home.prepPack.errorSendTitle"),
+        description: t("home.prepPack.errorSendBody"),
         variant: "destructive",
       });
     } finally {
@@ -51,26 +51,27 @@ export const HajjPrepPackForm = () => {
     }
   };
 
+  const bullets = [
+    t("home.prepPack.bullets.checklist"),
+    t("home.prepPack.bullets.duas"),
+    t("home.prepPack.bullets.timeline"),
+  ];
+
   return (
     <section id="hajj-prep-pack" className="py-14 bg-secondary/40 scroll-mt-20">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-background border border-border rounded-2xl p-6 lg:p-10 shadow-sm">
           <div className="text-center mb-6">
             <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-3">
-              Going for Hajj 2026? Get our free Pure Ihram Prep Pack.
+              {t("home.prepPack.title")}
             </h2>
             <p className="text-muted-foreground">
-              A printable checklist, dua list, and packing guide for first-time pilgrims. Free -
-              even if you don&rsquo;t buy from us.
+              {t("home.prepPack.subtitle")}
             </p>
           </div>
 
           <ul className="space-y-2 mb-6 max-w-md mx-auto">
-            {[
-              "12-item Hajj packing checklist (the things most pilgrims forget)",
-              "Essential duas with transliteration - for ihram, tawaf, sa'i, Arafah",
-              "Day-by-day Hajj prep timeline starting 30 days out",
-            ].map((item) => (
+            {bullets.map((item) => (
               <li key={item} className="flex items-start gap-2 text-sm text-foreground">
                 <Check className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" aria-hidden="true" />
                 <span>{item}</span>
@@ -84,9 +85,11 @@ export const HajjPrepPackForm = () => {
               role="status"
               aria-live="polite"
             >
-              <p className="text-foreground font-medium mb-1">Check your inbox</p>
+              <p className="text-foreground font-medium mb-1">
+                {t("home.prepPack.successTitle")}
+              </p>
               <p className="text-sm text-muted-foreground">
-                We&rsquo;ve sent the Prep Pack download link to your email.
+                {t("home.prepPack.successBody")}
               </p>
             </div>
           ) : (
@@ -95,11 +98,11 @@ export const HajjPrepPackForm = () => {
                 <Input
                   type="email"
                   required
-                  placeholder="your@email.com"
+                  placeholder={t("home.prepPack.emailPlaceholder")}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   disabled={submitting}
-                  aria-label="Your email address"
+                  aria-label={t("home.prepPack.emailAriaLabel")}
                   className="flex-1"
                 />
                 <Button
@@ -110,15 +113,15 @@ export const HajjPrepPackForm = () => {
                   {submitting ? (
                     <>
                       <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                      Sending...
+                      {t("home.prepPack.submitting")}
                     </>
                   ) : (
-                    "Send the Pack"
+                    t("home.prepPack.submit")
                   )}
                 </Button>
               </div>
               <p className="text-xs text-muted-foreground mt-3 text-center">
-                No spam. We&rsquo;ll send the pack and a few helpful Hajj tips before you go.
+                {t("home.prepPack.disclaimer")}
               </p>
             </form>
           )}

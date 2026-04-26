@@ -1,17 +1,16 @@
 import { useNavigate, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { useCart } from "@/hooks/useCart";
 import { useToast } from "@/hooks/use-toast";
 import ihraamProduct from "@/assets/hero-product.avif";
 
-interface Offer {
+interface OfferConfig {
   sku: "IHRAM-1" | "IHRAM-2" | "IHRAM-3";
-  title: string;
+  key: "single" | "twoPack" | "threePack";
   qty: number;
   price: number; // bundle total in EUR (excl. shipping)
   saving?: number; // shipping-inclusive saving vs. buying singly
-  description: string;
-  ctaLabel: string;
-  badge?: { label: string; tone: "teal" | "gold" };
+  badgeTone?: "teal" | "gold";
   highlighted?: boolean;
   mobileOrder: number; // CSS order at <768px
 }
@@ -22,40 +21,25 @@ interface Offer {
 // Single (1 set) = €19 + €9 = €28 total.
 // 2-Pack vs buying 2 singles: €46 vs €56  -> save €10 (one shipping fee).
 // 3-Pack vs buying 3 singles: €64 vs €84  -> save €20 (one shipping fee).
-const OFFERS: Offer[] = [
-  {
-    sku: "IHRAM-1",
-    title: "Single Set",
-    qty: 1,
-    price: 19,
-    description:
-      "One complete set (Izaar + Ridaa). Ideal for Umrah or first-time buyers.",
-    ctaLabel: "Shop now",
-    mobileOrder: 2,
-  },
+const OFFERS: OfferConfig[] = [
+  { sku: "IHRAM-1", key: "single", qty: 1, price: 19, mobileOrder: 2 },
   {
     sku: "IHRAM-2",
-    title: "2-Pack",
+    key: "twoPack",
     qty: 2,
     price: 37,
     saving: 10,
-    description:
-      "Most pilgrims wear 2 Ihrams during Hajj - one for travel, one fresh.",
-    ctaLabel: "Shop 2-Pack",
-    badge: { label: "Most Popular", tone: "teal" },
+    badgeTone: "teal",
     highlighted: true,
     mobileOrder: 1,
   },
   {
     sku: "IHRAM-3",
-    title: "3-Pack",
+    key: "threePack",
     qty: 3,
     price: 55,
     saving: 20,
-    description:
-      "For family groups, mosque pre-orders, or an extra spare set.",
-    ctaLabel: "Shop 3-Pack",
-    badge: { label: "Best Value", tone: "gold" },
+    badgeTone: "gold",
     mobileOrder: 3,
   },
 ];
@@ -63,6 +47,7 @@ const OFFERS: Offer[] = [
 export const ProductOffersBlock = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useTranslation();
   const { addItem } = useCart();
   const { toast } = useToast();
 
@@ -72,19 +57,20 @@ export const ProductOffersBlock = () => {
     ? "/no"
     : "";
 
-  const handleSelect = (offer: Offer) => {
+  const handleSelect = (offer: OfferConfig) => {
+    const title = t(`home.offers.${offer.key}.title`);
     addItem(
       {
         id: offer.sku,
-        name: `Pure Ihram - ${offer.title}`,
+        name: `Pure Ihram - ${title}`,
         price: offer.price / offer.qty, // unit price, matches Shop convention
         image: ihraamProduct,
       },
       offer.qty,
     );
     toast({
-      title: "Added to cart",
-      description: `${offer.title} added. Review your cart on the next page.`,
+      title: t("home.offers.addedToCart"),
+      description: t("home.offers.addedToCartDescription", { title }),
     });
     navigate(`${localePrefix}/shop`);
   };
@@ -105,7 +91,7 @@ export const ProductOffersBlock = () => {
               lineHeight: 1.2,
             }}
           >
-            Choose your Ihram
+            {t("home.offers.title")}
           </h2>
           <p
             className="mx-auto mt-3"
@@ -116,8 +102,7 @@ export const ProductOffersBlock = () => {
               maxWidth: 540,
             }}
           >
-            Single sets for Umrah, bundles for Hajj. Shipping calculated at
-            checkout.
+            {t("home.offers.subtitle")}
           </p>
         </div>
 
@@ -125,26 +110,36 @@ export const ProductOffersBlock = () => {
         <div className="offers-grid">
           {OFFERS.map((offer) => {
             const isHighlighted = !!offer.highlighted;
+            const title = t(`home.offers.${offer.key}.title`);
+            const description = t(`home.offers.${offer.key}.description`);
+            const ctaLabel = t(`home.offers.${offer.key}.cta`);
+            const badgeLabel = offer.badgeTone
+              ? t(`home.offers.${offer.key}.badge`)
+              : null;
             return (
               <div
                 key={offer.sku}
                 role="group"
-                aria-label={`${offer.title}, ${offer.price} euros plus shipping. ${offer.description}`}
+                aria-label={t("home.offers.ariaLabel", {
+                  title,
+                  price: offer.price,
+                  description,
+                })}
                 onClick={() => handleSelect(offer)}
                 className={`offer-card ${isHighlighted ? "offer-card--highlighted" : ""}`}
                 style={{ order: offer.mobileOrder }}
               >
-                {offer.badge && (
+                {badgeLabel && (
                   <span
                     aria-hidden="true"
                     className="offer-badge"
                     style={{
                       background:
-                        offer.badge.tone === "teal" ? "#287777" : "#EEBD2B",
-                      color: offer.badge.tone === "teal" ? "#FFFFFF" : "#1A1A1A",
+                        offer.badgeTone === "teal" ? "#287777" : "#EEBD2B",
+                      color: offer.badgeTone === "teal" ? "#FFFFFF" : "#1A1A1A",
                     }}
                   >
-                    {offer.badge.label}
+                    {badgeLabel}
                   </span>
                 )}
 
@@ -157,7 +152,7 @@ export const ProductOffersBlock = () => {
                     marginBottom: 12,
                   }}
                 >
-                  {offer.title}
+                  {title}
                 </h3>
 
                 <div className="text-center" style={{ marginBottom: 4 }}>
@@ -179,7 +174,8 @@ export const ProductOffersBlock = () => {
                       marginLeft: 4,
                     }}
                   >
-                    + shipping
+                    {" "}
+                    {t("home.offers.shippingSuffix")}
                   </span>
                 </div>
 
@@ -197,7 +193,7 @@ export const ProductOffersBlock = () => {
                           fontWeight: 700,
                         }}
                       >
-                        Save €{offer.saving}
+                        {t("home.offers.saveAmount", { amount: offer.saving })}
                       </div>
                       <div
                         style={{
@@ -207,7 +203,7 @@ export const ProductOffersBlock = () => {
                           marginTop: 2,
                         }}
                       >
-                        One shipping fee for all sets
+                        {t("home.offers.oneShippingFee")}
                       </div>
                     </>
                   ) : null}
@@ -222,7 +218,7 @@ export const ProductOffersBlock = () => {
                     marginBottom: 24,
                   }}
                 >
-                  {offer.description}
+                  {description}
                 </p>
 
                 <button
@@ -233,7 +229,7 @@ export const ProductOffersBlock = () => {
                   }}
                   className="offer-cta"
                 >
-                  {offer.ctaLabel}
+                  {ctaLabel}
                 </button>
               </div>
             );
@@ -251,8 +247,7 @@ export const ProductOffersBlock = () => {
             marginTop: 32,
           }}
         >
-          Free with every order: Pure Ihram Hajj 2026 Prep Pack - printable
-          checklist, dua list, packing guide.
+          {t("home.offers.footerLine")}
         </p>
       </div>
 
