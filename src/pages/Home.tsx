@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { ArrowRight, Wind, Truck, ShieldCheck, Heart } from "lucide-react";
 import ihraamProduct from "@/assets/hero-product.avif";
 import spiritualMeaning from "@/assets/blog/spiritual-meaning.png";
@@ -16,6 +17,8 @@ import { HomepageFAQ, FAQ_ITEMS } from "@/components/home/HomepageFAQ";
 
 const Home = () => {
   const location = useLocation();
+  const { i18n } = useTranslation();
+  const lang = (['sv', 'no'].includes(i18n.language) ? i18n.language : 'en') as 'en' | 'sv' | 'no';
   const localePrefix = location.pathname.startsWith('/sv') ? '/sv' : location.pathname.startsWith('/no') ? '/no' : '';
 
   const benefits = [
