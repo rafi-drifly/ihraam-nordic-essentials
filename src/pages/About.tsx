@@ -41,10 +41,11 @@ const About = () => {
           <div>
             <h2 className="text-3xl font-bold text-foreground mb-6">{t('about.story.title')}</h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <p>{t('about.story.p1')}</p>
-              <p>{t('about.story.p2')}</p>
-              <p>{t('about.story.p3')}</p>
-              <p>{t('about.story.p4')}</p>
+              {[t('about.story.p1'), t('about.story.p2'), t('about.story.p3'), t('about.story.p4')]
+                .filter((paragraph) => paragraph && paragraph.trim().length > 0)
+                .map((paragraph, idx) => (
+                  <p key={idx}>{paragraph}</p>
+                ))}
             </div>
           </div>
 
