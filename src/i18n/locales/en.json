@@ -153,6 +153,53 @@
       "express": "Express shipping at checkout",
       "returns": "14-day free returns - no questions asked",
       "secure": "Stripe-secure: Apple Pay, Google Pay, Klarna"
+    },
+    "offers": {
+      "title": "Choose your Ihram",
+      "subtitle": "Single sets for Umrah, bundles for Hajj. Shipping calculated at checkout.",
+      "shippingSuffix": "+ shipping",
+      "saveAmount": "Save €{{amount}}",
+      "oneShippingFee": "One shipping fee for all sets",
+      "footerLine": "Free with every order: Pure Ihram Hajj 2026 Prep Pack - printable checklist, dua list, packing guide.",
+      "ariaLabel": "{{title}}, {{price}} euros plus shipping. {{description}}",
+      "addedToCart": "Added to cart",
+      "addedToCartDescription": "{{title}} added. Review your cart on the next page.",
+      "single": {
+        "title": "Single Set",
+        "description": "One complete set (Izaar + Ridaa). Ideal for Umrah or first-time buyers.",
+        "cta": "Shop now"
+      },
+      "twoPack": {
+        "title": "2-Pack",
+        "description": "Most pilgrims wear 2 Ihrams during Hajj - one for travel, one fresh.",
+        "cta": "Shop 2-Pack",
+        "badge": "Most Popular"
+      },
+      "threePack": {
+        "title": "3-Pack",
+        "description": "For family groups, mosque pre-orders, or an extra spare set.",
+        "cta": "Shop 3-Pack",
+        "badge": "Best Value"
+      }
+    },
+    "prepPack": {
+      "title": "Going for Hajj 2026? Get our free Pure Ihram Prep Pack.",
+      "subtitle": "A printable checklist, dua list, and packing guide for first-time pilgrims. Free - even if you don't buy from us.",
+      "bullets": {
+        "checklist": "12-item Hajj packing checklist (the things most pilgrims forget)",
+        "duas": "Essential duas with transliteration - for ihram, tawaf, sa'i, Arafah",
+        "timeline": "Day-by-day Hajj prep timeline starting 30 days out"
+      },
+      "emailPlaceholder": "your@email.com",
+      "emailAriaLabel": "Your email address",
+      "submit": "Send the Pack",
+      "submitting": "Sending...",
+      "disclaimer": "No spam. We'll send the pack and a few helpful Hajj tips before you go.",
+      "successTitle": "Check your inbox",
+      "successBody": "We've sent the Prep Pack download link to your email.",
+      "errorInvalidEmail": "Please enter a valid email",
+      "errorSendTitle": "Could not send the pack",
+      "errorSendBody": "Please try again in a moment, or contact support@pureihraam.com."
     }
   },
   "about": {
