@@ -130,16 +130,16 @@ const Partners = () => {
   ];
 
   const seoTitle = i18n.language === 'sv' 
-    ? 'Grossist Ihram för Moskéer & Hajj/Umrah-byråer | Pure Ihram'
+    ? 'B2B-Partnerskap - Grossist Ihram för Moskéer & Byråer | Pure Ihram'
     : i18n.language === 'no'
-    ? 'Engros Ihram for Moskeer & Hajj/Umrah-byråer | Pure Ihram'
-    : 'Wholesale Ihram for Mosques & Hajj/Umrah Agencies | Pure Ihram';
+    ? 'B2B-Partnerskap - Engros Ihram for Moskeer & Byråer | Pure Ihram'
+    : 'B2B Partnership - Wholesale Ihram for Mosques & Agencies | Pure Ihram';
   
   const seoDescription = i18n.language === 'sv'
-    ? 'Bli partner med Pure Ihram för att leverera högkvalitativa Ihram-set till era pilgrimer. Perfekt för moskéer och Hajj/Umrah-byråer i Europa med speciella grossistpriser.'
+    ? 'Bli partner med Pure Ihram för att erbjuda grossist Ihram-set till er moské, byrå eller resegrupp. Halal-inkomst, kvalitetsprodukt, EU-omfattande frakt.'
     : i18n.language === 'no'
-    ? 'Bli partner med Pure Ihram for å levere høykvalitets Ihram-sett til deres pilegrimer. Perfekt for moskeer og Hajj/Umrah-byråer i Europa med spesielle engrospriser.'
-    : 'Partner with Pure Ihram to supply high-quality Ihram sets to your pilgrims. Ideal for mosques and Hajj/Umrah agencies across Europe with special wholesale pricing.';
+    ? 'Bli partner med Pure Ihram for å tilby engros Ihram-sett til din moské, byrå eller reisegruppe. Halal-inntekt, kvalitetsprodukt, EU-dekkende frakt.'
+    : 'Partner with Pure Ihram to offer wholesale Ihram sets to your mosque, agency, or travel group. Halal income, quality product, EU-wide shipping.';
 
   return (
     <div className="">
@@ -254,7 +254,7 @@ const Partners = () => {
                     <div className="space-y-4">
                       <div className="flex justify-between items-center py-3 border-b border-border">
                         <span className="text-muted-foreground">{t('partners.pricing.breakdown.retail')}</span>
-                        <span className="font-semibold text-foreground">€15</span>
+                        <span className="font-semibold text-foreground">€19</span>
                       </div>
                       <div className="flex justify-between items-center py-3 border-b border-border">
                         <span className="text-muted-foreground">{t('partners.pricing.breakdown.partner')}</span>
@@ -262,11 +262,11 @@ const Partners = () => {
                       </div>
                       <div className="flex justify-between items-center py-3 border-b border-border">
                         <span className="text-muted-foreground">{t('partners.pricing.breakdown.sellPrice')}</span>
-                        <span className="font-semibold text-foreground">€18-€20</span>
+                        <span className="font-semibold text-foreground">€19-€22</span>
                       </div>
                       <div className="flex justify-between items-center py-3">
                         <span className="text-muted-foreground">{t('partners.pricing.breakdown.margin')}</span>
-                        <span className="font-bold text-primary text-lg">€5-€7</span>
+                        <span className="font-bold text-primary text-lg">€6-€9</span>
                       </div>
                     </div>
                     <p className="text-sm text-muted-foreground mt-4 italic">
@@ -279,7 +279,7 @@ const Partners = () => {
                       {t('partners.pricing.example.description')}
                     </p>
                     <div className="text-center">
-                      <div className="text-5xl font-bold mb-2">€500+</div>
+                      <div className="text-5xl font-bold mb-2">€600+</div>
                       <p className="text-primary-foreground/80">{t('partners.pricing.example.benefit')}</p>
                     </div>
                   </div>

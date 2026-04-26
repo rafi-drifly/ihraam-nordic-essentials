@@ -10,6 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { z } from "zod";
 import { trackContactFormSubmit, trackWhatsAppClick, trackEmailClick, trackPhoneClick } from "@/lib/analytics";
+import SEOHead from "@/components/SEOHead";
 
 // Form validation schema
 const contactSchema = z.object({
@@ -20,7 +21,21 @@ const contactSchema = z.object({
 });
 
 const Contact = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+
+  const seoTitle =
+    i18n.language === 'sv'
+      ? 'Kontakta Pure Ihram - E-post, WhatsApp & Telefonsupport'
+      : i18n.language === 'no'
+        ? 'Kontakt Pure Ihram - E-post, WhatsApp & Telefonstøtte'
+        : 'Contact Pure Ihram - Email, WhatsApp & Phone Support';
+
+  const seoDescription =
+    i18n.language === 'sv'
+      ? 'Kontakta Pure Ihram. E-post support@pureihraam.com, WhatsApp +46720131476, eller använd vårt kontaktformulär.'
+      : i18n.language === 'no'
+        ? 'Ta kontakt med Pure Ihram. E-post support@pureihraam.com, WhatsApp +46720131476, eller bruk kontaktskjemaet vårt.'
+        : 'Get in touch with Pure Ihram. Email support@pureihraam.com, WhatsApp +46720131476, or use our contact form.';
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -130,6 +145,7 @@ const Contact = () => {
 
   return (
     <div className="py-8">
+      <SEOHead title={seoTitle} description={seoDescription} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">

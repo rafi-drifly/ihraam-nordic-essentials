@@ -60,7 +60,7 @@
       },
       "shipsFromSweden": {
         "title": "Ships from Sweden",
-        "description": "EU-based fulfilment means 2-4 day delivery, no customs surprises."
+        "description": "EU-based fulfilment means fast delivery, no customs surprises."
       },
       "qualityChecked": {
         "title": "Quality-checked every set",
@@ -110,7 +110,7 @@
         },
         {
           "q": "How fast do you ship?",
-          "a": "Orders ship from Sweden within 1 business day. Most EU customers receive their Ihram in 2-4 business days."
+          "a": "Orders ship from Sweden within 1 business day. Most EU customers receive their Ihram quickly - typical timing varies by destination, see our Shipping page for details."
         },
         {
           "q": "Do you ship outside the EU?",
@@ -136,7 +136,7 @@
       "location": "Västerås, Sweden",
       "verified": "Verified buyer",
       "trust": {
-        "shipping": "Ships from Sweden - 2-4 day EU delivery",
+        "shipping": "Ships from Sweden · Fast EU delivery",
         "secure": "Stripe-secure: Apple Pay, Klarna",
         "returns": "14-day free returns"
       }
@@ -149,7 +149,7 @@
     },
     "shipping": {
       "freeEu": "Free EU shipping on orders over €40",
-      "delivery": "Standard EU delivery: 2-4 business days from Sweden",
+      "delivery": "Fast EU delivery from Sweden",
       "express": "Express shipping at checkout",
       "returns": "14-day free returns - no questions asked",
       "secure": "Stripe-secure: Apple Pay, Google Pay, Klarna"
@@ -207,10 +207,10 @@
     "subtitle": "Pure Ihram was founded to make Ihram (Ihraam) affordable (€19 + shipping) and accessible to all. This is not about profit but about earning ajr (reward) in the Akhirah by serving the Muslim community and making the sacred pilgrimage accessible to believers across Europe.",
     "story": {
       "title": "Our Story",
-      "p1": "Pure Ihram was born from a simple yet profound realization: too many Muslims across Europe were struggling to find affordable, quality Ihram (Ihraam) cloth for their pilgrimage to the holy cities of Makkah and Madinah.",
-      "p2": "Having witnessed fellow believers paying excessive prices for basic pilgrimage essentials, we made a commitment to provide premium Ihram cloth at an honest, accessible price of just €19.",
-      "p3": "Our mission extends beyond commerce - every sale is made with the sincere intention of earning ajr (reward) in the Akhirah while helping our brothers and sisters fulfill their religious obligations without financial burden.",
-      "p4": "Today, we're proud to serve thousands of pilgrims across Sweden, the Nordic countries, and the European Union, ensuring that distance and cost never become barriers to spiritual fulfillment."
+      "p1": "Pure Ihram started with a simple question: why are European Muslims paying excessive prices for basic pilgrimage cloth? We founded Pure Ihram in Sweden to fix that - premium Ihram at €19, shipped fast across the EU.",
+      "p2": "Every sale is made with the sincere intention of earning ajr (reward) in the Akhirah. This isn't just commerce - it's service to our community, ensuring that cost and distance never stand between a believer and their pilgrimage.",
+      "p3": "",
+      "p4": ""
     },
     "promise": {
       "title": "Our Promise",
@@ -318,7 +318,7 @@
       },
       "accessories": {
         "question": "Do you also sell belts or sandals?",
-        "answer": "Not yet, but we're working on expanding our pilgrimage essentials collection. Belts and sandals coming soon, In Sha Allah."
+        "answer": "Currently we specialise in Ihram cloth sets. For other pilgrimage essentials, we recommend checking with your local Islamic store or travel agency."
       },
       "bulk": {
         "question": "Can mosques/travel groups order in bulk?",
@@ -577,42 +577,42 @@
         "excerpt": "A step-by-step guide to properly wearing the Ihram garments, ensuring comfort and adherence to Islamic guidelines during your pilgrimage.",
         "author": "Pure Ihram Team",
         "readTime": "5 min read",
-        "date": "October 5, 2025"
+        "date": "March 15, 2026"
       },
       "sunnahActs": {
         "title": "Sunnah Acts Before Entering Ihram",
         "excerpt": "Discover the recommended Sunnah practices to perform before entering the state of Ihram, including personal hygiene and spiritual preparation.",
         "author": "Islamic Scholar",
         "readTime": "7 min read",
-        "date": "March 10, 2024"
+        "date": "March 10, 2026"
       },
       "checklist": {
         "title": "Checklist for Umrah Preparation (Clothes, Duas, Documents)",
         "excerpt": "Complete checklist covering everything you need for Umrah - from essential documents to clothing requirements and important duas to memorize.",
         "author": "Travel Expert",
         "readTime": "10 min read",
-        "date": "March 5, 2024"
+        "date": "March 5, 2026"
       },
       "commonMistakes": {
         "title": "Common Mistakes Pilgrims Make in Ihram",
         "excerpt": "Avoid these common errors that pilgrims often make while in the state of Ihram, helping you maintain the sanctity of your pilgrimage.",
         "author": "Hajj Guide",
         "readTime": "6 min read",
-        "date": "February 28, 2024"
+        "date": "February 28, 2026"
       },
       "essentialDuas": {
         "title": "Essential Duas for Umrah (With Transliteration & Meaning)",
         "excerpt": "A pilgrim's guide to the most beloved supplications during Umrah - from departure to Tawaf and beyond, with Arabic, transliteration, and English meaning.",
         "author": "Pure Ihram Team",
         "readTime": "15 min read",
-        "date": "March 15, 2024"
+        "date": "February 20, 2026"
       },
       "spiritualMeaning": {
         "title": "The Spiritual Meaning of Ihram - Equality Before Allah",
         "excerpt": "Explore the deeper spiritual significance of Ihram and how it represents the equality of all believers in the sight of Allah.",
         "author": "Islamic Scholar",
         "readTime": "8 min read",
-        "date": "February 20, 2024"
+        "date": "February 15, 2026"
       }
     },
     "hadithQuote": "\"Whoever performs Hajj for the sake of Allah and does not utter any obscene speech or do any evil deed, will return as pure as the day his mother gave birth to him.\"",
@@ -716,13 +716,13 @@
       },
       "example": {
         "title": "100 Sets Example",
-        "description": "If your masjid or agency orders 100 Ihram sets and sells at €17-€19 each:",
+        "description": "If your masjid or agency orders 100 Ihram sets and sells at €19-€22 each:",
         "benefit": "Halal benefit for your organisation"
       }
     },
     "product": {
       "title": "Product Details",
-      "subtitle": "Premium quality Ihram trusted by thousands of pilgrims",
+      "subtitle": "Premium quality Ihram for pilgrims across Europe",
       "name": "Ihram Hajj Towel Set",
       "specs": {
         "size": "Size",

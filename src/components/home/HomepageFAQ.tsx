@@ -32,7 +32,7 @@ export const HomepageFAQ = () => {
           <p className="text-muted-foreground">{t("home.faq.subtitle")}</p>
         </div>
 
-        <Accordion type="single" collapsible className="w-full">
+        <Accordion type="single" collapsible defaultValue="item-0" className="w-full">
           {items.map((item, idx) => (
             <AccordionItem key={idx} value={`item-${idx}`}>
               <AccordionTrigger className="text-left text-base font-medium">

@@ -1,9 +1,24 @@
 import { useTranslation } from "react-i18next";
 import { Card, CardContent } from "@/components/ui/card";
 import { Heart, Users, Award } from "lucide-react";
+import SEOHead from "@/components/SEOHead";
 
 const About = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+
+  const seoTitle =
+    i18n.language === 'sv'
+      ? 'Om Pure Ihram - Vårt Uppdrag & Värderingar | Svensk Ihram-butik'
+      : i18n.language === 'no'
+        ? 'Om Pure Ihram - Vårt Oppdrag & Verdier | Svensk Ihram-butikk'
+        : 'About Pure Ihram - Our Mission & Values | Sweden-Based Ihram Store';
+
+  const seoDescription =
+    i18n.language === 'sv'
+      ? 'Pure Ihram grundades i Sverige för att göra kvalitativ Ihram-duk prisvärd för varje europeisk muslim. €19 per set, ärlig prissättning, snabb leverans.'
+      : i18n.language === 'no'
+        ? 'Pure Ihram ble grunnlagt i Sverige for å gjøre kvalitets Ihram rimelig for hver europeisk muslim. €19 per sett, ærlig prising, rask levering.'
+        : 'Pure Ihram was founded in Sweden to make quality Ihram cloth affordable for every European Muslim. €19 per set, honest pricing, fast shipping.';
 
   const values = [
     {
@@ -25,6 +40,7 @@ const About = () => {
 
   return (
     <div className="py-8">
+      <SEOHead title={seoTitle} description={seoDescription} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
@@ -41,10 +57,11 @@ const About = () => {
           <div>
             <h2 className="text-3xl font-bold text-foreground mb-6">{t('about.story.title')}</h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <p>{t('about.story.p1')}</p>
-              <p>{t('about.story.p2')}</p>
-              <p>{t('about.story.p3')}</p>
-              <p>{t('about.story.p4')}</p>
+              {[t('about.story.p1'), t('about.story.p2'), t('about.story.p3'), t('about.story.p4')]
+                .filter((paragraph) => paragraph && paragraph.trim().length > 0)
+                .map((paragraph, idx) => (
+                  <p key={idx}>{paragraph}</p>
+                ))}
             </div>
           </div>
 
