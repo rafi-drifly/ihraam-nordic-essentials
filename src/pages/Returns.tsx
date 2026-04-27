@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import SEOHead from "@/components/SEOHead";
-import { useTranslation as _useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
@@ -93,13 +92,19 @@ const Returns = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Returns &amp; Exchanges | PureIhram</title>
-        <meta
-          name="description"
-          content="Read PureIhram's transparent return and exchange policy for Sweden and Nordic countries. 14-day withdrawal, easy size swaps, clear shipping rules."
-        />
-      </Helmet>
+      <SEOHead
+        title={
+          t('returns.seoTitle', {
+            defaultValue: 'Returns & Exchanges - 14-Day Free Returns | Pure Ihram',
+          })
+        }
+        description={
+          t('returns.seoDescription', {
+            defaultValue:
+              "Pure Ihram's transparent return and exchange policy across the EU. 14-day withdrawal, easy size swaps, and clear shipping rules.",
+          })
+        }
+      />
 
       <div className="py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
