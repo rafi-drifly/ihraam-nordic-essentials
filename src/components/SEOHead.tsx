@@ -7,6 +7,12 @@ interface SEOHeadProps {
   description?: string;
   path?: string;
   jsonLd?: Record<string, unknown>[];
+  /** When true, emits <meta name="robots" content="noindex, follow"> for transactional pages. */
+  noindex?: boolean;
+  /** Optional override for og:type (e.g. "product", "article"). Defaults to "website". */
+  ogType?: string;
+  /** Optional override for og:image. */
+  image?: string;
 }
 
 const BASE_URL = 'https://www.pureihram.com';
