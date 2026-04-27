@@ -1,148 +1,88 @@
-## Plan: Pure Ihram Site-Wide Copy, SEO & Behavior Fixes
+## Goal
 
-All 10 fixes are scoped to **text content, meta tags, and two interactive behaviors** — no styling, layout, color, or functional changes.
+Resolve the 16 "not indexed" pages reported in Google Search Console by strengthening crawl signals (sitemap, internal links, canonicals), adding unique titles/descriptions to every page, and enriching product structured data.
 
-Localized strings (Partners pricing, About story, FAQs, blog dates, trust strip, etc.) live in `src/i18n/locales/{en,sv,no}.json`, so all three locales will be updated in lockstep to avoid English fallbacks.
+## Findings from audit
 
----
+- **Routes (App.tsx):** 23 unique paths × 3 locales (en, sv, no) = ~69 indexable URLs. Sitemap currently lists 24 EN + Swedish/Norwegian copies but is missing `/returns`, `/mosque-support`, `/guest-order-lookup`, and the 3 NO blog posts have inconsistent coverage. All `<lastmod>` are stale `2026-02-16`.
+- **Canonicals:** `SEOHead` (which emits canonical + hreflang + JSON-LD) is used on Home, About, Blog, Contact, Partners, Shipping, and all blog post pages. Missing on **Shop, Returns, Transparency, MosqueSupport, SupportOurMission, DonationSuccess, DonationCancel** (those use raw `<Helmet>` with title/description only — no canonical, no hreflang).
+- **Robots/noindex:** No `noindex`/`nofollow` anywhere in `src/`, `public/`, or `index.html`. `robots.txt` already allows all and references the sitemap. ✓
+- **Internal linking:** Navbar has 5 items (Home, Shop, Blog, Our Mission, Contact). Footer has Home, Shop, Blog, About, Contact, Returns, Partners. **Not linked from nav/footer:** `/shipping`, `/support-our-mission`, `/transparency`, `/mosque-support`. These are likely the "Discovered – Not Indexed" pages because Google sees them in the sitemap but rarely on pages.
+- **Shop product schema:** Already has Product JSON-LD with offers, brand, shipping, return policy. Description is one short sentence — should be expanded to 150–200 words and made unique per locale. SKU is generic.
+- **index.html:** Static `<title>` and meta description ship in the initial HTML (good for crawlers before JS runs), but OG description still says "2-4 days" — should align with current "Fast EU delivery" copy per memory.
 
-### Fix 1 — Partners pricing table (`/partners`)
+## Changes
 
-**File:** `src/pages/Partners.tsx`
-- Line 257: `€15` → `€19`
-- Line 265: `€18-€20` → `€19-€22`
-- Line 269: `€5-€7` → `€6-€9`
-- Line 282: `€500+` → `€600+`
+### 1. Add `SEOHead` to all pages currently missing canonicals
+Replace the bare `<Helmet>` blocks with `<SEOHead title={...} description={...} />` (which auto-emits canonical, hreflang, OG locale alternates, and accepts `jsonLd`). Pages to update:
 
-**File:** `src/i18n/locales/{en,sv,no}.json` (`partners.pricing.example.description`)
-- `"…sells at €17-€19 each:"` → `"…sells at €19-€22 each:"` (and SV/NO equivalents)
+- `src/pages/Shop.tsx` — keep the rich Product JSON-LD; pass it through `SEOHead`'s `jsonLd` prop instead of inline `<script>` so canonical/hreflang are added.
+- `src/pages/Returns.tsx`
+- `src/pages/Transparency.tsx`
+- `src/pages/MosqueSupport.tsx`
+- `src/pages/SupportOurMission.tsx`
+- `src/pages/DonationSuccess.tsx` and `src/pages/DonationCancel.tsx` — add SEOHead with `noindex` (transactional confirmation pages, intentionally excluded).
 
----
+For each, add localized titles + 150–160 char descriptions in `en.json` / `sv.json` / `no.json` under existing keys (`returns.seoTitle`, `returns.seoDescription`, etc. — many already exist; we'll add only what's missing).
 
-### Fix 2 — Remove "thousands" overclaim (`/about`)
+### 2. Enrich Shop product description and structured data
+In `src/pages/Shop.tsx`:
+- Expand the JSON-LD `description` to a 180-word unique paragraph per locale (en/sv/no) covering material, two-piece composition, sizing approach, intended use (Hajj/Umrah), origin (ships from Sweden), care, and EU delivery.
+- Replace generic `IHRAM-SET-001` SKU with bundle-aware SKUs and add `aggregateRating`/`review` only if real data exists (skip for now per "no unverified claims" memory).
+- Ensure the main product `<img>` has a descriptive `alt` (currently "Pure Ihram Hajj Towel Set" — upgrade to "White microfiber Ihram set for men – Izaar and Ridaa, ships from Sweden").
+- Add `og:type="product"` and per-locale OG title/description (already present, refine).
 
-**File:** `src/i18n/locales/{en,sv,no}.json`
-- `about.story.p4` → "Today, we're proud to serve pilgrims across Sweden, the Nordic countries, and the European Union - ensuring that distance and cost never become barriers to spiritual fulfillment." (hyphen per typography memory; no em/en dashes)
-- `partners.product.subtitle` ("Premium quality Ihram trusted by thousands of pilgrims") → "Premium quality Ihram for pilgrims across Europe" (and translated equivalents) — same overclaim
+### 3. Update `public/sitemap.xml`
+- Bump every `<lastmod>` to today's date (`2026-04-27`).
+- Set priorities: homepage `1.0`, `/shop` `0.9`, blog posts `0.8`, other pages `0.6`.
+- Add the 4 missing URL entries (× 3 locales): `/returns`, `/transparency`, `/mosque-support`, `/shipping` (verify all locales present).
+- Remove or `noindex` purely transactional pages (`/order-success`, `/donation-success`, `/donation-cancel`, `/guest-order-lookup`) — keep them OUT of sitemap (they already are).
+- Confirm consistent `xhtml:link` alternates on every entry.
 
-*Note:* Fix 4 will overwrite p4 entirely, but updating it here keeps consistency in case ordering shifts.
+### 4. Strengthen internal linking from the homepage
+In `src/pages/Home.tsx`, add a small "Resources" / link strip near the FAQ or Final CTA that links to:
+- `/shop`, `/shipping`, `/returns`, `/about`, `/partners`, `/support-our-mission`, `/transparency`, `/blog`
 
----
+This ensures every sitemap URL is reachable in ≤2 clicks from `/`. Style as a plain text-link grid consistent with the Swedish-minimalist aesthetic (no icons, no emojis, no new colors). Localize labels via existing i18n keys.
 
-### Fix 3 — Remove "2-4 day" delivery promise (homepage only)
+Also add a one-line "Shipping & returns" link inside the existing `ShippingReassuranceStrip` pointing to `/shipping` and `/returns` if not already present.
 
-Update **all three locale files**:
-- `home.testimonial.trust.shipping`: "Ships from Sweden - 2-4 day EU delivery" → "Ships from Sweden · Fast EU delivery" (SV: "Skickas från Sverige · Snabb EU-leverans"; NO: "Sendes fra Sverige · Rask EU-levering")
-- `home.shipping.delivery`: "Standard EU delivery: 2-4 business days from Sweden" → "Fast EU delivery from Sweden" (with SV/NO equivalents)
-- `home.benefits` description (line 63): "EU-based fulfilment means 2-4 day delivery, no customs surprises." → "EU-based fulfilment means fast delivery, no customs surprises."
-- `home.faq.items` (line 113 — "How long does shipping take?"): replace "2-4 business days" portion with "Most EU customers receive their Ihram quickly - typical timing varies by destination, see our Shipping page for details."
+### 5. Footer additions
+Add `Shipping`, `Support our mission`, and `Transparency` to the footer `quickLinks` array in `src/components/ui/footer.tsx` so they appear on every page (boosts crawl priority for the "Discovered – not indexed" set).
 
-**Shipping page (`/shipping`)** — left unchanged (3-7 SE, 7-14 EU stays).
+### 6. `index.html` cleanup
+Update the static OG description to match current copy: replace "Ships from Sweden in 2-4 days" → "Ships from Sweden, fast delivery across Europe." (consistent with memory rule and SEOHead defaults).
 
----
+### 7. `robots.txt`
+Already correct (Allow + Sitemap reference). No change needed; will verify file contents are unchanged.
 
-### Fix 4 — Shorten About "Our Story" to 2 paragraphs (`/about`)
+### 8. Verify no accidental noindex
+Confirmed via grep — none exist. Will keep `DonationSuccess`/`DonationCancel` intentionally `noindex` (added in step 1).
 
-**File:** `src/i18n/locales/{en,sv,no}.json` (`about.story`)
-- Replace `p1`-`p4` with two paragraphs (p3, p4 set to empty strings so `About.tsx` renders only the two filled `<p>` tags — `About.tsx` always renders all four; safer to keep keys but empty p3/p4 OR conditionally render).
-- **Code change in `src/pages/About.tsx`** (lines ~52-55): switch the four hardcoded `<p>` tags to `.filter(Boolean).map(...)` over `[p1, p2, p3, p4]` so empty strings collapse cleanly.
+## Files to edit
 
-New copy (EN):
-- p1: "Pure Ihram started with a simple question: why are European Muslims paying excessive prices for basic pilgrimage cloth? We founded Pure Ihram in Sweden to fix that - premium Ihram at €19, shipped fast across the EU."
-- p2: "Every sale is made with the sincere intention of earning ajr (reward) in the Akhirah. This isn't just commerce - it's service to our community, ensuring that cost and distance never stand between a believer and their pilgrimage."
-- p3, p4: ""
+- `src/pages/Shop.tsx` (SEOHead + richer description + alt)
+- `src/pages/Returns.tsx`
+- `src/pages/Transparency.tsx`
+- `src/pages/MosqueSupport.tsx`
+- `src/pages/SupportOurMission.tsx`
+- `src/pages/DonationSuccess.tsx`
+- `src/pages/DonationCancel.tsx`
+- `src/pages/Home.tsx` (resources link strip)
+- `src/components/SEOHead.tsx` (add optional `noindex` prop)
+- `src/components/ui/footer.tsx` (add 3 quick links)
+- `public/sitemap.xml` (refresh lastmod, priorities, add missing URLs)
+- `index.html` (OG description tweak)
+- `src/i18n/locales/en.json`, `sv.json`, `no.json` (add any missing seoTitle/seoDescription keys + footer/home link labels + expanded shop product description)
 
-SV and NO will be translated equivalents.
+## Out of scope
 
----
+- Server-side rendering / pre-rendering (this is a Vite SPA; Google does render JS, but we are not switching frameworks per the framework memory).
+- Auto-generating sitemap from routes at build time — keeping it as a static file maintained alongside routes.
+- Adding fake reviews/ratings to product schema (forbidden by "no unverified claims" policy).
 
-### Fix 5 — Shop page unique title + description (`/shop`)
+## Verification after implementation
 
-**File:** `src/pages/Shop.tsx`
-- Locate existing `<SEOHead>` (or add if missing) and set:
-  - `title="Shop Ihram Sets - Single, 2-Pack & 3-Pack | Pure Ihram"`
-  - `description="Choose your Ihram set: single (€19), 2-pack (€37), or 3-pack (€55). Lightweight microfiber, ships from Sweden. Secure Stripe checkout."`
-- For SV/NO routes, derive localized variants via `i18n.language` (mirroring the pattern in `Partners.tsx` lines 132-142).
-
----
-
-### Fix 6 — Homepage FAQ first item open by default
-
-**File:** `src/components/home/HomepageFAQ.tsx`
-- On `<Accordion type="single" collapsible …>`, add `defaultValue="item-0"`.
-
----
-
-### Fix 7 — Blog dates → 2026
-
-**File:** `src/i18n/locales/{en,sv,no}.json` (`blog.posts.*.date`)
-
-| Key | New value (EN) |
-|---|---|
-| `howToWear.date` | `March 15, 2026` |
-| `sunnahActs.date` | `March 10, 2026` |
-| `checklist.date` | `March 5, 2026` |
-| `commonMistakes.date` | `February 28, 2026` |
-| `essentialDuas.date` | `February 20, 2026` |
-| `spiritualMeaning.date` | `February 15, 2026` |
-
-SV equivalents: "15 mars 2026", "10 mars 2026", "5 mars 2026", "28 februari 2026", "20 februari 2026", "15 februari 2026".
-NO equivalents: same format ("15. mars 2026", etc.).
-
-These keys feed both the Blog index cards and the SunnahActs/Checklist post pages — fully covered.
-
----
-
-### Fix 8 — Partners hero CTAs scroll to form
-
-Already implemented! `src/pages/Partners.tsx` lines 166 and 169 both call `onClick={scrollToForm}`, and `scrollToForm` (line 102) uses `behavior: 'smooth'`. **Verify the form section has `id="contact-form"`** — read lower portion of file and add the id if missing. No other change needed.
-
----
-
-### Fix 9 — Contact FAQ "belts/sandals" answer
-
-**File:** `src/i18n/locales/{en,sv,no}.json` (`contact.faq.accessories.answer`)
-- EN: "Currently we specialise in Ihram cloth sets. For other pilgrimage essentials, we recommend checking with your local Islamic store or travel agency."
-- SV/NO: translated equivalents.
-
----
-
-### Fix 10 — Unique titles + meta descriptions for all pages
-
-For each page below, ensure `<SEOHead title=… description=… />` is present with the specified values. Use `i18n.language` to switch between EN/SV/NO variants (following the `Partners.tsx` pattern).
-
-| Page | File | Title (EN) | Description (EN) |
-|---|---|---|---|
-| Home `/` | `src/pages/Home.tsx` | (keep current default from `SEOHead.tsx`) | (keep current) |
-| Shop `/shop` | `src/pages/Shop.tsx` | Already covered in Fix 5 | Already covered in Fix 5 |
-| About `/about` | `src/pages/About.tsx` | `About Pure Ihram - Our Mission & Values \| Sweden-Based Ihram Store` | `Pure Ihram was founded in Sweden to make quality Ihram cloth affordable for every European Muslim. €19 per set, honest pricing, fast shipping.` |
-| Shipping `/shipping` | `src/pages/Shipping.tsx` | `Shipping & Delivery - Fast EU Shipping from Sweden \| Pure Ihram` | `Fast, reliable Ihram delivery across Sweden, the Nordics, and the EU. Orders processed in 1-2 business days with full tracking.` |
-| Contact `/contact` | `src/pages/Contact.tsx` | `Contact Pure Ihram - Email, WhatsApp & Phone Support` | `Get in touch with Pure Ihram. Email support@pureihraam.com, WhatsApp +46720131476, or use our contact form.` |
-| Partners `/partners` | `src/pages/Partners.tsx` | `B2B Partnership - Wholesale Ihram for Mosques & Agencies \| Pure Ihram` | `Partner with Pure Ihram to offer wholesale Ihram sets to your mosque, agency, or travel group. Halal income, quality product, EU-wide shipping.` |
-| Blog `/blog` | `src/pages/Blog.tsx` | `Hajj & Umrah Guides - Pilgrimage Knowledge \| Pure Ihram` | `Practical guides for Hajj and Umrah - how to wear Ihram, Sunnah acts, essential duas, packing checklists, and spiritual preparation.` |
-
-For pages currently missing `<SEOHead>` (About, Shipping, Contact), add the import and component at the top of the JSX tree.
-
-For each, add SV and NO localized variants (translated titles and descriptions).
-
-Per typography memory: use hyphens (`-`) not em/en dashes throughout.
-
----
-
-### Files modified
-
-- `src/pages/Partners.tsx` (Fix 1: pricing values; Fix 8: verify `id="contact-form"`; Fix 10: title/description)
-- `src/pages/About.tsx` (Fix 4: render filter; Fix 10: SEOHead)
-- `src/pages/Shop.tsx` (Fix 5: SEOHead)
-- `src/pages/Shipping.tsx` (Fix 10: SEOHead)
-- `src/pages/Contact.tsx` (Fix 10: SEOHead)
-- `src/pages/Blog.tsx` (Fix 10: update SEOHead title/description)
-- `src/components/home/HomepageFAQ.tsx` (Fix 6: defaultValue)
-- `src/i18n/locales/en.json` (Fixes 1, 2, 3, 4, 7, 9)
-- `src/i18n/locales/sv.json` (same as en, in Swedish)
-- `src/i18n/locales/no.json` (same as en, in Norwegian)
-
-### Verification after implementation
-
-- Run `bun tsc --noEmit` and `bunx vitest run` to confirm no regressions (i18n locale test from previous loop will validate keys still resolve per language).
-- Visually confirm: Partners shows €19/€6-€9/€600+; About has 2 paragraphs without "thousands"; Homepage FAQ first item open; Blog cards show 2026 dates.
+1. `bun tsc --noEmit` — type check.
+2. `bunx vitest run` — existing locale + checkout tests must pass.
+3. Spot-check `/`, `/shop`, `/returns`, `/sv`, `/no/blog/how-to-wear-ihram` in DOM for: unique `<title>`, unique meta description, `<link rel="canonical">`, hreflang triples, and (Shop only) Product JSON-LD with rich description.

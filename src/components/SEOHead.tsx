@@ -7,6 +7,12 @@ interface SEOHeadProps {
   description?: string;
   path?: string;
   jsonLd?: Record<string, unknown>[];
+  /** When true, emits <meta name="robots" content="noindex, follow"> for transactional pages. */
+  noindex?: boolean;
+  /** Optional override for og:type (e.g. "product", "article"). Defaults to "website". */
+  ogType?: string;
+  /** Optional override for og:image. */
+  image?: string;
 }
 
 const BASE_URL = 'https://www.pureihram.com';
@@ -19,7 +25,7 @@ const LOCALE_META: Record<'en' | 'sv' | 'no', { htmlLang: string; hreflang: stri
   no: { htmlLang: 'nb-NO', hreflang: 'nb-NO', ogLocale: 'nb_NO' },
 };
 
-const SEOHead = ({ title, description, path, jsonLd }: SEOHeadProps) => {
+const SEOHead = ({ title, description, path, jsonLd, noindex, ogType, image }: SEOHeadProps) => {
   const { i18n } = useTranslation();
   const location = useLocation();
   const langKey = (['sv', 'no'].includes(i18n.language) ? i18n.language : 'en') as 'en' | 'sv' | 'no';
@@ -69,11 +75,15 @@ const SEOHead = ({ title, description, path, jsonLd }: SEOHeadProps) => {
     .filter((l) => l !== langKey)
     .map((l) => LOCALE_META[l].ogLocale);
 
+  const finalImage = image || DEFAULT_OG_IMAGE;
+  const finalOgType = ogType || 'website';
+
   return (
     <Helmet>
       <html lang={meta.htmlLang} />
       <title>{finalTitle}</title>
       <meta name="description" content={finalDescription} />
+      {noindex && <meta name="robots" content="noindex, follow" />}
 
       {/* Canonical URL */}
       <link rel="canonical" href={currentUrl} />
@@ -87,9 +97,9 @@ const SEOHead = ({ title, description, path, jsonLd }: SEOHeadProps) => {
       {/* Open Graph */}
       <meta property="og:title" content={finalTitle} />
       <meta property="og:description" content={finalDescription} />
-      <meta property="og:type" content="website" />
+      <meta property="og:type" content={finalOgType} />
       <meta property="og:url" content={currentUrl} />
-      <meta property="og:image" content={DEFAULT_OG_IMAGE} />
+      <meta property="og:image" content={finalImage} />
       <meta property="og:locale" content={meta.ogLocale} />
       {alternateOgLocales.map((locale) => (
         <meta key={locale} property="og:locale:alternate" content={locale} />
@@ -99,7 +109,7 @@ const SEOHead = ({ title, description, path, jsonLd }: SEOHeadProps) => {
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={finalTitle} />
       <meta name="twitter:description" content={finalDescription} />
-      <meta name="twitter:image" content={DEFAULT_OG_IMAGE} />
+      <meta name="twitter:image" content={finalImage} />
 
       {/* Structured data */}
       {jsonLd?.map((schema, idx) => (

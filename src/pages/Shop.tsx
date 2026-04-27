@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -160,14 +160,23 @@ const Shop = () => {
     ? product.images
     : [`${SITE_URL}/og-image.jpg`];
 
+  const productDescriptionLong =
+    i18n.language === 'sv'
+      ? "Pure Ihrams set består av två lättviktiga vita mikrofiberhanddukar (Izaar och Ridaa) sydda speciellt för Hajj och Umrah. Tyget är snabbtorkande, andas väl och behåller en mjuk känsla mot huden även i Mekkas hetta. Varje set väger lite och får plats i en kabinväska, men håller måttet för dagliga tawaf, sa'i och böner. En passform passar de flesta vuxna män - knyt Izaar runt midjan och drapera Ridaa över axeln. Tvätta i 30 °C, hängtorka. Skickas från vårt lager i Sverige med spårning över hela EU. Ingår: två handdukar per set. Tillgänglig som single, 2-pack och 3-pack för familjer eller grupper. Designad och kvalitetskontrollerad i Norden för pilgrimer som vill ha trygghet, värdighet och enkelhet på sin resa."
+      : i18n.language === 'no'
+        ? "Pure Ihram-settet består av to lette hvite mikrofiberhåndklær (Izaar og Ridaa) sydd spesielt for Hajj og Umrah. Stoffet tørker raskt, puster godt og holder seg mykt mot huden, selv i Mekkas varme. Hvert sett er lett å pakke i en håndbagasje, men robust nok til daglig tawaf, sa'i og bønn. Én størrelse passer de fleste voksne menn - knytt Izaar rundt livet og drap Ridaa over skulderen. Vaskes på 30 °C, henges til tørk. Sendes fra vårt lager i Sverige med sporing til hele EU. Inkluderer: to håndklær per sett. Tilgjengelig som single, 2-pack og 3-pack for familier eller grupper. Designet og kvalitetssikret i Norden for pilegrimer som vil ha trygghet, verdighet og enkelhet på reisen."
+        : "The Pure Ihram set consists of two lightweight white microfiber towels (Izaar and Ridaa) tailored specifically for Hajj and Umrah. The fabric is quick-drying, breathable, and stays soft against the skin even in Makkah's heat. Each set packs small enough for a carry-on yet holds up to daily tawaf, sa'i, and prayers. One size fits most adult men - tie the Izaar around the waist and drape the Ridaa over the shoulder. Machine wash at 30 °C, line dry. Ships from our warehouse in Sweden with tracked delivery across the entire EU. Includes: two towels per set. Available as a single, 2-pack, or 3-pack for families and groups. Designed and quality-checked in the Nordics for pilgrims who want peace of mind, dignity, and simplicity on their journey.";
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
     "name": product.name,
-    "description": "Ihram cloth set for Hajj and Umrah. Lightweight, quick-dry microfiber. Delivered from Sweden.",
+    "description": productDescriptionLong,
     "image": storageImages,
-    "brand": { "@type": "Brand", "name": "PureIhram" },
-    "sku": "IHRAM-SET-001",
+    "brand": { "@type": "Brand", "name": "Pure Ihram" },
+    "sku": "PI-IHRAM-SET-WHITE",
+    "mpn": "PI-IHRAM-SET-WHITE",
+    "category": "Religious Apparel > Hajj & Umrah > Ihram",
     "offers": {
       "@type": "Offer",
       "url": `${SITE_URL}/shop`,
@@ -206,33 +215,25 @@ const Shop = () => {
 
   return (
     <>
-      <Helmet>
-        <title>
-          {i18n.language === 'sv'
+      <SEOHead
+        title={
+          i18n.language === 'sv'
             ? 'Köp Ihram-set - Single, 2-Pack & 3-Pack | Pure Ihram'
             : i18n.language === 'no'
               ? 'Kjøp Ihram-sett - Single, 2-Pack & 3-Pack | Pure Ihram'
-              : 'Shop Ihram Sets - Single, 2-Pack & 3-Pack | Pure Ihram'}
-        </title>
-        <meta
-          name="description"
-          content={
-            i18n.language === 'sv'
-              ? 'Välj ditt Ihram-set: single (€19), 2-pack (€37) eller 3-pack (€55). Lätt mikrofiber, skickas från Sverige. Säker betalning via Stripe.'
-              : i18n.language === 'no'
-                ? 'Velg ditt Ihram-sett: single (€19), 2-pack (€37) eller 3-pack (€55). Lett mikrofiber, sendes fra Sverige. Sikker betaling med Stripe.'
-                : 'Choose your Ihram set: single (€19), 2-pack (€37), or 3-pack (€55). Lightweight microfiber, ships from Sweden. Secure Stripe checkout.'
-          }
-        />
-        <meta property="og:type" content="product" />
-        <meta property="og:title" content={`${product.name} - Pure Ihram`} />
-        <meta property="og:description" content="Premium Ihram sets from €19. Save with bundles. Ships from Sweden." />
-        <meta property="og:image" content={storageImages[0]} />
-        <meta property="og:url" content={`${SITE_URL}/shop`} />
-        <meta property="product:price:amount" content="19" />
-        <meta property="product:price:currency" content="EUR" />
-        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-      </Helmet>
+              : 'Shop Ihram Sets - Single, 2-Pack & 3-Pack | Pure Ihram'
+        }
+        description={
+          i18n.language === 'sv'
+            ? 'Välj ditt Ihram-set: single (€19), 2-pack (€37) eller 3-pack (€55). Lätt mikrofiber, skickas från Sverige. Säker betalning via Stripe.'
+            : i18n.language === 'no'
+              ? 'Velg ditt Ihram-sett: single (€19), 2-pack (€37) eller 3-pack (€55). Lett mikrofiber, sendes fra Sverige. Sikker betaling med Stripe.'
+              : 'Choose your Ihram set: single (€19), 2-pack (€37), or 3-pack (€55). Lightweight microfiber, ships from Sweden. Secure EU delivery.'
+        }
+        ogType="product"
+        image={storageImages[0]}
+        jsonLd={[jsonLd]}
+      />
 
       {/* Image Lightbox */}
       <Dialog open={selectedImageIndex !== null} onOpenChange={() => setSelectedImageIndex(null)}>
@@ -278,7 +279,7 @@ const Shop = () => {
             {/* Product Images Gallery */}
             <div className="space-y-4">
               <div className="aspect-square bg-muted rounded-lg overflow-hidden cursor-pointer hover:opacity-95 transition-opacity" onClick={() => setSelectedImageIndex(0)}>
-                <img src={ihraamProduct} alt="Pure Ihram Hajj Towel Set" className="w-full h-full object-cover" />
+                <img src={ihraamProduct} alt="White microfiber Ihram set for men - Izaar and Ridaa towels for Hajj and Umrah, ships from Sweden" className="w-full h-full object-cover" />
               </div>
               <div className="grid grid-cols-4 gap-2">
                 {[detail2, detail3, detail4, detail5, detail6, detail7, detail8].map((img, idx) => (

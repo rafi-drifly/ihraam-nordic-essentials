@@ -259,6 +259,28 @@ const Home = () => {
       {/* 9. FAQ */}
       <HomepageFAQ />
 
+      {/* 9b. Resources / quick links — boosts crawl depth and internal linking */}
+      <section aria-labelledby="resources-heading" className="py-10 bg-background border-t border-border">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 id="resources-heading" className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-4">
+            {t('home.resources.title', { defaultValue: 'Explore Pure Ihram' })}
+          </h2>
+          <nav aria-label={t('home.resources.title', { defaultValue: 'Explore Pure Ihram' })}>
+            <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
+              <li><Link to={`${localePrefix}/shop`} className="text-foreground hover:text-primary transition-colors">{t('footer.links.shop')}</Link></li>
+              <li><Link to={`${localePrefix}/shipping`} className="text-foreground hover:text-primary transition-colors">{t('footer.links.shipping', { defaultValue: 'Shipping & Delivery' })}</Link></li>
+              <li><Link to={`${localePrefix}/returns`} className="text-foreground hover:text-primary transition-colors">{t('footer.links.returns')}</Link></li>
+              <li><Link to={`${localePrefix}/about`} className="text-foreground hover:text-primary transition-colors">{t('nav.ourMission')}</Link></li>
+              <li><Link to={`${localePrefix}/partners`} className="text-foreground hover:text-primary transition-colors">{t('footer.links.partners')}</Link></li>
+              <li><Link to={`${localePrefix}/support-our-mission`} className="text-foreground hover:text-primary transition-colors">{t('footer.links.supportMission', { defaultValue: 'Support Our Mission' })}</Link></li>
+              <li><Link to={`${localePrefix}/transparency`} className="text-foreground hover:text-primary transition-colors">{t('nav.transparency', { defaultValue: 'Transparency' })}</Link></li>
+              <li><Link to={`${localePrefix}/blog`} className="text-foreground hover:text-primary transition-colors">{t('footer.links.blog')}</Link></li>
+              <li><Link to={`${localePrefix}/contact`} className="text-foreground hover:text-primary transition-colors">{t('footer.links.contact')}</Link></li>
+            </ul>
+          </nav>
+        </div>
+      </section>
+
       {/* 10. Final CTA */}
       <section className="py-14 bg-muted">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

@@ -26,9 +26,12 @@ const Footer = () => {
     { name: t('footer.links.shop'), href: "/shop" },
     { name: t('footer.links.blog'), href: "/blog" },
     { name: t('nav.ourMission'), href: "/about" },
+    { name: t('footer.links.shipping', { defaultValue: 'Shipping & Delivery' }), href: "/shipping" },
     { name: t('footer.links.contact'), href: "/contact" },
     { name: t('footer.links.returns'), href: "/returns" },
     { name: t('footer.links.partners'), href: "/partners" },
+    { name: t('footer.links.supportMission', { defaultValue: 'Support Our Mission' }), href: "/support-our-mission" },
+    { name: t('nav.transparency', { defaultValue: 'Transparency' }), href: "/transparency" },
   ];
 
   return (
