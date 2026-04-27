@@ -75,11 +75,15 @@ const SEOHead = ({ title, description, path, jsonLd, noindex, ogType, image }: S
     .filter((l) => l !== langKey)
     .map((l) => LOCALE_META[l].ogLocale);
 
+  const finalImage = image || DEFAULT_OG_IMAGE;
+  const finalOgType = ogType || 'website';
+
   return (
     <Helmet>
       <html lang={meta.htmlLang} />
       <title>{finalTitle}</title>
       <meta name="description" content={finalDescription} />
+      {noindex && <meta name="robots" content="noindex, follow" />}
 
       {/* Canonical URL */}
       <link rel="canonical" href={currentUrl} />
@@ -93,9 +97,9 @@ const SEOHead = ({ title, description, path, jsonLd, noindex, ogType, image }: S
       {/* Open Graph */}
       <meta property="og:title" content={finalTitle} />
       <meta property="og:description" content={finalDescription} />
-      <meta property="og:type" content="website" />
+      <meta property="og:type" content={finalOgType} />
       <meta property="og:url" content={currentUrl} />
-      <meta property="og:image" content={DEFAULT_OG_IMAGE} />
+      <meta property="og:image" content={finalImage} />
       <meta property="og:locale" content={meta.ogLocale} />
       {alternateOgLocales.map((locale) => (
         <meta key={locale} property="og:locale:alternate" content={locale} />
@@ -105,7 +109,7 @@ const SEOHead = ({ title, description, path, jsonLd, noindex, ogType, image }: S
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={finalTitle} />
       <meta name="twitter:description" content={finalDescription} />
-      <meta name="twitter:image" content={DEFAULT_OG_IMAGE} />
+      <meta name="twitter:image" content={finalImage} />
 
       {/* Structured data */}
       {jsonLd?.map((schema, idx) => (
