@@ -25,7 +25,7 @@ const LOCALE_META: Record<'en' | 'sv' | 'no', { htmlLang: string; hreflang: stri
   no: { htmlLang: 'nb-NO', hreflang: 'nb-NO', ogLocale: 'nb_NO' },
 };
 
-const SEOHead = ({ title, description, path, jsonLd }: SEOHeadProps) => {
+const SEOHead = ({ title, description, path, jsonLd, noindex, ogType, image }: SEOHeadProps) => {
   const { i18n } = useTranslation();
   const location = useLocation();
   const langKey = (['sv', 'no'].includes(i18n.language) ? i18n.language : 'en') as 'en' | 'sv' | 'no';
