@@ -279,7 +279,7 @@ const Shop = () => {
             {/* Product Images Gallery */}
             <div className="space-y-4">
               <div className="aspect-square bg-muted rounded-lg overflow-hidden cursor-pointer hover:opacity-95 transition-opacity" onClick={() => setSelectedImageIndex(0)}>
-                <img src={ihraamProduct} alt="Pure Ihram Hajj Towel Set" className="w-full h-full object-cover" />
+                <img src={ihraamProduct} alt="White microfiber Ihram set for men - Izaar and Ridaa towels for Hajj and Umrah, ships from Sweden" className="w-full h-full object-cover" />
               </div>
               <div className="grid grid-cols-4 gap-2">
                 {[detail2, detail3, detail4, detail5, detail6, detail7, detail8].map((img, idx) => (
