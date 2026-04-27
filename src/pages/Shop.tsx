@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -160,14 +160,23 @@ const Shop = () => {
     ? product.images
     : [`${SITE_URL}/og-image.jpg`];
 
+  const productDescriptionLong =
+    i18n.language === 'sv'
+      ? "Pure Ihrams set består av två lättviktiga vita mikrofiberhanddukar (Izaar och Ridaa) sydda speciellt för Hajj och Umrah. Tyget är snabbtorkande, andas väl och behåller en mjuk känsla mot huden även i Mekkas hetta. Varje set väger lite och får plats i en kabinväska, men håller måttet för dagliga tawaf, sa'i och böner. En passform passar de flesta vuxna män - knyt Izaar runt midjan och drapera Ridaa över axeln. Tvätta i 30 °C, hängtorka. Skickas från vårt lager i Sverige med spårning över hela EU. Ingår: två handdukar per set. Tillgänglig som single, 2-pack och 3-pack för familjer eller grupper. Designad och kvalitetskontrollerad i Norden för pilgrimer som vill ha trygghet, värdighet och enkelhet på sin resa."
+      : i18n.language === 'no'
+        ? "Pure Ihram-settet består av to lette hvite mikrofiberhåndklær (Izaar og Ridaa) sydd spesielt for Hajj og Umrah. Stoffet tørker raskt, puster godt og holder seg mykt mot huden, selv i Mekkas varme. Hvert sett er lett å pakke i en håndbagasje, men robust nok til daglig tawaf, sa'i og bønn. Én størrelse passer de fleste voksne menn - knytt Izaar rundt livet og drap Ridaa over skulderen. Vaskes på 30 °C, henges til tørk. Sendes fra vårt lager i Sverige med sporing til hele EU. Inkluderer: to håndklær per sett. Tilgjengelig som single, 2-pack og 3-pack for familier eller grupper. Designet og kvalitetssikret i Norden for pilegrimer som vil ha trygghet, verdighet og enkelhet på reisen."
+        : "The Pure Ihram set consists of two lightweight white microfiber towels (Izaar and Ridaa) tailored specifically for Hajj and Umrah. The fabric is quick-drying, breathable, and stays soft against the skin even in Makkah's heat. Each set packs small enough for a carry-on yet holds up to daily tawaf, sa'i, and prayers. One size fits most adult men - tie the Izaar around the waist and drape the Ridaa over the shoulder. Machine wash at 30 °C, line dry. Ships from our warehouse in Sweden with tracked delivery across the entire EU. Includes: two towels per set. Available as a single, 2-pack, or 3-pack for families and groups. Designed and quality-checked in the Nordics for pilgrims who want peace of mind, dignity, and simplicity on their journey.";
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
     "name": product.name,
-    "description": "Ihram cloth set for Hajj and Umrah. Lightweight, quick-dry microfiber. Delivered from Sweden.",
+    "description": productDescriptionLong,
     "image": storageImages,
-    "brand": { "@type": "Brand", "name": "PureIhram" },
-    "sku": "IHRAM-SET-001",
+    "brand": { "@type": "Brand", "name": "Pure Ihram" },
+    "sku": "PI-IHRAM-SET-WHITE",
+    "mpn": "PI-IHRAM-SET-WHITE",
+    "category": "Religious Apparel > Hajj & Umrah > Ihram",
     "offers": {
       "@type": "Offer",
       "url": `${SITE_URL}/shop`,
