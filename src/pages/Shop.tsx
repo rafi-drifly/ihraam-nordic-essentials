@@ -215,33 +215,25 @@ const Shop = () => {
 
   return (
     <>
-      <Helmet>
-        <title>
-          {i18n.language === 'sv'
+      <SEOHead
+        title={
+          i18n.language === 'sv'
             ? 'Köp Ihram-set - Single, 2-Pack & 3-Pack | Pure Ihram'
             : i18n.language === 'no'
               ? 'Kjøp Ihram-sett - Single, 2-Pack & 3-Pack | Pure Ihram'
-              : 'Shop Ihram Sets - Single, 2-Pack & 3-Pack | Pure Ihram'}
-        </title>
-        <meta
-          name="description"
-          content={
-            i18n.language === 'sv'
-              ? 'Välj ditt Ihram-set: single (€19), 2-pack (€37) eller 3-pack (€55). Lätt mikrofiber, skickas från Sverige. Säker betalning via Stripe.'
-              : i18n.language === 'no'
-                ? 'Velg ditt Ihram-sett: single (€19), 2-pack (€37) eller 3-pack (€55). Lett mikrofiber, sendes fra Sverige. Sikker betaling med Stripe.'
-                : 'Choose your Ihram set: single (€19), 2-pack (€37), or 3-pack (€55). Lightweight microfiber, ships from Sweden. Secure Stripe checkout.'
-          }
-        />
-        <meta property="og:type" content="product" />
-        <meta property="og:title" content={`${product.name} - Pure Ihram`} />
-        <meta property="og:description" content="Premium Ihram sets from €19. Save with bundles. Ships from Sweden." />
-        <meta property="og:image" content={storageImages[0]} />
-        <meta property="og:url" content={`${SITE_URL}/shop`} />
-        <meta property="product:price:amount" content="19" />
-        <meta property="product:price:currency" content="EUR" />
-        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-      </Helmet>
+              : 'Shop Ihram Sets - Single, 2-Pack & 3-Pack | Pure Ihram'
+        }
+        description={
+          i18n.language === 'sv'
+            ? 'Välj ditt Ihram-set: single (€19), 2-pack (€37) eller 3-pack (€55). Lätt mikrofiber, skickas från Sverige. Säker betalning via Stripe.'
+            : i18n.language === 'no'
+              ? 'Velg ditt Ihram-sett: single (€19), 2-pack (€37) eller 3-pack (€55). Lett mikrofiber, sendes fra Sverige. Sikker betaling med Stripe.'
+              : 'Choose your Ihram set: single (€19), 2-pack (€37), or 3-pack (€55). Lightweight microfiber, ships from Sweden. Secure EU delivery.'
+        }
+        ogType="product"
+        image={storageImages[0]}
+        jsonLd={[jsonLd]}
+      />
 
       {/* Image Lightbox */}
       <Dialog open={selectedImageIndex !== null} onOpenChange={() => setSelectedImageIndex(null)}>
