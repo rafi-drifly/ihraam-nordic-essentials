@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation, Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -42,10 +42,10 @@ const SupportOurMission = () => {
 
   return (
     <>
-      <Helmet>
-        <title>{t('donation.seoTitle')}</title>
-        <meta name="description" content={t('donation.seoDescription')} />
-      </Helmet>
+      <SEOHead
+        title={t('donation.seoTitle')}
+        description={t('donation.seoDescription')}
+      />
 
       <div className="min-h-screen">
         {/* Hero Section */}

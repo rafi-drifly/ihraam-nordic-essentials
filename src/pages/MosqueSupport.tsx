@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation, Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -99,9 +99,10 @@ Additional Notes: ${formData.notes || 'N/A'}
   if (submitted) {
     return (
       <>
-        <Helmet>
-          <title>{t('mosqueSupport.seoTitle')}</title>
-        </Helmet>
+        <SEOHead
+          title={t('mosqueSupport.seoTitle')}
+          description={t('mosqueSupport.seoDescription')}
+        />
         <div className="py-12">
           <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-green-100 mb-6">
@@ -133,10 +134,10 @@ Additional Notes: ${formData.notes || 'N/A'}
 
   return (
     <>
-      <Helmet>
-        <title>{t('mosqueSupport.seoTitle')}</title>
-        <meta name="description" content={t('mosqueSupport.seoDescription')} />
-      </Helmet>
+      <SEOHead
+        title={t('mosqueSupport.seoTitle')}
+        description={t('mosqueSupport.seoDescription')}
+      />
 
       <div className="py-12">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
