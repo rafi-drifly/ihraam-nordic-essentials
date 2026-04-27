@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useLocation, Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -59,10 +59,10 @@ const Transparency = () => {
 
   return (
     <>
-      <Helmet>
-        <title>{t('transparency.seoTitle')}</title>
-        <meta name="description" content={t('transparency.seoDescription')} />
-      </Helmet>
+      <SEOHead
+        title={t('transparency.seoTitle')}
+        description={t('transparency.seoDescription')}
+      />
 
       <div className="py-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
