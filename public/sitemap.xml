@@ -1,274 +1,297 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
+
   <!-- ============================================ -->
-  <!-- ENGLISH PAGES (Default Language)            -->
+  <!-- ENGLISH PAGES (default) -->
   <!-- ============================================ -->
-  
-  <!-- Homepage -->
+
   <url>
     <loc>https://www.pureihram.com/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-  
-  <!-- Shop / Products -->
+
   <url>
     <loc>https://www.pureihram.com/shop</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/shop"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/shop"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/shop"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/shop"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/shop"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/shop"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-  
-  <!-- Blog Index -->
+
   <url>
     <loc>https://www.pureihram.com/blog</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/blog"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/blog"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/blog"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/blog"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/blog"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/blog"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- About -->
+
   <url>
     <loc>https://www.pureihram.com/about</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/about"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/about"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/about"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/about"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/about"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/about"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  
-  <!-- Contact -->
+
   <url>
     <loc>https://www.pureihram.com/contact</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/contact"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/contact"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/contact"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/contact"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/contact"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/contact"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-  
-  <!-- Shipping -->
+
   <url>
     <loc>https://www.pureihram.com/shipping</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/shipping"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/shipping"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/shipping"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/shipping"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/shipping"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/shipping"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-  
-  <!-- Partners -->
+
+  <url>
+    <loc>https://www.pureihram.com/returns</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/returns"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/returns"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/returns"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/returns"/>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
   <url>
     <loc>https://www.pureihram.com/partners</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/partners"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/partners"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/partners"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/partners"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/partners"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/partners"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  
-  <!-- Support Our Mission (Donations) -->
+
   <url>
     <loc>https://www.pureihram.com/support-our-mission</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/support-our-mission"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/support-our-mission"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/support-our-mission"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/support-our-mission"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/support-our-mission"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/support-our-mission"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
-  <!-- Transparency -->
   <url>
     <loc>https://www.pureihram.com/transparency</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/transparency"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/transparency"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/transparency"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/transparency"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/transparency"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/transparency"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.6</priority>
   </url>
-  
-  <!-- Blog Articles -->
+
+  <url>
+    <loc>https://www.pureihram.com/mosque-support</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/mosque-support"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/mosque-support"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/mosque-support"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/mosque-support"/>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
   <url>
     <loc>https://www.pureihram.com/blog/how-to-wear-ihram</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/blog/how-to-wear-ihram"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/blog/how-to-wear-ihram"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/blog/how-to-wear-ihram"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/blog/how-to-wear-ihram"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/blog/how-to-wear-ihram"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/blog/how-to-wear-ihram"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
-  
+
   <url>
     <loc>https://www.pureihram.com/blog/sunnah-acts-before-ihram</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/blog/sunnah-acts-before-ihram"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/blog/sunnah-acts-before-ihram"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/blog/sunnah-acts-before-ihram"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/blog/sunnah-acts-before-ihram"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/blog/sunnah-acts-before-ihram"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/blog/sunnah-acts-before-ihram"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
-  
+
   <url>
     <loc>https://www.pureihram.com/blog/umrah-preparation-checklist</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/blog/umrah-preparation-checklist"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/blog/umrah-preparation-checklist"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/blog/umrah-preparation-checklist"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/blog/umrah-preparation-checklist"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/blog/umrah-preparation-checklist"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/blog/umrah-preparation-checklist"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
-  
+
   <url>
     <loc>https://www.pureihram.com/blog/common-mistakes-ihram</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/blog/common-mistakes-ihram"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/blog/common-mistakes-ihram"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/blog/common-mistakes-ihram"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/blog/common-mistakes-ihram"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/blog/common-mistakes-ihram"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/blog/common-mistakes-ihram"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
-  
+
   <url>
     <loc>https://www.pureihram.com/blog/essential-duas-umrah</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/blog/essential-duas-umrah"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/blog/essential-duas-umrah"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/blog/essential-duas-umrah"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/blog/essential-duas-umrah"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/blog/essential-duas-umrah"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/blog/essential-duas-umrah"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
-  
+
   <url>
     <loc>https://www.pureihram.com/blog/spiritual-meaning-ihram</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/blog/spiritual-meaning-ihram"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/blog/spiritual-meaning-ihram"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/blog/spiritual-meaning-ihram"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/blog/spiritual-meaning-ihram"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/blog/spiritual-meaning-ihram"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/blog/spiritual-meaning-ihram"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- ============================================ -->
+  <!-- SWEDISH PAGES (/sv) -->
+  <!-- ============================================ -->
+
+  <url>
+    <loc>https://www.pureihram.com/sv</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/"/>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://www.pureihram.com/sv/shop</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/shop"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/shop"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/shop"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/shop"/>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.pureihram.com/sv/blog</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/blog"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/blog"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/blog"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/blog"/>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.pureihram.com/sv/about</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/about"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/about"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/about"/>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
-  <!-- ============================================ -->
-  <!-- SWEDISH PAGES (/sv)                         -->
-  <!-- ============================================ -->
-  
-  <url>
-    <loc>https://www.pureihram.com/sv</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/"/>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.pureihram.com/sv/shop</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/shop"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/shop"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/shop"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/shop"/>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.pureihram.com/sv/blog</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/blog"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/blog"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/blog"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/blog"/>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.pureihram.com/sv/about</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/about"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/about"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/about"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/about"/>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
   <url>
     <loc>https://www.pureihram.com/sv/contact</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/contact"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/contact"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/contact"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/contact"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/contact"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/contact"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-  
+
   <url>
     <loc>https://www.pureihram.com/sv/shipping</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/shipping"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/shipping"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/shipping"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/shipping"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/shipping"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/shipping"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-  
+
+  <url>
+    <loc>https://www.pureihram.com/sv/returns</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/returns"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/returns"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/returns"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/returns"/>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
   <url>
     <loc>https://www.pureihram.com/sv/partners</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/partners"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/partners"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/partners"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/partners"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/partners"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/partners"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  
+
   <url>
     <loc>https://www.pureihram.com/sv/support-our-mission</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/support-our-mission"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/support-our-mission"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/support-our-mission"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/support-our-mission"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/support-our-mission"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/support-our-mission"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -276,168 +299,190 @@
   <url>
     <loc>https://www.pureihram.com/sv/transparency</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/transparency"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/transparency"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/transparency"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/transparency"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/transparency"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/transparency"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.6</priority>
   </url>
-  
+
+  <url>
+    <loc>https://www.pureihram.com/sv/mosque-support</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/mosque-support"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/mosque-support"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/mosque-support"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/mosque-support"/>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
   <url>
     <loc>https://www.pureihram.com/sv/blog/how-to-wear-ihram</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/blog/how-to-wear-ihram"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/blog/how-to-wear-ihram"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/blog/how-to-wear-ihram"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/blog/how-to-wear-ihram"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/blog/how-to-wear-ihram"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/blog/how-to-wear-ihram"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
-  
+
   <url>
     <loc>https://www.pureihram.com/sv/blog/sunnah-acts-before-ihram</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/blog/sunnah-acts-before-ihram"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/blog/sunnah-acts-before-ihram"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/blog/sunnah-acts-before-ihram"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/blog/sunnah-acts-before-ihram"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/blog/sunnah-acts-before-ihram"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/blog/sunnah-acts-before-ihram"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
-  
+
   <url>
     <loc>https://www.pureihram.com/sv/blog/umrah-preparation-checklist</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/blog/umrah-preparation-checklist"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/blog/umrah-preparation-checklist"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/blog/umrah-preparation-checklist"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/blog/umrah-preparation-checklist"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/blog/umrah-preparation-checklist"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/blog/umrah-preparation-checklist"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
-  
+
   <url>
     <loc>https://www.pureihram.com/sv/blog/common-mistakes-ihram</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/blog/common-mistakes-ihram"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/blog/common-mistakes-ihram"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/blog/common-mistakes-ihram"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/blog/common-mistakes-ihram"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/blog/common-mistakes-ihram"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/blog/common-mistakes-ihram"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
-  
+
   <url>
     <loc>https://www.pureihram.com/sv/blog/essential-duas-umrah</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/blog/essential-duas-umrah"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/blog/essential-duas-umrah"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/blog/essential-duas-umrah"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/blog/essential-duas-umrah"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/blog/essential-duas-umrah"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/blog/essential-duas-umrah"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
-  
+
   <url>
     <loc>https://www.pureihram.com/sv/blog/spiritual-meaning-ihram</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/blog/spiritual-meaning-ihram"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/blog/spiritual-meaning-ihram"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/blog/spiritual-meaning-ihram"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/blog/spiritual-meaning-ihram"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/blog/spiritual-meaning-ihram"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/blog/spiritual-meaning-ihram"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- ============================================ -->
+  <!-- NORWEGIAN PAGES (/no) -->
+  <!-- ============================================ -->
+
+  <url>
+    <loc>https://www.pureihram.com/no</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/"/>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://www.pureihram.com/no/shop</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/shop"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/shop"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/shop"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/shop"/>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.pureihram.com/no/blog</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/blog"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/blog"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/blog"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/blog"/>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.pureihram.com/no/about</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/about"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/about"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/about"/>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
-  <!-- ============================================ -->
-  <!-- NORWEGIAN PAGES (/no)                       -->
-  <!-- ============================================ -->
-  
-  <url>
-    <loc>https://www.pureihram.com/no</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/"/>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.pureihram.com/no/shop</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/shop"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/shop"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/shop"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/shop"/>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.pureihram.com/no/blog</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/blog"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/blog"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/blog"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/blog"/>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.pureihram.com/no/about</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/about"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/about"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/about"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/about"/>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
   <url>
     <loc>https://www.pureihram.com/no/contact</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/contact"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/contact"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/contact"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/contact"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/contact"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/contact"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-  
+
   <url>
     <loc>https://www.pureihram.com/no/shipping</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/shipping"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/shipping"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/shipping"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/shipping"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/shipping"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/shipping"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-  
+
+  <url>
+    <loc>https://www.pureihram.com/no/returns</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/returns"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/returns"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/returns"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/returns"/>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
   <url>
     <loc>https://www.pureihram.com/no/partners</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/partners"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/partners"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/partners"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/partners"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/partners"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/partners"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  
+
   <url>
     <loc>https://www.pureihram.com/no/support-our-mission</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/support-our-mission"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/support-our-mission"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/support-our-mission"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/support-our-mission"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/support-our-mission"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/support-our-mission"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -445,78 +490,89 @@
   <url>
     <loc>https://www.pureihram.com/no/transparency</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/transparency"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/transparency"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/transparency"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/transparency"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/transparency"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/transparency"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.6</priority>
   </url>
-  
+
+  <url>
+    <loc>https://www.pureihram.com/no/mosque-support</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/mosque-support"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/mosque-support"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/mosque-support"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/mosque-support"/>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
   <url>
     <loc>https://www.pureihram.com/no/blog/how-to-wear-ihram</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/blog/how-to-wear-ihram"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/blog/how-to-wear-ihram"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/blog/how-to-wear-ihram"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/blog/how-to-wear-ihram"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/blog/how-to-wear-ihram"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/blog/how-to-wear-ihram"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
-  
+
   <url>
     <loc>https://www.pureihram.com/no/blog/sunnah-acts-before-ihram</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/blog/sunnah-acts-before-ihram"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/blog/sunnah-acts-before-ihram"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/blog/sunnah-acts-before-ihram"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/blog/sunnah-acts-before-ihram"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/blog/sunnah-acts-before-ihram"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/blog/sunnah-acts-before-ihram"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
-  
+
   <url>
     <loc>https://www.pureihram.com/no/blog/umrah-preparation-checklist</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/blog/umrah-preparation-checklist"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/blog/umrah-preparation-checklist"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/blog/umrah-preparation-checklist"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/blog/umrah-preparation-checklist"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/blog/umrah-preparation-checklist"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/blog/umrah-preparation-checklist"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
-  
+
   <url>
     <loc>https://www.pureihram.com/no/blog/common-mistakes-ihram</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/blog/common-mistakes-ihram"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/blog/common-mistakes-ihram"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/blog/common-mistakes-ihram"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/blog/common-mistakes-ihram"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/blog/common-mistakes-ihram"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/blog/common-mistakes-ihram"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
-  
+
   <url>
     <loc>https://www.pureihram.com/no/blog/essential-duas-umrah</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/blog/essential-duas-umrah"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/blog/essential-duas-umrah"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/blog/essential-duas-umrah"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/blog/essential-duas-umrah"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/blog/essential-duas-umrah"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/blog/essential-duas-umrah"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
-  
+
   <url>
     <loc>https://www.pureihram.com/no/blog/spiritual-meaning-ihram</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/blog/spiritual-meaning-ihram"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.pureihram.com/sv/blog/spiritual-meaning-ihram"/>
-    <xhtml:link rel="alternate" hreflang="no" href="https://www.pureihram.com/no/blog/spiritual-meaning-ihram"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/blog/spiritual-meaning-ihram"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/blog/spiritual-meaning-ihram"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/blog/spiritual-meaning-ihram"/>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
 
 </urlset>
