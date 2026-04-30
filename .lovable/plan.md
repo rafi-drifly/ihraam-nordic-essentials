@@ -1,28 +1,39 @@
 ## Goal
 
-Replace the current Hajj Dua Pocket Guide PDF at `public/hajj-2026-prep-pack.pdf` with the newly uploaded v2 version, keeping the same filename so all existing delivery flows continue to work without any other changes.
+Add Klarna as a checkout payment option alongside card on the Stripe-hosted checkout, so customers can choose Klarna (Pay Later / instalments) at the payment step.
 
-## Why this is a one-step job
+## Change
 
-Both delivery paths (homepage email signup and post-purchase order confirmation) link to the same fixed URL:
+One edit in `supabase/functions/create-checkout/index.ts` - add an explicit `payment_method_types` array to the Stripe Checkout Session call:
 
+```ts
+payment_method_types: ['card', 'klarna'],
 ```
-https://www.pureihram.com/hajj-2026-prep-pack.pdf
-```
 
-By overwriting the file in place and keeping the filename identical, every link already sent and every link sent in the future automatically serves the new version. No edge function redeploys, no database changes, no env var updates.
+Inserted right after the existing `currency: "eur"` line in the `stripe.checkout.sessions.create({...})` call.
 
-## Changes
+## Why this is the only change needed
 
-1. Copy the uploaded v2 PDF over `public/hajj-2026-prep-pack.pdf` (overwrite).
-2. Verify the file is in place (size, page count) so we know the swap succeeded.
+- Klarna is natively supported by Stripe Checkout - no new SDK, no new edge function, no UI work.
+- The existing webhook (`stripe-webhook`) already creates orders on `checkout.session.completed` regardless of payment method, so Klarna orders flow through the same fulfilment path as card orders.
+- Order confirmation email, inventory deduction, shipping review - all unchanged.
+- You receive funds upfront from Stripe/Klarna; Klarna handles the customer's instalment plan and credit risk.
+
+## One-time setup on your side (outside the code)
+
+Before Klarna shows up in **live** mode, activate it in your Stripe dashboard:
+
+1. Open https://dashboard.stripe.com/settings/payment_methods
+2. Find Klarna, click **Turn on**, answer the brief business questions
+3. Save
+
+In **test mode** Klarna appears immediately with no activation needed - useful for verifying the flow right after deploy.
 
 ## Out of scope
 
-- No copy changes - the existing wording ("Hajj & Umrah Dua Pocket Guide") still accurately describes the v2 file.
-- No edge function changes - they already point at the right URL.
-- No version suffix in the filename - keeping `hajj-2026-prep-pack.pdf` preserves all previously sent download links.
+- Multi-currency Klarna (native SEK/NOK Klarna for Nordic shoppers) - your checkout is EUR-only, so all customers see the EUR Klarna flow. Switching to local-currency Klarna would be a separate, larger change.
+- No UI badge or "Pay with Klarna" marketing on the cart page yet - we can add that as a follow-up once you confirm Klarna is approved in your dashboard, to stay within the Amanah no-unverified-claims rule.
 
-## After this
+## Files touched
 
-You're done with the guide work and clear to move on to paid marketing.
+- `supabase/functions/create-checkout/index.ts` - one line added
