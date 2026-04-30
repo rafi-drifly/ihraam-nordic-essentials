@@ -92,6 +92,17 @@ const handler = async (req: Request): Promise<Response> => {
                 ${shippingAddress.country}
               </p>
             </div>
+
+            <div style="background: #f0fdfa; border: 1px solid #99f6e4; padding: 20px; border-radius: 8px; margin-bottom: 20px; text-align: center;">
+              <h3 style="color: #0f766e; margin: 0 0 8px 0;">Your free gift: Hajj &amp; Umrah Dua Pocket Guide</h3>
+              <p style="margin: 0 0 16px 0; line-height: 1.6; color: #134e4a;">
+                As our thank-you, here is the Pure Ihram Dua Pocket Guide - duas for every stage of Hajj and Umrah, in Arabic, transliteration and English, in a printable pocket format.
+              </p>
+              <a href="https://www.pureihram.com/hajj-2026-prep-pack.pdf"
+                 style="background:#0f766e; color:#ffffff; text-decoration:none; padding:12px 22px; border-radius:6px; font-weight:600; display:inline-block;">
+                Download the Pocket Guide (PDF)
+              </a>
+            </div>
             
             <div style="background: #e6fffa; border-left: 4px solid #0f766e; padding: 20px; margin-bottom: 20px;">
               <h3 style="color: #0f766e; margin: 0 0 10px 0;">Shipping Information</h3>
