@@ -56,25 +56,26 @@ Deno.serve(async (req) => {
     }
 
     // Compose email
-    const subject = "Your free Pure Ihram - Hajj 2026 Prep Pack";
+    const subject = "Your free Pure Ihram Dua Pocket Guide";
     const html = `
       <div style="font-family: -apple-system, Segoe UI, Helvetica, Arial, sans-serif; color:#1f2d2d; max-width:560px; margin:0 auto; padding:24px;">
-        <h1 style="font-size:22px; margin:0 0 16px; color:#287777;">Your Hajj 2026 Prep Pack is ready</h1>
+        <h1 style="font-size:22px; margin:0 0 16px; color:#287777;">Your Dua Pocket Guide is ready</h1>
         <p style="font-size:15px; line-height:1.55; margin:0 0 16px;">
           Assalamu alaikum,
         </p>
         <p style="font-size:15px; line-height:1.55; margin:0 0 16px;">
-          Thank you for requesting the free Pure Ihram Hajj 2026 Prep Pack. It includes a printable
-          packing checklist, a list of essential duas, and a simple day-by-day prep timeline.
+          Thank you for requesting the free Pure Ihram Hajj &amp; Umrah Dua Pocket Guide. It contains
+          the duas you need at every stage of Hajj and Umrah - in Arabic, transliteration and English -
+          in a printable pocket format.
         </p>
         <p style="margin:24px 0;">
           <a href="${PDF_URL}"
              style="background:#287777; color:#ffffff; text-decoration:none; padding:12px 20px; border-radius:8px; font-weight:600; display:inline-block;">
-            Download the Prep Pack (PDF)
+            Download the Pocket Guide (PDF)
           </a>
         </p>
         <p style="font-size:14px; line-height:1.55; color:#55676a; margin:0 0 12px;">
-          We will only email you a few helpful Hajj tips before you go - no spam.
+          One email, no spam. May Allah accept your pilgrimage.
         </p>
         <p style="font-size:13px; line-height:1.55; color:#7d8c8c; margin:24px 0 0;">
           - Pure Ihram, Sweden<br/>
@@ -84,10 +85,10 @@ Deno.serve(async (req) => {
     `;
     const text = `Assalamu alaikum,
 
-Thank you for requesting the free Pure Ihram Hajj 2026 Prep Pack.
+Thank you for requesting the free Pure Ihram Hajj & Umrah Dua Pocket Guide.
 Download it here: ${PDF_URL}
 
-We will only email you a few helpful Hajj tips before you go - no spam.
+One email, no spam. May Allah accept your pilgrimage.
 
 - Pure Ihram, Sweden
 https://www.pureihram.com`;

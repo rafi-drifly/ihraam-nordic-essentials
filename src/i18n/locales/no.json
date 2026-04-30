@@ -183,22 +183,22 @@
       }
     },
     "prepPack": {
-      "title": "Skal du til Hajj 2026? Få vår gratis Pure Ihram-forberedelsespakke.",
-      "subtitle": "En utskrivbar sjekkliste, dua-liste og pakkeguide for førstegangspilegrimer. Gratis - selv om du ikke handler hos oss.",
+      "title": "Gratis Hajj- og Umrah Dua-lommeguide",
+      "subtitle": "En utskrivbar lommeguide med duaene du trenger i hvert trinn av Hajj og Umrah - på arabisk, translitterasjon og norsk. Gratis, selv om du ikke handler hos oss.",
       "bullets": {
-        "checklist": "12-punkts pakkeliste for Hajj (det de fleste pilegrimer glemmer)",
-        "duas": "Viktige duas med translitterasjon - for ihram, tawaf, sa'i, Arafah",
-        "timeline": "Dag-for-dag forberedelsesplan for Hajj som starter 30 dager før"
+        "checklist": "Duaer for hvert trinn av Hajj og Umrah",
+        "duas": "Arabisk, translitterasjon og norsk side om side",
+        "timeline": "Utskrivbart lommeformat - én e-post og den er din"
       },
       "emailPlaceholder": "din@epost.no",
       "emailAriaLabel": "Din e-postadresse",
-      "submit": "Send pakken",
+      "submit": "Send guiden",
       "submitting": "Sender...",
-      "disclaimer": "Ingen spam. Vi sender pakken og noen nyttige Hajj-tips før du reiser.",
+      "disclaimer": "Ingen spam. Én e-post med nedlastingslenken din.",
       "successTitle": "Sjekk innboksen din",
-      "successBody": "Vi har sendt nedlastingslenken til forberedelsespakken til e-posten din.",
+      "successBody": "Vi har sendt nedlastingslenken til Dua-lommeguiden til e-posten din.",
       "errorInvalidEmail": "Vennligst oppgi en gyldig e-postadresse",
-      "errorSendTitle": "Kunne ikke sende pakken",
+      "errorSendTitle": "Kunne ikke sende guiden",
       "errorSendBody": "Prøv igjen om et øyeblikk, eller kontakt support@pureihraam.com."
     }
   },

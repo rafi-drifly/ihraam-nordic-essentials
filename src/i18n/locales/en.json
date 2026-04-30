@@ -183,22 +183,22 @@
       }
     },
     "prepPack": {
-      "title": "Going for Hajj 2026? Get our free Pure Ihram Prep Pack.",
-      "subtitle": "A printable checklist, dua list, and packing guide for first-time pilgrims. Free - even if you don't buy from us.",
+      "title": "Free Hajj & Umrah Dua Pocket Guide",
+      "subtitle": "A printable pocket guide with the duas you need at every stage of Hajj and Umrah - in Arabic, transliteration and English. Free, even if you don't buy from us.",
       "bullets": {
-        "checklist": "12-item Hajj packing checklist (the things most pilgrims forget)",
-        "duas": "Essential duas with transliteration - for ihram, tawaf, sa'i, Arafah",
-        "timeline": "Day-by-day Hajj prep timeline starting 30 days out"
+        "checklist": "Duas for every stage of Hajj and Umrah",
+        "duas": "Arabic, transliteration and English side by side",
+        "timeline": "Printable pocket format - one email and it's yours"
       },
       "emailPlaceholder": "your@email.com",
       "emailAriaLabel": "Your email address",
-      "submit": "Send the Pack",
+      "submit": "Send the Guide",
       "submitting": "Sending...",
-      "disclaimer": "No spam. We'll send the pack and a few helpful Hajj tips before you go.",
+      "disclaimer": "No spam. One email with your download link.",
       "successTitle": "Check your inbox",
-      "successBody": "We've sent the Prep Pack download link to your email.",
+      "successBody": "We've sent the Dua Pocket Guide download link to your email.",
       "errorInvalidEmail": "Please enter a valid email",
-      "errorSendTitle": "Could not send the pack",
+      "errorSendTitle": "Could not send the guide",
       "errorSendBody": "Please try again in a moment, or contact support@pureihraam.com."
     }
   },
