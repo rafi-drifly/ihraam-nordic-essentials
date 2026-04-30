@@ -1,39 +1,42 @@
-## Goal
+# Add PostHog tracking to lead magnet flow
 
-Add Klarna as a checkout payment option alongside card on the Stripe-hosted checkout, so customers can choose Klarna (Pay Later / instalments) at the payment step.
+Two small additions so we can measure lead magnet performance and tie emails to PostHog profiles.
 
-## Change
+> Note: There is no separate "Dua Pocket Guide" form on the site — the existing lead magnet is the **Hajj Prep Pack** form (`HajjPrepPackForm.tsx`). I'll wire your snippet into that form, since it's the same pattern (email → free guide). If you actually want a second, distinct Dua Guide form, say the word and I'll scaffold one separately.
 
-One edit in `supabase/functions/create-checkout/index.ts` - add an explicit `payment_method_types` array to the Stripe Checkout Session call:
+## A) HajjPrepPackForm — track submissions
 
-```ts
-payment_method_types: ['card', 'klarna'],
-```
+File: `src/components/home/HajjPrepPackForm.tsx`
 
-Inserted right after the existing `currency: "eur"` line in the `stripe.checkout.sessions.create({...})` call.
+In `handleSubmit`, after email validation passes and before invoking the `send-prep-pack` edge function:
 
-## Why this is the only change needed
+- `posthog.identify(trimmedEmail, { email, lead_magnet: 'hajj_prep_pack', first_seen_at: ISO timestamp })`
+- `posthog.capture('hajj_prep_pack_requested', { email, lead_magnet: 'hajj_prep_pack', source: 'homepage', locale })`
 
-- Klarna is natively supported by Stripe Checkout - no new SDK, no new edge function, no UI work.
-- The existing webhook (`stripe-webhook`) already creates orders on `checkout.session.completed` regardless of payment method, so Klarna orders flow through the same fulfilment path as card orders.
-- Order confirmation email, inventory deduction, shipping review - all unchanged.
-- You receive funds upfront from Stripe/Klarna; Klarna handles the customer's instalment plan and credit risk.
+In the `catch` block:
+- `posthog.capture('hajj_prep_pack_request_failed', { email, error: message })`
 
-## One-time setup on your side (outside the code)
+(Using `hajj_prep_pack` as the lead-magnet slug to match the actual product. If you'd rather keep your `dua_pocket_guide` naming, I'll use that instead — just tell me.)
 
-Before Klarna shows up in **live** mode, activate it in your Stripe dashboard:
+## B) Hero CTA — track clicks
 
-1. Open https://dashboard.stripe.com/settings/payment_methods
-2. Find Klarna, click **Turn on**, answer the brief business questions
-3. Save
+File: `src/pages/Home.tsx`
 
-In **test mode** Klarna appears immediately with no activation needed - useful for verifying the flow right after deploy.
+The hero `<a href="#hajj-prep-pack">` ("Get the Free Hajj 2026 Prep Pack") gets an `onClick` that fires:
 
-## Out of scope
+- `posthog.capture('hajj_prep_pack_cta_clicked', { location: 'hero_banner', destination: '#hajj-prep-pack' })`
 
-- Multi-currency Klarna (native SEK/NOK Klarna for Nordic shoppers) - your checkout is EUR-only, so all customers see the EUR Klarna flow. Switching to local-currency Klarna would be a separate, larger change.
-- No UI badge or "Pay with Klarna" marketing on the cart page yet - we can add that as a follow-up once you confirm Klarna is approved in your dashboard, to stay within the Amanah no-unverified-claims rule.
+## Technical notes
 
-## Files touched
+- PostHog is already initialised via `PostHogProvider` in `src/main.tsx`, so `import posthog from 'posthog-js'` works directly in any component — no extra setup.
+- Email is lower-cased + trimmed before identify, so the same person across devices/sessions merges into one PostHog profile.
+- No changes to the edge function, Supabase, or Klaviyo — purely client-side analytics.
+- Lowercasing the email is a small behavioural change for the request payload sent to `send-prep-pack`. If you'd rather keep the original casing for the email send and only lowercase for PostHog, I'll split the two.
 
-- `supabase/functions/create-checkout/index.ts` - one line added
+## Open question (optional)
+
+Confirm the lead-magnet slug you want stored in PostHog:
+1. `hajj_prep_pack` (matches the product name on the site) — recommended
+2. `dua_pocket_guide` (matches the snippet you pasted)
+
+Default if you don't reply: option 1.

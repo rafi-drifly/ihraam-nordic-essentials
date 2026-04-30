@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Check, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import posthog from "posthog-js";
 
 export const HajjPrepPackForm = () => {
   const { t, i18n } = useTranslation();
@@ -23,6 +24,7 @@ export const HajjPrepPackForm = () => {
     if (submitting) return;
 
     const trimmed = email.trim();
+    const trimmedLower = trimmed.toLowerCase();
     if (!trimmed || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
       toast({
         title: t("home.prepPack.errorInvalidEmail"),
@@ -33,6 +35,18 @@ export const HajjPrepPackForm = () => {
 
     setSubmitting(true);
     try {
+      posthog.identify(trimmedLower, {
+        email: trimmedLower,
+        lead_magnet: "hajj_prep_pack",
+        first_seen_at: new Date().toISOString(),
+      });
+      posthog.capture("hajj_prep_pack_requested", {
+        email: trimmedLower,
+        lead_magnet: "hajj_prep_pack",
+        source: "homepage",
+        locale,
+      });
+
       const { error } = await supabase.functions.invoke("send-prep-pack", {
         body: { email: trimmed, locale, source: "homepage" },
       });
@@ -41,6 +55,10 @@ export const HajjPrepPackForm = () => {
       setEmail("");
     } catch (err) {
       console.error("Prep pack signup failed:", err);
+      posthog.capture("hajj_prep_pack_request_failed", {
+        email: trimmedLower,
+        error: err instanceof Error ? err.message : String(err),
+      });
       toast({
         title: t("home.prepPack.errorSendTitle"),
         description: t("home.prepPack.errorSendBody"),
