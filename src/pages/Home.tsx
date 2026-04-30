@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ArrowRight, Wind, Truck, ShieldCheck, Heart } from "lucide-react";
+import posthog from "posthog-js";
 import ihraamProduct from "@/assets/hero-product.avif";
 import spiritualMeaning from "@/assets/blog/spiritual-meaning.png";
 import howToWear from "@/assets/blog/how-to-wear-ihram.png";
@@ -140,6 +141,12 @@ const Home = () => {
                 </Button>
                 <a
                   href="#hajj-prep-pack"
+                  onClick={() => {
+                    posthog.capture("hajj_prep_pack_cta_clicked", {
+                      location: "hero_banner",
+                      destination: "#hajj-prep-pack",
+                    });
+                  }}
                   className="text-sm font-medium text-primary hover:text-primary/80 inline-flex items-center gap-1"
                 >
                   {t("home.hero.ctaPrepPack")} <ArrowRight className="h-4 w-4" />
