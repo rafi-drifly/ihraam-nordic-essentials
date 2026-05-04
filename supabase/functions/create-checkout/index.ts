@@ -51,8 +51,47 @@ serve(async (req) => {
       apiVersion: "2025-08-27.basil",
     });
 
-    const { items, donation, bundlePrice, locale, promoCode, shippingCity, shippingCountry }: CheckoutRequest = await req.json();
-    console.log("Checkout request:", { items, donation, bundlePrice, locale, promoCode, shippingCity, shippingCountry });
+    const body = await req.json();
+    const { items, donation, bundlePrice, locale, promoCode, shippingCity, shippingCountry }: CheckoutRequest = body;
+
+    // ---- Input validation (server-side; do not trust client) ----
+    if (!Array.isArray(items) || items.length === 0 || items.length > 20) {
+      return new Response(JSON.stringify({ error: "Invalid items" }), { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 400 });
+    }
+    const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    for (const it of items) {
+      if (!it || typeof it.id !== "string" || !UUID_RE.test(it.id)) {
+        return new Response(JSON.stringify({ error: "Invalid item id" }), { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 400 });
+      }
+      if (!Number.isInteger(it.quantity) || it.quantity < 1 || it.quantity > 50) {
+        return new Response(JSON.stringify({ error: "Invalid item quantity" }), { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 400 });
+      }
+    }
+    if (donation !== undefined && donation !== null) {
+      if (typeof donation !== "number" || !Number.isFinite(donation) || donation < 0 || donation > 10000) {
+        return new Response(JSON.stringify({ error: "Invalid donation amount" }), { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 400 });
+      }
+    }
+    if (bundlePrice !== undefined && bundlePrice !== null) {
+      if (typeof bundlePrice !== "number" || !Number.isFinite(bundlePrice) || bundlePrice < 0 || bundlePrice > 100000) {
+        return new Response(JSON.stringify({ error: "Invalid bundle price" }), { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 400 });
+      }
+    }
+    if (locale !== undefined && (typeof locale !== "string" || !["en", "sv", "no"].includes(locale))) {
+      return new Response(JSON.stringify({ error: "Invalid locale" }), { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 400 });
+    }
+    if (promoCode !== undefined && promoCode !== null && (typeof promoCode !== "string" || promoCode.length > 64 || !/^[A-Za-z0-9_-]+$/.test(promoCode))) {
+      return new Response(JSON.stringify({ error: "Invalid promo code format" }), { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 400 });
+    }
+    if (shippingCity !== undefined && shippingCity !== null && (typeof shippingCity !== "string" || shippingCity.length > 100)) {
+      return new Response(JSON.stringify({ error: "Invalid shipping city" }), { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 400 });
+    }
+    if (shippingCountry !== undefined && shippingCountry !== null && (typeof shippingCountry !== "string" || !/^[A-Z]{2}$/.test(shippingCountry))) {
+      return new Response(JSON.stringify({ error: "Invalid shipping country" }), { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 400 });
+    }
+    // ---- end validation ----
+
+    console.log("Checkout request:", { itemCount: items.length, hasDonation: !!donation, hasBundlePrice: !!bundlePrice, locale, hasPromo: !!promoCode, shippingCountry });
 
     // Validate FREEDELIVERY-UPPSALA promo code (Sweden only)
     let promoFreeShipping = false;

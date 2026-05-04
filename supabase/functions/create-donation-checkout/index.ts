@@ -38,8 +38,22 @@ serve(async (req) => {
     
     console.log("Donation request:", { amount, frequency, direction, anonymous, coverFees });
 
-    if (!amount || amount < 1) {
-      throw new Error("Invalid donation amount. Minimum is €1.");
+    if (typeof amount !== "number" || !Number.isFinite(amount) || amount < 1 || amount > 100000) {
+      return new Response(JSON.stringify({ error: "Invalid donation amount. Must be between €1 and €100,000." }), { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 400 });
+    }
+    if (frequency !== undefined && !["one-time", "monthly"].includes(frequency)) {
+      return new Response(JSON.stringify({ error: "Invalid frequency" }), { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 400 });
+    }
+    if (direction !== undefined && !["mosque", "needy", "where-needed"].includes(direction)) {
+      return new Response(JSON.stringify({ error: "Invalid direction" }), { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 400 });
+    }
+    if (typeof anonymous !== "boolean" || typeof wantsReceipt !== "boolean" || typeof coverFees !== "boolean") {
+      return new Response(JSON.stringify({ error: "Invalid boolean flag" }), { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 400 });
+    }
+    if (receiptEmail !== undefined && receiptEmail !== null) {
+      if (typeof receiptEmail !== "string" || receiptEmail.length > 255 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(receiptEmail)) {
+        return new Response(JSON.stringify({ error: "Invalid receipt email" }), { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 400 });
+      }
     }
 
     const amountInCents = Math.round(amount * 100);
