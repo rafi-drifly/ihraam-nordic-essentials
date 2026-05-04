@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { CheckCircle, Package, ArrowRight, Key } from "lucide-react";
+import { CheckCircle, Package, ArrowRight, Mail } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { trackPurchase } from "@/lib/analytics";
 
@@ -10,20 +10,13 @@ const PaymentSuccess = () => {
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get('session_id');
   const { clearCart } = useCart();
-  const [orderNumber] = useState(() => 
-    `ORD-${new Date().toISOString().slice(0, 10).replace(/-/g, '')}-${Math.random().toString(36).substr(2, 5).toUpperCase()}`
-  );
-  const [lookupToken] = useState(() => crypto.randomUUID());
-  
-  // All orders are guest orders now
-  const isGuestOrder = true;
 
   useEffect(() => {
     if (sessionId) {
       clearCart();
       trackPurchase({
-        order_id: orderNumber,
-        total: 0, // actual total not available client-side
+        order_id: sessionId,
+        total: 0,
         item_count: 1,
         payment_method: 'stripe',
       });
@@ -51,47 +44,30 @@ const PaymentSuccess = () => {
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="bg-muted p-4 rounded-lg">
-              <div className="flex justify-between items-center">
-                <span className="font-medium">Order Number:</span>
-                <span className="font-mono text-sm bg-background px-2 py-1 rounded border">
-                  {orderNumber}
-                </span>
-              </div>
-            </div>
-            
-            {isGuestOrder && (
-              <div className="bg-accent/10 border border-accent/20 rounded-lg p-4">
-                <div className="flex items-start gap-3">
-                  <Key className="h-5 w-5 text-accent-foreground mt-0.5" />
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-accent-foreground mb-2">Save Your Lookup Token</h3>
-                    <p className="text-sm text-muted-foreground mb-3">
-                      Since you checked out as a guest, use this token to lookup your order later:
-                    </p>
-                    <div className="bg-background p-3 rounded border">
-                      <code className="text-sm font-mono break-all">{lookupToken}</code>
-                    </div>
-                    <p className="text-xs text-muted-foreground mt-2">
-                      💡 Bookmark this page or save this token to track your order at{" "}
-                      <Link to="/guest-order-lookup" className="text-primary hover:underline">
-                        /guest-order-lookup
-                      </Link>
-                    </p>
-                  </div>
+            <div className="bg-accent/10 border border-accent/20 rounded-lg p-4">
+              <div className="flex items-start gap-3">
+                <Mail className="h-5 w-5 text-accent-foreground mt-0.5" />
+                <div className="flex-1">
+                  <h3 className="font-semibold text-accent-foreground mb-2">Check your email</h3>
+                  <p className="text-sm text-muted-foreground">
+                    We're sending your real order number and a secure lookup link to the email address you used at checkout. Use it to track your order anytime at{" "}
+                    <Link to="/guest-order-lookup" className="text-primary hover:underline">
+                      /guest-order-lookup
+                    </Link>.
+                  </p>
                 </div>
               </div>
-            )}
-            
+            </div>
+
             <div className="space-y-2">
               <p className="text-sm text-muted-foreground">
                 <strong>What happens next:</strong>
               </p>
               <ul className="text-sm text-muted-foreground space-y-1 ml-4">
-                <li>• You'll receive an order confirmation email shortly</li>
-                <li>• We'll prepare and package your Ihraam with care</li>
-                <li>• You'll get tracking information once shipped</li>
-                <li>• Delivery typically takes 3-14 business days</li>
+                <li>- You'll receive an order confirmation email shortly</li>
+                <li>- We'll prepare and package your Ihraam with care</li>
+                <li>- You'll get tracking information once shipped</li>
+                <li>- Delivery typically takes 3-14 business days</li>
               </ul>
             </div>
 
@@ -99,11 +75,11 @@ const PaymentSuccess = () => {
               <h3 className="font-semibold text-accent-foreground mb-2">Shipping Timeline</h3>
               <div className="text-sm space-y-1">
                 <div className="flex justify-between">
-                  <span>🇸🇪 Sweden:</span>
+                  <span>Sweden:</span>
                   <span>3-7 business days</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>🇪🇺 Nordic & EU:</span>
+                  <span>Nordic & EU:</span>
                   <span>7-14 business days</span>
                 </div>
               </div>
@@ -115,12 +91,10 @@ const PaymentSuccess = () => {
           <p className="text-muted-foreground">
             May this sacred garment serve you well on your pilgrimage to the Holy Land.
           </p>
-          
+
           <div className="flex gap-4 justify-center">
             <Button asChild variant="outline">
-              <Link to="/shop">
-                Continue Shopping
-              </Link>
+              <Link to="/shop">Continue Shopping</Link>
             </Button>
             <Button asChild className="bg-gradient-primary hover:opacity-90">
               <Link to="/">
