@@ -149,7 +149,7 @@ serve(async (req) => {
           currency: 'EUR',
           status: orderStatus,
           shipping_address: shippingAddress,
-          order_number: `ORD-${Date.now()}`,
+          order_number: `ORD-${Date.now()}-${crypto.randomUUID().slice(0, 8).toUpperCase()}`,
           lookup_token: crypto.randomUUID(),
           donation_amount: donationAmount,
           stripe_session_id: session.id,
