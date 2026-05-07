@@ -7,6 +7,12 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import posthog from "posthog-js";
 
+declare global {
+  interface Window {
+    klaviyo?: { push: (args: unknown[]) => void };
+  }
+}
+
 export const HajjPrepPackForm = () => {
   const { t, i18n } = useTranslation();
   const { toast } = useToast();
@@ -46,6 +52,13 @@ export const HajjPrepPackForm = () => {
         source: "homepage",
         locale,
       });
+
+      window.klaviyo?.push(["identify", { email: trimmedLower }]);
+      window.klaviyo?.push([
+        "track",
+        "Requested Hajj Prep Pack",
+        { lead_magnet: "hajj_prep_pack", source: "homepage", locale },
+      ]);
 
       const { error } = await supabase.functions.invoke("send-prep-pack", {
         body: { email: trimmed, locale, source: "homepage" },
