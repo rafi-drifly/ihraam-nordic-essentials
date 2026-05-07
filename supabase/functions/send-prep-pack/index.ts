@@ -1,4 +1,7 @@
-// Send the free Hajj 2026 Prep Pack via email and store the subscriber.
+// Triggers a Klaviyo event for the free Hajj 2026 Prep Pack lead magnet.
+// The Klaviyo flow (configured in the dashboard, triggered by the
+// "Hajj Prep Pack Requested" metric) is responsible for sending the email
+// with the PDF download link.
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
 import { z } from "https://esm.sh/zod@3.23.8";
 
@@ -14,8 +17,8 @@ const BodySchema = z.object({
   source: z.string().max(120).optional(),
 });
 
-const PDF_URL = "https://www.pureihram.com/hajj-2026-prep-pack.pdf";
-const FROM_ADDRESS = "Pure Ihram <support@pureihraam.com>";
+const KLAVIYO_API_REVISION = "2024-10-15";
+const KLAVIYO_METRIC_NAME = "Hajj Prep Pack Requested";
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -23,11 +26,12 @@ Deno.serve(async (req) => {
   }
 
   try {
-    const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
+    const KLAVIYO_PRIVATE_API_KEY = Deno.env.get("KLAVIYO_PRIVATE_API_KEY");
+    const KLAVIYO_HAJJ_PREP_LIST_ID = Deno.env.get("KLAVIYO_HAJJ_PREP_LIST_ID");
     const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
     const SERVICE_ROLE = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
 
-    if (!RESEND_API_KEY || !SUPABASE_URL || !SERVICE_ROLE) {
+    if (!KLAVIYO_PRIVATE_API_KEY || !SUPABASE_URL || !SERVICE_ROLE) {
       return new Response(
         JSON.stringify({ error: "Server not configured" }),
         { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } },
@@ -46,7 +50,7 @@ Deno.serve(async (req) => {
     const { email, locale, source } = parsed.data;
     const supabase = createClient(SUPABASE_URL, SERVICE_ROLE);
 
-    // Idempotent insert — ignore conflict on email.
+    // Idempotent backup record in our own DB.
     const { error: insertError } = await supabase
       .from("hajj_prep_subscribers")
       .insert({ email, locale, source: source ?? "homepage" });
@@ -55,66 +59,98 @@ Deno.serve(async (req) => {
       console.error("Subscriber insert error:", insertError);
     }
 
-    // Compose email
-    const subject = "Your free Pure Ihram Dua Pocket Guide";
-    const html = `
-      <div style="font-family: -apple-system, Segoe UI, Helvetica, Arial, sans-serif; color:#1f2d2d; max-width:560px; margin:0 auto; padding:24px;">
-        <h1 style="font-size:22px; margin:0 0 16px; color:#287777;">Your Dua Pocket Guide is ready</h1>
-        <p style="font-size:15px; line-height:1.55; margin:0 0 16px;">
-          Assalamu alaikum,
-        </p>
-        <p style="font-size:15px; line-height:1.55; margin:0 0 16px;">
-          Thank you for requesting the free Pure Ihram Hajj &amp; Umrah Dua Pocket Guide. It contains
-          the duas you need at every stage of Hajj and Umrah - in Arabic, transliteration and English -
-          in a printable pocket format.
-        </p>
-        <p style="margin:24px 0;">
-          <a href="${PDF_URL}"
-             style="background:#287777; color:#ffffff; text-decoration:none; padding:12px 20px; border-radius:8px; font-weight:600; display:inline-block;">
-            Download the Pocket Guide (PDF)
-          </a>
-        </p>
-        <p style="font-size:14px; line-height:1.55; color:#55676a; margin:0 0 12px;">
-          One email, no spam. May Allah accept your pilgrimage.
-        </p>
-        <p style="font-size:13px; line-height:1.55; color:#7d8c8c; margin:24px 0 0;">
-          - Pure Ihram, Sweden<br/>
-          <a href="https://www.pureihram.com" style="color:#287777;">pureihram.com</a>
-        </p>
-      </div>
-    `;
-    const text = `Assalamu alaikum,
+    const klaviyoHeaders = {
+      "accept": "application/vnd.api+json",
+      "content-type": "application/vnd.api+json",
+      "revision": KLAVIYO_API_REVISION,
+      "Authorization": `Klaviyo-API-Key ${KLAVIYO_PRIVATE_API_KEY}`,
+    } as const;
 
-Thank you for requesting the free Pure Ihram Hajj & Umrah Dua Pocket Guide.
-Download it here: ${PDF_URL}
-
-One email, no spam. May Allah accept your pilgrimage.
-
-- Pure Ihram, Sweden
-https://www.pureihram.com`;
-
-    const resendRes = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${RESEND_API_KEY}`,
-        "Content-Type": "application/json",
+    // 1) Fire the event. Klaviyo creates the profile if it doesn't exist
+    //    and triggers the "Hajj Prep Pack Requested" flow that sends the email.
+    const eventPayload = {
+      data: {
+        type: "event",
+        attributes: {
+          properties: {
+            lead_magnet: "hajj_prep_pack",
+            source: source ?? "homepage",
+            locale,
+          },
+          metric: {
+            data: {
+              type: "metric",
+              attributes: { name: KLAVIYO_METRIC_NAME },
+            },
+          },
+          profile: {
+            data: {
+              type: "profile",
+              attributes: {
+                email,
+                properties: { Locale: locale, LeadMagnet: "hajj_prep_pack" },
+              },
+            },
+          },
+        },
       },
-      body: JSON.stringify({
-        from: FROM_ADDRESS,
-        to: [email],
-        subject,
-        html,
-        text,
-      }),
+    };
+
+    const eventRes = await fetch("https://a.klaviyo.com/api/events", {
+      method: "POST",
+      headers: klaviyoHeaders,
+      body: JSON.stringify(eventPayload),
     });
 
-    if (!resendRes.ok) {
-      const errBody = await resendRes.text();
-      console.error("Resend error:", resendRes.status, errBody);
+    if (!eventRes.ok) {
+      const errBody = await eventRes.text();
+      console.error("Klaviyo event error:", eventRes.status, errBody);
       return new Response(
         JSON.stringify({ error: "Email could not be sent. Please try again." }),
         { status: 502, headers: { ...corsHeaders, "Content-Type": "application/json" } },
       );
+    }
+
+    // 2) Optional: subscribe the profile to the lead-magnet list with
+    //    marketing consent. Non-fatal if it fails; the flow above already fired.
+    if (KLAVIYO_HAJJ_PREP_LIST_ID) {
+      const subscribePayload = {
+        data: {
+          type: "profile-subscription-bulk-create-job",
+          attributes: {
+            profiles: {
+              data: [
+                {
+                  type: "profile",
+                  attributes: {
+                    email,
+                    subscriptions: {
+                      email: { marketing: { consent: "SUBSCRIBED" } },
+                    },
+                  },
+                },
+              ],
+            },
+          },
+          relationships: {
+            list: { data: { type: "list", id: KLAVIYO_HAJJ_PREP_LIST_ID } },
+          },
+        },
+      };
+
+      const subRes = await fetch(
+        "https://a.klaviyo.com/api/profile-subscription-bulk-create-jobs",
+        {
+          method: "POST",
+          headers: klaviyoHeaders,
+          body: JSON.stringify(subscribePayload),
+        },
+      );
+
+      if (!subRes.ok) {
+        const errBody = await subRes.text();
+        console.error("Klaviyo subscribe warning:", subRes.status, errBody);
+      }
     }
 
     return new Response(
