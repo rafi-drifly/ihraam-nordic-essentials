@@ -13,6 +13,7 @@ import { useToast } from "@/hooks/use-toast";
 import DonationSection from "@/components/shop/DonationSection";
 import { trackEvent, trackBeginCheckout } from "@/lib/analytics";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import SEOHead from "@/components/SEOHead";
 
 
 const Cart = () => {

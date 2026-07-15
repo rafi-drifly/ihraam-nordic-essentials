@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Search, Package, CreditCard, CheckCircle, Clock, XCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import SEOHead from "@/components/SEOHead";
 
 interface OrderData {
   id: string;
