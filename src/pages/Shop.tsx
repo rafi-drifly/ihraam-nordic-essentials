@@ -167,6 +167,47 @@ const Shop = () => {
         ? "Pure Ihram-settet består av to lette hvite mikrofiberhåndklær (Izaar og Ridaa) sydd spesielt for Hajj og Umrah. Stoffet tørker raskt, puster godt og holder seg mykt mot huden, selv i Mekkas varme. Hvert sett er lett å pakke i en håndbagasje, men robust nok til daglig tawaf, sa'i og bønn. Én størrelse passer de fleste voksne menn - knytt Izaar rundt livet og drap Ridaa over skulderen. Vaskes på 30 °C, henges til tørk. Sendes fra vårt lager i Sverige med sporing til hele EU. Inkluderer: to håndklær per sett. Tilgjengelig som single, 2-pack og 3-pack for familier eller grupper. Designet og kvalitetssikret i Norden for pilegrimer som vil ha trygghet, verdighet og enkelhet på reisen."
         : "The Pure Ihram set consists of two lightweight white microfiber towels (Izaar and Ridaa) tailored specifically for Hajj and Umrah. The fabric is quick-drying, breathable, and stays soft against the skin even in Makkah's heat. Each set packs small enough for a carry-on yet holds up to daily tawaf, sa'i, and prayers. One size fits most adult men - tie the Izaar around the waist and drape the Ridaa over the shoulder. Machine wash at 30 °C, line dry. Ships from our warehouse in Sweden with tracked delivery across the entire EU. Includes: two towels per set. Available as a single, 2-pack, or 3-pack for families and groups. Designed and quality-checked in the Nordics for pilgrims who want peace of mind, dignity, and simplicity on their journey.";
 
+  const availability = product.stock_quantity > 0
+    ? "https://schema.org/InStock"
+    : "https://schema.org/OutOfStock";
+  // Rich-result price validity window: rolls forward ~1 year from render.
+  const priceValidUntil = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000)
+    .toISOString()
+    .slice(0, 10);
+  const shippingDetails = {
+    "@type": "OfferShippingDetails",
+    "shippingDestination": { "@type": "DefinedRegion", "addressCountry": ["SE", "NO", "DK", "FI", "DE", "FR", "NL", "BE", "AT", "IT", "ES", "IE", "PT", "PL"] },
+    "shippingRate": { "@type": "MonetaryAmount", "value": "9", "currency": "EUR" },
+    "deliveryTime": {
+      "@type": "ShippingDeliveryTime",
+      "handlingTime": { "@type": "QuantitativeValue", "minValue": 1, "maxValue": 3, "unitCode": "d" },
+      "transitTime": { "@type": "QuantitativeValue", "minValue": 2, "maxValue": 7, "unitCode": "d" },
+    },
+  };
+  const merchantReturnPolicy = {
+    "@type": "MerchantReturnPolicy",
+    "applicableCountry": ["SE", "NO", "DK", "FI", "DE", "FR", "NL", "BE", "AT", "IT", "ES", "IE", "PT", "PL"],
+    "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+    "merchantReturnDays": 14,
+    "returnMethod": "https://schema.org/ReturnByMail",
+    "returnFees": "https://schema.org/ReturnFeesCustomerResponsibility",
+  };
+
+  const buildOffer = (bundle: typeof BUNDLES[number]) => ({
+    "@type": "Offer",
+    "name": bundle.label,
+    "sku": `PI-IHRAM-SET-WHITE-${bundle.qty}PK`,
+    "url": `${SITE_URL}/shop`,
+    "priceCurrency": "EUR",
+    "price": String(bundle.totalPrice),
+    "priceValidUntil": priceValidUntil,
+    "availability": availability,
+    "itemCondition": "https://schema.org/NewCondition",
+    "eligibleQuantity": { "@type": "QuantitativeValue", "value": bundle.qty, "unitCode": "C62" },
+    "shippingDetails": shippingDetails,
+    "hasMerchantReturnPolicy": merchantReturnPolicy,
+  });
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -178,30 +219,14 @@ const Shop = () => {
     "mpn": "PI-IHRAM-SET-WHITE",
     "category": "Religious Apparel > Hajj & Umrah > Ihram",
     "offers": {
-      "@type": "Offer",
-      "url": `${SITE_URL}/shop`,
+      "@type": "AggregateOffer",
       "priceCurrency": "EUR",
-      "price": "19",
-      "availability": product.stock_quantity > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
-      "itemCondition": "https://schema.org/NewCondition",
-      "shippingDetails": {
-        "@type": "OfferShippingDetails",
-        "shippingDestination": { "@type": "DefinedRegion", "addressCountry": ["SE"] },
-        "deliveryTime": {
-          "@type": "ShippingDeliveryTime",
-          "handlingTime": { "@type": "QuantitativeValue", "minValue": 1, "maxValue": 3, "unitCode": "d" },
-          "transitTime": { "@type": "QuantitativeValue", "minValue": 2, "maxValue": 7, "unitCode": "d" }
-        }
-      },
-      "hasMerchantReturnPolicy": {
-        "@type": "MerchantReturnPolicy",
-        "applicableCountry": ["SE"],
-        "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
-        "merchantReturnDays": 14,
-        "returnMethod": "https://schema.org/ReturnByMail",
-        "returnFees": "https://schema.org/ReturnFeesCustomerResponsibility"
-      }
-    }
+      "lowPrice": String(Math.min(...BUNDLES.map((b) => b.totalPrice))),
+      "highPrice": String(Math.max(...BUNDLES.map((b) => b.totalPrice))),
+      "offerCount": BUNDLES.length,
+      "availability": availability,
+      "offers": BUNDLES.map(buildOffer),
+    },
   };
 
   const navigateNext = () => {
