@@ -38,9 +38,24 @@ const About = () => {
     }
   ];
 
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Pure Ihram",
+    url: "https://www.pureihram.com",
+    logo: "https://www.pureihram.com/og-image.jpg",
+    description: seoDescription,
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "SE",
+      addressLocality: "Stockholm",
+    },
+    sameAs: ["https://www.pureihram.com"],
+  };
+
   return (
     <div className="py-8">
-      <SEOHead title={seoTitle} description={seoDescription} />
+      <SEOHead title={seoTitle} description={seoDescription} jsonLd={[organizationSchema]} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">

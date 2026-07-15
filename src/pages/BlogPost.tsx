@@ -21,11 +21,40 @@ const BlogPost = () => {
     category: t('blog.categories.guide'),
   };
 
+  const seoTitle =
+    i18n.language === 'sv'
+      ? `${post.title} | Pure Ihram Guide`
+      : i18n.language === 'no'
+        ? `${post.title} | Pure Ihram Guide`
+        : `${post.title} | Pure Ihram Guide`;
+
+  const canonicalSlug = slug || 'how-to-wear-ihram';
+  const articleUrl = `https://www.pureihram.com${localePrefix}/blog/${canonicalSlug}`;
+
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.excerpt,
+    author: { "@type": "Person", name: post.author },
+    datePublished: "2026-02-01",
+    dateModified: "2026-03-01",
+    image: "https://www.pureihram.com/og-image.jpg",
+    publisher: {
+      "@type": "Organization",
+      name: "Pure Ihram",
+      logo: { "@type": "ImageObject", url: "https://www.pureihram.com/og-image.jpg" },
+    },
+    mainEntityOfPage: articleUrl,
+  };
+
   return (
     <div className="py-12">
-      <SEOHead 
-        title="How to Wear Ihram - Step-by-Step Guide | Pure Ihram"
-        description="Learn how to wear Ihram correctly for Hajj and Umrah. Step-by-step guide covering preparation, wrapping techniques, and practical tips for pilgrims."
+      <SEOHead
+        title={seoTitle}
+        description={post.excerpt}
+        ogType="article"
+        jsonLd={[articleSchema]}
       />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back Button */}
