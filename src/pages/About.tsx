@@ -8,10 +8,10 @@ const About = () => {
 
   const seoTitle =
     i18n.language === 'sv'
-      ? 'Om Pure Ihram - Vårt Uppdrag & Värderingar | Svensk Ihram-butik'
+      ? 'Om Pure Ihram - Uppdrag & Värderingar'
       : i18n.language === 'no'
-        ? 'Om Pure Ihram - Vårt Oppdrag & Verdier | Svensk Ihram-butikk'
-        : 'About Pure Ihram - Our Mission & Values | Sweden-Based Ihram Store';
+        ? 'Om Pure Ihram - Oppdrag & Verdier'
+        : 'About Pure Ihram - Mission & Values';
 
   const seoDescription =
     i18n.language === 'sv'
@@ -38,9 +38,24 @@ const About = () => {
     }
   ];
 
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Pure Ihram",
+    url: "https://www.pureihram.com",
+    logo: "https://www.pureihram.com/og-image.jpg",
+    description: seoDescription,
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "SE",
+      addressLocality: "Stockholm",
+    },
+    sameAs: ["https://www.pureihram.com"],
+  };
+
   return (
     <div className="py-8">
-      <SEOHead title={seoTitle} description={seoDescription} />
+      <SEOHead title={seoTitle} description={seoDescription} jsonLd={[organizationSchema]} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">

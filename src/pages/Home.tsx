@@ -243,9 +243,11 @@ const Home = () => {
                   </p>
                   <Link
                     to={article.link}
+                    aria-label={`${t("home.guides.readMore")}: ${article.title}`}
                     className="inline-flex items-center gap-2 text-primary font-semibold text-sm hover:gap-3 transition-all"
                   >
-                    {t("home.guides.readMore")} <ArrowRight className="h-4 w-4" />
+                    <span>{t("home.guides.readMore")}: {article.title}</span>
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </Link>
                 </CardContent>
               </Card>

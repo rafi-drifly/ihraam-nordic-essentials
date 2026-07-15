@@ -52,9 +52,9 @@ const SEOHead = ({ title, description, path, jsonLd, noindex, ogType, image }: S
   const currentUrl = langKey === 'sv' ? swedishUrl : langKey === 'no' ? norwegianUrl : englishUrl;
 
   const getDefaultTitle = () => {
-    if (langKey === 'sv') return 'Köpa Ihram Online - Premium Pilgrimsklädnad från €19 | Pure Ihram';
-    if (langKey === 'no') return 'Kjøpe Ihram Online - Premium Pilegrimsklær fra €19 | Pure Ihram';
-    return 'Buy Ihram Online - Premium Pilgrimage Cloth from €19 | Pure Ihram';
+    if (langKey === 'sv') return 'Köp Ihram Online från €19 | Pure Ihram';
+    if (langKey === 'no') return 'Kjøp Ihram Online fra €19 | Pure Ihram';
+    return 'Buy Ihram Online from €19 | Pure Ihram';
   };
 
   const getDefaultDescription = () => {

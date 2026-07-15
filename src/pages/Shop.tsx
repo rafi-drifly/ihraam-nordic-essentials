@@ -238,14 +238,14 @@ const Shop = () => {
       {/* Image Lightbox */}
       <Dialog open={selectedImageIndex !== null} onOpenChange={() => setSelectedImageIndex(null)}>
         <DialogContent className="max-w-5xl p-0 bg-background/95 backdrop-blur">
-          <Button variant="ghost" size="icon" className="absolute right-4 top-4 z-50 bg-background/80 hover:bg-background rounded-full" onClick={() => setSelectedImageIndex(null)}>
-            <X className="h-4 w-4" />
+          <Button variant="ghost" size="icon" aria-label="Close image viewer" className="absolute right-4 top-4 z-50 bg-background/80 hover:bg-background rounded-full" onClick={() => setSelectedImageIndex(null)}>
+            <X className="h-4 w-4" aria-hidden="true" />
           </Button>
-          <Button variant="ghost" size="icon" className="absolute left-4 top-1/2 -translate-y-1/2 z-50 bg-background/80 hover:bg-background rounded-full" onClick={navigatePrevious}>
-            <ChevronLeft className="h-6 w-6" />
+          <Button variant="ghost" size="icon" aria-label="Previous image" className="absolute left-4 top-1/2 -translate-y-1/2 z-50 bg-background/80 hover:bg-background rounded-full" onClick={navigatePrevious}>
+            <ChevronLeft className="h-6 w-6" aria-hidden="true" />
           </Button>
-          <Button variant="ghost" size="icon" className="absolute right-4 top-1/2 -translate-y-1/2 z-50 bg-background/80 hover:bg-background rounded-full" onClick={navigateNext}>
-            <ChevronRight className="h-6 w-6" />
+          <Button variant="ghost" size="icon" aria-label="Next image" className="absolute right-4 top-1/2 -translate-y-1/2 z-50 bg-background/80 hover:bg-background rounded-full" onClick={navigateNext}>
+            <ChevronRight className="h-6 w-6" aria-hidden="true" />
           </Button>
           {selectedImageIndex !== null && (
             <div className="p-4">
