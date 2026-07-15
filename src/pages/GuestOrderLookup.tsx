@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Search, Package, CreditCard, CheckCircle, Clock, XCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import SEOHead from "@/components/SEOHead";
 
 interface OrderData {
   id: string;
@@ -124,6 +125,7 @@ const GuestOrderLookup = () => {
 
   return (
     <div className="min-h-screen py-8">
+      <SEOHead title="Order Lookup | Pure Ihram" description="Look up your guest order status." noindex />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-foreground mb-2">Guest Order Lookup</h1>

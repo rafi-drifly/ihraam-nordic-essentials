@@ -5,6 +5,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle, Package, ArrowRight, Mail } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { trackPurchase } from "@/lib/analytics";
+import SEOHead from "@/components/SEOHead";
+
+
 
 const PaymentSuccess = () => {
   const [searchParams] = useSearchParams();
@@ -25,6 +28,7 @@ const PaymentSuccess = () => {
 
   return (
     <div className="py-8">
+      <SEOHead title="Order Confirmation | Pure Ihram" description="Your order confirmation." noindex />
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
           <div className="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-green-100 mb-6">
