@@ -1,0 +1,33 @@
+# Pure Ihram
+
+> Premium Ihram cloth for Hajj and Umrah, shipped from Sweden across Europe. Honest pricing from €19, guest checkout, transparent supply chain.
+
+Pure Ihram is a Sweden-based store selling pre-washed cotton Ihram sets and bundles for pilgrims. The site offers English, Swedish, and Norwegian localizations, guest-only checkout via Stripe (cards and Klarna), and a free Hajj 2026 Dua Pocket Guide.
+
+## Pages
+
+- [Home](/): Overview, pricing tiers, benefits, and free Dua Guide signup.
+- [Shop](/shop): Ihram single, duo, and family bundles from €19.
+- [About](/about): Story, mission, and values.
+- [Shipping](/shipping): Delivery timelines and costs across Europe.
+- [Returns](/returns): 14-day Nordic returns policy.
+- [Contact](/contact): Support and inquiries.
+- [Partners](/partners): B2B wholesale program for mosques and travel agencies.
+- [Transparency](/transparency): Amanah framework and impact reporting.
+- [Mosque Support](/mosque-support): Support-a-mosque initiative.
+- [Support Our Mission](/support-our-mission): Voluntary Sadaqah donations.
+
+## Blog
+
+- [How to Wear Ihram](/blog/how-to-wear-ihram): Step-by-step guide for men and women.
+- [Spiritual Meaning of Ihram](/blog/spiritual-meaning-ihram): Why the two white cloths matter.
+- [Sunnah Acts Before Ihram](/blog/sunnah-acts-before-ihram): Preparation from the Sunnah.
+- [Umrah Preparation Checklist](/blog/umrah-preparation-checklist): What to pack and plan.
+- [Common Mistakes in Ihram](/blog/common-mistakes-ihram): Errors to avoid.
+- [Essential Duas for Umrah](/blog/essential-duas-umrah): Talbiyah and key supplications.
+
+## Optional
+
+- [Blog index](/blog): All guides and articles.
+- [Swedish](/sv/): Svenska.
+- [Norwegian](/no/): Norsk.

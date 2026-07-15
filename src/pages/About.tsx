@@ -8,10 +8,10 @@ const About = () => {
 
   const seoTitle =
     i18n.language === 'sv'
-      ? 'Om Pure Ihram - Vårt Uppdrag & Värderingar | Svensk Ihram-butik'
+      ? 'Om Pure Ihram - Uppdrag & Värderingar'
       : i18n.language === 'no'
-        ? 'Om Pure Ihram - Vårt Oppdrag & Verdier | Svensk Ihram-butikk'
-        : 'About Pure Ihram - Our Mission & Values | Sweden-Based Ihram Store';
+        ? 'Om Pure Ihram - Oppdrag & Verdier'
+        : 'About Pure Ihram - Mission & Values';
 
   const seoDescription =
     i18n.language === 'sv'
