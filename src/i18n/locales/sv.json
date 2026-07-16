@@ -43,7 +43,7 @@
   },
   "home": {
     "hero": {
-      "title": "Premium Ihram för Hajj 2026",
+      "title": "Premium Ihram för Hajj & Umrah",
       "highlight": "Från €19, skickas från Sverige",
       "description": "Lätt mikrofiber-Ihram för pilgrimer i Sverige, Norden och hela EU. Gratis Hajj-förberedelsepaket med varje beställning.",
       "ctaShop": "Handla Ihram - Från €19",
@@ -92,7 +92,7 @@
       }
     },
     "finalCta": {
-      "title": "Redo för Hajj 2026?",
+      "title": "Redo för Hajj & Umrah?",
       "description": "Få din Ihram levererad på några dagar. Från €19. Skickas från Sverige.",
       "button": "Handla Ihram - Från €19"
     },
@@ -142,7 +142,7 @@
       }
     },
     "howToWear": {
-      "title": "Första Hajj? Så här tar du på dig Ihram.",
+      "title": "Första Hajj eller Umrah? Så här tar du på dig Ihram.",
       "body": "En enkel steg-för-steg-guide för förstagångspilgrimer - skriven av muslimer, för muslimer.",
       "cta": "Läs hela guiden",
       "imageAlt": "Steg-för-steg-guide för att ta på sig Ihram"
