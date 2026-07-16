@@ -19,6 +19,7 @@ import Home from "./pages/Home";
 import Shop from "./pages/Shop";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
+import ArticlePage from "./pages/ArticlePage";
 import SunnahActsBlog from "./pages/SunnahActsBlog";
 import UmrahChecklistBlog from "./pages/UmrahChecklistBlog";
 import IhramMistakesBlog from "./pages/IhramMistakesBlog";
@@ -56,7 +57,7 @@ const AppRoutes = () => (
     <Route path="/blog/common-mistakes-ihram" element={<IhramMistakesBlog />} />
     <Route path="/blog/essential-duas-umrah" element={<UmrahDuasBlog />} />
     <Route path="/blog/spiritual-meaning-ihram" element={<IhramSpiritualMeaningBlog />} />
-    <Route path="/blog/:slug" element={<BlogPost />} />
+    <Route path="/blog/:slug" element={<ArticlePage />} />
     <Route path="/about" element={<About />} />
     <Route path="/contact" element={<Contact />} />
     <Route path="/shipping" element={<Shipping />} />
@@ -82,7 +83,7 @@ const AppRoutes = () => (
     <Route path="/sv/blog/common-mistakes-ihram" element={<IhramMistakesBlog />} />
     <Route path="/sv/blog/essential-duas-umrah" element={<UmrahDuasBlog />} />
     <Route path="/sv/blog/spiritual-meaning-ihram" element={<IhramSpiritualMeaningBlog />} />
-    <Route path="/sv/blog/:slug" element={<BlogPost />} />
+    <Route path="/sv/blog/:slug" element={<ArticlePage />} />
     <Route path="/sv/about" element={<About />} />
     <Route path="/sv/contact" element={<Contact />} />
     <Route path="/sv/shipping" element={<Shipping />} />
@@ -108,7 +109,7 @@ const AppRoutes = () => (
     <Route path="/no/blog/common-mistakes-ihram" element={<IhramMistakesBlog />} />
     <Route path="/no/blog/essential-duas-umrah" element={<UmrahDuasBlog />} />
     <Route path="/no/blog/spiritual-meaning-ihram" element={<IhramSpiritualMeaningBlog />} />
-    <Route path="/no/blog/:slug" element={<BlogPost />} />
+    <Route path="/no/blog/:slug" element={<ArticlePage />} />
     <Route path="/no/about" element={<About />} />
     <Route path="/no/contact" element={<Contact />} />
     <Route path="/no/shipping" element={<Shipping />} />

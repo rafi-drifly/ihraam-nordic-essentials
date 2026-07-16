@@ -12,13 +12,35 @@ import umrahChecklist from "@/assets/blog/umrah-checklist.png";
 import commonMistakes from "@/assets/blog/common-mistakes.png";
 import essentialDuas from "@/assets/blog/essential-duas.png";
 import spiritualMeaning from "@/assets/blog/spiritual-meaning.png";
+import guideCover from "@/assets/blog/guide-cover.svg";
+import { blogPosts as registryPosts, pickLocale } from "@/content/blog/registry";
 
 const Blog = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const location = useLocation();
   const localePrefix = location.pathname.startsWith('/sv') ? '/sv' : location.pathname.startsWith('/no') ? '/no' : '';
+  const locale = pickLocale(i18n.language);
 
-  const blogPosts = [
+  // Long-form guides imported from the content registry (localized).
+  const registryCards = registryPosts.map((p, idx) => {
+    const tr = p.translations[locale] ?? p.translations.en;
+    return {
+      id: 100 + idx,
+      title: tr.title,
+      excerpt: tr.excerpt,
+      author: "Pure Ihram",
+      readTime: `${p.readTime} min`,
+      date: new Date(p.datePublished).toLocaleDateString(
+        locale === 'sv' ? 'sv-SE' : locale === 'no' ? 'nb-NO' : 'en-GB',
+        { year: 'numeric', month: 'short', day: 'numeric' },
+      ),
+      category: t(`blog.categories.${p.category}`, p.category),
+      image: guideCover,
+      link: `/blog/${p.slug}`,
+    };
+  });
+
+  const featuredPosts = [
     {
       id: 1,
       title: t('blog.posts.howToWear.title'),
@@ -86,6 +108,9 @@ const Blog = () => {
       link: "/blog/spiritual-meaning-ihram"
     }
   ];
+
+  // New long-form guides lead; the original featured posts follow.
+  const blogPosts = [...registryCards, ...featuredPosts];
 
   const categories = [
     { key: "all", label: t('blog.categories.all') },

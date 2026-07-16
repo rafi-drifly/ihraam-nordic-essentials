@@ -1,0 +1,19 @@
+<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pure Ihram guide">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F0F5F5"/>
+      <stop offset="1" stop-color="#D4E4E4"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#g)"/>
+  <rect x="0" y="0" width="10" height="675" fill="#287777"/>
+  <circle cx="1060" cy="120" r="90" fill="#287777" opacity="0.10"/>
+  <circle cx="1130" cy="240" r="44" fill="#287777" opacity="0.14"/>
+  <g transform="translate(90,300)">
+    <text font-family="Inter,system-ui,sans-serif" font-size="72" font-weight="700" letter-spacing="-2">
+      <tspan fill="#305050">Pure </tspan><tspan fill="#287777">Ihram</tspan>
+    </text>
+    <text y="70" font-family="Inter,system-ui,sans-serif" font-size="30" font-weight="500" fill="#6A7C7C" letter-spacing="1">Hajj &amp; Umrah guides</text>
+    <line x1="2" y1="112" x2="200" y2="112" stroke="#EEBD2B" stroke-width="4"/>
+  </g>
+</svg>
