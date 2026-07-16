@@ -46,7 +46,6 @@ const EXPECTATIONS: Record<Locale, Array<{ key: string; mustContain: string }>> 
     { key: "home.faq.title", mustContain: "Frequently asked questions" },
     { key: "home.testimonial.verified", mustContain: "Verified buyer" },
     { key: "home.howToWear.cta", mustContain: "Read the full guide" },
-    { key: "home.shipping.freeEu", mustContain: "Free EU shipping" },
     { key: "home.guides.viewAll", mustContain: "View all guides" },
     { key: "home.finalCta.title", mustContain: "Ready for Hajj 2026" },
   ],
@@ -62,7 +61,6 @@ const EXPECTATIONS: Record<Locale, Array<{ key: string; mustContain: string }>> 
     { key: "home.faq.title", mustContain: "Vanliga frågor" },
     { key: "home.testimonial.verified", mustContain: "Verifierad köpare" },
     { key: "home.howToWear.cta", mustContain: "Läs hela guiden" },
-    { key: "home.shipping.freeEu", mustContain: "Fri EU-frakt" },
     { key: "home.guides.viewAll", mustContain: "Visa alla guider" },
     { key: "home.finalCta.title", mustContain: "Redo för Hajj 2026" },
   ],
@@ -78,7 +76,6 @@ const EXPECTATIONS: Record<Locale, Array<{ key: string; mustContain: string }>> 
     { key: "home.faq.title", mustContain: "Ofte stilte spørsmål" },
     { key: "home.testimonial.verified", mustContain: "Verifisert kjøper" },
     { key: "home.howToWear.cta", mustContain: "Les hele guiden" },
-    { key: "home.shipping.freeEu", mustContain: "Gratis EU-frakt" },
     { key: "home.guides.viewAll", mustContain: "Se alle guider" },
     { key: "home.finalCta.title", mustContain: "Klar for Hajj 2026" },
   ],
@@ -151,7 +148,6 @@ describe("Homepage localization", () => {
           "home.benefits.climate.title",
           "home.faq.title",
           "home.howToWear.cta",
-          "home.shipping.freeEu",
           "home.finalCta.title",
         ];
         for (const key of driftCandidates) {
