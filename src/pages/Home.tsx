@@ -139,18 +139,18 @@ const Home = () => {
                 <Button asChild size="lg" className="bg-primary hover:bg-primary/90 transition-colors">
                   <Link to={`${localePrefix}/shop`}>{t("home.hero.ctaShop")}</Link>
                 </Button>
-                <a
-                  href="#hajj-prep-pack"
+                <Link
+                  to={`${localePrefix}/blog`}
                   onClick={() => {
-                    posthog.capture("hajj_prep_pack_cta_clicked", {
-                      location: "hero_banner",
-                      destination: "#hajj-prep-pack",
+                    posthog.capture("hero_guides_cta_clicked", {
+                      location: "hero",
+                      destination: "/blog",
                     });
                   }}
                   className="text-sm font-medium text-primary hover:text-primary/80 inline-flex items-center gap-1"
                 >
                   {t("home.hero.ctaPrepPack")} <ArrowRight className="h-4 w-4" />
-                </a>
+                </Link>
               </div>
               <p className="mt-4 text-sm text-muted-foreground">
                 {t("home.hero.microcopy")}

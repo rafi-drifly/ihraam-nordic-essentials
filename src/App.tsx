@@ -10,6 +10,7 @@ import { CartProvider } from "@/hooks/useCart";
 import Navbar from "@/components/ui/navbar";
 import Footer from "@/components/ui/footer";
 import ScrollToTop from "@/components/ScrollToTop";
+import PageViewTracker from "@/components/PageViewTracker";
 import LocaleHandler from "@/components/LocaleHandler";
 import SEOHead from "@/components/SEOHead";
 import PromoBanner from "@/components/PromoBanner";
@@ -144,6 +145,7 @@ const App = () => (
             <Sonner />
             <BrowserRouter>
               <ScrollToTop />
+              <PageViewTracker />
               <LocaleHandler />
               <SEOHead />
               <div className="min-h-screen flex flex-col">

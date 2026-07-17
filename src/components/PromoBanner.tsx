@@ -25,7 +25,7 @@ const PromoBanner = () => {
   return (
     <div className="bg-primary text-primary-foreground sticky top-0 z-50">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-center gap-2 py-2 text-sm relative">
+        <div className="flex items-center justify-center gap-2 py-2 text-sm relative px-8">
           <span className="text-center font-medium">
             {t('banner.promoText', 'Ihram sets from €20 - delivered across Europe')}
           </span>

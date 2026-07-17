@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Clock, User, ArrowLeft } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import NotFound from "@/pages/NotFound";
-import { trackBlogCtaClick } from "@/lib/analytics";
+import { trackBlogCtaClick, trackBlogView } from "@/lib/analytics";
 import { getBlogPost, pickLocale } from "@/content/blog/registry";
 import "@/content/blog/blog-article.css";
 
@@ -43,6 +43,13 @@ const ArticlePage = () => {
     },
     [navigate, localePrefix, slug],
   );
+
+  useEffect(() => {
+    if (post) {
+      const t = post.translations[locale] ?? post.translations.en;
+      trackBlogView({ slug: post.slug, title: t.title, category: post.category, locale, readTime: post.readTime });
+    }
+  }, [post, locale]);
 
   if (!post) {
     return <NotFound />;

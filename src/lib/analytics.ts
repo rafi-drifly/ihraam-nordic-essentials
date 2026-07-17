@@ -99,6 +99,35 @@ export function trackBlogCtaClick(blogSlug: string, ctaType: string) {
   posthog.capture('blog_cta_click', { blog_slug: blogSlug, cta_type: ctaType });
 }
 
+export function trackBlogView(post: {
+  slug: string;
+  title: string;
+  category: string;
+  locale: string;
+  readTime?: number;
+}) {
+  posthog.capture('blog_view', {
+    blog_slug: post.slug,
+    blog_title: post.title,
+    category: post.category,
+    locale: post.locale,
+    read_time_min: post.readTime,
+  });
+}
+
+/**
+ * Fire a semantic page_view on every SPA route change (complements PostHog's
+ * automatic $pageview). Gives clean per-page-type analytics + locale.
+ */
+export function trackPageView(details: { path: string; pageType: string; locale: string }) {
+  posthog.capture('page_view', {
+    path: details.path,
+    page_type: details.pageType,
+    locale: details.locale,
+  });
+  posthog.register({ locale: details.locale });
+}
+
 export function trackShippingPageView() {
   posthog.capture('shipping_page_view');
 }
