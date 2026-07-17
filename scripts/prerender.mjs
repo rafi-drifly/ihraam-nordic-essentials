@@ -108,7 +108,9 @@ let count = 0;
 for (const locale of Object.keys(LOCALES)) {
   const pfx = LOCALES[locale].prefix;
   write(pfx || '.', render({ title: HOME_TITLE[locale], description: HOME_DESC[locale], canonicalPath: '/', locale }));
-  write(`${pfx}/blog`.replace(/^\//, ''), render({ title: BLOGLIST_TITLE, description: BLOGLIST_DESC, canonicalPath: '/blog', locale }));
+  // Host serves directory routes with a trailing slash (clean URL 308-redirects
+  // to it), so canonical/hreflang use the trailing-slash 200 URL.
+  write(`${pfx}/blog`.replace(/^\//, ''), render({ title: BLOGLIST_TITLE, description: BLOGLIST_DESC, canonicalPath: '/blog/', locale }));
   count += 2;
 }
 // Registry blog posts (full Article + FAQPage), per locale
@@ -116,13 +118,13 @@ for (const post of blogData) {
   for (const locale of Object.keys(LOCALES)) {
     const t = post.translations[locale] || post.translations.en;
     const pfx = LOCALES[locale].prefix;
-    const url = `${BASE}${pfx}/blog/${post.slug}`;
+    const url = `${BASE}${pfx}/blog/${post.slug}/`;
     const jsonLd = [
       articleSchema({ title: t.title, description: t.excerpt, url, datePublished: post.datePublished, keywords: post.keywords, locale }),
     ];
     if (t.faq && t.faq.length) jsonLd.push(faqSchema(t.faq));
     write(`${pfx}/blog/${post.slug}`.replace(/^\//, ''), render({
-      title: `${t.title} | Pure Ihram`, description: t.excerpt, canonicalPath: `/blog/${post.slug}`,
+      title: `${t.title} | Pure Ihram`, description: t.excerpt, canonicalPath: `/blog/${post.slug}/`,
       ogType: 'article', locale, jsonLd,
     }));
     count++;
@@ -135,9 +137,9 @@ for (const { slug, key } of LEGACY) {
     const title = posts.title || slug;
     const excerpt = posts.excerpt || BLOGLIST_DESC;
     const pfx = LOCALES[locale].prefix;
-    const url = `${BASE}${pfx}/blog/${slug}`;
+    const url = `${BASE}${pfx}/blog/${slug}/`;
     write(`${pfx}/blog/${slug}`.replace(/^\//, ''), render({
-      title: `${title} | Pure Ihram`, description: excerpt, canonicalPath: `/blog/${slug}`,
+      title: `${title} | Pure Ihram`, description: excerpt, canonicalPath: `/blog/${slug}/`,
       ogType: 'article', locale,
       jsonLd: [articleSchema({ title, description: excerpt, url, datePublished: '2026-03-01', locale })],
     }));
