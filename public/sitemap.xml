@@ -18,11 +18,11 @@
   </url>
 
   <url>
-    <loc>https://www.pureihram.com/shop</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/shop"/>
-    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/shop"/>
-    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/shop"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/shop"/>
+    <loc>https://www.pureihram.com/shop/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/shop/"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/shop/"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/shop/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/shop/"/>
     <lastmod>2026-04-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -40,88 +40,88 @@
   </url>
 
   <url>
-    <loc>https://www.pureihram.com/about</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/about"/>
-    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/about"/>
-    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/about"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/about"/>
+    <loc>https://www.pureihram.com/about/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/about/"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/about/"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/about/"/>
     <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://www.pureihram.com/contact</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/contact"/>
-    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/contact"/>
-    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/contact"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/contact"/>
+    <loc>https://www.pureihram.com/contact/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/contact/"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/contact/"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/contact/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/contact/"/>
     <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://www.pureihram.com/shipping</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/shipping"/>
-    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/shipping"/>
-    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/shipping"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/shipping"/>
+    <loc>https://www.pureihram.com/shipping/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/shipping/"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/shipping/"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/shipping/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/shipping/"/>
     <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://www.pureihram.com/returns</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/returns"/>
-    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/returns"/>
-    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/returns"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/returns"/>
+    <loc>https://www.pureihram.com/returns/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/returns/"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/returns/"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/returns/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/returns/"/>
     <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://www.pureihram.com/partners</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/partners"/>
-    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/partners"/>
-    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/partners"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/partners"/>
+    <loc>https://www.pureihram.com/partners/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/partners/"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/partners/"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/partners/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/partners/"/>
     <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://www.pureihram.com/support-our-mission</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/support-our-mission"/>
-    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/support-our-mission"/>
-    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/support-our-mission"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/support-our-mission"/>
+    <loc>https://www.pureihram.com/support-our-mission/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/support-our-mission/"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/support-our-mission/"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/support-our-mission/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/support-our-mission/"/>
     <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://www.pureihram.com/transparency</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/transparency"/>
-    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/transparency"/>
-    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/transparency"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/transparency"/>
+    <loc>https://www.pureihram.com/transparency/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/transparency/"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/transparency/"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/transparency/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/transparency/"/>
     <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://www.pureihram.com/mosque-support</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/mosque-support"/>
-    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/mosque-support"/>
-    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/mosque-support"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/mosque-support"/>
+    <loc>https://www.pureihram.com/mosque-support/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/mosque-support/"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/mosque-support/"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/mosque-support/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/mosque-support/"/>
     <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -398,11 +398,11 @@
   </url>
 
   <url>
-    <loc>https://www.pureihram.com/sv/shop</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/shop"/>
-    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/shop"/>
-    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/shop"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/shop"/>
+    <loc>https://www.pureihram.com/sv/shop/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/shop/"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/shop/"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/shop/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/shop/"/>
     <lastmod>2026-04-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -420,88 +420,88 @@
   </url>
 
   <url>
-    <loc>https://www.pureihram.com/sv/about</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/about"/>
-    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/about"/>
-    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/about"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/about"/>
+    <loc>https://www.pureihram.com/sv/about/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/about/"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/about/"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/about/"/>
     <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://www.pureihram.com/sv/contact</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/contact"/>
-    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/contact"/>
-    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/contact"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/contact"/>
+    <loc>https://www.pureihram.com/sv/contact/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/contact/"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/contact/"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/contact/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/contact/"/>
     <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://www.pureihram.com/sv/shipping</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/shipping"/>
-    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/shipping"/>
-    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/shipping"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/shipping"/>
+    <loc>https://www.pureihram.com/sv/shipping/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/shipping/"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/shipping/"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/shipping/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/shipping/"/>
     <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://www.pureihram.com/sv/returns</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/returns"/>
-    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/returns"/>
-    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/returns"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/returns"/>
+    <loc>https://www.pureihram.com/sv/returns/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/returns/"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/returns/"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/returns/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/returns/"/>
     <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://www.pureihram.com/sv/partners</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/partners"/>
-    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/partners"/>
-    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/partners"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/partners"/>
+    <loc>https://www.pureihram.com/sv/partners/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/partners/"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/partners/"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/partners/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/partners/"/>
     <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://www.pureihram.com/sv/support-our-mission</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/support-our-mission"/>
-    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/support-our-mission"/>
-    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/support-our-mission"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/support-our-mission"/>
+    <loc>https://www.pureihram.com/sv/support-our-mission/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/support-our-mission/"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/support-our-mission/"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/support-our-mission/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/support-our-mission/"/>
     <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://www.pureihram.com/sv/transparency</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/transparency"/>
-    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/transparency"/>
-    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/transparency"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/transparency"/>
+    <loc>https://www.pureihram.com/sv/transparency/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/transparency/"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/transparency/"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/transparency/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/transparency/"/>
     <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://www.pureihram.com/sv/mosque-support</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/mosque-support"/>
-    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/mosque-support"/>
-    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/mosque-support"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/mosque-support"/>
+    <loc>https://www.pureihram.com/sv/mosque-support/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/mosque-support/"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/mosque-support/"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/mosque-support/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/mosque-support/"/>
     <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -589,11 +589,11 @@
   </url>
 
   <url>
-    <loc>https://www.pureihram.com/no/shop</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/shop"/>
-    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/shop"/>
-    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/shop"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/shop"/>
+    <loc>https://www.pureihram.com/no/shop/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/shop/"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/shop/"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/shop/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/shop/"/>
     <lastmod>2026-04-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -611,88 +611,88 @@
   </url>
 
   <url>
-    <loc>https://www.pureihram.com/no/about</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/about"/>
-    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/about"/>
-    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/about"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/about"/>
+    <loc>https://www.pureihram.com/no/about/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/about/"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/about/"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/about/"/>
     <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://www.pureihram.com/no/contact</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/contact"/>
-    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/contact"/>
-    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/contact"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/contact"/>
+    <loc>https://www.pureihram.com/no/contact/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/contact/"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/contact/"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/contact/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/contact/"/>
     <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://www.pureihram.com/no/shipping</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/shipping"/>
-    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/shipping"/>
-    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/shipping"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/shipping"/>
+    <loc>https://www.pureihram.com/no/shipping/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/shipping/"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/shipping/"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/shipping/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/shipping/"/>
     <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://www.pureihram.com/no/returns</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/returns"/>
-    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/returns"/>
-    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/returns"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/returns"/>
+    <loc>https://www.pureihram.com/no/returns/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/returns/"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/returns/"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/returns/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/returns/"/>
     <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://www.pureihram.com/no/partners</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/partners"/>
-    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/partners"/>
-    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/partners"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/partners"/>
+    <loc>https://www.pureihram.com/no/partners/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/partners/"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/partners/"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/partners/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/partners/"/>
     <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://www.pureihram.com/no/support-our-mission</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/support-our-mission"/>
-    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/support-our-mission"/>
-    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/support-our-mission"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/support-our-mission"/>
+    <loc>https://www.pureihram.com/no/support-our-mission/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/support-our-mission/"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/support-our-mission/"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/support-our-mission/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/support-our-mission/"/>
     <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://www.pureihram.com/no/transparency</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/transparency"/>
-    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/transparency"/>
-    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/transparency"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/transparency"/>
+    <loc>https://www.pureihram.com/no/transparency/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/transparency/"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/transparency/"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/transparency/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/transparency/"/>
     <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://www.pureihram.com/no/mosque-support</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/mosque-support"/>
-    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/mosque-support"/>
-    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/mosque-support"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/mosque-support"/>
+    <loc>https://www.pureihram.com/no/mosque-support/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pureihram.com/mosque-support/"/>
+    <xhtml:link rel="alternate" hreflang="sv-SE" href="https://www.pureihram.com/sv/mosque-support/"/>
+    <xhtml:link rel="alternate" hreflang="nb-NO" href="https://www.pureihram.com/no/mosque-support/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pureihram.com/mosque-support/"/>
     <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

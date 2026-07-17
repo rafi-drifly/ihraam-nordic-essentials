@@ -55,6 +55,46 @@ const HOME_DESC = {
 const BLOGLIST_TITLE = 'Hajj & Umrah Guides - Pilgrimage Knowledge | Pure Ihram';
 const BLOGLIST_DESC = 'Practical guides for Hajj and Umrah: how to wear Ihram, Sunnah acts, essential duas, packing checklists, and spiritual preparation.';
 
+// Public info/commerce pages. Titles/descriptions mirror each page's SEOHead.
+// `title`/`desc` = inline per-locale strings; `titleKey`/`descKey` = i18n keys
+// resolved from the locale JSON (falling back to English, then the given default).
+const tri = (en, sv, no) => ({ en, sv, no });
+const STATIC_PAGES = [
+  { path: '/shop', ogType: 'product',
+    title: tri('Shop Ihram Sets - Single, 2-Pack & 3-Pack | Pure Ihram', 'Köp Ihram-set - Single, 2-Pack & 3-Pack | Pure Ihram', 'Kjøp Ihram-sett - Single, 2-Pack & 3-Pack | Pure Ihram'),
+    desc: tri('Choose your Ihram set: single (€19), 2-pack (€37), or 3-pack (€55). Lightweight microfiber, ships from Sweden. Secure EU delivery.', 'Välj ditt Ihram-set: single (€19), 2-pack (€37) eller 3-pack (€55). Lätt mikrofiber, skickas från Sverige. Säker betalning via Stripe.', 'Velg ditt Ihram-sett: single (€19), 2-pack (€37) eller 3-pack (€55). Lett mikrofiber, sendes fra Sverige. Sikker betaling med Stripe.') },
+  { path: '/about',
+    title: tri('About Pure Ihram - Mission & Values', 'Om Pure Ihram - Uppdrag & Värderingar', 'Om Pure Ihram - Oppdrag & Verdier'),
+    desc: tri('Pure Ihram was founded in Sweden to make quality Ihram cloth affordable for every European Muslim. €19 per set, honest pricing, fast shipping.', 'Pure Ihram grundades i Sverige för att göra kvalitativ Ihram-duk prisvärd för varje europeisk muslim. €19 per set, ärlig prissättning, snabb leverans.', 'Pure Ihram ble grunnlagt i Sverige for å gjøre kvalitets Ihram rimelig for hver europeisk muslim. €19 per sett, ærlig prising, rask levering.') },
+  { path: '/contact',
+    title: tri('Contact Pure Ihram - Email, WhatsApp & Phone Support', 'Kontakta Pure Ihram - E-post, WhatsApp & Telefonsupport', 'Kontakt Pure Ihram - E-post, WhatsApp & Telefonstøtte'),
+    desc: tri('Get in touch with Pure Ihram. Email support@pureihraam.com, WhatsApp +46720131476, or use our contact form.', 'Kontakta Pure Ihram. E-post support@pureihraam.com, WhatsApp +46720131476, eller använd vårt kontaktformulär.', 'Ta kontakt med Pure Ihram. E-post support@pureihraam.com, WhatsApp +46720131476, eller bruk kontaktskjemaet vårt.') },
+  { path: '/shipping',
+    title: tri('Shipping & Delivery - Fast EU Shipping from Sweden | Pure Ihram', 'Frakt & Leverans - Snabb EU-frakt från Sverige | Pure Ihram', 'Frakt & Levering - Rask EU-frakt fra Sverige | Pure Ihram'),
+    desc: tri('Fast, reliable Ihram delivery across Sweden, the Nordics, and the EU. Orders processed in 1-2 business days with full tracking.', 'Snabb, pålitlig Ihram-leverans i Sverige, Norden och hela EU. Beställningar behandlas inom 1-2 arbetsdagar med full spårning.', 'Rask, pålitelig Ihram-levering i Sverige, Norden og hele EU. Bestillinger behandles innen 1-2 virkedager med full sporing.') },
+  { path: '/partners',
+    title: tri('B2B Partnership - Wholesale Ihram for Mosques & Agencies | Pure Ihram', 'B2B-Partnerskap - Grossist Ihram för Moskéer & Byråer | Pure Ihram', 'B2B-Partnerskap - Engros Ihram for Moskeer & Byråer | Pure Ihram'),
+    desc: tri('Partner with Pure Ihram to offer wholesale Ihram sets to your mosque, agency, or travel group. Halal income, quality product, EU-wide shipping.', 'Bli partner med Pure Ihram för att erbjuda grossist Ihram-set till er moské, byrå eller resegrupp. Halal-inkomst, kvalitetsprodukt, EU-omfattande frakt.', 'Bli partner med Pure Ihram for å tilby engros Ihram-sett til din moské, byrå eller reisegruppe. Halal-inntekt, kvalitetsprodukt, EU-dekkende frakt.') },
+  { path: '/returns',
+    title: tri('Returns & Exchanges - 14-Day Free Returns | Pure Ihram', 'Returns & Exchanges - 14-Day Free Returns | Pure Ihram', 'Returns & Exchanges - 14-Day Free Returns | Pure Ihram'),
+    desc: tri("Pure Ihram's transparent return and exchange policy across the EU. 14-day withdrawal, easy size swaps, and clear shipping rules.", "Pure Ihram's transparent return and exchange policy across the EU. 14-day withdrawal, easy size swaps, and clear shipping rules.", "Pure Ihram's transparent return and exchange policy across the EU. 14-day withdrawal, easy size swaps, and clear shipping rules.") },
+  { path: '/mosque-support', titleKey: 'mosqueSupport.seoTitle', descKey: 'mosqueSupport.seoDescription',
+    titleDefault: 'Mosque Support Program | Pure Ihram', descDefault: 'Pure Ihram supports mosques across the Nordics and EU. Learn about our mosque support program.' },
+  { path: '/support-our-mission', titleKey: 'donation.seoTitle', descKey: 'donation.seoDescription',
+    titleDefault: 'Support Our Mission | Pure Ihram', descDefault: 'Support the Pure Ihram mission to make Ihram affordable and give back to the community.' },
+  { path: '/transparency', titleKey: 'transparency.seoTitle', descKey: 'transparency.seoDescription',
+    titleDefault: 'Transparency Dashboard | Pure Ihram', descDefault: 'Pure Ihram transparency dashboard: where the money goes and how we give back.' },
+];
+
+const getKey = (locale, key, fallback) => {
+  for (const src of [loc[locale], loc.en]) {
+    let o = src;
+    for (const part of key.split('.')) o = (o && typeof o === 'object') ? o[part] : undefined;
+    if (typeof o === 'string' && o) return o;
+  }
+  return fallback;
+};
+
 /** Build one page's HTML from the template. */
 function render({ title, description, canonicalPath, ogType = 'website', locale, jsonLd = [] }) {
   const lm = LOCALES[locale];
@@ -142,6 +182,19 @@ for (const { slug, key } of LEGACY) {
       title: `${title} | Pure Ihram`, description: excerpt, canonicalPath: `/blog/${slug}/`,
       ogType: 'article', locale,
       jsonLd: [articleSchema({ title, description: excerpt, url, datePublished: '2026-03-01', locale })],
+    }));
+    count++;
+  }
+}
+
+// Public info/commerce pages, per locale
+for (const page of STATIC_PAGES) {
+  for (const locale of Object.keys(LOCALES)) {
+    const pfx = LOCALES[locale].prefix;
+    const title = page.title ? page.title[locale] : getKey(locale, page.titleKey, page.titleDefault);
+    const description = page.desc ? page.desc[locale] : getKey(locale, page.descKey, page.descDefault);
+    write(`${pfx}${page.path}`.replace(/^\//, ''), render({
+      title, description, canonicalPath: `${page.path}/`, ogType: page.ogType || 'website', locale,
     }));
     count++;
   }
