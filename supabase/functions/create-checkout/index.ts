@@ -15,7 +15,15 @@ interface CheckoutRequest {
   shippingCountry?: string;
   promoCode?: string;
   shippingCity?: string;
+  /** Free mosque pickup instead of shipping. One of PICKUP_LOCATIONS keys. */
+  pickupLocation?: string;
 }
+
+// Free local pickup points (no shipping fee, no delivery address needed).
+const PICKUP_LOCATIONS: Record<string, string> = {
+  "uppsala-mosque": "Free pickup - Uppsala Mosque",
+  "stockholm-mosque": "Free pickup - Stockholm Mosque",
+};
 
 // European countries list
 const EUROPE_COUNTRIES = [
@@ -52,7 +60,7 @@ serve(async (req) => {
     });
 
     const body = await req.json();
-    const { items, donation, bundlePrice, locale, promoCode, shippingCity, shippingCountry }: CheckoutRequest = body;
+    const { items, donation, bundlePrice, locale, promoCode, shippingCity, shippingCountry, pickupLocation }: CheckoutRequest = body;
 
     // ---- Input validation (server-side; do not trust client) ----
     if (!Array.isArray(items) || items.length === 0 || items.length > 20) {
@@ -89,31 +97,23 @@ serve(async (req) => {
     if (shippingCountry !== undefined && shippingCountry !== null && (typeof shippingCountry !== "string" || !/^[A-Z]{2}$/.test(shippingCountry))) {
       return new Response(JSON.stringify({ error: "Invalid shipping country" }), { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 400 });
     }
+    if (pickupLocation !== undefined && pickupLocation !== null && !PICKUP_LOCATIONS[pickupLocation]) {
+      return new Response(JSON.stringify({ error: "Invalid pickup location" }), { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 400 });
+    }
     // ---- end validation ----
 
     console.log("Checkout request:", { itemCount: items.length, hasDonation: !!donation, hasBundlePrice: !!bundlePrice, locale, hasPromo: !!promoCode, shippingCountry });
 
-    // Validate FREEDELIVERY-UPPSALA promo code (Sweden only)
-    let promoFreeShipping = false;
-    if (promoCode && promoCode.toUpperCase() === 'FREEDELIVERY-UPPSALA') {
-      if (!shippingCity || shippingCity.toLowerCase().trim() !== 'uppsala') {
-        return new Response(
-          JSON.stringify({ error: "This promo code is only valid for Uppsala deliveries." }),
-          { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 400 }
-        );
-      }
-      promoFreeShipping = true;
-      console.log("Promo FREEDELIVERY-UPPSALA validated for Uppsala");
-    } else if (promoCode) {
-      return new Response(
-        JSON.stringify({ error: "Invalid promo code." }),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 400 }
-      );
+    // Free mosque pickup: no shipping fee, no delivery address.
+    const isPickup = !!(pickupLocation && PICKUP_LOCATIONS[pickupLocation]);
+    const pickupLabel = isPickup ? PICKUP_LOCATIONS[pickupLocation as string] : null;
+    if (isPickup) {
+      console.log("Free mosque pickup selected:", pickupLocation);
     }
 
     const totalQuantity = items.reduce((sum, item) => sum + item.quantity, 0);
     const baseShippingFee = 9; // €9 base for all of Europe
-    const shippingCents = promoFreeShipping ? 0 : baseShippingFee * 100;
+    const shippingCents = isPickup ? 0 : baseShippingFee * 100;
     const bundleType = getBundleType(totalQuantity);
     console.log("Total qty:", totalQuantity, "Shipping: €", shippingCents / 100, "Bundle:", bundleType);
 
@@ -215,13 +215,16 @@ serve(async (req) => {
       payment_method_types: ['card', 'klarna'],
       success_url: `${req.headers.get("origin")}/order-success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${req.headers.get("origin")}/cart`,
-      shipping_address_collection: {
-        allowed_countries: EUROPE_COUNTRIES as unknown as Stripe.Checkout.SessionCreateParams.ShippingAddressCollection.AllowedCountry[],
-      },
+      // Pickup orders need no delivery address; shipping orders collect one.
+      ...(isPickup ? {} : {
+        shipping_address_collection: {
+          allowed_countries: EUROPE_COUNTRIES as unknown as Stripe.Checkout.SessionCreateParams.ShippingAddressCollection.AllowedCountry[],
+        },
+        custom_text: {
+          shipping_address: { message: shippingMessage },
+        },
+      }),
       phone_number_collection: { enabled: true },
-      custom_text: {
-        shipping_address: { message: shippingMessage },
-      },
       metadata: {
         user_id: user?.id || '',
         items: JSON.stringify(items),
@@ -229,6 +232,8 @@ serve(async (req) => {
         bundle_type: bundleType,
         base_shipping_fee_eur: (baseShippingFee).toString(),
         shipping_fee_applied: (shippingCents / 100).toString(),
+        delivery_method: isPickup ? 'pickup' : 'shipping',
+        pickup_location: pickupLabel || '',
         donation: donation && donation > 0 ? "true" : "false",
         donation_amount: donation && donation > 0 ? donation.toString() : "0",
         pricing_currency: 'EUR',

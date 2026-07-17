@@ -805,6 +805,16 @@
       "switchTo2Pack": "Switch to 2-Pack",
       "switchTo3Pack": "Switch to 3-Pack"
     },
+    "delivery": {
+      "title": "Delivery method",
+      "ship": "Ship to my address",
+      "uppsala": "Free pickup: Uppsala Mosque",
+      "stockholm": "Free pickup: Stockholm Mosque",
+      "free": "FREE",
+      "pickupLine": "Free mosque pickup",
+      "pickupNote": "We'll email you when your order is ready to collect at the mosque. No delivery address needed.",
+      "pickupHint": "Or collect free at Uppsala or Stockholm mosque - choose at cart"
+    },
     "promo": {
       "placeholder": "Enter promo code",
       "apply": "Apply",

@@ -805,6 +805,16 @@
       "switchTo2Pack": "Byt till 2-Pack",
       "switchTo3Pack": "Byt till 3-Pack"
     },
+    "delivery": {
+      "title": "Leveranssätt",
+      "ship": "Skicka till min adress",
+      "uppsala": "Gratis upphämtning: Uppsala moské",
+      "stockholm": "Gratis upphämtning: Stockholms moské",
+      "free": "GRATIS",
+      "pickupLine": "Gratis upphämtning vid moské",
+      "pickupNote": "Vi mejlar dig när din beställning är redo att hämtas vid moskén. Ingen leveransadress behövs.",
+      "pickupHint": "Eller hämta gratis vid Uppsala eller Stockholms moské - välj i kundvagnen"
+    },
     "promo": {
       "placeholder": "Ange rabattkod",
       "apply": "Använd",

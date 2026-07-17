@@ -1,32 +1,23 @@
-import { useState } from "react";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { ShoppingCart, Minus, Plus, Trash2, Gift, Tag, X, Check } from "lucide-react";
+import { ShoppingCart, Minus, Plus, Trash2, Gift } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { Badge } from "@/components/ui/badge";
 import { calculateShipping } from "@/lib/shipping";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { trackEvent } from "@/lib/analytics";
-import { useToast } from "@/hooks/use-toast";
 
 interface CartDrawerProps {
-  onCheckout: (promoCode?: string, shippingCity?: string) => void;
+  onCheckout: () => void;
   checkingOut?: boolean;
 }
 
 export const CartDrawer = ({ onCheckout, checkingOut = false }: CartDrawerProps) => {
   const { items, updateQuantity, removeItem, addItem, getTotalItems, getTotalPrice } = useCart();
   const { t } = useTranslation();
-  const { toast } = useToast();
   const location = useLocation();
-  const [promoInput, setPromoInput] = useState("");
-  const [appliedPromo, setAppliedPromo] = useState<string | null>(null);
-  const [promoCity, setPromoCity] = useState("");
-  const [showCityInput, setShowCityInput] = useState(false);
-  const [promoError, setPromoError] = useState<string | null>(null);
-  
+
   const getLocalePrefix = () => {
     if (location.pathname.startsWith('/sv')) return '/sv';
     if (location.pathname.startsWith('/no')) return '/no';
@@ -35,40 +26,10 @@ export const CartDrawer = ({ onCheckout, checkingOut = false }: CartDrawerProps)
   const localePrefix = getLocalePrefix();
 
   const totalItems = getTotalItems();
-  const promoFreeShipping = appliedPromo === 'FREEDELIVERY-UPPSALA' && promoCity.toLowerCase().trim() === 'uppsala';
-  const shipping = promoFreeShipping ? 0 : calculateShipping(totalItems);
+  const shipping = calculateShipping(totalItems);
   const subtotal = getTotalPrice();
 
   const destLabel = t('shop.destination.sweden');
-
-  const handleApplyPromo = () => {
-    setPromoError(null);
-    const code = promoInput.trim().toUpperCase();
-    if (code === 'FREEDELIVERY-UPPSALA') {
-      setShowCityInput(true);
-    } else {
-      setPromoError(t('cart.promo.invalidCode'));
-    }
-  };
-
-  const handleConfirmCity = () => {
-    setPromoError(null);
-    if (promoCity.toLowerCase().trim() === 'uppsala') {
-      setAppliedPromo('FREEDELIVERY-UPPSALA');
-      setShowCityInput(false);
-      toast({ title: t('cart.promo.applied') });
-    } else {
-      setPromoError(t('cart.promo.invalidCity'));
-    }
-  };
-
-  const handleRemovePromo = () => {
-    setAppliedPromo(null);
-    setPromoInput("");
-    setPromoCity("");
-    setShowCityInput(false);
-    setPromoError(null);
-  };
 
   const handleUpsellClick = () => {
     trackEvent('cart_upsell_clicked', { currentQty: totalItems });
@@ -168,60 +129,16 @@ export const CartDrawer = ({ onCheckout, checkingOut = false }: CartDrawerProps)
                   <span>{subtotal.toFixed(2)}€</span>
                 </div>
                 <div className="flex justify-between items-center text-sm text-muted-foreground mb-1">
-                  <span>
-                    {promoFreeShipping
-                      ? t('cart.promo.freeDelivery')
-                      : `${t('cart.shippingTo', { country: destLabel })}`
-                    }:
-                  </span>
+                  <span>{t('cart.shippingTo', { country: destLabel })}:</span>
                   <span>{shipping === 0 ? 'FREE' : `${shipping.toFixed(2)}€`}</span>
                 </div>
 
-                {/* Compact promo code */}
-                {appliedPromo ? (
-                  <div className="flex items-center justify-between rounded border border-primary/30 bg-primary/5 p-2 mb-2">
-                    <div className="flex items-center gap-1">
-                      <Check className="h-3 w-3 text-primary" />
-                      <span className="text-xs font-medium">{appliedPromo}</span>
-                    </div>
-                    <Button variant="ghost" size="sm" onClick={handleRemovePromo} className="h-5 w-5 p-0">
-                      <X className="h-3 w-3" />
-                    </Button>
-                  </div>
-                ) : (
-                  <div className="space-y-1 mb-2">
-                    <div className="flex gap-1">
-                      <Input
-                        placeholder={t('cart.promo.placeholder')}
-                        value={promoInput}
-                        onChange={(e) => setPromoInput(e.target.value)}
-                        onKeyDown={(e) => e.key === 'Enter' && handleApplyPromo()}
-                        className="text-xs h-7"
-                      />
-                      <Button variant="outline" size="sm" onClick={handleApplyPromo} disabled={!promoInput.trim()} className="h-7 px-2 text-xs">
-                        <Tag className="h-3 w-3" />
-                      </Button>
-                    </div>
-                    {showCityInput && (
-                      <div className="space-y-1">
-                        <label className="text-xs text-muted-foreground">{t('cart.promo.cityLabel')}</label>
-                        <div className="flex gap-1">
-                          <Input
-                            placeholder={t('cart.promo.cityPlaceholder')}
-                            value={promoCity}
-                            onChange={(e) => setPromoCity(e.target.value)}
-                            onKeyDown={(e) => e.key === 'Enter' && handleConfirmCity()}
-                            className="text-xs h-7"
-                          />
-                          <Button variant="outline" size="sm" onClick={handleConfirmCity} disabled={!promoCity.trim()} className="h-7 px-2">
-                            <Check className="h-3 w-3" />
-                          </Button>
-                        </div>
-                      </div>
-                    )}
-                    {promoError && <p className="text-xs text-destructive">{promoError}</p>}
-                  </div>
-                )}
+                {/* Free mosque pickup is chosen on the full cart page */}
+                <Link to={`${localePrefix}/cart`} className="block mb-2">
+                  <p className="text-xs text-primary font-medium hover:underline">
+                    {t('cart.delivery.pickupHint', 'Or collect free at Uppsala or Stockholm mosque - choose at cart')}
+                  </p>
+                </Link>
 
                 <div className="flex justify-between items-center mb-4">
                   <span className="font-semibold">{t('cart.total', 'Total')}:</span>
@@ -232,8 +149,8 @@ export const CartDrawer = ({ onCheckout, checkingOut = false }: CartDrawerProps)
                     {t('cart.viewCart', 'View Cart')}
                   </Button>
                 </Link>
-                <Button 
-                  onClick={() => onCheckout(appliedPromo || undefined, appliedPromo ? promoCity : undefined)} 
+                <Button
+                  onClick={() => onCheckout()}
                   className="w-full bg-gradient-primary hover:opacity-90"
                   size="lg"
                   disabled={checkingOut}

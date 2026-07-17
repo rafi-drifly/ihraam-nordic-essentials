@@ -3,9 +3,9 @@ import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useCart } from "@/hooks/useCart";
-import { ShoppingCart, ArrowLeft, Minus, Plus, Trash2, Gift, Tag, X, Check, Globe, Info } from "lucide-react";
+import { ShoppingCart, ArrowLeft, Minus, Plus, Trash2, Gift, Globe, Info } from "lucide-react";
 import { calculateShipping, EUROPE_COUNTRIES, COUNTRY_NAMES, countryFlag, requiresShippingDisclosure, type EuropeCountry } from "@/lib/shipping";
 import { getBundlePrice, SHIPPING_DISCLOSURE, CUSTOMS_DISCLOSURE } from "@/lib/bundles";
 import { supabase } from "@/integrations/supabase/client";
@@ -23,11 +23,7 @@ const Cart = () => {
   const { items, updateQuantity, removeItem, getTotalItems, getTotalPrice, addItem, clearCart } = useCart();
   const [selectedDonation, setSelectedDonation] = useState(0);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
-  const [promoInput, setPromoInput] = useState("");
-  const [appliedPromo, setAppliedPromo] = useState<string | null>(null);
-  const [promoCity, setPromoCity] = useState("");
-  const [showCityInput, setShowCityInput] = useState(false);
-  const [promoError, setPromoError] = useState<string | null>(null);
+  const [deliveryMethod, setDeliveryMethod] = useState<'ship' | 'uppsala-mosque' | 'stockholm-mosque'>('ship');
   const [shippingCountry, setShippingCountry] = useState<string>('SE');
   
   const showDisclosure = requiresShippingDisclosure(shippingCountry);
@@ -42,8 +38,8 @@ const Cart = () => {
   const localePrefix = getLocalePrefix();
 
   const totalItems = getTotalItems();
-  const promoFreeShipping = appliedPromo === 'FREEDELIVERY-UPPSALA' && promoCity.toLowerCase().trim() === 'uppsala';
-  const shipping = promoFreeShipping ? 0 : calculateShipping(totalItems);
+  const isPickup = deliveryMethod !== 'ship';
+  const shipping = isPickup ? 0 : calculateShipping(totalItems);
   const subtotal = getTotalPrice();
 
   const getTotalWithDonation = () => subtotal + shipping + selectedDonation;
@@ -54,36 +50,6 @@ const Cart = () => {
       const firstItem = items[0];
       addItem({ id: firstItem.id, name: firstItem.name, price: firstItem.price, image: firstItem.image }, 1);
     }
-  };
-
-  const handleApplyPromo = () => {
-    setPromoError(null);
-    const code = promoInput.trim().toUpperCase();
-    if (code === 'FREEDELIVERY-UPPSALA') {
-      setShowCityInput(true);
-    } else {
-      setPromoError(t('cart.promo.invalidCode'));
-    }
-  };
-
-  const handleConfirmCity = () => {
-    setPromoError(null);
-    if (promoCity.toLowerCase().trim() === 'uppsala') {
-      setAppliedPromo('FREEDELIVERY-UPPSALA');
-      setShowCityInput(false);
-      toast({ title: t('cart.promo.applied') });
-    } else {
-      setPromoError(t('cart.promo.invalidCity'));
-    }
-  };
-
-  const handleRemovePromo = () => {
-    setAppliedPromo(null);
-    setPromoInput("");
-    setPromoCity("");
-    setShowCityInput(false);
-    setPromoError(null);
-    toast({ title: t('cart.promo.removed') });
   };
 
   const handleCheckout = async () => {
@@ -98,9 +64,8 @@ const Cart = () => {
           donation: selectedDonation > 0 ? selectedDonation : undefined,
           bundlePrice: getBundlePrice(totalItems),
           locale: location.pathname.startsWith('/sv') ? 'sv' : location.pathname.startsWith('/no') ? 'no' : 'en',
-          shippingCountry: shippingCountry,
-          promoCode: appliedPromo || undefined,
-          shippingCity: appliedPromo ? promoCity : undefined
+          shippingCountry: isPickup ? 'SE' : shippingCountry,
+          pickupLocation: isPickup ? deliveryMethod : undefined,
         }
       });
       if (error) throw error;
@@ -225,96 +190,74 @@ const Cart = () => {
                     <span>{t('cart.items', { count: totalItems })}</span>
                     <span>{subtotal.toFixed(2)}€</span>
                   </div>
-                  {/* Country Selector */}
+                  {/* Delivery method */}
                   <div className="space-y-2">
-                    <div className="flex items-center gap-2">
-                      <Globe className="w-4 h-4 text-primary" />
-                      <span className="text-sm font-medium">Delivering to:</span>
-                    </div>
-                    <Select value={shippingCountry} onValueChange={setShippingCountry}>
-                      <SelectTrigger className="w-full">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {EUROPE_COUNTRIES.map((code) => (
-                          <SelectItem key={code} value={code}>
-                            {countryFlag(code)} {COUNTRY_NAMES[code]}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                    <span className="text-sm font-medium">{t('cart.delivery.title', 'Delivery method')}</span>
+                    <RadioGroup
+                      value={deliveryMethod}
+                      onValueChange={(v) => setDeliveryMethod(v as typeof deliveryMethod)}
+                      className="space-y-2"
+                    >
+                      <label htmlFor="dm-ship" className="flex items-center gap-3 rounded-lg border border-border p-3 cursor-pointer has-[:checked]:border-primary has-[:checked]:bg-primary/5">
+                        <RadioGroupItem value="ship" id="dm-ship" />
+                        <span className="flex-1 text-sm">{t('cart.delivery.ship', 'Ship to my address')}</span>
+                      </label>
+                      <label htmlFor="dm-uppsala" className="flex items-center gap-3 rounded-lg border border-border p-3 cursor-pointer has-[:checked]:border-primary has-[:checked]:bg-primary/5">
+                        <RadioGroupItem value="uppsala-mosque" id="dm-uppsala" />
+                        <span className="flex-1 text-sm">{t('cart.delivery.uppsala', 'Free pickup: Uppsala Mosque')}</span>
+                        <span className="text-xs font-semibold text-primary">{t('cart.delivery.free', 'FREE')}</span>
+                      </label>
+                      <label htmlFor="dm-stockholm" className="flex items-center gap-3 rounded-lg border border-border p-3 cursor-pointer has-[:checked]:border-primary has-[:checked]:bg-primary/5">
+                        <RadioGroupItem value="stockholm-mosque" id="dm-stockholm" />
+                        <span className="flex-1 text-sm">{t('cart.delivery.stockholm', 'Free pickup: Stockholm Mosque')}</span>
+                        <span className="text-xs font-semibold text-primary">{t('cart.delivery.free', 'FREE')}</span>
+                      </label>
+                    </RadioGroup>
                   </div>
 
+                  {/* Country selector - only when shipping */}
+                  {!isPickup && (
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2">
+                        <Globe className="w-4 h-4 text-primary" />
+                        <span className="text-sm font-medium">Delivering to:</span>
+                      </div>
+                      <Select value={shippingCountry} onValueChange={setShippingCountry}>
+                        <SelectTrigger className="w-full">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {EUROPE_COUNTRIES.map((code) => (
+                            <SelectItem key={code} value={code}>
+                              {countryFlag(code)} {COUNTRY_NAMES[code]}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  )}
+
                   <div className="flex justify-between">
-                    <span>
-                      {promoFreeShipping ? (
-                        <span className="text-primary font-medium">{t('cart.promo.freeDelivery')}</span>
-                      ) : (
-                        <span>Shipping - €{shipping}</span>
-                      )}
-                    </span>
+                    <span>{isPickup ? t('cart.delivery.pickupLine', 'Free mosque pickup') : `Shipping - €${shipping}`}</span>
                     <span>{shipping === 0 ? 'FREE' : `${shipping.toFixed(2)}€`}</span>
                   </div>
 
-                  {showDisclosure && (
+                  {isPickup && (
+                    <div className="flex gap-2 p-3 rounded-lg border border-primary/20 bg-primary/5">
+                      <Info className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                      <p className="text-xs text-muted-foreground">{t('cart.delivery.pickupNote', "We'll email you when your order is ready to collect at the mosque. No delivery address needed.")}</p>
+                    </div>
+                  )}
+                  {!isPickup && showDisclosure && (
                     <div className="flex gap-2 p-3 rounded-lg border border-primary/20 bg-primary/5">
                       <Info className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
                       <p className="text-xs text-muted-foreground">{disclosureText}</p>
                     </div>
                   )}
-                  {shippingCountry === 'NO' && (
+                  {!isPickup && shippingCountry === 'NO' && (
                     <div className="flex gap-2 p-3 rounded-lg border border-destructive/20 bg-destructive/5">
                       <Info className="w-4 h-4 text-destructive flex-shrink-0 mt-0.5" />
                       <p className="text-xs text-muted-foreground">{(CUSTOMS_DISCLOSURE as any)[disclosureLang] || CUSTOMS_DISCLOSURE.en}</p>
-                    </div>
-                  )}
-
-                  {/* Promo Code Section */}
-                  {appliedPromo ? (
-                    <div className="flex items-center justify-between rounded-lg border border-primary/30 bg-primary/5 p-3">
-                      <div className="flex items-center gap-2">
-                        <Check className="h-4 w-4 text-primary" />
-                        <span className="text-sm font-medium">{appliedPromo}</span>
-                      </div>
-                      <Button variant="ghost" size="sm" onClick={handleRemovePromo} className="h-7 w-7 p-0">
-                        <X className="h-3 w-3" />
-                      </Button>
-                    </div>
-                  ) : (
-                    <div className="space-y-2">
-                      <div className="flex gap-2">
-                        <Input
-                          placeholder={t('cart.promo.placeholder')}
-                          value={promoInput}
-                          onChange={(e) => setPromoInput(e.target.value)}
-                          onKeyDown={(e) => e.key === 'Enter' && handleApplyPromo()}
-                          className="text-sm"
-                        />
-                        <Button variant="outline" size="sm" onClick={handleApplyPromo} disabled={!promoInput.trim()}>
-                          <Tag className="h-3 w-3 mr-1" />
-                          {t('cart.promo.apply')}
-                        </Button>
-                      </div>
-                      {showCityInput && (
-                        <div className="space-y-2">
-                          <label className="text-xs text-muted-foreground">{t('cart.promo.cityLabel')}</label>
-                          <div className="flex gap-2">
-                            <Input
-                              placeholder={t('cart.promo.cityPlaceholder')}
-                              value={promoCity}
-                              onChange={(e) => setPromoCity(e.target.value)}
-                              onKeyDown={(e) => e.key === 'Enter' && handleConfirmCity()}
-                              className="text-sm"
-                            />
-                            <Button variant="outline" size="sm" onClick={handleConfirmCity} disabled={!promoCity.trim()}>
-                              <Check className="h-3 w-3" />
-                            </Button>
-                          </div>
-                        </div>
-                      )}
-                      {promoError && (
-                        <p className="text-xs text-destructive">{promoError}</p>
-                      )}
                     </div>
                   )}
 

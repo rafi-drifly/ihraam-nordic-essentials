@@ -807,6 +807,16 @@
       "switchTo2Pack": "Bytt til 2-Pack",
       "switchTo3Pack": "Bytt til 3-Pack"
     },
+    "delivery": {
+      "title": "Leveringsmåte",
+      "ship": "Send til min adresse",
+      "uppsala": "Gratis henting: Uppsala moské",
+      "stockholm": "Gratis henting: Stockholm moské",
+      "free": "GRATIS",
+      "pickupLine": "Gratis henting ved moské",
+      "pickupNote": "Vi sender deg en e-post når bestillingen er klar til henting ved moskeen. Ingen leveringsadresse nødvendig.",
+      "pickupHint": "Eller hent gratis ved Uppsala eller Stockholm moské - velg i handlekurven"
+    },
     "promo": {
       "placeholder": "Skriv inn rabattkode",
       "apply": "Bruk",
