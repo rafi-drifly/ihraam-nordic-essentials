@@ -162,6 +162,10 @@ const Home = () => {
                 src={ihraamProduct}
                 alt={t("home.hero.imageAlt")}
                 className="rounded-2xl shadow-lg w-full"
+                width={1200}
+                height={1200}
+                fetchPriority="high"
+                decoding="async"
               />
             </div>
           </div>
