@@ -111,7 +111,7 @@ serve(async (req) => {
           <p>JazakAllahu Khayran,<br>The PureIhram Team</p>
         </div>
         <div class="footer">
-          <p>© ${new Date().getFullYear()} PureIhram.com | <a href="mailto:support@pureihraam.com">support@pureihraam.com</a></p>
+          <p>© ${new Date().getFullYear()} PureIhram.com | <a href="mailto:pureihraam@gmail.com">pureihraam@gmail.com</a></p>
         </div>
       </body>
       </html>

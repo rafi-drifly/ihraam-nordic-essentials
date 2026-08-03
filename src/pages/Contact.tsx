@@ -32,10 +32,10 @@ const Contact = () => {
 
   const seoDescription =
     i18n.language === 'sv'
-      ? 'Kontakta Pure Ihram. E-post support@pureihraam.com, WhatsApp +46720131476, eller använd vårt kontaktformulär.'
+      ? 'Kontakta Pure Ihram. E-post pureihraam@gmail.com, WhatsApp +46720131476, eller använd vårt kontaktformulär.'
       : i18n.language === 'no'
-        ? 'Ta kontakt med Pure Ihram. E-post support@pureihraam.com, WhatsApp +46720131476, eller bruk kontaktskjemaet vårt.'
-        : 'Get in touch with Pure Ihram. Email support@pureihraam.com, WhatsApp +46720131476, or use our contact form.';
+        ? 'Ta kontakt med Pure Ihram. E-post pureihraam@gmail.com, WhatsApp +46720131476, eller bruk kontaktskjemaet vårt.'
+        : 'Get in touch with Pure Ihram. Email pureihraam@gmail.com, WhatsApp +46720131476, or use our contact form.';
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -121,8 +121,8 @@ const Contact = () => {
       icon: <Mail className="h-6 w-6 text-primary" />,
       title: t('contact.methods.email.title'),
       description: t('contact.methods.email.description'),
-      contact: "support@pureihraam.com",
-      action: "mailto:support@pureihraam.com",
+      contact: "pureihraam@gmail.com",
+      action: "mailto:pureihraam@gmail.com",
       onClick: () => trackEmailClick('contact_page'),
     },
     {

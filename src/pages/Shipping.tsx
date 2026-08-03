@@ -216,7 +216,7 @@ const Shipping = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="mailto:support@pureihraam.com"
+                href="mailto:pureihraam@gmail.com"
                 className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition-opacity"
               >
                 {t('shipping.support.email')}
