@@ -1,40 +1,17 @@
-## Problem
+## Goal
+Replace the public support address `support@pureihraam.com` with `pureihraam@gmail.com` everywhere it is shown to customers.
 
-The "Get the free Hajj 2026 Prep Pack" form fails because the `send-prep-pack` edge function still uses Resend, and the Resend key returns `401 invalid`. You've now added the Klaviyo secrets, so we can cut over to Klaviyo as planned.
+## Files to update (all occurrences of the old address)
+- Pages: `src/pages/Contact.tsx` (contact card + mailto + 3 meta descriptions), `src/pages/Shipping.tsx`, `src/pages/Returns.tsx`, `src/pages/Partners.tsx`
+- Components: `src/components/ui/footer.tsx`, `src/components/donation/GovernanceSection.tsx`, `src/components/donation/DonationFAQ.tsx`
+- Locales: `src/i18n/locales/en.json`, `sv.json`, `no.json` (4 keys each: contact error body, returns process description, returns photos, returns dialog success message)
+- Content: `src/content/blog/blog-data.json` + `buy-ihram-in-europe.{en,sv,no}.html` - here the sentence also says "note the double 'a' in support", which no longer applies, so that parenthetical gets removed
+- Prerender meta: `scripts/prerender.mjs` (contact description, 3 languages)
+- Edge functions (reply-to / order alerts / email footers): `supabase/functions/stripe-webhook/index.ts` (`ORDER_ALERT_EMAIL`), `supabase/functions/send-order-confirmation/index.ts` (bcc + footer link), `supabase/functions/send-shipping-adjustment-email/index.ts` (footer link)
 
-Detected secrets:
-- `KLAVIYO_PRIVATE_API_KEY` ✓
-- `KLAVIYO_Hajj_Guide_Subscribers` ✓ (will be read as the list ID)
+## Left unchanged
+The transactional *sender* addresses (`noreply@pureihram.com`) stay as they are - Resend can only send from a verified domain, so a Gmail address cannot be used as the "from". Only the address customers are told to write to changes.
 
-## Changes
-
-### 1. `supabase/functions/send-prep-pack/index.ts` - replace Resend with Klaviyo
-- Keep the idempotent insert into `hajj_prep_subscribers`.
-- Drop the Resend HTML/text email send.
-- POST to `https://a.klaviyo.com/api/events/` with `metric.name = "Requested Hajj Prep Pack"`, `profile.email = email`, and properties `{ lead_magnet, source, locale, pdf_url }`. Headers: `Authorization: Klaviyo-API-Key <KLAVIYO_PRIVATE_API_KEY>`, `revision: 2024-10-15`, `Content-Type: application/json`.
-- Subscribe the email to the list using `KLAVIYO_Hajj_Guide_Subscribers` via `POST /api/profile-subscription-bulk-create-jobs/` (consented, marketing channel = email).
-- Log Klaviyo response bodies on failure; return 502 with a clean message so the toast remains accurate. Insert still succeeds even if Klaviyo fails (so we don't lose the lead).
-
-### 2. `index.html` - load Klaviyo onsite SDK
-Add the two Klaviyo onsite `<script>` tags (public site key `TGazgN`) into `<head>` so `window.klaviyo` is available across the site for future flows/popups.
-
-### 3. `src/components/home/HajjPrepPackForm.tsx` - identify + track client-side
-After the existing PostHog calls, also push:
-```ts
-window.klaviyo?.push(['identify', { email: trimmedLower }]);
-window.klaviyo?.push(['track', 'Requested Hajj Prep Pack', {
-  lead_magnet: 'hajj_prep_pack', source: 'homepage', locale,
-}]);
-```
-Add a minimal `window.klaviyo` type declaration.
-
-## What you do in Klaviyo (one-time)
-1. Create a Flow triggered by metric **"Requested Hajj Prep Pack"** (or by "Added to List" on your list) that sends the Dua Pocket Guide email with the link `https://www.pureihram.com/hajj-2026-prep-pack.pdf`. Set delay to "Immediately".
-2. Verify your sending domain in Klaviyo so emails come from `pureihram.com`.
-
-## Out of scope
-- Order confirmation, contact form, shipping emails (still on Resend - untouched).
-- No DB schema changes.
-
-## Risk
-- If your Klaviyo Flow isn't published yet, the user gets the success toast but no email arrives. We'll still capture them in the DB and in Klaviyo as a profile, so no leads lost.
+## Technical notes
+- Straight string replacement; no logic or layout changes.
+- After the edits, run a repo-wide search to confirm zero remaining `support@pureihraam.com` hits, plus a typecheck.

@@ -428,8 +428,8 @@ const Partners = () => {
                   </div>
                   <div>
                     <p className="font-medium text-foreground">{t('partners.contact.email')}</p>
-                    <a href="mailto:support@pureihraam.com" className="text-primary hover:underline">
-                      support@pureihraam.com
+                    <a href="mailto:pureihraam@gmail.com" className="text-primary hover:underline">
+                      pureihraam@gmail.com
                     </a>
                   </div>
                 </div>

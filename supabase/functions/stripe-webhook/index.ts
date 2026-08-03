@@ -7,7 +7,7 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
-const ORDER_ALERT_EMAIL = "support@pureihraam.com";
+const ORDER_ALERT_EMAIL = "pureihraam@gmail.com";
 const LOW_STOCK_THRESHOLD_FALLBACK = 20;
 
 serve(async (req) => {
