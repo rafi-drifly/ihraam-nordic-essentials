@@ -112,7 +112,9 @@ const Footer = () => {
           <p className="text-muted-foreground text-sm">
             {t('footer.copyright')}
           </p>
+          <BuiltByDrifly />
         </div>
+
       </div>
     </footer>
   );
