@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Mail, Phone, MapPin } from "lucide-react";
+import BuiltByDrifly from "@/components/BuiltByDrifly";
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -112,7 +113,9 @@ const Footer = () => {
           <p className="text-muted-foreground text-sm">
             {t('footer.copyright')}
           </p>
+          <BuiltByDrifly />
         </div>
+
       </div>
     </footer>
   );
