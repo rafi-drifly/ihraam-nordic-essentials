@@ -11,7 +11,7 @@ const BuiltByDrifly = () => {
         href="https://driflysolutions.com"
         target="_blank"
         rel="noopener noreferrer"
-        className="hover:text-primary transition-colors"
+        className="text-foreground underline underline-offset-4 decoration-foreground/50 transition-colors hover:text-primary hover:decoration-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm"
       >
         Drifly Solutions
       </a>
