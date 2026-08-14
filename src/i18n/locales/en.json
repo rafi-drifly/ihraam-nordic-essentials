@@ -1,7 +1,7 @@
 {
   "banner": {
-    "newStock": "Travelling for Umrah? Ihram €19 + €9 flat EU shipping.",
-    "promoText": "Travelling for Umrah? Ihram €19 + €9 flat EU shipping."
+    "newStock": "Travelling for Umrah? Ihram €19 + €9 shipping within Sweden.",
+    "promoText": "Travelling for Umrah? Ihram €19 + €9 shipping within Sweden."
   },
   "nav": {
     "home": "Home",
@@ -48,7 +48,7 @@
       "description": "Lightweight microfiber Ihram for pilgrims across Sweden, the Nordics and the EU. Free Hajj & Umrah Prep Pack with every order.",
       "ctaShop": "Shop Ihram - From €19",
       "ctaPrepPack": "Explore Umrah & Hajj guides",
-      "microcopy": "€9 flat EU shipping  ·  Free pickup in Uppsala & Stockholm  ·  Free returns within 14 days",
+      "microcopy": "€9 shipping within Sweden  ·  Free pickup in Uppsala & Stockholm  ·  Free returns within 14 days",
       "imageAlt": "Pure white Ihram cloth laid flat"
     },
     "benefits": {
@@ -149,18 +149,18 @@
     },
     "shipping": {
       "delivery": "Sweden 3-7 days · Nordics & EU 7-14 days",
-      "express": "€9 flat shipping, one fee per order",
+      "express": "€9 shipping within Sweden, one fee per order",
       "returns": "14-day free returns - no questions asked",
       "secure": "Stripe-secure: Apple Pay, Google Pay, Klarna"
     },
     "offers": {
       "title": "Choose your Ihram",
-      "subtitle": "Single sets for Umrah, bundles for Hajj. €9 flat shipping across Europe.",
-      "shippingSuffix": "+ €9 shipping",
+      "subtitle": "Single sets for Umrah, bundles for Hajj. €9 shipping within Sweden.",
+      "shippingSuffix": "+ €9 in Sweden",
       "saveAmount": "Save €{{amount}}",
       "oneShippingFee": "One shipping fee for all sets",
       "footerLine": "Free with every order: Pure Ihram Hajj & Umrah Prep Pack - printable checklist, dua list, packing guide.",
-      "ariaLabel": "{{title}}, {{price}} euros plus €9 shipping. {{description}}",
+      "ariaLabel": "{{title}}, {{price}} euros plus €9 shipping within Sweden. {{description}}",
       "addedToCart": "Added to cart",
       "addedToCartDescription": "{{title}} added. Review your cart on the next page.",
       "single": {
@@ -203,7 +203,7 @@
   },
   "about": {
     "title": "About Pure Ihram",
-    "subtitle": "Pure Ihram was founded to make Ihram (Ihraam) affordable (€19 + €9 shipping) and accessible to all. This is not about profit but about earning ajr (reward) in the Akhirah by serving the Muslim community and making the sacred pilgrimage accessible to believers across Europe.",
+    "subtitle": "Pure Ihram was founded to make Ihram (Ihraam) affordable (€19 + €9 shipping in Sweden) and accessible to all. This is not about profit but about earning ajr (reward) in the Akhirah by serving the Muslim community and making the sacred pilgrimage accessible to believers across Europe.",
     "story": {
       "title": "Our Story",
       "p1": "Pure Ihram started with a simple question: why are European Muslims paying excessive prices for basic pilgrimage cloth? We founded Pure Ihram in Sweden to fix that - premium Ihram at €19, shipped fast across the EU.",
@@ -325,7 +325,7 @@
       },
       "shipping": {
         "question": "How long does shipping take?",
-        "answer": "Sweden: 3-7 business days, Nordic countries: 7-14 business days, EU: 7-14 business days. €9 flat shipping anywhere in Europe, or free pickup at Uppsala or Stockholm Mosque."
+        "answer": "Sweden: 3-7 business days, Nordic countries: 7-14 business days, EU: 7-14 business days. Shipping is €9 flat within Sweden. Outside Sweden we confirm the exact cost with you before we ship, or you can collect free at Uppsala or Stockholm Mosque."
       },
       "included": {
         "question": "What's included in the Ihram set?",
@@ -352,15 +352,15 @@
       "nordic": {
         "region": "Nordic Countries 🇳🇴🇩🇰🇫🇮",
         "timeframe": "7-14 business days",
-        "cost": "€9 flat",
-        "description": "Delivery to Norway, Denmark, and Finland. €9 flat, the same as Sweden.",
+        "cost": "Quoted before dispatch",
+        "description": "Delivery to Norway, Denmark, and Finland. We confirm the exact delivery cost with you before we ship.",
         "method": "International carriers"
       },
       "eu": {
         "region": "European Union 🇪🇺",
         "timeframe": "7-14 business days",
-        "cost": "€9 flat",
-        "description": "Delivery across EU countries. €9 flat, the same as Sweden.",
+        "cost": "Quoted before dispatch",
+        "description": "Delivery across EU countries. We confirm the exact delivery cost with you before we ship.",
         "method": "Tracked international shipping"
       }
     },
@@ -368,7 +368,7 @@
       "title": "Free pickup in Uppsala and Stockholm",
       "description": "Collect your order at Uppsala Mosque or Stockholm Mosque and pay no delivery fee at all. Choose pickup at checkout: a single set is €19 all in."
     },
-    "freeShipping": "€9 flat shipping anywhere in Europe, or collect free at Uppsala or Stockholm Mosque",
+    "freeShipping": "€9 flat within Sweden. Outside Sweden we quote the exact cost before dispatch, or collect free at Uppsala or Stockholm Mosque",
     "tip": {
       "title": "💡 Pilgrimage Planning Tip",
       "description": "Order your Ihram at least 3-4 weeks before travel to avoid last-minute stress and ensure you have time for any adjustments or replacements if needed."
@@ -389,7 +389,7 @@
       },
       "free": {
         "title": "Clear Pricing",
-        "description": "€9 flat. No surprise cost at checkout"
+        "description": "€9 flat within Sweden. Nothing charged abroad without your approval"
       }
     },
     "orderProcessing": {
@@ -466,9 +466,9 @@
     "fastDelivery": "Tracked Delivery",
     "reviews": "reviews",
     "bundleHeading": "Pure Ihram Sets - Simple bundles, fair delivery",
-    "bundleSubtitle": "Save more when you buy 2 or 3. €9 flat shipping, one fee per order.",
+    "bundleSubtitle": "Save more when you buy 2 or 3. One shipping fee per order.",
     "description": "Lightweight, comfortable Ihram cloth for your Hajj or Umrah journey. Soft microfiber, quick-dry, and easy to care for.",
-    "plusShipping": "+ €9 shipping",
+    "plusShipping": "+ €9 in Sweden",
     "stock": "Stock:",
     "available": "available",
     "quantity": "Quantity:",
@@ -487,12 +487,12 @@
       "youSave": "You save €{{amount}} vs singles",
       "save2Pack": "Save on shipping - one delivery instead of two.",
       "savingsVsSeparate": "Save €{{amount}} vs ordering {{qty}} singles separately ({{qty}} deliveries).",
-      "shippingNote": "€9 flat shipping anywhere in Europe. Free pickup at Uppsala and Stockholm Mosque.",
+      "shippingNote": "€9 shipping within Sweden. Outside Sweden we confirm the exact delivery cost with you before we ship. Free pickup at Uppsala and Stockholm Mosque.",
       "whyBundles": "Bundles help you save - one delivery instead of multiple.",
       "saveAmount": "Save €{{amount}}",
       "oneShippingFee": "One shipping fee for all sets",
       "chooseYourIhram": "Choose your Ihram",
-      "chooseSubtitle": "Single sets for Umrah, bundles for Hajj. €9 flat shipping across Europe.",
+      "chooseSubtitle": "Single sets for Umrah, bundles for Hajj. €9 shipping within Sweden.",
       "shopNow": "Shop now",
       "shopNPack": "Shop {{label}}",
       "descSingle": "One complete set (Izaar + Ridaa). Ideal for Umrah or first-time buyers.",
@@ -501,7 +501,7 @@
       "trustSoft": "Soft, breathable, suitable for Hajj & Umrah",
       "trustShipping": "Ships from Sweden",
       "trustMission": "Transparent mission",
-      "shippingBullet": "€9 flat shipping"
+      "shippingBullet": "€9 shipping within Sweden"
     },
     "destination": {
       "label": "Delivering to:",
@@ -753,7 +753,7 @@
       "title": "Based in Europe",
       "description": "We are a Sweden-based supplier serving mosques and agencies across Europe. Benefit from shorter shipping times, reliable quality control, and local customer support.",
       "features": {
-        "shipping": "Flat €9 shipping across all EU countries",
+        "shipping": "One consolidated shipment for bulk orders across the EU",
         "quality": "European quality standards",
         "support": "Local customer support in English & Swedish"
       },
@@ -812,7 +812,7 @@
       "seQty1": "Add 1 more for the 2-Pack - Best Value",
       "seQty2": "Add 1 more for the 3-Pack - Most Popular",
       "noQty1": "Add 1 more - shipping stays the same (Best Value 2-Pack)",
-      "noQty2": "Buying 3? The 3-Pack is €55 + €9 shipping - best value per set.",
+      "noQty2": "Buying 3? The 3-Pack is €55 - best value per set.",
       "switchTo2Pack": "Switch to 2-Pack",
       "switchTo3Pack": "Switch to 3-Pack"
     },

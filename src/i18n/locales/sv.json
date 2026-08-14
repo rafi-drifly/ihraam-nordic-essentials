@@ -1,7 +1,7 @@
 {
   "banner": {
-    "newStock": "Ska du resa på Umrah? Ihram €19 + €9 fast frakt inom EU.",
-    "promoText": "Ska du resa på Umrah? Ihram €19 + €9 fast frakt inom EU."
+    "newStock": "Ska du resa på Umrah? Ihram €19 + €9 frakt inom Sverige.",
+    "promoText": "Ska du resa på Umrah? Ihram €19 + €9 frakt inom Sverige."
   },
   "nav": {
     "home": "Hem",
@@ -48,7 +48,7 @@
       "description": "Lätt mikrofiber-Ihram för pilgrimer i Sverige, Norden och hela EU. Gratis förberedelsepaket för Hajj och Umrah med varje beställning.",
       "ctaShop": "Handla Ihram - Från €19",
       "ctaPrepPack": "Utforska Umrah- och Hajj-guider",
-      "microcopy": "€9 fast frakt inom EU  ·  Gratis avhämtning i Uppsala & Stockholm  ·  Fri retur inom 14 dagar",
+      "microcopy": "€9 frakt inom Sverige  ·  Gratis avhämtning i Uppsala & Stockholm  ·  Fri retur inom 14 dagar",
       "imageAlt": "Ren vit Ihram-duk utlagd platt"
     },
     "benefits": {
@@ -149,18 +149,18 @@
     },
     "shipping": {
       "delivery": "Sverige 3-7 dagar · Norden & EU 7-14 dagar",
-      "express": "Expressfrakt i kassan",
+      "express": "€9 frakt inom Sverige, en avgift per beställning",
       "returns": "14 dagars fri retur - inga frågor ställs",
       "secure": "Stripe-säker: Apple Pay, Google Pay, Klarna"
     },
     "offers": {
       "title": "Välj din Ihram",
-      "subtitle": "Enskilda set för Umrah, paket för Hajj. €9 fast frakt inom hela Europa.",
-      "shippingSuffix": "+ €9 frakt",
+      "subtitle": "Enskilda set för Umrah, paket för Hajj. €9 frakt inom Sverige.",
+      "shippingSuffix": "+ €9 i Sverige",
       "saveAmount": "Spara €{{amount}}",
       "oneShippingFee": "En fraktavgift för alla set",
       "footerLine": "Gratis med varje beställning: Pure Ihrams förberedelsepaket för Hajj och Umrah - utskrivbar checklista, dua-lista, packguide.",
-      "ariaLabel": "{{title}}, {{price}} euro plus €9 frakt. {{description}}",
+      "ariaLabel": "{{title}}, {{price}} euro plus €9 frakt inom Sverige. {{description}}",
       "addedToCart": "Tillagd i varukorgen",
       "addedToCartDescription": "{{title}} har lagts till. Granska din varukorg på nästa sida.",
       "single": {
@@ -325,7 +325,7 @@
       },
       "shipping": {
         "question": "Hur lång tid tar leveransen?",
-        "answer": "Sverige: 3-7 arbetsdagar, Nordiska länder: 7-14 arbetsdagar, EU: 7-14 arbetsdagar. €9 fast frakt i hela Europa, eller gratis avhämtning vid Uppsala eller Stockholms moské."
+        "answer": "Sverige: 3-7 arbetsdagar, Nordiska länder: 7-14 arbetsdagar, EU: 7-14 arbetsdagar. Frakten är €9 fast inom Sverige. Utanför Sverige bekräftar vi den exakta kostnaden med dig innan vi skickar, eller så kan du hämta gratis vid Uppsala eller Stockholms moské."
       },
       "included": {
         "question": "Vad ingår i Ihram-setet?",
@@ -352,15 +352,15 @@
       "nordic": {
         "region": "Nordiska Länder 🇳🇴🇩🇰🇫🇮",
         "timeframe": "7-14 arbetsdagar",
-        "cost": "€9 fast",
-        "description": "Leverans till Norge, Danmark och Finland. €9 fast, samma som Sverige.",
+        "cost": "Offereras före leverans",
+        "description": "Leverans till Norge, Danmark och Finland. Vi bekräftar den exakta fraktkostnaden med dig innan vi skickar.",
         "method": "Internationella transportörer"
       },
       "eu": {
         "region": "Europeiska Unionen 🇪🇺",
         "timeframe": "7-14 arbetsdagar",
-        "cost": "€9 fast",
-        "description": "Leverans till EU-länder. €9 fast, samma som Sverige.",
+        "cost": "Offereras före leverans",
+        "description": "Leverans till EU-länder. Vi bekräftar den exakta fraktkostnaden med dig innan vi skickar.",
         "method": "Spårad internationell frakt"
       }
     },
@@ -368,7 +368,7 @@
       "title": "Gratis avhämtning i Uppsala och Stockholm",
       "description": "Hämta din beställning vid Uppsala moské eller Stockholms moské och betala ingen fraktavgift alls. Välj avhämtning i kassan: ett set kostar €19 totalt."
     },
-    "freeShipping": "€9 fast frakt i hela Europa, eller hämta gratis vid Uppsala eller Stockholms moské",
+    "freeShipping": "€9 fast inom Sverige. Utanför Sverige lämnar vi exakt pris före leverans, eller hämta gratis vid Uppsala eller Stockholms moské",
     "tip": {
       "title": "💡 Tips för Pilgrimsplanering",
       "description": "Beställ din Ihram minst 3-4 veckor före resan för att undvika stress i sista minuten och säkerställa att du har tid för eventuella justeringar eller ersättningar om det behövs."
@@ -389,7 +389,7 @@
       },
       "free": {
         "title": "Tydlig Prissättning",
-        "description": "€9 fast. Inga överraskningar i kassan"
+        "description": "€9 fast inom Sverige. Inget debiteras utomlands utan ditt godkännande"
       }
     },
     "orderProcessing": {
@@ -466,9 +466,9 @@
     "fastDelivery": "Spårad Leverans",
     "reviews": "recensioner",
     "bundleHeading": "Pure Ihram Set - Enkla paket, rättvis leverans",
-    "bundleSubtitle": "Spara mer när du köper 2 eller 3. €9 fast frakt, en avgift per beställning.",
+    "bundleSubtitle": "Spara mer när du köper 2 eller 3. En fraktavgift per beställning.",
     "description": "Håll dig sval, ren och bekväm på din heliga resa. Pure Ihram Hajj Handduksset kombinerar Sunnah enkelhet med modern mikrofiber prestanda - mjuk, absorberande och gjord för att hålla genom varje steg av Hajj eller Umrah.",
-    "plusShipping": "+ €9 frakt",
+    "plusShipping": "+ €9 i Sverige",
     "stock": "Lager:",
     "available": "tillgängliga",
     "quantity": "Antal:",
@@ -487,12 +487,12 @@
       "youSave": "Du sparar €{{amount}} jämfört med enskilda",
       "save2Pack": "Spara på frakt - en leverans istället för två.",
       "savingsVsSeparate": "Spara €{{amount}} mot att beställa {{qty}} enskilda separat ({{qty}} leveranser).",
-      "shippingNote": "€9 fast frakt i hela Europa. Gratis avhämtning vid Uppsala och Stockholms moské.",
+      "shippingNote": "€9 frakt inom Sverige. Utanför Sverige bekräftar vi den exakta fraktkostnaden med dig innan vi skickar. Gratis avhämtning vid Uppsala och Stockholms moské.",
       "whyBundles": "Paket hjälper dig spara - en leverans istället för flera.",
       "saveAmount": "Spara €{{amount}}",
       "oneShippingFee": "En fraktavgift för alla set",
       "chooseYourIhram": "Välj din Ihram",
-      "chooseSubtitle": "Enkla set för Umrah, paket för Hajj. €9 fast frakt inom hela Europa.",
+      "chooseSubtitle": "Enkla set för Umrah, paket för Hajj. €9 frakt inom Sverige.",
       "shopNow": "Handla nu",
       "shopNPack": "Handla {{label}}",
       "descSingle": "Ett komplett set (Izaar + Ridaa). Perfekt för Umrah eller förstagångsköpare.",
@@ -501,7 +501,7 @@
       "trustSoft": "Mjukt, andningsbart, lämpligt för Hajj & Umrah",
       "trustShipping": "Skickas från Sverige",
       "trustMission": "Transparent uppdrag",
-      "shippingBullet": "€9 fast frakt"
+      "shippingBullet": "€9 frakt inom Sverige"
     },
     "destination": {
       "label": "Levereras till:",
@@ -753,7 +753,7 @@
       "title": "Baserad i Europa",
       "description": "Vi är en Sverige-baserad leverantör som betjänar moskéer och byråer i hela Europa. Dra nytta av kortare leveranstider, pålitlig kvalitetskontroll och lokal kundsupport.",
       "features": {
-        "shipping": "Fast frakt på €9 i alla EU-länder",
+        "shipping": "En samlad leverans för bulkbeställningar inom EU",
         "quality": "Europeisk kvalitetsstandard",
         "support": "Lokal kundsupport på engelska & svenska"
       },
@@ -812,7 +812,7 @@
       "seQty1": "Lägg till 1 till för 2-Pack - Bäst Värde",
       "seQty2": "Lägg till 1 till för 3-Pack - Mest Populär",
       "noQty1": "Lägg till 1 till - frakten är densamma (Bäst Värde 2-Pack)",
-      "noQty2": "Köper du 3? 3-pack kostar €55 + €9 frakt - bäst värde per set.",
+      "noQty2": "Köper du 3? 3-pack kostar €55 - bäst värde per set.",
       "switchTo2Pack": "Byt till 2-Pack",
       "switchTo3Pack": "Byt till 3-Pack"
     },
