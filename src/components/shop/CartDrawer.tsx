@@ -4,6 +4,7 @@ import { ShoppingCart, Minus, Plus, Trash2, Gift } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { Badge } from "@/components/ui/badge";
 import { calculateShipping } from "@/lib/shipping";
+import { getBundlePrice } from "@/lib/bundles";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { trackEvent } from "@/lib/analytics";
@@ -14,7 +15,7 @@ interface CartDrawerProps {
 }
 
 export const CartDrawer = ({ onCheckout, checkingOut = false }: CartDrawerProps) => {
-  const { items, updateQuantity, removeItem, addItem, getTotalItems, getTotalPrice } = useCart();
+  const { items, updateQuantity, removeItem, addItem, getTotalItems } = useCart();
   const { t } = useTranslation();
   const location = useLocation();
 
@@ -27,7 +28,8 @@ export const CartDrawer = ({ onCheckout, checkingOut = false }: CartDrawerProps)
 
   const totalItems = getTotalItems();
   const shipping = calculateShipping(totalItems);
-  const subtotal = getTotalPrice();
+  // Bundle price, matching the cart page and what Stripe charges.
+  const subtotal = getBundlePrice(totalItems);
 
   const destLabel = t('shop.destination.sweden');
 

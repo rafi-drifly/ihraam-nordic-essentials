@@ -21,7 +21,7 @@ const Cart = () => {
   const { t, i18n } = useTranslation();
   const location = useLocation();
   const { toast } = useToast();
-  const { items, updateQuantity, removeItem, getTotalItems, getTotalPrice, addItem, clearCart } = useCart();
+  const { items, updateQuantity, removeItem, getTotalItems, addItem, clearCart } = useCart();
   const [selectedDonation, setSelectedDonation] = useState(0);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
   const [deliveryMethod, setDeliveryMethod] = useState<'ship' | 'uppsala-mosque' | 'stockholm-mosque'>('ship');
@@ -41,7 +41,9 @@ const Cart = () => {
   const totalItems = getTotalItems();
   const isPickup = deliveryMethod !== 'ship';
   const shipping = isPickup ? 0 : calculateShipping(totalItems);
-  const subtotal = getTotalPrice();
+  // The bundle price, not the per-unit sum: checkout charges the bundle, so
+  // showing 19 x qty here quoted the customer a total they never paid.
+  const subtotal = getBundlePrice(totalItems);
 
   const getTotalWithDonation = () => subtotal + shipping + selectedDonation;
 
@@ -59,7 +61,7 @@ const Cart = () => {
     // What Stripe will actually charge: bundle price (not the per-unit sum),
     // plus delivery and any donation. Read back on the confirmation page.
     stashPendingOrder({
-      total: getBundlePrice(totalItems) + shipping + selectedDonation,
+      total: getTotalWithDonation(),
       item_count: totalItems,
     });
     setCheckoutLoading(true);

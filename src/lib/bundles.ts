@@ -1,3 +1,9 @@
+// Prices come from the module the checkout function charges from, so the cards,
+// the cart and Stripe cannot drift apart. Change prices there, not here.
+export { UNIT_PRICE, getBundlePrice, getBundleType } from '../../supabase/functions/create-checkout/pricing';
+
+import { getBundlePrice } from '../../supabase/functions/create-checkout/pricing';
+
 export interface Bundle {
   qty: number;
   label: string;
@@ -8,9 +14,6 @@ export interface Bundle {
   badgeVariant: 'default' | 'secondary' | 'destructive' | 'outline' | null;
 }
 
-// Single unit price = €19
-export const UNIT_PRICE = 19;
-
 // Bundles (shipping is base €9 for all of Europe).
 // `savings` is shipping-inclusive vs. ordering singles separately:
 //   2-Pack: (2 × (19+9)) - (37+9) = 56 - 46 = €10
@@ -19,37 +22,18 @@ export const UNIT_PRICE = 19;
 // homepage ProductOffersBlock. Keep them in sync.
 export const BUNDLES: Bundle[] = [
   {
-    qty: 1, label: 'Single', totalPrice: 19, shipping: 9, savings: 0,
+    qty: 1, label: 'Single', totalPrice: getBundlePrice(1), shipping: 9, savings: 0,
     badge: null, badgeVariant: null,
   },
   {
-    qty: 2, label: '2-Pack', totalPrice: 37, shipping: 9, savings: 10,
+    qty: 2, label: '2-Pack', totalPrice: getBundlePrice(2), shipping: 9, savings: 10,
     badge: 'Most Popular', badgeVariant: 'default',
   },
   {
-    qty: 3, label: '3-Pack', totalPrice: 55, shipping: 9, savings: 20,
+    qty: 3, label: '3-Pack', totalPrice: getBundlePrice(3), shipping: 9, savings: 20,
     badge: 'Best Value', badgeVariant: 'secondary',
   },
 ];
-
-/**
- * Get the bundle type string for metadata
- */
-export function getBundleType(qty: number): string {
-  if (qty >= 3) return '3-pack';
-  if (qty === 2) return '2-pack';
-  return 'single';
-}
-
-/**
- * Get the bundle price for a given quantity.
- */
-export function getBundlePrice(qty: number): number {
-  const bundle = BUNDLES.find(b => b.qty === qty);
-  if (bundle) return bundle.totalPrice;
-  if (qty > 3) return Math.round((55 / 3) * qty);
-  return UNIT_PRICE * qty;
-}
 
 /**
  * Shipping disclosure text for non-SE countries

@@ -1,6 +1,9 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import Stripe from "https://esm.sh/stripe@18.5.0";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.57.2";
+// Bundle prices live here and are shared with the client, so the cart and
+// Stripe cannot quote different totals. Change prices in that file.
+import { getBundlePrice } from "./pricing.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -159,9 +162,20 @@ serve(async (req) => {
     if (totalQuantity === 2) bundleName = `${product.name} - ${labels.twoPack}`;
     else if (totalQuantity >= 3) bundleName = `${product.name} - ${labels.threePack}`;
 
-    const totalPriceCents = bundlePrice
-      ? Math.round(bundlePrice * 100)
-      : Math.round(product.price * totalQuantity * 100);
+    // Priced server-side from the quantity. `bundlePrice` arrives from the
+    // browser and used to be charged verbatim, which meant (a) the navbar
+    // checkout, which sends no bundlePrice, silently charged full price and
+    // skipped the advertised bundle discount, and (b) a crafted request could
+    // name its own price. The client value is now only compared, never trusted.
+    const bundleTotal = getBundlePrice(totalQuantity);
+    const totalPriceCents = Math.round(bundleTotal * 100);
+    if (bundlePrice !== undefined && bundlePrice !== null && Math.round(bundlePrice * 100) !== totalPriceCents) {
+      console.warn("Client bundlePrice disagrees with server price; using server price.", {
+        clientBundlePrice: bundlePrice,
+        serverBundlePrice: bundleTotal,
+        totalQuantity,
+      });
+    }
 
     const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [
       {
