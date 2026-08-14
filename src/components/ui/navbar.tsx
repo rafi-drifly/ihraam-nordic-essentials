@@ -8,6 +8,9 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useShippingDestination } from "@/hooks/useShippingDestination";
+import { calculateShipping } from "@/lib/shipping";
+import { getBundlePrice } from "@/lib/bundles";
+import { stashPendingOrder } from "@/lib/pendingOrder";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,7 +49,18 @@ const Navbar = () => {
     setCheckingOut(true);
     try {
       console.log('Starting checkout with items:', cartItems);
-      
+
+      // Stash the totals before redirecting: this path also wipes the cart from
+      // localStorage below, so nothing is left to reconstruct them from.
+      const checkoutQty = cartItems.reduce(
+        (sum: number, item: { quantity?: number }) => sum + (item.quantity ?? 0),
+        0,
+      );
+      stashPendingOrder({
+        total: getBundlePrice(checkoutQty) + calculateShipping(checkoutQty, destination),
+        item_count: checkoutQty,
+      });
+
       const { data, error } = await supabase.functions.invoke('create-checkout', {
         body: { 
           items: cartItems.map((item: any) => ({ id: item.id, quantity: item.quantity })),

@@ -11,7 +11,7 @@ import { useCart } from "@/hooks/useCart";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { EUROPE_COUNTRIES, COUNTRY_NAMES, countryFlag, requiresShippingDisclosure, type EuropeCountry } from "@/lib/shipping";
+import { EUROPE_COUNTRIES, COUNTRY_NAMES, countryFlag, requiresShippingDisclosure, calculateShipping, type EuropeCountry } from "@/lib/shipping";
 import { SHIPPING_DISCLOSURE, CUSTOMS_DISCLOSURE } from "@/lib/bundles";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import ihraamProduct from "@/assets/ihraam-product.jpg";
@@ -25,6 +25,7 @@ import detail8 from "@/assets/product/detail-8.avif";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { BUNDLES, getBundlePrice, type Bundle } from "@/lib/bundles";
 import { trackEvent, trackViewItem, trackAddToCart, trackBeginCheckout } from "@/lib/analytics";
+import { stashPendingOrder } from "@/lib/pendingOrder";
 
 interface Product {
   id: string;
@@ -107,6 +108,10 @@ const Shop = () => {
   const handleCheckout = async () => {
     if (!product || checkoutLoading) return;
     trackBeginCheckout({ total: bundle.totalPrice, item_count: bundle.qty });
+    stashPendingOrder({
+      total: bundle.totalPrice + calculateShipping(bundle.qty, shippingCountry),
+      item_count: bundle.qty,
+    });
     setCheckoutLoading(true);
     try {
       const checkoutItems = [{ id: product.id, quantity: bundle.qty }];

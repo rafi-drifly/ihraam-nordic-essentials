@@ -61,15 +61,18 @@ export function trackBeginCheckout(cart: {
 
 export function trackPurchase(order: {
   order_id: string;
-  total: number;
-  item_count: number;
+  total?: number;
+  item_count?: number;
   currency?: string;
   payment_method?: string;
 }) {
   posthog.capture('purchase', {
     order_id: order.order_id,
-    revenue: order.total,
-    item_count: order.item_count,
+    // Omitted rather than sent as 0 when the totals could not be recovered.
+    // A zero drags reported revenue and AOV down and looks like a real sale of
+    // nothing, which is exactly what the previously hardcoded 0 did.
+    ...(typeof order.total === 'number' ? { revenue: order.total } : {}),
+    ...(typeof order.item_count === 'number' ? { item_count: order.item_count } : {}),
     currency: order.currency || 'EUR',
     payment_method: order.payment_method || 'unknown',
   });

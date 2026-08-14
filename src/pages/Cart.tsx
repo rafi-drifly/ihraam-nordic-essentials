@@ -12,6 +12,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import DonationSection from "@/components/shop/DonationSection";
 import { trackEvent, trackBeginCheckout } from "@/lib/analytics";
+import { stashPendingOrder } from "@/lib/pendingOrder";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import SEOHead from "@/components/SEOHead";
 
@@ -55,6 +56,12 @@ const Cart = () => {
   const handleCheckout = async () => {
     if (items.length === 0 || checkoutLoading) return;
     trackBeginCheckout({ total: subtotal, item_count: totalItems });
+    // What Stripe will actually charge: bundle price (not the per-unit sum),
+    // plus delivery and any donation. Read back on the confirmation page.
+    stashPendingOrder({
+      total: getBundlePrice(totalItems) + shipping + selectedDonation,
+      item_count: totalItems,
+    });
     setCheckoutLoading(true);
     try {
       const checkoutItems = items.map(item => ({ id: item.id, quantity: item.quantity }));

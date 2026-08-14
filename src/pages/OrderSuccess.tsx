@@ -1,10 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle, Package, ArrowRight, Mail } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { trackPurchase } from "@/lib/analytics";
+import { takePendingOrder } from "@/lib/pendingOrder";
 import SEOHead from "@/components/SEOHead";
 
 
@@ -13,17 +14,27 @@ const PaymentSuccess = () => {
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get('session_id');
   const { clearCart } = useCart();
+  const reportedSessionRef = useRef<string | null>(null);
 
   useEffect(() => {
-    if (sessionId) {
-      clearCart();
-      trackPurchase({
-        order_id: sessionId,
-        total: 0,
-        item_count: 1,
-        payment_method: 'stripe',
-      });
-    }
+    if (!sessionId) return;
+    // One report per Stripe session, even if this effect runs again (remount,
+    // StrictMode double-invoke, or a future dependency regaining instability).
+    if (reportedSessionRef.current === sessionId) return;
+    reportedSessionRef.current = sessionId;
+
+    // Totals were stashed when checkout started; the basket itself is gone by
+    // the time Stripe sends the customer back here.
+    const pending = takePendingOrder();
+    trackPurchase({
+      order_id: sessionId,
+      total: pending?.total,
+      item_count: pending?.item_count,
+      currency: pending?.currency,
+      payment_method: 'stripe',
+    });
+
+    clearCart();
   }, [sessionId, clearCart]);
 
   return (
