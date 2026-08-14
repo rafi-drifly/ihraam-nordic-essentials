@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Check, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import posthog from "posthog-js";
+import { identifyUser, trackEvent } from "@/lib/analytics";
 
 declare global {
   interface Window {
@@ -41,12 +41,11 @@ export const HajjPrepPackForm = () => {
 
     setSubmitting(true);
     try {
-      posthog.identify(trimmedLower, {
-        email: trimmedLower,
+      identifyUser(trimmedLower, {
         lead_magnet: "hajj_prep_pack",
         first_seen_at: new Date().toISOString(),
       });
-      posthog.capture("hajj_prep_pack_requested", {
+      trackEvent("hajj_prep_pack_requested", {
         email: trimmedLower,
         lead_magnet: "hajj_prep_pack",
         source: "homepage",
@@ -68,7 +67,7 @@ export const HajjPrepPackForm = () => {
       setEmail("");
     } catch (err) {
       console.error("Prep pack signup failed:", err);
-      posthog.capture("hajj_prep_pack_request_failed", {
+      trackEvent("hajj_prep_pack_request_failed", {
         email: trimmedLower,
         error: err instanceof Error ? err.message : String(err),
       });

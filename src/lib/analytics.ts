@@ -1,5 +1,31 @@
 import posthog from 'posthog-js'
 
+/**
+ * Hostnames whose traffic is real. Everything else - localhost, Lovable
+ * preview URLs, any branch deploy - must stay out of the production PostHog
+ * project, which is the only project this app is ever configured with.
+ */
+const ANALYTICS_HOSTNAMES = ['pureihram.com', 'www.pureihram.com'];
+
+/**
+ * Checked at call time rather than module load so it can be exercised in tests
+ * and so a page cannot get stuck with a stale answer.
+ *
+ * Gating on the hostname rather than `import.meta.env.PROD` deliberately: the
+ * repo also has a `build:dev` script, so build mode does not reliably mean
+ * "this is the live storefront", whereas the domain does.
+ */
+export function isAnalyticsEnabled(): boolean {
+  if (typeof window === 'undefined') return false;
+  return ANALYTICS_HOSTNAMES.includes(window.location.hostname);
+}
+
+/** Single choke point. Nothing in this file should call posthog.capture directly. */
+function capture(event: string, properties?: Record<string, unknown>) {
+  if (!isAnalyticsEnabled()) return;
+  posthog.capture(event, properties ?? {});
+}
+
 // Backward-compatible wrapper for existing call sites
 type LegacyEventName =
   | 'view_bundle_option'
@@ -11,7 +37,7 @@ type LegacyEventName =
   | 'purchase_completed';
 
 export function trackEvent(event: LegacyEventName | string, data?: Record<string, unknown>) {
-  posthog.capture(event, data ?? {});
+  capture(event, data ?? {});
 }
 
 // --- ECOMMERCE EVENTS ---
@@ -22,7 +48,7 @@ export function trackViewItem(product: {
   price: number;
   currency?: string;
 }) {
-  posthog.capture('view_item', {
+  capture('view_item', {
     product_id: product.id,
     product_name: product.name,
     price: product.price,
@@ -37,7 +63,7 @@ export function trackAddToCart(product: {
   quantity: number;
   currency?: string;
 }) {
-  posthog.capture('add_to_cart', {
+  capture('add_to_cart', {
     product_id: product.id,
     product_name: product.name,
     price: product.price,
@@ -52,7 +78,7 @@ export function trackBeginCheckout(cart: {
   item_count: number;
   currency?: string;
 }) {
-  posthog.capture('begin_checkout', {
+  capture('begin_checkout', {
     cart_total: cart.total,
     item_count: cart.item_count,
     currency: cart.currency || 'EUR',
@@ -66,7 +92,7 @@ export function trackPurchase(order: {
   currency?: string;
   payment_method?: string;
 }) {
-  posthog.capture('purchase', {
+  capture('purchase', {
     order_id: order.order_id,
     // Omitted rather than sent as 0 when the totals could not be recovered.
     // A zero drags reported revenue and AOV down and looks like a real sale of
@@ -81,25 +107,25 @@ export function trackPurchase(order: {
 // --- CONTACT & SUPPORT EVENTS ---
 
 export function trackWhatsAppClick(context: string) {
-  posthog.capture('whatsapp_click', { click_context: context });
+  capture('whatsapp_click', { click_context: context });
 }
 
 export function trackEmailClick(context: string) {
-  posthog.capture('email_click', { click_context: context });
+  capture('email_click', { click_context: context });
 }
 
 export function trackPhoneClick(context: string) {
-  posthog.capture('phone_click', { click_context: context });
+  capture('phone_click', { click_context: context });
 }
 
 export function trackContactFormSubmit(subject?: string) {
-  posthog.capture('contact_form_submit', { subject: subject || 'general' });
+  capture('contact_form_submit', { subject: subject || 'general' });
 }
 
 // --- CONTENT & NAVIGATION EVENTS ---
 
 export function trackBlogCtaClick(blogSlug: string, ctaType: string) {
-  posthog.capture('blog_cta_click', { blog_slug: blogSlug, cta_type: ctaType });
+  capture('blog_cta_click', { blog_slug: blogSlug, cta_type: ctaType });
 }
 
 export function trackBlogView(post: {
@@ -109,7 +135,7 @@ export function trackBlogView(post: {
   locale: string;
   readTime?: number;
 }) {
-  posthog.capture('blog_view', {
+  capture('blog_view', {
     blog_slug: post.slug,
     blog_title: post.title,
     category: post.category,
@@ -123,37 +149,37 @@ export function trackBlogView(post: {
  * automatic $pageview). Gives clean per-page-type analytics + locale.
  */
 export function trackPageView(details: { path: string; pageType: string; locale: string }) {
-  posthog.capture('page_view', {
+  capture('page_view', {
     path: details.path,
     page_type: details.pageType,
     locale: details.locale,
   });
-  posthog.register({ locale: details.locale });
+  if (isAnalyticsEnabled()) posthog.register({ locale: details.locale });
 }
 
 export function trackShippingPageView() {
-  posthog.capture('shipping_page_view');
+  capture('shipping_page_view');
 }
 
 export function trackGuideToShopClick(source: string) {
-  posthog.capture('guide_to_shop_click', { source });
+  capture('guide_to_shop_click', { source });
 }
 
 // --- B2B EVENTS ---
 
 export function trackPartnerPageView() {
-  posthog.capture('partner_page_view');
+  capture('partner_page_view');
 }
 
 export function trackMosqueSupportClick() {
-  posthog.capture('mosque_support_click');
+  capture('mosque_support_click');
 }
 
 export function trackGroupEnquirySubmit(details?: {
   organization_type?: string;
   estimated_quantity?: number;
 }) {
-  posthog.capture('group_enquiry_submit', {
+  capture('group_enquiry_submit', {
     organization_type: details?.organization_type || 'unknown',
     estimated_quantity: details?.estimated_quantity || 0,
   });
@@ -162,9 +188,13 @@ export function trackGroupEnquirySubmit(details?: {
 // --- USER IDENTIFICATION ---
 
 export function identifyUser(email: string, properties?: Record<string, any>) {
+  // Identifying off-production would create a real person profile from a
+  // developer's test email, so this is gated like every other call.
+  if (!isAnalyticsEnabled()) return;
   posthog.identify(email, { email, ...properties });
 }
 
 export function resetUser() {
+  if (!isAnalyticsEnabled()) return;
   posthog.reset();
 }
