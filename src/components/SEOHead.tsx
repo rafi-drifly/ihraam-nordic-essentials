@@ -59,12 +59,12 @@ const SEOHead = ({ title, description, path, jsonLd, noindex, ogType, image }: S
 
   const getDefaultDescription = () => {
     if (langKey === 'sv') {
-      return 'Premium Ihram-tyg för Hajj och Umrah. Från €19. Levereras från Sverige, snabb leverans i hela Europa. Betrodd av pilgrimer inför Hajj 2026.';
+      return 'Premium Ihram-tyg för Umrah och Hajj. €19 + €9 fast frakt. Skickas från Sverige på 3-7 arbetsdagar, eller gratis avhämtning i Uppsala och Stockholm.';
     }
     if (langKey === 'no') {
-      return 'Premium Ihram-stoff for Hajj og Umrah. Fra €19. Sendes fra Sverige, rask levering i hele Europa. Foretrukket av pilegrimer for Hajj 2026.';
+      return 'Premium Ihram-stoff for Umrah og Hajj. €19 + €9 fast frakt. Sendes fra Sverige, eller gratis henting i Uppsala og Stockholm.';
     }
-    return 'Premium Ihram cloth for Hajj & Umrah. From €19. Ships from Sweden, fast delivery across Europe. Trusted by pilgrims for Hajj 2026.';
+    return 'Premium Ihram cloth for Umrah & Hajj. €19 + €9 flat shipping. Ships from Sweden in 3-7 days, or collect free in Uppsala and Stockholm.';
   };
 
   const finalTitle = title || getDefaultTitle();

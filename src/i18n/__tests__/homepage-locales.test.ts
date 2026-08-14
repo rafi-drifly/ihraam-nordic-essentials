@@ -35,7 +35,7 @@ type Locale = "en" | "sv" | "no";
 // guides, and final CTA.
 const EXPECTATIONS: Record<Locale, Array<{ key: string; mustContain: string }>> = {
   en: [
-    { key: "home.hero.title", mustContain: "Premium Ihram for Hajj" },
+    { key: "home.hero.title", mustContain: "Premium Ihram for Umrah" },
     { key: "home.hero.ctaShop", mustContain: "Shop Ihram" },
     { key: "home.offers.title", mustContain: "Choose your Ihram" },
     { key: "home.offers.twoPack.cta", mustContain: "Shop 2-Pack" },
@@ -50,7 +50,7 @@ const EXPECTATIONS: Record<Locale, Array<{ key: string; mustContain: string }>> 
     { key: "home.finalCta.title", mustContain: "Ready for Hajj" },
   ],
   sv: [
-    { key: "home.hero.title", mustContain: "Premium Ihram för Hajj" },
+    { key: "home.hero.title", mustContain: "Premium Ihram för Umrah" },
     { key: "home.hero.ctaShop", mustContain: "Handla Ihram" },
     { key: "home.offers.title", mustContain: "Välj din Ihram" },
     { key: "home.offers.twoPack.cta", mustContain: "Handla 2-Pack" },
@@ -65,7 +65,7 @@ const EXPECTATIONS: Record<Locale, Array<{ key: string; mustContain: string }>> 
     { key: "home.finalCta.title", mustContain: "Redo för Hajj" },
   ],
   no: [
-    { key: "home.hero.title", mustContain: "Premium Ihram for Hajj" },
+    { key: "home.hero.title", mustContain: "Premium Ihram for Umrah" },
     { key: "home.hero.ctaShop", mustContain: "Handle Ihram" },
     { key: "home.offers.title", mustContain: "Velg din Ihram" },
     { key: "home.offers.twoPack.cta", mustContain: "Handle 2-Pack" },

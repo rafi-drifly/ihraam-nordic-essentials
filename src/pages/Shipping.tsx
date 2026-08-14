@@ -121,6 +121,16 @@ const Shipping = () => {
               </Card>
             ))}
           </div>
+
+          {/* Free mosque pickup: cheaper than any shipped option, so say it here. */}
+          <div className="mt-6 rounded-lg border border-primary/30 bg-primary/5 p-6 text-center">
+            <p className="text-lg font-semibold text-primary mb-1">
+              {t('shipping.pickup.title', 'Free pickup in Uppsala and Stockholm')}
+            </p>
+            <p className="text-muted-foreground">
+              {t('shipping.pickup.description', 'Collect your order at Uppsala Mosque or Stockholm Mosque and pay no delivery fee at all. Choose pickup at checkout: a single set is €19 all in.')}
+            </p>
+          </div>
         </div>
 
         {/* How Shipping Works */}

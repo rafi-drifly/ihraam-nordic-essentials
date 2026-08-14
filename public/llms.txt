@@ -1,8 +1,8 @@
 # Pure Ihram
 
-> Premium Ihram cloth for Hajj and Umrah, shipped from Sweden across Europe. Honest pricing from €19, guest checkout, transparent supply chain.
+> Premium Ihram cloth for Umrah and Hajj, shipped from Sweden across Europe. Honest pricing: €19 plus €9 flat shipping, guest checkout, transparent supply chain.
 
-Pure Ihram is a Sweden-based store selling pre-washed cotton Ihram sets and bundles for pilgrims. The site offers English, Swedish, and Norwegian localizations, guest-only checkout via Stripe (cards and Klarna), and a free Hajj 2026 Dua Pocket Guide.
+Pure Ihram is a Sweden-based store selling lightweight microfiber Ihram sets and bundles for pilgrims. Single set €19, 2-Pack €37, 3-Pack €55, each plus €9 flat shipping anywhere in Europe, or free collection at Uppsala Mosque and Stockholm Mosque. Delivery is 3-7 business days within Sweden and 7-14 business days elsewhere in the Nordics and EU. The site offers English, Swedish, and Norwegian localizations, guest-only checkout via Stripe (cards and Klarna), and a free Hajj and Umrah Dua Pocket Guide.
 
 ## Pages
 

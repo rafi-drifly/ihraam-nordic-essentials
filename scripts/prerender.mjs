@@ -43,14 +43,14 @@ const LEGACY = [
 ];
 
 const HOME_TITLE = {
-  en: 'Buy Ihram Online from €19 | Pure Ihram',
-  sv: 'Köp Ihram Online från €19 | Pure Ihram',
-  no: 'Kjøp Ihram Online fra €19 | Pure Ihram',
+  en: 'Buy Ihram Online - €19 + €9 Shipping from Sweden | Pure Ihram',
+  sv: 'Köp Ihram Online - €19 + €9 frakt från Sverige | Pure Ihram',
+  no: 'Kjøp Ihram Online - €19 + €9 frakt fra Sverige | Pure Ihram',
 };
 const HOME_DESC = {
-  en: 'Premium Ihram cloth for Hajj & Umrah. From €19. Ships from Sweden, fast delivery across Europe. Trusted by pilgrims for Hajj 2026.',
-  sv: 'Premium Ihram-tyg för Hajj och Umrah. Från €19. Levereras från Sverige, snabb leverans i hela Europa. Betrodd av pilgrimer inför Hajj 2026.',
-  no: 'Premium Ihram-stoff for Hajj og Umrah. Fra €19. Sendes fra Sverige, rask levering i hele Europa. Foretrukket av pilegrimer for Hajj 2026.',
+  en: 'Premium Ihram cloth for Umrah & Hajj. €19 + €9 flat shipping. Ships from Sweden in 3-7 days, or collect free in Uppsala and Stockholm.',
+  sv: 'Premium Ihram-tyg för Umrah och Hajj. €19 + €9 fast frakt. Skickas från Sverige på 3-7 arbetsdagar, eller gratis avhämtning i Uppsala och Stockholm.',
+  no: 'Premium Ihram-stoff for Umrah og Hajj. €19 + €9 fast frakt. Sendes fra Sverige, eller gratis henting i Uppsala og Stockholm.',
 };
 const BLOGLIST_TITLE = 'Hajj & Umrah Guides - Pilgrimage Knowledge | Pure Ihram';
 const BLOGLIST_DESC = 'Practical guides for Hajj and Umrah: how to wear Ihram, Sunnah acts, essential duas, packing checklists, and spiritual preparation.';
