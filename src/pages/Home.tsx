@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ArrowRight, Wind, Truck, ShieldCheck, Heart } from "lucide-react";
-import posthog from "posthog-js";
+import { trackEvent } from "@/lib/analytics";
 import ihraamProduct from "@/assets/hero-product.avif";
 import spiritualMeaning from "@/assets/blog/spiritual-meaning.png";
 import howToWear from "@/assets/blog/how-to-wear-ihram.png";
@@ -142,7 +142,7 @@ const Home = () => {
                 <Link
                   to={`${localePrefix}/blog`}
                   onClick={() => {
-                    posthog.capture("hero_guides_cta_clicked", {
+                    trackEvent("hero_guides_cta_clicked", {
                       location: "hero",
                       destination: "/blog",
                     });
