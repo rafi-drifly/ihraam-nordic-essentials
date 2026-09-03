@@ -568,51 +568,40 @@
     "trustLine": "Sendes fra Sverige · Sikker betaling via Stripe",
     "advisor": {
       "title": "Hvor mange sett trenger du?",
-      "subtitle": "Spørsmålet de fleste førstegangspilegrimer stiller. Svar på to ting, så foreslår vi riktig pakke.",
+      "subtitle": "Fortell oss hvilken reise det gjelder og hvor mange dere er, så regner vi ut riktig antall.",
       "journeyLabel": "Din reise",
       "journey": {
         "umrah": "Umrah",
         "hajj": "Hajj"
       },
-      "partyLabel": "Dere er",
-      "party": {
-        "solo": "Bare meg",
-        "pair": "Vi er to",
-        "group": "Tre eller flere"
-      },
+      "travellersLabel": "Hvor mange reiser",
+      "moreTravellers": "Én reisende til",
+      "fewerTravellers": "Én reisende færre",
       "resultPrefix": "Vi anbefaler",
-      "resultBundle": "{{label}} - {{sets}}, €{{price}}",
-      "cta": "Velg denne pakken",
+      "resultSets": "{{sets}} - €{{price}}",
+      "setCount_one": "{{count}} sett",
+      "setCount_other": "{{count}} sett",
+      "cta": "Legg {{sets}} i handlekurven",
       "guideLink": "Les hele guiden",
       "quickAnswerTitle": "Kort svar",
       "reason": {
-        "umrah": {
-          "solo": "Ett sett er nok til Umrah. Ritene tar noen timer, så de fleste pilegrimer bruker én Ihram hele veien.",
-          "pair": "Ett sett hver. Bestiller dere sammen, betaler dere ett fraktgebyr i stedet for to.",
-          "group": "Ett sett hver til tre reisende, i én forsendelse."
-        },
-        "hajj": {
-          "solo": "To sett til Hajj. Du er i Ihram over flere dager i Mina og Arafat, så de fleste reiser i ett sett og holder det andre rent til hovedritene.",
-          "pair": "Tre sett dekker to pilegrimer med ett ekstra. Mange Hajjpilegrimer vil ha to hver, så legg til ett single om du vil ha et fjerde.",
-          "group": "Tre sett er den største pakken. For en gruppe som skal på Hajj, bestill en pakke til om dere vil ha to sett per person."
-        }
+        "umrah": "To sett per person til Umrah, så du alltid har et rent ekstra hvis ett revner eller blir skittent ved Miqat. Det blir {{perPerson}} hver for {{count}} reisende.",
+        "hajj": "Tre sett per person til Hajj. Du er i Ihram over flere dager i Mina og Arafat, så de fleste reiser i ett, holder ett rent til hovedritene og har ett ekstra. Det blir {{perPerson}} hver for {{count}} reisende."
       },
       "quickAnswer": {
         "umrahSolo": {
           "q": "Hvor mange Ihram trenger jeg til Umrah?",
-          "a": "Ett sett er nok til Umrah. Ritene fullføres på noen timer, så én Ihram er det normale. De som vil ha et ekstra ved rifter eller søl, tar to."
+          "a": "To sett per person. Ritene tar noen timer, men et ekstra betyr mye: hvis ett revner eller blir skittent ved Miqat kan du ikke bare kjøpe et nytt der. Særlig førstegangspilegrimer bør ikke reise med bare ett."
         },
         "hajjSolo": {
           "q": "Hvor mange Ihram trenger jeg til Hajj?",
-          "a": "To sett er det vanlige svaret for Hajj. Du blir værende i Ihram over flere dager i Mina og Arafat, så de fleste pilegrimer reiser i ett sett og holder et andre rent til hovedritene."
+          "a": "Tre sett per person. Du blir værende i Ihram over flere dager i Mina og Arafat, så de fleste pilegrimer reiser i ett sett, holder et annet rent til hovedritene og har et tredje i reserve."
         },
         "group": {
           "q": "Hvor mange Ihram bør en familie eller gruppe kjøpe?",
-          "a": "Ett sett per person til Umrah, og to per person til Hajj. Vår 3-pakke dekker tre Umrahpilegrimer, eller én Hajjpilegrim med et ekstra, og sendes som én leveranse."
+          "a": "Regn per person: to hver til Umrah, tre hver til Hajj. Tre personer som skal på Umrah trenger seks sett, og tre som skal på Hajj trenger ni. Bestiller dere sammen betaler dere ett fraktgebyr i stedet for flere."
         }
-      },
-      "setCount_one": "{{count}} sett",
-      "setCount_other": "{{count}} sett"
+      }
     }
   },
   "blog": {

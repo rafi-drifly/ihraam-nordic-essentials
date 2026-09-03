@@ -1,36 +1,29 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
-import { BUNDLES } from "@/lib/bundles";
+import { ArrowRight, Minus, Plus } from "lucide-react";
+import { getBundlePrice } from "@/lib/bundles";
 import { trackEvent } from "@/lib/analytics";
+import { MAX_TRAVELLERS, recommendedSets, SETS_PER_PERSON, type Journey } from "@/lib/setsAdvice";
 import { QUICK_ANSWER_ROWS } from "./bundleAdvisorFaq";
-
-type Journey = "umrah" | "hajj";
-type Party = "solo" | "pair" | "group";
 
 /**
  * Answers the question pilgrims actually ask before buying: how many sets do I
- * need? The interactive picker is for people; the table underneath is always in
- * the DOM, unchanged by the picker, so crawlers and answer engines can read the
- * guidance without running any JavaScript.
+ * need? The picker is for people; the answers underneath are always in the DOM,
+ * unchanged by it, so crawlers and answer engines can read the guidance without
+ * running any JavaScript.
  */
-const RECOMMENDED_QTY: Record<Journey, Record<Party, number>> = {
-  umrah: { solo: 1, pair: 2, group: 3 },
-  hajj: { solo: 2, pair: 3, group: 3 },
-};
-
 interface BundleAdvisorProps {
-  /** Selects the matching bundle card on the shop page. */
-  onSelectQty?: (qty: number) => void;
+  /** Applies the recommended quantity, not a fixed bundle tier. */
+  onApplyQty?: (qty: number) => void;
 }
 
-export const BundleAdvisor = ({ onSelectQty }: BundleAdvisorProps) => {
+export const BundleAdvisor = ({ onApplyQty }: BundleAdvisorProps) => {
   const { t } = useTranslation();
   const location = useLocation();
   const [journey, setJourney] = useState<Journey>("umrah");
-  const [party, setParty] = useState<Party>("solo");
+  const [travellers, setTravellers] = useState(1);
 
   const localePrefix = location.pathname.startsWith("/sv")
     ? "/sv"
@@ -38,19 +31,16 @@ export const BundleAdvisor = ({ onSelectQty }: BundleAdvisorProps) => {
       ? "/no"
       : "";
 
-  const qty = RECOMMENDED_QTY[journey][party];
-  const bundle = useMemo(
-    () => BUNDLES.find((b) => b.qty === qty) ?? BUNDLES[0],
-    [qty],
-  );
+  const qty = recommendedSets(journey, travellers);
+  const price = getBundlePrice(qty);
 
-  const handleChoose = () => {
-    trackEvent("bundle_advisor_applied", { journey, party, recommended_qty: qty });
-    onSelectQty?.(qty);
+  const handleApply = () => {
+    trackEvent("bundle_advisor_applied", { journey, travellers, recommended_qty: qty });
+    onApplyQty?.(qty);
   };
 
   const optionClass = (active: boolean) =>
-    `px-3 py-2 rounded-full text-sm font-medium border transition-colors ${
+    `px-4 py-2 rounded-full text-sm font-medium border transition-colors ${
       active
         ? "bg-primary text-primary-foreground border-primary"
         : "bg-background text-foreground border-border hover:border-primary/50"
@@ -64,11 +54,9 @@ export const BundleAdvisor = ({ onSelectQty }: BundleAdvisorProps) => {
       <h3 id="bundle-advisor-heading" className="text-xl font-semibold mb-1">
         {t("shop.advisor.title")}
       </h3>
-      <p className="text-sm text-muted-foreground mb-5">
-        {t("shop.advisor.subtitle")}
-      </p>
+      <p className="text-sm text-muted-foreground mb-5">{t("shop.advisor.subtitle")}</p>
 
-      <div className="grid gap-4 sm:grid-cols-2 mb-5">
+      <div className="grid gap-5 sm:grid-cols-2 mb-5">
         <div>
           <span className="block text-xs font-medium uppercase tracking-wide text-muted-foreground mb-2">
             {t("shop.advisor.journeyLabel")}
@@ -90,48 +78,62 @@ export const BundleAdvisor = ({ onSelectQty }: BundleAdvisorProps) => {
 
         <div>
           <span className="block text-xs font-medium uppercase tracking-wide text-muted-foreground mb-2">
-            {t("shop.advisor.partyLabel")}
+            {t("shop.advisor.travellersLabel")}
           </span>
-          <div className="flex gap-2" role="group" aria-label={t("shop.advisor.partyLabel")}>
-            {(["solo", "pair", "group"] as Party[]).map((option) => (
-              <button
-                key={option}
-                type="button"
-                onClick={() => setParty(option)}
-                aria-pressed={party === option}
-                className={optionClass(party === option)}
-              >
-                {t(`shop.advisor.party.${option}`)}
-              </button>
-            ))}
+          <div className="flex items-center gap-3">
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              className="h-9 w-9 p-0"
+              aria-label={t("shop.advisor.fewerTravellers")}
+              disabled={travellers <= 1}
+              onClick={() => setTravellers((n) => Math.max(1, n - 1))}
+            >
+              <Minus className="h-4 w-4" />
+            </Button>
+            <span className="min-w-[2.5rem] text-center text-lg font-semibold" aria-live="polite">
+              {travellers}
+            </span>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              className="h-9 w-9 p-0"
+              aria-label={t("shop.advisor.moreTravellers")}
+              disabled={travellers >= MAX_TRAVELLERS}
+              onClick={() => setTravellers((n) => Math.min(MAX_TRAVELLERS, n + 1))}
+            >
+              <Plus className="h-4 w-4" />
+            </Button>
           </div>
         </div>
       </div>
 
       <div className="rounded-xl bg-muted p-4" aria-live="polite">
-        <p className="text-sm text-muted-foreground mb-1">
-          {t("shop.advisor.resultPrefix")}
-        </p>
+        <p className="text-sm text-muted-foreground mb-1">{t("shop.advisor.resultPrefix")}</p>
         <p className="text-lg font-semibold mb-1">
-          {t("shop.advisor.resultBundle", {
-            label: bundle.label,
-            sets: t("shop.advisor.setCount", { count: bundle.qty }),
-            price: bundle.totalPrice,
+          {t("shop.advisor.resultSets", {
+            sets: t("shop.advisor.setCount", { count: qty }),
+            price,
           })}
         </p>
         <p className="text-sm text-muted-foreground mb-4">
-          {t(`shop.advisor.reason.${journey}.${party}`)}
+          {t(`shop.advisor.reason.${journey}`, {
+            perPerson: SETS_PER_PERSON[journey],
+            count: travellers,
+          })}
         </p>
         <div className="flex flex-wrap items-center gap-3">
-          {onSelectQty && (
-            <Button size="sm" onClick={handleChoose}>
-              {t("shop.advisor.cta")}
+          {onApplyQty && (
+            <Button size="sm" onClick={handleApply}>
+              {t("shop.advisor.cta", { sets: t("shop.advisor.setCount", { count: qty }) })}
             </Button>
           )}
           <Link
             to={`${localePrefix}/blog/how-many-ihrams-do-you-need-for-hajj`}
             className="text-sm font-medium text-primary hover:text-primary/80 inline-flex items-center gap-1"
-            onClick={() => trackEvent("bundle_advisor_guide_click", { journey, party })}
+            onClick={() => trackEvent("bundle_advisor_guide_click", { journey, travellers })}
           >
             {t("shop.advisor.guideLink")} <ArrowRight className="h-4 w-4" />
           </Link>

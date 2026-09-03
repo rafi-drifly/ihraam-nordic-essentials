@@ -23,7 +23,7 @@ import detail6 from "@/assets/product/detail-6.avif";
 import detail7 from "@/assets/product/detail-7.avif";
 import detail8 from "@/assets/product/detail-8.avif";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
-import { BUNDLES, getBundlePrice, type Bundle } from "@/lib/bundles";
+import { BUNDLES, getBundlePrice, UNIT_PRICE, type Bundle } from "@/lib/bundles";
 import { trackEvent, trackViewItem, trackAddToCart, trackBeginCheckout } from "@/lib/analytics";
 import { stashPendingOrder } from "@/lib/pendingOrder";
 import { BundleAdvisor } from "@/components/shop/BundleAdvisor";
@@ -105,7 +105,9 @@ const Shop = () => {
     addItem({
       id: product.id,
       name: product.name,
-      price: bundle.totalPrice / bundle.qty,
+      // Never a derived fraction: 55/3 rendered as "18.333333333333332€ each".
+      // The bundle discount lives in getBundlePrice(totalQty), not per item.
+      price: UNIT_PRICE,
       image: ihraamProduct
     }, bundle.qty);
     toast({
@@ -367,9 +369,22 @@ const Shop = () => {
                 </div>
 
                 <BundleAdvisor
-                  onSelectQty={(qty) => {
+                  onApplyQty={(qty) => {
+                    // The advice can exceed the three published tiers (a family
+                    // of three doing Hajj needs nine), so put the exact quantity
+                    // in the cart rather than snapping to the nearest bundle.
                     const idx = bundles.findIndex((b) => b.qty === qty);
                     if (idx >= 0) setSelectedBundle(idx);
+                    if (!product) return;
+                    addItem(
+                      { id: product.id, name: product.name, price: UNIT_PRICE, image: ihraamProduct },
+                      qty,
+                    );
+                    trackAddToCart({ id: 'ihram-set', name: 'Pure Ihram Set', price: getBundlePrice(qty), quantity: qty });
+                    toast({
+                      title: t('shop.addedToCart'),
+                      description: t('shop.addedToCartDesc', { quantity: qty, name: product.name }),
+                    });
                   }}
                 />
 

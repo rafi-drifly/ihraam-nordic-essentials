@@ -568,51 +568,40 @@
     "trustLine": "Shipped from Sweden · Secure checkout via Stripe",
     "advisor": {
       "title": "How many sets do you need?",
-      "subtitle": "The question most first-time pilgrims ask. Answer two things and we will point you at the right bundle.",
+      "subtitle": "Tell us the journey and how many of you are travelling, and we will work out the right number.",
       "journeyLabel": "Your journey",
       "journey": {
         "umrah": "Umrah",
         "hajj": "Hajj"
       },
-      "partyLabel": "Travelling",
-      "party": {
-        "solo": "Just me",
-        "pair": "Two of us",
-        "group": "Three or more"
-      },
+      "travellersLabel": "How many travelling",
+      "moreTravellers": "One more traveller",
+      "fewerTravellers": "One fewer traveller",
       "resultPrefix": "We recommend",
-      "resultBundle": "{{label}} - {{sets}}, €{{price}}",
-      "cta": "Choose this bundle",
+      "resultSets": "{{sets}} - €{{price}}",
+      "setCount_one": "{{count}} set",
+      "setCount_other": "{{count}} sets",
+      "cta": "Add {{sets}} to cart",
       "guideLink": "Read the full guide",
       "quickAnswerTitle": "Quick answer",
       "reason": {
-        "umrah": {
-          "solo": "One set is enough for Umrah. The rites take a few hours, so most pilgrims wear a single Ihram throughout.",
-          "pair": "One set each. Ordering together means one delivery fee instead of two.",
-          "group": "One set each for three travellers, in a single delivery."
-        },
-        "hajj": {
-          "solo": "Two sets for Hajj. You are in Ihram across several days in Mina and Arafat, so most pilgrims travel in one and keep the second clean for the main rites.",
-          "pair": "Three sets covers two pilgrims with a spare. Many Hajj pilgrims prefer two each, so add a single if you want a fourth.",
-          "group": "Three sets is the largest bundle. For a group doing Hajj, order a second bundle if you want two sets per person."
-        }
+        "umrah": "Two sets per person for Umrah, so you always have a clean spare if one is torn or soiled at Miqat. That is {{perPerson}} each for {{count}} travelling.",
+        "hajj": "Three sets per person for Hajj. You stay in Ihram across several days in Mina and Arafat, so most pilgrims travel in one, keep one fresh for the main rites, and hold a spare. That is {{perPerson}} each for {{count}} travelling."
       },
       "quickAnswer": {
         "umrahSolo": {
           "q": "How many Ihrams do I need for Umrah?",
-          "a": "One set is enough for Umrah. The rites are completed in a few hours, so a single Ihram is normal. Pilgrims who want a spare in case of a tear or a spill take two."
+          "a": "Two sets per person. The rites take a few hours, but a spare matters: if one is torn or soiled at Miqat you cannot simply buy another there. First-time pilgrims in particular should not travel with only one."
         },
         "hajjSolo": {
           "q": "How many Ihrams do I need for Hajj?",
-          "a": "Two sets is the usual answer for Hajj. You remain in Ihram across several days in Mina and Arafat, so most pilgrims travel in one set and keep a second clean for the main rites."
+          "a": "Three sets per person. You remain in Ihram across several days in Mina and Arafat, so most pilgrims travel in one set, keep a second clean for the main rites, and carry a third as a spare."
         },
         "group": {
           "q": "How many Ihrams should a family or group buy?",
-          "a": "One set per person for Umrah, and two per person for Hajj. Our 3-Pack covers three Umrah pilgrims, or one Hajj pilgrim with a spare, and ships as a single delivery."
+          "a": "Multiply per person: two each for Umrah, three each for Hajj. Three people going for Umrah need six sets, and three going for Hajj need nine. Ordering together means one delivery fee instead of several."
         }
-      },
-      "setCount_one": "{{count}} set",
-      "setCount_other": "{{count}} sets"
+      }
     }
   },
   "blog": {
