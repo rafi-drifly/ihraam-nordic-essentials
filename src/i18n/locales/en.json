@@ -1185,7 +1185,28 @@
     }
   },
   "orderSuccess": {
-    "seoTitle": "Order Confirmation | Pure Ihram"
+    "seoTitle": "Order Confirmation | Pure Ihram",
+    "heading": "Payment Successful!",
+    "subheading": "Thank you for your order. We're preparing your Ihram for shipment.",
+    "cardTitle": "Order Confirmation",
+    "emailTitle": "Check your email",
+    "emailBody": "We're sending your order number and a secure lookup link to the email address you used at checkout. Use it to track your order anytime at",
+    "nextTitle": "What happens next:",
+    "next1": "You'll receive an order confirmation email shortly",
+    "next2": "We'll prepare and package your Ihram with care",
+    "next3": "You'll get tracking information once shipped",
+    "next4": "Delivery typically takes 3-14 business days",
+    "timelineTitle": "Shipping Timeline",
+    "timelineSweden": "Sweden:",
+    "timelineSwedenDays": "3-7 business days",
+    "timelineEu": "Nordic & EU:",
+    "timelineEuDays": "7-14 business days",
+    "blessing": "May this sacred garment serve you well on your pilgrimage to the Holy Land.",
+    "continueShopping": "Continue Shopping",
+    "backHome": "Back to Home",
+    "helpTitle": "Need Help?",
+    "helpBody": "If you have any questions about your order, please don't hesitate to contact us.",
+    "contactSupport": "Contact Support"
   },
   "guestOrderLookup": {
     "seoTitle": "Order Lookup | Pure Ihram"

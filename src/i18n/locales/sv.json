@@ -1185,7 +1185,28 @@
     }
   },
   "orderSuccess": {
-    "seoTitle": "Orderbekräftelse | Pure Ihram"
+    "seoTitle": "Orderbekräftelse | Pure Ihram",
+    "heading": "Betalningen lyckades!",
+    "subheading": "Tack för din beställning. Vi förbereder din Ihram för leverans.",
+    "cardTitle": "Orderbekräftelse",
+    "emailTitle": "Kolla din e-post",
+    "emailBody": "Vi skickar ditt ordernummer och en säker uppslagslänk till e-postadressen du använde i kassan. Använd den för att följa din beställning när som helst på",
+    "nextTitle": "Vad händer nu:",
+    "next1": "Du får en orderbekräftelse via e-post inom kort",
+    "next2": "Vi förbereder och packar din Ihram med omsorg",
+    "next3": "Du får spårningsinformation när paketet skickats",
+    "next4": "Leveransen tar vanligtvis 3-14 arbetsdagar",
+    "timelineTitle": "Leveranstider",
+    "timelineSweden": "Sverige:",
+    "timelineSwedenDays": "3-7 arbetsdagar",
+    "timelineEu": "Norden & EU:",
+    "timelineEuDays": "7-14 arbetsdagar",
+    "blessing": "Må detta heliga plagg tjäna dig väl på din pilgrimsfärd till det heliga landet.",
+    "continueShopping": "Fortsätt handla",
+    "backHome": "Till startsidan",
+    "helpTitle": "Behöver du hjälp?",
+    "helpBody": "Har du frågor om din beställning är du varmt välkommen att kontakta oss.",
+    "contactSupport": "Kontakta support"
   },
   "guestOrderLookup": {
     "seoTitle": "Hitta din order | Pure Ihram"

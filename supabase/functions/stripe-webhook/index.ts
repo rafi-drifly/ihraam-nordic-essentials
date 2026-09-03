@@ -1,6 +1,7 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import Stripe from "https://esm.sh/stripe@18.5.0";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.57.2";
+import { sendPlacedOrderToKlaviyo } from "./klaviyo.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -171,6 +172,23 @@ serve(async (req) => {
       }
 
       console.log("Order created:", order.id);
+
+      // Tell Klaviyo a purchase happened. Awaited so the runtime does not tear
+      // the isolate down mid-request, but it never throws: the order is already
+      // saved and a marketing event must not trigger a Stripe retry.
+      await sendPlacedOrderToKlaviyo({
+        email: customerEmail,
+        orderNumber: order.order_number,
+        orderId: order.id,
+        totalAmount,
+        currency: "EUR",
+        quantity: totalQuantity,
+        bundleType,
+        shippingCountry,
+        shippingName: shippingDetails?.name ?? null,
+        donationAmount,
+        isPickup: session.metadata?.delivery_method === "pickup",
+      });
 
       // Create order items
       const orderItems = items.map((item: { id: string; quantity: number }) => {

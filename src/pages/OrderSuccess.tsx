@@ -47,9 +47,9 @@ const PaymentSuccess = () => {
           <div className="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-green-100 mb-6">
             <CheckCircle className="h-10 w-10 text-green-600" />
           </div>
-          <h1 className="text-3xl font-bold text-foreground mb-2">Payment Successful!</h1>
+          <h1 className="text-3xl font-bold text-foreground mb-2">{t('orderSuccess.heading')}</h1>
           <p className="text-lg text-muted-foreground">
-            Thank you for your order. We're preparing your Ihram for shipment.
+            {t('orderSuccess.subheading')}
           </p>
         </div>
 
@@ -57,7 +57,7 @@ const PaymentSuccess = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Package className="h-5 w-5" />
-              Order Confirmation
+              {t('orderSuccess.cardTitle')}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -65,9 +65,9 @@ const PaymentSuccess = () => {
               <div className="flex items-start gap-3">
                 <Mail className="h-5 w-5 text-accent-foreground mt-0.5" />
                 <div className="flex-1">
-                  <h3 className="font-semibold text-accent-foreground mb-2">Check your email</h3>
+                  <h3 className="font-semibold text-accent-foreground mb-2">{t('orderSuccess.emailTitle')}</h3>
                   <p className="text-sm text-muted-foreground">
-                    We're sending your real order number and a secure lookup link to the email address you used at checkout. Use it to track your order anytime at{" "}
+                    {t('orderSuccess.emailBody')}{" "}
                     <Link to="/guest-order-lookup" className="text-primary hover:underline">
                       /guest-order-lookup
                     </Link>.
@@ -78,26 +78,26 @@ const PaymentSuccess = () => {
 
             <div className="space-y-2">
               <p className="text-sm text-muted-foreground">
-                <strong>What happens next:</strong>
+                <strong>{t('orderSuccess.nextTitle')}</strong>
               </p>
               <ul className="text-sm text-muted-foreground space-y-1 ml-4">
-                <li>- You'll receive an order confirmation email shortly</li>
-                <li>- We'll prepare and package your Ihraam with care</li>
-                <li>- You'll get tracking information once shipped</li>
-                <li>- Delivery typically takes 3-14 business days</li>
+                <li>- {t('orderSuccess.next1')}</li>
+                <li>- {t('orderSuccess.next2')}</li>
+                <li>- {t('orderSuccess.next3')}</li>
+                <li>- {t('orderSuccess.next4')}</li>
               </ul>
             </div>
 
             <div className="bg-accent/10 border border-accent/20 rounded-lg p-4">
-              <h3 className="font-semibold text-accent-foreground mb-2">Shipping Timeline</h3>
+              <h3 className="font-semibold text-accent-foreground mb-2">{t('orderSuccess.timelineTitle')}</h3>
               <div className="text-sm space-y-1">
                 <div className="flex justify-between">
-                  <span>Sweden:</span>
-                  <span>3-7 business days</span>
+                  <span>{t('orderSuccess.timelineSweden')}</span>
+                  <span>{t('orderSuccess.timelineSwedenDays')}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Nordic & EU:</span>
-                  <span>7-14 business days</span>
+                  <span>{t('orderSuccess.timelineEu')}</span>
+                  <span>{t('orderSuccess.timelineEuDays')}</span>
                 </div>
               </div>
             </div>
@@ -106,17 +106,17 @@ const PaymentSuccess = () => {
 
         <div className="text-center space-y-4">
           <p className="text-muted-foreground">
-            May this sacred garment serve you well on your pilgrimage to the Holy Land.
+            {t('orderSuccess.blessing')}
           </p>
 
           <div className="flex gap-4 justify-center">
             <Button asChild variant="outline">
-              <Link to="/shop">Continue Shopping</Link>
+              <Link to="/shop">{t('orderSuccess.continueShopping')}</Link>
             </Button>
             <Button asChild className="bg-gradient-primary hover:opacity-90">
               <Link to="/">
                 <ArrowRight className="h-4 w-4 mr-2" />
-                Back to Home
+                {t('orderSuccess.backHome')}
               </Link>
             </Button>
           </div>
@@ -125,12 +125,12 @@ const PaymentSuccess = () => {
         <div className="mt-12 text-center">
           <Card>
             <CardContent className="p-6">
-              <h3 className="font-semibold mb-2">Need Help?</h3>
+              <h3 className="font-semibold mb-2">{t('orderSuccess.helpTitle')}</h3>
               <p className="text-sm text-muted-foreground mb-4">
-                If you have any questions about your order, please don't hesitate to contact us.
+                {t('orderSuccess.helpBody')}
               </p>
               <Button variant="outline" size="sm" asChild>
-                <Link to="/contact">Contact Support</Link>
+                <Link to="/contact">{t('orderSuccess.contactSupport')}</Link>
               </Button>
             </CardContent>
           </Card>
