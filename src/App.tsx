@@ -5,7 +5,6 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { HelmetProvider } from "react-helmet-async";
 import { CartProvider } from "@/hooks/useCart";
 import Navbar from "@/components/ui/navbar";
 import Footer from "@/components/ui/footer";
@@ -137,7 +136,6 @@ const AppRoutes = () => (
 
 const App = () => (
   <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
-    <HelmetProvider>
       <QueryClientProvider client={queryClient}>
         <CartProvider>
           <TooltipProvider>
@@ -161,7 +159,6 @@ const App = () => (
           </TooltipProvider>
         </CartProvider>
       </QueryClientProvider>
-    </HelmetProvider>
   </Suspense>
 );
 

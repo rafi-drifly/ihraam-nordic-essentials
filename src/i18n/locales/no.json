@@ -826,7 +826,10 @@
       "free": "GRATIS",
       "pickupLine": "Gratis henting ved moské",
       "pickupNote": "Vi sender deg en e-post når bestillingen er klar til henting ved moskeen. Ingen leveringsadresse nødvendig.",
-      "pickupHint": "Eller hent gratis ved Uppsala eller Stockholm moské - velg i handlekurven"
+      "pickupHint": "Eller hent gratis ved Uppsala eller Stockholm moské - velg i handlekurven",
+      "pickupAvailability": "Vil du hente ved en moské? Ingen fraktavgift og ingen adresse nødvendig. Vi sender deg e-post med nøyaktig hentested og tider så snart bestillingen er klar, vanligvis innen 1-2 virkedager.",
+      "pickupAddress": "Hentes ved: {{address}}",
+      "pickupHours": "Hentetider: {{hours}}"
     },
     "promo": {
       "placeholder": "Skriv inn rabattkode",
@@ -838,7 +841,8 @@
       "cityLabel": "Bekreft leveringsbyen din",
       "cityPlaceholder": "Skriv inn byen din",
       "freeDelivery": "Gratis levering (rabattkode)"
-    }
+    },
+    "deliveringTo": "Leveres til:"
   },
   "orderSuccess": {
     "title": "Bestilling Bekreftet!",

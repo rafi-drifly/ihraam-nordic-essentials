@@ -13,6 +13,7 @@ import { useToast } from "@/hooks/use-toast";
 import DonationSection from "@/components/shop/DonationSection";
 import { trackEvent, trackBeginCheckout } from "@/lib/analytics";
 import { stashPendingOrder } from "@/lib/pendingOrder";
+import { PICKUP_LOCATIONS } from "@/lib/pickupLocations";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import SEOHead from "@/components/SEOHead";
 
@@ -222,6 +223,25 @@ const Cart = () => {
                         <span className="text-xs font-semibold text-primary">{t('cart.delivery.free', 'FREE')}</span>
                       </label>
                     </RadioGroup>
+
+                    {/* Shown whether or not pickup is selected: these are the
+                        terms of the option, and they belong before the decision. */}
+                    <div className="flex gap-2 p-3 rounded-lg border border-border bg-muted/40">
+                      <Info className="w-4 h-4 text-muted-foreground flex-shrink-0 mt-0.5" />
+                      <div className="text-xs text-muted-foreground space-y-1">
+                        <p>{t('cart.delivery.pickupAvailability')}</p>
+                        {PICKUP_LOCATIONS.map((loc) => {
+                          if (!loc.address && !loc.hours) return null;
+                          return (
+                            <p key={loc.id}>
+                              <span className="font-medium">{t(loc.labelKey)}</span>
+                              {loc.address ? ` - ${t('cart.delivery.pickupAddress', { address: loc.address })}` : ''}
+                              {loc.hours ? ` - ${t('cart.delivery.pickupHours', { hours: loc.hours })}` : ''}
+                            </p>
+                          );
+                        })}
+                      </div>
+                    </div>
                   </div>
 
                   {/* Country selector - only when shipping */}
@@ -229,7 +249,7 @@ const Cart = () => {
                     <div className="space-y-2">
                       <div className="flex items-center gap-2">
                         <Globe className="w-4 h-4 text-primary" />
-                        <span className="text-sm font-medium">Delivering to:</span>
+                        <span className="text-sm font-medium">{t('cart.deliveringTo', 'Delivering to:')}</span>
                       </div>
                       <Select value={shippingCountry} onValueChange={setShippingCountry}>
                         <SelectTrigger className="w-full">

@@ -50,8 +50,8 @@ const Navbar = () => {
     try {
       console.log('Starting checkout with items:', cartItems);
 
-      // Stash the totals before redirecting: this path also wipes the cart from
-      // localStorage below, so nothing is left to reconstruct them from.
+      // Stash the totals before redirecting, so the confirmation page can report
+      // real revenue once Stripe sends the customer back.
       const checkoutQty = cartItems.reduce(
         (sum: number, item: { quantity?: number }) => sum + (item.quantity ?? 0),
         0,
@@ -78,7 +78,11 @@ const Navbar = () => {
       }
 
       if (data?.url) {
-        localStorage.removeItem('ihram-cart');
+        // The basket is deliberately NOT cleared here. Stripe checkout can be
+        // abandoned or cancelled, and cancel_url brings the customer back to
+        // the cart - which used to be empty because this line had already
+        // wiped it. The cart is cleared on the confirmation page instead,
+        // once payment has actually succeeded.
         window.location.href = data.url;
       } else {
         toast({ title: "Checkout error", description: "No checkout URL received.", variant: "destructive" });

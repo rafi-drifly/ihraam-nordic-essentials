@@ -120,7 +120,8 @@ const Shop = () => {
           items: checkoutItems, 
           bundlePrice: bundle.totalPrice, 
           locale: i18n.language,
-          shippingCountry: shippingCountry
+          shippingCountry: shippingCountry,
+          cancelPath: `${localePrefix}/shop`
         }
       });
       if (error) throw error;

@@ -1,6 +1,18 @@
-import { Helmet } from 'react-helmet-async';
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
+import {
+  setAlternates,
+  setCanonical,
+  setDescription,
+  setHtmlLang,
+  setJsonLd,
+  setNamed,
+  setOgLocaleAlternates,
+  setProperty,
+  setRobots,
+  setTitle,
+} from '@/lib/head';
 
 interface SEOHeadProps {
   title?: string;
@@ -78,47 +90,44 @@ const SEOHead = ({ title, description, path, jsonLd, noindex, ogType, image }: S
   const finalImage = image || DEFAULT_OG_IMAGE;
   const finalOgType = ogType || 'website';
 
-  return (
-    <Helmet>
-      <html lang={meta.htmlLang} />
-      <title>{finalTitle}</title>
-      <meta name="description" content={finalDescription} />
-      {noindex && <meta name="robots" content="noindex, follow" />}
+  // Serialised once so a fresh array literal with identical contents does not
+  // retrigger the effect, and so the dependency array stays statically checkable.
+  const alternateOgLocalesKey = JSON.stringify(alternateOgLocales);
+  const jsonLdKey = JSON.stringify(jsonLd ?? []);
 
-      {/* Canonical URL */}
-      <link rel="canonical" href={currentUrl} />
+  // Written straight to the head. react-helmet-async was mounted but inert on
+  // this app, so nothing below ever reached the document; see src/lib/head.ts.
+  useEffect(() => {
+    setHtmlLang(meta.htmlLang);
+    setTitle(finalTitle);
+    setDescription(finalDescription);
+    setRobots(!!noindex);
+    setCanonical(currentUrl);
+    setAlternates([
+      { hreflang: 'en', href: englishUrl },
+      { hreflang: 'sv-SE', href: swedishUrl },
+      { hreflang: 'nb-NO', href: norwegianUrl },
+      { hreflang: 'x-default', href: englishUrl },
+    ]);
+    setProperty('og:title', finalTitle);
+    setProperty('og:description', finalDescription);
+    setProperty('og:type', finalOgType);
+    setProperty('og:url', currentUrl);
+    setProperty('og:image', finalImage);
+    setProperty('og:locale', meta.ogLocale);
+    setOgLocaleAlternates(JSON.parse(alternateOgLocalesKey) as string[]);
+    setNamed('twitter:card', 'summary_large_image');
+    setNamed('twitter:title', finalTitle);
+    setNamed('twitter:description', finalDescription);
+    setNamed('twitter:image', finalImage);
+    setJsonLd(JSON.parse(jsonLdKey) as Array<Record<string, unknown>>);
+  }, [
+    meta.htmlLang, meta.ogLocale, finalTitle, finalDescription, noindex, currentUrl,
+    englishUrl, swedishUrl, norwegianUrl, finalOgType, finalImage,
+    alternateOgLocalesKey, jsonLdKey,
+  ]);
 
-      {/* Hreflang tags - BCP-47 region codes per SEO audit */}
-      <link rel="alternate" hrefLang="en" href={englishUrl} />
-      <link rel="alternate" hrefLang="sv-SE" href={swedishUrl} />
-      <link rel="alternate" hrefLang="nb-NO" href={norwegianUrl} />
-      <link rel="alternate" hrefLang="x-default" href={englishUrl} />
-
-      {/* Open Graph */}
-      <meta property="og:title" content={finalTitle} />
-      <meta property="og:description" content={finalDescription} />
-      <meta property="og:type" content={finalOgType} />
-      <meta property="og:url" content={currentUrl} />
-      <meta property="og:image" content={finalImage} />
-      <meta property="og:locale" content={meta.ogLocale} />
-      {alternateOgLocales.map((locale) => (
-        <meta key={locale} property="og:locale:alternate" content={locale} />
-      ))}
-
-      {/* Twitter */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={finalTitle} />
-      <meta name="twitter:description" content={finalDescription} />
-      <meta name="twitter:image" content={finalImage} />
-
-      {/* Structured data */}
-      {jsonLd?.map((schema, idx) => (
-        <script key={idx} type="application/ld+json">
-          {JSON.stringify(schema)}
-        </script>
-      ))}
-    </Helmet>
-  );
+  return null;
 };
 
 export default SEOHead;

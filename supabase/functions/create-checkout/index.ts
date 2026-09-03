@@ -20,6 +20,8 @@ interface CheckoutRequest {
   shippingCity?: string;
   /** Free mosque pickup instead of shipping. One of PICKUP_LOCATIONS keys. */
   pickupLocation?: string;
+  /** Where to send the customer if they abandon Stripe. Same-origin path only. */
+  cancelPath?: string;
 }
 
 // Free local pickup points (no shipping fee, no delivery address needed).
@@ -63,7 +65,7 @@ serve(async (req) => {
     });
 
     const body = await req.json();
-    const { items, donation, bundlePrice, locale, promoCode, shippingCity, shippingCountry, pickupLocation }: CheckoutRequest = body;
+    const { items, donation, bundlePrice, locale, promoCode, shippingCity, shippingCountry, pickupLocation, cancelPath }: CheckoutRequest = body;
 
     // ---- Input validation (server-side; do not trust client) ----
     if (!Array.isArray(items) || items.length === 0 || items.length > 20) {
@@ -103,6 +105,13 @@ serve(async (req) => {
     if (pickupLocation !== undefined && pickupLocation !== null && !PICKUP_LOCATIONS[pickupLocation]) {
       return new Response(JSON.stringify({ error: "Invalid pickup location" }), { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 400 });
     }
+    // Only a same-origin path, never a full URL: an open redirect here would
+    // let a crafted link bounce a paying customer to an attacker's page.
+    const safeCancelPath =
+      typeof cancelPath === "string" && /^\/[A-Za-z0-9\-/_]{0,64}$/.test(cancelPath)
+        ? cancelPath
+        : "/cart";
+
     // ---- end validation ----
 
     console.log("Checkout request:", { itemCount: items.length, hasDonation: !!donation, hasBundlePrice: !!bundlePrice, locale, hasPromo: !!promoCode, shippingCountry });
@@ -228,7 +237,10 @@ serve(async (req) => {
       currency: "eur",
       payment_method_types: ['card', 'klarna'],
       success_url: `${req.headers.get("origin")}/order-success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${req.headers.get("origin")}/cart`,
+      // Buy-now checkouts never populated the cart, so returning there showed
+      // an empty basket after an abandoned payment. Callers say where to go
+      // back to; the value is restricted to a same-origin path.
+      cancel_url: `${req.headers.get("origin")}${safeCancelPath}`,
       // Pickup orders need no delivery address; shipping orders collect one.
       ...(isPickup ? {} : {
         shipping_address_collection: {
