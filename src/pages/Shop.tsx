@@ -26,6 +26,8 @@ import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { BUNDLES, getBundlePrice, type Bundle } from "@/lib/bundles";
 import { trackEvent, trackViewItem, trackAddToCart, trackBeginCheckout } from "@/lib/analytics";
 import { stashPendingOrder } from "@/lib/pendingOrder";
+import { BundleAdvisor } from "@/components/shop/BundleAdvisor";
+import { useBundleAdvisorFaq } from "@/components/shop/bundleAdvisorFaq";
 
 interface Product {
   id: string;
@@ -54,6 +56,13 @@ const Shop = () => {
   const { addItem } = useCart();
   const { toast } = useToast();
   
+  // FAQ entries mirroring the advisor's static answers, emitted as schema.
+  const advisorFaq = useBundleAdvisorFaq();
+  const advisorFaqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: advisorFaq,
+  };
   const showDisclosure = requiresShippingDisclosure(shippingCountry);
   const disclosureLang = (i18n.language as 'en' | 'sv' | 'no') || 'en';
   const disclosureText = SHIPPING_DISCLOSURE[disclosureLang] || SHIPPING_DISCLOSURE.en;
@@ -182,7 +191,10 @@ const Shop = () => {
     .slice(0, 10);
   const shippingDetails = {
     "@type": "OfferShippingDetails",
-    "shippingDestination": { "@type": "DefinedRegion", "addressCountry": ["SE", "NO", "DK", "FI", "DE", "FR", "NL", "BE", "AT", "IT", "ES", "IE", "PT", "PL"] },
+    // Only Sweden is a flat EUR 9. Declaring the same rate for the rest of the
+    // EU would be a false shipping claim in the rich result, since deliveries
+    // outside Sweden are quoted before dispatch.
+    "shippingDestination": { "@type": "DefinedRegion", "addressCountry": ["SE"] },
     "shippingRate": { "@type": "MonetaryAmount", "value": "9", "currency": "EUR" },
     "deliveryTime": {
       "@type": "ShippingDeliveryTime",
@@ -263,7 +275,7 @@ const Shop = () => {
         }
         ogType="product"
         image={storageImages[0]}
-        jsonLd={[jsonLd]}
+        jsonLd={[jsonLd, advisorFaqSchema]}
       />
 
       {/* Image Lightbox */}
@@ -353,6 +365,13 @@ const Shop = () => {
                     {t('shop.bundle.chooseSubtitle')}
                   </p>
                 </div>
+
+                <BundleAdvisor
+                  onSelectQty={(qty) => {
+                    const idx = bundles.findIndex((b) => b.qty === qty);
+                    if (idx >= 0) setSelectedBundle(idx);
+                  }}
+                />
 
                 <div className="shop-offers-grid">
                   {bundles.map((b, idx) => {

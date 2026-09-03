@@ -565,7 +565,55 @@
       "quote": "\"Den bästa pilgrimerna är den som har den bästa förnödenheten och den mest fromma avsikten.\"",
       "cite": "- Hadith"
     },
-    "trustLine": "Skickas från Sverige · Säker betalning via Stripe"
+    "trustLine": "Skickas från Sverige · Säker betalning via Stripe",
+    "advisor": {
+      "title": "Hur många set behöver du?",
+      "subtitle": "Frågan de flesta förstagångspilgrimer ställer. Svara på två saker så föreslår vi rätt paket.",
+      "journeyLabel": "Din resa",
+      "journey": {
+        "umrah": "Umrah",
+        "hajj": "Hajj"
+      },
+      "partyLabel": "Ni är",
+      "party": {
+        "solo": "Bara jag",
+        "pair": "Vi är två",
+        "group": "Tre eller fler"
+      },
+      "resultPrefix": "Vi rekommenderar",
+      "resultBundle": "{{label}} - {{sets}}, €{{price}}",
+      "cta": "Välj det här paketet",
+      "guideLink": "Läs hela guiden",
+      "quickAnswerTitle": "Snabbt svar",
+      "reason": {
+        "umrah": {
+          "solo": "Ett set räcker för Umrah. Riterna tar några timmar, så de flesta pilgrimer bär en enda Ihram hela vägen.",
+          "pair": "Ett set var. Beställer ni tillsammans betalar ni en fraktavgift i stället för två.",
+          "group": "Ett set var till tre resenärer, i en enda leverans."
+        },
+        "hajj": {
+          "solo": "Två set för Hajj. Du är i Ihram under flera dagar i Mina och Arafat, så de flesta reser i ett set och sparar det andra rent till huvudriterna.",
+          "pair": "Tre set täcker två pilgrimer med ett extra. Många Hajjpilgrimer vill ha två var, så lägg till ett single om du vill ha ett fjärde.",
+          "group": "Tre set är det största paketet. För en grupp som gör Hajj, beställ ett paket till om ni vill ha två set per person."
+        }
+      },
+      "quickAnswer": {
+        "umrahSolo": {
+          "q": "Hur många Ihram behöver jag för Umrah?",
+          "a": "Ett set räcker för Umrah. Riterna genomförs på några timmar, så en enda Ihram är det normala. Den som vill ha ett extra vid revor eller fläckar tar två."
+        },
+        "hajjSolo": {
+          "q": "Hur många Ihram behöver jag för Hajj?",
+          "a": "Två set är det vanliga svaret för Hajj. Du är kvar i Ihram under flera dagar i Mina och Arafat, så de flesta pilgrimer reser i ett set och håller ett andra rent till huvudriterna."
+        },
+        "group": {
+          "q": "Hur många Ihram bör en familj eller grupp köpa?",
+          "a": "Ett set per person för Umrah och två per person för Hajj. Vårt 3-pack räcker till tre Umrahpilgrimer, eller en Hajjpilgrim med ett extra, och skickas som en enda leverans."
+        }
+      },
+      "setCount_one": "{{count}} set",
+      "setCount_other": "{{count}} set"
+    }
   },
   "blog": {
     "title": "Guider & Kunskap",

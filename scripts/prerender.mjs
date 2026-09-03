@@ -61,6 +61,13 @@ const BLOGLIST_DESC = 'Practical guides for Hajj and Umrah: how to wear Ihram, S
 const tri = (en, sv, no) => ({ en, sv, no });
 const STATIC_PAGES = [
   { path: '/shop', ogType: 'product',
+    // Baked into the static head so answer engines that do not run JavaScript
+    // still get the "how many sets do I need" answers. Mirrors BundleAdvisor.
+    faqKeys: [
+      'shop.advisor.quickAnswer.umrahSolo',
+      'shop.advisor.quickAnswer.hajjSolo',
+      'shop.advisor.quickAnswer.group',
+    ],
     title: tri('Shop Ihram Sets - Single, 2-Pack & 3-Pack | Pure Ihram', 'Köp Ihram-set - Single, 2-Pack & 3-Pack | Pure Ihram', 'Kjøp Ihram-sett - Single, 2-Pack & 3-Pack | Pure Ihram'),
     desc: tri('Choose your Ihram set: single (€19), 2-pack (€37), or 3-pack (€55). Lightweight microfiber, ships from Sweden. Secure EU delivery.', 'Välj ditt Ihram-set: single (€19), 2-pack (€37) eller 3-pack (€55). Lätt mikrofiber, skickas från Sverige. Säker betalning via Stripe.', 'Velg ditt Ihram-sett: single (€19), 2-pack (€37) eller 3-pack (€55). Lett mikrofiber, sendes fra Sverige. Sikker betaling med Stripe.') },
   { path: '/about',
@@ -193,8 +200,16 @@ for (const page of STATIC_PAGES) {
     const pfx = LOCALES[locale].prefix;
     const title = page.title ? page.title[locale] : getKey(locale, page.titleKey, page.titleDefault);
     const description = page.desc ? page.desc[locale] : getKey(locale, page.descKey, page.descDefault);
+    const pageJsonLd = [];
+    if (page.faqKeys) {
+      const faq = page.faqKeys
+        .map((base) => ({ q: getKey(locale, `${base}.q`), a: getKey(locale, `${base}.a`) }))
+        .filter((f) => f.q && f.a);
+      if (faq.length) pageJsonLd.push(faqSchema(faq));
+    }
     write(`${pfx}${page.path}`.replace(/^\//, ''), render({
       title, description, canonicalPath: `${page.path}/`, ogType: page.ogType || 'website', locale,
+      jsonLd: pageJsonLd,
     }));
     count++;
   }

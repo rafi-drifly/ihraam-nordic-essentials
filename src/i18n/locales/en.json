@@ -565,7 +565,55 @@
       "quote": "\"The best of pilgrims is he who has the best provision and the most pious intention.\"",
       "cite": "- Hadith"
     },
-    "trustLine": "Shipped from Sweden · Secure checkout via Stripe"
+    "trustLine": "Shipped from Sweden · Secure checkout via Stripe",
+    "advisor": {
+      "title": "How many sets do you need?",
+      "subtitle": "The question most first-time pilgrims ask. Answer two things and we will point you at the right bundle.",
+      "journeyLabel": "Your journey",
+      "journey": {
+        "umrah": "Umrah",
+        "hajj": "Hajj"
+      },
+      "partyLabel": "Travelling",
+      "party": {
+        "solo": "Just me",
+        "pair": "Two of us",
+        "group": "Three or more"
+      },
+      "resultPrefix": "We recommend",
+      "resultBundle": "{{label}} - {{sets}}, €{{price}}",
+      "cta": "Choose this bundle",
+      "guideLink": "Read the full guide",
+      "quickAnswerTitle": "Quick answer",
+      "reason": {
+        "umrah": {
+          "solo": "One set is enough for Umrah. The rites take a few hours, so most pilgrims wear a single Ihram throughout.",
+          "pair": "One set each. Ordering together means one delivery fee instead of two.",
+          "group": "One set each for three travellers, in a single delivery."
+        },
+        "hajj": {
+          "solo": "Two sets for Hajj. You are in Ihram across several days in Mina and Arafat, so most pilgrims travel in one and keep the second clean for the main rites.",
+          "pair": "Three sets covers two pilgrims with a spare. Many Hajj pilgrims prefer two each, so add a single if you want a fourth.",
+          "group": "Three sets is the largest bundle. For a group doing Hajj, order a second bundle if you want two sets per person."
+        }
+      },
+      "quickAnswer": {
+        "umrahSolo": {
+          "q": "How many Ihrams do I need for Umrah?",
+          "a": "One set is enough for Umrah. The rites are completed in a few hours, so a single Ihram is normal. Pilgrims who want a spare in case of a tear or a spill take two."
+        },
+        "hajjSolo": {
+          "q": "How many Ihrams do I need for Hajj?",
+          "a": "Two sets is the usual answer for Hajj. You remain in Ihram across several days in Mina and Arafat, so most pilgrims travel in one set and keep a second clean for the main rites."
+        },
+        "group": {
+          "q": "How many Ihrams should a family or group buy?",
+          "a": "One set per person for Umrah, and two per person for Hajj. Our 3-Pack covers three Umrah pilgrims, or one Hajj pilgrim with a spare, and ships as a single delivery."
+        }
+      },
+      "setCount_one": "{{count}} set",
+      "setCount_other": "{{count}} sets"
+    }
   },
   "blog": {
     "title": "Guides & Knowledge",
