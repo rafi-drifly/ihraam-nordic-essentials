@@ -864,7 +864,8 @@
       "pickupHint": "Eller hämta gratis vid Uppsala eller Stockholms moské - välj i kundvagnen",
       "pickupAvailability": "Vill du hämta vid en moské? Ingen fraktavgift och ingen adress behövs. Vi mejlar exakt hämtställe och tider så snart din beställning är klar, oftast inom 1-2 arbetsdagar.",
       "pickupAddress": "Hämtas vid: {{address}}",
-      "pickupHours": "Hämttider: {{hours}}"
+      "pickupHours": "Hämttider: {{hours}}",
+      "chooseAtCheckout": "Du väljer leverans eller gratis avhämtning vid moskén i nästa steg, i den säkra kassan."
     },
     "promo": {
       "placeholder": "Ange rabattkod",

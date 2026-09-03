@@ -75,7 +75,29 @@ serve(async (req) => {
       const userId = session.metadata?.user_id || null;
       const totalQuantity = parseInt(session.metadata?.total_quantity || "1", 10);
       const bundleType = session.metadata?.bundle_type || 'single';
-      const baseShippingFee = parseFloat(session.metadata?.base_shipping_fee_eur || "9");
+      // What the customer actually chose at Stripe, not what we offered. The
+      // delivery-or-mosque-collection choice is made on the Stripe page now, so
+      // metadata written before checkout cannot know the outcome.
+      let baseShippingFee = parseFloat(session.metadata?.base_shipping_fee_eur || "9");
+      let chosenDelivery = session.metadata?.delivery_method === "pickup" ? "pickup" : "shipping";
+      let chosenDeliveryLabel = "";
+      try {
+        const full = await stripe.checkout.sessions.retrieve(session.id, {
+          expand: ["shipping_cost.shipping_rate"],
+        });
+        const cost = full.shipping_cost;
+        if (cost) {
+          baseShippingFee = (cost.amount_total ?? 0) / 100;
+          const rate = cost.shipping_rate;
+          chosenDeliveryLabel =
+            (typeof rate === "object" && rate !== null ? rate.display_name : "") || "";
+          // A zero-cost option is one of the free mosque collection points.
+          chosenDelivery = baseShippingFee === 0 ? "pickup" : "shipping";
+        }
+      } catch (err) {
+        console.error("Could not read chosen shipping option, falling back to metadata:", err);
+      }
+      console.log("Delivery chosen:", chosenDelivery, chosenDeliveryLabel, "fee:", baseShippingFee);
       const donationAmount = parseFloat(session.metadata?.donation_amount || "0");
       const isStandaloneDonation = session.metadata?.standalone_donation === "true";
       
@@ -162,6 +184,11 @@ serve(async (req) => {
           base_shipping_fee_eur: baseShippingFee,
           extra_shipping_fee_eur: 0,
           extra_shipping_status: extraShippingStatus,
+          // Which collection point the customer chose at Stripe. There is no
+          // dedicated column, and the admin needs to know where to hand it over.
+          notes: chosenDelivery === "pickup" && chosenDeliveryLabel
+            ? `Collection: ${chosenDeliveryLabel}`
+            : null,
         })
         .select()
         .single();
@@ -187,7 +214,7 @@ serve(async (req) => {
         shippingCountry,
         shippingName: shippingDetails?.name ?? null,
         donationAmount,
-        isPickup: session.metadata?.delivery_method === "pickup",
+        isPickup: chosenDelivery === "pickup",
       });
 
       // Create order items

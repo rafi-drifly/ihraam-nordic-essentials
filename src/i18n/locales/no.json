@@ -866,7 +866,8 @@
       "pickupHint": "Eller hent gratis ved Uppsala eller Stockholm moské - velg i handlekurven",
       "pickupAvailability": "Vil du hente ved en moské? Ingen fraktavgift og ingen adresse nødvendig. Vi sender deg e-post med nøyaktig hentested og tider så snart bestillingen er klar, vanligvis innen 1-2 virkedager.",
       "pickupAddress": "Hentes ved: {{address}}",
-      "pickupHours": "Hentetider: {{hours}}"
+      "pickupHours": "Hentetider: {{hours}}",
+      "chooseAtCheckout": "Du velger levering eller gratis henting ved moskeen i neste steg, i den sikre kassen."
     },
     "promo": {
       "placeholder": "Skriv inn rabattkode",

@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useCart } from "@/hooks/useCart";
 import { ShoppingCart, ArrowLeft, Minus, Plus, Trash2, Gift, Globe, Info } from "lucide-react";
 import { calculateShipping, EUROPE_COUNTRIES, COUNTRY_NAMES, countryFlag, requiresShippingDisclosure, type EuropeCountry } from "@/lib/shipping";
@@ -25,7 +24,6 @@ const Cart = () => {
   const { items, updateQuantity, removeItem, getTotalItems, addItem, clearCart } = useCart();
   const [selectedDonation, setSelectedDonation] = useState(0);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
-  const [deliveryMethod, setDeliveryMethod] = useState<'ship' | 'uppsala-mosque' | 'stockholm-mosque'>('ship');
   const [shippingCountry, setShippingCountry] = useState<string>('SE');
   
   const showDisclosure = requiresShippingDisclosure(shippingCountry);
@@ -40,8 +38,7 @@ const Cart = () => {
   const localePrefix = getLocalePrefix();
 
   const totalItems = getTotalItems();
-  const isPickup = deliveryMethod !== 'ship';
-  const shipping = isPickup ? 0 : calculateShipping(totalItems);
+  const shipping = calculateShipping(totalItems);
   // The bundle price, not the per-unit sum: checkout charges the bundle, so
   // showing 19 x qty here quoted the customer a total they never paid.
   const subtotal = getBundlePrice(totalItems);
@@ -74,8 +71,7 @@ const Cart = () => {
           donation: selectedDonation > 0 ? selectedDonation : undefined,
           bundlePrice: getBundlePrice(totalItems),
           locale: location.pathname.startsWith('/sv') ? 'sv' : location.pathname.startsWith('/no') ? 'no' : 'en',
-          shippingCountry: isPickup ? 'SE' : shippingCountry,
-          pickupLocation: isPickup ? deliveryMethod : undefined,
+          shippingCountry,
         }
       });
       if (error) throw error;
@@ -200,52 +196,29 @@ const Cart = () => {
                     <span>{t('cart.items', { count: totalItems })}</span>
                     <span>{subtotal.toFixed(2)}€</span>
                   </div>
-                  {/* Delivery method */}
-                  <div className="space-y-2">
-                    <span className="text-sm font-medium">{t('cart.delivery.title', 'Delivery method')}</span>
-                    <RadioGroup
-                      value={deliveryMethod}
-                      onValueChange={(v) => setDeliveryMethod(v as typeof deliveryMethod)}
-                      className="space-y-2"
-                    >
-                      <label htmlFor="dm-ship" className="flex items-center gap-3 rounded-lg border border-border p-3 cursor-pointer has-[:checked]:border-primary has-[:checked]:bg-primary/5">
-                        <RadioGroupItem value="ship" id="dm-ship" />
-                        <span className="flex-1 text-sm">{t('cart.delivery.ship', 'Ship to my address')}</span>
-                      </label>
-                      <label htmlFor="dm-uppsala" className="flex items-center gap-3 rounded-lg border border-border p-3 cursor-pointer has-[:checked]:border-primary has-[:checked]:bg-primary/5">
-                        <RadioGroupItem value="uppsala-mosque" id="dm-uppsala" />
-                        <span className="flex-1 text-sm">{t('cart.delivery.uppsala', 'Free pickup: Uppsala Mosque')}</span>
-                        <span className="text-xs font-semibold text-primary">{t('cart.delivery.free', 'FREE')}</span>
-                      </label>
-                      <label htmlFor="dm-stockholm" className="flex items-center gap-3 rounded-lg border border-border p-3 cursor-pointer has-[:checked]:border-primary has-[:checked]:bg-primary/5">
-                        <RadioGroupItem value="stockholm-mosque" id="dm-stockholm" />
-                        <span className="flex-1 text-sm">{t('cart.delivery.stockholm', 'Free pickup: Stockholm Mosque')}</span>
-                        <span className="text-xs font-semibold text-primary">{t('cart.delivery.free', 'FREE')}</span>
-                      </label>
-                    </RadioGroup>
-
-                    {/* Shown whether or not pickup is selected: these are the
-                        terms of the option, and they belong before the decision. */}
-                    <div className="flex gap-2 p-3 rounded-lg border border-border bg-muted/40">
-                      <Info className="w-4 h-4 text-muted-foreground flex-shrink-0 mt-0.5" />
-                      <div className="text-xs text-muted-foreground space-y-1">
-                        <p>{t('cart.delivery.pickupAvailability')}</p>
-                        {PICKUP_LOCATIONS.map((loc) => {
-                          if (!loc.address && !loc.hours) return null;
-                          return (
-                            <p key={loc.id}>
-                              <span className="font-medium">{t(loc.labelKey)}</span>
-                              {loc.address ? ` - ${t('cart.delivery.pickupAddress', { address: loc.address })}` : ''}
-                              {loc.hours ? ` - ${t('cart.delivery.pickupHours', { hours: loc.hours })}` : ''}
-                            </p>
-                          );
-                        })}
-                      </div>
+                  {/* The delivery-or-collection choice is made at Stripe, so it is
+                      offered on every checkout path rather than only here. Showing
+                      radios as well would let the cart and the receipt disagree. */}
+                  <div className="flex gap-2 p-3 rounded-lg border border-border bg-muted/40">
+                    <Info className="w-4 h-4 text-muted-foreground flex-shrink-0 mt-0.5" />
+                    <div className="text-xs text-muted-foreground space-y-1">
+                      <p>{t('cart.delivery.chooseAtCheckout')}</p>
+                      <p>{t('cart.delivery.pickupAvailability')}</p>
+                      {PICKUP_LOCATIONS.map((loc) => {
+                        if (!loc.address && !loc.hours) return null;
+                        return (
+                          <p key={loc.id}>
+                            <span className="font-medium">{t(loc.labelKey)}</span>
+                            {loc.address ? ` - ${t('cart.delivery.pickupAddress', { address: loc.address })}` : ''}
+                            {loc.hours ? ` - ${t('cart.delivery.pickupHours', { hours: loc.hours })}` : ''}
+                          </p>
+                        );
+                      })}
                     </div>
                   </div>
 
                   {/* Country selector - only when shipping */}
-                  {!isPickup && (
+                  {(
                     <div className="space-y-2">
                       <div className="flex items-center gap-2">
                         <Globe className="w-4 h-4 text-primary" />
@@ -267,23 +240,17 @@ const Cart = () => {
                   )}
 
                   <div className="flex justify-between">
-                    <span>{isPickup ? t('cart.delivery.pickupLine', 'Free mosque pickup') : t('cart.shippingLine', { amount: shipping })}</span>
+                    <span>{t('cart.shippingLine', { amount: shipping })}</span>
                     <span>{shipping === 0 ? 'FREE' : `${shipping.toFixed(2)}€`}</span>
                   </div>
 
-                  {isPickup && (
-                    <div className="flex gap-2 p-3 rounded-lg border border-primary/20 bg-primary/5">
-                      <Info className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                      <p className="text-xs text-muted-foreground">{t('cart.delivery.pickupNote', "We'll email you when your order is ready to collect at the mosque. No delivery address needed.")}</p>
-                    </div>
-                  )}
-                  {!isPickup && showDisclosure && (
+                                    {showDisclosure && (
                     <div className="flex gap-2 p-3 rounded-lg border border-primary/20 bg-primary/5">
                       <Info className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
                       <p className="text-xs text-muted-foreground">{disclosureText}</p>
                     </div>
                   )}
-                  {!isPickup && shippingCountry === 'NO' && (
+                  {shippingCountry === 'NO' && (
                     <div className="flex gap-2 p-3 rounded-lg border border-destructive/20 bg-destructive/5">
                       <Info className="w-4 h-4 text-destructive flex-shrink-0 mt-0.5" />
                       <p className="text-xs text-muted-foreground">{(CUSTOMS_DISCLOSURE as any)[disclosureLang] || CUSTOMS_DISCLOSURE.en}</p>

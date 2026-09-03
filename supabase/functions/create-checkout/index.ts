@@ -37,6 +37,12 @@ const EUROPE_COUNTRIES = [
   'SE', 'GB', 'NO', 'IS', 'LI', 'CH'
 ] as const;
 
+const DELIVERY_LABELS: Record<string, { delivery: string }> = {
+  en: { delivery: "Delivery to your address" },
+  sv: { delivery: "Leverans till din adress" },
+  no: { delivery: "Levering til adressen din" },
+};
+
 const bundleLabels: Record<string, { twoPack: string; threePack: string }> = {
   en: { twoPack: '2-Pack (Best Value)', threePack: '3-Pack (Most Popular)' },
   sv: { twoPack: '2-Pack (Bästa Värde)', threePack: '3-Pack (Mest Populär)' },
@@ -197,20 +203,8 @@ serve(async (req) => {
       },
     ];
 
-    // Add shipping line item
-    if (shippingCents > 0) {
-      lineItems.push({
-        price_data: {
-          currency: 'eur',
-          product_data: {
-            name: 'Shipping',
-            description: `Base delivery fee (${totalQuantity} set${totalQuantity > 1 ? 's' : ''})`,
-          },
-          unit_amount: shippingCents,
-        },
-        quantity: 1,
-      });
-    }
+    // Delivery is a Stripe shipping_option now, not a line item. Having both
+    // would charge for delivery twice.
 
     // Add optional donation
     if (donation && donation > 0) {
@@ -241,15 +235,34 @@ serve(async (req) => {
       // an empty basket after an abandoned payment. Callers say where to go
       // back to; the value is restricted to a same-origin path.
       cancel_url: `${req.headers.get("origin")}${safeCancelPath}`,
-      // Pickup orders need no delivery address; shipping orders collect one.
-      ...(isPickup ? {} : {
-        shipping_address_collection: {
-          allowed_countries: EUROPE_COUNTRIES as unknown as Stripe.Checkout.SessionCreateParams.ShippingAddressCollection.AllowedCountry[],
+      // Always collected: Stripe only renders shipping_options when it has an
+      // address, and the delivery-or-collection choice now lives there.
+      shipping_address_collection: {
+        allowed_countries: EUROPE_COUNTRIES as unknown as Stripe.Checkout.SessionCreateParams.ShippingAddressCollection.AllowedCountry[],
+      },
+      custom_text: {
+        shipping_address: { message: shippingMessage },
+      },
+      // The customer picks delivery or free mosque collection here, so the
+      // choice exists no matter which button they started from. It used to be
+      // offered only on the cart page, so anyone using "Buy now" on the shop or
+      // the navbar cart never saw that pickup was free.
+      shipping_options: [
+        {
+          shipping_rate_data: {
+            type: "fixed_amount",
+            fixed_amount: { amount: baseShippingFee * 100, currency: "eur" },
+            display_name: DELIVERY_LABELS[locale || "en"].delivery,
+          },
         },
-        custom_text: {
-          shipping_address: { message: shippingMessage },
-        },
-      }),
+        ...Object.entries(PICKUP_LOCATIONS).map(([, label]) => ({
+          shipping_rate_data: {
+            type: "fixed_amount" as const,
+            fixed_amount: { amount: 0, currency: "eur" },
+            display_name: label,
+          },
+        })),
+      ],
       phone_number_collection: { enabled: true },
       metadata: {
         user_id: user?.id || '',

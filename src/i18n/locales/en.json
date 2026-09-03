@@ -864,7 +864,8 @@
       "pickupHint": "Or collect free at Uppsala or Stockholm mosque - choose at cart",
       "pickupAvailability": "Collecting at a mosque? There is no delivery fee and no address needed. We email you the exact collection point and times as soon as your order is ready, usually within 1-2 business days.",
       "pickupAddress": "Collect at: {{address}}",
-      "pickupHours": "Collection times: {{hours}}"
+      "pickupHours": "Collection times: {{hours}}",
+      "chooseAtCheckout": "Delivery or free mosque collection is chosen on the next step, at secure checkout."
     },
     "promo": {
       "placeholder": "Enter promo code",
