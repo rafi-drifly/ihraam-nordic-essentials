@@ -42,6 +42,8 @@ import NotFound from "./pages/NotFound";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminOrders from "./pages/admin/Orders";
 import AdminInventory from "./pages/admin/Inventory";
+import { RequireAdmin } from "@/components/admin/RequireAdmin";
+import AdminImages from "./pages/admin/Images";
 
 const queryClient = new QueryClient();
 
@@ -127,8 +129,9 @@ const AppRoutes = () => (
     <Route path="/no/support" element={<Navigate to="/no/contact" replace />} />
     {/* Admin routes */}
     <Route path="/admin" element={<AdminLogin />} />
-    <Route path="/admin/orders" element={<AdminOrders />} />
-    <Route path="/admin/inventory" element={<AdminInventory />} />
+    <Route path="/admin/orders" element={<RequireAdmin><AdminOrders /></RequireAdmin>} />
+    <Route path="/admin/inventory" element={<RequireAdmin><AdminInventory /></RequireAdmin>} />
+    <Route path="/admin/images" element={<RequireAdmin><AdminImages /></RequireAdmin>} />
     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
     <Route path="*" element={<NotFound />} />
   </Routes>

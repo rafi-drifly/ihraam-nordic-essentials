@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Package, Plus, Minus, RefreshCw, ArrowLeft, AlertTriangle } from "lucide-react";
+import { adminSignOut } from "@/hooks/useAdminAuth";
 
 interface Inventory {
   product_key: string;
@@ -32,10 +33,6 @@ const AdminInventory = () => {
   const [newThreshold, setNewThreshold] = useState("");
 
   useEffect(() => {
-    if (localStorage.getItem("pureihram_admin") !== "true") {
-      navigate("/admin");
-      return;
-    }
     fetchData();
   }, [navigate]);
 
@@ -126,8 +123,8 @@ const AdminInventory = () => {
     }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("pureihram_admin");
+  const handleLogout = async () => {
+    await adminSignOut();
     navigate("/admin");
   };
 

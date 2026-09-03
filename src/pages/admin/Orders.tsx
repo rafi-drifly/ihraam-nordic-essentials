@@ -8,6 +8,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Package, RefreshCw, CheckCircle, Clock, Mail, DollarSign, Truck } from "lucide-react";
+import { adminSignOut } from "@/hooks/useAdminAuth";
 
 interface Order {
   id: string;
@@ -65,13 +66,10 @@ const AdminOrders = () => {
   const [extraShippingAmount, setExtraShippingAmount] = useState("");
   const [sendingEmail, setSendingEmail] = useState(false);
 
+  // Route access is enforced by RequireAdmin and, decisively, by RLS.
   useEffect(() => {
-    if (localStorage.getItem("pureihram_admin") !== "true") {
-      navigate("/admin");
-      return;
-    }
     fetchOrders();
-  }, [navigate]);
+  }, []);
 
   const fetchOrders = async () => {
     setLoading(true);
@@ -148,8 +146,8 @@ const AdminOrders = () => {
     setSendingEmail(false);
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("pureihram_admin");
+  const handleLogout = async () => {
+    await adminSignOut();
     navigate("/admin");
   };
 
@@ -182,6 +180,9 @@ const AdminOrders = () => {
             <Button variant="outline" size="sm" onClick={fetchOrders}>
               <RefreshCw className="w-4 h-4 mr-2" />
               Refresh
+            </Button>
+            <Button variant="outline" size="sm" onClick={() => navigate("/admin/images")}>
+              Images
             </Button>
             <Button variant="outline" size="sm" onClick={handleLogout}>
               Logout
