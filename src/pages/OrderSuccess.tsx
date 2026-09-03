@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useSearchParams, Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle, Package, ArrowRight, Mail } from "lucide-react";
@@ -11,6 +12,7 @@ import SEOHead from "@/components/SEOHead";
 
 
 const PaymentSuccess = () => {
+  const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get('session_id');
   const { clearCart } = useCart();
@@ -39,7 +41,7 @@ const PaymentSuccess = () => {
 
   return (
     <div className="py-8">
-      <SEOHead title="Order Confirmation | Pure Ihram" description="Your order confirmation." noindex />
+      <SEOHead title={t('orderSuccess.seoTitle')} description="Your order confirmation." noindex />
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
           <div className="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-green-100 mb-6">

@@ -133,7 +133,7 @@ const Cart = () => {
 
   return (
     <div className="py-8">
-      <SEOHead title="Your Cart | Pure Ihram" description="Review your Ihram order before checkout." noindex />
+      <SEOHead title={t('cart.seoTitle')} description="Review your Ihram order before checkout." noindex />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-4 mb-8">
           <Link to={`${localePrefix}/shop`}>
@@ -267,7 +267,7 @@ const Cart = () => {
                   )}
 
                   <div className="flex justify-between">
-                    <span>{isPickup ? t('cart.delivery.pickupLine', 'Free mosque pickup') : `Shipping - €${shipping}`}</span>
+                    <span>{isPickup ? t('cart.delivery.pickupLine', 'Free mosque pickup') : t('cart.shippingLine', { amount: shipping })}</span>
                     <span>{shipping === 0 ? 'FREE' : `${shipping.toFixed(2)}€`}</span>
                   </div>
 

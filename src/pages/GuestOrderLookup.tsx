@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -37,6 +38,7 @@ interface OrderData {
 }
 
 const GuestOrderLookup = () => {
+  const { t } = useTranslation();
   const [orderNumber, setOrderNumber] = useState("");
   const [lookupToken, setLookupToken] = useState("");
   const [loading, setLoading] = useState(false);
@@ -125,7 +127,7 @@ const GuestOrderLookup = () => {
 
   return (
     <div className="min-h-screen py-8">
-      <SEOHead title="Order Lookup | Pure Ihram" description="Look up your guest order status." noindex />
+      <SEOHead title={t('guestOrderLookup.seoTitle')} description="Look up your guest order status." noindex />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-foreground mb-2">Guest Order Lookup</h1>

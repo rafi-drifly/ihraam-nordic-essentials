@@ -842,14 +842,17 @@
       "cityPlaceholder": "Skriv inn byen din",
       "freeDelivery": "Gratis levering (rabattkode)"
     },
-    "deliveringTo": "Leveres til:"
+    "deliveringTo": "Leveres til:",
+    "seoTitle": "Handlekurven din | Pure Ihram",
+    "shippingLine": "Frakt - €{{amount}}"
   },
   "orderSuccess": {
     "title": "Bestilling Bekreftet!",
     "subtitle": "Takk for kjøpet. Vi sender deg en bekreftelsese-post.",
     "orderNumber": "Ordrenummer",
     "viewOrder": "Se Bestilling",
-    "continueShopping": "Fortsett å Handle"
+    "continueShopping": "Fortsett å Handle",
+    "seoTitle": "Ordrebekreftelse | Pure Ihram"
   },
   "guestOrderLookup": {
     "title": "Spor Bestillingen Din",
@@ -866,7 +869,8 @@
     "total": "Totalt",
     "shippingAddress": "Leveringsadresse",
     "items": "Bestilte Varer",
-    "trackAnother": "Spor En Annen Bestilling"
+    "trackAnother": "Spor En Annen Bestilling",
+    "seoTitle": "Finn bestillingen din | Pure Ihram"
   },
   "donation": {
     "pageTitle": "Støtt Vårt Oppdrag",

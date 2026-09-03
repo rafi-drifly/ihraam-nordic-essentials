@@ -840,7 +840,9 @@
       "cityPlaceholder": "Ange din stad",
       "freeDelivery": "Fri leverans (rabattkod)"
     },
-    "deliveringTo": "Levereras till:"
+    "deliveringTo": "Levereras till:",
+    "seoTitle": "Din varukorg | Pure Ihram",
+    "shippingLine": "Frakt - €{{amount}}"
   },
   "donation": {
     "pageTitle": "Stöd Vårt Uppdrag",
@@ -1133,5 +1135,11 @@
       "successMessage": "Tack! Vänligen maila dina returdetaljer till pureihraam@gmail.com med ditt ordernummer. Vi svarar inom 24-48 timmar med nästa steg.",
       "close": "Stäng"
     }
+  },
+  "orderSuccess": {
+    "seoTitle": "Orderbekräftelse | Pure Ihram"
+  },
+  "guestOrderLookup": {
+    "seoTitle": "Hitta din order | Pure Ihram"
   }
 }

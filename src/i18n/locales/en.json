@@ -840,7 +840,9 @@
       "cityPlaceholder": "Enter your city",
       "freeDelivery": "Free delivery (promo)"
     },
-    "deliveringTo": "Delivering to:"
+    "deliveringTo": "Delivering to:",
+    "seoTitle": "Your Cart | Pure Ihram",
+    "shippingLine": "Shipping - €{{amount}}"
   },
   "donation": {
     "pageTitle": "Support Our Mission",
@@ -1133,5 +1135,11 @@
       "successMessage": "Thank you! Please email your request details to pureihraam@gmail.com with your order number. We'll respond within 24-48 hours with next steps.",
       "close": "Close"
     }
+  },
+  "orderSuccess": {
+    "seoTitle": "Order Confirmation | Pure Ihram"
+  },
+  "guestOrderLookup": {
+    "seoTitle": "Order Lookup | Pure Ihram"
   }
 }
