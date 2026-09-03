@@ -52,8 +52,16 @@ const HOME_DESC = {
   sv: 'Premium Ihram-tyg för Umrah och Hajj. €19 + €9 frakt inom Sverige, 3-7 arbetsdagar. Gratis avhämtning i Uppsala och Stockholm.',
   no: 'Premium Ihram-stoff for Umrah og Hajj. Fra €19, sendes fra Sverige. Frakt til Norge bekreftes før sending, eller hent gratis i Uppsala og Stockholm.',
 };
-const BLOGLIST_TITLE = 'Hajj & Umrah Guides - Pilgrimage Knowledge | Pure Ihram';
-const BLOGLIST_DESC = 'Practical guides for Hajj and Umrah: how to wear Ihram, Sunnah acts, essential duas, packing checklists, and spiritual preparation.';
+const BLOGLIST_TITLE = {
+  en: 'Hajj & Umrah Guides - Pilgrimage Knowledge | Pure Ihram',
+  sv: 'Hajj- och Umrah-guider - kunskap för pilgrimer | Pure Ihram',
+  no: 'Hajj- og Umrah-guider - kunnskap for pilegrimer | Pure Ihram',
+};
+const BLOGLIST_DESC = {
+  en: 'Practical guides for Hajj and Umrah: how to wear Ihram, Sunnah acts, essential duas, packing checklists, and spiritual preparation.',
+  sv: 'Praktiska guider för Hajj och Umrah: så bär du Ihram, sunnah-handlingar, viktiga duas, packlistor och andlig förberedelse.',
+  no: 'Praktiske guider for Hajj og Umrah: slik bærer du Ihram, sunnah-handlinger, viktige duaer, pakkelister og åndelig forberedelse.',
+};
 
 // Public info/commerce pages. Titles/descriptions mirror each page's SEOHead.
 // `title`/`desc` = inline per-locale strings; `titleKey`/`descKey` = i18n keys
@@ -83,8 +91,8 @@ const STATIC_PAGES = [
     title: tri('B2B Partnership - Wholesale Ihram for Mosques & Agencies | Pure Ihram', 'B2B-Partnerskap - Grossist Ihram för Moskéer & Byråer | Pure Ihram', 'B2B-Partnerskap - Engros Ihram for Moskeer & Byråer | Pure Ihram'),
     desc: tri('Partner with Pure Ihram to offer wholesale Ihram sets to your mosque, agency, or travel group. Halal income, quality product, EU-wide shipping.', 'Bli partner med Pure Ihram för att erbjuda grossist Ihram-set till er moské, byrå eller resegrupp. Halal-inkomst, kvalitetsprodukt, EU-omfattande frakt.', 'Bli partner med Pure Ihram for å tilby engros Ihram-sett til din moské, byrå eller reisegruppe. Halal-inntekt, kvalitetsprodukt, EU-dekkende frakt.') },
   { path: '/returns',
-    title: tri('Returns & Exchanges - 14-Day Free Returns | Pure Ihram', 'Returns & Exchanges - 14-Day Free Returns | Pure Ihram', 'Returns & Exchanges - 14-Day Free Returns | Pure Ihram'),
-    desc: tri("Pure Ihram's transparent return and exchange policy across the EU. 14-day withdrawal, easy size swaps, and clear shipping rules.", "Pure Ihram's transparent return and exchange policy across the EU. 14-day withdrawal, easy size swaps, and clear shipping rules.", "Pure Ihram's transparent return and exchange policy across the EU. 14-day withdrawal, easy size swaps, and clear shipping rules.") },
+    title: tri('Returns & Exchanges - 14-Day Free Returns | Pure Ihram', 'Retur & byte - 14 dagars fri retur | Pure Ihram', 'Retur og bytte - 14 dagers fri retur | Pure Ihram'),
+    desc: tri("Pure Ihram's transparent return and exchange policy across the EU. 14-day withdrawal, easy size swaps, and clear shipping rules.", 'Pure Ihrams tydliga policy för retur och byte inom EU: 14 dagars ångerrätt, enkla storleksbyten och klara fraktregler.', 'Pure Ihrams tydelige policy for retur og bytte i EU: 14 dagers angrerett, enkle størrelsesbytter og klare fraktregler.') },
   { path: '/mosque-support', titleKey: 'mosqueSupport.seoTitle', descKey: 'mosqueSupport.seoDescription',
     titleDefault: 'Mosque Support Program | Pure Ihram', descDefault: 'Pure Ihram supports mosques across the Nordics and EU. Learn about our mosque support program.' },
   { path: '/support-our-mission', titleKey: 'donation.seoTitle', descKey: 'donation.seoDescription',
@@ -157,7 +165,7 @@ for (const locale of Object.keys(LOCALES)) {
   write(pfx || '.', render({ title: HOME_TITLE[locale], description: HOME_DESC[locale], canonicalPath: '/', locale }));
   // Host serves directory routes with a trailing slash (clean URL 308-redirects
   // to it), so canonical/hreflang use the trailing-slash 200 URL.
-  write(`${pfx}/blog`.replace(/^\//, ''), render({ title: BLOGLIST_TITLE, description: BLOGLIST_DESC, canonicalPath: '/blog/', locale }));
+  write(`${pfx}/blog`.replace(/^\//, ''), render({ title: BLOGLIST_TITLE[locale], description: BLOGLIST_DESC[locale], canonicalPath: '/blog/', locale }));
   count += 2;
 }
 // Registry blog posts (full Article + FAQPage), per locale
