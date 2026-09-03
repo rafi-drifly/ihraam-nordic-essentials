@@ -98,9 +98,14 @@ export function setOgLocaleAlternates(locales: string[]) {
  * page supplies its own - which is what makes Product schema appear at all.
  */
 export function setJsonLd(blocks: Array<Record<string, unknown>>) {
-  document.head
-    .querySelectorAll(`script[type="application/ld+json"][${OWNED}]`)
-    .forEach((el) => el.remove());
+  // When the page supplies its own schema it supersedes the prerendered blocks
+  // entirely, otherwise both survive and the page ships duplicate FAQPage /
+  // Product entries. A page that supplies none leaves the prerendered ones be,
+  // which is what keeps Article schema on the blog routes.
+  const selector = blocks.length
+    ? 'script[type="application/ld+json"]'
+    : `script[type="application/ld+json"][${OWNED}]`;
+  document.head.querySelectorAll(selector).forEach((el) => el.remove());
   for (const block of blocks) {
     const el = document.createElement("script");
     el.type = "application/ld+json";
