@@ -3,7 +3,17 @@ import { createRoot } from "react-dom/client";
 import { PostHogProvider } from '@posthog/react';
 import App from "./App.tsx";
 import { isAnalyticsEnabled } from "@/lib/analytics";
+import { registerServiceWorker } from "@/lib/push";
 import "./index.css";
+
+// Registered only in built output. In dev the worker would sit in front of
+// Vite's module graph and serve the offline page over a restarting server,
+// which looks exactly like a broken app.
+if (import.meta.env.PROD) {
+  window.addEventListener("load", () => {
+    void registerServiceWorker();
+  });
+}
 
 const posthogOptions = {
   api_host: import.meta.env.VITE_PUBLIC_POSTHOG_HOST,

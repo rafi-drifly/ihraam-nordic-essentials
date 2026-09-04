@@ -9,6 +9,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Package, RefreshCw, CheckCircle, Clock, Mail, DollarSign, Truck } from "lucide-react";
 import { adminSignOut } from "@/hooks/useAdminAuth";
+import { OrderPushToggle } from "@/components/admin/OrderPushToggle";
 
 interface Order {
   id: string;
@@ -177,6 +178,7 @@ const AdminOrders = () => {
             </Link>
           </div>
           <div className="flex gap-2">
+            <OrderPushToggle />
             <Button variant="outline" size="sm" onClick={fetchOrders}>
               <RefreshCw className="w-4 h-4 mr-2" />
               Refresh
