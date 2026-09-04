@@ -142,15 +142,15 @@ const AdminInventory = () => {
     <div className="min-h-screen bg-muted/50 p-4 md:p-8">
       <div className="max-w-4xl mx-auto space-y-6">
         {/* Header */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-4">
             <Link to="/admin/orders">
               <Button variant="ghost" size="sm">
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Orders
               </Button>
             </Link>
-            <h1 className="text-2xl font-bold">Inventory Management</h1>
+            <h1 className="text-xl sm:text-2xl font-bold">Inventory Management</h1>
           </div>
           <Button variant="outline" size="sm" onClick={handleLogout}>
             Logout

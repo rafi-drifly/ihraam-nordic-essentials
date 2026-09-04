@@ -167,9 +167,9 @@ const AdminOrders = () => {
     <div className="min-h-screen bg-muted/50 p-4 md:p-8">
       <div className="max-w-6xl mx-auto space-y-6">
         {/* Header */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <h1 className="text-2xl font-bold">Order Management</h1>
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-wrap items-center gap-3">
+            <h1 className="text-xl sm:text-2xl font-bold">Order Management</h1>
             <Link to="/admin/inventory">
               <Button variant="outline" size="sm">
                 <Package className="w-4 h-4 mr-2" />
@@ -177,7 +177,7 @@ const AdminOrders = () => {
               </Button>
             </Link>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <OrderPushToggle />
             <Button variant="outline" size="sm" onClick={fetchOrders}>
               <RefreshCw className="w-4 h-4 mr-2" />
@@ -193,31 +193,31 @@ const AdminOrders = () => {
         </div>
 
         {/* Summary Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
           <Card>
-            <CardContent className="p-4 text-center">
+            <CardContent className="p-3 md:p-4 text-center">
               <p className="text-sm text-muted-foreground">Total Orders</p>
-              <p className="text-3xl font-bold">{orders.length}</p>
+              <p className="text-2xl md:text-3xl font-bold">{orders.length}</p>
             </CardContent>
           </Card>
           <Card>
-            <CardContent className="p-4 text-center">
+            <CardContent className="p-3 md:p-4 text-center">
               <p className="text-sm text-muted-foreground">Pending Review</p>
-              <p className="text-3xl font-bold text-orange-600">
+              <p className="text-2xl md:text-3xl font-bold text-orange-600">
                 {orders.filter(o => o.status === 'paid_pending_shipping_review').length}
               </p>
             </CardContent>
           </Card>
           <Card>
-            <CardContent className="p-4 text-center">
+            <CardContent className="p-3 md:p-4 text-center">
               <p className="text-sm text-muted-foreground">Europe Orders</p>
-              <p className="text-3xl font-bold text-blue-600">{europeOrders.length}</p>
+              <p className="text-2xl md:text-3xl font-bold text-blue-600">{europeOrders.length}</p>
             </CardContent>
           </Card>
           <Card>
-            <CardContent className="p-4 text-center">
+            <CardContent className="p-3 md:p-4 text-center">
               <p className="text-sm text-muted-foreground">Awaiting Extra Shipping</p>
-              <p className="text-3xl font-bold text-yellow-600">
+              <p className="text-2xl md:text-3xl font-bold text-yellow-600">
                 {orders.filter(o => o.extra_shipping_status === 'requested').length}
               </p>
             </CardContent>
@@ -237,8 +237,8 @@ const AdminOrders = () => {
                 {orders.map((order) => (
                   <div key={order.id} className="border rounded-lg p-4 space-y-3">
                     <div className="flex flex-wrap items-center justify-between gap-2">
-                      <div className="flex items-center gap-3">
-                        <span className="font-mono font-medium">{order.order_number}</span>
+                      <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                        <span className="font-mono font-medium text-sm sm:text-base break-all">{order.order_number}</span>
                         <Badge className={statusColors[order.status] || "bg-gray-500"}>
                           {statusLabels[order.status] || order.status}
                         </Badge>
@@ -256,10 +256,10 @@ const AdminOrders = () => {
                       </span>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 text-sm">
                       <div>
                         <span className="text-muted-foreground">Customer:</span>
-                        <p className="font-medium">{order.guest_email}</p>
+                        <p className="font-medium break-all">{order.guest_email}</p>
                       </div>
                       <div>
                         <span className="text-muted-foreground">Bundle:</span>

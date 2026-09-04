@@ -123,12 +123,12 @@ const AdminImages = () => {
     <div className="min-h-screen bg-muted/30 py-8">
       <SEOHead title="Product Images | Pure Ihram" description="Admin product images." noindex />
       <div className="max-w-4xl mx-auto px-4">
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-3">
+        <div className="flex flex-col gap-3 mb-6 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
             <Button variant="outline" size="sm" onClick={() => navigate("/admin/orders")}>
               <ArrowLeft className="h-4 w-4 mr-2" /> Orders
             </Button>
-            <h1 className="text-2xl font-bold">Product images</h1>
+            <h1 className="text-xl sm:text-2xl font-bold">Product images</h1>
           </div>
           <Button variant="ghost" size="sm" onClick={async () => { await adminSignOut(); navigate("/admin"); }}>
             Sign out
