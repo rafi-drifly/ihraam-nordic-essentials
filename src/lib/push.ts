@@ -80,8 +80,13 @@ export type PushBlocker = "unsupported" | "ios-needs-install" | "permission-deni
  * from enabling so the UI can explain the situation before the user taps.
  */
 export function describePushBlocker(): PushBlocker {
-  if (isIos() && !isStandalone()) return "ios-needs-install";
-  if (!isPushSupported()) return "unsupported";
+  // Trust the capability check first and use the iOS heuristic only to explain
+  // *why* support is missing. Doing it the other way round means a device that
+  // is genuinely installed, but whose standalone signal we misread, gets locked
+  // out of notifications with no way back.
+  if (!isPushSupported()) {
+    return isIos() && !isStandalone() ? "ios-needs-install" : "unsupported";
+  }
   if (typeof Notification !== "undefined" && Notification.permission === "denied") {
     return "permission-denied";
   }
