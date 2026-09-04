@@ -1,24 +1,35 @@
 /**
- * Web Push for owner order alerts.
+ * Web Push for owner order alerts, served by a Cloudflare Worker.
  *
- * Only the admin ever subscribes: this exists so a new order reaches Rafi's
- * phone, not so customers get marketing. The subscription is stored per device,
- * because a browser mints one endpoint per installation — the phone and the
- * laptop are two separate rows, and both should ring.
+ * Only the owner ever subscribes: this exists so a new order reaches Rafi's
+ * phone, not so customers get marketing. Each device subscribes separately —
+ * a browser mints one endpoint per installation, so the phone and the laptop
+ * are two enrolments and both should ring.
+ *
+ * Enrolment is gated by a shared code rather than a login, because the Worker
+ * has no session of its own yet. That is deliberate for this stage: when the
+ * admin moves behind Cloudflare Access, the code goes away and the Access
+ * identity takes over.
  *
  * iOS is the awkward one. Safari refuses `Notification.requestPermission()`
- * entirely unless the site has been added to the Home Screen first, and it
- * throws rather than returning "denied", so the UI has to detect that case up
- * front and explain it instead of showing a dead button.
+ * unless the site has been added to the Home Screen, and it throws rather than
+ * returning "denied" — so the UI detects that case up front and explains it
+ * instead of showing a button that cannot work.
  */
 
+/** Deployed Worker. Public by design; every route it exposes is authenticated. */
+export const PUSH_WORKER_URL = "https://pureihram-push.rafi-drifly.workers.dev";
+
 /**
- * VAPID public key. Public by design — it is shipped to every browser that
- * subscribes and identifies the sender. The matching private key lives only in
- * the Supabase function secret `VAPID_PRIVATE_KEY`.
+ * VAPID public key. Public by design — it ships to every browser that
+ * subscribes and identifies the sender. The private half lives only in the
+ * Worker's secret store.
  */
 export const VAPID_PUBLIC_KEY =
   "BBnC7Lg1mHfA8m7ClKO2Hbal6y1bNt0fcp1q7zb9z9NwvCoKg_wlsryWTaODU4PtxeGmrVBgsUS3lJ1dlnliizE";
+
+/** Remembers the enrolment code so a device asks for it once, not every time. */
+const CODE_STORAGE_KEY = "pureihram_push_code";
 
 /**
  * Decode a base64url VAPID key into the raw bytes `pushManager.subscribe`
@@ -48,7 +59,7 @@ export function isStandalone(): boolean {
   if (typeof window === "undefined") return false;
   return (
     window.matchMedia?.("(display-mode: standalone)").matches === true ||
-    // Safari's own non-standard flag, which is the only signal on iOS.
+    // Safari's own non-standard flag, the only signal available on iOS.
     (window.navigator as { standalone?: boolean }).standalone === true
   );
 }
@@ -62,25 +73,35 @@ export function isIos(): boolean {
   );
 }
 
-export type PushBlocker =
-  | "unsupported"
-  | "ios-needs-install"
-  | "permission-denied"
-  | null;
+export type PushBlocker = "unsupported" | "ios-needs-install" | "permission-denied" | null;
 
 /**
  * Why push cannot be turned on right now, or null when it can. Kept separate
  * from enabling so the UI can explain the situation before the user taps.
  */
 export function describePushBlocker(): PushBlocker {
-  if (!isPushSupported()) {
-    return isIos() && !isStandalone() ? "ios-needs-install" : "unsupported";
-  }
   if (isIos() && !isStandalone()) return "ios-needs-install";
+  if (!isPushSupported()) return "unsupported";
   if (typeof Notification !== "undefined" && Notification.permission === "denied") {
     return "permission-denied";
   }
   return null;
+}
+
+export function rememberedCode(): string {
+  try {
+    return localStorage.getItem(CODE_STORAGE_KEY) ?? "";
+  } catch {
+    return "";
+  }
+}
+
+function rememberCode(code: string): void {
+  try {
+    localStorage.setItem(CODE_STORAGE_KEY, code);
+  } catch {
+    /* private browsing; the code just gets asked for again */
+  }
 }
 
 export async function registerServiceWorker(): Promise<ServiceWorkerRegistration | null> {
@@ -111,71 +132,78 @@ export interface EnableResult {
   error?: string;
 }
 
-/**
- * Ask for permission, subscribe, and record the endpoint against the signed-in
- * user. Safe to call when already subscribed — the row is upserted on endpoint.
- */
-export async function enablePush(
-  supabase: {
-    auth: { getUser: () => Promise<{ data: { user: { id: string } | null } }> };
-    from: (table: "push_subscriptions") => {
-      upsert: (
-        values: Record<string, unknown>,
-        options: { onConflict: string }
-      ) => Promise<{ error: { message: string } | null }>;
-    };
+async function postToWorker(path: string, body: unknown): Promise<{ ok: boolean; error?: string }> {
+  try {
+    const response = await fetch(`${PUSH_WORKER_URL}${path}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+    if (response.ok) return { ok: true };
+    const detail = (await response.json().catch(() => null)) as { error?: string } | null;
+    return { ok: false, error: detail?.error ?? `Request failed (${response.status})` };
+  } catch {
+    return { ok: false, error: "Could not reach the notification service." };
   }
-): Promise<EnableResult> {
+}
+
+/**
+ * Ask for permission, subscribe, and enrol the device with the Worker.
+ * Safe to call when already subscribed — enrolment is keyed on the endpoint.
+ */
+export async function enablePush(code: string): Promise<EnableResult> {
   const blocker = describePushBlocker();
   if (blocker) return { ok: false, blocker };
 
   const permission = await Notification.requestPermission();
   if (permission !== "granted") return { ok: false, blocker: "permission-denied" };
 
-  const registration = (await navigator.serviceWorker.getRegistration()) ?? (await registerServiceWorker());
-  if (!registration) return { ok: false, error: "Service worker unavailable" };
+  const registration =
+    (await navigator.serviceWorker.getRegistration()) ?? (await registerServiceWorker());
+  if (!registration) return { ok: false, error: "Service worker unavailable." };
   await navigator.serviceWorker.ready;
 
   let subscription = await registration.pushManager.getSubscription();
   if (!subscription) {
     subscription = await registration.pushManager.subscribe({
-      // Required by every current browser; a non-userVisible subscription is
-      // rejected outright.
+      // Required by every current browser; a silent subscription is rejected.
       userVisibleOnly: true,
       applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY),
     });
   }
 
-  const { data } = await supabase.auth.getUser();
-  if (!data.user) return { ok: false, error: "Not signed in" };
-
   const json = subscription.toJSON();
-  const { error } = await supabase.from("push_subscriptions").upsert(
-    {
-      user_id: data.user.id,
+  const result = await postToWorker("/subscribe", {
+    secret: code,
+    subscription: {
       endpoint: subscription.endpoint,
-      p256dh: json.keys?.p256dh ?? "",
-      auth: json.keys?.auth ?? "",
-      user_agent: navigator.userAgent.slice(0, 300),
-      failure_count: 0,
+      keys: { p256dh: json.keys?.p256dh, auth: json.keys?.auth },
     },
-    { onConflict: "endpoint" }
-  );
-  if (error) return { ok: false, error: error.message };
+    userAgent: navigator.userAgent,
+  });
 
+  if (!result.ok) {
+    // Do not leave a browser subscription pointing at a Worker that has not
+    // enrolled it; that would look enabled while silently never firing.
+    await subscription.unsubscribe().catch(() => undefined);
+    return { ok: false, error: result.error };
+  }
+
+  rememberCode(code);
   return { ok: true };
 }
 
-export async function disablePush(supabase: {
-  from: (table: "push_subscriptions") => {
-    delete: () => { eq: (column: string, value: string) => Promise<unknown> };
-  };
-}): Promise<void> {
+export async function disablePush(code: string): Promise<void> {
   const subscription = await currentSubscription();
   if (!subscription) return;
   const { endpoint } = subscription;
   await subscription.unsubscribe();
-  // Best effort: an orphaned row only costs one rejected send, which the
-  // sender prunes on the 410 the push service returns.
-  await supabase.from("push_subscriptions").delete().eq("endpoint", endpoint);
+  // Best effort: a stale entry only costs one rejected send, which the Worker
+  // prunes on the 410 the push service returns.
+  await postToWorker("/unsubscribe", { secret: code, endpoint });
+}
+
+/** Fire a notification immediately so enabling can be confirmed, not assumed. */
+export async function sendTestPush(code: string): Promise<{ ok: boolean; error?: string }> {
+  return postToWorker("/test", { secret: code });
 }

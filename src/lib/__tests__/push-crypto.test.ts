@@ -6,8 +6,8 @@ import {
   concat,
   encryptPayload,
   hkdf,
-} from "../../../supabase/functions/stripe-webhook/webpush-crypto";
-import { buildMessage } from "../../../supabase/functions/stripe-webhook/push";
+} from "../../../workers/push/src/webpush";
+import { buildMessage } from "../../../workers/push/src/index";
 import { urlBase64ToUint8Array, VAPID_PUBLIC_KEY } from "../push";
 
 /**
@@ -189,13 +189,10 @@ describe("notification wording", () => {
   it("leads with the amount and says where it is going", () => {
     expect(
       buildMessage({
-        orderNumber: "ORD-1",
-        totalAmount: 199,
-        currency: "EUR",
-        quantity: 10,
-        shippingName: "Lavdim Dibrani",
-        shippingCountry: "SE",
-        isPickup: false,
+        amount_total: 19900,
+        currency: "eur",
+        shipping_details: { name: "Lavdim Dibrani", address: { country: "SE" } },
+        metadata: { total_quantity: "10", delivery_method: "shipping" },
       })
     ).toEqual({
       title: "New order · €199.00",
@@ -203,31 +200,30 @@ describe("notification wording", () => {
     });
   });
 
-  it("singularises one set and flags collection orders", () => {
+  it("singularises one set and names the collection point", () => {
     expect(
       buildMessage({
-        orderNumber: "ORD-2",
-        totalAmount: 19,
-        currency: "EUR",
-        quantity: 1,
-        shippingName: "Ayu",
-        shippingCountry: "SE",
-        isPickup: true,
+        amount_total: 1900,
+        currency: "eur",
+        customer_details: { name: "Ayu" },
+        metadata: {
+          total_quantity: "1",
+          delivery_method: "pickup",
+          pickup_location: "Uppsala Mosque",
+        },
       }).body
-    ).toBe("1 set · Ayu · collection");
+    ).toBe("1 set · Ayu · collect · Uppsala Mosque");
   });
 
-  it("stays readable when Stripe gave us no name or quantity", () => {
-    expect(
-      buildMessage({
-        orderNumber: "ORD-3",
-        totalAmount: 41,
-        currency: "EUR",
-        quantity: null,
-        shippingName: null,
-        shippingCountry: null,
-        isPickup: false,
-      })
-    ).toEqual({ title: "New order · €41.00", body: "A customer · delivery" });
+  it("stays readable when Stripe gave us no name, country or quantity", () => {
+    expect(buildMessage({ amount_total: 4100, currency: "eur" })).toEqual({
+      title: "New order · €41.00",
+      body: "A customer · delivery",
+    });
+  });
+
+  it("converts from Stripe's minor units rather than trusting a major-unit total", () => {
+    expect(buildMessage({ amount_total: 6600, currency: "eur" }).title).toBe("New order · €66.00");
+    expect(buildMessage({ amount_total: 5, currency: "eur" }).title).toBe("New order · €0.05");
   });
 });
