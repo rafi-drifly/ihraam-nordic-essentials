@@ -13,6 +13,7 @@ import {
   setRobots,
   setTitle,
 } from '@/lib/head';
+import { isAdminPath } from '@/lib/adminPwa';
 
 interface SEOHeadProps {
   title?: string;
@@ -79,7 +80,13 @@ const SEOHead = ({ title, description, path, jsonLd, noindex, ogType, image }: S
     return 'Premium Ihram cloth for Umrah & Hajj. €19 + €9 shipping within Sweden, 3-7 days. Free pickup in Uppsala and Stockholm.';
   };
 
-  const finalTitle = title || getDefaultTitle();
+  // The back office is not part of the storefront. Without this it inherits
+  // the shop's homepage title, gains a canonical URL of its own and loses the
+  // noindex baked into the prerendered HTML - and since Google renders
+  // JavaScript, that is the version it would see.
+  const admin = isAdminPath(currentPath);
+
+  const finalTitle = admin ? 'Ihram Admin' : title || getDefaultTitle();
   const finalDescription = description || getDefaultDescription();
 
   // Alternate locales for og:locale:alternate (everything except current).
@@ -101,9 +108,9 @@ const SEOHead = ({ title, description, path, jsonLd, noindex, ogType, image }: S
     setHtmlLang(meta.htmlLang);
     setTitle(finalTitle);
     setDescription(finalDescription);
-    setRobots(!!noindex);
-    setCanonical(currentUrl);
-    setAlternates([
+    setRobots(admin || !!noindex);
+    setCanonical(admin ? null : currentUrl);
+    setAlternates(admin ? [] : [
       { hreflang: 'en', href: englishUrl },
       { hreflang: 'sv-SE', href: swedishUrl },
       { hreflang: 'nb-NO', href: norwegianUrl },
@@ -122,7 +129,7 @@ const SEOHead = ({ title, description, path, jsonLd, noindex, ogType, image }: S
     setNamed('twitter:image', finalImage);
     setJsonLd(JSON.parse(jsonLdKey) as Array<Record<string, unknown>>);
   }, [
-    meta.htmlLang, meta.ogLocale, finalTitle, finalDescription, noindex, currentUrl,
+    admin, meta.htmlLang, meta.ogLocale, finalTitle, finalDescription, noindex, currentUrl,
     englishUrl, swedishUrl, norwegianUrl, finalOgType, finalImage,
     alternateOgLocalesKey, jsonLdKey,
   ]);

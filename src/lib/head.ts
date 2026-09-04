@@ -46,8 +46,18 @@ export function setRobots(noindex: boolean) {
   }
 }
 
-export function setCanonical(href: string) {
-  let el = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+/**
+ * Set the canonical URL, or pass null to remove it entirely. Pages that should
+ * never be indexed - the admin - must not advertise a canonical, because that
+ * is an invitation to index precisely the URL you are trying to keep out.
+ */
+export function setCanonical(href: string | null) {
+  const existing = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+  if (href === null) {
+    existing?.remove();
+    return;
+  }
+  let el = existing;
   if (!el) {
     el = document.createElement("link");
     el.rel = "canonical";
