@@ -1,10 +1,10 @@
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { CartProvider } from "@/hooks/useCart";
 import Navbar from "@/components/ui/navbar";
 import Footer from "@/components/ui/footer";
@@ -43,6 +43,7 @@ import AdminLogin from "./pages/admin/AdminLogin";
 import AdminOrders from "./pages/admin/Orders";
 import AdminInventory from "./pages/admin/Inventory";
 import { RequireAdmin } from "@/components/admin/RequireAdmin";
+import { applyPwaIdentity, isAdminPath } from "@/lib/adminPwa";
 import AdminImages from "./pages/admin/Images";
 
 const queryClient = new QueryClient();
@@ -137,6 +138,34 @@ const AppRoutes = () => (
   </Routes>
 );
 
+/**
+ * The admin is a separate installed app, so it does not wear the shop's
+ * clothes: no promo banner, no storefront nav, no footer, no WhatsApp button.
+ * On a phone that chrome was consuming roughly a third of the screen before a
+ * single order appeared, and offering shop links that would walk the operator
+ * straight out of the admin.
+ */
+const Shell = () => {
+  const { pathname } = useLocation();
+  const admin = isAdminPath(pathname);
+
+  useEffect(() => {
+    applyPwaIdentity(pathname);
+  }, [pathname]);
+
+  return (
+    <div className="min-h-screen flex flex-col">
+      {!admin && <PromoBanner />}
+      {!admin && <Navbar />}
+      <main className="flex-1">
+        <AppRoutes />
+      </main>
+      {!admin && <Footer />}
+      {!admin && <WhatsAppButton />}
+    </div>
+  );
+};
+
 const App = () => (
   <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
       <QueryClientProvider client={queryClient}>
@@ -149,15 +178,7 @@ const App = () => (
               <PageViewTracker />
               <LocaleHandler />
               <SEOHead />
-              <div className="min-h-screen flex flex-col">
-                <PromoBanner />
-                <Navbar />
-                <main className="flex-1">
-                  <AppRoutes />
-                </main>
-                <Footer />
-                <WhatsAppButton />
-              </div>
+              <Shell />
             </BrowserRouter>
           </TooltipProvider>
         </CartProvider>

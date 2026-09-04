@@ -1,0 +1,17 @@
+{
+  "id": "/admin",
+  "name": "Pure Ihram Admin",
+  "short_name": "Ihram Admin",
+  "description": "Orders, inventory and product images for Pure Ihram.",
+  "start_url": "/admin/orders",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#0c635f",
+  "icons": [
+    { "src": "/admin-icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/admin-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/admin-apple-touch-icon.png", "sizes": "180x180", "type": "image/png", "purpose": "any" }
+  ]
+}
