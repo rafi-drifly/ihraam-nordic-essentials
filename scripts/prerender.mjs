@@ -223,4 +223,38 @@ for (const page of STATIC_PAGES) {
   }
 }
 
+// --- Admin, installed as its own app ---------------------------------------
+// Safari reads <link rel="manifest"> while the document is loading and caches
+// it, so swapping the link from React afterwards is too late: by the time
+// anyone taps Add to Home Screen the site manifest has already been read, and
+// its start_url of "/" opens the shop. These pages therefore ship the admin
+// manifest in the HTML itself, before any JavaScript runs.
+const ADMIN_ROUTES = ['/admin', '/admin/orders', '/admin/inventory', '/admin/images'];
+
+function renderAdmin() {
+  let html = template;
+  html = html.replace(/<title>[\s\S]*?<\/title>/, '<title>Ihram Admin</title>');
+  html = html.replace(
+    /<link\s+rel="manifest"\s+href="[^"]*"\s*\/?>/,
+    '<link rel="manifest" href="/admin.webmanifest" />');
+  // iOS takes the Home Screen image from apple-touch-icon, not the manifest.
+  html = html.replace(
+    /<link\s+rel="apple-touch-icon"\s+sizes="180x180"\s+href="[^"]*"\s*\/?>/,
+    '<link rel="apple-touch-icon" sizes="180x180" href="/admin-apple-touch-icon.png" />');
+  html = html.replace(
+    /<meta\s+name="apple-mobile-web-app-title"\s+content="[^"]*"\s*\/?>/,
+    '<meta name="apple-mobile-web-app-title" content="Ihram Admin" />');
+  // The back office is nobody's search result, and the shop's canonical and
+  // social tags would only leak storefront URLs into admin link previews.
+  html = html.replace(/<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/, '');
+  html = html.replace(/<meta\s+property="og:[^"]*"\s+content="[^"]*"\s*\/?>/g, '');
+  html = html.replace('</head>', '    <meta name="robots" content="noindex, nofollow" />\n  </head>');
+  return html;
+}
+
+for (const route of ADMIN_ROUTES) {
+  write(route.replace(/^\//, ''), renderAdmin());
+  count++;
+}
+
 console.log(`[prerender] wrote ${count} static HTML files`);
