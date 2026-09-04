@@ -2,7 +2,6 @@ import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import Stripe from "https://esm.sh/stripe@18.5.0";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.57.2";
 import { sendPlacedOrderToKlaviyo } from "./klaviyo.ts";
-import { sendOrderPush } from "./push.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -200,19 +199,6 @@ serve(async (req) => {
       }
 
       console.log("Order created:", order.id);
-
-      // Buzz the owner's phone. Sent before the slower marketing and email
-      // work below so the alert is not held up behind them, and like those it
-      // never throws: a missed notification must not fail a paid order.
-      await sendOrderPush(supabaseClient, {
-        orderNumber: order.order_number,
-        totalAmount: totalAmount,
-        currency: "EUR",
-        quantity: totalQuantity,
-        shippingName: shippingDetails?.name ?? null,
-        shippingCountry: shippingCountry,
-        isPickup: chosenDelivery === "pickup",
-      });
 
       // Tell Klaviyo a purchase happened. Awaited so the runtime does not tear
       // the isolate down mid-request, but it never throws: the order is already

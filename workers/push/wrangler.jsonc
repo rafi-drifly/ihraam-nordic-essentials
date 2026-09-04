@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "pureihram-push",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-09-01",
+  "observability": { "enabled": true },
+  "kv_namespaces": [
+    {
+      "binding": "PUSH_SUBSCRIPTIONS",
+      "id": "03041863130f4b6980c2dc5fc19fd20e"
+    }
+  ],
+  "vars": {
+    "ALLOWED_ORIGIN": "https://www.pureihram.com"
+  }
+}
