@@ -14,16 +14,27 @@
  * failed; every other request is left entirely alone.
  */
 
-const VERSION = "v1";
+const VERSION = "v2";
 const OFFLINE_CACHE = `pureihram-offline-${VERSION}`;
-const OFFLINE_URL = "/offline.html";
+// Cloudflare Pages serves offline.html at the extensionless path and
+// 308-redirects the .html form. Requesting the redirecting URL matters:
+// cache.add() rejects outright on a redirect.
+const OFFLINE_URL = "/offline";
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches
-      .open(OFFLINE_CACHE)
-      .then((cache) => cache.add(new Request(OFFLINE_URL, { cache: "reload" })))
-      .then(() => self.skipWaiting())
+    (async () => {
+      try {
+        const cache = await caches.open(OFFLINE_CACHE);
+        const response = await fetch(OFFLINE_URL, { cache: "reload" });
+        if (response.ok) await cache.put(OFFLINE_URL, response);
+      } catch (error) {
+        // An offline page is a nicety; order notifications are not. This must
+        // never reject and take the whole worker registration down with it.
+        console.warn("sw: offline page unavailable, continuing", error);
+      }
+      await self.skipWaiting();
+    })()
   );
 });
 
