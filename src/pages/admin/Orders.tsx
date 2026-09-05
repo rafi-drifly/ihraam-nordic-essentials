@@ -75,9 +75,13 @@ const AdminOrders = () => {
   const fetchOrders = async () => {
     setLoading(true);
     try {
+      // Only real orders. The 37 legacy rows from building the shop have no
+      // Stripe payment against them - no money ever moved - and counting them
+      // turned 11 real orders into "48".
       const { data, error } = await supabase
         .from('orders')
         .select('*')
+        .not('stripe_payment_intent_id', 'is', null)
         .order('created_at', { ascending: false })
         .limit(100);
       
@@ -161,7 +165,13 @@ const AdminOrders = () => {
   }
 
   const paidOrders = orders.filter(o => ['paid', 'paid_pending_shipping_review', 'ready_to_ship'].includes(o.status));
-  const europeOrders = orders.filter(o => o.shipping_country && o.shipping_country !== 'SE');
+  // Sets shipped, not orders placed: a 10-pack and a single are both one order
+  // but ten Ihrams and one. Shipping-surcharge payments carry quantity 0.
+  const ihramsSold = paidOrders.reduce((n, o) => n + (o.quantity || 0), 0);
+  const revenue = paidOrders.reduce((sum, o) => sum + Number(o.total_amount || 0), 0);
+  const needsAction = orders.filter(
+    (o) => o.status === 'paid_pending_shipping_review' || o.extra_shipping_status === 'requested'
+  ).length;
 
   return (
     <div className="min-h-screen bg-muted/50 p-4 md:p-8">
@@ -196,29 +206,29 @@ const AdminOrders = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
           <Card>
             <CardContent className="p-3 md:p-4 text-center">
-              <p className="text-sm text-muted-foreground">Total Orders</p>
-              <p className="text-2xl md:text-3xl font-bold">{orders.length}</p>
+              <p className="text-sm text-muted-foreground">Ihrams sold</p>
+              <p className="text-2xl md:text-3xl font-bold">{ihramsSold}</p>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="p-3 md:p-4 text-center">
-              <p className="text-sm text-muted-foreground">Pending Review</p>
-              <p className="text-2xl md:text-3xl font-bold text-orange-600">
-                {orders.filter(o => o.status === 'paid_pending_shipping_review').length}
+              <p className="text-sm text-muted-foreground">Revenue</p>
+              <p className="text-2xl md:text-3xl font-bold text-green-700">
+                €{revenue.toFixed(0)}
               </p>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="p-3 md:p-4 text-center">
-              <p className="text-sm text-muted-foreground">Europe Orders</p>
-              <p className="text-2xl md:text-3xl font-bold text-blue-600">{europeOrders.length}</p>
+              <p className="text-sm text-muted-foreground">Orders</p>
+              <p className="text-2xl md:text-3xl font-bold">{orders.length}</p>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="p-3 md:p-4 text-center">
-              <p className="text-sm text-muted-foreground">Awaiting Extra Shipping</p>
-              <p className="text-2xl md:text-3xl font-bold text-yellow-600">
-                {orders.filter(o => o.extra_shipping_status === 'requested').length}
+              <p className="text-sm text-muted-foreground">Needs action</p>
+              <p className={`text-2xl md:text-3xl font-bold ${needsAction > 0 ? 'text-orange-600' : 'text-muted-foreground'}`}>
+                {needsAction}
               </p>
             </CardContent>
           </Card>
