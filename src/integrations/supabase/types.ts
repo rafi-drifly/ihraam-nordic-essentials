@@ -109,6 +109,7 @@ export type Database = {
           base_shipping_fee_eur: number | null
           bundle_type: string | null
           created_at: string
+          customer_phone: string | null
           currency: string
           donation_amount: number | null
           extra_shipping_fee_eur: number | null
@@ -133,6 +134,7 @@ export type Database = {
           base_shipping_fee_eur?: number | null
           bundle_type?: string | null
           created_at?: string
+          customer_phone?: string | null
           currency?: string
           donation_amount?: number | null
           extra_shipping_fee_eur?: number | null
@@ -158,6 +160,7 @@ export type Database = {
           bundle_type?: string | null
           created_at?: string
           currency?: string
+          customer_phone?: string | null
           donation_amount?: number | null
           extra_shipping_fee_eur?: number | null
           extra_shipping_status?: string | null

@@ -179,6 +179,9 @@ serve(async (req) => {
           stripe_payment_intent_id: session.payment_intent as string,
           shipping_name: shippingDetails?.name || null,
           shipping_country: shippingCountry,
+          // Stripe has always collected this, but until now nothing stored it,
+          // so there was no way to reach a customer except by email.
+          customer_phone: session.customer_details?.phone || null,
           bundle_type: bundleType,
           quantity: totalQuantity,
           base_shipping_fee_eur: baseShippingFee,

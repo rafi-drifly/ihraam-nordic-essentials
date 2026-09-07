@@ -7,9 +7,10 @@ import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import { Package, RefreshCw, CheckCircle, Clock, Mail, DollarSign, Truck } from "lucide-react";
+import { Package, RefreshCw, CheckCircle, Clock, Mail, DollarSign, Truck, MessageCircle, Copy, Phone } from "lucide-react";
 import { adminSignOut } from "@/hooks/useAdminAuth";
 import { OrderPushToggle } from "@/components/admin/OrderPushToggle";
+import { formatAddressForLabel, whatsappDispatchLink } from "@/lib/whatsapp";
 
 interface Order {
   id: string;
@@ -23,6 +24,7 @@ interface Order {
   shipping_address: any;
   bundle_type: string;
   quantity: number;
+  customer_phone: string | null;
   base_shipping_fee_eur: number;
   extra_shipping_fee_eur: number;
   extra_shipping_status: string;
@@ -111,6 +113,41 @@ const AdminOrders = () => {
     }
   };
 
+  /**
+   * The whole dispatch job in one tap: record it as shipped and hand WhatsApp
+   * the message. It opens the chat rather than sending, so Rafi always sees
+   * what goes out under his name. The window is opened before the await so
+   * Safari does not treat it as a popup detached from the tap.
+   */
+  const handleDispatched = (order: Order) => {
+    const link = whatsappDispatchLink(order);
+    if (link) window.open(link, "_blank", "noopener");
+    void (async () => {
+      const { error } = await supabase
+        .from('orders')
+        .update({ status: 'shipped', extra_shipping_status: 'not_required' })
+        .eq('id', order.id);
+      if (error) {
+        toast({ title: "Could not mark it shipped", description: error.message, variant: "destructive" });
+        return;
+      }
+      toast({
+        title: link ? "Marked shipped, WhatsApp open" : "Marked shipped",
+        description: link ? undefined : "No phone number on this order, so tell them by email.",
+      });
+      fetchOrders();
+    })();
+  };
+
+  const copyAddress = async (order: Order) => {
+    try {
+      await navigator.clipboard.writeText(formatAddressForLabel(order));
+      toast({ title: "Address copied", description: "Ready to paste onto the label." });
+    } catch {
+      toast({ title: "Could not copy", variant: "destructive" });
+    }
+  };
+
   const handleRequestExtraShipping = async () => {
     if (!selectedOrder || !extraShippingAmount) return;
     
@@ -164,7 +201,11 @@ const AdminOrders = () => {
     );
   }
 
-  const paidOrders = orders.filter(o => ['paid', 'paid_pending_shipping_review', 'ready_to_ship'].includes(o.status));
+  // Everything the customer actually paid for, including orders already sent.
+  // Dispatching moves an order to 'shipped', so leaving that out of the totals
+  // would make Ihrams sold and revenue fall every time a parcel goes out.
+  const PAID_STATUSES = ['paid', 'paid_pending_shipping_review', 'ready_to_ship', 'shipped', 'delivered'];
+  const paidOrders = orders.filter(o => PAID_STATUSES.includes(o.status));
   // Sets shipped, not orders placed: a 10-pack and a single are both one order
   // but ten Ihrams and one. Shipping-surcharge payments carry quantity 0.
   const ihramsSold = paidOrders.reduce((n, o) => n + (o.quantity || 0), 0);
@@ -297,6 +338,29 @@ const AdminOrders = () => {
                       </div>
                     )}
 
+                    <div className="flex flex-wrap gap-2">
+                      <Button size="sm" variant="outline" onClick={() => copyAddress(order)}>
+                        <Copy className="w-4 h-4 mr-1" />
+                        Copy address
+                      </Button>
+                      {order.customer_phone && (
+                        <a href={`tel:${order.customer_phone.replace(/\s/g, '')}`}>
+                          <Button size="sm" variant="outline">
+                            <Phone className="w-4 h-4 mr-1" />
+                            {order.customer_phone}
+                          </Button>
+                        </a>
+                      )}
+                      {order.guest_email && (
+                        <a href={`mailto:${order.guest_email}?subject=${encodeURIComponent(`Your Pure Ihram order ${order.order_number}`)}`}>
+                          <Button size="sm" variant="outline">
+                            <Mail className="w-4 h-4 mr-1" />
+                            Email
+                          </Button>
+                        </a>
+                      )}
+                    </div>
+
                     {order.extra_shipping_status !== 'not_required' && (
                       <div className="flex items-center gap-2">
                         <span className="text-sm text-muted-foreground">Extra Shipping:</span>
@@ -321,6 +385,18 @@ const AdminOrders = () => {
                             </Button>
                           )}
                         </>
+                      )}
+                      {['paid', 'paid_pending_shipping_review', 'ready_to_ship'].includes(order.status) && (
+                        <Button size="sm" className="bg-[#25D366] hover:bg-[#1da851] text-white" onClick={() => handleDispatched(order)}>
+                          <MessageCircle className="w-4 h-4 mr-1" />
+                          {order.customer_phone ? 'Dispatched, tell them' : 'Mark dispatched'}
+                        </Button>
+                      )}
+                      {order.status === 'shipped' && (
+                        <span className="flex items-center gap-2 text-sm text-green-600">
+                          <CheckCircle className="w-4 h-4" />
+                          Dispatched
+                        </span>
                       )}
                       {order.status === 'awaiting_extra_shipping_payment' && order.extra_shipping_status === 'requested' && (
                         <span className="flex items-center gap-2 text-sm text-yellow-600">
