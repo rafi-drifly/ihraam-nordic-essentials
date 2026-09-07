@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { useLocalePrefix } from "@/i18n/useLocale";
 import { useLocation, Link } from "react-router-dom";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -37,12 +38,9 @@ const TRANSPARENCY_REPORTS = [
 const Transparency = () => {
   const { t } = useTranslation();
   const location = useLocation();
+  const localePrefixFromHook = useLocalePrefix();
 
-  const getLocalePrefix = () => {
-    if (location.pathname.startsWith('/sv')) return '/sv';
-    if (location.pathname.startsWith('/no')) return '/no';
-    return '';
-  };
+  const getLocalePrefix = () => localePrefixFromHook;
   const localePrefix = getLocalePrefix();
 
   // Calculate totals

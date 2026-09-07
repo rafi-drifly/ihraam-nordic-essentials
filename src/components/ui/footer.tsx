@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import { useLocalePrefix } from "@/i18n/useLocale";
 import { useTranslation } from "react-i18next";
 import { Mail, Phone, MapPin } from "lucide-react";
 import BuiltByDrifly from "@/components/BuiltByDrifly";
@@ -6,13 +7,10 @@ import BuiltByDrifly from "@/components/BuiltByDrifly";
 const Footer = () => {
   const { t } = useTranslation();
   const location = useLocation();
+  const localePrefixFromHook = useLocalePrefix();
   
   // Get locale prefix for links
-  const getLocalePrefix = () => {
-    if (location.pathname.startsWith('/sv')) return '/sv';
-    if (location.pathname.startsWith('/no')) return '/no';
-    return '';
-  };
+  const getLocalePrefix = () => localePrefixFromHook;
   const localePrefix = getLocalePrefix();
 
   const getLocalizedHref = (href: string) => {

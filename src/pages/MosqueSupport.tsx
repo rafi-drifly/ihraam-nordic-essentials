@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocalePrefix } from "@/i18n/useLocale";
 import { useTranslation } from "react-i18next";
 import { useLocation, Link } from "react-router-dom";
 import SEOHead from "@/components/SEOHead";
@@ -16,6 +17,7 @@ import { trackGroupEnquirySubmit } from "@/lib/analytics";
 const MosqueSupport = () => {
   const { t } = useTranslation();
   const location = useLocation();
+  const localePrefixFromHook = useLocalePrefix();
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -31,11 +33,7 @@ const MosqueSupport = () => {
     notes: ""
   });
 
-  const getLocalePrefix = () => {
-    if (location.pathname.startsWith('/sv')) return '/sv';
-    if (location.pathname.startsWith('/no')) return '/no';
-    return '';
-  };
+  const getLocalePrefix = () => localePrefixFromHook;
   const localePrefix = getLocalePrefix();
 
   const handleChange = (field: string, value: string) => {

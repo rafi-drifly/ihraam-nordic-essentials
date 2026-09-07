@@ -14,6 +14,13 @@ import {
   setTitle,
 } from '@/lib/head';
 import { isAdminPath } from '@/lib/adminPwa';
+import {
+  LOCALES,
+  LOCALE_CODES,
+  DEFAULT_LOCALE,
+  stripLocale,
+  type LocaleCode,
+} from '@/i18n/locales';
 
 interface SEOHeadProps {
   title?: string;
@@ -32,37 +39,40 @@ const BASE_URL = 'https://www.pureihram.com';
 const DEFAULT_OG_IMAGE = `${BASE_URL}/og-image.jpg`;
 
 // Map our internal i18n codes to BCP-47 region codes used by hreflang and og:locale.
-const LOCALE_META: Record<'en' | 'sv' | 'no', { htmlLang: string; hreflang: string; ogLocale: string }> = {
-  en: { htmlLang: 'en', hreflang: 'en', ogLocale: 'en_GB' },
-  sv: { htmlLang: 'sv-SE', hreflang: 'sv-SE', ogLocale: 'sv_SE' },
-  no: { htmlLang: 'nb-NO', hreflang: 'nb-NO', ogLocale: 'nb_NO' },
-};
+// Locale facts come from the manifest so SEOHead never disagrees with the
+// router or the prerender script about which languages exist.
+const LOCALE_META = LOCALES;
 
 const SEOHead = ({ title, description, path, jsonLd, noindex, ogType, image }: SEOHeadProps) => {
   const { i18n } = useTranslation();
   const location = useLocation();
-  const langKey = (['sv', 'no'].includes(i18n.language) ? i18n.language : 'en') as 'en' | 'sv' | 'no';
+  const langKey = (LOCALE_CODES.includes(i18n.language as LocaleCode)
+    ? i18n.language
+    : 'en') as LocaleCode;
   const meta = LOCALE_META[langKey];
 
   const currentPath = path || location.pathname;
 
-  // Strip locale prefix to get the canonical (English) path.
-  const canonicalPath = currentPath.replace(/^\/(sv|no)/, '') || '/';
+  // Strip the locale prefix to get the shared path. Uses the manifest rather
+  // than a /(sv|no)/ regex, so a new language needs no edit here.
+  const canonicalPath = stripLocale(currentPath);
 
-  // Trailing slash on locale roots per audit (e.g. /sv/, /no/), but NOT on
-  // sub-paths (so /sv/shop stays /sv/shop, not /sv/shop/).
-  const buildLocalizedUrl = (prefix: '' | '/sv' | '/no') => {
-    if (canonicalPath === '/') {
-      return prefix === '' ? `${BASE_URL}/` : `${BASE_URL}${prefix}/`;
-    }
+  // Trailing slash on locale roots (e.g. /sv/), but not on sub-paths, so
+  // /sv/shop stays /sv/shop.
+  const buildLocalizedUrl = (prefix: string) => {
+    if (canonicalPath === '/') return `${BASE_URL}${prefix}/`;
     return `${BASE_URL}${prefix}${canonicalPath}`;
   };
 
-  const englishUrl = buildLocalizedUrl('');
-  const swedishUrl = buildLocalizedUrl('/sv');
-  const norwegianUrl = buildLocalizedUrl('/no');
+  const urlFor = (code: LocaleCode) => buildLocalizedUrl(LOCALES[code].prefix);
+  const currentUrl = urlFor(langKey);
+  const defaultUrl = urlFor(DEFAULT_LOCALE);
 
-  const currentUrl = langKey === 'sv' ? swedishUrl : langKey === 'no' ? norwegianUrl : englishUrl;
+  // One alternate per language in the manifest, plus x-default.
+  const alternatesKey = JSON.stringify([
+    ...LOCALE_CODES.map((code) => ({ hreflang: LOCALES[code].hreflang, href: urlFor(code) })),
+    { hreflang: 'x-default', href: defaultUrl },
+  ]);
 
   const getDefaultTitle = () => {
     if (langKey === 'sv') return 'Köp Ihram Online från €19 | Pure Ihram';
@@ -90,9 +100,9 @@ const SEOHead = ({ title, description, path, jsonLd, noindex, ogType, image }: S
   const finalDescription = description || getDefaultDescription();
 
   // Alternate locales for og:locale:alternate (everything except current).
-  const alternateOgLocales = (['en', 'sv', 'no'] as const)
+  const alternateOgLocales = LOCALE_CODES
     .filter((l) => l !== langKey)
-    .map((l) => LOCALE_META[l].ogLocale);
+    .map((l) => LOCALES[l].ogLocale);
 
   const finalImage = image || DEFAULT_OG_IMAGE;
   const finalOgType = ogType || 'website';
@@ -110,12 +120,7 @@ const SEOHead = ({ title, description, path, jsonLd, noindex, ogType, image }: S
     setDescription(finalDescription);
     setRobots(admin || !!noindex);
     setCanonical(admin ? null : currentUrl);
-    setAlternates(admin ? [] : [
-      { hreflang: 'en', href: englishUrl },
-      { hreflang: 'sv-SE', href: swedishUrl },
-      { hreflang: 'nb-NO', href: norwegianUrl },
-      { hreflang: 'x-default', href: englishUrl },
-    ]);
+    setAlternates(admin ? [] : (JSON.parse(alternatesKey) as Array<{ hreflang: string; href: string }>));
     setProperty('og:title', finalTitle);
     setProperty('og:description', finalDescription);
     setProperty('og:type', finalOgType);
@@ -130,7 +135,7 @@ const SEOHead = ({ title, description, path, jsonLd, noindex, ogType, image }: S
     setJsonLd(JSON.parse(jsonLdKey) as Array<Record<string, unknown>>);
   }, [
     admin, meta.htmlLang, meta.ogLocale, finalTitle, finalDescription, noindex, currentUrl,
-    englishUrl, swedishUrl, norwegianUrl, finalOgType, finalImage,
+    alternatesKey, finalOgType, finalImage,
     alternateOgLocalesKey, jsonLdKey,
   ]);
 

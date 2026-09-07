@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { prefixForLocale } from "@/i18n/locales";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -10,7 +11,7 @@ import { trackBlogCtaClick } from "@/lib/analytics";
 
 const UmrahChecklistBlog = () => {
   const { t, i18n } = useTranslation();
-  const localePrefix = i18n.language === 'sv' ? '/sv' : i18n.language === 'no' ? '/no' : '';
+  const localePrefix = prefixForLocale(i18n.language);
 
   const post = {
     title: t('blog.posts.checklist.title'),

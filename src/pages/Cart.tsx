@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocalePrefix, useLocaleCode } from "@/i18n/useLocale";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
@@ -20,6 +21,8 @@ import SEOHead from "@/components/SEOHead";
 const Cart = () => {
   const { t, i18n } = useTranslation();
   const location = useLocation();
+  const localeCodeFromHook = useLocaleCode();
+  const localePrefixFromHook = useLocalePrefix();
   const { toast } = useToast();
   const { items, updateQuantity, removeItem, getTotalItems, addItem, clearCart } = useCart();
   const [selectedDonation, setSelectedDonation] = useState(0);
@@ -30,11 +33,7 @@ const Cart = () => {
   const disclosureLang = (i18n.language as 'en' | 'sv' | 'no') || 'en';
   const disclosureText = SHIPPING_DISCLOSURE[disclosureLang] || SHIPPING_DISCLOSURE.en;
 
-  const getLocalePrefix = () => {
-    if (location.pathname.startsWith('/sv')) return '/sv';
-    if (location.pathname.startsWith('/no')) return '/no';
-    return '';
-  };
+  const getLocalePrefix = () => localePrefixFromHook;
   const localePrefix = getLocalePrefix();
 
   const totalItems = getTotalItems();
@@ -70,7 +69,7 @@ const Cart = () => {
           items: checkoutItems,
           donation: selectedDonation > 0 ? selectedDonation : undefined,
           bundlePrice: getBundlePrice(totalItems),
-          locale: location.pathname.startsWith('/sv') ? 'sv' : location.pathname.startsWith('/no') ? 'no' : 'en',
+          locale: localeCodeFromHook,
           shippingCountry,
         }
       });

@@ -1,0 +1,24 @@
+{
+  "en": {
+    "prefix": "",
+    "name": "English",
+    "htmlLang": "en",
+    "hreflang": "en",
+    "ogLocale": "en_GB",
+    "default": true
+  },
+  "sv": {
+    "prefix": "/sv",
+    "name": "Svenska",
+    "htmlLang": "sv-SE",
+    "hreflang": "sv-SE",
+    "ogLocale": "sv_SE"
+  },
+  "no": {
+    "prefix": "/no",
+    "name": "Norsk",
+    "htmlLang": "nb-NO",
+    "hreflang": "nb-NO",
+    "ogLocale": "nb_NO"
+  }
+}

@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { useLocalePrefix } from "@/i18n/useLocale";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -20,7 +21,7 @@ const Home = () => {
   const location = useLocation();
   const { t, i18n } = useTranslation();
   const lang = (['sv', 'no'].includes(i18n.language) ? i18n.language : 'en') as 'en' | 'sv' | 'no';
-  const localePrefix = location.pathname.startsWith('/sv') ? '/sv' : location.pathname.startsWith('/no') ? '/no' : '';
+  const localePrefix = useLocalePrefix();
 
   const benefits = [
     {

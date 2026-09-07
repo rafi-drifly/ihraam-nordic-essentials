@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { useLocalePrefix } from "@/i18n/useLocale";
 import { useLocation } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -18,7 +19,7 @@ import { blogPosts as registryPosts, pickLocale } from "@/content/blog/registry"
 const Blog = () => {
   const { t, i18n } = useTranslation();
   const location = useLocation();
-  const localePrefix = location.pathname.startsWith('/sv') ? '/sv' : location.pathname.startsWith('/no') ? '/no' : '';
+  const localePrefix = useLocalePrefix();
   const locale = pickLocale(i18n.language);
 
   // Long-form guides imported from the content registry (localized).

@@ -1,4 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { prefixForLocale } from "@/i18n/locales";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Lightbulb } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -8,7 +9,7 @@ import SEOHead from "@/components/SEOHead";
 
 const UmrahDuasBlog = () => {
   const { t, i18n } = useTranslation();
-  const localePrefix = i18n.language === 'sv' ? '/sv' : i18n.language === 'no' ? '/no' : '';
+  const localePrefix = prefixForLocale(i18n.language);
 
   return (
     <div className="py-8">

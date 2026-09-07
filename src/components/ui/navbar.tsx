@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLocalePrefix, useLocaleCode } from "@/i18n/useLocale";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
@@ -18,6 +19,8 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const { destination } = useShippingDestination();
   const location = useLocation();
+  const localeCodeFromHook = useLocaleCode();
+  const localePrefixFromHook = useLocalePrefix();
   const { toast } = useToast();
   const { t } = useTranslation();
 
@@ -31,11 +34,7 @@ const Navbar = () => {
   }, []);
 
   // Get locale prefix for links
-  const getLocalePrefix = () => {
-    if (location.pathname.startsWith('/sv')) return '/sv';
-    if (location.pathname.startsWith('/no')) return '/no';
-    return '';
-  };
+  const getLocalePrefix = () => localePrefixFromHook;
   const localePrefix = getLocalePrefix();
 
   const handleCheckout = async () => {
@@ -64,7 +63,7 @@ const Navbar = () => {
       const { data, error } = await supabase.functions.invoke('create-checkout', {
         body: { 
           items: cartItems.map((item: any) => ({ id: item.id, quantity: item.quantity })),
-          locale: location.pathname.startsWith('/sv') ? 'sv' : location.pathname.startsWith('/no') ? 'no' : 'en',
+          locale: localeCodeFromHook,
           shippingCountry: destination,
         }
       });

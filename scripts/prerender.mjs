@@ -19,15 +19,17 @@ if (!existsSync(TEMPLATE_PATH)) {
 }
 const template = readFileSync(TEMPLATE_PATH, 'utf-8');
 
-const LOCALES = {
-  en: { prefix: '', ogLocale: 'en_GB' },
-  sv: { prefix: '/sv', ogLocale: 'sv_SE' },
-  no: { prefix: '/no', ogLocale: 'nb_NO' },
-};
+// Read from the same manifest the app uses, so the build and the running site
+// can never disagree about which languages exist.
+const LOCALES = JSON.parse(readFileSync(join(ROOT, 'src/i18n/locale-manifest.json'), 'utf-8'));
+
+const DEFAULT_PREFIX = (Object.values(LOCALES).find((l) => l.default) ?? { prefix: '' }).prefix;
 
 const readJSON = (p) => JSON.parse(readFileSync(join(ROOT, p), 'utf-8'));
 const blogData = readJSON('src/content/blog/blog-data.json');
-const loc = { en: readJSON('src/i18n/locales/en.json'), sv: readJSON('src/i18n/locales/sv.json'), no: readJSON('src/i18n/locales/no.json') };
+const loc = Object.fromEntries(
+  Object.keys(LOCALES).map((code) => [code, readJSON(`src/i18n/locales/${code}.json`)])
+);
 
 const attr = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const jsonForScript = (obj) => JSON.stringify(obj).replace(/</g, '\\u003c');
@@ -116,11 +118,13 @@ function render({ title, description, canonicalPath, ogType = 'website', locale,
   const build = (prefix) => (canonicalPath === '/' ? `${BASE}${prefix}/` : `${BASE}${prefix}${canonicalPath}`);
   const url = build(lm.prefix);
   const alt = (p) => build(p);
+  // One alternate per language in the manifest, plus x-default pointing at the
+  // unprefixed language. Adding a locale extends this on its own.
   const hreflang = [
-    `<link rel="alternate" hreflang="en" href="${attr(alt(''))}" />`,
-    `<link rel="alternate" hreflang="sv-SE" href="${attr(alt('/sv'))}" />`,
-    `<link rel="alternate" hreflang="nb-NO" href="${attr(alt('/no'))}" />`,
-    `<link rel="alternate" hreflang="x-default" href="${attr(alt(''))}" />`,
+    ...Object.values(LOCALES).map(
+      (l) => `<link rel="alternate" hreflang="${l.hreflang}" href="${attr(alt(l.prefix))}" />`
+    ),
+    `<link rel="alternate" hreflang="x-default" href="${attr(alt(DEFAULT_PREFIX))}" />`,
   ].join('\n    ');
   const ld = jsonLd.map((o) => `<script type="application/ld+json">${jsonForScript(o)}</script>`).join('\n    ');
 

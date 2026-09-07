@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { useLocalePrefix } from "@/i18n/useLocale";
 import { useLocation, Link } from "react-router-dom";
 import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
@@ -8,12 +9,9 @@ import { Heart, ArrowRight, Home, Eye, CheckCircle } from "lucide-react";
 const DonationSuccess = () => {
   const { t } = useTranslation();
   const location = useLocation();
+  const localePrefixFromHook = useLocalePrefix();
 
-  const getLocalePrefix = () => {
-    if (location.pathname.startsWith('/sv')) return '/sv';
-    if (location.pathname.startsWith('/no')) return '/no';
-    return '';
-  };
+  const getLocalePrefix = () => localePrefixFromHook;
 
   const localePrefix = getLocalePrefix();
 

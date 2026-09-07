@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLocalePrefix } from "@/i18n/useLocale";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 import SEOHead from "@/components/SEOHead";
@@ -43,7 +44,7 @@ interface Product {
 const Shop = () => {
   const { t, i18n } = useTranslation();
   const location = useLocation();
-  const localePrefix = location.pathname.startsWith('/sv') ? '/sv' : location.pathname.startsWith('/no') ? '/no' : '';
+  const localePrefix = useLocalePrefix();
   
   const bundles = BUNDLES;
   

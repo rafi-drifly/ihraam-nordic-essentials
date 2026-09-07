@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { useLocalePrefix } from "@/i18n/useLocale";
 import { useTranslation } from "react-i18next";
 import { useLocation, Link } from "react-router-dom";
 import SEOHead from "@/components/SEOHead";
@@ -27,13 +28,10 @@ import GovernanceSection from "@/components/donation/GovernanceSection";
 const SupportOurMission = () => {
   const { t } = useTranslation();
   const location = useLocation();
+  const localePrefixFromHook = useLocalePrefix();
   const formRef = useRef<HTMLDivElement>(null);
 
-  const getLocalePrefix = () => {
-    if (location.pathname.startsWith('/sv')) return '/sv';
-    if (location.pathname.startsWith('/no')) return '/no';
-    return '';
-  };
+  const getLocalePrefix = () => localePrefixFromHook;
   const localePrefix = getLocalePrefix();
 
   const scrollToForm = () => {

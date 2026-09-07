@@ -44,107 +44,83 @@ import AdminOrders from "./pages/admin/Orders";
 import AdminInventory from "./pages/admin/Inventory";
 import { RequireAdmin } from "@/components/admin/RequireAdmin";
 import { applyPwaIdentity, isAdminPath } from "@/lib/adminPwa";
+import { LOCALE_CODES, routePath } from "@/i18n/locales";
 import AdminImages from "./pages/admin/Images";
 
 const queryClient = new QueryClient();
 
 // Shared routes configuration
+/**
+ * Every public page, once. These are rendered for each language in the locale
+ * manifest, so adding a language is one entry there plus a translation file,
+ * not another twenty-five Route lines copied by hand.
+ */
+const PUBLIC_ROUTES: Array<{ path: string; element: JSX.Element }> = [
+  { path: "", element: <Home /> },
+  { path: "shop", element: <Shop /> },
+  { path: "blog", element: <Blog /> },
+  { path: "blog/how-to-wear-ihram", element: <BlogPost /> },
+  { path: "blog/sunnah-acts-before-ihram", element: <SunnahActsBlog /> },
+  { path: "blog/umrah-preparation-checklist", element: <UmrahChecklistBlog /> },
+  { path: "blog/common-mistakes-ihram", element: <IhramMistakesBlog /> },
+  { path: "blog/essential-duas-umrah", element: <UmrahDuasBlog /> },
+  { path: "blog/spiritual-meaning-ihram", element: <IhramSpiritualMeaningBlog /> },
+  { path: "blog/:slug", element: <ArticlePage /> },
+  { path: "about", element: <About /> },
+  { path: "contact", element: <Contact /> },
+  { path: "shipping", element: <Shipping /> },
+  { path: "partners", element: <Partners /> },
+  { path: "order-success", element: <OrderSuccess /> },
+  { path: "guest-order-lookup", element: <GuestOrderLookup /> },
+  { path: "cart", element: <Cart /> },
+  { path: "support-our-mission", element: <SupportOurMission /> },
+  { path: "donation-success", element: <DonationSuccess /> },
+  { path: "donation-cancel", element: <DonationCancel /> },
+  { path: "transparency", element: <Transparency /> },
+  { path: "mosque-support", element: <MosqueSupport /> },
+  { path: "returns", element: <Returns /> },
+];
+
+/** Retired URLs, redirected within whatever language the visitor is in. */
+const LEGACY_REDIRECTS = [
+  { from: "guides", to: "blog" },
+  { from: "support", to: "contact" },
+];
+
 const AppRoutes = () => (
   <Routes>
-    <Route path="/" element={<Home />} />
-    <Route path="/shop" element={<Shop />} />
-    <Route path="/blog" element={<Blog />} />
-    <Route path="/blog/how-to-wear-ihram" element={<BlogPost />} />
-    <Route path="/blog/sunnah-acts-before-ihram" element={<SunnahActsBlog />} />
-    <Route path="/blog/umrah-preparation-checklist" element={<UmrahChecklistBlog />} />
-    <Route path="/blog/common-mistakes-ihram" element={<IhramMistakesBlog />} />
-    <Route path="/blog/essential-duas-umrah" element={<UmrahDuasBlog />} />
-    <Route path="/blog/spiritual-meaning-ihram" element={<IhramSpiritualMeaningBlog />} />
-    <Route path="/blog/:slug" element={<ArticlePage />} />
-    <Route path="/about" element={<About />} />
-    <Route path="/contact" element={<Contact />} />
-    <Route path="/shipping" element={<Shipping />} />
-    <Route path="/partners" element={<Partners />} />
-    <Route path="/order-success" element={<OrderSuccess />} />
-    <Route path="/guest-order-lookup" element={<GuestOrderLookup />} />
-    <Route path="/cart" element={<Cart />} />
-    <Route path="/support-our-mission" element={<SupportOurMission />} />
-    <Route path="/donation-success" element={<DonationSuccess />} />
-    <Route path="/donation-cancel" element={<DonationCancel />} />
-    <Route path="/transparency" element={<Transparency />} />
-    <Route path="/mosque-support" element={<MosqueSupport />} />
-    <Route path="/returns" element={<Returns />} />
-    <Route path="/guides" element={<Navigate to="/blog" replace />} />
-    <Route path="/support" element={<Navigate to="/contact" replace />} />
-    {/* Swedish routes */}
-    <Route path="/sv" element={<Home />} />
-    <Route path="/sv/shop" element={<Shop />} />
-    <Route path="/sv/blog" element={<Blog />} />
-    <Route path="/sv/blog/how-to-wear-ihram" element={<BlogPost />} />
-    <Route path="/sv/blog/sunnah-acts-before-ihram" element={<SunnahActsBlog />} />
-    <Route path="/sv/blog/umrah-preparation-checklist" element={<UmrahChecklistBlog />} />
-    <Route path="/sv/blog/common-mistakes-ihram" element={<IhramMistakesBlog />} />
-    <Route path="/sv/blog/essential-duas-umrah" element={<UmrahDuasBlog />} />
-    <Route path="/sv/blog/spiritual-meaning-ihram" element={<IhramSpiritualMeaningBlog />} />
-    <Route path="/sv/blog/:slug" element={<ArticlePage />} />
-    <Route path="/sv/about" element={<About />} />
-    <Route path="/sv/contact" element={<Contact />} />
-    <Route path="/sv/shipping" element={<Shipping />} />
-    <Route path="/sv/partners" element={<Partners />} />
-    <Route path="/sv/order-success" element={<OrderSuccess />} />
-    <Route path="/sv/guest-order-lookup" element={<GuestOrderLookup />} />
-    <Route path="/sv/cart" element={<Cart />} />
-    <Route path="/sv/support-our-mission" element={<SupportOurMission />} />
-    <Route path="/sv/donation-success" element={<DonationSuccess />} />
-    <Route path="/sv/donation-cancel" element={<DonationCancel />} />
-    <Route path="/sv/transparency" element={<Transparency />} />
-    <Route path="/sv/mosque-support" element={<MosqueSupport />} />
-    <Route path="/sv/returns" element={<Returns />} />
-    <Route path="/sv/guides" element={<Navigate to="/sv/blog" replace />} />
-    <Route path="/sv/support" element={<Navigate to="/sv/contact" replace />} />
-    {/* Norwegian routes */}
-    <Route path="/no" element={<Home />} />
-    <Route path="/no/shop" element={<Shop />} />
-    <Route path="/no/blog" element={<Blog />} />
-    <Route path="/no/blog/how-to-wear-ihram" element={<BlogPost />} />
-    <Route path="/no/blog/sunnah-acts-before-ihram" element={<SunnahActsBlog />} />
-    <Route path="/no/blog/umrah-preparation-checklist" element={<UmrahChecklistBlog />} />
-    <Route path="/no/blog/common-mistakes-ihram" element={<IhramMistakesBlog />} />
-    <Route path="/no/blog/essential-duas-umrah" element={<UmrahDuasBlog />} />
-    <Route path="/no/blog/spiritual-meaning-ihram" element={<IhramSpiritualMeaningBlog />} />
-    <Route path="/no/blog/:slug" element={<ArticlePage />} />
-    <Route path="/no/about" element={<About />} />
-    <Route path="/no/contact" element={<Contact />} />
-    <Route path="/no/shipping" element={<Shipping />} />
-    <Route path="/no/partners" element={<Partners />} />
-    <Route path="/no/order-success" element={<OrderSuccess />} />
-    <Route path="/no/guest-order-lookup" element={<GuestOrderLookup />} />
-    <Route path="/no/cart" element={<Cart />} />
-    <Route path="/no/support-our-mission" element={<SupportOurMission />} />
-    <Route path="/no/donation-success" element={<DonationSuccess />} />
-    <Route path="/no/donation-cancel" element={<DonationCancel />} />
-    <Route path="/no/transparency" element={<Transparency />} />
-    <Route path="/no/mosque-support" element={<MosqueSupport />} />
-    <Route path="/no/returns" element={<Returns />} />
-    <Route path="/no/guides" element={<Navigate to="/no/blog" replace />} />
-    <Route path="/no/support" element={<Navigate to="/no/contact" replace />} />
-    {/* Admin routes */}
+    {LOCALE_CODES.flatMap((code) =>
+      PUBLIC_ROUTES.map((route) => (
+        <Route
+          key={`${code}:${route.path}`}
+          path={routePath(code, route.path)}
+          element={route.element}
+        />
+      ))
+    )}
+
+    {/* Old paths people may still have bookmarked, kept in every language so
+        a Swedish visitor on /sv/guides lands on /sv/blog rather than English. */}
+    {LOCALE_CODES.flatMap((code) =>
+      LEGACY_REDIRECTS.map(({ from, to }) => (
+        <Route
+          key={`${code}:${from}`}
+          path={routePath(code, from)}
+          element={<Navigate to={routePath(code, to)} replace />}
+        />
+      ))
+    )}
+
+    {/* Back office. Not localised, and gated by RequireAdmin and RLS. */}
     <Route path="/admin" element={<AdminLogin />} />
     <Route path="/admin/orders" element={<RequireAdmin><AdminOrders /></RequireAdmin>} />
     <Route path="/admin/inventory" element={<RequireAdmin><AdminInventory /></RequireAdmin>} />
     <Route path="/admin/images" element={<RequireAdmin><AdminImages /></RequireAdmin>} />
-    {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+
     <Route path="*" element={<NotFound />} />
   </Routes>
 );
 
-/**
- * The admin is a separate installed app, so it does not wear the shop's
- * clothes: no promo banner, no storefront nav, no footer, no WhatsApp button.
- * On a phone that chrome was consuming roughly a third of the screen before a
- * single order appeared, and offering shop links that would walk the operator
- * straight out of the admin.
- */
 const Shell = () => {
   const { pathname } = useLocation();
   const admin = isAdminPath(pathname);

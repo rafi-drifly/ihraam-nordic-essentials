@@ -1,4 +1,5 @@
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { useLocalePrefix } from "@/i18n/useLocale";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart, Minus, Plus, Trash2, Gift } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
@@ -18,12 +19,9 @@ export const CartDrawer = ({ onCheckout, checkingOut = false }: CartDrawerProps)
   const { items, updateQuantity, removeItem, addItem, getTotalItems } = useCart();
   const { t } = useTranslation();
   const location = useLocation();
+  const localePrefixFromHook = useLocalePrefix();
 
-  const getLocalePrefix = () => {
-    if (location.pathname.startsWith('/sv')) return '/sv';
-    if (location.pathname.startsWith('/no')) return '/no';
-    return '';
-  };
+  const getLocalePrefix = () => localePrefixFromHook;
   const localePrefix = getLocalePrefix();
 
   const totalItems = getTotalItems();
