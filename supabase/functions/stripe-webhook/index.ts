@@ -36,7 +36,14 @@ serve(async (req) => {
     
     let event;
     try {
-      event = stripe.webhooks.constructEvent(body, signature, endpointSecret || "");
+      // MUST be the async form. Deno has no synchronous HMAC, so the sync
+      // `constructEvent` throws "SubtleCryptoProvider cannot be used in a
+      // synchronous context" on every single call - which this function then
+      // reported as "signature verification failed" and answered with a 400.
+      // Stripe therefore never delivered a single order: `stripe_events` was
+      // empty, no order row was ever written, no confirmation email went out,
+      // and the orders that did arrive had to be reconstructed by hand.
+      event = await stripe.webhooks.constructEventAsync(body, signature, endpointSecret || "");
     } catch (err) {
       console.error("Webhook signature verification failed:", err);
       return new Response("Webhook signature verification failed", { status: 400 });
