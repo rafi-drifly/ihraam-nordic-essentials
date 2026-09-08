@@ -41,12 +41,14 @@ const DELIVERY_LABELS: Record<string, { delivery: string }> = {
   en: { delivery: "Delivery to your address" },
   sv: { delivery: "Leverans till din adress" },
   no: { delivery: "Levering til adressen din" },
+  fr: { delivery: "Livraison à votre adresse" },
 };
 
 const bundleLabels: Record<string, { twoPack: string; threePack: string }> = {
   en: { twoPack: '2-Pack (Best Value)', threePack: '3-Pack (Most Popular)' },
   sv: { twoPack: '2-Pack (Bästa Värde)', threePack: '3-Pack (Mest Populär)' },
   no: { twoPack: '2-Pack (Beste Verdi)', threePack: '3-Pack (Mest Populær)' },
+  fr: { twoPack: 'Lot de 2 (Meilleur rapport qualité-prix)', threePack: 'Lot de 3 (Le plus choisi)' },
 };
 
 function getBundleType(qty: number): string {
@@ -96,7 +98,11 @@ serve(async (req) => {
         return new Response(JSON.stringify({ error: "Invalid bundle price" }), { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 400 });
       }
     }
-    if (locale !== undefined && (typeof locale !== "string" || !["en", "sv", "no"].includes(locale))) {
+    // Locale only picks the wording on the Stripe page. It is not a security
+    // boundary, so accept any well-formed code and fall back to English below.
+    // A hard allow-list here meant adding French to the front end returned 400
+    // on every French checkout: the site offered a language the till refused.
+    if (locale !== undefined && (typeof locale !== "string" || !/^[a-z]{2}$/.test(locale))) {
       return new Response(JSON.stringify({ error: "Invalid locale" }), { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 400 });
     }
     if (promoCode !== undefined && promoCode !== null && (typeof promoCode !== "string" || promoCode.length > 64 || !/^[A-Za-z0-9_-]+$/.test(promoCode))) {
@@ -252,7 +258,7 @@ serve(async (req) => {
           shipping_rate_data: {
             type: "fixed_amount",
             fixed_amount: { amount: baseShippingFee * 100, currency: "eur" },
-            display_name: DELIVERY_LABELS[locale || "en"].delivery,
+            display_name: (DELIVERY_LABELS[locale || "en"] ?? DELIVERY_LABELS.en).delivery,
           },
         },
         ...Object.entries(PICKUP_LOCATIONS).map(([, label]) => ({

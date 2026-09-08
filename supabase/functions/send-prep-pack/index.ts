@@ -12,7 +12,11 @@ const corsHeaders = {
 
 const BodySchema = z.object({
   email: z.string().trim().email().max(255),
-  locale: z.enum(["en", "sv", "no"]).optional().default("en"),
+  // Locale is only recorded against the subscriber and passed to Klaviyo, so
+  // an unknown one is not worth rejecting a signup over. A hard enum here meant
+  // adding French silently turned the free-guide form into a 400 for French
+  // visitors. Any well-formed two-letter code is accepted.
+  locale: z.string().regex(/^[a-z]{2}$/).optional().default("en"),
   source: z.string().max(120).optional(),
 });
 
