@@ -102,9 +102,13 @@ serve(async (req) => {
     // boundary, so accept any well-formed code and fall back to English below.
     // A hard allow-list here meant adding French to the front end returned 400
     // on every French checkout: the site offered a language the till refused.
-    if (locale !== undefined && (typeof locale !== "string" || !/^[a-z]{2}$/.test(locale))) {
+    // Browsers report region-tagged codes such as "sv-SE" or "en-GB", so accept
+    // those too and keep only the language part for label lookup. Never refuse a
+    // sale over the spelling of a language tag.
+    if (locale !== undefined && (typeof locale !== "string" || !/^[a-z]{2}(-[A-Za-z]{2})?$/.test(locale))) {
       return new Response(JSON.stringify({ error: "Invalid locale" }), { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 400 });
     }
+    const lang = typeof locale === "string" ? locale.slice(0, 2).toLowerCase() : "en";
     if (promoCode !== undefined && promoCode !== null && (typeof promoCode !== "string" || promoCode.length > 64 || !/^[A-Za-z0-9_-]+$/.test(promoCode))) {
       return new Response(JSON.stringify({ error: "Invalid promo code format" }), { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 400 });
     }
@@ -178,7 +182,7 @@ serve(async (req) => {
     const product = products[0];
     if (!product) throw new Error("No product found");
 
-    const labels = bundleLabels[locale || 'en'] || bundleLabels.en;
+    const labels = bundleLabels[lang] || bundleLabels.en;
     let bundleName = product.name;
     if (totalQuantity === 2) bundleName = `${product.name} - ${labels.twoPack}`;
     else if (totalQuantity >= 3) bundleName = `${product.name} - ${labels.threePack}`;
@@ -258,7 +262,7 @@ serve(async (req) => {
           shipping_rate_data: {
             type: "fixed_amount",
             fixed_amount: { amount: baseShippingFee * 100, currency: "eur" },
-            display_name: (DELIVERY_LABELS[locale || "en"] ?? DELIVERY_LABELS.en).delivery,
+            display_name: (DELIVERY_LABELS[lang] ?? DELIVERY_LABELS.en).delivery,
           },
         },
         ...Object.entries(PICKUP_LOCATIONS).map(([, label]) => ({

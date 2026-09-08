@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useLocalePrefix } from "@/i18n/useLocale";
+import { useLocalePrefix, useLocaleCode } from "@/i18n/useLocale";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 import SEOHead from "@/components/SEOHead";
@@ -45,6 +45,7 @@ const Shop = () => {
   const { t, i18n } = useTranslation();
   const location = useLocation();
   const localePrefix = useLocalePrefix();
+  const localePrefixCode = useLocaleCode();
   
   const bundles = BUNDLES;
   
@@ -131,7 +132,7 @@ const Shop = () => {
         body: { 
           items: checkoutItems, 
           bundlePrice: bundle.totalPrice, 
-          locale: i18n.language,
+          locale: localePrefixCode,
           shippingCountry: shippingCountry,
           cancelPath: `${localePrefix}/shop`
         }
