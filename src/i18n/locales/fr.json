@@ -528,5 +528,677 @@
       "successMessage": "Merci ! Merci d'envoyer les détails de votre demande à pureihraam@gmail.com en indiquant votre numéro de commande. Nous vous répondrons sous 24 à 48 heures avec la marche à suivre.",
       "close": "Fermer"
     }
+  },
+  "home": {
+    "hero": {
+      "title": "Ihram premium pour l'Omra et le Hajj",
+      "highlight": "À partir de 19 €, expédié depuis la Suède",
+      "description": "Ihram en microfibre légère pour les pèlerins de Suède, des pays nordiques et de l'UE. Guide de préparation Hajj et Omra offert avec chaque commande.",
+      "ctaShop": "Acheter un Ihram - à partir de 19 €",
+      "ctaPrepPack": "Découvrir les guides Omra et Hajj",
+      "microcopy": "9 € de livraison en Suède  ·  Retrait gratuit à Uppsala et Stockholm  ·  Retours gratuits sous 14 jours",
+      "imageAlt": "Tissu Ihram blanc immaculé, posé à plat"
+    },
+    "benefits": {
+      "title": "Pourquoi Pure Ihram",
+      "subtitle": "Simple, honnête, et pensé pour les besoins du pèlerin.",
+      "climate": {
+        "title": "Conçu pour le climat",
+        "description": "Une microfibre légère et respirante qui reste fraîche et sèche vite, pensée pour la chaleur de La Mecque."
+      },
+      "shipsFromSweden": {
+        "title": "Expédié depuis la Suède",
+        "description": "3 à 7 jours ouvrés en Suède, 7 à 14 dans le reste de l'UE. Aucune mauvaise surprise en douane."
+      },
+      "qualityChecked": {
+        "title": "Chaque ensemble contrôlé",
+        "description": "Chaque ensemble est inspecté avant de quitter notre entrepôt. En cas de défaut, nous le remplaçons."
+      },
+      "builtForEU": {
+        "title": "Pensé pour les pèlerins européens",
+        "description": "Fondé en Suède pour servir les musulmans des pays nordiques et de l'UE : des prix justes et un seul frais de livraison."
+      }
+    },
+    "guides": {
+      "title": "Guides pour un premier pèlerinage",
+      "subtitle": "Des conseils pratiques et posés, écrits par des musulmans, pour des musulmans.",
+      "readMore": "Lire la suite",
+      "viewAll": "Voir tous les guides",
+      "articles": {
+        "spiritual": {
+          "title": "Le sens spirituel de l'Ihram",
+          "description": "Ce que représente l'Ihram, pourquoi les pèlerins le portent, et comment il façonne le cœur pendant le Hajj et l'Omra."
+        },
+        "howToWear": {
+          "title": "Comment porter l'Ihram, étape par étape",
+          "description": "Un guide simple et pratique pour un premier pèlerinage, avec des conseils de confort pendant les rites."
+        },
+        "sunnah": {
+          "title": "Les actes de la Sunna avant d'entrer en Ihram",
+          "description": "Les actes de préparation recommandés avant de revêtir l'Ihram, conformément à la Sunna."
+        }
+      }
+    },
+    "finalCta": {
+      "title": "Prêt pour le Hajj et l'Omra ?",
+      "description": "Recevez votre Ihram en quelques jours. À partir de 19 €. Expédié depuis la Suède.",
+      "button": "Acheter un Ihram - à partir de 19 €"
+    },
+    "faq": {
+      "title": "Questions fréquentes",
+      "subtitle": "Des réponses rapides aux questions que se posent la plupart des pèlerins avant de commander.",
+      "items": [
+        {
+          "q": "Combien d'ensembles d'Ihram faut-il pour le Hajj ?",
+          "a": "La plupart des pèlerins en portent 2 : un pour le voyage, un gardé propre pour les rites principaux. Nous recommandons notre lot de 2 à 37 €."
+        },
+        {
+          "q": "En quoi est fait votre Ihram ?",
+          "a": "100 % microfibre légère. Elle est respirante, sèche vite et reste fraîche sous la chaleur de La Mecque, ce qui convient mieux au climat du Hajj qu'un coton épais."
+        },
+        {
+          "q": "Sous quel délai expédiez-vous ?",
+          "a": "Les commandes partent de Suède sous 1 jour ouvré. La plupart des clients de l'UE reçoivent rapidement leur Ihram ; les délais varient selon la destination, voir notre page Livraison pour le détail."
+        },
+        {
+          "q": "Livrez-vous hors de l'UE ?",
+          "a": "Oui, nous livrons dans toute l'Europe et au-delà. Les délais et les tarifs sont calculés au moment du paiement."
+        },
+        {
+          "q": "Puis-je retourner mon Ihram s'il ne me va pas ?",
+          "a": "Oui. S'il n'a pas été porté, vous disposez de 14 jours pour le retourner et être intégralement remboursé, sans avoir à vous justifier."
+        },
+        {
+          "q": "L'Ihram peut-il avoir des bords cousus à la machine ?",
+          "a": "Oui. La Sunna veut que l'Ihram ne soit pas cousu en tant que vêtement, c'est-à-dire deux pièces de tissu séparées que l'on drape, et non cousues pour former un vêtement comme un pantalon. Un simple ourlet destiné à empêcher le tissu de s'effilocher est autre chose, et il est accepté par toutes les écoles de fiqh."
+        },
+        {
+          "q": "Proposez-vous des tarifs de gros pour les mosquées et les agences de Hajj ?",
+          "a": "Oui. Pour les groupes à partir de 10 pèlerins, contactez-nous pour un tarif sur mesure et une livraison groupée."
+        }
+      ]
+    },
+    "testimonial": {
+      "quote": "Une très bonne expérience. La qualité a répondu à mes attentes, et je recommanderais volontiers Pure Ihram à toute personne qui prépare son Hajj ou son Omra.",
+      "author": "Mohsin Saleemi",
+      "location": "Västerås, Suède",
+      "verified": "Achat vérifié",
+      "trust": {
+        "shipping": "Expédié depuis la Suède · 3 à 7 jours en Suède",
+        "secure": "Paiement sécurisé par Stripe : Apple Pay, Klarna",
+        "returns": "Retours gratuits sous 14 jours"
+      }
+    },
+    "howToWear": {
+      "title": "Premier Hajj ou première Omra ? Voici comment porter l'Ihram.",
+      "body": "Un guide simple, étape par étape, pour un premier pèlerinage, écrit par des musulmans, pour des musulmans.",
+      "cta": "Lire le guide complet",
+      "imageAlt": "Guide étape par étape pour porter l'Ihram"
+    },
+    "shipping": {
+      "delivery": "Suède 3 à 7 jours · Pays nordiques et UE 7 à 14 jours",
+      "express": "9 € de livraison en Suède, un seul frais par commande",
+      "returns": "Retours gratuits sous 14 jours, sans avoir à vous justifier",
+      "secure": "Paiement sécurisé par Stripe : Apple Pay, Google Pay, Klarna"
+    },
+    "offers": {
+      "title": "Choisissez votre Ihram",
+      "subtitle": "Un ensemble pour l'Omra, un lot pour le Hajj. 9 € de livraison en Suède.",
+      "shippingSuffix": "+ 9 € en Suède",
+      "saveAmount": "Économisez {{amount}} €",
+      "oneShippingFee": "Un seul frais de livraison pour tous les ensembles",
+      "footerLine": "Offert avec chaque commande : le guide de préparation Hajj et Omra de Pure Ihram, avec check-list imprimable, liste de duas et guide de bagage.",
+      "ariaLabel": "{{title}}, {{price}} euros plus 9 € de livraison en Suède. {{description}}",
+      "addedToCart": "Ajouté au panier",
+      "addedToCartDescription": "{{title}} ajouté. Vérifiez votre panier à la page suivante.",
+      "single": {
+        "title": "Ensemble simple",
+        "description": "Un ensemble complet (Izar + Rida). Idéal pour l'Omra ou pour un premier achat.",
+        "cta": "Acheter"
+      },
+      "twoPack": {
+        "title": "Lot de 2",
+        "description": "La plupart des pèlerins portent 2 Ihrams pendant le Hajj : un pour le voyage, un propre pour les rites.",
+        "cta": "Acheter le lot de 2",
+        "badge": "Le plus choisi"
+      },
+      "threePack": {
+        "title": "Lot de 3",
+        "description": "Pour les familles, les précommandes de mosquées, ou pour avoir un ensemble de rechange.",
+        "cta": "Acheter le lot de 3",
+        "badge": "Meilleur rapport qualité-prix"
+      }
+    },
+    "prepPack": {
+      "title": "Guide de poche des duas du Hajj et de l'Omra, offert",
+      "subtitle": "Un guide de poche imprimable avec les duas dont vous avez besoin à chaque étape du Hajj et de l'Omra, en arabe, en translittération et en français. Offert, même si vous n'achetez rien chez nous.",
+      "bullets": {
+        "checklist": "Les duas de chaque étape du Hajj et de l'Omra",
+        "duas": "Arabe, translittération et français côte à côte",
+        "timeline": "Format de poche imprimable : un e-mail et il est à vous"
+      },
+      "emailPlaceholder": "votre@email.com",
+      "emailAriaLabel": "Votre adresse e-mail",
+      "submit": "Recevoir le guide",
+      "submitting": "Envoi en cours...",
+      "disclaimer": "Pas de spam. Un seul e-mail avec votre lien de téléchargement.",
+      "successTitle": "Consultez votre boîte de réception",
+      "successBody": "Nous avons envoyé le lien de téléchargement du guide de poche des duas à votre adresse e-mail.",
+      "errorInvalidEmail": "Merci de saisir une adresse e-mail valide",
+      "errorSendTitle": "Impossible d'envoyer le guide",
+      "errorSendBody": "Merci de réessayer dans un instant, ou d'écrire à pureihraam@gmail.com."
+    }
+  },
+  "about": {
+    "title": "À propos de Pure Ihram",
+    "subtitle": "Pure Ihram a été fondé pour rendre l'Ihram (Ihraam) abordable (19 € + 9 € de livraison en Suède) et accessible à tous. Il ne s'agit pas de profit, mais de rechercher l'ajr (la récompense) dans l'au-delà en servant la communauté musulmane et en rendant le pèlerinage accessible aux croyants de toute l'Europe.",
+    "story": {
+      "title": "Notre histoire",
+      "p1": "Pure Ihram est né d'une question simple : pourquoi les musulmans d'Europe paient-ils des prix excessifs pour un tissu de pèlerinage de base ? Nous avons fondé Pure Ihram en Suède pour y remédier : un Ihram de qualité à 19 €, expédié rapidement dans toute l'UE.",
+      "p2": "Chaque vente est faite avec l'intention sincère de rechercher l'ajr (la récompense) dans l'au-delà. Ce n'est pas seulement du commerce : c'est un service rendu à notre communauté, pour que ni le prix ni la distance ne se dressent entre un croyant et son pèlerinage.",
+      "p3": "",
+      "p4": ""
+    },
+    "promise": {
+      "title": "Notre engagement",
+      "text": "« Nous nous engageons à offrir à chaque musulman l'accès à un tissu Ihram (Ihraam) pur et confortable, à un prix qui respecte à la fois la qualité et l'accessibilité. Notre engagement ne porte pas seulement sur votre pèlerinage, mais sur votre cheminement spirituel et la baraka qu'il apporte. »",
+      "hadith": "« Les plus aimés d'Allah parmi les gens sont ceux qui sont les plus utiles aux autres. »",
+      "hadithCite": "- Al-Mu'jam al-Awsat"
+    },
+    "values": {
+      "title": "Nos valeurs",
+      "subtitle": "Les principes qui guident chaque aspect de notre travail",
+      "purity": {
+        "title": "Pureté",
+        "description": "Chaque Ihram est préparé avec l'intention pure de rechercher la récompense dans l'au-delà et de servir la communauté musulmane avec sincérité."
+      },
+      "accessibility": {
+        "title": "Accessibilité",
+        "description": "Nous croyons que chaque musulman doit pouvoir accéder à un tissu Ihram (Ihraam) de qualité à 19 €, quelle que soit sa situation financière."
+      },
+      "trust": {
+        "title": "Confiance",
+        "description": "Construire la confiance par une qualité constante, une livraison fiable et des prix transparents en Suède, dans les pays nordiques et en Europe."
+      }
+    },
+    "quality": {
+      "title": "Pourquoi la qualité compte",
+      "p1": "Pendant le Hajj et l'Omra, les pèlerins font face à des exigences physiques et spirituelles intenses. Votre Ihram devrait être votre moindre souci : confortable, respirant et assez résistant pour tenir tout le voyage.",
+      "p2": "Nous nous approvisionnons auprès de fournisseurs de confiance qui comprennent le caractère sacré de ces vêtements. Chaque pièce est inspectée, prélavée et préparée avec le soin que mérite sa vocation.",
+      "cotton": {
+        "title": "Microfibre de qualité",
+        "description": "100 % polyester microfibre, pour une respirabilité et un confort maximaux"
+      },
+      "preTreated": {
+        "title": "Prétraité",
+        "description": "Prélavé et traité pour conserver un aspect impeccable"
+      },
+      "traditional": {
+        "title": "Coupe traditionnelle",
+        "description": "Des dimensions authentiques, conformes aux usages islamiques"
+      }
+    }
+  },
+  "contact": {
+    "title": "Nous contacter",
+    "subtitle": "Vous avez des questions sur notre tissu Ihram (Ihraam) ou besoin d'aide pour votre commande ? Nous sommes là pour vous accompagner dans la préparation de votre pèlerinage.",
+    "getInTouch": "Entrer en contact",
+    "methods": {
+      "email": {
+        "title": "Nous écrire",
+        "description": "Envoyez-nous un e-mail, nous répondons sous 24 heures"
+      },
+      "whatsapp": {
+        "title": "WhatsApp",
+        "description": "Une question rapide ? Écrivez-nous sur WhatsApp"
+      },
+      "call": {
+        "title": "Nous appeler",
+        "description": "Parlez directement à notre service client"
+      }
+    },
+    "hours": {
+      "title": "Horaires",
+      "weekdays": "Du lundi au vendredi :",
+      "weekdaysTimes": "9h00 - 18h00",
+      "saturday": "Samedi :",
+      "saturdayTimes": "10h00 - 16h00",
+      "sunday": "Dimanche :",
+      "sundayTimes": "Fermé",
+      "timezone": "Tous les horaires sont en heure d'Europe centrale (CET)"
+    },
+    "serviceArea": {
+      "title": "Zone desservie",
+      "primary": "Principale :",
+      "extended": "Étendue :",
+      "international": "International :"
+    },
+    "form": {
+      "title": "Envoyez-nous un message",
+      "subtitle": "Remplissez le formulaire ci-dessous et nous vous répondrons dès que possible.",
+      "name": "Nom complet",
+      "namePlaceholder": "Votre nom complet",
+      "email": "Adresse e-mail",
+      "emailPlaceholder": "votre@email.com",
+      "subject": "Objet",
+      "subjectPlaceholder": "Quel est l'objet de votre message ?",
+      "message": "Message",
+      "messagePlaceholder": "Merci de détailler votre demande...",
+      "submit": "Envoyer le message",
+      "sending": "Envoi en cours...",
+      "privacy": "En envoyant ce formulaire, vous acceptez notre politique de confidentialité. Nous n'utiliserons vos informations que pour répondre à votre demande.",
+      "success": {
+        "title": "Message envoyé !",
+        "description": "Merci de nous avoir contactés. Nous vous répondrons sous 24 heures."
+      },
+      "error": {
+        "title": "Échec de l'envoi du message",
+        "validation": "Merci de vérifier votre formulaire",
+        "validationDescription": "Certains champs comportent des erreurs à corriger."
+      }
+    },
+    "faq": {
+      "title": "Questions fréquentes",
+      "size": {
+        "question": "L'Ihram convient-il aux hommes grands ou corpulents ?",
+        "answer": "Oui, nos dimensions généreuses (115 cm x 200 cm par pièce) conviennent à toutes les morphologies, y compris aux hommes grands et larges d'épaules."
+      },
+      "accessories": {
+        "question": "Vendez-vous aussi des ceintures ou des sandales ?",
+        "answer": "Nous sommes pour l'instant spécialisés dans les ensembles de tissu Ihram. Pour les autres essentiels du pèlerinage, nous vous conseillons de voir avec votre librairie islamique ou votre agence de voyage."
+      },
+      "bulk": {
+        "question": "Les mosquées et les groupes de voyage peuvent-ils commander en gros ?",
+        "answer": "Oui ! Nous accueillons volontiers les commandes groupées des mosquées, agences de voyage et groupes de Hajj et d'Omra. Contactez-nous pour un tarif spécial à partir de 20 ensembles."
+      },
+      "shipping": {
+        "question": "Combien de temps prend la livraison ?",
+        "answer": "Suède : 3 à 7 jours ouvrés ; pays nordiques : 7 à 14 jours ouvrés ; UE : 7 à 14 jours ouvrés. La livraison est à 9 € forfaitaires en Suède. Hors de Suède, nous vous confirmons le coût exact avant l'expédition, ou vous pouvez retirer gratuitement à la mosquée d'Uppsala ou de Stockholm."
+      },
+      "included": {
+        "question": "Que contient l'ensemble Ihram ?",
+        "answer": "Deux pièces blanches non cousues : l'Izar (pièce du bas) et le Rida (pièce du haut)."
+      },
+      "returns": {
+        "question": "Puis-je retourner ou échanger ?",
+        "answer": "Oui, nous acceptons les retours sous 14 jours si l'article est inutilisé et dans son emballage d'origine."
+      }
+    }
+  },
+  "donationCancel": {
+    "seoTitle": "Don annulé | Pure Ihram",
+    "title": "Don annulé",
+    "subtitle": "Pas d'inquiétude : votre carte n'a pas été débitée.",
+    "message": "Si vous avez changé d'avis, il n'y a aucun problème. Les dons sont volontaires et rien ne vous oblige à contribuer.",
+    "noCharge": "Votre moyen de paiement n'a pas été débité. Vous pouvez réessayer quand vous le souhaitez.",
+    "tryAgain": "Réessayer",
+    "browseProducts": "Voir les produits",
+    "needHelp": {
+      "title": "Besoin d'aide ?",
+      "message": "Si vous avez rencontré un problème ou si vous avez des questions, nous sommes là.",
+      "contactUs": "Nous contacter →"
+    }
+  },
+  "blog": {
+    "title": "Guides et connaissances",
+    "subtitle": "Des repères essentiels pour votre voyage sacré. Apprenez-en davantage sur le Hajj, l'Omra et la portée spirituelle du pèlerinage, avec des savants et des guides expérimentés.",
+    "quranVerse": "« Et fais aux gens une annonce pour le Hajj : ils viendront vers toi à pied, et aussi sur toute monture élancée, venant de tout chemin éloigné. »",
+    "quranVerseCite": "- Coran 22:27",
+    "readMore": "Lire la suite",
+    "categories": {
+      "all": "Tous",
+      "guide": "Guide",
+      "sunnah": "Sunna",
+      "preparation": "Préparation",
+      "tips": "Conseils",
+      "spiritual": "Spiritualité"
+    },
+    "posts": {
+      "howToWear": {
+        "title": "Comment porter l'Ihram : un guide simple pour les pèlerins",
+        "excerpt": "Un guide étape par étape pour porter correctement les vêtements de l'Ihram, en alliant confort et respect des règles islamiques pendant votre pèlerinage.",
+        "author": "L'équipe Pure Ihram",
+        "readTime": "5 min de lecture",
+        "date": "15 mars 2026"
+      },
+      "sunnahActs": {
+        "title": "Les actes de la Sunna avant d'entrer en Ihram",
+        "excerpt": "Découvrez les pratiques recommandées par la Sunna avant d'entrer en état d'Ihram, de l'hygiène personnelle à la préparation spirituelle.",
+        "author": "Savant en sciences islamiques",
+        "readTime": "7 min de lecture",
+        "date": "10 mars 2026"
+      },
+      "checklist": {
+        "title": "Check-list de préparation à l'Omra (vêtements, duas, documents)",
+        "excerpt": "Une check-list complète de tout ce dont vous avez besoin pour l'Omra : documents indispensables, vêtements requis et duas importantes à mémoriser.",
+        "author": "Expert en voyage",
+        "readTime": "10 min de lecture",
+        "date": "5 mars 2026"
+      },
+      "commonMistakes": {
+        "title": "Les erreurs fréquentes des pèlerins en état d'Ihram",
+        "excerpt": "Évitez les erreurs que commettent souvent les pèlerins en état d'Ihram, afin de préserver le caractère sacré de votre pèlerinage.",
+        "author": "Guide de Hajj",
+        "readTime": "6 min de lecture",
+        "date": "28 février 2026"
+      },
+      "essentialDuas": {
+        "title": "Les duas essentielles de l'Omra (avec translittération et sens)",
+        "excerpt": "Un guide des invocations les plus aimées pendant l'Omra, du départ au Tawaf et au-delà, avec l'arabe, la translittération et le sens en français.",
+        "author": "L'équipe Pure Ihram",
+        "readTime": "15 min de lecture",
+        "date": "20 février 2026"
+      },
+      "spiritualMeaning": {
+        "title": "Le sens spirituel de l'Ihram : l'égalité devant Allah",
+        "excerpt": "Explorez la portée spirituelle profonde de l'Ihram et la manière dont il incarne l'égalité de tous les croyants aux yeux d'Allah.",
+        "author": "Savant en sciences islamiques",
+        "readTime": "8 min de lecture",
+        "date": "15 février 2026"
+      }
+    },
+    "hadithQuote": "« Quiconque accomplit le Hajj pour Allah, sans tenir de propos obscènes ni commettre d'acte mauvais, en revient aussi pur que le jour où sa mère l'a mis au monde. »",
+    "hadithCite": "- Boukhari et Mouslim",
+    "newsletter": {
+      "title": "Restez informé et enrichissez vos connaissances",
+      "subtitle": "Inscrivez-vous pour recevoir nos derniers articles, guides et réflexions spirituelles, et préparer au mieux votre pèlerinage.",
+      "placeholder": "Saisissez votre e-mail",
+      "subscribe": "S'inscrire"
+    }
+  },
+  "blogPost": {
+    "backToBlog": "Retour au blog",
+    "backToGuides": "Retour aux guides",
+    "backToAllGuides": "Retour à tous les guides",
+    "relatedReading": "À lire également",
+    "readyForJourney": "Prêt pour votre voyage sacré ?",
+    "orderCta": "Commandez dès aujourd'hui votre tissu Ihram de qualité et préparez votre pèlerinage avec confort et sérénité.",
+    "shopIhram": "Acheter un Ihram",
+    "prepareForJourney": "Préparez votre voyage sacré",
+    "orderCtaAlt": "Commandez dès aujourd'hui votre ensemble Ihram de qualité et entamez votre pèlerinage avec confort, sérénité et préparation spirituelle.",
+    "shopIhramSet": "Acheter l'ensemble Ihram",
+    "shopNow": "Acheter",
+    "introduction": "Introduction",
+    "whatIsIhram": "Qu'est-ce que l'Ihram ?",
+    "whatYouNeed": "Ce dont vous aurez besoin",
+    "stepByStep": "Étape par étape : comment porter l'Ihram (pour les hommes)",
+    "womenGuidelines": "Les règles de l'Ihram pour les femmes",
+    "commonMistakes": "Les erreurs à éviter",
+    "practicalTips": "Conseils pratiques pour le confort",
+    "spiritualReminder": "Rappel spirituel",
+    "spiritualReflection": "Réflexion spirituelle",
+    "closingMessage": "Pour conclure",
+    "closingDua": "Qu'Allah accepte votre pèlerinage, pardonne vos péchés et vous ramène purifié, tel que vous êtes né.",
+    "ameen": "- Amin",
+    "forComfortAndDurability": "Pour le confort et la durabilité",
+    "choosePureIhram": "Choisissez l'ensemble séchage rapide Pure Ihram (115 × 230 cm)",
+    "howToWearLink": "Comment porter l'Ihram : guide étape par étape",
+    "shopTowelSet": "Acheter l'ensemble Ihram Hajj de Pure Ihram",
+    "sunnahActsLink": "Les actes de la Sunna avant d'entrer en Ihram",
+    "checklistLink": "Check-list de préparation à l'Omra",
+    "duasLink": "Les duas essentielles de l'Omra",
+    "mistakesLink": "Les erreurs fréquentes des pèlerins en état d'Ihram",
+    "spiritualMeaningLink": "Le sens spirituel de l'Ihram : l'égalité devant Allah"
+  },
+  "transparency": {
+    "seoTitle": "Tableau de transparence | Pure Ihram",
+    "seoDescription": "Consultez nos rapports mensuels de dons, avec le détail complet de l'utilisation des fonds.",
+    "backToDonation": "Retour aux dons",
+    "hero": {
+      "title": "Tableau de transparence",
+      "subtitle": "Nous croyons en une responsabilité totale. Voici précisément comment les dons sont utilisés chaque mois."
+    },
+    "summary": {
+      "totalReceived": "Total reçu",
+      "needyProjects": "Projets pour les nécessiteux",
+      "mosqueProgram": "Programme mosquées",
+      "shipping": "Livraison",
+      "stripeFees": "Frais Stripe",
+      "operations": "Fonctionnement"
+    },
+    "reports": {
+      "title": "Rapports mensuels",
+      "verified": "Vérifié",
+      "received": "Reçu",
+      "needy": "Projets pour les nécessiteux",
+      "mosque": "Programme mosquées",
+      "shipping": "Livraison",
+      "stripe": "Frais Stripe",
+      "ops": "Fonctionnement",
+      "notes": "Notes",
+      "download": "Télécharger"
+    },
+    "amanah": {
+      "title": "Notre engagement envers l'Amana",
+      "text": "Cet argent est celui des gens (Amana). Nous en répondrons devant Allah pour le moindre centime. Nous nous efforçons d'être transparents, responsables et redevables dans tout ce que nous faisons.",
+      "quote": "« Certes, Allah vous commande de rendre les dépôts à leurs ayants droit. » - Coran 4:58"
+    }
+  },
+  "partners": {
+    "hero": {
+      "badge": "Partenariat B2B",
+      "title": "Devenez partenaire de Pure Ihram : servez vos pèlerins, soutenez votre mosquée",
+      "subtitle": "Proposez un Ihram de qualité à votre communauté à un prix abordable, tout en créant une source de revenus halal pour votre mosquée ou votre agence.",
+      "ctaPrimary": "Nous contacter pour un tarif de gros",
+      "ctaSecondary": "Demander un ensemble échantillon"
+    },
+    "whoFor": {
+      "title": "À qui cela s'adresse-t-il ?",
+      "subtitle": "Nous travaillons avec les organisations au service de la communauté musulmane en Europe",
+      "mosques": {
+        "title": "Mosquées et centres islamiques",
+        "description": "Proposez des ensembles Ihram à vos fidèles et créez une source de revenus durable pour votre mosquée."
+      },
+      "agencies": {
+        "title": "Agences de Hajj et d'Omra",
+        "description": "Intégrez des ensembles Ihram de qualité à vos formules de voyage et enrichissez votre offre de pèlerinage."
+      },
+      "organizers": {
+        "title": "Organisateurs de groupes",
+        "description": "Équipez vos groupes de voyage d'ensembles Ihram de qualité à des tarifs de gros compétitifs."
+      }
+    },
+    "howItWorks": {
+      "title": "Comment fonctionne le partenariat",
+      "subtitle": "Un modèle simple en 3 étapes, dont tout le monde sort gagnant",
+      "step1": {
+        "title": "Achetez au prix partenaire",
+        "description": "Accédez à des tarifs de gros exclusifs selon le volume de votre commande."
+      },
+      "step2": {
+        "title": "Revendez ou intégrez",
+        "description": "Vendez dans la boutique de votre mosquée ou intégrez à vos formules Hajj et Omra."
+      },
+      "step3": {
+        "title": "Gardez la marge",
+        "description": "Le bénéfice soutient votre mosquée ou votre agence, comme revenu halal."
+      }
+    },
+    "pricing": {
+      "title": "Exemple de tarification",
+      "subtitle": "Découvrez ce que le partenariat peut apporter à votre organisation",
+      "breakdown": {
+        "title": "Détail du prix",
+        "retail": "Prix de vente au détail",
+        "partner": "Prix partenaire (exemple)",
+        "sellPrice": "Votre prix de vente",
+        "margin": "Votre marge par ensemble",
+        "note": "Le prix partenaire réel dépend du volume commandé"
+      },
+      "example": {
+        "title": "Exemple pour 100 ensembles",
+        "description": "Si votre mosquée ou votre agence commande 100 ensembles Ihram et les revend entre 19 € et 22 € pièce :",
+        "benefit": "Bénéfice halal pour votre organisation"
+      }
+    },
+    "product": {
+      "title": "Détails du produit",
+      "subtitle": "Un Ihram de qualité pour les pèlerins de toute l'Europe",
+      "name": "Ensemble Ihram Hajj",
+      "specs": {
+        "size": "Dimensions",
+        "weight": "Poids",
+        "material": "Matière",
+        "materialType": "Polyester microfibre"
+      },
+      "featuresTitle": "Points forts",
+      "features": {
+        "quickDry": "Technologie à séchage rapide",
+        "soft": "Extrêmement doux et confortable",
+        "hypoallergenic": "Matière hypoallergénique",
+        "antimicrobial": "Traitement antimicrobien",
+        "durable": "Résistant et durable"
+      }
+    },
+    "europe": {
+      "title": "Basés en Europe",
+      "description": "Nous sommes un fournisseur établi en Suède, au service des mosquées et des agences de toute l'Europe. Vous bénéficiez de délais de livraison plus courts, d'un contrôle qualité fiable et d'un service client local.",
+      "features": {
+        "shipping": "Un envoi groupé unique pour les commandes en gros partout dans l'UE",
+        "quality": "Des normes de qualité européennes",
+        "support": "Service client local en anglais et en suédois"
+      },
+      "coverage": {
+        "title": "Pays desservis",
+        "allEU": "Tous les pays de l'UE"
+      }
+    },
+    "contact": {
+      "title": "Démarrer un partenariat",
+      "description": "Prêt à offrir un Ihram de qualité à votre communauté ? Contactez-nous pour discuter des tarifs de gros et des possibilités de partenariat.",
+      "email": "E-mail",
+      "phone": "Téléphone",
+      "location": "Adresse"
+    },
+    "form": {
+      "name": "Votre nom",
+      "namePlaceholder": "Saisissez votre nom complet",
+      "organisation": "Nom de l'organisation",
+      "organisationPlaceholder": "Nom de la mosquée, de l'agence ou du groupe",
+      "role": "Votre fonction",
+      "rolePlaceholder": "ex. imam, responsable, coordinateur",
+      "country": "Pays",
+      "countryPlaceholder": "Votre pays",
+      "email": "Adresse e-mail",
+      "emailPlaceholder": "votre@email.com",
+      "phone": "Numéro de téléphone",
+      "phonePlaceholder": "+46 70 123 4567",
+      "pilgrims": "Nombre estimé de pèlerins par an",
+      "pilgrimsPlaceholder": "Sélectionnez une estimation",
+      "message": "Message (facultatif)",
+      "messagePlaceholder": "Parlez-nous de votre organisation et de vos attentes pour ce partenariat...",
+      "submit": "Envoyer la demande de partenariat",
+      "sending": "Envoi en cours...",
+      "successTitle": "Demande envoyée !",
+      "successMessage": "Merci de votre intérêt. Nous vous répondrons sous 24 à 48 heures.",
+      "errorTitle": "Échec de l'envoi",
+      "errorMessage": "Une erreur est survenue. Merci de réessayer ou de nous contacter directement."
+    }
+  },
+  "donation": {
+    "pageTitle": "Soutenir notre mission",
+    "seoTitle": "Soutenir notre mission | Pure Ihram",
+    "seoDescription": "Soutenez la mission de Pure Ihram : servir les pèlerins, aider les mosquées et proposer un Ihram abordable, grâce aux dons volontaires.",
+    "hero": {
+      "title": "Soutenir notre mission (Amana)",
+      "subtitle": "Nous gardons l'Ihram abordable, soutenons les mosquées et finançons des projets pour les nécessiteux dans le monde entier. Cet argent est celui des gens, et nous en répondrons devant Allah (سبحانه وتعالى)."
+    },
+    "why": {
+      "affordable": "Garder l'Ihram abordable",
+      "affordableDesc": "Les dons nous aident à maintenir des prix accessibles et à lever les obstacles à l'adoration.",
+      "masjids": "Des Ihrams offerts aux mosquées",
+      "masjidsDesc": "Nous fournissons des Ihrams aux mosquées. Elles peuvent les vendre et garder l'argent pour leurs besoins et leur développement.",
+      "education": "Projets pour les nécessiteux dans le monde",
+      "educationDesc": "Les dons soutiennent des projets vérifiés là où des personnes souffrent, partout dans le monde."
+    },
+    "transparency": "Votre don soutient notre mission et peut aussi couvrir des frais essentiels comme l'expédition, l'emballage et les commissions de paiement Stripe. Nous publions chaque mois un rapport détaillé.",
+    "chooseAmount": "Choisissez le montant de votre don",
+    "minAmount": "Le don minimum est de 1 €",
+    "amounts": {
+      "custom": "Libre",
+      "customPlaceholder": "Saisissez un montant"
+    },
+    "cta": "Faire un don",
+    "quote": "« Ceux qui dépensent leurs biens dans le sentier d'Allah ressemblent à un grain d'où naissent sept épis, à cent grains l'épi. »",
+    "quoteCite": "- Coran 2:261",
+    "checkout": {
+      "title": "Soutenir notre mission (facultatif)",
+      "subtitle": "Aidez-nous à garder l'Ihram abordable pour tous",
+      "remove": "Retirer le don",
+      "lineItem": "Don volontaire",
+      "thankYou": "Merci ! Votre don de {{amount}} € contribuera à soutenir notre mission."
+    },
+    "success": {
+      "title": "Merci pour votre soutien !",
+      "subtitle": "Votre générosité fait la différence",
+      "seoTitle": "Don effectué | Pure Ihram",
+      "message": "Votre don nous aidera à garder l'Ihram abordable, à soutenir les mosquées et à venir en aide à ceux qui en ont besoin dans le monde entier.",
+      "hadith": "« Les meilleurs des gens sont ceux qui sont les plus utiles aux autres. »",
+      "hadithCite": "- Al-Mu'jam al-Awsat",
+      "impact": "Qu'Allah accepte votre sadaqa et multiplie votre récompense.",
+      "browseProducts": "Voir les produits",
+      "backHome": "Retour à l'accueil",
+      "viewTransparency": "Voir la transparence",
+      "whatNext": {
+        "title": "Que se passe-t-il ensuite ?",
+        "step1": "Vous recevrez un reçu par e-mail de la part de Stripe.",
+        "step2": "Votre don figurera dans notre rapport mensuel de transparence.",
+        "step3": "Nous utiliserons votre contribution selon les priorités de notre mission."
+      }
+    }
+  },
+  "mosqueSupport": {
+    "seoTitle": "Programme de soutien aux mosquées | Pure Ihram",
+    "seoDescription": "Demandez des ensembles Ihram gratuits ou à prix réduit pour votre mosquée ou votre centre islamique.",
+    "backToDonation": "Retour aux dons",
+    "hero": {
+      "title": "Programme de soutien aux mosquées",
+      "subtitle": "Nous fournissons des Ihrams aux mosquées, gratuitement ou à prix réduit. Les mosquées peuvent les vendre et conserver les recettes pour leurs besoins."
+    },
+    "howItWorks": {
+      "title": "Comment ça marche",
+      "step1": {
+        "title": "Envoyez votre demande",
+        "desc": "Remplissez le formulaire avec les informations de votre mosquée"
+      },
+      "step2": {
+        "title": "Nous l'étudions",
+        "desc": "Nous l'examinons et vous contactons sous 48 heures"
+      },
+      "step3": {
+        "title": "Recevez les Ihrams",
+        "desc": "Vendez-les et gardez les recettes pour le développement de la mosquée"
+      }
+    },
+    "form": {
+      "title": "Demander des Ihrams pour votre mosquée",
+      "mosqueName": "Nom de la mosquée ou du centre islamique",
+      "mosqueNamePlaceholder": "ex. Centre islamique de Stockholm",
+      "countryCity": "Pays et ville",
+      "countryCityPlaceholder": "ex. Suède, Stockholm",
+      "contactPerson": "Personne à contacter",
+      "contactPersonPlaceholder": "Votre nom complet",
+      "email": "E-mail",
+      "emailPlaceholder": "mosquee@exemple.com",
+      "phone": "Numéro de téléphone",
+      "phonePlaceholder": "+46 70 123 4567",
+      "website": "Site web ou réseau social (facultatif)",
+      "websitePlaceholder": "https://...",
+      "estimatedNeed": "Besoin estimé",
+      "estimatedNeedPlaceholder": "Sélectionnez une quantité",
+      "sets": "ensembles",
+      "notes": "Notes (facultatif)",
+      "notesPlaceholder": "Comment les recettes soutiendront-elles la mosquée ?",
+      "submit": "Envoyer la demande",
+      "requiredFields": "Merci de remplir tous les champs obligatoires.",
+      "error": "L'envoi de la demande a échoué. Merci de réessayer."
+    },
+    "success": {
+      "title": "Demande envoyée !",
+      "message": "Nous avons bien reçu votre demande et vous contacterons sous 48 heures.",
+      "dua": "Qu'Allah bénisse votre mosquée et votre communauté. Amin.",
+      "backHome": "Retour à l'accueil"
+    },
+    "trustNote": "Ce programme est financé par les dons. Nous donnons la priorité aux mosquées selon les besoins et les fonds disponibles."
   }
 }

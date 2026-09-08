@@ -6,6 +6,7 @@ import { LOCALE_CODES, DEFAULT_LOCALE } from './locales';
 import en from './locales/en.json';
 import sv from './locales/sv.json';
 import no from './locales/no.json';
+import fr from './locales/fr.json';
 
 /**
  * Translation files are imported explicitly so the bundler can see them, but
@@ -13,7 +14,7 @@ import no from './locales/no.json';
  * single place a language is declared. Adding one means a JSON file, an import
  * here, and an entry in the manifest.
  */
-const bundles: Record<string, Record<string, unknown>> = { en, sv, no };
+const bundles: Record<string, Record<string, unknown>> = { en, sv, no, fr };
 
 i18n
   .use(LanguageDetector)

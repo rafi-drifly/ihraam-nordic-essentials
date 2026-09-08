@@ -20,5 +20,12 @@
     "htmlLang": "nb-NO",
     "hreflang": "nb-NO",
     "ogLocale": "nb_NO"
+  },
+  "fr": {
+    "prefix": "/fr",
+    "name": "Français",
+    "htmlLang": "fr",
+    "hreflang": "fr",
+    "ogLocale": "fr_FR"
   }
 }
