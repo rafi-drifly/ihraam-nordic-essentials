@@ -79,9 +79,16 @@ serve(async (req) => {
     if (!Array.isArray(items) || items.length === 0 || items.length > 20) {
       return new Response(JSON.stringify({ error: "Invalid items" }), { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 400 });
     }
+    // The id only picks which catalogue row supplies the name and description.
+    // What the customer pays is computed from the quantity further down and
+    // never from anything the browser sends, so a strange id cannot alter the
+    // charge. Requiring a UUID here rejected every basket built from the
+    // homepage offer block, whose items carried SKUs like "IHRAM-2": those
+    // customers got "Checkout failed" on every attempt while the shop and cart
+    // pages worked. Ids are a hint now, resolved against the catalogue below.
     const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
     for (const it of items) {
-      if (!it || typeof it.id !== "string" || !UUID_RE.test(it.id)) {
+      if (!it || typeof it.id !== "string" || it.id.length === 0 || it.id.length > 64) {
         return new Response(JSON.stringify({ error: "Invalid item id" }), { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 400 });
       }
       if (!Number.isInteger(it.quantity) || it.quantity < 1 || it.quantity > 50) {
@@ -169,18 +176,52 @@ serve(async (req) => {
       }
     }
 
-    // Get product details
-    const productIds = items.map(item => item.id);
-    const { data: products, error: productsError } = await supabaseClient
-      .from('products')
-      .select('*')
-      .in('id', productIds);
+    // Get product details. Only real catalogue ids are worth a lookup; a SKU
+    // or a stale id from an older basket simply finds nothing.
+    const productIds = items.map(item => item.id).filter(id => UUID_RE.test(id));
+    let products = null;
+    if (productIds.length > 0) {
+      const { data, error: productsError } = await supabaseClient
+        .from('products')
+        .select('*')
+        .in('id', productIds);
+      if (productsError) throw new Error(`Error fetching products: ${productsError.message}`);
+      products = data;
+    }
 
-    if (productsError) throw new Error(`Error fetching products: ${productsError.message}`);
+    // Nothing matched: the basket was built from the homepage offer block, or
+    // in a browser that still holds ids from before a catalogue change. The
+    // shop sells one item and the price comes from the quantity, so fall back
+    // to the active product instead of losing the sale.
+    if (!products || products.length === 0) {
+      const { data, error: activeError } = await supabaseClient
+        .from('products')
+        .select('*')
+        .eq('is_active', true)
+        .limit(1);
+      if (activeError) throw new Error(`Error fetching products: ${activeError.message}`);
+      if (data && data.length > 0) {
+        console.warn("Basket ids did not match the catalogue; using the active product.", {
+          ids: items.map(item => item.id),
+        });
+      }
+      products = data;
+    }
+
     if (!products || products.length === 0) throw new Error("No products found");
 
     const product = products[0];
     if (!product) throw new Error("No product found");
+
+    // What goes into Stripe metadata, and from there into the order the webhook
+    // writes. Every id is a real catalogue id by this point: the webhook looks
+    // products up by these and stores them in order_items.product_id, which is
+    // a uuid column, so passing a SKU straight through would take the payment
+    // and then lose the order.
+    const resolvedItems = items.map((item) => ({
+      id: products.find((p) => p.id === item.id)?.id ?? product.id,
+      quantity: item.quantity,
+    }));
 
     const labels = bundleLabels[lang] || bundleLabels.en;
     let bundleName = product.name;
@@ -276,7 +317,7 @@ serve(async (req) => {
       phone_number_collection: { enabled: true },
       metadata: {
         user_id: user?.id || '',
-        items: JSON.stringify(items),
+        items: JSON.stringify(resolvedItems),
         total_quantity: totalQuantity.toString(),
         bundle_type: bundleType,
         base_shipping_fee_eur: (baseShippingFee).toString(),

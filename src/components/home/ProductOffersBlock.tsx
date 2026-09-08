@@ -1,7 +1,11 @@
-import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useCart } from "@/hooks/useCart";
 import { useToast } from "@/hooks/use-toast";
+import { useLocalePrefix } from "@/i18n/useLocale";
+import { supabase } from "@/integrations/supabase/client";
+import { UNIT_PRICE } from "@/lib/bundles";
 import ihraamProduct from "@/assets/hero-product.avif";
 
 interface OfferConfig {
@@ -46,24 +50,47 @@ const OFFERS: OfferConfig[] = [
 
 export const ProductOffersBlock = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const { t } = useTranslation();
   const { addItem } = useCart();
   const { toast } = useToast();
+  // Was a hard-coded /sv and /no ternary, so French visitors who picked an
+  // offer here were dropped onto the English shop.
+  const localePrefix = useLocalePrefix();
 
-  const localePrefix = location.pathname.startsWith("/sv")
-    ? "/sv"
-    : location.pathname.startsWith("/no")
-    ? "/no"
-    : "";
+  // The catalogue id of the one product this block sells. The basket used to
+  // carry the SKU ("IHRAM-2") instead, and the checkout function rejects an id
+  // that is not a product id: every basket started from the homepage failed at
+  // "Proceed to Checkout" with a 400, while the shop and cart pages worked.
+  const [productId, setProductId] = useState<string | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      const { data } = await supabase
+        .from("products")
+        .select("id")
+        .eq("is_active", true)
+        .limit(1)
+        .maybeSingle();
+      if (!cancelled && data?.id) setProductId(data.id);
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const handleSelect = (offer: OfferConfig) => {
     const title = t(`home.offers.${offer.key}.title`);
     addItem(
       {
-        id: offer.sku,
+        // Falls back to the SKU only if the catalogue lookup has not landed
+        // yet; the checkout function resolves an unknown id to the active
+        // product rather than refusing the sale.
+        id: productId ?? offer.sku,
         name: `Pure Ihram - ${title}`,
-        price: offer.price / offer.qty, // unit price, matches Shop convention
+        // The flat unit price, as the shop page stores it, so a basket built
+        // from both places merges into one line. Never a derived fraction:
+        // 55/3 showed "18.33€ each" beside a 55€ subtotal.
+        price: UNIT_PRICE,
         image: ihraamProduct,
       },
       offer.qty,
