@@ -1,0 +1,532 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "shop": "Boutique",
+    "blog": "Guides",
+    "shipping": "Livraison",
+    "supportMission": "Soutenir",
+    "transparency": "Transparence",
+    "donate": "Faire un don",
+    "about": "À propos",
+    "contact": "Contact",
+    "ourMission": "Notre mission"
+  },
+  "banner": {
+    "newStock": "Vous partez en Omra ? Ihram 19 € + 9 € de livraison en Suède.",
+    "promoText": "Vous partez en Omra ? Ihram 19 € + 9 € de livraison en Suède."
+  },
+  "common": {
+    "error": "Erreur",
+    "loading": "Chargement...",
+    "whatsappButton": "Nous contacter sur WhatsApp"
+  },
+  "cart": {
+    "title": "Panier",
+    "continueShopping": "Continuer mes achats",
+    "empty": "Votre panier est vide",
+    "emptyDesc": "Ajoutez des articles à votre panier pour commencer.",
+    "startShopping": "Commencer mes achats",
+    "orderSummary": "Récapitulatif de la commande",
+    "items": "Articles ({{count}})",
+    "shipping": "Livraison",
+    "shippingTo": "Livraison ({{country}})",
+    "subtotal": "Sous-total",
+    "total": "Total",
+    "checkout": "Passer au paiement",
+    "viewCart": "Voir le panier",
+    "upsell": {
+      "seQty1": "Ajoutez-en 1 pour le lot de 2 - Meilleur rapport qualité-prix",
+      "seQty2": "Ajoutez-en 1 pour le lot de 3 - Le plus choisi",
+      "noQty1": "Ajoutez-en 1 - les frais de livraison restent les mêmes (lot de 2, meilleur rapport qualité-prix)",
+      "noQty2": "Vous en prenez 3 ? Le lot de 3 est à 55 € - le meilleur prix par ensemble.",
+      "switchTo2Pack": "Passer au lot de 2",
+      "switchTo3Pack": "Passer au lot de 3"
+    },
+    "delivery": {
+      "title": "Mode de livraison",
+      "ship": "Livrer à mon adresse",
+      "uppsala": "Retrait gratuit : mosquée d'Uppsala",
+      "stockholm": "Retrait gratuit : mosquée de Stockholm",
+      "free": "GRATUIT",
+      "pickupLine": "Retrait gratuit à la mosquée",
+      "pickupNote": "Nous vous écrirons dès que votre commande sera prête à être retirée à la mosquée. Aucune adresse de livraison n'est nécessaire.",
+      "pickupHint": "Ou retrait gratuit à la mosquée d'Uppsala ou de Stockholm - à choisir dans le panier",
+      "pickupAvailability": "Vous retirez à la mosquée ? Il n'y a aucuns frais de livraison et aucune adresse à indiquer. Nous vous envoyons par e-mail le point de retrait exact et les horaires dès que votre commande est prête, généralement sous 1 à 2 jours ouvrés.",
+      "pickupAddress": "Retrait à : {{address}}",
+      "pickupHours": "Horaires de retrait : {{hours}}",
+      "chooseAtCheckout": "La livraison ou le retrait gratuit à la mosquée se choisit à l'étape suivante, lors du paiement sécurisé."
+    },
+    "promo": {
+      "placeholder": "Saisissez votre code promo",
+      "apply": "Appliquer",
+      "applied": "Code promo appliqué ! Livraison gratuite pour Uppsala.",
+      "removed": "Code promo retiré.",
+      "invalidCity": "Ce code promo n'est valable que pour les livraisons à Uppsala.",
+      "invalidCode": "Code promo invalide.",
+      "cityLabel": "Confirmez votre ville de livraison",
+      "cityPlaceholder": "Saisissez votre ville",
+      "freeDelivery": "Livraison gratuite (promo)"
+    },
+    "deliveringTo": "Livraison vers :",
+    "seoTitle": "Votre panier | Pure Ihram",
+    "shippingLine": "Livraison - {{amount}} €"
+  },
+  "orderSuccess": {
+    "seoTitle": "Confirmation de commande | Pure Ihram",
+    "heading": "Paiement réussi !",
+    "subheading": "Merci pour votre commande. Nous préparons votre Ihram pour l'expédition.",
+    "cardTitle": "Confirmation de commande",
+    "emailTitle": "Consultez votre e-mail",
+    "emailBody": "Nous envoyons votre numéro de commande et un lien de suivi sécurisé à l'adresse e-mail utilisée lors du paiement. Vous pouvez suivre votre commande à tout moment sur",
+    "nextTitle": "Ce qui se passe ensuite :",
+    "next1": "Vous recevrez sous peu un e-mail de confirmation",
+    "next2": "Nous préparerons et emballerons votre Ihram avec soin",
+    "next3": "Vous recevrez les informations de suivi dès l'expédition",
+    "next4": "La livraison prend généralement 3 à 14 jours ouvrés",
+    "timelineTitle": "Délais de livraison",
+    "timelineSweden": "Suède :",
+    "timelineSwedenDays": "3 à 7 jours ouvrés",
+    "timelineEu": "Pays nordiques et UE :",
+    "timelineEuDays": "7 à 14 jours ouvrés",
+    "blessing": "Puisse ce vêtement sacré vous accompagner au mieux dans votre pèlerinage vers la Terre sainte.",
+    "continueShopping": "Continuer mes achats",
+    "backHome": "Retour à l'accueil",
+    "helpTitle": "Besoin d'aide ?",
+    "helpBody": "Si vous avez la moindre question sur votre commande, n'hésitez pas à nous contacter.",
+    "contactSupport": "Contacter le support"
+  },
+  "guestOrderLookup": {
+    "seoTitle": "Suivi de commande | Pure Ihram"
+  },
+  "footer": {
+    "description": "Nous fournissons un tissu Ihram (Ihraam) pur et confortable aux pèlerins de Suède, des pays nordiques et de toute l'Europe. Conçu dans l'intention de la récompense et de l'accessibilité pour tous.",
+    "quickLinks": "Liens rapides",
+    "serviceAreas": "Zones desservies",
+    "contact": "Contact",
+    "areas": {
+      "sweden": "Suède (3 à 7 jours)",
+      "norway": "Norvège (7 à 14 jours)",
+      "denmark": "Danemark (7 à 14 jours)",
+      "finland": "Finlande (7 à 14 jours)",
+      "eu": "Pays de l'UE (7 à 14 jours)"
+    },
+    "links": {
+      "home": "Accueil",
+      "shop": "Boutique",
+      "blog": "Guides et connaissances",
+      "shipping": "Expédition et livraison",
+      "partners": "Pour les mosquées et agences",
+      "supportMission": "Soutenir notre mission",
+      "about": "À propos de nous",
+      "contact": "Contact",
+      "returns": "Retours et échanges"
+    },
+    "returnsBadge": "Retours sous 14 jours · Échanges simples · Frais de retour à la charge du client (changement d'avis)",
+    "copyright": "© 2026 Pure Ihram. Tous droits réservés."
+  },
+  "shop": {
+    "breadcrumb": {
+      "home": "Accueil",
+      "shop": "Boutique"
+    },
+    "loading": "Chargement du produit...",
+    "notFound": "Produit introuvable",
+    "fastDelivery": "Livraison suivie",
+    "reviews": "avis",
+    "bundleHeading": "Ensembles Pure Ihram - Des lots simples, une livraison juste",
+    "bundleSubtitle": "Économisez davantage en achetant 2 ou 3 ensembles. Un seul frais de livraison par commande.",
+    "description": "Tissu Ihram léger et confortable pour votre Hajj ou votre Omra. Microfibre douce, séchage rapide, entretien facile.",
+    "plusShipping": "+ 9 € en Suède",
+    "stock": "Stock :",
+    "available": "disponibles",
+    "quantity": "Quantité :",
+    "addToCart": "Ajouter au panier",
+    "buyNow": "Acheter avec Stripe",
+    "creatingCheckout": "Création du paiement...",
+    "addedToCart": "Ajouté au panier",
+    "addedToCartDesc": "{{quantity}} x {{name}} ajouté à votre panier.",
+    "bundle": {
+      "chooseBundle": "Choisissez votre lot :",
+      "single": "À l'unité",
+      "bestValue": "Meilleur rapport qualité-prix",
+      "mostPopular": "Le plus choisi",
+      "freeDelivery": "Livraison gratuite",
+      "delivery": "livraison",
+      "youSave": "Vous économisez {{amount}} € par rapport à l'achat à l'unité",
+      "save2Pack": "Économisez sur la livraison - un seul envoi au lieu de deux.",
+      "savingsVsSeparate": "Économisez {{amount}} € par rapport à {{qty}} commandes séparées ({{qty}} livraisons).",
+      "shippingNote": "9 € de livraison en Suède. Hors de Suède, nous vous confirmons le coût exact de la livraison avant l'expédition. Retrait gratuit aux mosquées d'Uppsala et de Stockholm.",
+      "whyBundles": "Les lots vous font économiser : une seule livraison au lieu de plusieurs.",
+      "saveAmount": "Économisez {{amount}} €",
+      "oneShippingFee": "Un seul frais de livraison pour tous les ensembles",
+      "chooseYourIhram": "Choisissez votre Ihram",
+      "chooseSubtitle": "Un ensemble pour l'Omra, un lot pour le Hajj. 9 € de livraison en Suède.",
+      "shopNow": "Acheter",
+      "shopNPack": "Acheter le {{label}}",
+      "descSingle": "Un ensemble complet (Izar + Rida). Idéal pour l'Omra ou pour un premier achat.",
+      "desc2Pack": "La plupart des pèlerins portent 2 Ihrams pendant le Hajj : un pour le voyage, un propre pour les rites.",
+      "desc3Pack": "Pour les familles, les précommandes de mosquées, ou pour avoir un ensemble de rechange.",
+      "trustSoft": "Doux, respirant, adapté au Hajj et à l'Omra",
+      "trustShipping": "Expédié depuis la Suède",
+      "trustMission": "Une mission transparente",
+      "shippingBullet": "9 € de livraison en Suède"
+    },
+    "destination": {
+      "label": "Livraison vers :",
+      "sweden": "Suède",
+      "norway": "Norvège",
+      "norwayCustomsNote": "La Norvège est hors de l'UE. Des frais de TVA à l'importation ou de douane peuvent s'appliquer à la livraison.",
+      "norwayShippingSame": "Norvège : les frais de livraison restent les mêmes pour 1 ou 2 ensembles.",
+      "norwayShippingBullet": "1 à 2 ensembles : 39 € de livraison · 3 ensembles et plus : 49 € de livraison"
+    },
+    "specifications": {
+      "title": "Caractéristiques techniques",
+      "material": "Matière",
+      "materialValue": "100 % polyester microfibre",
+      "size": "Dimensions",
+      "sizeValue": "115 × 230 cm",
+      "weight": "Poids",
+      "weightValue": "1400 g (2 pièces)",
+      "features": "Caractéristiques",
+      "featuresValue": "Séchage rapide • Antimicrobien • Hypoallergénique",
+      "packaging": "Emballage",
+      "packagingValue": "Sac de transport zippé écologique"
+    },
+    "features": {
+      "title": "Points forts",
+      "soft": {
+        "title": "Doux et confortable",
+        "description": "Microfibre lisse, douce pour la peau"
+      },
+      "quickDry": {
+        "title": "Séchage rapide",
+        "description": "Absorbe l'humidité et sèche rapidement"
+      },
+      "antimicrobial": {
+        "title": "Protection antimicrobienne",
+        "description": "Empêche la prolifération des bactéries"
+      },
+      "sustainable": {
+        "title": "Durable et réutilisable",
+        "description": "Résistant et facile à laver"
+      },
+      "sunnah": {
+        "title": "Conforme à la Sunna",
+        "description": "Deux pièces blanches non cousues, symbole de pureté"
+      }
+    },
+    "shippingInfo": {
+      "title": "Informations de livraison",
+      "sweden": "Suède : 3 à 7 jours ouvrés",
+      "nordic": "Pays nordiques et UE : 7 à 14 jours ouvrés",
+      "tracking": "Emballage sécurisé et suivi inclus"
+    },
+    "careInstructions": {
+      "title": "Entretien",
+      "wash": "Lavage en machine, cycle délicat (≤ 40 °C)",
+      "bleach": "Ne pas utiliser d'eau de Javel",
+      "dry": "Séchage à l'air libre ou au sèche-linge à basse température",
+      "iron": "Éviter de repasser directement sur le tissu"
+    },
+    "spiritualReminder": {
+      "title": "Rappel spirituel",
+      "quote": "« Le meilleur des pèlerins est celui qui a la meilleure provision et l'intention la plus pieuse. »",
+      "cite": "- Hadith"
+    },
+    "trustLine": "Expédié depuis la Suède · Paiement sécurisé via Stripe",
+    "advisor": {
+      "title": "De combien d'ensembles avez-vous besoin ?",
+      "subtitle": "Indiquez-nous le pèlerinage et le nombre de voyageurs, et nous calculons le nombre qu'il vous faut.",
+      "journeyLabel": "Votre pèlerinage",
+      "journey": {
+        "umrah": "Omra",
+        "hajj": "Hajj"
+      },
+      "travellersLabel": "Nombre de voyageurs",
+      "moreTravellers": "Un voyageur de plus",
+      "fewerTravellers": "Un voyageur de moins",
+      "resultPrefix": "Nous recommandons",
+      "resultSets": "{{sets}} - {{price}} €",
+      "setCount_one": "{{count}} ensemble",
+      "setCount_other": "{{count}} ensembles",
+      "cta": "Ajouter {{sets}} au panier",
+      "guideLink": "Lire le guide complet",
+      "quickAnswerTitle": "Réponse rapide",
+      "reason": {
+        "umrah": "Deux ensembles par personne pour l'Omra, afin d'avoir toujours un ensemble propre de rechange si l'un se déchire ou se salit au Miqat. Cela fait {{perPerson}} chacun pour {{count}} voyageurs.",
+        "hajj": "Trois ensembles par personne pour le Hajj. Vous restez en état d'Ihram plusieurs jours à Mina et à Arafat : la plupart des pèlerins voyagent avec un ensemble, en gardent un propre pour les rites principaux, et conservent un ensemble de rechange. Cela fait {{perPerson}} chacun pour {{count}} voyageurs."
+      },
+      "quickAnswer": {
+        "umrahSolo": {
+          "q": "Combien d'Ihrams faut-il pour l'Omra ?",
+          "a": "Deux ensembles par personne. Les rites ne durent que quelques heures, mais un ensemble de rechange compte : si l'un se déchire ou se salit au Miqat, vous ne pourrez pas simplement en racheter un sur place. Les pèlerins qui partent pour la première fois ne devraient surtout pas voyager avec un seul ensemble."
+        },
+        "hajjSolo": {
+          "q": "Combien d'Ihrams faut-il pour le Hajj ?",
+          "a": "Trois ensembles par personne. Vous restez en état d'Ihram plusieurs jours à Mina et à Arafat : la plupart des pèlerins voyagent avec un ensemble, en gardent un deuxième propre pour les rites principaux, et emportent un troisième en rechange."
+        },
+        "group": {
+          "q": "Combien d'Ihrams une famille ou un groupe doit-il prévoir ?",
+          "a": "Multipliez par personne : deux chacun pour l'Omra, trois chacun pour le Hajj. Trois personnes partant en Omra ont besoin de six ensembles, et trois personnes partant au Hajj en ont besoin de neuf. Commander ensemble signifie un seul frais de livraison au lieu de plusieurs."
+        }
+      }
+    }
+  },
+  "shipping": {
+    "title": "Expédition et livraison",
+    "subtitle": "Une livraison rapide et fiable en Suède, dans les pays nordiques et en Europe. Votre Ihram arrivera en parfait état, prêt pour votre voyage sacré.",
+    "zones": {
+      "title": "Zones et délais de livraison",
+      "sweden": {
+        "region": "Suède 🇸🇪",
+        "timeframe": "3 à 7 jours ouvrés",
+        "cost": "9 € forfaitaires",
+        "description": "Livraison fiable partout en Suède, suivi inclus.",
+        "method": "PostNord, DHL ou UPS"
+      },
+      "nordic": {
+        "region": "Pays nordiques 🇳🇴🇩🇰🇫🇮",
+        "timeframe": "7 à 14 jours ouvrés",
+        "cost": "Devis avant expédition",
+        "description": "Livraison en Norvège, au Danemark et en Finlande. Nous vous confirmons le coût exact de la livraison avant l'expédition.",
+        "method": "Transporteurs internationaux"
+      },
+      "eu": {
+        "region": "Union européenne 🇪🇺",
+        "timeframe": "7 à 14 jours ouvrés",
+        "cost": "Devis avant expédition",
+        "description": "Livraison dans les pays de l'UE. Nous vous confirmons le coût exact de la livraison avant l'expédition.",
+        "method": "Envoi international suivi"
+      }
+    },
+    "pickup": {
+      "title": "Retrait gratuit à Uppsala et à Stockholm",
+      "description": "Retirez votre commande à la mosquée d'Uppsala ou de Stockholm sans payer le moindre frais de livraison. Choisissez le retrait lors du paiement : un ensemble revient à 19 € tout compris."
+    },
+    "freeShipping": "9 € forfaitaires en Suède. Hors de Suède, nous vous communiquons le coût exact avant l'expédition, ou retirez gratuitement à la mosquée d'Uppsala ou de Stockholm",
+    "tip": {
+      "title": "💡 Conseil pour préparer votre pèlerinage",
+      "description": "Commandez votre Ihram au moins 3 à 4 semaines avant le départ, pour éviter le stress de dernière minute et avoir le temps de faire un échange ou un ajustement si nécessaire."
+    },
+    "features": {
+      "title": "Notre livraison",
+      "packaging": {
+        "title": "Emballage sécurisé",
+        "description": "Votre Ihram est soigneusement emballé dans des matériaux protecteurs et écologiques"
+      },
+      "tracking": {
+        "title": "Suivi inclus",
+        "description": "Informations de suivi complètes pour tous les envois"
+      },
+      "processing": {
+        "title": "Délai de préparation",
+        "description": "Commandes préparées sous 1 à 2 jours ouvrés"
+      },
+      "free": {
+        "title": "Des prix clairs",
+        "description": "9 € forfaitaires en Suède. Rien n'est facturé à l'étranger sans votre accord"
+      }
+    },
+    "orderProcessing": {
+      "title": "Traitement de la commande",
+      "times": {
+        "title": "Délais de traitement",
+        "weekday": "Commandes du lundi au vendredi : traitées le jour même si passées avant 14h (CET)",
+        "weekend": "Commandes du week-end : traitées le jour ouvré suivant",
+        "quality": "Contrôle qualité et emballage : 24 à 48 heures"
+      },
+      "next": {
+        "title": "Que se passe-t-il ensuite ?",
+        "step1": "E-mail de confirmation envoyé immédiatement",
+        "step2": "Notification de préparation sous 24 heures",
+        "step3": "Confirmation d'expédition avec numéro de suivi",
+        "step4": "Livraison à votre adresse"
+      }
+    },
+    "deliveryInfo": {
+      "title": "Informations de livraison",
+      "methods": {
+        "title": "Modes de livraison",
+        "door": "Livraison standard à votre porte",
+        "signature": "Signature requise pour les commandes de plus de 200 €",
+        "safePlace": "Livraison en lieu sûr possible sur demande",
+        "poBox": "Livraison en boîte postale non disponible"
+      },
+      "tracking": {
+        "title": "Suivi et notifications",
+        "realTime": "Suivi en temps réel par SMS et e-mail",
+        "window": "Notification du créneau de livraison",
+        "failed": "Options de réexpédition en cas d'échec de livraison",
+        "support": "Assistance du service client"
+      }
+    },
+    "special": {
+      "title": "Cas particuliers et livraison pendant les fêtes",
+      "ramadan": {
+        "title": "Ramadan et saison du Hajj",
+        "description": "Pendant les hautes saisons de pèlerinage, le volume de commandes augmente fortement. Nous vous recommandons de commander au moins 2 à 3 semaines avant votre départ.",
+        "hajj": "Saison du Hajj : commandez 3 semaines à l'avance ou plus",
+        "umrah": "Omra (Ramadan) : commandez 2 semaines à l'avance ou plus",
+        "express": "Livraison express possible sur demande"
+      },
+      "holidays": {
+        "title": "Périodes de fêtes",
+        "description": "Les délais peuvent être allongés pendant les grandes fêtes en Suède et dans le pays de destination.",
+        "christmas": "Noël et Nouvel An : 2 à 3 jours supplémentaires",
+        "easter": "Vacances de Pâques : 1 à 2 jours supplémentaires",
+        "midsummer": "Midsommar (Suède) : traitement retardé",
+        "notify": "Nous vous préviendrons de tout retard"
+      }
+    },
+    "support": {
+      "title": "Des questions sur la livraison ?",
+      "description": "Notre service client est là pour répondre à toutes vos questions sur la livraison ou pour toute demande particulière liée à la préparation de votre pèlerinage.",
+      "email": "Assistance par e-mail",
+      "whatsapp": "WhatsApp"
+    },
+    "howItWorks": "Comment se passe la livraison",
+    "peakNote": "Pendant les hautes saisons (Hajj et Ramadan), nous vous recommandons de commander 2 à 3 semaines avant votre départ.",
+    "shippedFrom": "Toutes les commandes sont emballées et expédiées depuis la Suède",
+    "steps": {
+      "order": "Choisissez votre lot et finalisez votre achat en toute sécurité via Stripe."
+    }
+  },
+  "returns": {
+    "hero": {
+      "title": "Retours et échanges",
+      "subtitle": "Clairs, équitables et transparents, pour que vous puissiez commander en toute confiance."
+    },
+    "cards": {
+      "withdrawal": {
+        "title": "Droit de rétractation de 14 jours",
+        "description": "Vous disposez de 14 jours à compter de la livraison pour retourner votre commande, sans avoir à vous justifier."
+      },
+      "shipping": {
+        "title": "Frais de retour à la charge du client",
+        "description": "En cas de changement d'avis, les frais de retour sont à la charge du client."
+      },
+      "exchanges": {
+        "title": "Échanges de taille simplifiés",
+        "description": "Besoin d'une autre taille ? Nous simplifions l'échange, dans la limite des stocks disponibles."
+      },
+      "defective": {
+        "title": "Article défectueux ou erroné : c'est pour nous",
+        "description": "Si nous nous sommes trompés ou si l'article est défectueux, nous prenons en charge les frais de retour."
+      }
+    },
+    "howTo": {
+      "title": "Comment effectuer un retour",
+      "cta": "Demander un retour"
+    },
+    "steps": {
+      "step1": {
+        "title": "Écrivez-nous",
+        "description": "Contactez pureihraam@gmail.com en indiquant votre numéro de commande pour lancer la procédure."
+      },
+      "step2": {
+        "title": "Emballez l'article",
+        "description": "Assurez-vous que l'article est inutilisé, non lavé, dans son emballage d'origine et avec ses étiquettes le cas échéant."
+      },
+      "step3": {
+        "title": "Envoyez-le à notre adresse",
+        "description": "Expédiez le colis à notre adresse de retour en utilisant un envoi suivi."
+      },
+      "step4": {
+        "title": "Remboursement après vérification",
+        "description": "Dès réception et vérification de l'article, votre remboursement est effectué sous 14 jours."
+      }
+    },
+    "address": {
+      "label": "Adresse de retour",
+      "trackNote": "Merci d'utiliser un envoi suivi et de conserver votre justificatif."
+    },
+    "exchanges": {
+      "title": "Échanges",
+      "point1": "Nous acceptons les échanges de taille, dans la limite des stocks disponibles.",
+      "point2": "À la charge du client : les frais de retour vers nous et les frais d'envoi du nouvel article.",
+      "point3": "Contactez-nous avec votre numéro de commande et la taille souhaitée pour commencer.",
+      "cta": "Demander un échange"
+    },
+    "refunds": {
+      "title": "Remboursements",
+      "method": "Les remboursements sont effectués sur votre moyen de paiement d'origine.",
+      "timeline": "Nous traitons les remboursements sous 14 jours après réception de votre demande de retour. Nous pouvons attendre de recevoir l'article ou une preuve d'expédition.",
+      "shippingRefund": "Les frais de livraison standard aller sont remboursés. Le supplément pour une livraison express au-delà du tarif standard n'est pas remboursé."
+    },
+    "conditions": {
+      "title": "État, hygiène et équité",
+      "inspect": "Vous pouvez examiner l'article comme vous le feriez en magasin : l'essayer pour vérifier la taille et la qualité.",
+      "valueReduction": "Si l'article a été utilisé au-delà de ce qui est nécessaire pour l'examiner, une réduction de valeur peut s'appliquer.",
+      "unused": "Les retours doivent être inutilisés, non lavés, sans odeur ni tache, et dans leur état d'origine."
+    },
+    "defective": {
+      "title": "Article erroné, endommagé ou défectueux ?",
+      "photos": "Merci d'envoyer des photos du problème avec votre numéro de commande à pureihraam@gmail.com.",
+      "weCover": "Nous prenons en charge les frais de retour pour les articles défectueux, endommagés ou expédiés par erreur.",
+      "cta": "Signaler un problème"
+    },
+    "faq": {
+      "title": "Questions fréquentes",
+      "triedOn": {
+        "question": "Puis-je retourner l'article si je l'ai essayé ?",
+        "answer": "Oui. Vous pouvez examiner l'article comme vous le feriez en magasin. Tant qu'il est inutilisé, non lavé et dans son état d'origine, vous pouvez le retourner sous 14 jours."
+      },
+      "whoPays": {
+        "question": "Qui paie les frais de retour ?",
+        "answer": "En cas de changement d'avis, les frais de retour sont à la charge du client. Si l'article est défectueux ou si nous avons envoyé le mauvais article, nous prenons ces frais en charge."
+      },
+      "refundTime": {
+        "question": "Combien de temps prend un remboursement ?",
+        "answer": "Nous traitons les remboursements sous 14 jours après réception de votre demande de retour. Nous pouvons attendre l'arrivée de l'article ou une preuve d'expédition."
+      },
+      "sizeExchange": {
+        "question": "Puis-je échanger contre une autre taille ?",
+        "answer": "Oui ! Contactez-nous avec votre numéro de commande et la taille souhaitée. Les échanges dépendent des stocks disponibles. Les frais de retour et d'envoi du nouvel article sont à votre charge."
+      },
+      "originalShipping": {
+        "question": "Remboursez-vous les frais de livraison initiaux ?",
+        "answer": "Oui, les frais de livraison standard aller sont remboursés. Si vous avez choisi une option express, seule la part correspondant à la livraison standard est remboursée."
+      },
+      "damaged": {
+        "question": "Que faire si ma commande arrive endommagée ?",
+        "answer": "Contactez-nous immédiatement avec des photos et votre numéro de commande. Nous prenons en charge les frais de retour et vous envoyons un remplacement ou vous remboursons intégralement."
+      }
+    },
+    "contact": {
+      "title": "Besoin d'aide ?",
+      "email": "E-mail",
+      "responseTime": "Nous répondons sous 24 à 48 heures.",
+      "orderReminder": "Merci d'indiquer votre numéro de commande dans tous vos échanges."
+    },
+    "dialog": {
+      "title": "Demande de retour ou d'échange",
+      "subtitle": "Remplissez le formulaire ci-dessous et nous vous guiderons dans la procédure.",
+      "name": "Nom complet",
+      "namePlaceholder": "Votre nom complet",
+      "email": "Adresse e-mail",
+      "emailPlaceholder": "votre@email.com",
+      "orderNumber": "Numéro de commande",
+      "orderNumberPlaceholder": "ex. PI-12345",
+      "requestType": "Type de demande",
+      "typeReturn": "Retour",
+      "typeExchange": "Échange",
+      "typeIssue": "Signaler un problème",
+      "reason": "Motif (facultatif)",
+      "reasonPlaceholder": "Choisissez un motif",
+      "reasons": {
+        "changedMind": "J'ai changé d'avis",
+        "wrongSize": "Mauvaise taille",
+        "defective": "Article défectueux",
+        "wrongItem": "Mauvais article reçu",
+        "damaged": "Endommagé pendant le transport",
+        "other": "Autre"
+      },
+      "message": "Message (facultatif)",
+      "messagePlaceholder": "Précisions éventuelles...",
+      "submit": "Envoyer la demande",
+      "successTitle": "Demande envoyée !",
+      "successMessage": "Merci ! Merci d'envoyer les détails de votre demande à pureihraam@gmail.com en indiquant votre numéro de commande. Nous vous répondrons sous 24 à 48 heures avec la marche à suivre.",
+      "close": "Fermer"
+    }
+  }
+}
