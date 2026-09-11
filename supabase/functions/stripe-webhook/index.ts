@@ -2,6 +2,7 @@ import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import Stripe from "https://esm.sh/stripe@18.5.0";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.57.2";
 import { sendPlacedOrderToKlaviyo } from "./klaviyo.ts";
+import { orderMoney, priceLines } from "./totals.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -36,13 +37,9 @@ serve(async (req) => {
     
     let event;
     try {
-      // MUST be the async form. Deno has no synchronous HMAC, so the sync
-      // `constructEvent` throws "SubtleCryptoProvider cannot be used in a
-      // synchronous context" on every single call - which this function then
-      // reported as "signature verification failed" and answered with a 400.
-      // Stripe therefore never delivered a single order: `stripe_events` was
-      // empty, no order row was ever written, no confirmation email went out,
-      // and the orders that did arrive had to be reconstructed by hand.
+      // MUST be the async form: Deno has no synchronous HMAC, so the sync
+      // `constructEvent` throws on every call. The catch turned that into a 400
+      // that looked like a bad secret, and no order was recorded until 8 Sep 2026.
       event = await stripe.webhooks.constructEventAsync(body, signature, endpointSecret || "");
     } catch (err) {
       console.error("Webhook signature verification failed:", err);
@@ -142,31 +139,21 @@ serve(async (req) => {
         country: shippingDetails.address?.country,
       } : {};
 
-      // Get product details to calculate prices
-      const productIds = items.map((item: { id: string }) => item.id);
-      const { data: products, error: productsError } = await supabaseClient
-        .from('products')
-        .select('*')
-        .in('id', productIds);
-
-      if (productsError) {
-        console.error("Error fetching products:", productsError);
-        throw productsError;
-      }
-
-      // Calculate total amount
-      const subtotal = items.reduce((total: number, item: { id: string; quantity: number }) => {
-        const product = products?.find(p => p.id === item.id);
-        return total + (product ? product.price * item.quantity : 0);
-      }, 0);
-      const totalAmount = subtotal + baseShippingFee + donationAmount;
+      // What the customer paid, read from Stripe. Rebuilding it as 19 € a set
+      // stored every bundle above the charge: a 2-pack paid at 46 € became 47 €.
+      const { totalEur: totalAmount, goodsEur } = orderMoney({
+        amountTotalCents: session.amount_total,
+        amountSubtotalCents: session.amount_subtotal,
+        shippingEur: baseShippingFee,
+        donationEur: donationAmount,
+      });
 
       // Determine order status based on shipping country
       // Sweden = paid (no review needed), Rest of Europe = paid_pending_shipping_review
       const orderStatus = shippingCountry === 'SE' ? 'paid' : 'paid_pending_shipping_review';
       const extraShippingStatus = 'not_required';
 
-      console.log("Order totals - Subtotal:", subtotal, "Shipping:", baseShippingFee, "Donation:", donationAmount, "Total:", totalAmount);
+      console.log("Order totals - Goods:", goodsEur, "Shipping:", baseShippingFee, "Donation:", donationAmount, "Total:", totalAmount);
       console.log("Shipping country:", shippingCountry, "Status:", orderStatus);
 
       // Create order with new fields
@@ -227,17 +214,14 @@ serve(async (req) => {
         isPickup: chosenDelivery === "pickup",
       });
 
-      // Create order items
-      const orderItems = items.map((item: { id: string; quantity: number }) => {
-        const product = products?.find(p => p.id === item.id);
-        return {
-          order_id: order.id,
-          product_id: item.id,
-          quantity: item.quantity,
-          unit_price: product?.price || 0,
-          total_price: (product?.price || 0) * item.quantity
-        };
-      });
+      // Create order items: each line's share of the goods, summing to the charge.
+      const orderItems = priceLines(items, goodsEur).map((line) => ({
+        order_id: order.id,
+        product_id: line.id,
+        quantity: line.quantity,
+        unit_price: line.unitPrice,
+        total_price: line.totalPrice,
+      }));
 
       const { error: orderItemsError } = await supabaseClient
         .from('order_items')
