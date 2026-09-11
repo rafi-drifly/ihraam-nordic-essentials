@@ -3,6 +3,7 @@ import Stripe from "https://esm.sh/stripe@18.5.0";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.57.2";
 import { sendPlacedOrderToKlaviyo } from "./klaviyo.ts";
 import { orderMoney, priceLines } from "./totals.ts";
+import { confirmationPayload } from "./confirmation.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -294,15 +295,19 @@ serve(async (req) => {
         .single();
 
       if (!fullOrderError && fullOrder) {
-        // Send confirmation email to customer
+        // Send confirmation email to customer. invoke() reports a failed call in
+        // its return value rather than throwing, so the old catch never fired
+        // and "sent" was logged for emails that were never sent.
         try {
-          await supabaseClient.functions.invoke('send-order-confirmation', {
-            body: {
-              order: fullOrder,
-              customerEmail: customerEmail
-            }
+          const { error: confirmationError } = await supabaseClient.functions.invoke('send-order-confirmation', {
+            body: confirmationPayload(fullOrder, customerEmail),
           });
-          console.log("Confirmation email sent to:", customerEmail);
+          if (confirmationError) {
+            const detail = await confirmationError.context?.text?.().catch(() => "") ?? "";
+            console.error("Confirmation email failed:", confirmationError.message, detail);
+          } else {
+            console.log("Confirmation email sent to:", customerEmail);
+          }
         } catch (emailError) {
           console.error("Error sending confirmation email:", emailError);
         }

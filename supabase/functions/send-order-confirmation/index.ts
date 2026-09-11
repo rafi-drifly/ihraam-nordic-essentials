@@ -1,152 +1,73 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "https://esm.sh/resend@4.0.0";
+import { renderOrderEmail, type OrderEmailRequest } from "./email.ts";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
+
+// Must be an address on a domain verified in Resend. This used to be
+// orders@resend.dev, Resend's sandbox sender, which only delivers to the Resend
+// account owner - so no customer could ever have received this email.
+const FROM = "Pure Ihram <orders@pureihram.com>";
+const OWNER_INBOX = "pureihraam@gmail.com";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
-interface OrderEmailRequest {
-  email: string;
-  orderNumber: string;
-  customerName: string;
-  items: Array<{
-    name: string;
-    quantity: number;
-    price: number;
-  }>;
-  totalAmount: number;
-  shippingAddress: any;
-}
+const json = (status: number, body: unknown) =>
+  new Response(JSON.stringify(body), {
+    status,
+    headers: { "Content-Type": "application/json", ...corsHeaders },
+  });
 
 const handler = async (req: Request): Promise<Response> => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
+  // Only the order webhook may send these; it calls with the service role key.
+  // The function runs without JWT verification, so without this check anyone
+  // could use it to email any address, with any content, from the shop's domain.
+  const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+  if (!serviceKey || req.headers.get("Authorization") !== `Bearer ${serviceKey}`) {
+    return json(401, { error: "Unauthorized" });
+  }
+
   try {
-    const { email, orderNumber, customerName, items, totalAmount, shippingAddress }: OrderEmailRequest = await req.json();
+    const order = (await req.json()) as OrderEmailRequest;
+    if (
+      typeof order?.email !== "string" || !order.email.includes("@") ||
+      !Array.isArray(order.items) || order.items.length === 0 ||
+      !Number.isFinite(order.totalAmount)
+    ) {
+      return json(400, {
+        error: "Expected { email, orderNumber, customerName, items[], totalAmount, shippingAddress }",
+      });
+    }
 
-    const itemsHtml = items.map(item => `
-      <tr>
-        <td style="padding: 8px; border-bottom: 1px solid #eee;">${item.name}</td>
-        <td style="padding: 8px; border-bottom: 1px solid #eee; text-align: center;">${item.quantity}</td>
-        <td style="padding: 8px; border-bottom: 1px solid #eee; text-align: right;">${item.price.toFixed(2)}€</td>
-        <td style="padding: 8px; border-bottom: 1px solid #eee; text-align: right;">${(item.price * item.quantity).toFixed(2)}€</td>
-      </tr>
-    `).join('');
-
-    const emailResponse = await resend.emails.send({
-      from: "Pure Ihram <orders@resend.dev>",
-      to: [email],
-      bcc: ["pureihraam@gmail.com"],
-      subject: `Order Confirmation - ${orderNumber}`,
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <div style="background: linear-gradient(135deg, #0f766e, #059669); color: white; padding: 20px; text-align: center;">
-            <h1 style="margin: 0; font-size: 24px;">Order Confirmation</h1>
-            <p style="margin: 10px 0 0 0; opacity: 0.9;">Thank you for your order!</p>
-          </div>
-          
-          <div style="padding: 30px 20px;">
-            <h2 style="color: #0f766e; margin-bottom: 10px;">Dear ${customerName},</h2>
-            <p style="line-height: 1.6; margin-bottom: 20px;">
-              We have received your order and are preparing it for shipment. You will receive another email 
-              with tracking information once your order has been shipped.
-            </p>
-            
-            <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
-              <h3 style="color: #0f766e; margin: 0 0 10px 0;">Order Details</h3>
-              <p style="margin: 5px 0;"><strong>Order Number:</strong> ${orderNumber}</p>
-              <p style="margin: 5px 0;"><strong>Order Date:</strong> ${new Date().toLocaleDateString()}</p>
-            </div>
-            
-            <h3 style="color: #0f766e; margin-bottom: 15px;">Items Ordered</h3>
-            <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
-              <thead>
-                <tr style="background: #f8f9fa;">
-                  <th style="padding: 12px 8px; text-align: left; border-bottom: 2px solid #dee2e6;">Product</th>
-                  <th style="padding: 12px 8px; text-align: center; border-bottom: 2px solid #dee2e6;">Qty</th>
-                  <th style="padding: 12px 8px; text-align: right; border-bottom: 2px solid #dee2e6;">Price</th>
-                  <th style="padding: 12px 8px; text-align: right; border-bottom: 2px solid #dee2e6;">Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                ${itemsHtml}
-                <tr style="font-weight: bold; background: #f8f9fa;">
-                  <td colspan="3" style="padding: 12px 8px; text-align: right;">Total Amount:</td>
-                  <td style="padding: 12px 8px; text-align: right;">${totalAmount.toFixed(2)}€</td>
-                </tr>
-              </tbody>
-            </table>
-            
-            <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
-              <h3 style="color: #0f766e; margin: 0 0 10px 0;">Shipping Address</h3>
-              <p style="margin: 0; line-height: 1.4;">
-                ${shippingAddress.name}<br>
-                ${shippingAddress.line1}<br>
-                ${shippingAddress.line2 ? `${shippingAddress.line2}<br>` : ''}
-                ${shippingAddress.postal_code} ${shippingAddress.city}<br>
-                ${shippingAddress.country}
-              </p>
-            </div>
-
-            <div style="background: #f0fdfa; border: 1px solid #99f6e4; padding: 20px; border-radius: 8px; margin-bottom: 20px; text-align: center;">
-              <h3 style="color: #0f766e; margin: 0 0 8px 0;">Your free gift: Hajj &amp; Umrah Dua Pocket Guide</h3>
-              <p style="margin: 0 0 16px 0; line-height: 1.6; color: #134e4a;">
-                As our thank-you, here is the Pure Ihram Dua Pocket Guide - duas for every stage of Hajj and Umrah, in Arabic, transliteration and English, in a printable pocket format.
-              </p>
-              <a href="https://www.pureihram.com/hajj-2026-prep-pack.pdf"
-                 style="background:#0f766e; color:#ffffff; text-decoration:none; padding:12px 22px; border-radius:6px; font-weight:600; display:inline-block;">
-                Download the Pocket Guide (PDF)
-              </a>
-            </div>
-            
-            <div style="background: #e6fffa; border-left: 4px solid #0f766e; padding: 20px; margin-bottom: 20px;">
-              <h3 style="color: #0f766e; margin: 0 0 10px 0;">Shipping Information</h3>
-              <p style="margin: 0; line-height: 1.6;">
-                <strong>🇸🇪 Sweden:</strong> 3-7 business days<br>
-                <strong>🇪🇺 Nordic & EU:</strong> 7-14 business days<br>
-                <strong>📦 Tracking:</strong> You'll receive tracking information once shipped
-              </p>
-            </div>
-            
-            <p style="line-height: 1.6; margin-bottom: 20px;">
-              May this sacred garment serve you well on your pilgrimage. If you have any questions about your order, 
-              please don't hesitate to contact us.
-            </p>
-            
-            <div style="text-align: center; margin-top: 30px;">
-              <p style="color: #6b7280; font-size: 14px;">
-                Barakallahu feeki for choosing Pure Ihram<br>
-                <a href="mailto:pureihraam@gmail.com" style="color: #0f766e;">pureihraam@gmail.com</a>
-              </p>
-            </div>
-          </div>
-        </div>
-      `,
+    const { data, error } = await resend.emails.send({
+      from: FROM,
+      to: [order.email],
+      bcc: [OWNER_INBOX],
+      // A customer who replies reaches the shop's inbox, not a dead mailbox.
+      replyTo: OWNER_INBOX,
+      subject: `Order Confirmation - ${order.orderNumber}`,
+      html: renderOrderEmail(order),
     });
 
-    console.log("Order confirmation email sent successfully:", emailResponse);
+    // send() reports a rejection in its return value and never throws. The old
+    // handler logged "sent successfully" and answered 200 for every refusal.
+    if (error) {
+      console.error("Resend rejected the order confirmation:", error);
+      return json(502, { error: error.message });
+    }
 
-    return new Response(JSON.stringify(emailResponse), {
-      status: 200,
-      headers: {
-        "Content-Type": "application/json",
-        ...corsHeaders,
-      },
-    });
-  } catch (error: any) {
+    console.log("Order confirmation email sent:", data?.id, "to", order.email);
+    return json(200, { id: data?.id });
+  } catch (error) {
     console.error("Error in send-order-confirmation function:", error);
-    return new Response(
-      JSON.stringify({ error: error.message }),
-      {
-        status: 500,
-        headers: { "Content-Type": "application/json", ...corsHeaders },
-      }
-    );
+    return json(500, { error: (error as Error).message });
   }
 };
 
