@@ -14,7 +14,7 @@ const WhatsAppButton = () => {
 
   return (
     <a
-      href="https://wa.me/46720131476?text=Hi%2C%20I%20have%20a%20question%20about%20my%20order"
+      href="https://wa.me/46704001951?text=Hi%2C%20I%20have%20a%20question%20about%20my%20order"
       target="_blank"
       rel="noopener noreferrer"
       aria-label={t('common.whatsappButton')}

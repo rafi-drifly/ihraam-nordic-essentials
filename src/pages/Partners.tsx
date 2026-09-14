@@ -440,8 +440,8 @@ const Partners = () => {
                   </div>
                   <div>
                     <p className="font-medium text-foreground">{t('partners.contact.phone')}</p>
-                    <a href="tel:+46720131476" className="text-primary hover:underline">
-                      +46 720 131 476
+                    <a href="tel:+46704001951" className="text-primary hover:underline">
+                      +46 704 001 951
                     </a>
                   </div>
                 </div>

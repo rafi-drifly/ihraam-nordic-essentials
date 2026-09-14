@@ -232,7 +232,7 @@ const Shipping = () => {
                 {t('shipping.support.email')}
               </a>
               <a
-                href="https://wa.me/46720131476"
+                href="https://wa.me/46704001951"
                 className="inline-flex items-center justify-center px-6 py-3 border border-border rounded-lg hover:bg-muted-foreground/10 transition-colors"
               >
                 {t('shipping.support.whatsapp')}

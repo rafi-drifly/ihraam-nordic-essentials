@@ -32,10 +32,10 @@ const Contact = () => {
 
   const seoDescription =
     i18n.language === 'sv'
-      ? 'Kontakta Pure Ihram. E-post pureihraam@gmail.com, WhatsApp +46720131476, eller använd vårt kontaktformulär.'
+      ? 'Kontakta Pure Ihram. E-post pureihraam@gmail.com, WhatsApp +46704001951, eller använd vårt kontaktformulär.'
       : i18n.language === 'no'
-        ? 'Ta kontakt med Pure Ihram. E-post pureihraam@gmail.com, WhatsApp +46720131476, eller bruk kontaktskjemaet vårt.'
-        : 'Get in touch with Pure Ihram. Email pureihraam@gmail.com, WhatsApp +46720131476, or use our contact form.';
+        ? 'Ta kontakt med Pure Ihram. E-post pureihraam@gmail.com, WhatsApp +46704001951, eller bruk kontaktskjemaet vårt.'
+        : 'Get in touch with Pure Ihram. Email pureihraam@gmail.com, WhatsApp +46704001951, or use our contact form.';
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -129,16 +129,16 @@ const Contact = () => {
       icon: <MessageCircle className="h-6 w-6 text-primary" />,
       title: t('contact.methods.whatsapp.title'),
       description: t('contact.methods.whatsapp.description'),
-      contact: "+46720131476",
-      action: "https://wa.me/46720131476",
+      contact: "+46704001951",
+      action: "https://wa.me/46704001951",
       onClick: () => trackWhatsAppClick('contact_page'),
     },
     {
       icon: <Phone className="h-6 w-6 text-primary" />,
       title: t('contact.methods.call.title'),
       description: t('contact.methods.call.description'),
-      contact: "+46720131476",
-      action: "tel:+46720131476",
+      contact: "+46704001951",
+      action: "tel:+46704001951",
       onClick: () => trackPhoneClick('contact_page'),
     }
   ];
