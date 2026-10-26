@@ -1,0 +1,26 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "pureihram-api",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-01",
+  "observability": { "enabled": true },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "pureihram",
+      "database_id": "df66ce18-1b1c-494d-8da6-29e43b591316",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "vars": {
+    "ALLOWED_ORIGINS": "https://www.pureihram.com,https://pureihram.com",
+    // Klaviyo's public site ID, the same one index.html loads klaviyo.js with.
+    // Using the public client endpoints means no private Klaviyo key lives here.
+    "KLAVIYO_COMPANY_ID": "TGazgN",
+    // The "Hajj Guide Subscribers" list. Empty skips the list subscription,
+    // exactly as the Supabase function did when its list secret was unset.
+    "KLAVIYO_PREP_PACK_LIST_ID": ""
+  }
+  // Secret, set with `bunx wrangler secret put WEB3FORMS_ACCESS_KEY`:
+  //   WEB3FORMS_ACCESS_KEY  delivers contact-form messages to the shop inbox
+}

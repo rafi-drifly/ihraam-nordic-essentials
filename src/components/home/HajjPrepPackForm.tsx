@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Check, Loader2 } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { postToApi } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 import { identifyUser, trackEvent } from "@/lib/analytics";
 
@@ -59,10 +59,7 @@ export const HajjPrepPackForm = () => {
         { lead_magnet: "hajj_prep_pack", source: "homepage", locale },
       ]);
 
-      const { error } = await supabase.functions.invoke("send-prep-pack", {
-        body: { email: trimmed, locale, source: "homepage" },
-      });
-      if (error) throw error;
+      await postToApi("/prep-pack", { email: trimmed, locale, source: "homepage" });
       setSubmitted(true);
       setEmail("");
     } catch (err) {
