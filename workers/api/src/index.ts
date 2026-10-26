@@ -2,11 +2,12 @@
  * The shop's public forms, running on Cloudflare instead of Supabase.
  *
  * Stage 1 of the move off Supabase. Each route does what its Supabase function
- * did, with the same validation and the same email providers, plus one change:
- * whatever a visitor sends is written to D1 before anything is delivered, so a
- * failure further down no longer loses it.
+ * did, with the same validation, plus one change: whatever a visitor sends is
+ * written to D1 before anything is delivered, so a failure further down no
+ * longer loses it. The contact form now sends through Resend, the shop's own
+ * email provider, instead of Web3Forms.
  *
- *   POST /contact    contact, partner and mosque forms -> Web3Forms -> shop inbox
+ *   POST /contact    contact, partner and mosque forms -> Resend -> shop inbox
  *   POST /prep-pack  Hajj prep pack signup -> Klaviyo, whose flow emails the PDF
  */
 
@@ -15,7 +16,7 @@ export interface Env {
   ALLOWED_ORIGINS: string;
   KLAVIYO_COMPANY_ID: string;
   KLAVIYO_PREP_PACK_LIST_ID: string;
-  WEB3FORMS_ACCESS_KEY?: string;
+  RESEND_API_KEY?: string;
 }
 
 type Parsed<T> = { ok: true; value: T } | { ok: false; error: string };
@@ -36,6 +37,10 @@ export interface PrepPackSignup {
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const KLAVIYO_REVISION = "2026-10-15";
 const PREP_PACK_PDF_URL = "https://www.pureihram.com/hajj-2026-prep-pack.pdf";
+const CONTACT_INBOX = "pureihraam@gmail.com";
+// pureihram.com publishes DMARC p=reject, so this only delivers once the
+// domain is verified in Resend and its DKIM record is live.
+const CONTACT_FROM = "Pure Ihram Contact <noreply@pureihram.com>";
 
 export function parseContact(body: unknown): Parsed<ContactMessage> {
   const input = (body ?? {}) as Record<string, unknown>;
@@ -105,36 +110,27 @@ function errorMessage(error: unknown): string {
 
 // --- Contact form --------------------------------------------------------
 
-async function deliverToWeb3Forms(accessKey: string, m: ContactMessage): Promise<boolean> {
-  const form = new FormData();
-  form.append("access_key", accessKey);
-  form.append("name", m.name);
-  form.append("email", m.email);
-  form.append("subject", `[Pure Ihram Contact] ${m.subject}`);
-  form.append("message", `From: ${m.name} (${m.email})\n\nSubject: ${m.subject}\n\nMessage:\n${m.message}`);
-  form.append("from_name", "Pure Ihram Contact Form");
-  form.append("redirect", "false");
-
+async function deliverViaResend(apiKey: string, m: ContactMessage): Promise<boolean> {
   try {
-    const response = await fetch("https://api.web3forms.com/submit", {
+    const response = await fetch("https://api.resend.com/emails", {
       method: "POST",
-      headers: { Accept: "application/json" },
-      body: form,
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${apiKey}` },
+      body: JSON.stringify({
+        from: CONTACT_FROM,
+        to: [CONTACT_INBOX],
+        // Pressing reply in Gmail answers the visitor, not the shop's own address.
+        reply_to: m.email,
+        subject: `[Pure Ihram Contact] ${m.subject}`,
+        text: `From: ${m.name} (${m.email})\n\nSubject: ${m.subject}\n\nMessage:\n${m.message}`,
+      }),
     });
-    const text = await response.text();
     if (!response.ok) {
-      console.error(`contact: Web3Forms returned ${response.status}`, text.slice(0, 300));
+      console.error(`contact: Resend returned ${response.status}`, (await response.text()).slice(0, 300));
       return false;
     }
-    // Web3Forms answers in JSON when asked, but has been seen answering with
-    // an HTML page instead, which is what the Supabase version checked for.
-    try {
-      return JSON.parse(text).success === true;
-    } catch {
-      return text.includes("Form submitted successfully!");
-    }
+    return true;
   } catch (error) {
-    console.error("contact: Web3Forms request failed", errorMessage(error));
+    console.error("contact: Resend request failed", errorMessage(error));
     return false;
   }
 }
@@ -160,12 +156,12 @@ async function handleContact(request: Request, env: Env, cors: Record<string, st
     console.error("contact: could not store message", errorMessage(error));
   }
 
-  if (!env.WEB3FORMS_ACCESS_KEY) {
-    console.error("contact: WEB3FORMS_ACCESS_KEY is not set");
+  if (!env.RESEND_API_KEY) {
+    console.error("contact: RESEND_API_KEY is not set");
     return json({ error: "Service configuration error" }, 500, cors);
   }
 
-  if (!(await deliverToWeb3Forms(env.WEB3FORMS_ACCESS_KEY, m))) {
+  if (!(await deliverViaResend(env.RESEND_API_KEY, m))) {
     return json({ error: "Failed to send message. Please try again or contact us directly." }, 500, cors);
   }
 
@@ -274,7 +270,7 @@ export default {
       return json(
         {
           ok: true,
-          contactConfigured: Boolean(env.WEB3FORMS_ACCESS_KEY),
+          contactConfigured: Boolean(env.RESEND_API_KEY),
           prepPackListConfigured: Boolean(env.KLAVIYO_PREP_PACK_LIST_ID),
         },
         200,

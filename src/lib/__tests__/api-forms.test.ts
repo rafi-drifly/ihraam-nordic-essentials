@@ -28,7 +28,7 @@ function makeEnv(overrides: Partial<Env> = {}) {
     ALLOWED_ORIGINS: "https://www.pureihram.com,https://pureihram.com",
     KLAVIYO_COMPANY_ID: "TGazgN",
     KLAVIYO_PREP_PACK_LIST_ID: "",
-    WEB3FORMS_ACCESS_KEY: "test-key",
+    RESEND_API_KEY: "re_test",
     ...overrides,
   };
   return { env, statements };
@@ -83,7 +83,7 @@ describe("parsePrepPack", () => {
 
 describe("POST /contact", () => {
   it("stores the message, delivers it, then marks it delivered", async () => {
-    const fetchMock = vi.fn(async () => Response.json({ success: true }));
+    const fetchMock = vi.fn(async () => Response.json({ id: "email_123" }));
     vi.stubGlobal("fetch", fetchMock);
     const { env, statements } = makeEnv();
 
@@ -92,11 +92,20 @@ describe("POST /contact", () => {
     expect(response.status).toBe(200);
     expect(statements.map((s) => s.sql.split(" ")[0])).toEqual(["INSERT", "UPDATE"]);
     expect(statements[0].args.slice(1)).toEqual(["Amina", "amina@example.com", "Sizes", "Do you ship to Oslo?"]);
-    expect(fetchMock).toHaveBeenCalledWith("https://api.web3forms.com/submit", expect.anything());
+
+    const [url, init] = fetchMock.mock.calls[0] as unknown as [string, RequestInit];
+    expect(url).toBe("https://api.resend.com/emails");
+    expect(new Headers(init.headers).get("Authorization")).toBe("Bearer re_test");
+    const email = JSON.parse(init.body as string);
+    expect(email.to).toEqual(["pureihraam@gmail.com"]);
+    expect(email.reply_to).toBe("amina@example.com");
+    expect(email.subject).toBe("[Pure Ihram Contact] Sizes");
+    expect(email.text).toContain("Do you ship to Oslo?");
   });
 
   it("keeps the message even when delivery fails, and tells the visitor", async () => {
-    vi.stubGlobal("fetch", vi.fn(async () => new Response("boom", { status: 500 })));
+    // What Resend answers while pureihram.com is not verified.
+    vi.stubGlobal("fetch", vi.fn(async () => Response.json({ message: "The pureihram.com domain is not verified." }, { status: 403 })));
     const { env, statements } = makeEnv();
 
     const response = await worker.fetch(post("/contact", contact), env);
@@ -108,20 +117,13 @@ describe("POST /contact", () => {
   it("keeps the message when the delivery key is missing", async () => {
     const fetchMock = vi.fn();
     vi.stubGlobal("fetch", fetchMock);
-    const { env, statements } = makeEnv({ WEB3FORMS_ACCESS_KEY: undefined });
+    const { env, statements } = makeEnv({ RESEND_API_KEY: undefined });
 
     const response = await worker.fetch(post("/contact", contact), env);
 
     expect(response.status).toBe(500);
     expect(statements).toHaveLength(1);
     expect(fetchMock).not.toHaveBeenCalled();
-  });
-
-  it("accepts Web3Forms' HTML success page", async () => {
-    vi.stubGlobal("fetch", vi.fn(async () => new Response("<p>Form submitted successfully!</p>")));
-    const { env } = makeEnv();
-
-    expect((await worker.fetch(post("/contact", contact), env)).status).toBe(200);
   });
 });
 
