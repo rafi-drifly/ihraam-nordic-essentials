@@ -7,6 +7,10 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
+// Where Stripe sends the customer afterwards. Fixed rather than taken from the
+// request, which now comes from the admin Worker and carries no browser Origin.
+const SITE_URL = "https://www.pureihram.com";
+
 interface ExtraShippingRequest {
   orderId: string;
   extraAmount: number; // in EUR
@@ -15,6 +19,18 @@ interface ExtraShippingRequest {
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
+  }
+
+  // Only the admin backend may call this: the pureihram-api Worker, after
+  // checking the Cloudflare Access login, calls with the service role key.
+  // The function runs without JWT verification, so without this check anyone
+  // could use it to make payment links and email any order's customer.
+  const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+  if (!serviceKey || req.headers.get("Authorization") !== `Bearer ${serviceKey}`) {
+    return new Response(JSON.stringify({ error: "Unauthorized" }), {
+      status: 401,
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
   }
 
   try {
@@ -76,8 +92,8 @@ serve(async (req) => {
         },
       ],
       mode: "payment",
-      success_url: `${req.headers.get("origin")}/order-success?extra_shipping=paid&order=${order.order_number}`,
-      cancel_url: `${req.headers.get("origin")}/order-success?extra_shipping=cancelled&order=${order.order_number}`,
+      success_url: `${SITE_URL}/order-success?extra_shipping=paid&order=${order.order_number}`,
+      cancel_url: `${SITE_URL}/order-success?extra_shipping=cancelled&order=${order.order_number}`,
       metadata: {
         payment_type: 'extra_shipping',
         order_id: orderId,

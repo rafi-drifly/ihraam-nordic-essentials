@@ -20,6 +20,9 @@
     "paths": {
       "@/*": [
         "./src/*"
+      ],
+      "cloudflare:workers": [
+        "./src/test/cloudflare-workers-stub.ts"
       ]
     },
     "skipLibCheck": true,

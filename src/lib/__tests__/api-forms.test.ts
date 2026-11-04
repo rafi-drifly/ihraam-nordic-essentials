@@ -23,14 +23,14 @@ function fakeDb() {
 
 function makeEnv(overrides: Partial<Env> = {}) {
   const { statements, db } = fakeDb();
-  const env: Env = {
+  const env = {
     DB: db,
     ALLOWED_ORIGINS: "https://www.pureihram.com,https://pureihram.com",
     KLAVIYO_COMPANY_ID: "TGazgN",
     KLAVIYO_PREP_PACK_LIST_ID: "",
     RESEND_API_KEY: "re_test",
     ...overrides,
-  };
+  } as Env;
   return { env, statements };
 }
 

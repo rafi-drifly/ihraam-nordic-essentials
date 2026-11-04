@@ -9,9 +9,15 @@
  *
  *   POST /contact    contact, partner and mosque forms -> Resend -> shop inbox
  *   POST /prep-pack  Hajj prep pack signup -> Klaviyo, whose flow emails the PDF
+ *   /admin/*         the admin's backend, behind Cloudflare Access (admin.ts)
+ *
+ * The same routes answer under /api/ on www.pureihram.com, where a Workers
+ * route sends them here, and at the root of the workers.dev address.
  */
 
-export interface Env {
+import { handleAdmin, type AdminEnv } from "./admin";
+
+export interface Env extends AdminEnv {
   DB: D1Database;
   ALLOWED_ORIGINS: string;
   KLAVIYO_COMPANY_ID: string;
@@ -260,13 +266,18 @@ async function handlePrepPack(request: Request, env: Env, cors: Record<string, s
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
+    const pathname = url.pathname.startsWith("/api/") ? url.pathname.slice("/api".length) : url.pathname;
+
+    // Same-origin only, behind Access: no CORS headers on purpose.
+    if (pathname.startsWith("/admin/")) return handleAdmin(request, env, pathname.slice("/admin/".length));
+
     const cors = corsHeaders(request, env);
 
     if (request.method === "OPTIONS") {
       return new Response(null, { status: 204, headers: cors });
     }
 
-    if (url.pathname === "/health") {
+    if (pathname === "/health") {
       return json(
         {
           ok: true,
@@ -278,8 +289,8 @@ export default {
       );
     }
 
-    if (request.method === "POST" && url.pathname === "/contact") return handleContact(request, env, cors);
-    if (request.method === "POST" && url.pathname === "/prep-pack") return handlePrepPack(request, env, cors);
+    if (request.method === "POST" && pathname === "/contact") return handleContact(request, env, cors);
+    if (request.method === "POST" && pathname === "/prep-pack") return handlePrepPack(request, env, cors);
 
     return json({ error: "Not found" }, 404, cors);
   },

@@ -11,6 +11,7 @@
  * this makes no Stripe API calls and needs no Stripe SDK.
  */
 
+import { WorkerEntrypoint } from "cloudflare:workers";
 import { buildVapidAuthHeader, encryptPayload } from "./webpush";
 
 export interface Env {
@@ -210,6 +211,61 @@ async function deliver(env: Env, payload: string): Promise<{ sent: number; prune
   return { sent, pruned: dead.length };
 }
 
+interface IncomingSubscription {
+  endpoint?: string;
+  keys?: { p256dh?: string; auth?: string };
+}
+
+async function storeSubscription(
+  env: Env,
+  subscription: IncomingSubscription | undefined,
+  userAgent: string | undefined
+): Promise<{ ok: boolean; error?: string }> {
+  const { endpoint, keys } = subscription ?? {};
+  if (!endpoint || !keys?.p256dh || !keys?.auth) return { ok: false, error: "Incomplete subscription." };
+
+  const record: StoredSubscription = {
+    endpoint,
+    p256dh: keys.p256dh,
+    auth: keys.auth,
+    userAgent: userAgent?.slice(0, 300),
+    createdAt: new Date().toISOString(),
+  };
+  await env.PUSH_SUBSCRIPTIONS.put(await subscriptionKey(endpoint), JSON.stringify(record));
+  return { ok: true };
+}
+
+function sendTestNotification(env: Env): Promise<{ sent: number; pruned: number }> {
+  return deliver(
+    env,
+    JSON.stringify({
+      title: "Test · Pure Ihram",
+      body: "Order alerts are working on this device.",
+      url: "/admin/orders",
+      tag: "pureihram-test",
+    })
+  );
+}
+
+/**
+ * The admin's way in, over a service binding from pureihram-api, which has
+ * already checked the Cloudflare Access login. RPC methods cannot be reached
+ * from the internet, so this path needs no enrolment code.
+ */
+export class PushAdmin extends WorkerEntrypoint<Env> {
+  async subscribe(subscription: IncomingSubscription, userAgent?: string): Promise<{ ok: boolean; error?: string }> {
+    return storeSubscription(this.env, subscription, userAgent);
+  }
+
+  async unsubscribe(endpoint: string): Promise<void> {
+    if (endpoint) await this.env.PUSH_SUBSCRIPTIONS.delete(await subscriptionKey(endpoint));
+  }
+
+  async sendTest(): Promise<{ sent: number; pruned: number }> {
+    return sendTestNotification(this.env);
+  }
+}
+
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
@@ -271,20 +327,8 @@ export default {
         return json({ error: "That enrolment code is not right." }, 401, env);
       }
 
-      const { endpoint, keys } = payload.subscription ?? {};
-      if (!endpoint || !keys?.p256dh || !keys?.auth) {
-        return json({ error: "Incomplete subscription." }, 400, env);
-      }
-
-      const record: StoredSubscription = {
-        endpoint,
-        p256dh: keys.p256dh,
-        auth: keys.auth,
-        userAgent: payload.userAgent?.slice(0, 300),
-        createdAt: new Date().toISOString(),
-      };
-      await env.PUSH_SUBSCRIPTIONS.put(await subscriptionKey(endpoint), JSON.stringify(record));
-      return json({ ok: true }, 200, env);
+      const stored = await storeSubscription(env, payload.subscription, payload.userAgent);
+      return stored.ok ? json({ ok: true }, 200, env) : json({ error: stored.error }, 400, env);
     }
 
     if (url.pathname === "/unsubscribe" && request.method === "POST") {
@@ -308,15 +352,7 @@ export default {
       if (!payload?.secret || !timingSafeEqual(payload.secret, env.ENROLMENT_SECRET)) {
         return json({ error: "That enrolment code is not right." }, 401, env);
       }
-      const result = await deliver(
-        env,
-        JSON.stringify({
-          title: "Test · Pure Ihram",
-          body: "Order alerts are working on this device.",
-          url: "/admin/orders",
-          tag: "pureihram-test",
-        })
-      );
+      const result = await sendTestNotification(env);
       return json({ ok: true, ...result }, 200, env);
     }
 
