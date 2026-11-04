@@ -10,7 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Building2, ArrowLeft, Check, Heart } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { postToApi } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 import { trackGroupEnquirySubmit } from "@/lib/analytics";
 
@@ -56,13 +56,11 @@ const MosqueSupport = () => {
 
     setLoading(true);
     try {
-      // Use contact-form edge function for now
-      const { error } = await supabase.functions.invoke('contact-form', {
-        body: {
-          name: formData.contactPerson,
-          email: formData.email,
-          subject: `Mosque Support Request: ${formData.mosqueName}`,
-          message: `
+      await postToApi("/contact", {
+        name: formData.contactPerson,
+        email: formData.email,
+        subject: `Mosque Support Request: ${formData.mosqueName}`,
+        message: `
 Mosque/Islamic Center: ${formData.mosqueName}
 Location: ${formData.countryCity}
 Contact Person: ${formData.contactPerson}
@@ -71,11 +69,8 @@ Phone: ${formData.phone}
 Website: ${formData.website || 'N/A'}
 Estimated Need: ${formData.estimatedNeed} sets
 Additional Notes: ${formData.notes || 'N/A'}
-          `.trim()
-        }
+        `.trim(),
       });
-
-      if (error) throw error;
       
       trackGroupEnquirySubmit({
         organization_type: 'mosque',

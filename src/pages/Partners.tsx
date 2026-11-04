@@ -27,7 +27,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
 import SEOHead from "@/components/SEOHead";
-import { supabase } from "@/integrations/supabase/client";
+import { postToApi } from "@/lib/api";
 
 const Partners = () => {
   const { t, i18n } = useTranslation();
@@ -67,11 +67,7 @@ const Partners = () => {
         subject: `Partner Inquiry - ${formData.organisation}`,
         message: `Organization: ${formData.organisation}\nRole: ${formData.role}\nCountry: ${formData.country}\nPhone: ${formData.phone}\nPilgrims per year: ${formData.pilgrimsPerYear}\n\n${formData.message}`,
       };
-      const { error } = await supabase.functions.invoke('contact-form', {
-        body: contactBody
-      });
-
-      if (error) throw error;
+      await postToApi("/contact", contactBody);
 
       toast({
         title: t('partners.form.successTitle'),

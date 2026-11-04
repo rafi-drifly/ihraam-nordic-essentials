@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone, MessageCircle, MapPin, Clock, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
+import { postToApi } from "@/lib/api";
 import { z } from "zod";
 import { trackContactFormSubmit, trackWhatsAppClick, trackEmailClick, trackPhoneClick } from "@/lib/analytics";
 import SEOHead from "@/components/SEOHead";
@@ -54,17 +54,7 @@ const Contact = () => {
     try {
       const validatedData = contactSchema.parse(formData);
 
-      const { data, error } = await supabase.functions.invoke('contact-form', {
-        body: validatedData,
-      });
-
-      if (error) {
-        throw new Error(error.message || 'Failed to send message');
-      }
-
-      if (data?.error) {
-        throw new Error(data.error);
-      }
+      await postToApi("/contact", validatedData);
 
       toast({
         title: t('contact.form.success.title'),
