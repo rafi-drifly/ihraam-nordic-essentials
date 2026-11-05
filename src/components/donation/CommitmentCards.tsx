@@ -33,7 +33,7 @@ const CommitmentCards = () => {
                 <div className="mx-auto flex items-center justify-center h-14 w-14 rounded-full bg-primary/10 mb-5">
                   <commitment.icon className="h-7 w-7 text-primary" />
                 </div>
-                <h3 className="font-semibold text-lg mb-3">{commitment.title}</h3>
+                <h3 className="font-bold text-lg mb-3">{commitment.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   {commitment.description}
                 </p>

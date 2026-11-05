@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import BrandMark from "@/components/BrandMark";
 import { useLocalePrefix, useLocaleCode } from "@/i18n/useLocale";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -123,9 +124,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to={localePrefix || '/'} className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-primary rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-sm">I</span>
-            </div>
+            <BrandMark className="w-8 h-8 shrink-0" />
             <span className="text-xl font-bold text-foreground">Pure Ihram</span>
           </Link>
 
@@ -136,7 +135,7 @@ const Navbar = () => {
                 <Link
                   key={item.name}
                   to={getLocalizedHref(item.href)}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  className={`px-3 py-2 rounded-md text-sm font-normal transition-colors ${
                     isActive(item.href)
                       ? "text-primary bg-secondary"
                       : "text-muted-foreground hover:text-foreground hover:bg-muted"
@@ -178,7 +177,7 @@ const Navbar = () => {
                 <Link
                   key={item.name}
                   to={getLocalizedHref(item.href)}
-                  className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                  className={`block px-3 py-2 rounded-md text-base font-normal transition-colors ${
                     isActive(item.href)
                       ? "text-primary bg-secondary"
                       : "text-muted-foreground hover:text-foreground hover:bg-background"

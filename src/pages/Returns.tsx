@@ -95,7 +95,7 @@ const Returns = () => {
       <SEOHead
         title={
           t('returns.seoTitle', {
-            defaultValue: 'Returns & Exchanges - 14-Day Free Returns | Pure Ihram',
+            defaultValue: 'Returns & Exchanges - 14-Day Returns | Pure Ihram',
           })
         }
         description={
@@ -124,7 +124,7 @@ const Returns = () => {
               <Card key={i} className="text-center hover:shadow-lg transition-shadow">
                 <CardContent className="p-6">
                   <div className="flex justify-center mb-4">{card.icon}</div>
-                  <h3 className="font-semibold text-foreground mb-2">{card.title}</h3>
+                  <h3 className="font-bold text-foreground mb-2">{card.title}</h3>
                   <p className="text-sm text-muted-foreground">{card.description}</p>
                 </CardContent>
               </Card>
@@ -142,7 +142,7 @@ const Returns = () => {
                   <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center mb-4">
                     <span className="text-primary-foreground font-bold">{i + 1}</span>
                   </div>
-                  <h3 className="font-semibold text-foreground mb-2">{step.title}</h3>
+                  <h3 className="font-bold text-foreground mb-2">{step.title}</h3>
                   <p className="text-sm text-muted-foreground">{step.description}</p>
                 </div>
               ))}
@@ -157,7 +157,7 @@ const Returns = () => {
           {/* Return Address */}
           <div className="bg-primary/10 rounded-lg p-6 max-w-xl mx-auto text-center mb-16">
             <MapPin className="h-5 w-5 text-primary mx-auto mb-2" />
-            <p className="font-semibold text-foreground mb-1">{t("returns.address.label")}</p>
+            <p className="font-bold text-foreground mb-1">{t("returns.address.label")}</p>
             <p className="text-sm text-muted-foreground">Innovation Stable, 751 83 Uppsala, Sweden</p>
             <p className="text-xs text-muted-foreground mt-2 italic">{t("returns.address.trackNote")}</p>
           </div>

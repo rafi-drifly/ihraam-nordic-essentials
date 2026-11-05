@@ -127,7 +127,7 @@ const DonationForm = ({ localePrefix }: DonationFormProps) => {
             {/* Frequency Toggle */}
             <div className="flex rounded-lg bg-muted p-1">
               <button
-                className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
+                className={`flex-1 py-2 px-4 rounded-md text-sm font-normal transition-colors ${
                   frequency === 'one-time' 
                     ? 'bg-background shadow-sm text-foreground' 
                     : 'text-muted-foreground hover:text-foreground'
@@ -137,7 +137,7 @@ const DonationForm = ({ localePrefix }: DonationFormProps) => {
                 One-Time
               </button>
               <button
-                className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
+                className={`flex-1 py-2 px-4 rounded-md text-sm font-normal transition-colors ${
                   frequency === 'monthly' 
                     ? 'bg-background shadow-sm text-foreground' 
                     : 'text-muted-foreground hover:text-foreground'
@@ -173,7 +173,7 @@ const DonationForm = ({ localePrefix }: DonationFormProps) => {
 
             {isCustom && (
               <div className="flex items-center gap-2 max-w-xs mx-auto">
-                <span className="text-lg font-medium">€</span>
+                <span className="text-lg font-normal">€</span>
                 <Input
                   type="number"
                   min="1"
@@ -188,12 +188,12 @@ const DonationForm = ({ localePrefix }: DonationFormProps) => {
 
             {/* Donation Direction */}
             <div className="space-y-3">
-              <Label className="text-base font-medium">Where should your donation go?</Label>
+              <Label className="text-base font-normal">Where should your donation go?</Label>
               <RadioGroup value={direction} onValueChange={(v) => setDirection(v as any)} className="space-y-3">
                 <div className="flex items-start space-x-3 p-3 rounded-lg border hover:bg-muted/50 transition-colors">
                   <RadioGroupItem value="mosque" id="mosque" className="mt-0.5" />
                   <div className="flex-1">
-                    <Label htmlFor="mosque" className="font-medium cursor-pointer flex items-center gap-2">
+                    <Label htmlFor="mosque" className="font-normal cursor-pointer flex items-center gap-2">
                       <Building2 className="h-4 w-4 text-blue-500" />
                       Mosque Support Program
                     </Label>
@@ -205,7 +205,7 @@ const DonationForm = ({ localePrefix }: DonationFormProps) => {
                 <div className="flex items-start space-x-3 p-3 rounded-lg border hover:bg-muted/50 transition-colors">
                   <RadioGroupItem value="needy" id="needy" className="mt-0.5" />
                   <div className="flex-1">
-                    <Label htmlFor="needy" className="font-medium cursor-pointer flex items-center gap-2">
+                    <Label htmlFor="needy" className="font-normal cursor-pointer flex items-center gap-2">
                       <Globe className="h-4 w-4 text-green-500" />
                       Needy Projects
                     </Label>
@@ -217,7 +217,7 @@ const DonationForm = ({ localePrefix }: DonationFormProps) => {
                 <div className="flex items-start space-x-3 p-3 rounded-lg border hover:bg-muted/50 transition-colors">
                   <RadioGroupItem value="where-needed" id="where-needed" className="mt-0.5" />
                   <div className="flex-1">
-                    <Label htmlFor="where-needed" className="font-medium cursor-pointer flex items-center gap-2">
+                    <Label htmlFor="where-needed" className="font-normal cursor-pointer flex items-center gap-2">
                       <HelpCircle className="h-4 w-4 text-primary" />
                       Where Most Needed
                     </Label>
@@ -270,7 +270,7 @@ const DonationForm = ({ localePrefix }: DonationFormProps) => {
                   onCheckedChange={(checked) => setCoverFees(checked as boolean)}
                 />
                 <div className="flex-1">
-                  <Label htmlFor="coverFees" className="text-sm cursor-pointer font-medium">
+                  <Label htmlFor="coverFees" className="text-sm cursor-pointer font-normal">
                     Cover Stripe fees so more reaches the mission
                   </Label>
                   {coverFees && getBaseAmount() > 0 && (

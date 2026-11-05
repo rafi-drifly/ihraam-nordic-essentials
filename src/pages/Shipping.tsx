@@ -11,17 +11,17 @@ const Shipping = () => {
 
   const seoTitle =
     i18n.language === 'sv'
-      ? 'Frakt & Leverans - Snabb EU-frakt från Sverige | Pure Ihram'
+      ? 'Frakt & Leverans - EU-frakt från Sverige | Pure Ihram'
       : i18n.language === 'no'
-        ? 'Frakt & Levering - Rask EU-frakt fra Sverige | Pure Ihram'
-        : 'Shipping & Delivery - Fast EU Shipping from Sweden | Pure Ihram';
+        ? 'Frakt & Levering - EU-frakt fra Sverige | Pure Ihram'
+        : 'Shipping & Delivery - EU Shipping from Sweden | Pure Ihram';
 
   const seoDescription =
     i18n.language === 'sv'
-      ? 'Snabb, pålitlig Ihram-leverans i Sverige, Norden och hela EU. Beställningar behandlas inom 1-2 arbetsdagar med full spårning.'
+      ? 'Pålitlig Ihram-leverans i Sverige, Norden och hela EU. Beställningar behandlas inom 1-2 arbetsdagar med full spårning.'
       : i18n.language === 'no'
-        ? 'Rask, pålitelig Ihram-levering i Sverige, Norden og hele EU. Bestillinger behandles innen 1-2 virkedager med full sporing.'
-        : 'Fast, reliable Ihram delivery across Sweden, the Nordics, and the EU. Orders processed in 1-2 business days with full tracking.';
+        ? 'Pålitelig Ihram-levering i Sverige, Norden og hele EU. Bestillinger behandles innen 1-2 virkedager med full sporing.'
+        : 'Reliable Ihram delivery across Sweden, the Nordics, and the EU. Orders processed in 1-2 business days with full tracking.';
 
   useEffect(() => { trackShippingPageView(); }, []);
 
@@ -90,7 +90,7 @@ const Shipping = () => {
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-6 py-3">
             <MapPin className="h-5 w-5 text-primary" />
-            <span className="text-sm font-medium text-primary">
+            <span className="text-sm font-normal text-primary">
               {t('shipping.shippedFrom', 'All orders are packed and shipped from Sweden')}
             </span>
           </div>
@@ -112,7 +112,7 @@ const Shipping = () => {
                     </Badge>
                   </div>
                   <CardTitle className="text-xl">{zone.region}</CardTitle>
-                  <p className="text-lg font-semibold text-primary">{zone.cost}</p>
+                  <p className="text-lg font-bold text-primary">{zone.cost}</p>
                 </CardHeader>
                 <CardContent className="text-center">
                   <p className="text-muted-foreground mb-2">{zone.description}</p>
@@ -124,7 +124,7 @@ const Shipping = () => {
 
           {/* Free mosque pickup: cheaper than any shipped option, so say it here. */}
           <div className="mt-6 rounded-lg border border-primary/30 bg-primary/5 p-6 text-center">
-            <p className="text-lg font-semibold text-primary mb-1">
+            <p className="text-lg font-bold text-primary mb-1">
               {t('shipping.pickup.title', 'Free pickup in Uppsala and Stockholm')}
             </p>
             <p className="text-muted-foreground">
@@ -146,7 +146,7 @@ const Shipping = () => {
                   <div className="flex justify-center mb-4">
                     {step.icon}
                   </div>
-                  <h3 className="font-semibold text-foreground mb-2">
+                  <h3 className="font-bold text-foreground mb-2">
                     {step.title}
                   </h3>
                   <p className="text-sm text-muted-foreground">
@@ -161,7 +161,7 @@ const Shipping = () => {
         {/* Planning Tip */}
         <div className="mb-16">
           <div className="bg-primary/10 rounded-lg p-6 max-w-2xl mx-auto text-center">
-            <h4 className="font-semibold text-primary mb-2">{t('shipping.tip.title')}</h4>
+            <h4 className="font-bold text-primary mb-2">{t('shipping.tip.title')}</h4>
             <p className="text-sm text-muted-foreground">
               {t('shipping.tip.description')}
             </p>
@@ -179,7 +179,7 @@ const Shipping = () => {
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <h4 className="font-semibold text-foreground mb-2">{t('shipping.orderProcessing.next.title')}</h4>
+                <h4 className="font-bold text-foreground mb-2">{t('shipping.orderProcessing.next.title')}</h4>
                 <ol className="space-y-1 text-sm text-muted-foreground">
                   <li>1. {t('shipping.orderProcessing.next.step1')}</li>
                   <li>2. {t('shipping.orderProcessing.next.step2')}</li>
@@ -199,7 +199,7 @@ const Shipping = () => {
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <h4 className="font-semibold text-foreground mb-2">{t('shipping.deliveryInfo.tracking.title')}</h4>
+                <h4 className="font-bold text-foreground mb-2">{t('shipping.deliveryInfo.tracking.title')}</h4>
                 <ul className="space-y-1 text-sm text-muted-foreground">
                   <li>• {t('shipping.deliveryInfo.tracking.realTime')}</li>
                   <li>• {t('shipping.deliveryInfo.tracking.window')}</li>

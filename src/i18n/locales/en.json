@@ -43,12 +43,12 @@
   },
   "home": {
     "hero": {
-      "title": "Premium Ihram for Umrah & Hajj",
+      "title": "Ihram for Umrah & Hajj",
       "highlight": "From €19, shipped from Sweden",
       "description": "Lightweight microfiber Ihram for pilgrims across Sweden, the Nordics and the EU. Free Hajj & Umrah Prep Pack with every order.",
       "ctaShop": "Shop Ihram - From €19",
       "ctaPrepPack": "Explore Umrah & Hajj guides",
-      "microcopy": "€9 shipping within Sweden  ·  Free pickup in Uppsala & Stockholm  ·  Free returns within 14 days",
+      "microcopy": "€9 shipping within Sweden  ·  Free pickup in Uppsala & Stockholm  ·  14-day returns",
       "imageAlt": "Pure white Ihram cloth laid flat"
     },
     "benefits": {
@@ -110,7 +110,7 @@
         },
         {
           "q": "How fast do you ship?",
-          "a": "Orders ship from Sweden within 1 business day. Most EU customers receive their Ihram quickly - typical timing varies by destination, see our Shipping page for details."
+          "a": "Orders ship from Sweden within 1 business day. Delivery takes 3-7 business days in Sweden and 7-14 elsewhere in the Nordics and EU; see our Shipping page for details."
         },
         {
           "q": "Do you ship outside the EU?",
@@ -138,7 +138,7 @@
       "trust": {
         "shipping": "Ships from Sweden · 3-7 days in Sweden",
         "secure": "Stripe-secure: Apple Pay, Klarna",
-        "returns": "14-day free returns"
+        "returns": "14-day returns"
       }
     },
     "howToWear": {
@@ -150,7 +150,7 @@
     "shipping": {
       "delivery": "Sweden 3-7 days · Nordics & EU 7-14 days",
       "express": "€9 shipping within Sweden, one fee per order",
-      "returns": "14-day free returns - no questions asked",
+      "returns": "14-day returns on unworn sets",
       "secure": "Stripe-secure: Apple Pay, Google Pay, Klarna"
     },
     "offers": {
@@ -206,7 +206,7 @@
     "subtitle": "Pure Ihram was founded to make Ihram (Ihraam) affordable (€19 + €9 shipping in Sweden) and accessible to all. This is not about profit but about earning ajr (reward) in the Akhirah by serving the Muslim community and making the sacred pilgrimage accessible to believers across Europe.",
     "story": {
       "title": "Our Story",
-      "p1": "Pure Ihram started with a simple question: why are European Muslims paying excessive prices for basic pilgrimage cloth? We founded Pure Ihram in Sweden to fix that - premium Ihram at €19, shipped fast across the EU.",
+      "p1": "Pure Ihram started with a simple question: why are European Muslims paying excessive prices for basic pilgrimage cloth? We founded Pure Ihram in Sweden to fix that: quality Ihram at €19, shipped from Sweden across the EU.",
       "p2": "Every sale is made with the sincere intention of earning ajr (reward) in the Akhirah. This isn't just commerce - it's service to our community, ensuring that cost and distance never stand between a believer and their pilgrimage.",
       "p3": "",
       "p4": ""
@@ -236,14 +236,14 @@
     "quality": {
       "title": "Why Quality Matters",
       "p1": "During Hajj and Umrah, pilgrims face intense physical and spiritual demands. Your Ihram should be the least of your concerns - comfortable, breathable, and durable enough to withstand the journey ahead.",
-      "p2": "We source our fabric from trusted suppliers who understand the sacred nature of these garments. Every piece is inspected, pre-washed, and prepared with the care befitting its holy purpose.",
+      "p2": "We source our fabric from trusted suppliers who understand the sacred nature of these garments. Every piece is inspected and prepared with the care befitting its holy purpose.",
       "cotton": {
-        "title": "Premium Microfiber",
+        "title": "Microfiber",
         "description": "100% Microfiber Polyester for maximum breathability and comfort"
       },
       "preTreated": {
-        "title": "Pre-Treated",
-        "description": "Pre-washed and treated to maintain pristine appearance"
+        "title": "Wash Once Before You Fly",
+        "description": "Not pre-washed. One wash at home softens the cloth and removes manufacturing residue."
       },
       "traditional": {
         "title": "Traditional Cut",
@@ -339,7 +339,7 @@
   },
   "shipping": {
     "title": "Shipping & Delivery",
-    "subtitle": "Fast, reliable delivery across Sweden, the Nordics, and Europe. Your Ihram will arrive in perfect condition, ready for your sacred journey.",
+    "subtitle": "Reliable delivery across Sweden, the Nordics and Europe: 3-7 business days in Sweden, 7-14 elsewhere. Your Ihram will arrive in perfect condition, ready for your sacred journey.",
     "zones": {
       "title": "Delivery Zones & Timeframes",
       "sweden": {
@@ -377,7 +377,7 @@
       "title": "Shipping Features",
       "packaging": {
         "title": "Secure Packaging",
-        "description": "Your Ihram is carefully packaged in protective, eco-friendly materials"
+        "description": "Your Ihram is carefully packed in a protective zip carry bag"
       },
       "tracking": {
         "title": "Tracking Included",
@@ -522,7 +522,7 @@
       "features": "Features",
       "featuresValue": "Quick-Dry • Antimicrobial • Hypoallergenic",
       "packaging": "Packaging",
-      "packagingValue": "Eco-friendly zip carry bag"
+      "packagingValue": "Zip carry bag"
     },
     "features": {
       "title": "Key Features",
@@ -539,7 +539,7 @@
         "description": "Prevents bacterial buildup"
       },
       "sustainable": {
-        "title": "Sustainable & Reusable",
+        "title": "Reusable",
         "description": "Durable and easy to wash"
       },
       "sunnah": {
@@ -682,10 +682,10 @@
     "backToAllGuides": "Back to All Guides",
     "relatedReading": "Related Reading",
     "readyForJourney": "Ready for Your Sacred Journey?",
-    "orderCta": "Order your premium Ihram cloth today and prepare for your pilgrimage with comfort and confidence.",
+    "orderCta": "Order your Ihram cloth today and prepare for your pilgrimage with comfort and confidence.",
     "shopIhram": "Shop Ihram",
     "prepareForJourney": "Prepare for Your Sacred Journey",
-    "orderCtaAlt": "Order your premium Ihram towel set today and begin your pilgrimage with comfort, confidence, and spiritual readiness.",
+    "orderCtaAlt": "Order your Ihram towel set today and begin your pilgrimage with comfort, confidence, and spiritual readiness.",
     "shopIhramSet": "Shop Ihram Set",
     "shopNow": "Shop Now",
     "introduction": "Introduction",
@@ -731,7 +731,7 @@
       },
       "organizers": {
         "title": "Group Organisers",
-        "description": "Equip your travel groups with premium Ihram sets at competitive wholesale prices."
+        "description": "Equip your travel groups with quality Ihram sets at competitive wholesale prices."
       }
     },
     "howItWorks": {
@@ -769,7 +769,7 @@
     },
     "product": {
       "title": "Product Details",
-      "subtitle": "Premium quality Ihram for pilgrims across Europe",
+      "subtitle": "Quality Ihram for pilgrims across Europe",
       "name": "Ihram Hajj Towel Set",
       "specs": {
         "size": "Size",

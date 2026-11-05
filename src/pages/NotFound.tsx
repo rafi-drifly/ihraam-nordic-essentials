@@ -32,7 +32,7 @@ const NotFound = () => {
       />
       <div className="max-w-md text-center space-y-4">
         <p className="text-5xl font-bold text-primary">404</p>
-        <h1 className="text-xl font-semibold">{t("notFound.title", "This page does not exist")}</h1>
+        <h1 className="text-xl font-bold">{t("notFound.title", "This page does not exist")}</h1>
         <p className="text-muted-foreground">
           {t(
             "notFound.body",

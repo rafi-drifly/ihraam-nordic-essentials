@@ -165,23 +165,23 @@ Additional Notes: ${formData.notes || 'N/A'}
             <CardContent>
               <div className="grid gap-4 md:grid-cols-3">
                 <div className="flex items-start gap-3">
-                  <div className="flex items-center justify-center h-8 w-8 rounded-full bg-primary/10 text-primary font-semibold text-sm">1</div>
+                  <div className="flex items-center justify-center h-8 w-8 rounded-full bg-primary/10 text-primary font-bold text-sm">1</div>
                   <div>
-                    <p className="font-medium text-sm">{t('mosqueSupport.howItWorks.step1.title')}</p>
+                    <p className="font-normal text-sm">{t('mosqueSupport.howItWorks.step1.title')}</p>
                     <p className="text-xs text-muted-foreground">{t('mosqueSupport.howItWorks.step1.desc')}</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <div className="flex items-center justify-center h-8 w-8 rounded-full bg-primary/10 text-primary font-semibold text-sm">2</div>
+                  <div className="flex items-center justify-center h-8 w-8 rounded-full bg-primary/10 text-primary font-bold text-sm">2</div>
                   <div>
-                    <p className="font-medium text-sm">{t('mosqueSupport.howItWorks.step2.title')}</p>
+                    <p className="font-normal text-sm">{t('mosqueSupport.howItWorks.step2.title')}</p>
                     <p className="text-xs text-muted-foreground">{t('mosqueSupport.howItWorks.step2.desc')}</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <div className="flex items-center justify-center h-8 w-8 rounded-full bg-primary/10 text-primary font-semibold text-sm">3</div>
+                  <div className="flex items-center justify-center h-8 w-8 rounded-full bg-primary/10 text-primary font-bold text-sm">3</div>
                   <div>
-                    <p className="font-medium text-sm">{t('mosqueSupport.howItWorks.step3.title')}</p>
+                    <p className="font-normal text-sm">{t('mosqueSupport.howItWorks.step3.title')}</p>
                     <p className="text-xs text-muted-foreground">{t('mosqueSupport.howItWorks.step3.desc')}</p>
                   </div>
                 </div>

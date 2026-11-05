@@ -68,7 +68,7 @@ const ReturnRequestDialog = ({
         {submitted ? (
           <div className="text-center py-6 space-y-4">
             <CheckCircle className="h-12 w-12 text-primary mx-auto" />
-            <h3 className="text-lg font-semibold text-foreground">
+            <h3 className="text-lg font-bold text-foreground">
               {t("returns.dialog.successTitle")}
             </h3>
             <p className="text-sm text-muted-foreground max-w-sm mx-auto">

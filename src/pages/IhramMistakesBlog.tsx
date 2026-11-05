@@ -82,7 +82,7 @@ const IhramMistakesBlog = () => {
               becomes prohibited - including perfume, deodorant, soap, lotion, or wet wipes with scent.
             </p>
             <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-4">
-              <p className="font-semibold text-foreground mb-2 flex items-center gap-2">
+              <p className="font-bold text-foreground mb-2 flex items-center gap-2">
                 <AlertCircle className="h-5 w-5 text-destructive" />
                 Common examples of mistakes:
               </p>
@@ -93,7 +93,7 @@ const IhramMistakesBlog = () => {
               </ul>
             </div>
             <div className="bg-primary/10 border border-primary/20 rounded-lg p-4">
-              <p className="font-semibold text-foreground mb-2 flex items-center gap-2">
+              <p className="font-bold text-foreground mb-2 flex items-center gap-2">
                 <CheckCircle2 className="h-5 w-5 text-primary" />
                 What to do instead:
               </p>
@@ -117,7 +117,7 @@ const IhramMistakesBlog = () => {
               the moment you declare Ihram until after completing Umrah (or until the sacrifice on Hajj).
             </p>
             <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-4">
-              <p className="font-semibold text-foreground mb-2 flex items-center gap-2">
+              <p className="font-bold text-foreground mb-2 flex items-center gap-2">
                 <AlertCircle className="h-5 w-5 text-destructive" />
                 Common mistakes:
               </p>
@@ -127,7 +127,7 @@ const IhramMistakesBlog = () => {
               </ul>
             </div>
             <div className="bg-primary/10 border border-primary/20 rounded-lg p-4">
-              <p className="font-semibold text-foreground mb-2 flex items-center gap-2">
+              <p className="font-bold text-foreground mb-2 flex items-center gap-2">
                 <CheckCircle2 className="h-5 w-5 text-primary" />
                 What to do instead:
               </p>
@@ -152,7 +152,7 @@ const IhramMistakesBlog = () => {
               and one for the upper body (Rida').
             </p>
             <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-4">
-              <p className="font-semibold text-foreground mb-2 flex items-center gap-2">
+              <p className="font-bold text-foreground mb-2 flex items-center gap-2">
                 <AlertCircle className="h-5 w-5 text-destructive" />
                 Yet some men mistakenly wear:
               </p>
@@ -163,7 +163,7 @@ const IhramMistakesBlog = () => {
               </ul>
             </div>
             <div className="bg-primary/10 border border-primary/20 rounded-lg p-4">
-              <p className="font-semibold text-foreground mb-2 flex items-center gap-2">
+              <p className="font-bold text-foreground mb-2 flex items-center gap-2">
                 <CheckCircle2 className="h-5 w-5 text-primary" />
                 What to do instead:
               </p>
@@ -196,7 +196,7 @@ const IhramMistakesBlog = () => {
               It's fine, however, to sit under a shade, umbrella, or bus roof.
             </p>
             <div className="bg-primary/10 border border-primary/20 rounded-lg p-4">
-              <p className="font-semibold text-foreground mb-2 flex items-center gap-2">
+              <p className="font-bold text-foreground mb-2 flex items-center gap-2">
                 <CheckCircle2 className="h-5 w-5 text-primary" />
                 What to do instead:
               </p>
@@ -228,7 +228,7 @@ const IhramMistakesBlog = () => {
               <cite className="text-sm text-muted-foreground mt-2 block">- Sahih al-Bukhari</cite>
             </div>
             <div className="bg-primary/10 border border-primary/20 rounded-lg p-4">
-              <p className="font-semibold text-foreground mb-2 flex items-center gap-2">
+              <p className="font-bold text-foreground mb-2 flex items-center gap-2">
                 <CheckCircle2 className="h-5 w-5 text-primary" />
                 What to do instead:
               </p>
@@ -262,7 +262,7 @@ const IhramMistakesBlog = () => {
               <cite className="text-sm text-muted-foreground mt-2 block">- Qur'an 2:197</cite>
             </div>
             <div className="bg-primary/10 border border-primary/20 rounded-lg p-4">
-              <p className="font-semibold text-foreground mb-2 flex items-center gap-2">
+              <p className="font-bold text-foreground mb-2 flex items-center gap-2">
                 <CheckCircle2 className="h-5 w-5 text-primary" />
                 What to do instead:
               </p>
@@ -286,7 +286,7 @@ const IhramMistakesBlog = () => {
               but some pilgrims only say it once and forget.
             </p>
             <div className="bg-primary/10 border border-primary/20 rounded-lg p-4">
-              <p className="font-semibold text-foreground mb-2 flex items-center gap-2">
+              <p className="font-bold text-foreground mb-2 flex items-center gap-2">
                 <CheckCircle2 className="h-5 w-5 text-primary" />
                 What to do instead:
               </p>
@@ -315,7 +315,7 @@ const IhramMistakesBlog = () => {
               Some expose the shoulders unnecessarily or fail to secure the lower cloth properly.
             </p>
             <div className="bg-primary/10 border border-primary/20 rounded-lg p-4">
-              <p className="font-semibold text-foreground mb-2 flex items-center gap-2">
+              <p className="font-bold text-foreground mb-2 flex items-center gap-2">
                 <CheckCircle2 className="h-5 w-5 text-primary" />
                 What to do instead:
               </p>
@@ -346,7 +346,7 @@ const IhramMistakesBlog = () => {
               Many travelers forget or delay it due to confusion on the plane or bus.
             </p>
             <div className="bg-primary/10 border border-primary/20 rounded-lg p-4">
-              <p className="font-semibold text-foreground mb-2 flex items-center gap-2">
+              <p className="font-bold text-foreground mb-2 flex items-center gap-2">
                 <CheckCircle2 className="h-5 w-5 text-primary" />
                 What to do instead:
               </p>
@@ -374,7 +374,7 @@ const IhramMistakesBlog = () => {
               Remember, you are standing before Allah, and this time is sacred.
             </p>
             <div className="bg-primary/10 border border-primary/20 rounded-lg p-4">
-              <p className="font-semibold text-foreground mb-2 flex items-center gap-2">
+              <p className="font-bold text-foreground mb-2 flex items-center gap-2">
                 <CheckCircle2 className="h-5 w-5 text-primary" />
                 What to do instead:
               </p>

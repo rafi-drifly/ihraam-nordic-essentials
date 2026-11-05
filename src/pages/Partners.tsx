@@ -149,7 +149,7 @@ const Partners = () => {
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center max-w-4xl mx-auto">
-            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
+            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-normal mb-6">
               <Building2 className="h-4 w-4" />
               {t('partners.hero.badge')}
             </div>
@@ -189,7 +189,7 @@ const Partners = () => {
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                     <item.icon className="h-8 w-8 text-primary" />
                   </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-3">{item.title}</h3>
+                  <h3 className="text-xl font-bold text-foreground mb-3">{item.title}</h3>
                   <p className="text-muted-foreground">{item.description}</p>
                 </CardContent>
               </Card>
@@ -219,7 +219,7 @@ const Partners = () => {
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 mt-4">
                     <item.icon className="h-8 w-8 text-primary" />
                   </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-3">{item.title}</h3>
+                  <h3 className="text-xl font-bold text-foreground mb-3">{item.title}</h3>
                   <p className="text-muted-foreground">{item.description}</p>
                 </div>
                 {index < howItWorks.length - 1 && (
@@ -251,15 +251,15 @@ const Partners = () => {
                     <div className="space-y-4">
                       <div className="flex justify-between items-center py-3 border-b border-border">
                         <span className="text-muted-foreground">{t('partners.pricing.breakdown.retail')}</span>
-                        <span className="font-semibold text-foreground">€19</span>
+                        <span className="font-bold text-foreground">€19</span>
                       </div>
                       <div className="flex justify-between items-center py-3 border-b border-border">
                         <span className="text-muted-foreground">{t('partners.pricing.breakdown.partner')}</span>
-                        <span className="font-semibold text-primary">€13*</span>
+                        <span className="font-bold text-primary">€13*</span>
                       </div>
                       <div className="flex justify-between items-center py-3 border-b border-border">
                         <span className="text-muted-foreground">{t('partners.pricing.breakdown.sellPrice')}</span>
-                        <span className="font-semibold text-foreground">€19-€22</span>
+                        <span className="font-bold text-foreground">€19-€22</span>
                       </div>
                       <div className="flex justify-between items-center py-3">
                         <span className="text-muted-foreground">{t('partners.pricing.breakdown.margin')}</span>
@@ -305,25 +305,25 @@ const Partners = () => {
                   <div>
                     <div className="flex items-center gap-3 mb-4">
                       <Package className="h-6 w-6 text-primary" />
-                      <h3 className="text-xl font-semibold text-foreground">{t('partners.product.name')}</h3>
+                      <h3 className="text-xl font-bold text-foreground">{t('partners.product.name')}</h3>
                     </div>
                     <div className="space-y-3">
                       <div className="flex justify-between py-2 border-b border-border">
                         <span className="text-muted-foreground">{t('partners.product.specs.size')}</span>
-                        <span className="font-medium text-foreground">115 × 230 cm</span>
+                        <span className="font-normal text-foreground">115 × 230 cm</span>
                       </div>
                       <div className="flex justify-between py-2 border-b border-border">
                         <span className="text-muted-foreground">{t('partners.product.specs.weight')}</span>
-                        <span className="font-medium text-foreground">1400 g (2 pieces)</span>
+                        <span className="font-normal text-foreground">1400 g (2 pieces)</span>
                       </div>
                       <div className="flex justify-between py-2 border-b border-border">
                         <span className="text-muted-foreground">{t('partners.product.specs.material')}</span>
-                        <span className="font-medium text-foreground">100% {t('partners.product.specs.materialType')}</span>
+                        <span className="font-normal text-foreground">100% {t('partners.product.specs.materialType')}</span>
                       </div>
                     </div>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-4">{t('partners.product.featuresTitle')}</h4>
+                    <h4 className="font-bold text-foreground mb-4">{t('partners.product.featuresTitle')}</h4>
                     <ul className="space-y-3">
                       {productFeatures.map((feature, index) => (
                         <li key={index} className="flex items-center gap-3">
@@ -367,7 +367,7 @@ const Partners = () => {
               </div>
             </div>
             <div className="bg-muted rounded-2xl p-8">
-              <h3 className="text-xl font-semibold text-foreground mb-6">{t('partners.europe.coverage.title')}</h3>
+              <h3 className="text-xl font-bold text-foreground mb-6">{t('partners.europe.coverage.title')}</h3>
               <div className="grid grid-cols-2 gap-4">
                 <div className="flex items-center gap-2">
                   <span>🇸🇪</span>
@@ -424,7 +424,7 @@ const Partners = () => {
                     <Mail className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <p className="font-medium text-foreground">{t('partners.contact.email')}</p>
+                    <p className="font-normal text-foreground">{t('partners.contact.email')}</p>
                     <a href="mailto:pureihraam@gmail.com" className="text-primary hover:underline">
                       pureihraam@gmail.com
                     </a>
@@ -435,7 +435,7 @@ const Partners = () => {
                     <Phone className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <p className="font-medium text-foreground">{t('partners.contact.phone')}</p>
+                    <p className="font-normal text-foreground">{t('partners.contact.phone')}</p>
                     <a href="tel:+46704001951" className="text-primary hover:underline">
                       +46 704 001 951
                     </a>
@@ -446,7 +446,7 @@ const Partners = () => {
                     <MapPin className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <p className="font-medium text-foreground">{t('partners.contact.location')}</p>
+                    <p className="font-normal text-foreground">{t('partners.contact.location')}</p>
                     <p className="text-muted-foreground">Sweden, Europe</p>
                   </div>
                 </div>

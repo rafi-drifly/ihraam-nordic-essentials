@@ -130,28 +130,28 @@ const BlogPost = () => {
 
             <div className="space-y-6">
               <div>
-                <h3 className="text-2xl font-semibold text-foreground mb-3">1. Ihram Garment</h3>
+                <h3 className="text-2xl font-bold text-foreground mb-3">1. Ihram Garment</h3>
                 <p className="text-muted-foreground leading-relaxed mb-3">
-                  Two unstitched white cotton cloths:
+                  Two unstitched white cloths:
                 </p>
                 <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
                   <li><strong>Izar (lower garment)</strong> - covers the waist down to the ankles.</li>
                   <li><strong>Rida' (upper garment)</strong> - covers from the shoulders to the waist.</li>
                 </ul>
                 <p className="text-muted-foreground leading-relaxed mt-3">
-                  At Pure Ihram, our cloth sets are made from lightweight, breathable cotton, pre-washed and ready for your sacred journey.
+                  At Pure Ihram, our sets are made from lightweight, breathable microfiber. They are not pre-washed: wash yours once at home before you fly.
                 </p>
               </div>
 
               <div>
-                <h3 className="text-2xl font-semibold text-foreground mb-3">2. Ihram Belt (Optional)</h3>
+                <h3 className="text-2xl font-bold text-foreground mb-3">2. Ihram Belt (Optional)</h3>
                 <p className="text-muted-foreground leading-relaxed">
                   A belt or money pouch helps keep the izar secure and carry essentials like ID, money, and mobile.
                 </p>
               </div>
 
               <div>
-                <h3 className="text-2xl font-semibold text-foreground mb-3">3. Comfortable Footwear</h3>
+                <h3 className="text-2xl font-bold text-foreground mb-3">3. Comfortable Footwear</h3>
                 <p className="text-muted-foreground leading-relaxed">
                   Sandals or slippers that leave the ankles and top of the foot uncovered (as per Sunnah).
                 </p>
@@ -164,7 +164,7 @@ const BlogPost = () => {
 
             <div className="space-y-8">
               <div>
-                <h3 className="text-2xl font-semibold text-foreground mb-3">Step 1: Prepare for Ihram</h3>
+                <h3 className="text-2xl font-bold text-foreground mb-3">Step 1: Prepare for Ihram</h3>
                 <p className="text-muted-foreground leading-relaxed mb-3">
                   Before putting on Ihram, follow the Sunnah of preparation:
                 </p>
@@ -185,7 +185,7 @@ const BlogPost = () => {
               </div>
 
               <div>
-                <h3 className="text-2xl font-semibold text-foreground mb-3">Step 2: Wearing the Izar (Lower Garment)</h3>
+                <h3 className="text-2xl font-bold text-foreground mb-3">Step 2: Wearing the Izar (Lower Garment)</h3>
                 <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4 mb-3">
                   <li>Wrap the izar around your waist.</li>
                   <li>Ensure it covers from your navel to your ankles.</li>
@@ -198,7 +198,7 @@ const BlogPost = () => {
               </div>
 
               <div>
-                <h3 className="text-2xl font-semibold text-foreground mb-3">Step 3: Wearing the Rida' (Upper Garment)</h3>
+                <h3 className="text-2xl font-bold text-foreground mb-3">Step 3: Wearing the Rida' (Upper Garment)</h3>
                 <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
                   <li>Drape the rida' over your shoulders.</li>
                   <li>The cloth should cover both shoulders and upper arms.</li>
@@ -208,7 +208,7 @@ const BlogPost = () => {
               </div>
 
               <div>
-                <h3 className="text-2xl font-semibold text-foreground mb-3">Step 4: Make Your Intention (Niyyah)</h3>
+                <h3 className="text-2xl font-bold text-foreground mb-3">Step 4: Make Your Intention (Niyyah)</h3>
                 <p className="text-muted-foreground leading-relaxed mb-3">
                   Once you're ready and near the miqat (the station to enter Ihram), make your intention.
                 </p>
@@ -261,7 +261,7 @@ const BlogPost = () => {
           <section className="mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-4">{t('blogPost.practicalTips')}</h2>
             <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
-              <li>Choose lightweight cotton Ihram - especially if traveling in summer.</li>
+              <li>Choose lightweight, breathable Ihram - especially if traveling in summer.</li>
               <li>Keep a spare Ihram set for long journeys or emergencies.</li>
               <li>Fold carefully after use and store in a clean bag.</li>
               <li>Stay hydrated and avoid overcrowded areas when possible.</li>
@@ -286,7 +286,7 @@ const BlogPost = () => {
           <section className="mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-4">{t('blogPost.closingMessage')}</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              At Pure Ihram, we believe Ihram should be simple, comfortable, and accessible to everyone. Our lightweight, pre-washed cotton Ihram sets are made with the intention of ease and reward - so you can focus on your worship, not discomfort.
+              At Pure Ihram, we believe Ihram should be simple, comfortable, and accessible to everyone. Our lightweight microfiber Ihram sets are made with the intention of ease and reward - so you can focus on your worship, not discomfort.
             </p>
             <Card className="bg-accent/5 border-accent/20">
               <CardContent className="p-6">

@@ -44,7 +44,7 @@ const LanguageSwitcher = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" className="gap-1.5 text-sm font-medium">
+        <Button variant="ghost" size="sm" className="gap-1.5 text-sm font-normal">
           <Globe className="h-4 w-4" />
           <span className="uppercase">{currentLang.code}</span>
         </Button>
@@ -56,7 +56,7 @@ const LanguageSwitcher = () => {
             onClick={() => switchLanguage(lang.code)}
             className={currentLang.code === lang.code ? 'bg-accent' : ''}
           >
-            <span className="uppercase font-medium mr-2">{lang.code}</span>
+            <span className="uppercase font-normal mr-2">{lang.code}</span>
             <span className="text-muted-foreground">{lang.name}</span>
           </DropdownMenuItem>
         ))}

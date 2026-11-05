@@ -213,9 +213,9 @@ const Blog = () => {
 
         {/* Quick Links */}
         <div className="mb-16 flex flex-wrap justify-center gap-6 text-sm">
-          <Link to={`${localePrefix}/shop`} className="text-primary font-medium hover:underline">{t('nav.shop')} →</Link>
-          <Link to={`${localePrefix}/shipping`} className="text-primary font-medium hover:underline">{t('footer.links.shipping') || 'Shipping'} →</Link>
-          <Link to={`${localePrefix}/contact`} className="text-primary font-medium hover:underline">{t('nav.contact')} →</Link>
+          <Link to={`${localePrefix}/shop`} className="text-primary font-normal hover:underline">{t('nav.shop')} →</Link>
+          <Link to={`${localePrefix}/shipping`} className="text-primary font-normal hover:underline">{t('footer.links.shipping') || 'Shipping'} →</Link>
+          <Link to={`${localePrefix}/contact`} className="text-primary font-normal hover:underline">{t('nav.contact')} →</Link>
         </div>
 
         {/* Newsletter Signup */}

@@ -43,12 +43,12 @@
   },
   "home": {
     "hero": {
-      "title": "Premium Ihram for Umrah & Hajj",
+      "title": "Ihram for Umrah & Hajj",
       "highlight": "Fra €19, sendes fra Sverige",
       "description": "Lett mikrofiber-Ihram for pilegrimer i Sverige, Norden og hele EU. Gratis forberedelsespakke for Hajj og Umrah med hver bestilling.",
       "ctaShop": "Handle Ihram - Fra €19",
       "ctaPrepPack": "Utforsk Umrah- og Hajj-guider",
-      "microcopy": "Frakt bekreftes før vi sender  ·  Gratis henting i Uppsala & Stockholm  ·  Gratis retur innen 14 dager",
+      "microcopy": "Frakt bekreftes før vi sender  ·  Gratis henting i Uppsala & Stockholm  ·  14 dagers returrett",
       "imageAlt": "Ren hvit Ihram-stoff lagt flatt"
     },
     "benefits": {
@@ -138,7 +138,7 @@
       "trust": {
         "shipping": "Sendes fra Sverige · 3-7 dager i Sverige",
         "secure": "Stripe-sikker: Apple Pay, Klarna",
-        "returns": "14 dagers gratis retur"
+        "returns": "14 dagers returrett"
       }
     },
     "howToWear": {
@@ -150,7 +150,7 @@
     "shipping": {
       "delivery": "Sverige 3-7 dager · Norden & EU 7-14 dager",
       "express": "Ett fraktgebyr per bestilling",
-      "returns": "14 dagers gratis retur - ingen spørsmål stilt",
+      "returns": "14 dagers returrett på ubrukte sett",
       "secure": "Stripe-sikker: Apple Pay, Google Pay, Klarna"
     },
     "offers": {
@@ -206,7 +206,7 @@
     "subtitle": "Pure Ihram ble grunnlagt for å gjøre Ihram (Ihraam) rimelig (€19 + €9 frakt) og tilgjengelig for alle. Dette handler ikke om profitt, men om å tjene ajr (belønning) i Akhirah ved å tjene det muslimske samfunnet og gjøre den hellige pilegrimsreisen tilgjengelig for troende over hele Europa.",
     "story": {
       "title": "Vår Historie",
-      "p1": "Pure Ihram startet med et enkelt spørsmål: hvorfor betaler europeiske muslimer overdrevne priser for grunnleggende pilegrimsstoff? Vi grunnla Pure Ihram i Sverige for å fikse det - premium Ihram til €19, sendt raskt over hele EU.",
+      "p1": "Pure Ihram startet med et enkelt spørsmål: hvorfor betaler europeiske muslimer overdrevne priser for grunnleggende pilegrimsstoff? Vi grunnla Pure Ihram i Sverige for å fikse det: Ihram av god kvalitet til €19, sendt fra Sverige over hele EU.",
       "p2": "Hvert salg gjøres med oppriktig intensjon om å tjene ajr (belønning) i Akhirah. Dette er ikke bare handel - det er tjeneste til vårt fellesskap, og sikrer at kostnad og avstand aldri står mellom en troende og pilegrimsreisen.",
       "p3": "",
       "p4": ""
@@ -236,14 +236,14 @@
     "quality": {
       "title": "Hvorfor Kvalitet Betyr Noe",
       "p1": "Under Hajj og Umrah møter pilegrimer intense fysiske og åndelige krav. Din Ihram bør være det minste av dine bekymringer - komfortabel, pustende og holdbar nok til å tåle reisen som ligger foran.",
-      "p2": "Vi henter stoffet vårt fra pålitelige leverandører som forstår den hellige naturen til disse plaggene. Hvert plagg inspiseres, forvvaskes og forberedes med omsorgen som passer til dets hellige formål.",
+      "p2": "Vi henter stoffet vårt fra pålitelige leverandører som forstår den hellige naturen til disse plaggene. Hvert plagg inspiseres og forberedes med omsorgen som passer til dets hellige formål.",
       "cotton": {
-        "title": "Premium Mikrofiber",
+        "title": "Mikrofiber",
         "description": "100% Mikrofiber Polyester for maksimal pusteevne og komfort"
       },
       "preTreated": {
-        "title": "Forbehandlet",
-        "description": "Forvvasket og behandlet for å opprettholde uberørt utseende"
+        "title": "Vask én gang før du reiser",
+        "description": "Ikke forvasket. Én vask hjemme gjør stoffet mykere og fjerner produksjonsrester."
       },
       "traditional": {
         "title": "Tradisjonelt Snitt",
@@ -339,7 +339,7 @@
   },
   "shipping": {
     "title": "Frakt & Levering",
-    "subtitle": "Rask, pålitelig levering over hele Sverige, Norden og Europa. Din Ihram vil ankomme i perfekt stand, klar for din hellige reise.",
+    "subtitle": "Pålitelig levering i Sverige, Norden og Europa: 3-7 virkedager i Sverige, 7-14 ellers. Din Ihram vil ankomme i perfekt stand, klar for din hellige reise.",
     "zones": {
       "title": "Leveringssoner & Tidsrammer",
       "sweden": {
@@ -377,7 +377,7 @@
       "title": "Fraktfunksjoner",
       "packaging": {
         "title": "Sikker Emballasje",
-        "description": "Din Ihram pakkes forsiktig i beskyttende, miljøvennlige materialer"
+        "description": "Din Ihram pakkes forsiktig i en beskyttende bæreveske med glidelås"
       },
       "tracking": {
         "title": "Sporing Inkludert",
@@ -522,7 +522,7 @@
       "features": "Funksjoner",
       "featuresValue": "Hurtigtørkende • Antimikrobiell • Hypoallergen",
       "packaging": "Emballasje",
-      "packagingValue": "Miljøvennlig bæreveske med glidelås"
+      "packagingValue": "Bæreveske med glidelås"
     },
     "features": {
       "title": "Nøkkelfunksjoner",
@@ -539,7 +539,7 @@
         "description": "Forhindrer bakterieopphopning"
       },
       "sustainable": {
-        "title": "Bærekraftig & Gjenbrukbar",
+        "title": "Gjenbrukbar",
         "description": "Holdbar og enkel å vaske"
       },
       "sunnah": {
@@ -682,10 +682,10 @@
     "backToAllGuides": "Tilbake til Alle Guider",
     "relatedReading": "Relatert Lesing",
     "readyForJourney": "Klar for Din Hellige Reise?",
-    "orderCta": "Bestill ditt premium Ihram-stoff i dag og forbered deg til pilegrimsreisen med komfort og selvtillit.",
+    "orderCta": "Bestill ditt Ihram-stoff i dag og forbered deg til pilegrimsreisen med komfort og selvtillit.",
     "shopIhram": "Handle Ihram",
     "prepareForJourney": "Forbered Deg til Din Hellige Reise",
-    "orderCtaAlt": "Bestill ditt premium Ihram-håndklesett i dag og begynn pilegrimsreisen med komfort, selvtillit og åndelig beredskap.",
+    "orderCtaAlt": "Bestill ditt Ihram-håndklesett i dag og begynn pilegrimsreisen med komfort, selvtillit og åndelig beredskap.",
     "shopIhramSet": "Handle Ihram-Sett",
     "shopNow": "Handle Nå",
     "introduction": "Introduksjon",
@@ -731,7 +731,7 @@
       },
       "organizers": {
         "title": "Gruppeorganisatorer",
-        "description": "Utstyr reisegruppene dine med premium Ihram-sett til konkurransedyktige engrospriser."
+        "description": "Utstyr reisegruppene dine med Ihram-sett av god kvalitet til konkurransedyktige engrospriser."
       }
     },
     "howItWorks": {
@@ -769,7 +769,7 @@
     },
     "product": {
       "title": "Produktdetaljer",
-      "subtitle": "Premium kvalitets Ihram for pilegrimer i hele Europa",
+      "subtitle": "Ihram av god kvalitet for pilegrimer i hele Europa",
       "name": "Ihram Hajj-Håndklesett",
       "specs": {
         "size": "Størrelse",

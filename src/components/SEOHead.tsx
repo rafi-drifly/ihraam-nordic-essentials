@@ -82,12 +82,12 @@ const SEOHead = ({ title, description, path, jsonLd, noindex, ogType, image }: S
 
   const getDefaultDescription = () => {
     if (langKey === 'sv') {
-      return 'Premium Ihram-tyg för Umrah och Hajj. €19 + €9 frakt inom Sverige, 3-7 arbetsdagar. Gratis avhämtning i Uppsala och Stockholm.';
+      return 'Ihram-tyg i mikrofiber för Umrah och Hajj. €19 + €9 frakt inom Sverige, 3-7 arbetsdagar. Gratis avhämtning i Uppsala och Stockholm.';
     }
     if (langKey === 'no') {
-      return 'Premium Ihram-stoff for Umrah og Hajj. Fra €19, sendes fra Sverige. Frakt til Norge bekreftes før sending, eller hent gratis i Uppsala og Stockholm.';
+      return 'Ihram-stoff i mikrofiber for Umrah og Hajj. Fra €19, sendes fra Sverige. Frakt til Norge bekreftes før sending, eller hent gratis i Uppsala og Stockholm.';
     }
-    return 'Premium Ihram cloth for Umrah & Hajj. €19 + €9 shipping within Sweden, 3-7 days. Free pickup in Uppsala and Stockholm.';
+    return 'Microfiber Ihram cloth for Umrah & Hajj. €19 + €9 shipping within Sweden, 3-7 days. Free pickup in Uppsala and Stockholm.';
   };
 
   // The back office is not part of the storefront. Without this it inherits

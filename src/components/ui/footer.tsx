@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import BrandMark from "@/components/BrandMark";
 import { useLocalePrefix } from "@/i18n/useLocale";
 import { useTranslation } from "react-i18next";
 import { Mail, Phone, MapPin } from "lucide-react";
@@ -40,9 +41,7 @@ const Footer = () => {
           {/* Logo and Description */}
           <div className="col-span-1">
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-gradient-primary rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-sm">I</span>
-              </div>
+              <BrandMark className="w-8 h-8 shrink-0" />
               <span className="text-xl font-bold text-foreground">Pure Ihram</span>
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed">
@@ -52,7 +51,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-semibold text-foreground mb-4">{t('footer.quickLinks')}</h3>
+            <h3 className="font-bold text-foreground mb-4">{t('footer.quickLinks')}</h3>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.href}>
@@ -69,7 +68,7 @@ const Footer = () => {
 
           {/* Service Areas */}
           <div>
-            <h3 className="font-semibold text-foreground mb-4">{t('footer.serviceAreas')}</h3>
+            <h3 className="font-bold text-foreground mb-4">{t('footer.serviceAreas')}</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>🇸🇪 {t('footer.areas.sweden')}</li>
               <li>🇳🇴 {t('footer.areas.norway')}</li>
@@ -81,7 +80,7 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h3 className="font-semibold text-foreground mb-4">{t('footer.contact')}</h3>
+            <h3 className="font-bold text-foreground mb-4">{t('footer.contact')}</h3>
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Mail className="h-4 w-4 text-primary" />

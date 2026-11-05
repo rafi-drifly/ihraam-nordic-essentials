@@ -40,7 +40,7 @@ export const BundleAdvisor = ({ onApplyQty }: BundleAdvisorProps) => {
   };
 
   const optionClass = (active: boolean) =>
-    `px-4 py-2 rounded-full text-sm font-medium border transition-colors ${
+    `px-4 py-2 rounded-full text-sm font-normal border transition-colors ${
       active
         ? "bg-primary text-primary-foreground border-primary"
         : "bg-background text-foreground border-border hover:border-primary/50"
@@ -51,14 +51,14 @@ export const BundleAdvisor = ({ onApplyQty }: BundleAdvisorProps) => {
       className="rounded-2xl border border-border bg-background p-6 mb-8"
       aria-labelledby="bundle-advisor-heading"
     >
-      <h3 id="bundle-advisor-heading" className="text-xl font-semibold mb-1">
+      <h3 id="bundle-advisor-heading" className="text-xl font-bold mb-1">
         {t("shop.advisor.title")}
       </h3>
       <p className="text-sm text-muted-foreground mb-5">{t("shop.advisor.subtitle")}</p>
 
       <div className="grid gap-5 sm:grid-cols-2 mb-5">
         <div>
-          <span className="block text-xs font-medium uppercase tracking-wide text-muted-foreground mb-2">
+          <span className="block text-xs font-normal uppercase tracking-wide text-muted-foreground mb-2">
             {t("shop.advisor.journeyLabel")}
           </span>
           <div className="flex gap-2" role="group" aria-label={t("shop.advisor.journeyLabel")}>
@@ -77,7 +77,7 @@ export const BundleAdvisor = ({ onApplyQty }: BundleAdvisorProps) => {
         </div>
 
         <div>
-          <span className="block text-xs font-medium uppercase tracking-wide text-muted-foreground mb-2">
+          <span className="block text-xs font-normal uppercase tracking-wide text-muted-foreground mb-2">
             {t("shop.advisor.travellersLabel")}
           </span>
           <div className="flex items-center gap-3">
@@ -92,7 +92,7 @@ export const BundleAdvisor = ({ onApplyQty }: BundleAdvisorProps) => {
             >
               <Minus className="h-4 w-4" />
             </Button>
-            <span className="min-w-[2.5rem] text-center text-lg font-semibold" aria-live="polite">
+            <span className="min-w-[2.5rem] text-center text-lg font-bold" aria-live="polite">
               {travellers}
             </span>
             <Button
@@ -112,7 +112,7 @@ export const BundleAdvisor = ({ onApplyQty }: BundleAdvisorProps) => {
 
       <div className="rounded-xl bg-muted p-4" aria-live="polite">
         <p className="text-sm text-muted-foreground mb-1">{t("shop.advisor.resultPrefix")}</p>
-        <p className="text-lg font-semibold mb-1">
+        <p className="text-lg font-bold mb-1">
           {t("shop.advisor.resultSets", {
             sets: t("shop.advisor.setCount", { count: qty }),
             price,
@@ -132,7 +132,7 @@ export const BundleAdvisor = ({ onApplyQty }: BundleAdvisorProps) => {
           )}
           <Link
             to={`${localePrefix}/blog/how-many-ihrams-do-you-need-for-hajj`}
-            className="text-sm font-medium text-primary hover:text-primary/80 inline-flex items-center gap-1"
+            className="text-sm font-normal text-primary hover:text-primary/80 inline-flex items-center gap-1"
             onClick={() => trackEvent("bundle_advisor_guide_click", { journey, travellers })}
           >
             {t("shop.advisor.guideLink")} <ArrowRight className="h-4 w-4" />
@@ -142,11 +142,11 @@ export const BundleAdvisor = ({ onApplyQty }: BundleAdvisorProps) => {
 
       {/* Static so the answer is readable without JavaScript. */}
       <div className="mt-5">
-        <h4 className="text-sm font-semibold mb-2">{t("shop.advisor.quickAnswerTitle")}</h4>
+        <h4 className="text-sm font-bold mb-2">{t("shop.advisor.quickAnswerTitle")}</h4>
         <dl className="text-sm divide-y divide-border border-t border-border">
           {QUICK_ANSWER_ROWS.map((row) => (
             <div key={row.key} className="py-2 sm:flex sm:gap-4">
-              <dt className="font-medium sm:w-1/3">{t(`shop.advisor.quickAnswer.${row.key}.q`)}</dt>
+              <dt className="font-normal sm:w-1/3">{t(`shop.advisor.quickAnswer.${row.key}.q`)}</dt>
               <dd className="text-muted-foreground sm:w-2/3">
                 {t(`shop.advisor.quickAnswer.${row.key}.a`)}
               </dd>

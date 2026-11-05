@@ -78,7 +78,7 @@ const DonationSection = ({ selectedDonation, onDonationChange }: DonationSection
 
         {isCustom && (
           <div className="flex items-center gap-2">
-            <span className="text-sm font-medium">€</span>
+            <span className="text-sm font-normal">€</span>
             <Input
               type="number"
               min="1"

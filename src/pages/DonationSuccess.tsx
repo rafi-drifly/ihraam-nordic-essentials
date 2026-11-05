@@ -45,21 +45,21 @@ const DonationSuccess = () => {
               
               {/* What Happens Next */}
               <div className="bg-primary/5 border border-primary/20 rounded-lg p-6 mb-6">
-                <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+                <h3 className="font-bold text-foreground mb-4 flex items-center gap-2">
                   <CheckCircle className="h-5 w-5 text-primary" />
                   {t('donation.success.whatNext.title')}
                 </h3>
                 <ul className="space-y-3 text-sm text-muted-foreground">
                   <li className="flex items-start gap-2">
-                    <span className="text-primary font-medium">1.</span>
+                    <span className="text-primary font-normal">1.</span>
                     {t('donation.success.whatNext.step1')}
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-primary font-medium">2.</span>
+                    <span className="text-primary font-normal">2.</span>
                     {t('donation.success.whatNext.step2')}
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-primary font-medium">3.</span>
+                    <span className="text-primary font-normal">3.</span>
                     {t('donation.success.whatNext.step3')}
                   </li>
                 </ul>

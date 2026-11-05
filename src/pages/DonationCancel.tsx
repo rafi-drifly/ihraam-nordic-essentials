@@ -73,7 +73,7 @@ const DonationCancel = () => {
                   <Mail className="h-5 w-5 text-muted-foreground" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-foreground mb-1">
+                  <h3 className="font-normal text-foreground mb-1">
                     {t('donationCancel.needHelp.title')}
                   </h3>
                   <p className="text-sm text-muted-foreground mb-2">

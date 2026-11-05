@@ -2,13 +2,13 @@
   "id": "/",
   "name": "Pure Ihram",
   "short_name": "Pure Ihram",
-  "description": "Premium Ihram cloth for Umrah and Hajj, shipped from Sweden.",
+  "description": "Microfiber Ihram cloth for Umrah and Hajj, shipped from Sweden.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#ffffff",
-  "theme_color": "#0c635f",
+  "theme_color": "#287777",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",

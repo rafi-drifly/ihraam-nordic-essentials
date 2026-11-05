@@ -10,7 +10,7 @@ export const TestimonialBlock = () => {
         <div className="bg-secondary/50 border border-border rounded-2xl p-6 lg:p-8">
           <div className="flex items-start gap-4">
             <div
-              className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-semibold flex-shrink-0"
+              className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold flex-shrink-0"
               aria-hidden="true"
             >
               MS
@@ -20,7 +20,7 @@ export const TestimonialBlock = () => {
                 &ldquo;{t("home.testimonial.quote")}&rdquo;
               </p>
               <p className="text-sm text-muted-foreground">
-                <span className="font-medium text-foreground">
+                <span className="font-normal text-foreground">
                   {t("home.testimonial.author")}
                 </span>
                 <span className="mx-2">·</span>

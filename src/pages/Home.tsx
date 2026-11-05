@@ -83,10 +83,10 @@ const Home = () => {
 
   const productDescription =
     lang === 'sv'
-      ? 'Premium lättviktig mikrofiber Ihram. Två delar (Izaar + Ridaa). Skickas från Sverige.'
+      ? 'Lättviktig Ihram i mikrofiber. Två delar (Izaar + Ridaa). Skickas från Sverige.'
       : lang === 'no'
-        ? 'Premium lett mikrofiber Ihram. To deler (Izaar + Ridaa). Sendes fra Sverige.'
-        : 'Premium lightweight microfiber Ihram. Two pieces (Izaar + Ridaa). Ships from Sweden across the EU.';
+        ? 'Lett Ihram i mikrofiber. To deler (Izaar + Ridaa). Sendes fra Sverige.'
+        : 'Lightweight microfiber Ihram. Two pieces (Izaar + Ridaa). Ships from Sweden across the EU.';
 
   const productSchema = {
     "@context": "https://schema.org",
@@ -148,7 +148,7 @@ const Home = () => {
                       destination: "/blog",
                     });
                   }}
-                  className="text-sm font-medium text-primary hover:text-primary/80 inline-flex items-center gap-1"
+                  className="text-sm font-normal text-primary hover:text-primary/80 inline-flex items-center gap-1"
                 >
                   {t("home.hero.ctaPrepPack")} <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -196,7 +196,7 @@ const Home = () => {
               <Card key={index} className="border border-border shadow-sm hover:shadow-md transition-shadow bg-background">
                 <CardContent className="p-6 text-center">
                   <div className="flex justify-center mb-4">{benefit.icon}</div>
-                  <h3 className="font-semibold text-foreground mb-2">{benefit.title}</h3>
+                  <h3 className="font-bold text-foreground mb-2">{benefit.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">
                     {benefit.description}
                   </p>
@@ -249,7 +249,7 @@ const Home = () => {
                   <Link
                     to={article.link}
                     aria-label={`${t("home.guides.readMore")}: ${article.title}`}
-                    className="inline-flex items-center gap-2 text-primary font-semibold text-sm hover:gap-3 transition-all"
+                    className="inline-flex items-center gap-2 text-primary font-bold text-sm hover:gap-3 transition-all"
                   >
                     <span>{t("home.guides.readMore")}: {article.title}</span>
                     <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -276,7 +276,7 @@ const Home = () => {
       {/* 9b. Resources / quick links — boosts crawl depth and internal linking */}
       <section aria-labelledby="resources-heading" className="py-10 bg-background border-t border-border">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 id="resources-heading" className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-4">
+          <h2 id="resources-heading" className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-4">
             {t('home.resources.title', { defaultValue: 'Explore Pure Ihram' })}
           </h2>
           <nav aria-label={t('home.resources.title', { defaultValue: 'Explore Pure Ihram' })}>

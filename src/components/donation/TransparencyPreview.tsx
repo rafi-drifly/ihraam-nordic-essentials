@@ -48,25 +48,25 @@ const TransparencyPreview = ({ localePrefix }: TransparencyPreviewProps) => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
               <div>
                 <p className="text-xs text-muted-foreground">Donations Received</p>
-                <p className="text-lg font-semibold text-green-600">€{LATEST_REPORT.donationsReceived.toFixed(2)}</p>
+                <p className="text-lg font-bold text-green-600">€{LATEST_REPORT.donationsReceived.toFixed(2)}</p>
               </div>
               <div>
                 <p className="text-xs text-muted-foreground">Spent on Programs</p>
-                <p className="text-lg font-semibold">€{LATEST_REPORT.spentOnPrograms.toFixed(2)}</p>
+                <p className="text-lg font-bold">€{LATEST_REPORT.spentOnPrograms.toFixed(2)}</p>
               </div>
               <div>
                 <p className="text-xs text-muted-foreground">Shipping/Packaging</p>
-                <p className="text-lg font-semibold">€{LATEST_REPORT.shippingPackaging.toFixed(2)}</p>
+                <p className="text-lg font-bold">€{LATEST_REPORT.shippingPackaging.toFixed(2)}</p>
               </div>
               <div>
                 <p className="text-xs text-muted-foreground">Stripe Fees</p>
-                <p className="text-lg font-semibold">€{LATEST_REPORT.stripeFees.toFixed(2)}</p>
+                <p className="text-lg font-bold">€{LATEST_REPORT.stripeFees.toFixed(2)}</p>
               </div>
             </div>
             
             <div className="bg-muted/50 rounded-lg p-3">
               <p className="text-sm text-muted-foreground">
-                <span className="font-medium">Note:</span> {LATEST_REPORT.note}
+                <span className="font-normal">Note:</span> {LATEST_REPORT.note}
               </p>
             </div>
           </CardContent>

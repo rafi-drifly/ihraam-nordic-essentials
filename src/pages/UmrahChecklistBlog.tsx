@@ -72,7 +72,7 @@ const UmrahChecklistBlog = () => {
             <p className="text-muted-foreground leading-relaxed mb-4">
               To make your experience smooth and fulfilling, here's a comprehensive Umrah checklist - covering everything from travel documents and clothing to dua lists and essential items to pack.
             </p>
-            <p className="text-muted-foreground leading-relaxed font-semibold">
+            <p className="text-muted-foreground leading-relaxed font-bold">
               This guide will help ensure you can focus entirely on worship, not logistics.
             </p>
           </section>
@@ -91,37 +91,37 @@ const UmrahChecklistBlog = () => {
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead className="font-semibold">Document</TableHead>
-                      <TableHead className="font-semibold">Description</TableHead>
+                      <TableHead className="font-bold">Document</TableHead>
+                      <TableHead className="font-bold">Description</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     <TableRow>
-                      <TableCell className="font-medium">Passport</TableCell>
+                      <TableCell className="font-normal">Passport</TableCell>
                       <TableCell>Valid for at least 6 months from travel date.</TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell className="font-medium">Visa / Umrah e-Visa</TableCell>
+                      <TableCell className="font-normal">Visa / Umrah e-Visa</TableCell>
                       <TableCell>Ensure it's approved and printed.</TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell className="font-medium">Flight Tickets</TableCell>
+                      <TableCell className="font-normal">Flight Tickets</TableCell>
                       <TableCell>Keep printed and digital copies.</TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell className="font-medium">Hotel Confirmation</TableCell>
+                      <TableCell className="font-normal">Hotel Confirmation</TableCell>
                       <TableCell>Save booking details in both paper and mobile form.</TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell className="font-medium">Vaccination Certificates</TableCell>
+                      <TableCell className="font-normal">Vaccination Certificates</TableCell>
                       <TableCell>Especially for meningitis and COVID-19 (as per requirement).</TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell className="font-medium">Travel Insurance</TableCell>
+                      <TableCell className="font-normal">Travel Insurance</TableCell>
                       <TableCell>Covers medical emergencies during your trip.</TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell className="font-medium">Emergency Contacts</TableCell>
+                      <TableCell className="font-normal">Emergency Contacts</TableCell>
                       <TableCell>Family, embassy, and group leader numbers.</TableCell>
                     </TableRow>
                   </TableBody>
@@ -147,7 +147,7 @@ const UmrahChecklistBlog = () => {
 
             <div className="space-y-6">
               <div className="bg-muted p-6 rounded-lg">
-                <h3 className="text-2xl font-semibold text-foreground mb-4">For Men:</h3>
+                <h3 className="text-2xl font-bold text-foreground mb-4">For Men:</h3>
                 <div className="space-y-2">
                   <div className="flex items-start gap-2">
                     <Check className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
@@ -178,7 +178,7 @@ const UmrahChecklistBlog = () => {
               </div>
 
               <div className="bg-muted p-6 rounded-lg">
-                <h3 className="text-2xl font-semibold text-foreground mb-4">For Women:</h3>
+                <h3 className="text-2xl font-bold text-foreground mb-4">For Women:</h3>
                 <div className="space-y-2">
                   <div className="flex items-start gap-2">
                     <Check className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
@@ -204,7 +204,7 @@ const UmrahChecklistBlog = () => {
               </div>
 
               <div className="bg-muted p-6 rounded-lg">
-                <h3 className="text-2xl font-semibold text-foreground mb-4">Both:</h3>
+                <h3 className="text-2xl font-bold text-foreground mb-4">Both:</h3>
                 <div className="space-y-2">
                   <div className="flex items-start gap-2">
                     <Check className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
@@ -243,41 +243,41 @@ const UmrahChecklistBlog = () => {
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead className="font-semibold">Item</TableHead>
-                      <TableHead className="font-semibold">Notes</TableHead>
+                      <TableHead className="font-bold">Item</TableHead>
+                      <TableHead className="font-bold">Notes</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     <TableRow>
-                      <TableCell className="font-medium">Toothbrush & toothpaste</TableCell>
+                      <TableCell className="font-normal">Toothbrush & toothpaste</TableCell>
                       <TableCell>Plain, unscented</TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell className="font-medium">Soap & shampoo</TableCell>
+                      <TableCell className="font-normal">Soap & shampoo</TableCell>
                       <TableCell>Unscented / fragrance-free</TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell className="font-medium">Towel</TableCell>
+                      <TableCell className="font-normal">Towel</TableCell>
                       <TableCell>Quick-dry microfiber preferred</TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell className="font-medium">Lotion / Vaseline</TableCell>
+                      <TableCell className="font-normal">Lotion / Vaseline</TableCell>
                       <TableCell>Unscented (for dryness)</TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell className="font-medium">Wet wipes</TableCell>
+                      <TableCell className="font-normal">Wet wipes</TableCell>
                       <TableCell>Non-perfumed</TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell className="font-medium">Deodorant</TableCell>
+                      <TableCell className="font-normal">Deodorant</TableCell>
                       <TableCell>Unscented stick or mineral spray</TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell className="font-medium">Nail cutter, comb</TableCell>
+                      <TableCell className="font-normal">Nail cutter, comb</TableCell>
                       <TableCell>To use before Ihram</TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell className="font-medium">First aid kit</TableCell>
+                      <TableCell className="font-normal">First aid kit</TableCell>
                       <TableCell>Band-aids, painkillers, cold meds</TableCell>
                     </TableRow>
                   </TableBody>
@@ -302,7 +302,7 @@ const UmrahChecklistBlog = () => {
             </p>
 
             <div className="bg-muted p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-semibold text-foreground mb-4">🧠 Mental & Spiritual Prep:</h3>
+              <h3 className="text-xl font-bold text-foreground mb-4">🧠 Mental & Spiritual Prep:</h3>
               <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
                 <li>Make sincere Tawbah (repentance) before travel.</li>
                 <li>Settle any debts and seek forgiveness from family.</li>
@@ -311,40 +311,40 @@ const UmrahChecklistBlog = () => {
               </ul>
             </div>
 
-            <h3 className="text-2xl font-semibold text-foreground mb-4">📖 Learn and Memorize Important Duas:</h3>
+            <h3 className="text-2xl font-bold text-foreground mb-4">📖 Learn and Memorize Important Duas:</h3>
             
             <Card className="shadow-sm mb-6">
               <CardContent className="p-0">
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead className="font-semibold">Situation</TableHead>
-                      <TableHead className="font-semibold">Dua</TableHead>
+                      <TableHead className="font-bold">Situation</TableHead>
+                      <TableHead className="font-bold">Dua</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     <TableRow>
-                      <TableCell className="font-medium">Leaving home</TableCell>
+                      <TableCell className="font-normal">Leaving home</TableCell>
                       <TableCell className="text-sm">Bismillah, tawakkaltu ʿalallāh, lā ḥawla wa lā quwwata illā billāh</TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell className="font-medium">Entering Makkah</TableCell>
+                      <TableCell className="font-normal">Entering Makkah</TableCell>
                       <TableCell className="text-sm">Allāhumma hādhā ḥaramuka wa amnuka…</TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell className="font-medium">At the Kaabah (seeing it)</TableCell>
+                      <TableCell className="font-normal">At the Kaabah (seeing it)</TableCell>
                       <TableCell className="text-sm">Allāhumma zid hādhā al-bayta tashrīfan wa taʿẓīman…</TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell className="font-medium">During Tawaf</TableCell>
+                      <TableCell className="font-normal">During Tawaf</TableCell>
                       <TableCell className="text-sm">Personal duas or general dhikr</TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell className="font-medium">Between Safa & Marwah</TableCell>
+                      <TableCell className="font-normal">Between Safa & Marwah</TableCell>
                       <TableCell className="text-sm">Rabbighfir warḥam, wa anta al-aʿazzu al-akram</TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell className="font-medium">After Umrah</TableCell>
+                      <TableCell className="font-normal">After Umrah</TableCell>
                       <TableCell className="text-sm">Allāhumma taqabbal minnā wa ghfir lanā</TableCell>
                     </TableRow>
                   </TableBody>
@@ -398,7 +398,7 @@ const UmrahChecklistBlog = () => {
             <div className="bg-muted p-6 rounded-lg">
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <h4 className="font-semibold text-foreground mb-3">Documents:</h4>
+                  <h4 className="font-bold text-foreground mb-3">Documents:</h4>
                   <ul className="space-y-1 text-muted-foreground">
                     <li>☑️ Passport & Visa</li>
                     <li>☑️ Flight tickets</li>
@@ -408,7 +408,7 @@ const UmrahChecklistBlog = () => {
                   </ul>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-foreground mb-3">Clothing:</h4>
+                  <h4 className="font-bold text-foreground mb-3">Clothing:</h4>
                   <ul className="space-y-1 text-muted-foreground">
                     <li>☑️ 2x Ihram sets</li>
                     <li>☑️ Casual thobes/abayas</li>
@@ -417,7 +417,7 @@ const UmrahChecklistBlog = () => {
                   </ul>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-foreground mb-3">Toiletries:</h4>
+                  <h4 className="font-bold text-foreground mb-3">Toiletries:</h4>
                   <ul className="space-y-1 text-muted-foreground">
                     <li>☑️ Unscented soap/shampoo</li>
                     <li>☑️ Toothbrush & paste</li>
@@ -426,7 +426,7 @@ const UmrahChecklistBlog = () => {
                   </ul>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-foreground mb-3">Tech & Others:</h4>
+                  <h4 className="font-bold text-foreground mb-3">Tech & Others:</h4>
                   <ul className="space-y-1 text-muted-foreground">
                     <li>☑️ Phone + charger</li>
                     <li>☑️ Power bank</li>
@@ -462,7 +462,7 @@ const UmrahChecklistBlog = () => {
               <Link to={`${localePrefix}/blog/how-to-wear-ihram`}>
                 <Card className="hover:shadow-lg transition-shadow">
                   <CardContent className="p-4 flex items-center justify-between">
-                    <span className="text-foreground font-medium">
+                    <span className="text-foreground font-normal">
                       {t('blogPost.howToWearLink')}
                     </span>
                     <ArrowLeft className="h-4 w-4 rotate-180" />
@@ -472,7 +472,7 @@ const UmrahChecklistBlog = () => {
               <Link to={`${localePrefix}/blog/sunnah-acts-before-ihram`}>
                 <Card className="hover:shadow-lg transition-shadow">
                   <CardContent className="p-4 flex items-center justify-between">
-                    <span className="text-foreground font-medium">
+                    <span className="text-foreground font-normal">
                       {t('blogPost.sunnahActsLink')}
                     </span>
                     <ArrowLeft className="h-4 w-4 rotate-180" />
@@ -482,7 +482,7 @@ const UmrahChecklistBlog = () => {
               <Link to={`${localePrefix}/blog/essential-duas-umrah`}>
                 <Card className="hover:shadow-lg transition-shadow">
                   <CardContent className="p-4 flex items-center justify-between">
-                    <span className="text-foreground font-medium">
+                    <span className="text-foreground font-normal">
                       {t('blogPost.duasLink')}
                     </span>
                     <ArrowLeft className="h-4 w-4 rotate-180" />
@@ -492,7 +492,7 @@ const UmrahChecklistBlog = () => {
               <Link to={`${localePrefix}/shop`}>
                 <Card className="hover:shadow-lg transition-shadow">
                   <CardContent className="p-4 flex items-center justify-between">
-                    <span className="text-foreground font-medium">
+                    <span className="text-foreground font-normal">
                       {t('blogPost.shopTowelSet')}
                     </span>
                     <ShoppingCart className="h-4 w-4" />

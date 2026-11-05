@@ -45,7 +45,7 @@ export const CartDrawer = ({ onCheckout, checkingOut = false }: CartDrawerProps)
         <div className="rounded-lg border border-primary/30 bg-primary/5 p-3 flex items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <Gift className="h-4 w-4 text-primary flex-shrink-0" />
-            <p className="text-xs font-medium">{t('cart.upsell.seQty1')}</p>
+            <p className="text-xs font-normal">{t('cart.upsell.seQty1')}</p>
           </div>
           <Button size="sm" variant="outline" onClick={handleUpsellClick} className="text-xs h-7 px-2">{t('cart.upsell.switchTo2Pack')}</Button>
         </div>
@@ -56,7 +56,7 @@ export const CartDrawer = ({ onCheckout, checkingOut = false }: CartDrawerProps)
         <div className="rounded-lg border border-primary/30 bg-primary/5 p-3 flex items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <Gift className="h-4 w-4 text-primary flex-shrink-0" />
-            <p className="text-xs font-medium">{t('cart.upsell.seQty2')}</p>
+            <p className="text-xs font-normal">{t('cart.upsell.seQty2')}</p>
           </div>
           <Button size="sm" variant="outline" onClick={handleUpsellClick} className="text-xs h-7 px-2">{t('cart.upsell.switchTo3Pack')}</Button>
         </div>
@@ -104,7 +104,7 @@ export const CartDrawer = ({ onCheckout, checkingOut = false }: CartDrawerProps)
                   <div key={item.id} className="flex items-center space-x-4 p-4 border rounded-lg">
                     <img src={item.image} alt={item.name} className="w-16 h-16 object-cover rounded-md" />
                     <div className="flex-1 min-w-0">
-                      <h4 className="font-medium text-sm truncate">{item.name}</h4>
+                      <h4 className="font-normal text-sm truncate">{item.name}</h4>
                       <p className="text-sm text-muted-foreground">{Number(item.price).toFixed(2).replace(/\.00$/, '')}€ each</p>
                     </div>
                     <div className="flex items-center space-x-2">
@@ -135,13 +135,13 @@ export const CartDrawer = ({ onCheckout, checkingOut = false }: CartDrawerProps)
 
                 {/* Free mosque pickup is chosen on the full cart page */}
                 <Link to={`${localePrefix}/cart`} className="block mb-2">
-                  <p className="text-xs text-primary font-medium hover:underline">
+                  <p className="text-xs text-primary font-normal hover:underline">
                     {t('cart.delivery.pickupHint', 'Or collect free at Uppsala or Stockholm mosque - choose at cart')}
                   </p>
                 </Link>
 
                 <div className="flex justify-between items-center mb-4">
-                  <span className="font-semibold">{t('cart.total', 'Total')}:</span>
+                  <span className="font-bold">{t('cart.total', 'Total')}:</span>
                   <span className="font-bold text-lg">{(subtotal + shipping).toFixed(2)}€</span>
                 </div>
                 <Link to={`${localePrefix}/cart`} className="block w-full mb-2">

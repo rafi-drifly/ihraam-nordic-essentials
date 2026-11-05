@@ -160,7 +160,7 @@ const Contact = () => {
                       {method.icon}
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-semibold text-foreground mb-1">
+                      <h3 className="font-bold text-foreground mb-1">
                         {method.title}
                       </h3>
                       <p className="text-sm text-muted-foreground mb-2">
@@ -169,7 +169,7 @@ const Contact = () => {
                       <a
                         href={method.action}
                         onClick={method.onClick}
-                        className="text-primary hover:text-primary/80 font-medium text-sm"
+                        className="text-primary hover:text-primary/80 font-normal text-sm"
                       >
                         {method.contact}
                       </a>
@@ -218,9 +218,9 @@ const Contact = () => {
               </CardHeader>
               <CardContent>
                 <div className="space-y-2 text-sm">
-                  <p><span className="font-medium">{t('contact.serviceArea.primary')}</span> Sweden 🇸🇪</p>
-                  <p><span className="font-medium">{t('contact.serviceArea.extended')}</span> Nordic Countries</p>
-                  <p><span className="font-medium">{t('contact.serviceArea.international')}</span> European Union</p>
+                  <p><span className="font-normal">{t('contact.serviceArea.primary')}</span> Sweden 🇸🇪</p>
+                  <p><span className="font-normal">{t('contact.serviceArea.extended')}</span> Nordic Countries</p>
+                  <p><span className="font-normal">{t('contact.serviceArea.international')}</span> European Union</p>
                 </div>
               </CardContent>
             </Card>
@@ -327,7 +327,7 @@ const Contact = () => {
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <h4 className="font-semibold text-foreground mb-2">
+                  <h4 className="font-bold text-foreground mb-2">
                     {t('contact.faq.size.question')}
                   </h4>
                   <p className="text-sm text-muted-foreground">
@@ -335,7 +335,7 @@ const Contact = () => {
                   </p>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-foreground mb-2">
+                  <h4 className="font-bold text-foreground mb-2">
                     {t('contact.faq.accessories.question')}
                   </h4>
                   <p className="text-sm text-muted-foreground">
@@ -343,7 +343,7 @@ const Contact = () => {
                   </p>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-foreground mb-2">
+                  <h4 className="font-bold text-foreground mb-2">
                     {t('contact.faq.bulk.question')}
                   </h4>
                   <p className="text-sm text-muted-foreground">
@@ -351,7 +351,7 @@ const Contact = () => {
                   </p>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-foreground mb-2">
+                  <h4 className="font-bold text-foreground mb-2">
                     {t('contact.faq.shipping.question')}
                   </h4>
                   <p className="text-sm text-muted-foreground">
@@ -359,7 +359,7 @@ const Contact = () => {
                   </p>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-foreground mb-2">
+                  <h4 className="font-bold text-foreground mb-2">
                     {t('contact.faq.included.question')}
                   </h4>
                   <p className="text-sm text-muted-foreground">
@@ -367,7 +367,7 @@ const Contact = () => {
                   </p>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-foreground mb-2">
+                  <h4 className="font-bold text-foreground mb-2">
                     {t('contact.faq.returns.question')}
                   </h4>
                   <p className="text-sm text-muted-foreground">

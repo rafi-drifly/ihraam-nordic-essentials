@@ -88,7 +88,7 @@ const IhramSpiritualMeaningBlog = () => {
               <p className="text-foreground italic">
                 It's a declaration that says:
               </p>
-              <p className="text-foreground font-semibold mt-2">
+              <p className="text-foreground font-bold mt-2">
                 "O Allah, I come to You with nothing but my faith."
               </p>
             </div>
@@ -113,7 +113,7 @@ const IhramSpiritualMeaningBlog = () => {
             <p className="text-foreground leading-relaxed">
               In that crowd of millions circling the Kaabah, no one can distinguish race, rank, or class.
             </p>
-            <p className="text-foreground font-semibold">
+            <p className="text-foreground font-bold">
               This is the true spirit of Islam - equality in servitude.
             </p>
             <div className="bg-background rounded-lg p-6 border-l-4 border-primary mt-4">
@@ -189,7 +189,7 @@ const IhramSpiritualMeaningBlog = () => {
               after Hajj or Umrah ends.
             </p>
             <div className="bg-primary/10 border border-primary/20 rounded-lg p-4">
-              <p className="font-semibold text-foreground mb-3 flex items-center gap-2">
+              <p className="font-bold text-foreground mb-3 flex items-center gap-2">
                 <CheckCircle2 className="h-5 w-5 text-primary" />
                 True Ihram is when:
               </p>
@@ -299,7 +299,7 @@ const IhramSpiritualMeaningBlog = () => {
             <p className="text-foreground leading-relaxed">
               It teaches that before Allah, we are all equal, temporary, and dependent on His mercy.
             </p>
-            <p className="text-foreground leading-relaxed font-semibold">
+            <p className="text-foreground leading-relaxed font-bold">
               Through Ihram, the pilgrim doesn't just wear purity - he becomes purity.
             </p>
             <div className="bg-background rounded-lg p-6 border-l-4 border-primary mt-4">

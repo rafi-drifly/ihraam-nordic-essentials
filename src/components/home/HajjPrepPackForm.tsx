@@ -112,7 +112,7 @@ export const HajjPrepPackForm = () => {
               role="status"
               aria-live="polite"
             >
-              <p className="text-foreground font-medium mb-1">
+              <p className="text-foreground font-normal mb-1">
                 {t("home.prepPack.successTitle")}
               </p>
               <p className="text-sm text-muted-foreground">

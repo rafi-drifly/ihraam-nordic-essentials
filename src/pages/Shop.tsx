@@ -637,28 +637,28 @@ const Shop = () => {
                 <Accordion type="single" collapsible className="w-full">
                   {/* Specifications */}
                   <AccordionItem value="specs">
-                    <AccordionTrigger className="text-base font-semibold">{t('shop.specifications.title')}</AccordionTrigger>
+                    <AccordionTrigger className="text-base font-bold">{t('shop.specifications.title')}</AccordionTrigger>
                     <AccordionContent>
                       <Table>
                         <TableBody>
                           <TableRow>
-                            <TableCell className="font-medium">{t('shop.specifications.material')}</TableCell>
+                            <TableCell className="font-normal">{t('shop.specifications.material')}</TableCell>
                             <TableCell>{t('shop.specifications.materialValue')}</TableCell>
                           </TableRow>
                           <TableRow>
-                            <TableCell className="font-medium">{t('shop.specifications.size')}</TableCell>
+                            <TableCell className="font-normal">{t('shop.specifications.size')}</TableCell>
                             <TableCell>{t('shop.specifications.sizeValue')}</TableCell>
                           </TableRow>
                           <TableRow>
-                            <TableCell className="font-medium">{t('shop.specifications.weight')}</TableCell>
+                            <TableCell className="font-normal">{t('shop.specifications.weight')}</TableCell>
                             <TableCell>{t('shop.specifications.weightValue')}</TableCell>
                           </TableRow>
                           <TableRow>
-                            <TableCell className="font-medium">{t('shop.specifications.features')}</TableCell>
+                            <TableCell className="font-normal">{t('shop.specifications.features')}</TableCell>
                             <TableCell>{t('shop.specifications.featuresValue')}</TableCell>
                           </TableRow>
                           <TableRow>
-                            <TableCell className="font-medium">{t('shop.specifications.packaging')}</TableCell>
+                            <TableCell className="font-normal">{t('shop.specifications.packaging')}</TableCell>
                             <TableCell>{t('shop.specifications.packagingValue')}</TableCell>
                           </TableRow>
                         </TableBody>
@@ -668,14 +668,14 @@ const Shop = () => {
 
                   {/* Features */}
                   <AccordionItem value="features">
-                    <AccordionTrigger className="text-base font-semibold">{t('shop.features.title')}</AccordionTrigger>
+                    <AccordionTrigger className="text-base font-bold">{t('shop.features.title')}</AccordionTrigger>
                     <AccordionContent>
                       <div className="space-y-3">
                         {['soft', 'quickDry', 'antimicrobial', 'sustainable', 'sunnah'].map((feature) => (
                           <div key={feature} className="flex items-start gap-3">
                             <Check className="h-5 w-5 text-primary mt-0.5" />
                             <div>
-                              <p className="font-medium">{t(`shop.features.${feature}.title`)}</p>
+                              <p className="font-normal">{t(`shop.features.${feature}.title`)}</p>
                               <p className="text-sm text-muted-foreground">{t(`shop.features.${feature}.description`)}</p>
                             </div>
                           </div>
@@ -686,7 +686,7 @@ const Shop = () => {
 
                   {/* Shipping Info */}
                   <AccordionItem value="shipping">
-                    <AccordionTrigger className="text-base font-semibold">{t('shop.shippingInfo.title')}</AccordionTrigger>
+                    <AccordionTrigger className="text-base font-bold">{t('shop.shippingInfo.title')}</AccordionTrigger>
                     <AccordionContent>
                       <ul className="text-sm text-muted-foreground space-y-2">
                         <li className="flex items-center gap-2">
@@ -707,7 +707,7 @@ const Shop = () => {
 
                   {/* Care Instructions */}
                   <AccordionItem value="care">
-                    <AccordionTrigger className="text-base font-semibold">{t('shop.careInstructions.title')}</AccordionTrigger>
+                    <AccordionTrigger className="text-base font-bold">{t('shop.careInstructions.title')}</AccordionTrigger>
                     <AccordionContent>
                       <ul className="text-sm text-muted-foreground space-y-1">
                         <li>• {t('shop.careInstructions.wash')}</li>

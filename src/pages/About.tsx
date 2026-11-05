@@ -15,10 +15,10 @@ const About = () => {
 
   const seoDescription =
     i18n.language === 'sv'
-      ? 'Pure Ihram grundades i Sverige för att göra kvalitativ Ihram-duk prisvärd för varje europeisk muslim. €19 per set, ärlig prissättning, snabb leverans.'
+      ? 'Pure Ihram grundades i Sverige för att göra kvalitativ Ihram-duk prisvärd för varje europeisk muslim. €19 per set, ärlig prissättning, skickas från Sverige.'
       : i18n.language === 'no'
-        ? 'Pure Ihram ble grunnlagt i Sverige for å gjøre kvalitets Ihram rimelig for hver europeisk muslim. €19 per sett, ærlig prising, rask levering.'
-        : 'Pure Ihram was founded in Sweden to make quality Ihram cloth affordable for every European Muslim. €19 per set, honest pricing, fast shipping.';
+        ? 'Pure Ihram ble grunnlagt i Sverige for å gjøre kvalitets Ihram rimelig for hver europeisk muslim. €19 per sett, ærlig prising, sendes fra Sverige.'
+        : 'Pure Ihram was founded in Sweden to make quality Ihram cloth affordable for every European Muslim. €19 per set, honest pricing, shipped from Sweden.';
 
   const values = [
     {
@@ -111,7 +111,7 @@ const About = () => {
                   <div className="flex justify-center mb-4">
                     {value.icon}
                   </div>
-                  <h3 className="font-semibold text-foreground mb-3">
+                  <h3 className="font-bold text-foreground mb-3">
                     {value.title}
                   </h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">
@@ -136,19 +136,19 @@ const About = () => {
 
             <div className="space-y-4">
               <div className="bg-background p-4 rounded-lg">
-                <h4 className="font-semibold text-foreground mb-2">{t('about.quality.cotton.title')}</h4>
+                <h4 className="font-bold text-foreground mb-2">{t('about.quality.cotton.title')}</h4>
                 <p className="text-sm text-muted-foreground">
                   {t('about.quality.cotton.description')}
                 </p>
               </div>
               <div className="bg-background p-4 rounded-lg">
-                <h4 className="font-semibold text-foreground mb-2">{t('about.quality.preTreated.title')}</h4>
+                <h4 className="font-bold text-foreground mb-2">{t('about.quality.preTreated.title')}</h4>
                 <p className="text-sm text-muted-foreground">
                   {t('about.quality.preTreated.description')}
                 </p>
               </div>
               <div className="bg-background p-4 rounded-lg">
-                <h4 className="font-semibold text-foreground mb-2">{t('about.quality.traditional.title')}</h4>
+                <h4 className="font-bold text-foreground mb-2">{t('about.quality.traditional.title')}</h4>
                 <p className="text-sm text-muted-foreground">
                   {t('about.quality.traditional.description')}
                 </p>

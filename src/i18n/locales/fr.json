@@ -190,7 +190,7 @@
       "features": "Caractéristiques",
       "featuresValue": "Séchage rapide • Antimicrobien • Hypoallergénique",
       "packaging": "Emballage",
-      "packagingValue": "Sac de transport zippé écologique"
+      "packagingValue": "Sac de transport zippé"
     },
     "features": {
       "title": "Points forts",
@@ -207,7 +207,7 @@
         "description": "Empêche la prolifération des bactéries"
       },
       "sustainable": {
-        "title": "Durable et réutilisable",
+        "title": "Réutilisable",
         "description": "Résistant et facile à laver"
       },
       "sunnah": {
@@ -274,7 +274,7 @@
   },
   "shipping": {
     "title": "Expédition et livraison",
-    "subtitle": "Une livraison rapide et fiable en Suède, dans les pays nordiques et en Europe. Votre Ihram arrivera en parfait état, prêt pour votre voyage sacré.",
+    "subtitle": "Une livraison fiable en Suède, dans les pays nordiques et en Europe : 3 à 7 jours ouvrés en Suède, 7 à 14 ailleurs. Votre Ihram arrivera en parfait état, prêt pour votre voyage sacré.",
     "zones": {
       "title": "Zones et délais de livraison",
       "sweden": {
@@ -312,7 +312,7 @@
       "title": "Notre livraison",
       "packaging": {
         "title": "Emballage sécurisé",
-        "description": "Votre Ihram est soigneusement emballé dans des matériaux protecteurs et écologiques"
+        "description": "Votre Ihram est soigneusement emballé dans un sac de transport zippé protecteur"
       },
       "tracking": {
         "title": "Suivi inclus",
@@ -531,12 +531,12 @@
   },
   "home": {
     "hero": {
-      "title": "Ihram premium pour l'Omra et le Hajj",
+      "title": "Ihram pour l'Omra et le Hajj",
       "highlight": "À partir de 19 €, expédié depuis la Suède",
       "description": "Ihram en microfibre légère pour les pèlerins de Suède, des pays nordiques et de l'UE. Guide de préparation Hajj et Omra offert avec chaque commande.",
       "ctaShop": "Acheter un Ihram - à partir de 19 €",
       "ctaPrepPack": "Découvrir les guides Omra et Hajj",
-      "microcopy": "9 € de livraison en Suède  ·  Retrait gratuit à Uppsala et Stockholm  ·  Retours gratuits sous 14 jours",
+      "microcopy": "9 € de livraison en Suède  ·  Retrait gratuit à Uppsala et Stockholm  ·  Retours sous 14 jours",
       "imageAlt": "Tissu Ihram blanc immaculé, posé à plat"
     },
     "benefits": {
@@ -598,7 +598,7 @@
         },
         {
           "q": "Sous quel délai expédiez-vous ?",
-          "a": "Les commandes partent de Suède sous 1 jour ouvré. La plupart des clients de l'UE reçoivent rapidement leur Ihram ; les délais varient selon la destination, voir notre page Livraison pour le détail."
+          "a": "Les commandes partent de Suède sous 1 jour ouvré. La livraison prend 3 à 7 jours ouvrés en Suède et 7 à 14 ailleurs dans les pays nordiques et l'UE ; voir notre page Livraison pour le détail."
         },
         {
           "q": "Livrez-vous hors de l'UE ?",
@@ -626,7 +626,7 @@
       "trust": {
         "shipping": "Expédié depuis la Suède · 3 à 7 jours en Suède",
         "secure": "Paiement sécurisé par Stripe : Apple Pay, Klarna",
-        "returns": "Retours gratuits sous 14 jours"
+        "returns": "Retours sous 14 jours"
       }
     },
     "howToWear": {
@@ -638,7 +638,7 @@
     "shipping": {
       "delivery": "Suède 3 à 7 jours · Pays nordiques et UE 7 à 14 jours",
       "express": "9 € de livraison en Suède, un seul frais par commande",
-      "returns": "Retours gratuits sous 14 jours, sans avoir à vous justifier",
+      "returns": "Retours sous 14 jours pour les ensembles non portés",
       "secure": "Paiement sécurisé par Stripe : Apple Pay, Google Pay, Klarna"
     },
     "offers": {
@@ -694,7 +694,7 @@
     "subtitle": "Pure Ihram a été fondé pour rendre l'Ihram (Ihraam) abordable (19 € + 9 € de livraison en Suède) et accessible à tous. Il ne s'agit pas de profit, mais de rechercher l'ajr (la récompense) dans l'au-delà en servant la communauté musulmane et en rendant le pèlerinage accessible aux croyants de toute l'Europe.",
     "story": {
       "title": "Notre histoire",
-      "p1": "Pure Ihram est né d'une question simple : pourquoi les musulmans d'Europe paient-ils des prix excessifs pour un tissu de pèlerinage de base ? Nous avons fondé Pure Ihram en Suède pour y remédier : un Ihram de qualité à 19 €, expédié rapidement dans toute l'UE.",
+      "p1": "Pure Ihram est né d'une question simple : pourquoi les musulmans d'Europe paient-ils des prix excessifs pour un tissu de pèlerinage de base ? Nous avons fondé Pure Ihram en Suède pour y remédier : un Ihram de qualité à 19 €, expédié depuis la Suède dans toute l'UE.",
       "p2": "Chaque vente est faite avec l'intention sincère de rechercher l'ajr (la récompense) dans l'au-delà. Ce n'est pas seulement du commerce : c'est un service rendu à notre communauté, pour que ni le prix ni la distance ne se dressent entre un croyant et son pèlerinage.",
       "p3": "",
       "p4": ""
@@ -724,14 +724,14 @@
     "quality": {
       "title": "Pourquoi la qualité compte",
       "p1": "Pendant le Hajj et l'Omra, les pèlerins font face à des exigences physiques et spirituelles intenses. Votre Ihram devrait être votre moindre souci : confortable, respirant et assez résistant pour tenir tout le voyage.",
-      "p2": "Nous nous approvisionnons auprès de fournisseurs de confiance qui comprennent le caractère sacré de ces vêtements. Chaque pièce est inspectée, prélavée et préparée avec le soin que mérite sa vocation.",
+      "p2": "Nous nous approvisionnons auprès de fournisseurs de confiance qui comprennent le caractère sacré de ces vêtements. Chaque pièce est inspectée et préparée avec le soin que mérite sa vocation.",
       "cotton": {
         "title": "Microfibre de qualité",
         "description": "100 % polyester microfibre, pour une respirabilité et un confort maximaux"
       },
       "preTreated": {
-        "title": "Prétraité",
-        "description": "Prélavé et traité pour conserver un aspect impeccable"
+        "title": "Lavez-le une fois avant le départ",
+        "description": "Non prélavé. Un lavage à la maison assouplit le tissu et enlève les résidus de fabrication."
       },
       "traditional": {
         "title": "Coupe traditionnelle",

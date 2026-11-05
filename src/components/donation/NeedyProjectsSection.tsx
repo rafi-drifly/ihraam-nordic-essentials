@@ -39,7 +39,7 @@ const NeedyProjectsSection = () => {
             <Card key={index} className="text-center">
               <CardContent className="py-6">
                 <project.icon className={`h-8 w-8 ${project.color} mx-auto mb-3`} />
-                <p className="text-sm font-medium">{project.label}</p>
+                <p className="text-sm font-normal">{project.label}</p>
               </CardContent>
             </Card>
           ))}
@@ -48,7 +48,7 @@ const NeedyProjectsSection = () => {
         {/* How We Choose Projects */}
         <Card className="border-primary/20">
           <CardContent className="p-6">
-            <h3 className="font-semibold text-lg mb-4 flex items-center gap-2">
+            <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
               <Shield className="h-5 w-5 text-primary" />
               How We Choose Projects
             </h3>

@@ -99,7 +99,7 @@ const Cart = () => {
           <CardContent className="p-4 flex items-center justify-between gap-3">
             <div className="flex items-center gap-2">
               <Gift className="h-5 w-5 text-primary flex-shrink-0" />
-              <p className="text-sm font-medium">{t('cart.upsell.seQty1')}</p>
+              <p className="text-sm font-normal">{t('cart.upsell.seQty1')}</p>
             </div>
             <Button size="sm" variant="outline" onClick={handleUpsellClick} className="whitespace-nowrap">
               {t('cart.upsell.switchTo2Pack')}
@@ -114,7 +114,7 @@ const Cart = () => {
           <CardContent className="p-4 flex items-center justify-between gap-3">
             <div className="flex items-center gap-2">
               <Gift className="h-5 w-5 text-primary flex-shrink-0" />
-              <p className="text-sm font-medium">{t('cart.upsell.seQty2')}</p>
+              <p className="text-sm font-normal">{t('cart.upsell.seQty2')}</p>
             </div>
             <Button size="sm" variant="outline" onClick={handleUpsellClick} className="whitespace-nowrap">
               {t('cart.upsell.switchTo3Pack')}
@@ -144,7 +144,7 @@ const Cart = () => {
           <Card>
             <CardContent className="text-center py-12">
               <ShoppingCart className="h-16 w-16 mx-auto mb-4 text-muted-foreground opacity-50" />
-              <h2 className="text-xl font-semibold mb-2">{t('cart.empty')}</h2>
+              <h2 className="text-xl font-bold mb-2">{t('cart.empty')}</h2>
               <p className="text-muted-foreground mb-6">{t('cart.emptyDesc')}</p>
               <Link to={`${localePrefix}/shop`}>
                 <Button>{t('cart.startShopping')}</Button>
@@ -163,14 +163,14 @@ const Cart = () => {
                     <div className="flex items-center space-x-4">
                       <img src={item.image} alt={item.name} className="w-20 h-20 object-cover rounded-md" />
                       <div className="flex-1 min-w-0">
-                        <h3 className="font-semibold text-lg">{item.name}</h3>
+                        <h3 className="font-bold text-lg">{item.name}</h3>
                         <p className="text-muted-foreground">{Number(item.price).toFixed(2).replace(/\.00$/, '')}€ each</p>
                       </div>
                       <div className="flex items-center space-x-2">
                         <Button variant="outline" size="sm" onClick={() => updateQuantity(item.id, item.quantity - 1)} className="h-8 w-8 p-0">
                           <Minus className="h-3 w-3" />
                         </Button>
-                        <span className="w-12 text-center font-medium">{item.quantity}</span>
+                        <span className="w-12 text-center font-normal">{item.quantity}</span>
                         <Button variant="outline" size="sm" onClick={() => updateQuantity(item.id, item.quantity + 1)} className="h-8 w-8 p-0">
                           <Plus className="h-3 w-3" />
                         </Button>
@@ -207,7 +207,7 @@ const Cart = () => {
                         if (!loc.address && !loc.hours) return null;
                         return (
                           <p key={loc.id}>
-                            <span className="font-medium">{t(loc.labelKey)}</span>
+                            <span className="font-normal">{t(loc.labelKey)}</span>
                             {loc.address ? ` - ${t('cart.delivery.pickupAddress', { address: loc.address })}` : ''}
                             {loc.hours ? ` - ${t('cart.delivery.pickupHours', { hours: loc.hours })}` : ''}
                           </p>
@@ -221,7 +221,7 @@ const Cart = () => {
                     <div className="space-y-2">
                       <div className="flex items-center gap-2">
                         <Globe className="w-4 h-4 text-primary" />
-                        <span className="text-sm font-medium">{t('cart.deliveringTo', 'Delivering to:')}</span>
+                        <span className="text-sm font-normal">{t('cart.deliveringTo', 'Delivering to:')}</span>
                       </div>
                       <Select value={shippingCountry} onValueChange={setShippingCountry}>
                         <SelectTrigger className="w-full">
@@ -264,7 +264,7 @@ const Cart = () => {
                   )}
                   <div className="border-t pt-4">
                     <div className="flex justify-between items-center">
-                      <span className="font-semibold text-lg">{t('cart.total')}:</span>
+                      <span className="font-bold text-lg">{t('cart.total')}:</span>
                       <span className="font-bold text-lg">{getTotalWithDonation().toFixed(2)}€</span>
                     </div>
                   </div>

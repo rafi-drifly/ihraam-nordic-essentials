@@ -81,17 +81,17 @@ const UmrahDuasBlog = () => {
             
             <div className="space-y-3">
               <div className="bg-accent/10 rounded-lg p-4">
-                <p className="text-sm font-semibold text-muted-foreground mb-2">Arabic:</p>
+                <p className="text-sm font-bold text-muted-foreground mb-2">Arabic:</p>
                 <p className="text-2xl text-foreground text-right mb-4" dir="rtl">
                   بِسْمِ اللهِ، تَوَكَّلْتُ عَلَى اللهِ، وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللهِ
                 </p>
                 
-                <p className="text-sm font-semibold text-muted-foreground mb-2">Transliteration:</p>
+                <p className="text-sm font-bold text-muted-foreground mb-2">Transliteration:</p>
                 <p className="text-lg text-foreground italic mb-4">
                   Bismillāh, tawakkaltu ʿalallāh, wa lā ḥawla wa lā quwwata illā billāh
                 </p>
                 
-                <p className="text-sm font-semibold text-muted-foreground mb-2">Meaning:</p>
+                <p className="text-sm font-bold text-muted-foreground mb-2">Meaning:</p>
                 <p className="text-foreground">
                   "In the name of Allah, I place my trust in Allah. There is no power and no strength except with Allah."
                 </p>
@@ -121,7 +121,7 @@ const UmrahDuasBlog = () => {
             
             <div className="space-y-4">
               <div className="bg-accent/10 rounded-lg p-4">
-                <p className="text-sm font-semibold text-muted-foreground mb-2">For Umrah:</p>
+                <p className="text-sm font-bold text-muted-foreground mb-2">For Umrah:</p>
                 <p className="text-2xl text-foreground text-right mb-2" dir="rtl">
                   لَبَّيْكَ اللّهُمَّ عُمْرَةً
                 </p>
@@ -133,7 +133,7 @@ const UmrahDuasBlog = () => {
                 </p>
               </div>
               
-              <p className="text-foreground font-semibold">Then recite the Talbiyah:</p>
+              <p className="text-foreground font-bold">Then recite the Talbiyah:</p>
               
               <div className="bg-accent/10 rounded-lg p-4">
                 <p className="text-2xl text-foreground text-right mb-4" dir="rtl">
@@ -146,7 +146,7 @@ const UmrahDuasBlog = () => {
                   Innal-ḥamda wan-niʿmata laka wal-mulk, la shareeka lak.
                 </p>
                 
-                <p className="text-sm font-semibold text-muted-foreground mb-2">Meaning:</p>
+                <p className="text-sm font-bold text-muted-foreground mb-2">Meaning:</p>
                 <p className="text-foreground">
                   "Here I am, O Allah, here I am. You have no partner. Truly all praise, favor, and sovereignty belong to You. You have no partner."
                 </p>
@@ -168,17 +168,17 @@ const UmrahDuasBlog = () => {
             </p>
             
             <div className="bg-accent/10 rounded-lg p-4">
-              <p className="text-sm font-semibold text-muted-foreground mb-2">Arabic:</p>
+              <p className="text-sm font-bold text-muted-foreground mb-2">Arabic:</p>
               <p className="text-2xl text-foreground text-right mb-4" dir="rtl">
                 اللّٰهُمَّ هٰذَا حَرَمُكَ وَأَمْنُكَ، فَحَرِّمْ لَحْمِي وَدَمِي عَلَى النَّارِ، وَآمِنِّي مِنْ عَذَابِكَ يَوْمَ تَبْعَثُ عِبَادَكَ
               </p>
               
-              <p className="text-sm font-semibold text-muted-foreground mb-2">Transliteration:</p>
+              <p className="text-sm font-bold text-muted-foreground mb-2">Transliteration:</p>
               <p className="text-lg text-foreground italic mb-4">
                 Allāhumma hādhā ḥaramuka wa amnuka, faḥarrim laḥmī wa damī ʿalan-nār, wa āminnī min ʿadhābika yawma tabʿathu ʿibādak.
               </p>
               
-              <p className="text-sm font-semibold text-muted-foreground mb-2">Meaning:</p>
+              <p className="text-sm font-bold text-muted-foreground mb-2">Meaning:</p>
               <p className="text-foreground">
                 "O Allah, this is Your sacred sanctuary and place of security. Protect my flesh and blood from the Fire 
                 and grant me safety from Your punishment on the Day You resurrect Your servants."
@@ -200,7 +200,7 @@ const UmrahDuasBlog = () => {
             </p>
             
             <div className="space-y-3">
-              <p className="text-sm font-semibold text-muted-foreground">Recommended Dua:</p>
+              <p className="text-sm font-bold text-muted-foreground">Recommended Dua:</p>
               
               <div className="bg-accent/10 rounded-lg p-4">
                 <p className="text-2xl text-foreground text-right mb-4" dir="rtl">
@@ -212,7 +212,7 @@ const UmrahDuasBlog = () => {
                   wa zid man sharrafahu wa karramahu mimman ḥajjahu awiʿtamrahu tashrīfan wa taʿẓīman wa mahābatan wa birran.
                 </p>
                 
-                <p className="text-sm font-semibold text-muted-foreground mb-2">Meaning:</p>
+                <p className="text-sm font-bold text-muted-foreground mb-2">Meaning:</p>
                 <p className="text-foreground">
                   "O Allah, increase this House in honor, greatness, respect, and reverence, and increase those who honor 
                   and visit it in the same."
@@ -245,17 +245,17 @@ const UmrahDuasBlog = () => {
             </p>
             
             <div className="bg-accent/10 rounded-lg p-4">
-              <p className="text-sm font-semibold text-muted-foreground mb-2">Arabic:</p>
+              <p className="text-sm font-bold text-muted-foreground mb-2">Arabic:</p>
               <p className="text-2xl text-foreground text-right mb-4" dir="rtl">
                 رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً، وَفِي الآخِرَةِ حَسَنَةً، وَقِنَا عَذَابَ النَّارِ
               </p>
               
-              <p className="text-sm font-semibold text-muted-foreground mb-2">Transliteration:</p>
+              <p className="text-sm font-bold text-muted-foreground mb-2">Transliteration:</p>
               <p className="text-lg text-foreground italic mb-4">
                 Rabbana ātinā fid-dunyā ḥasanah, wa fil-ākhirati ḥasanah, wa qinā ʿadhāban-nār
               </p>
               
-              <p className="text-sm font-semibold text-muted-foreground mb-2">Meaning:</p>
+              <p className="text-sm font-bold text-muted-foreground mb-2">Meaning:</p>
               <p className="text-foreground">
                 "Our Lord, grant us good in this world and good in the Hereafter, and protect us from the punishment of the Fire."
               </p>
@@ -277,7 +277,7 @@ const UmrahDuasBlog = () => {
             
             <div className="space-y-4">
               <div className="bg-accent/10 rounded-lg p-4">
-                <p className="text-sm font-semibold text-muted-foreground mb-2">Arabic:</p>
+                <p className="text-sm font-bold text-muted-foreground mb-2">Arabic:</p>
                 <p className="text-2xl text-foreground text-right mb-4" dir="rtl">
                   إِنَّ الصَّفَا وَالْمَرْوَةَ مِن شَعَائِرِ اللَّهِ<br />
                   أَبْدَأُ بِمَا بَدَأَ اللَّهُ بِهِ
@@ -291,7 +291,7 @@ const UmrahDuasBlog = () => {
               <p className="text-foreground">Then recite three times (raising your hands):</p>
               
               <div className="bg-accent/10 rounded-lg p-4">
-                <p className="text-sm font-semibold text-muted-foreground mb-2">Arabic:</p>
+                <p className="text-sm font-bold text-muted-foreground mb-2">Arabic:</p>
                 <p className="text-2xl text-foreground text-right mb-4" dir="rtl">
                   اللّٰهُ أَكْبَرُ، اللّٰهُ أَكْبَرُ، اللّٰهُ أَكْبَرُ<br />
                   لَا إِلٰهَ إِلَّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ<br />
@@ -302,7 +302,7 @@ const UmrahDuasBlog = () => {
                   Allāhu Akbar (x3)... Lā ilāha illallāhu waḥdahu lā sharīka lah...
                 </p>
                 
-                <p className="text-sm font-semibold text-muted-foreground mb-2">Meaning:</p>
+                <p className="text-sm font-bold text-muted-foreground mb-2">Meaning:</p>
                 <p className="text-foreground">
                   "There is no god but Allah alone, without partner. His is the dominion and praise, and He has power over all things. 
                   There is no god but Allah alone. He fulfilled His promise, helped His servant, and defeated the confederates alone."
@@ -325,17 +325,17 @@ const UmrahDuasBlog = () => {
             </p>
             
             <div className="bg-accent/10 rounded-lg p-4">
-              <p className="text-sm font-semibold text-muted-foreground mb-2">Arabic:</p>
+              <p className="text-sm font-bold text-muted-foreground mb-2">Arabic:</p>
               <p className="text-2xl text-foreground text-right mb-4" dir="rtl">
                 اللّٰهُمَّ تَقَبَّلْ مِنَّا وَاغْفِرْ لَنَا
               </p>
               
-              <p className="text-sm font-semibold text-muted-foreground mb-2">Transliteration:</p>
+              <p className="text-sm font-bold text-muted-foreground mb-2">Transliteration:</p>
               <p className="text-lg text-foreground italic mb-4">
                 Allāhumma taqabbal minnā wa ghfir lanā
               </p>
               
-              <p className="text-sm font-semibold text-muted-foreground mb-2">Meaning:</p>
+              <p className="text-sm font-bold text-muted-foreground mb-2">Meaning:</p>
               <p className="text-foreground">
                 "O Allah, accept (this Umrah) from us and forgive us."
               </p>
@@ -356,7 +356,7 @@ const UmrahDuasBlog = () => {
           </CardHeader>
           <CardContent className="space-y-6">
             <div>
-              <p className="font-semibold text-foreground mb-3">For Forgiveness:</p>
+              <p className="font-bold text-foreground mb-3">For Forgiveness:</p>
               <div className="bg-accent/10 rounded-lg p-4">
                 <p className="text-lg text-foreground italic mb-2">
                   Astaghfirullāha rabbī min kulli dhanbin wa atūbu ilayh
@@ -368,7 +368,7 @@ const UmrahDuasBlog = () => {
             </div>
             
             <div>
-              <p className="font-semibold text-foreground mb-3">For Protection:</p>
+              <p className="font-bold text-foreground mb-3">For Protection:</p>
               <div className="bg-accent/10 rounded-lg p-4">
                 <p className="text-lg text-foreground italic mb-2">
                   Allāhumma innī aʿūdhu bika min al-hammi wal-ḥuzn
@@ -380,7 +380,7 @@ const UmrahDuasBlog = () => {
             </div>
             
             <div>
-              <p className="font-semibold text-foreground mb-3">For Guidance:</p>
+              <p className="font-bold text-foreground mb-3">For Guidance:</p>
               <div className="bg-accent/10 rounded-lg p-4">
                 <p className="text-lg text-foreground italic mb-2">
                   Allāhumma ihdinī wa saddidnī

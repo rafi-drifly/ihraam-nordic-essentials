@@ -101,7 +101,7 @@ const SunnahActsBlog = () => {
             </Card>
 
             <div className="bg-muted p-6 rounded-lg mb-4">
-              <h3 className="text-xl font-semibold text-foreground mb-3">Instructions:</h3>
+              <h3 className="text-xl font-bold text-foreground mb-3">Instructions:</h3>
               <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
                 <li>Take a full ritual bath with the intention (niyyah) of purifying for Ihram.</li>
                 <li>Use unscented soap or plain water.</li>
@@ -161,7 +161,7 @@ const SunnahActsBlog = () => {
             </Card>
 
             <div className="bg-muted p-6 rounded-lg">
-              <h3 className="text-xl font-semibold text-foreground mb-3">Guidelines:</h3>
+              <h3 className="text-xl font-bold text-foreground mb-3">Guidelines:</h3>
               <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
                 <li>Apply perfume to the body, not the Ihram cloth.</li>
                 <li>The scent may remain after Ihram begins, as long as applied beforehand.</li>
@@ -185,7 +185,7 @@ const SunnahActsBlog = () => {
             <Card className="bg-gradient-subtle border-0">
               <CardContent className="p-6 flex items-center justify-between">
                 <div>
-                  <p className="text-foreground font-semibold mb-1">
+                  <p className="text-foreground font-bold mb-1">
                     {t('blogPost.forComfortAndDurability')}
                   </p>
                   <p className="text-muted-foreground text-sm">
@@ -327,7 +327,7 @@ const SunnahActsBlog = () => {
               <Link to={`${localePrefix}/blog/how-to-wear-ihram`}>
                 <Card className="hover:shadow-lg transition-shadow">
                   <CardContent className="p-4 flex items-center justify-between">
-                    <span className="text-foreground font-medium">
+                    <span className="text-foreground font-normal">
                       {t('blogPost.howToWearLink')}
                     </span>
                     <ArrowLeft className="h-4 w-4 rotate-180" />
@@ -337,7 +337,7 @@ const SunnahActsBlog = () => {
               <Link to={`${localePrefix}/shop`}>
                 <Card className="hover:shadow-lg transition-shadow">
                   <CardContent className="p-4 flex items-center justify-between">
-                    <span className="text-foreground font-medium">
+                    <span className="text-foreground font-normal">
                       {t('blogPost.shopTowelSet')}
                     </span>
                     <ShoppingCart className="h-4 w-4" />

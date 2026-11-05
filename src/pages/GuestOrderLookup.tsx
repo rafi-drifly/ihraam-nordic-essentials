@@ -190,26 +190,26 @@ const GuestOrderLookup = () => {
               <CardContent className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <span className="text-sm font-medium text-muted-foreground">Order Number:</span>
+                    <span className="text-sm font-normal text-muted-foreground">Order Number:</span>
                     <p className="font-mono text-sm bg-muted px-2 py-1 rounded mt-1">
                       {orderData.order_number}
                     </p>
                   </div>
                   <div>
-                    <span className="text-sm font-medium text-muted-foreground">Status:</span>
+                    <span className="text-sm font-normal text-muted-foreground">Status:</span>
                     <div className="flex items-center gap-2 mt-1">
                       {getStatusIcon(orderData.status)}
-                      <span className="font-medium">{formatStatus(orderData.status)}</span>
+                      <span className="font-normal">{formatStatus(orderData.status)}</span>
                     </div>
                   </div>
                   <div>
-                    <span className="text-sm font-medium text-muted-foreground">Total Amount:</span>
-                    <p className="text-lg font-semibold mt-1">
+                    <span className="text-sm font-normal text-muted-foreground">Total Amount:</span>
+                    <p className="text-lg font-bold mt-1">
                       {formatPrice(orderData.total_amount, orderData.currency)}
                     </p>
                   </div>
                   <div>
-                    <span className="text-sm font-medium text-muted-foreground">Order Date:</span>
+                    <span className="text-sm font-normal text-muted-foreground">Order Date:</span>
                     <p className="mt-1">
                       {new Date(orderData.created_at).toLocaleDateString('en-EU', {
                         year: 'numeric',
@@ -224,7 +224,7 @@ const GuestOrderLookup = () => {
 
                 {orderData.shipping_region && (
                   <div>
-                    <span className="text-sm font-medium text-muted-foreground">Shipping Region:</span>
+                    <span className="text-sm font-normal text-muted-foreground">Shipping Region:</span>
                     <p className="mt-1">{orderData.shipping_region}</p>
                   </div>
                 )}
@@ -241,14 +241,14 @@ const GuestOrderLookup = () => {
                   {orderData.order_items.map((item) => (
                     <div key={item.id} className="flex items-center space-x-4 p-4 border rounded-lg">
                       <div className="flex-1">
-                        <h3 className="font-medium">{item.products.name}</h3>
+                        <h3 className="font-normal">{item.products.name}</h3>
                         {item.products.description && (
                           <p className="text-sm text-muted-foreground">{item.products.description}</p>
                         )}
                         <div className="flex items-center gap-4 mt-2 text-sm">
                           <span>Quantity: {item.quantity}</span>
                           <span>Unit Price: {formatPrice(item.unit_price, orderData.currency)}</span>
-                          <span className="font-medium">
+                          <span className="font-normal">
                             Total: {formatPrice(item.total_price, orderData.currency)}
                           </span>
                         </div>
@@ -275,13 +275,13 @@ const GuestOrderLookup = () => {
                         <div>
                           <div className="flex items-center gap-2">
                             {getStatusIcon(payment.status)}
-                            <span className="font-medium">{formatStatus(payment.status)}</span>
+                            <span className="font-normal">{formatStatus(payment.status)}</span>
                           </div>
                           <p className="text-sm text-muted-foreground mt-1">
                             {new Date(payment.created_at).toLocaleDateString('en-EU')}
                           </p>
                         </div>
-                        <span className="font-medium">
+                        <span className="font-normal">
                           {formatPrice(payment.amount, payment.currency)}
                         </span>
                       </div>
@@ -296,7 +296,7 @@ const GuestOrderLookup = () => {
         <div className="mt-8 text-center">
           <Card>
             <CardContent className="p-6">
-              <h3 className="font-semibold mb-2">Need Help?</h3>
+              <h3 className="font-bold mb-2">Need Help?</h3>
               <p className="text-sm text-muted-foreground mb-4">
                 If you can't find your order or need assistance, please contact our support team.
               </p>

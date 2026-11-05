@@ -65,7 +65,7 @@ const PaymentSuccess = () => {
               <div className="flex items-start gap-3">
                 <Mail className="h-5 w-5 text-accent-foreground mt-0.5" />
                 <div className="flex-1">
-                  <h3 className="font-semibold text-accent-foreground mb-2">{t('orderSuccess.emailTitle')}</h3>
+                  <h3 className="font-bold text-accent-foreground mb-2">{t('orderSuccess.emailTitle')}</h3>
                   <p className="text-sm text-muted-foreground">
                     {t('orderSuccess.emailBody')}{" "}
                     <Link to="/guest-order-lookup" className="text-primary hover:underline">
@@ -89,7 +89,7 @@ const PaymentSuccess = () => {
             </div>
 
             <div className="bg-accent/10 border border-accent/20 rounded-lg p-4">
-              <h3 className="font-semibold text-accent-foreground mb-2">{t('orderSuccess.timelineTitle')}</h3>
+              <h3 className="font-bold text-accent-foreground mb-2">{t('orderSuccess.timelineTitle')}</h3>
               <div className="text-sm space-y-1">
                 <div className="flex justify-between">
                   <span>{t('orderSuccess.timelineSweden')}</span>
@@ -125,7 +125,7 @@ const PaymentSuccess = () => {
         <div className="mt-12 text-center">
           <Card>
             <CardContent className="p-6">
-              <h3 className="font-semibold mb-2">{t('orderSuccess.helpTitle')}</h3>
+              <h3 className="font-bold mb-2">{t('orderSuccess.helpTitle')}</h3>
               <p className="text-sm text-muted-foreground mb-4">
                 {t('orderSuccess.helpBody')}
               </p>

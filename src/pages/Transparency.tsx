@@ -135,7 +135,7 @@ const Transparency = () => {
 
           {/* Monthly Reports */}
           <div className="mb-8">
-            <h2 className="text-2xl font-semibold mb-6">{t('transparency.reports.title')}</h2>
+            <h2 className="text-2xl font-bold mb-6">{t('transparency.reports.title')}</h2>
             
             <div className="space-y-6">
               {TRANSPARENCY_REPORTS.map((report) => (
@@ -153,34 +153,34 @@ const Transparency = () => {
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-4">
                       <div>
                         <p className="text-xs text-muted-foreground">{t('transparency.reports.received')}</p>
-                        <p className="text-sm font-semibold text-green-600">{formatCurrency(report.donationsReceived)}</p>
+                        <p className="text-sm font-bold text-green-600">{formatCurrency(report.donationsReceived)}</p>
                       </div>
                       <div>
                         <p className="text-xs text-muted-foreground">{t('transparency.reports.needy')}</p>
-                        <p className="text-sm font-semibold">{formatCurrency(report.needyProjects)}</p>
+                        <p className="text-sm font-bold">{formatCurrency(report.needyProjects)}</p>
                       </div>
                       <div>
                         <p className="text-xs text-muted-foreground">{t('transparency.reports.mosque')}</p>
-                        <p className="text-sm font-semibold">{formatCurrency(report.mosqueProgram)}</p>
+                        <p className="text-sm font-bold">{formatCurrency(report.mosqueProgram)}</p>
                       </div>
                       <div>
                         <p className="text-xs text-muted-foreground">{t('transparency.reports.shipping')}</p>
-                        <p className="text-sm font-semibold">{formatCurrency(report.shippingPackaging)}</p>
+                        <p className="text-sm font-bold">{formatCurrency(report.shippingPackaging)}</p>
                       </div>
                       <div>
                         <p className="text-xs text-muted-foreground">{t('transparency.reports.stripe')}</p>
-                        <p className="text-sm font-semibold">{formatCurrency(report.stripeFees)}</p>
+                        <p className="text-sm font-bold">{formatCurrency(report.stripeFees)}</p>
                       </div>
                       <div>
                         <p className="text-xs text-muted-foreground">{t('transparency.reports.ops')}</p>
-                        <p className="text-sm font-semibold">{formatCurrency(report.operations)}</p>
+                        <p className="text-sm font-bold">{formatCurrency(report.operations)}</p>
                       </div>
                     </div>
                     
                     {report.notes && (
                       <div className="bg-muted/50 rounded-lg p-3 mt-4">
                         <p className="text-sm text-muted-foreground">
-                          <span className="font-medium">{t('transparency.reports.notes')}:</span> {report.notes}
+                          <span className="font-normal">{t('transparency.reports.notes')}:</span> {report.notes}
                         </p>
                       </div>
                     )}
@@ -206,7 +206,7 @@ const Transparency = () => {
           {/* Amanah Statement */}
           <Card className="border-primary/20 bg-primary/5">
             <CardContent className="p-6 text-center">
-              <h3 className="text-lg font-semibold mb-3">{t('transparency.amanah.title')}</h3>
+              <h3 className="text-lg font-bold mb-3">{t('transparency.amanah.title')}</h3>
               <p className="text-muted-foreground mb-4">
                 {t('transparency.amanah.text')}
               </p>

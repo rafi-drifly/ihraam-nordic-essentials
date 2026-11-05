@@ -48,7 +48,7 @@ const DonationFAQ = () => {
           {faqs.map((faq, index) => (
             <AccordionItem key={index} value={`item-${index}`} className="border rounded-lg px-4">
               <AccordionTrigger className="text-left hover:no-underline py-4">
-                <span className="font-medium text-foreground">{faq.question}</span>
+                <span className="font-normal text-foreground">{faq.question}</span>
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground pb-4">
                 {faq.answer}

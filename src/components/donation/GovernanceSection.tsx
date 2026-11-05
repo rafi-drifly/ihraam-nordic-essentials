@@ -30,7 +30,7 @@ const GovernanceSection = ({ localePrefix }: GovernanceSectionProps) => {
           {/* Contact Info */}
           <Card>
             <CardContent className="p-6">
-              <h3 className="font-semibold mb-4">Contact Us</h3>
+              <h3 className="font-bold mb-4">Contact Us</h3>
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <Mail className="h-5 w-5 text-muted-foreground" />
@@ -45,7 +45,7 @@ const GovernanceSection = ({ localePrefix }: GovernanceSectionProps) => {
                   <MapPin className="h-5 w-5 text-muted-foreground" />
                   <div>
                     <p className="text-sm text-muted-foreground">Location</p>
-                    <p className="font-medium">Pure Ihram, Sweden</p>
+                    <p className="font-normal">Pure Ihram, Sweden</p>
                   </div>
                 </div>
               </div>
@@ -61,7 +61,7 @@ const GovernanceSection = ({ localePrefix }: GovernanceSectionProps) => {
           {/* Amanah Statement */}
           <Card className="border-primary/20 bg-primary/5">
             <CardContent className="p-6">
-              <h3 className="font-semibold mb-4">{t('transparency.amanah.title')}</h3>
+              <h3 className="font-bold mb-4">{t('transparency.amanah.title')}</h3>
               <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
                 {t('transparency.amanah.text')}
               </p>
