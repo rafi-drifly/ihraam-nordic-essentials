@@ -44,18 +44,11 @@ const LEGACY = [
   { slug: 'spiritual-meaning-ihram', key: 'spiritualMeaning' },
 ];
 
-const HOME_TITLE = {
-  en: 'Buy Ihram Online - €19 + €9 Shipping in Sweden | Pure Ihram',
-  sv: 'Köp Ihram Online - €19 + €9 frakt inom Sverige | Pure Ihram',
-  no: 'Kjøp Ihram Online - Ihram fra Sverige | Pure Ihram',
-  fr: 'Acheter un Ihram en ligne - 19 € + 9 € de livraison en Suède | Pure Ihram',
-};
-const HOME_DESC = {
-  en: 'Microfiber Ihram cloth for Umrah & Hajj. €19 + €9 shipping within Sweden, 3-7 days. Free pickup in Uppsala and Stockholm.',
-  sv: 'Ihram-tyg i mikrofiber för Umrah och Hajj. €19 + €9 frakt inom Sverige, 3-7 arbetsdagar. Gratis avhämtning i Uppsala och Stockholm.',
-  no: 'Ihram-stoff i mikrofiber for Umrah og Hajj. Fra €19, sendes fra Sverige. Frakt til Norge bekreftes før sending, eller hent gratis i Uppsala og Stockholm.',
-  fr: "Tissu Ihram de qualité pour l'Omra et le Hajj. 19 € + 9 € de livraison en Suède, 3 à 7 jours. Retrait gratuit à Uppsala et Stockholm.",
-};
+// The homepage title and description, per locale. SEOHead reads the same
+// file, so the HTML Google downloads and the page once its script has run can
+// never disagree (they did until Nov 2026, and French fell back to English).
+// index.html carries the English pair; a test keeps it equal to this file.
+const HOME_META = readJSON('src/i18n/home-meta.json');
 const BLOGLIST_TITLE = {
   en: 'Hajj & Umrah Guides - Pilgrimage Knowledge | Pure Ihram',
   sv: 'Hajj- och Umrah-guider - kunskap för pilgrimer | Pure Ihram',
@@ -172,7 +165,8 @@ let count = 0;
 // Homepage + blog list, per locale
 for (const locale of Object.keys(LOCALES)) {
   const pfx = LOCALES[locale].prefix;
-  write(pfx || '.', render({ title: (HOME_TITLE[locale] ?? HOME_TITLE.en), description: (HOME_DESC[locale] ?? HOME_DESC.en), canonicalPath: '/', locale }));
+  const home = HOME_META[locale] ?? HOME_META.en;
+  write(pfx || '.', render({ title: home.title, description: home.description, canonicalPath: '/', locale }));
   // Host serves directory routes with a trailing slash (clean URL 308-redirects
   // to it), so canonical/hreflang use the trailing-slash 200 URL.
   write(`${pfx}/blog`.replace(/^\//, ''), render({ title: (BLOGLIST_TITLE[locale] ?? BLOGLIST_TITLE.en), description: (BLOGLIST_DESC[locale] ?? BLOGLIST_DESC.en), canonicalPath: '/blog/', locale }));

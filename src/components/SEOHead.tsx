@@ -21,6 +21,7 @@ import {
   stripLocale,
   type LocaleCode,
 } from '@/i18n/locales';
+import HOME_META from '@/i18n/home-meta.json';
 
 interface SEOHeadProps {
   title?: string;
@@ -74,21 +75,13 @@ const SEOHead = ({ title, description, path, jsonLd, noindex, ogType, image }: S
     { hreflang: 'x-default', href: defaultUrl },
   ]);
 
-  const getDefaultTitle = () => {
-    if (langKey === 'sv') return 'Köp Ihram Online från €19 | Pure Ihram';
-    if (langKey === 'no') return 'Kjøp Ihram Online fra €19 | Pure Ihram';
-    return 'Buy Ihram Online from €19 | Pure Ihram';
-  };
-
-  const getDefaultDescription = () => {
-    if (langKey === 'sv') {
-      return 'Ihram-tyg i mikrofiber för Umrah och Hajj. €19 + €9 frakt inom Sverige, 3-7 arbetsdagar. Gratis avhämtning i Uppsala och Stockholm.';
-    }
-    if (langKey === 'no') {
-      return 'Ihram-stoff i mikrofiber for Umrah og Hajj. Fra €19, sendes fra Sverige. Frakt til Norge bekreftes før sending, eller hent gratis i Uppsala og Stockholm.';
-    }
-    return 'Microfiber Ihram cloth for Umrah & Hajj. €19 + €9 shipping within Sweden, 3-7 days. Free pickup in Uppsala and Stockholm.';
-  };
+  // The homepage title and description, from the file the prerender script
+  // also reads. These used to be written out here a second time, had drifted
+  // from the prerendered ones, and had no French at all.
+  const homeMeta =
+    (HOME_META as Record<string, { title: string; description: string }>)[langKey] ?? HOME_META.en;
+  const getDefaultTitle = () => homeMeta.title;
+  const getDefaultDescription = () => homeMeta.description;
 
   // The back office is not part of the storefront. Without this it inherits
   // the shop's homepage title, gains a canonical URL of its own and loses the
