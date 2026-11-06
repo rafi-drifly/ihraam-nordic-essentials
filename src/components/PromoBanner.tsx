@@ -1,12 +1,19 @@
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { X } from 'lucide-react';
+import { stripLocale } from '@/i18n/locales';
 
 const STORAGE_KEY = 'promo-banner-dismissed';
 
 const PromoBanner = () => {
   const { t } = useTranslation();
+  const { pathname } = useLocation();
   const [isVisible, setIsVisible] = useState(false);
+  // The homepage shows the price once, beside its own buy button (Nov 2026
+  // restyle). A price bar above it would be the second mention, so the bar
+  // only runs on the other pages.
+  const isHome = stripLocale(pathname) === '/';
 
   useEffect(() => {
     const dismissed = localStorage.getItem(STORAGE_KEY);
@@ -20,7 +27,7 @@ const PromoBanner = () => {
     setIsVisible(false);
   };
 
-  if (!isVisible) return null;
+  if (!isVisible || isHome) return null;
 
   return (
     <div className="bg-primary text-primary-foreground sticky top-0 z-50">

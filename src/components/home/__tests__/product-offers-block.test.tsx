@@ -47,7 +47,8 @@ async function renderBlock() {
     await Promise.resolve();
     await Promise.resolve();
   });
-  return screen.getAllByRole("button");
+  // Since Nov 2026 the block is a choice (three radios) and one add button.
+  return { radios: screen.getAllByRole("radio"), add: screen.getByRole("button") };
 }
 
 beforeEach(() => {
@@ -61,10 +62,11 @@ describe("picking an offer on the homepage", () => {
     ["2-pack", 1, 2],
     ["3-pack", 2, 3],
   ])("puts a catalogue id in the basket for the %s", async (_name, index, qty) => {
-    const buttons = await renderBlock();
-    expect(buttons).toHaveLength(3);
+    const { radios, add } = await renderBlock();
+    expect(radios).toHaveLength(3);
 
-    fireEvent.click(buttons[index]);
+    fireEvent.click(radios[index]);
+    fireEvent.click(add);
 
     await waitFor(() => expect(storedCart()).toHaveLength(1));
     const [item] = storedCart();
@@ -75,10 +77,26 @@ describe("picking an offer on the homepage", () => {
     expect(item.quantity).toBe(qty);
   });
 
+  it("starts on the single set, so the button never adds an unseen choice", async () => {
+    const { radios, add } = await renderBlock();
+    expect(radios[0]).toBeChecked();
+    fireEvent.click(add);
+    await waitFor(() => expect(storedCart()).toHaveLength(1));
+    expect(storedCart()[0].quantity).toBe(1);
+  });
+
   it("stores a flat unit price, never a derived fraction", async () => {
-    const buttons = await renderBlock();
-    fireEvent.click(buttons[2]); // 3-pack: 55/3 used to store 18.333333333333332
+    const { radios, add } = await renderBlock();
+    fireEvent.click(radios[2]); // 3-pack: 55/3 used to store 18.333333333333332
+    fireEvent.click(add);
     await waitFor(() => expect(storedCart()).toHaveLength(1));
     expect(storedCart()[0].price).toBe(19);
+  });
+
+  it("shows each bundle price from the checkout's own price list", async () => {
+    await renderBlock();
+    for (const price of ["€19", "€37", "€55"]) {
+      expect(screen.getByText(price)).toBeInTheDocument();
+    }
   });
 });

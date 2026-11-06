@@ -1,52 +1,26 @@
 import { useTranslation } from "react-i18next";
-import { MapPin, Lock, RotateCcw } from "lucide-react";
 
+/**
+ * One buyer's own words, set as a quiet quote. No box, no initials badge, and
+ * no trust row: shipping, payment and returns are said once, by the set choice.
+ */
 export const TestimonialBlock = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="py-10 bg-background">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-secondary/50 border border-border rounded-2xl p-6 lg:p-8">
-          <div className="flex items-start gap-4">
-            <div
-              className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold flex-shrink-0"
-              aria-hidden="true"
-            >
-              MS
-            </div>
-            <div className="flex-1">
-              <p className="text-foreground text-base lg:text-lg leading-relaxed mb-3">
-                &ldquo;{t("home.testimonial.quote")}&rdquo;
-              </p>
-              <p className="text-sm text-muted-foreground">
-                <span className="font-normal text-foreground">
-                  {t("home.testimonial.author")}
-                </span>
-                <span className="mx-2">·</span>
-                {t("home.testimonial.location")}
-                <span className="mx-2">·</span>
-                {t("home.testimonial.verified")}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6 text-sm text-muted-foreground">
-          <div className="flex items-center gap-2 justify-center sm:justify-start">
-            <MapPin className="h-4 w-4 text-primary flex-shrink-0" aria-hidden="true" />
-            <span>{t("home.testimonial.trust.shipping")}</span>
-          </div>
-          <div className="flex items-center gap-2 justify-center sm:justify-start">
-            <Lock className="h-4 w-4 text-primary flex-shrink-0" aria-hidden="true" />
-            <span>{t("home.testimonial.trust.secure")}</span>
-          </div>
-          <div className="flex items-center gap-2 justify-center sm:justify-start">
-            <RotateCcw className="h-4 w-4 text-primary flex-shrink-0" aria-hidden="true" />
-            <span>{t("home.testimonial.trust.returns")}</span>
-          </div>
-        </div>
-      </div>
+    <section className="bg-white">
+      <figure className="mx-auto max-w-3xl px-4 py-20 text-center sm:px-6 lg:px-8 lg:py-28">
+        <blockquote className="text-[1.375rem] font-normal leading-[1.5] text-foreground lg:text-[1.75rem]">
+          <p>&ldquo;{t("home.testimonial.quote")}&rdquo;</p>
+        </blockquote>
+        <figcaption className="mt-8 text-sm text-foreground">
+          <span className="font-bold">{t("home.testimonial.author")}</span>
+          <span className="mx-2" aria-hidden="true">·</span>
+          {t("home.testimonial.location")}
+          <span className="mx-2" aria-hidden="true">·</span>
+          {t("home.testimonial.verified")}
+        </figcaption>
+      </figure>
     </section>
   );
 };

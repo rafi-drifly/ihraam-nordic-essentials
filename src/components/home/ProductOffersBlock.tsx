@@ -5,57 +5,50 @@ import { useCart } from "@/hooks/useCart";
 import { useToast } from "@/hooks/use-toast";
 import { useLocalePrefix } from "@/i18n/useLocale";
 import { supabase } from "@/integrations/supabase/client";
-import { UNIT_PRICE } from "@/lib/bundles";
+import { UNIT_PRICE, getBundlePrice } from "@/lib/bundles";
 import ihraamProduct from "@/assets/hero-product.avif";
+import { cn } from "@/lib/utils";
+import { HomePhoto } from "./HomePhoto";
 
 interface OfferConfig {
   sku: "IHRAM-1" | "IHRAM-2" | "IHRAM-3";
   key: "single" | "twoPack" | "threePack";
   qty: number;
-  price: number; // bundle total in EUR (excl. shipping)
-  saving?: number; // shipping-inclusive saving vs. buying singly
-  badgeTone?: "teal" | "gold";
-  highlighted?: boolean;
-  mobileOrder: number; // CSS order at <768px
 }
 
-// Pricing locked site-wide: €19 / €37 / €55 + flat €9 shipping.
-// AUTHORITATIVE SOURCE for prices/savings is `src/lib/bundles.ts` (BUNDLES).
-// The savings below mirror that file - update both together if pricing changes.
-// Single (1 set) = €19 + €9 = €28 total.
-// 2-Pack vs buying 2 singles: €46 vs €56  -> save €10 (one shipping fee).
-// 3-Pack vs buying 3 singles: €64 vs €84  -> save €20 (one shipping fee).
+// Prices are read from the module the checkout function charges from
+// (`getBundlePrice`), so this list, the cart and Stripe cannot disagree.
 const OFFERS: OfferConfig[] = [
-  { sku: "IHRAM-1", key: "single", qty: 1, price: 19, mobileOrder: 2 },
-  {
-    sku: "IHRAM-2",
-    key: "twoPack",
-    qty: 2,
-    price: 37,
-    saving: 10,
-    badgeTone: "teal",
-    highlighted: true,
-    mobileOrder: 1,
-  },
-  {
-    sku: "IHRAM-3",
-    key: "threePack",
-    qty: 3,
-    price: 55,
-    saving: 20,
-    badgeTone: "gold",
-    mobileOrder: 3,
-  },
+  { sku: "IHRAM-1", key: "single", qty: 1 },
+  { sku: "IHRAM-2", key: "twoPack", qty: 2 },
+  { sku: "IHRAM-3", key: "threePack", qty: 3 },
 ];
 
+// Shipping, delivery, returns and payment, said once, where people decide.
+// These replaced the hero microcopy, the trust row under the testimonial, the
+// icon cards and the shipping strip, which said the same things four times.
+const FACTS = ["delivery", "shipping", "returns", "payment"] as const;
+
+// Warm Gold: once a page, only on a price (brand manual p. 8).
+const GOLD = "#EEBD2B";
+const HAIRLINE = "border-[#D3E1E1]";
+
+/**
+ * The homepage's one place to buy: Single Set, 2-Pack or 3-Pack, then one
+ * button. Replaced the Nov 2026 pricing-table cards (badges, "Save €10").
+ */
 export const ProductOffersBlock = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { addItem } = useCart();
+  // The French copy writes "19 €"; the other languages write "€19".
+  const formatPrice = (amount: number) =>
+    i18n.language?.startsWith("fr") ? `${amount} €` : `€${amount}`;
   const { toast } = useToast();
   // Was a hard-coded /sv and /no ternary, so French visitors who picked an
   // offer here were dropped onto the English shop.
   const localePrefix = useLocalePrefix();
+  const [selectedSku, setSelectedSku] = useState<OfferConfig["sku"]>("IHRAM-1");
 
   // The catalogue id of the one product this block sells. The basket used to
   // carry the SKU ("IHRAM-2") instead, and the checkout function rejects an id
@@ -102,266 +95,92 @@ export const ProductOffersBlock = () => {
     navigate(`${localePrefix}/shop`);
   };
 
+  const selected = OFFERS.find((o) => o.sku === selectedSku) ?? OFFERS[0];
+
   return (
-    <section className="bg-white" style={{ paddingTop: 80, paddingBottom: 80 }}>
-      <div
-        className="mx-auto px-4 sm:px-6 lg:px-8"
-        style={{ maxWidth: 1200 }}
-      >
-        {/* Heading */}
-        <div className="text-center mb-10">
-          <h2
-            className="font-bold"
-            style={{
-              color: "#305050",
-              fontSize: "clamp(28px, 4vw, 36px)",
-              lineHeight: 1.2,
-            }}
-          >
-            {t("home.offers.title")}
-          </h2>
-          <p
-            className="mx-auto mt-3"
-            style={{
-              color: "#6B7280",
-              fontSize: 16,
-              lineHeight: 1.5,
-              maxWidth: 540,
-            }}
-          >
-            {t("home.offers.subtitle")}
-          </p>
-        </div>
+    <section id="sets" className="scroll-mt-20 bg-secondary">
+      <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 lg:py-32">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-6">
+            <h2 className="text-[2rem] font-normal leading-[1.2] tracking-[-0.01em] text-foreground lg:text-[2.5rem]">
+              {t("home.offers.title")}
+            </h2>
 
-        {/* Cards grid */}
-        <div className="offers-grid">
-          {OFFERS.map((offer) => {
-            const isHighlighted = !!offer.highlighted;
-            const title = t(`home.offers.${offer.key}.title`);
-            const description = t(`home.offers.${offer.key}.description`);
-            const ctaLabel = t(`home.offers.${offer.key}.cta`);
-            const badgeLabel = offer.badgeTone
-              ? t(`home.offers.${offer.key}.badge`)
-              : null;
-            return (
-              <div
-                key={offer.sku}
-                role="group"
-                aria-label={t("home.offers.ariaLabel", {
-                  title,
-                  price: offer.price,
-                  description,
+            <fieldset className="mt-10">
+              <legend className="sr-only">{t("home.offers.legend")}</legend>
+              <div className={cn("border-t", HAIRLINE)}>
+                {OFFERS.map((offer) => {
+                  const isSelected = offer.sku === selectedSku;
+                  return (
+                    <label
+                      key={offer.sku}
+                      className={cn("flex cursor-pointer items-start gap-4 border-b py-5", HAIRLINE)}
+                    >
+                      <input
+                        type="radio"
+                        name="ihram-set"
+                        value={offer.sku}
+                        checked={isSelected}
+                        onChange={() => setSelectedSku(offer.sku)}
+                        className="peer sr-only"
+                      />
+                      <span
+                        aria-hidden="true"
+                        className={cn(
+                          "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-[1.5px] transition-colors",
+                          "peer-focus-visible:ring-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-secondary",
+                          isSelected ? "border-primary" : "border-foreground/40",
+                        )}
+                      >
+                        {isSelected && <span className="h-2.5 w-2.5 rounded-full bg-primary" />}
+                      </span>
+                      <span className="flex-1">
+                        <span className="block font-bold text-foreground">
+                          {t(`home.offers.${offer.key}.title`)}
+                        </span>
+                        <span className="mt-1 block text-[0.9375rem] leading-[1.6] text-foreground">
+                          {t(`home.offers.${offer.key}.description`)}
+                        </span>
+                      </span>
+                      <span
+                        className="shrink-0 rounded px-2 py-0.5 text-lg font-bold leading-snug text-foreground"
+                        style={{ backgroundColor: isSelected ? GOLD : "transparent" }}
+                      >
+                        {formatPrice(getBundlePrice(offer.qty))}
+                      </span>
+                    </label>
+                  );
                 })}
-                onClick={() => handleSelect(offer)}
-                className={`offer-card ${isHighlighted ? "offer-card--highlighted" : ""}`}
-                style={{ order: offer.mobileOrder }}
-              >
-                {badgeLabel && (
-                  <span
-                    aria-hidden="true"
-                    className="offer-badge"
-                    style={{
-                      background:
-                        offer.badgeTone === "teal" ? "#287777" : "#EEBD2B",
-                      color: offer.badgeTone === "teal" ? "#FFFFFF" : "#1A1A1A",
-                    }}
-                  >
-                    {badgeLabel}
-                  </span>
-                )}
-
-                <h3
-                  className="text-center"
-                  style={{
-                    color: "#305050",
-                    fontSize: 24,
-                    fontWeight: 600,
-                    marginBottom: 12,
-                  }}
-                >
-                  {title}
-                </h3>
-
-                <div className="text-center" style={{ marginBottom: 4 }}>
-                  <span
-                    style={{
-                      color: "#305050",
-                      fontSize: 48,
-                      fontWeight: 700,
-                      lineHeight: 1,
-                    }}
-                  >
-                    €{offer.price}
-                  </span>
-                  <span
-                    style={{
-                      color: "#6B7280",
-                      fontSize: 14,
-                      fontWeight: 400,
-                      marginLeft: 4,
-                    }}
-                  >
-                    {" "}
-                    {t("home.offers.shippingSuffix")}
-                  </span>
-                </div>
-
-                {/* Savings line - reserves vertical space on Single Set so cards align */}
-                <div
-                  className="text-center"
-                  style={{ minHeight: 44, marginBottom: 12 }}
-                >
-                  {offer.saving ? (
-                    <>
-                      <div
-                        style={{
-                          color: "#287777",
-                          fontSize: 16,
-                          fontWeight: 700,
-                        }}
-                      >
-                        {t("home.offers.saveAmount", { amount: offer.saving })}
-                      </div>
-                      <div
-                        style={{
-                          color: "#6B7280",
-                          fontSize: 13,
-                          fontWeight: 400,
-                          marginTop: 2,
-                        }}
-                      >
-                        {t("home.offers.oneShippingFee")}
-                      </div>
-                    </>
-                  ) : null}
-                </div>
-
-                <p
-                  className="text-center"
-                  style={{
-                    color: "#4B5563",
-                    fontSize: 15,
-                    lineHeight: 1.5,
-                    marginBottom: 24,
-                  }}
-                >
-                  {description}
-                </p>
-
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleSelect(offer);
-                  }}
-                  className="offer-cta"
-                >
-                  {ctaLabel}
-                </button>
               </div>
-            );
-          })}
+            </fieldset>
+
+            <button
+              type="button"
+              onClick={() => handleSelect(selected)}
+              className="mt-8 h-12 w-full rounded-md bg-primary px-8 text-[0.9375rem] font-bold text-primary-foreground transition-colors hover:bg-[#205A5A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-secondary"
+            >
+              {t("home.offers.addToCart")}
+            </button>
+          </div>
+
+          <div className="lg:col-span-5 lg:col-start-8">
+            <HomePhoto name="sets" frameClassName="aspect-[4/3] lg:aspect-[4/5]" />
+          </div>
         </div>
 
-        {/* Footer line */}
-        <p
-          className="text-center mx-auto"
-          style={{
-            color: "#6B7280",
-            fontSize: 14,
-            lineHeight: 1.5,
-            maxWidth: 600,
-            marginTop: 32,
-          }}
-        >
-          {t("home.offers.footerLine")}
-        </p>
+        <dl className={cn("mt-16 grid grid-cols-1 gap-8 border-t pt-10 sm:grid-cols-2 lg:mt-24 lg:grid-cols-4", HAIRLINE)}>
+          {FACTS.map((key) => (
+            <div key={key}>
+              <dt className="text-sm font-bold text-foreground">
+                {t(`home.offers.facts.${key}.label`)}
+              </dt>
+              <dd className="mt-2 text-[0.9375rem] leading-[1.6] text-foreground">
+                {t(`home.offers.facts.${key}.text`)}
+              </dd>
+            </div>
+          ))}
+        </dl>
       </div>
-
-      {/* Scoped styles - keeps spec hex values exact and handles responsive + hover/focus */}
-      <style>{`
-        .offers-grid {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 24px;
-        }
-        @media (min-width: 768px) {
-          .offers-grid {
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-          }
-        }
-        @media (min-width: 1024px) {
-          .offers-grid {
-            gap: 24px;
-          }
-        }
-        /* On desktop, neutralize the mobile CSS order so cards render Single | 2-Pack | 3-Pack */
-        @media (min-width: 768px) {
-          .offers-grid > .offer-card { order: 0 !important; }
-        }
-
-        .offer-card {
-          position: relative;
-          background: #FFFFFF;
-          border: 1px solid #E5E7EB;
-          border-radius: 16px;
-          padding: 32px;
-          cursor: pointer;
-          transition: transform 200ms ease, box-shadow 200ms ease;
-          display: flex;
-          flex-direction: column;
-        }
-        @media (min-width: 768px) and (max-width: 1023px) {
-          .offer-card { padding: 24px; }
-        }
-        .offer-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
-        }
-        .offer-card--highlighted {
-          border: 2px solid #287777;
-          box-shadow: 0 8px 24px rgba(40, 119, 119, 0.12);
-        }
-        .offer-card--highlighted:hover {
-          transform: none;
-          box-shadow: 0 8px 24px rgba(40, 119, 119, 0.12);
-        }
-
-        .offer-badge {
-          position: absolute;
-          top: -14px;
-          left: 50%;
-          transform: translateX(-50%);
-          font-size: 12px;
-          font-weight: 600;
-          padding: 6px 14px;
-          border-radius: 999px;
-          white-space: nowrap;
-          letter-spacing: 0.01em;
-        }
-
-        .offer-cta {
-          width: 100%;
-          height: 48px;
-          background: #287777;
-          color: #FFFFFF;
-          font-size: 16px;
-          font-weight: 600;
-          border: none;
-          border-radius: 8px;
-          cursor: pointer;
-          transition: background-color 200ms ease;
-          margin-top: auto;
-        }
-        .offer-cta:hover {
-          background: #205A5A;
-        }
-        .offer-cta:focus-visible {
-          outline: 3px solid #EEBD2B;
-          outline-offset: 2px;
-        }
-      `}</style>
     </section>
   );
 };

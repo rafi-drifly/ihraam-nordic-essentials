@@ -532,31 +532,36 @@
   "home": {
     "hero": {
       "title": "Ihram pour l'Omra et le Hajj",
-      "highlight": "À partir de 19 €, expédié depuis la Suède",
-      "description": "Ihram en microfibre légère pour les pèlerins de Suède, des pays nordiques et de l'UE. Guide de préparation Hajj et Omra offert avec chaque commande.",
-      "ctaShop": "Acheter un Ihram - à partir de 19 €",
+      "description": "Deux pièces blanches en microfibre légère, l'Izar et le Rida, expédiées depuis la Suède aux pèlerins des pays nordiques et de l'UE.",
       "ctaPrepPack": "Découvrir les guides Omra et Hajj",
-      "microcopy": "9 € de livraison en Suède  ·  Retrait gratuit à Uppsala et Stockholm  ·  Retours sous 14 jours",
-      "imageAlt": "Tissu Ihram blanc immaculé, posé à plat"
+      "imageAlt": "Tissu Ihram blanc immaculé, posé à plat",
+      "headline": "Pour le moment où vous entrez en Ihram",
+      "cta": "Choisir votre ensemble",
+      "talbiyahTransliteration": "Labbayk Allahumma labbayk",
+      "talbiyahMeaning": "Me voici, ô Allah, me voici"
     },
-    "benefits": {
-      "title": "Pourquoi Pure Ihram",
-      "subtitle": "Simple, honnête, et pensé pour les besoins du pèlerin.",
-      "climate": {
-        "title": "Conçu pour le climat",
-        "description": "Une microfibre légère et respirante qui reste fraîche et sèche vite, pensée pour la chaleur de La Mecque."
-      },
-      "shipsFromSweden": {
-        "title": "Expédié depuis la Suède",
-        "description": "3 à 7 jours ouvrés en Suède, 7 à 14 dans le reste de l'UE. Aucune mauvaise surprise en douane."
-      },
-      "qualityChecked": {
-        "title": "Chaque ensemble contrôlé",
-        "description": "Chaque ensemble est inspecté avant de quitter notre entrepôt. En cas de défaut, nous le remplaçons."
-      },
-      "builtForEU": {
-        "title": "Pensé pour les pèlerins européens",
-        "description": "Fondé en Suède pour servir les musulmans des pays nordiques et de l'UE : des prix justes et un seul frais de livraison."
+    "set": {
+      "eyebrow": "L'ensemble",
+      "title": "Deux pièces non cousues",
+      "body": "L'Izar se drape autour de la taille et le Rida sur les épaules. Aucune des deux pièces n'est cousue en vêtement. Seuls les bords sont ourlés.",
+      "imageAlt": "Le tissage blanc de l'Ihram, en gros plan",
+      "specs": {
+        "material": {
+          "label": "Matière",
+          "value": "100 % microfibre polyester. Séchage rapide, antimicrobien, hypoallergénique."
+        },
+        "size": {
+          "label": "Dimensions",
+          "value": "115 × 230 cm par pièce, 1400 g l'ensemble."
+        },
+        "washing": {
+          "label": "Lavage",
+          "value": "Lavez-le une fois à la maison avant le départ."
+        },
+        "included": {
+          "label": "Avec chaque commande",
+          "value": "Le guide de préparation Hajj et Omra de Pure Ihram, offert : check-list, duas, guide de bagage."
+        }
       }
     },
     "guides": {
@@ -581,8 +586,8 @@
     },
     "finalCta": {
       "title": "Prêt pour le Hajj et l'Omra ?",
-      "description": "Recevez votre Ihram en quelques jours. À partir de 19 €. Expédié depuis la Suède.",
-      "button": "Acheter un Ihram - à partir de 19 €"
+      "description": "Un ensemble simple, un lot de 2 ou un lot de 3, expédiés depuis la Suède.",
+      "button": "Choisir votre ensemble"
     },
     "faq": {
       "title": "Questions fréquentes",
@@ -622,12 +627,7 @@
       "quote": "Une très bonne expérience. La qualité a répondu à mes attentes, et je recommanderais volontiers Pure Ihram à toute personne qui prépare son Hajj ou son Omra.",
       "author": "Mohsin Saleemi",
       "location": "Västerås, Suède",
-      "verified": "Achat vérifié",
-      "trust": {
-        "shipping": "Expédié depuis la Suède · 3 à 7 jours en Suède",
-        "secure": "Paiement sécurisé par Stripe : Apple Pay, Klarna",
-        "returns": "Retours sous 14 jours"
-      }
+      "verified": "Achat vérifié"
     },
     "howToWear": {
       "title": "Premier Hajj ou première Omra ? Voici comment porter l'Ihram.",
@@ -635,38 +635,42 @@
       "cta": "Lire le guide complet",
       "imageAlt": "Guide étape par étape pour porter l'Ihram"
     },
-    "shipping": {
-      "delivery": "Suède 3 à 7 jours · Pays nordiques et UE 7 à 14 jours",
-      "express": "9 € de livraison en Suède, un seul frais par commande",
-      "returns": "Retours sous 14 jours pour les ensembles non portés",
-      "secure": "Paiement sécurisé par Stripe : Apple Pay, Google Pay, Klarna"
-    },
     "offers": {
-      "title": "Choisissez votre Ihram",
-      "subtitle": "Un ensemble pour l'Omra, un lot pour le Hajj. 9 € de livraison en Suède.",
-      "shippingSuffix": "+ 9 € en Suède",
-      "saveAmount": "Économisez {{amount}} €",
-      "oneShippingFee": "Un seul frais de livraison pour tous les ensembles",
-      "footerLine": "Offert avec chaque commande : le guide de préparation Hajj et Omra de Pure Ihram, avec check-list imprimable, liste de duas et guide de bagage.",
-      "ariaLabel": "{{title}}, {{price}} euros plus 9 € de livraison en Suède. {{description}}",
+      "title": "Choisissez votre ensemble",
       "addedToCart": "Ajouté au panier",
       "addedToCartDescription": "{{title}} ajouté. Vérifiez votre panier à la page suivante.",
       "single": {
         "title": "Ensemble simple",
-        "description": "Un ensemble complet (Izar + Rida). Idéal pour l'Omra ou pour un premier achat.",
-        "cta": "Acheter"
+        "description": "Un ensemble complet (Izar + Rida). Idéal pour l'Omra ou pour un premier achat."
       },
       "twoPack": {
         "title": "Lot de 2",
-        "description": "La plupart des pèlerins portent 2 Ihrams pendant le Hajj : un pour le voyage, un propre pour les rites.",
-        "cta": "Acheter le lot de 2",
-        "badge": "Le plus choisi"
+        "description": "La plupart des pèlerins portent 2 Ihrams pendant le Hajj : un pour le voyage, un propre pour les rites."
       },
       "threePack": {
         "title": "Lot de 3",
-        "description": "Pour les familles, les précommandes de mosquées, ou pour avoir un ensemble de rechange.",
-        "cta": "Acheter le lot de 3",
-        "badge": "Meilleur rapport qualité-prix"
+        "description": "Pour les familles, les précommandes de mosquées, ou pour avoir un ensemble de rechange."
+      },
+      "legend": "Combien d'ensembles",
+      "addToCart": "Ajouter au panier",
+      "imageAlt": "Le tissage blanc en microfibre, en gros plan",
+      "facts": {
+        "delivery": {
+          "label": "Livraison",
+          "text": "Expédié depuis la Suède. Suède en 3 à 7 jours ouvrés, pays nordiques et UE en 7 à 14."
+        },
+        "shipping": {
+          "label": "Frais de port",
+          "text": "9 € en Suède, un seul frais par commande. Retrait gratuit à Uppsala et Stockholm."
+        },
+        "returns": {
+          "label": "Retours",
+          "text": "Les ensembles non portés peuvent être retournés sous 14 jours."
+        },
+        "payment": {
+          "label": "Paiement",
+          "text": "Paiement via Stripe : carte, Apple Pay, Google Pay, Klarna."
+        }
       }
     },
     "prepPack": {

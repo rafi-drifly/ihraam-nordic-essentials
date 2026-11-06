@@ -1,50 +1,23 @@
-import { Button } from "@/components/ui/button";
 import { useLocalePrefix } from "@/i18n/useLocale";
-import { Card, CardContent } from "@/components/ui/card";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { ArrowRight, Wind, Truck, ShieldCheck, Heart } from "lucide-react";
-import { trackEvent } from "@/lib/analytics";
-import ihraamProduct from "@/assets/hero-product.avif";
+import { ArrowRight } from "lucide-react";
 import spiritualMeaning from "@/assets/blog/spiritual-meaning.png";
 import howToWear from "@/assets/blog/how-to-wear-ihram.png";
 import sunnahActs from "@/assets/blog/sunnah-acts.png";
 import SEOHead from "@/components/SEOHead";
+import { HomeHero } from "@/components/home/HomeHero";
+import { TheSet } from "@/components/home/TheSet";
 import { TestimonialBlock } from "@/components/home/TestimonialBlock";
 import { ProductOffersBlock } from "@/components/home/ProductOffersBlock";
 import { HajjPrepPackForm } from "@/components/home/HajjPrepPackForm";
 import { HowToWearTeaser } from "@/components/home/HowToWearTeaser";
-import { ShippingReassuranceStrip } from "@/components/home/ShippingReassuranceStrip";
 import { HomepageFAQ, useFaqItems } from "@/components/home/HomepageFAQ";
 
 const Home = () => {
-  const location = useLocation();
   const { t, i18n } = useTranslation();
   const lang = (['sv', 'no'].includes(i18n.language) ? i18n.language : 'en') as 'en' | 'sv' | 'no';
   const localePrefix = useLocalePrefix();
-
-  const benefits = [
-    {
-      icon: <Wind className="h-6 w-6 text-primary" />,
-      title: t("home.benefits.climate.title"),
-      description: t("home.benefits.climate.description"),
-    },
-    {
-      icon: <Truck className="h-6 w-6 text-primary" />,
-      title: t("home.benefits.shipsFromSweden.title"),
-      description: t("home.benefits.shipsFromSweden.description"),
-    },
-    {
-      icon: <ShieldCheck className="h-6 w-6 text-primary" />,
-      title: t("home.benefits.qualityChecked.title"),
-      description: t("home.benefits.qualityChecked.description"),
-    },
-    {
-      icon: <Heart className="h-6 w-6 text-primary" />,
-      title: t("home.benefits.builtForEU.title"),
-      description: t("home.benefits.builtForEU.description"),
-    },
-  ];
 
   const blogArticles = [
     {
@@ -122,165 +95,92 @@ const Home = () => {
     <div>
       <SEOHead jsonLd={[organizationSchema, productSchema, faqSchema]} />
 
-      {/* 1. Hero Section */}
-      <section className="bg-muted py-14 lg:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="animate-fade-in">
-              <h1 className="text-4xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
-                {t("home.hero.title")}
-                <span className="block text-primary text-3xl lg:text-5xl mt-2">
-                  {t("home.hero.highlight")}
-                </span>
-              </h1>
-              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                {t("home.hero.description")}
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
-                <Button asChild size="lg" className="bg-primary hover:bg-primary/90 transition-colors">
-                  <Link to={`${localePrefix}/shop`}>{t("home.hero.ctaShop")}</Link>
-                </Button>
-                <Link
-                  to={`${localePrefix}/blog`}
-                  onClick={() => {
-                    trackEvent("hero_guides_cta_clicked", {
-                      location: "hero",
-                      destination: "/blog",
-                    });
-                  }}
-                  className="text-sm font-normal text-primary hover:text-primary/80 inline-flex items-center gap-1"
-                >
-                  {t("home.hero.ctaPrepPack")} <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
-              <p className="mt-4 text-sm text-muted-foreground">
-                {t("home.hero.microcopy")}
-              </p>
-            </div>
+      {/* 1. What the cloth is for, and the one way in to buying it */}
+      <HomeHero />
 
-            <div className="animate-slide-up">
-              <img
-                src={ihraamProduct}
-                alt={t("home.hero.imageAlt")}
-                className="rounded-2xl shadow-lg w-full"
-                width={1200}
-                height={1200}
-                fetchPriority="high"
-                decoding="async"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* 2. What the set is: two pieces, the verified specs */}
+      <TheSet />
 
-      {/* 2. Social proof */}
+      {/* 3. One buyer's words */}
       <TestimonialBlock />
 
-      {/* 3. Product offers */}
+      {/* 4. Choose a set: the price, said once, and shipping/returns beside it */}
       <ProductOffersBlock />
 
-      {/* 4. Why Pure Ihram (4 value props) */}
-      <section className="py-14 bg-muted">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-              {t("home.benefits.title")}
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              {t("home.benefits.subtitle")}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {benefits.map((benefit, index) => (
-              <Card key={index} className="border border-border shadow-sm hover:shadow-md transition-shadow bg-background">
-                <CardContent className="p-6 text-center">
-                  <div className="flex justify-center mb-4">{benefit.icon}</div>
-                  <h3 className="font-bold text-foreground mb-2">{benefit.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {benefit.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 5. Lead magnet */}
-      <HajjPrepPackForm />
-
-      {/* 6. How to wear Ihram teaser */}
+      {/* 5. How to wear Ihram */}
       <HowToWearTeaser />
 
-      {/* 7. Shipping & returns reassurance */}
-      <ShippingReassuranceStrip />
+      {/* 6. Lead magnet */}
+      <HajjPrepPackForm />
 
-      {/* 8. Featured guides */}
-      <section className="py-14 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
+      {/* 7. Featured guides */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 lg:py-32">
+          <div className="max-w-2xl">
+            <h2 className="text-[2rem] font-normal leading-[1.2] tracking-[-0.01em] text-foreground lg:text-[2.5rem]">
               {t("home.guides.title")}
             </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            <p className="mt-4 text-lg leading-[1.6] text-muted-foreground">
               {t("home.guides.subtitle")}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-            {blogArticles.map((article, index) => (
-              <Card key={index} className="group overflow-hidden border border-border shadow-sm hover:shadow-md transition-all duration-300 rounded-2xl">
-                <div className="overflow-hidden">
-                  <img
-                    src={article.image}
-                    alt={article.title}
-                    className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="text-lg font-bold text-foreground mb-3 leading-tight">
-                    {article.title}
-                  </h3>
-                  <p className="text-muted-foreground mb-4 text-sm leading-relaxed line-clamp-3">
-                    {article.description}
-                  </p>
-                  <Link
-                    to={article.link}
-                    aria-label={`${t("home.guides.readMore")}: ${article.title}`}
-                    className="inline-flex items-center gap-2 text-primary font-bold text-sm hover:gap-3 transition-all"
-                  >
-                    <span>{t("home.guides.readMore")}: {article.title}</span>
-                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                  </Link>
-                </CardContent>
-              </Card>
+          <div className="mt-12 grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-8">
+            {blogArticles.map((article) => (
+              <article key={article.link} className="group">
+                <Link to={article.link} tabIndex={-1} aria-hidden="true">
+                  <div className="aspect-[4/3] overflow-hidden rounded-lg bg-secondary">
+                    <img
+                      src={article.image}
+                      alt=""
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                      loading="lazy"
+                    />
+                  </div>
+                </Link>
+                <h3 className="mt-6 text-lg font-bold leading-snug text-foreground">
+                  {article.title}
+                </h3>
+                <p className="mt-2 line-clamp-3 text-[0.9375rem] leading-[1.6] text-foreground">
+                  {article.description}
+                </p>
+                <Link
+                  to={article.link}
+                  aria-label={`${t("home.guides.readMore")}: ${article.title}`}
+                  className="mt-4 inline-flex items-center gap-2 text-[0.9375rem] font-bold text-primary transition-colors hover:text-[#205A5A]"
+                >
+                  {t("home.guides.readMore")}
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+              </article>
             ))}
           </div>
 
-          <div className="text-center">
-            <Button asChild variant="outline" size="lg" className="group">
-              <Link to={`${localePrefix}/blog`} className="inline-flex items-center gap-2">
-                {t("home.guides.viewAll")}
-                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </Button>
+          <div className="mt-14">
+            <Link
+              to={`${localePrefix}/blog`}
+              className="group inline-flex items-center gap-2 text-[0.9375rem] font-bold text-primary transition-colors hover:text-[#205A5A]"
+            >
+              {t("home.guides.viewAll")}
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* 9. FAQ */}
-      <HomepageFAQ />
+      {/* 8. FAQ */}
+      <div className="border-t border-[#D3E1E1]">
+        <HomepageFAQ />
+      </div>
 
-      {/* 9b. Resources / quick links — boosts crawl depth and internal linking */}
-      <section aria-labelledby="resources-heading" className="py-10 bg-background border-t border-border">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 id="resources-heading" className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-4">
+      {/* 8b. Resources / quick links: crawl depth and internal linking */}
+      <section aria-labelledby="resources-heading" className="border-t border-[#D3E1E1] bg-white">
+        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+          <h2 id="resources-heading" className="text-sm font-bold text-foreground">
             {t('home.resources.title', { defaultValue: 'Explore Pure Ihram' })}
           </h2>
           <nav aria-label={t('home.resources.title', { defaultValue: 'Explore Pure Ihram' })}>
-            <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
+            <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-[0.9375rem]">
               <li><Link to={`${localePrefix}/shop`} className="text-foreground hover:text-primary transition-colors">{t('footer.links.shop')}</Link></li>
               <li><Link to={`${localePrefix}/shipping`} className="text-foreground hover:text-primary transition-colors">{t('footer.links.shipping', { defaultValue: 'Shipping & Delivery' })}</Link></li>
               <li><Link to={`${localePrefix}/returns`} className="text-foreground hover:text-primary transition-colors">{t('footer.links.returns')}</Link></li>
@@ -295,18 +195,21 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 10. Final CTA */}
-      <section className="py-14 bg-muted">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
+      {/* 9. Closing line, back to the one place to buy */}
+      <section className="bg-secondary">
+        <div className="mx-auto max-w-3xl px-4 py-20 text-center sm:px-6 lg:px-8 lg:py-28">
+          <h2 className="text-[2rem] font-normal leading-[1.2] tracking-[-0.01em] text-foreground lg:text-[2.5rem]">
             {t("home.finalCta.title")}
           </h2>
-          <p className="text-muted-foreground mb-6">
+          <p className="mt-4 text-lg leading-[1.6] text-foreground">
             {t("home.finalCta.description")}
           </p>
-          <Button asChild size="lg" className="bg-primary hover:bg-primary/90 transition-colors">
-            <Link to={`${localePrefix}/shop`}>{t("home.finalCta.button")}</Link>
-          </Button>
+          <a
+            href="#sets"
+            className="mt-10 inline-flex h-12 items-center justify-center rounded-md bg-primary px-8 text-[0.9375rem] font-bold text-primary-foreground transition-colors hover:bg-[#205A5A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-secondary"
+          >
+            {t("home.finalCta.button")}
+          </a>
         </div>
       </section>
     </div>

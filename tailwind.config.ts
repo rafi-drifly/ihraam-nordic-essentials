@@ -65,6 +65,8 @@ export default {
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
+        // Arabic text only, never Latin (brand manual p. 11).
+        arabic: ['Amiri', 'serif'],
       },
       borderRadius: {
         lg: "var(--radius)",

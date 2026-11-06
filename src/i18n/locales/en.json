@@ -44,31 +44,36 @@
   "home": {
     "hero": {
       "title": "Ihram for Umrah & Hajj",
-      "highlight": "From €19, shipped from Sweden",
-      "description": "Lightweight microfiber Ihram for pilgrims across Sweden, the Nordics and the EU. Free Hajj & Umrah Prep Pack with every order.",
-      "ctaShop": "Shop Ihram - From €19",
+      "description": "Two white pieces of lightweight microfiber, the Izaar and the Ridaa, shipped from Sweden to pilgrims across the Nordics and the EU.",
       "ctaPrepPack": "Explore Umrah & Hajj guides",
-      "microcopy": "€9 shipping within Sweden  ·  Free pickup in Uppsala & Stockholm  ·  14-day returns",
-      "imageAlt": "Pure white Ihram cloth laid flat"
+      "imageAlt": "Pure white Ihram cloth laid flat",
+      "headline": "For the moment you enter Ihram",
+      "cta": "Choose your set",
+      "talbiyahTransliteration": "Labbayk Allahumma labbayk",
+      "talbiyahMeaning": "Here I am, O Allah, here I am"
     },
-    "benefits": {
-      "title": "Why Pure Ihram",
-      "subtitle": "Simple, honest, and built around the pilgrim's needs.",
-      "climate": {
-        "title": "Built for the climate",
-        "description": "Lightweight, breathable microfiber that stays cool and dries fast - made for Makkah heat."
-      },
-      "shipsFromSweden": {
-        "title": "Ships from Sweden",
-        "description": "Sweden in 3-7 business days, rest of the EU in 7-14. No customs surprises."
-      },
-      "qualityChecked": {
-        "title": "Quality-checked every set",
-        "description": "Every set inspected before it leaves our warehouse. If something's wrong, we replace it."
-      },
-      "builtForEU": {
-        "title": "Built for European pilgrims",
-        "description": "Founded in Sweden to serve Muslims across the Nordics and EU - fair prices, one flat delivery fee."
+    "set": {
+      "eyebrow": "The set",
+      "title": "Two pieces, unstitched",
+      "body": "The Izaar wraps the waist and the Ridaa covers the shoulders. Neither piece is sewn into a garment. Only the edges are hemmed.",
+      "imageAlt": "The white Ihram weave, close up",
+      "specs": {
+        "material": {
+          "label": "Material",
+          "value": "100% microfiber polyester. Quick-dry, antimicrobial, hypoallergenic."
+        },
+        "size": {
+          "label": "Size",
+          "value": "115 × 230 cm a piece, 1400 g a set."
+        },
+        "washing": {
+          "label": "Washing",
+          "value": "Wash it once at home before you fly."
+        },
+        "included": {
+          "label": "With every order",
+          "value": "The Hajj & Umrah Prep Pack, free: checklist, duas, packing guide."
+        }
       }
     },
     "guides": {
@@ -93,8 +98,8 @@
     },
     "finalCta": {
       "title": "Ready for Hajj & Umrah?",
-      "description": "Get your Ihram delivered in days. From €19. Ships from Sweden.",
-      "button": "Shop Ihram - From €19"
+      "description": "A single set, a 2-pack or a 3-pack, shipped from Sweden.",
+      "button": "Choose your set"
     },
     "faq": {
       "title": "Frequently asked questions",
@@ -134,12 +139,7 @@
       "quote": "A really good experience. The quality met my expectations, and I'd happily recommend Pure Ihram to anyone preparing for Hajj or Umrah.",
       "author": "Mohsin Saleemi",
       "location": "Västerås, Sweden",
-      "verified": "Verified buyer",
-      "trust": {
-        "shipping": "Ships from Sweden · 3-7 days in Sweden",
-        "secure": "Stripe-secure: Apple Pay, Klarna",
-        "returns": "14-day returns"
-      }
+      "verified": "Verified buyer"
     },
     "howToWear": {
       "title": "First Hajj or Umrah? Here's how to wear Ihram.",
@@ -147,38 +147,42 @@
       "cta": "Read the full guide",
       "imageAlt": "Step-by-step guide to wearing Ihram"
     },
-    "shipping": {
-      "delivery": "Sweden 3-7 days · Nordics & EU 7-14 days",
-      "express": "€9 shipping within Sweden, one fee per order",
-      "returns": "14-day returns on unworn sets",
-      "secure": "Stripe-secure: Apple Pay, Google Pay, Klarna"
-    },
     "offers": {
-      "title": "Choose your Ihram",
-      "subtitle": "Single sets for Umrah, bundles for Hajj. €9 shipping within Sweden.",
-      "shippingSuffix": "+ €9 in Sweden",
-      "saveAmount": "Save €{{amount}}",
-      "oneShippingFee": "One shipping fee for all sets",
-      "footerLine": "Free with every order: Pure Ihram Hajj & Umrah Prep Pack - printable checklist, dua list, packing guide.",
-      "ariaLabel": "{{title}}, {{price}} euros plus €9 shipping within Sweden. {{description}}",
+      "title": "Choose your set",
       "addedToCart": "Added to cart",
       "addedToCartDescription": "{{title}} added. Review your cart on the next page.",
       "single": {
         "title": "Single Set",
-        "description": "One complete set (Izaar + Ridaa). Ideal for Umrah or first-time buyers.",
-        "cta": "Shop now"
+        "description": "One complete set (Izaar + Ridaa). Ideal for Umrah or first-time buyers."
       },
       "twoPack": {
         "title": "2-Pack",
-        "description": "Most pilgrims wear 2 Ihrams during Hajj - one for travel, one fresh.",
-        "cta": "Shop 2-Pack",
-        "badge": "Most Popular"
+        "description": "Most pilgrims wear 2 Ihrams during Hajj - one for travel, one fresh."
       },
       "threePack": {
         "title": "3-Pack",
-        "description": "For family groups, mosque pre-orders, or an extra spare set.",
-        "cta": "Shop 3-Pack",
-        "badge": "Best Value"
+        "description": "For family groups, mosque pre-orders, or an extra spare set."
+      },
+      "legend": "How many sets",
+      "addToCart": "Add to cart",
+      "imageAlt": "The white microfiber weave, close up",
+      "facts": {
+        "delivery": {
+          "label": "Delivery",
+          "text": "Ships from Sweden. Sweden in 3-7 business days, the Nordics and EU in 7-14."
+        },
+        "shipping": {
+          "label": "Shipping",
+          "text": "€9 within Sweden, one fee per order. Free pickup in Uppsala & Stockholm."
+        },
+        "returns": {
+          "label": "Returns",
+          "text": "Unworn sets can be returned within 14 days."
+        },
+        "payment": {
+          "label": "Payment",
+          "text": "Checkout through Stripe: cards, Apple Pay, Google Pay, Klarna."
+        }
       }
     },
     "prepPack": {

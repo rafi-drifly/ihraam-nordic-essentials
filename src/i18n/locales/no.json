@@ -44,31 +44,36 @@
   "home": {
     "hero": {
       "title": "Ihram for Umrah & Hajj",
-      "highlight": "Fra €19, sendes fra Sverige",
-      "description": "Lett mikrofiber-Ihram for pilegrimer i Sverige, Norden og hele EU. Gratis forberedelsespakke for Hajj og Umrah med hver bestilling.",
-      "ctaShop": "Handle Ihram - Fra €19",
+      "description": "To hvite deler i lett mikrofiber, Izaar og Ridaa, sendt fra Sverige til pilegrimer i Norden og EU.",
       "ctaPrepPack": "Utforsk Umrah- og Hajj-guider",
-      "microcopy": "Frakt bekreftes før vi sender  ·  Gratis henting i Uppsala & Stockholm  ·  14 dagers returrett",
-      "imageAlt": "Ren hvit Ihram-stoff lagt flatt"
+      "imageAlt": "Ren hvit Ihram-stoff lagt flatt",
+      "headline": "For øyeblikket du går inn i Ihram",
+      "cta": "Velg ditt sett",
+      "talbiyahTransliteration": "Labbayk Allahumma labbayk",
+      "talbiyahMeaning": "Her er jeg, o Allah, her er jeg"
     },
-    "benefits": {
-      "title": "Hvorfor Pure Ihram",
-      "subtitle": "Enkelt, ærlig og bygget rundt pilegrimens behov.",
-      "climate": {
-        "title": "Tilpasset klimaet",
-        "description": "Lett, pustende mikrofiber som holder seg kjølig og tørker raskt - laget for varmen i Mekka."
-      },
-      "shipsFromSweden": {
-        "title": "Sendes fra Sverige",
-        "description": "Sverige på 3-7 virkedager, resten av EU på 7-14. Ingen tolloverraskelser."
-      },
-      "qualityChecked": {
-        "title": "Kvalitetssjekket hvert sett",
-        "description": "Hvert sett inspiseres før det forlater lageret vårt. Er noe galt, erstatter vi det."
-      },
-      "builtForEU": {
-        "title": "Bygget for europeiske pilegrimer",
-        "description": "Grunnlagt i Sverige for å tjene muslimer i Norden og EU - rettferdige priser, ett fast fraktgebyr."
+    "set": {
+      "eyebrow": "Settet",
+      "title": "To deler, usydde",
+      "body": "Izaar vikles rundt livet og Ridaa legges over skuldrene. Ingen av delene er sydd til et plagg. Bare kantene er sydd.",
+      "imageAlt": "Den hvite Ihram-veven på nært hold",
+      "specs": {
+        "material": {
+          "label": "Materiale",
+          "value": "100 % mikrofiber (polyester). Hurtigtørkende, antimikrobiell, hypoallergen."
+        },
+        "size": {
+          "label": "Størrelse",
+          "value": "115 × 230 cm per del, 1400 g per sett."
+        },
+        "washing": {
+          "label": "Vask",
+          "value": "Vask den én gang hjemme før du reiser."
+        },
+        "included": {
+          "label": "Med hver bestilling",
+          "value": "Pure Ihrams forberedelsespakke for Hajj og Umrah, gratis: sjekkliste, dua-liste, pakkeguide."
+        }
       }
     },
     "guides": {
@@ -93,8 +98,8 @@
     },
     "finalCta": {
       "title": "Klar for Hajj & Umrah?",
-      "description": "Få din Ihram levert på få dager. Fra €19. Sendes fra Sverige.",
-      "button": "Handle Ihram - Fra €19"
+      "description": "Et enkelt sett, en 2-pack eller en 3-pack, sendt fra Sverige.",
+      "button": "Velg ditt sett"
     },
     "faq": {
       "title": "Ofte stilte spørsmål",
@@ -134,12 +139,7 @@
       "quote": "En virkelig god opplevelse. Kvaliteten innfridde forventningene mine, og jeg anbefaler gjerne Pure Ihram til alle som forbereder seg til Hajj eller Umrah.",
       "author": "Mohsin Saleemi",
       "location": "Västerås, Sverige",
-      "verified": "Verifisert kjøper",
-      "trust": {
-        "shipping": "Sendes fra Sverige · 3-7 dager i Sverige",
-        "secure": "Stripe-sikker: Apple Pay, Klarna",
-        "returns": "14 dagers returrett"
-      }
+      "verified": "Verifisert kjøper"
     },
     "howToWear": {
       "title": "Første Hajj eller Umrah? Slik tar du på deg Ihram.",
@@ -147,38 +147,42 @@
       "cta": "Les hele guiden",
       "imageAlt": "Steg-for-steg-guide for å ta på seg Ihram"
     },
-    "shipping": {
-      "delivery": "Sverige 3-7 dager · Norden & EU 7-14 dager",
-      "express": "Ett fraktgebyr per bestilling",
-      "returns": "14 dagers returrett på ubrukte sett",
-      "secure": "Stripe-sikker: Apple Pay, Google Pay, Klarna"
-    },
     "offers": {
-      "title": "Velg din Ihram",
-      "subtitle": "Enkeltsett for Umrah, pakker for Hajj. Frakt til Norge bekreftes før vi sender.",
-      "shippingSuffix": "+ frakt",
-      "saveAmount": "Spar €{{amount}}",
-      "oneShippingFee": "Én fraktavgift for alle settene",
-      "footerLine": "Gratis med hver bestilling: Pure Ihrams forberedelsespakke for Hajj og Umrah - utskrivbar sjekkliste, dua-liste, pakkeguide.",
-      "ariaLabel": "{{title}}, {{price}} euro pluss frakt. {{description}}",
+      "title": "Velg ditt sett",
       "addedToCart": "Lagt til i handlekurv",
       "addedToCartDescription": "{{title}} ble lagt til. Se gjennom handlekurven på neste side.",
       "single": {
         "title": "Enkelt Sett",
-        "description": "Ett komplett sett (Izaar + Ridaa). Perfekt for Umrah eller førstegangskjøpere.",
-        "cta": "Handle nå"
+        "description": "Ett komplett sett (Izaar + Ridaa). Perfekt for Umrah eller førstegangskjøpere."
       },
       "twoPack": {
         "title": "2-Pack",
-        "description": "De fleste pilegrimer bruker 2 Ihram-sett under Hajj - ett til reisen, ett friskt.",
-        "cta": "Handle 2-Pack",
-        "badge": "Mest Populær"
+        "description": "De fleste pilegrimer bruker 2 Ihram-sett under Hajj - ett til reisen, ett friskt."
       },
       "threePack": {
         "title": "3-Pack",
-        "description": "For familier, moskeers forhåndsbestillinger eller et ekstra reservesett.",
-        "cta": "Handle 3-Pack",
-        "badge": "Beste Verdi"
+        "description": "For familier, moskeers forhåndsbestillinger eller et ekstra reservesett."
+      },
+      "legend": "Hvor mange sett",
+      "addToCart": "Legg i handlekurven",
+      "imageAlt": "Den hvite mikrofiberveven på nært hold",
+      "facts": {
+        "delivery": {
+          "label": "Levering",
+          "text": "Sendes fra Sverige. Sverige 3-7 virkedager, Norden og EU 7-14."
+        },
+        "shipping": {
+          "label": "Frakt",
+          "text": "Frakten bekreftes før vi sender, ett fraktgebyr per bestilling. Gratis henting i Uppsala & Stockholm."
+        },
+        "returns": {
+          "label": "Retur",
+          "text": "Ubrukte sett kan returneres innen 14 dager."
+        },
+        "payment": {
+          "label": "Betaling",
+          "text": "Kasse via Stripe: kort, Apple Pay, Google Pay, Klarna."
+        }
       }
     },
     "prepPack": {

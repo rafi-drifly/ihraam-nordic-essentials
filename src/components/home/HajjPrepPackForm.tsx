@@ -85,74 +85,60 @@ export const HajjPrepPackForm = () => {
   ];
 
   return (
-    <section id="hajj-prep-pack" className="py-14 bg-secondary/40 scroll-mt-20">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-background border border-border rounded-2xl p-6 lg:p-10 shadow-sm">
-          <div className="text-center mb-6">
-            <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-3">
-              {t("home.prepPack.title")}
-            </h2>
-            <p className="text-muted-foreground">
-              {t("home.prepPack.subtitle")}
-            </p>
+    <section id="hajj-prep-pack" className="scroll-mt-20 bg-secondary">
+      <div className="mx-auto max-w-2xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+        <h2 className="text-[2rem] font-normal leading-[1.2] tracking-[-0.01em] text-foreground lg:text-[2.5rem]">
+          {t("home.prepPack.title")}
+        </h2>
+        <p className="mt-6 text-lg leading-[1.6] text-foreground">
+          {t("home.prepPack.subtitle")}
+        </p>
+
+        <ul className="mt-8 space-y-2">
+          {bullets.map((item) => (
+            <li key={item} className="flex items-start gap-3 text-[0.9375rem] leading-[1.6] text-foreground">
+              <Check className="mt-1 h-4 w-4 flex-shrink-0 text-primary" aria-hidden="true" />
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+
+        {submitted ? (
+          <div className="mt-10 border-t border-[#D3E1E1] pt-6" role="status" aria-live="polite">
+            <p className="font-bold text-foreground">{t("home.prepPack.successTitle")}</p>
+            <p className="mt-1 text-[0.9375rem] text-foreground">{t("home.prepPack.successBody")}</p>
           </div>
-
-          <ul className="space-y-2 mb-6 max-w-md mx-auto">
-            {bullets.map((item) => (
-              <li key={item} className="flex items-start gap-2 text-sm text-foreground">
-                <Check className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" aria-hidden="true" />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-
-          {submitted ? (
-            <div
-              className="bg-primary/10 border border-primary/30 rounded-lg p-4 text-center"
-              role="status"
-              aria-live="polite"
-            >
-              <p className="text-foreground font-normal mb-1">
-                {t("home.prepPack.successTitle")}
-              </p>
-              <p className="text-sm text-muted-foreground">
-                {t("home.prepPack.successBody")}
-              </p>
+        ) : (
+          <form onSubmit={handleSubmit} className="mt-10">
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <Input
+                type="email"
+                required
+                placeholder={t("home.prepPack.emailPlaceholder")}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={submitting}
+                aria-label={t("home.prepPack.emailAriaLabel")}
+                className="h-12 flex-1 bg-white text-base"
+              />
+              <Button
+                type="submit"
+                disabled={submitting}
+                className="h-12 bg-primary px-8 text-[0.9375rem] font-bold hover:bg-[#205A5A]"
+              >
+                {submitting ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    {t("home.prepPack.submitting")}
+                  </>
+                ) : (
+                  t("home.prepPack.submit")
+                )}
+              </Button>
             </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="max-w-md mx-auto">
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Input
-                  type="email"
-                  required
-                  placeholder={t("home.prepPack.emailPlaceholder")}
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  disabled={submitting}
-                  aria-label={t("home.prepPack.emailAriaLabel")}
-                  className="flex-1"
-                />
-                <Button
-                  type="submit"
-                  disabled={submitting}
-                  className="bg-primary hover:bg-primary/90"
-                >
-                  {submitting ? (
-                    <>
-                      <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                      {t("home.prepPack.submitting")}
-                    </>
-                  ) : (
-                    t("home.prepPack.submit")
-                  )}
-                </Button>
-              </div>
-              <p className="text-xs text-muted-foreground mt-3 text-center">
-                {t("home.prepPack.disclaimer")}
-              </p>
-            </form>
-          )}
-        </div>
+            <p className="mt-3 text-sm text-foreground">{t("home.prepPack.disclaimer")}</p>
+          </form>
+        )}
       </div>
     </section>
   );

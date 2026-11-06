@@ -30,19 +30,20 @@ type Locale = "en" | "sv" | "no";
 
 // Distinctive substrings that prove the rendered text is actually in the
 // target language - not an English fallback, not a typo. Each one is taken
-// from a different homepage section so coverage spans hero, offers, prep
-// pack, benefits, FAQ, testimonial, how-to-wear teaser, shipping strip,
+// from a different homepage section so coverage spans hero, the set, offers
+// and their facts band, prep pack, FAQ, testimonial, how-to-wear teaser,
 // guides, and final CTA.
 const EXPECTATIONS: Record<Locale, Array<{ key: string; mustContain: string }>> = {
   en: [
     { key: "home.hero.title", mustContain: "Ihram for Umrah" },
-    { key: "home.hero.ctaShop", mustContain: "Shop Ihram" },
-    { key: "home.offers.title", mustContain: "Choose your Ihram" },
-    { key: "home.offers.twoPack.cta", mustContain: "Shop 2-Pack" },
-    { key: "home.offers.shippingSuffix", mustContain: "Sweden" },
+    { key: "home.hero.headline", mustContain: "enter Ihram" },
+    { key: "home.hero.cta", mustContain: "Choose your set" },
+    { key: "home.offers.title", mustContain: "Choose your set" },
+    { key: "home.offers.addToCart", mustContain: "Add to cart" },
+    { key: "home.offers.facts.shipping.text", mustContain: "Sweden" },
     { key: "home.prepPack.submit", mustContain: "Send the Guide" },
     { key: "home.prepPack.disclaimer", mustContain: "No spam" },
-    { key: "home.benefits.climate.title", mustContain: "Built for the climate" },
+    { key: "home.set.title", mustContain: "Two pieces" },
     { key: "home.faq.title", mustContain: "Frequently asked questions" },
     { key: "home.testimonial.verified", mustContain: "Verified buyer" },
     { key: "home.howToWear.cta", mustContain: "Read the full guide" },
@@ -51,13 +52,14 @@ const EXPECTATIONS: Record<Locale, Array<{ key: string; mustContain: string }>> 
   ],
   sv: [
     { key: "home.hero.title", mustContain: "Ihram för Umrah" },
-    { key: "home.hero.ctaShop", mustContain: "Handla Ihram" },
-    { key: "home.offers.title", mustContain: "Välj din Ihram" },
-    { key: "home.offers.twoPack.cta", mustContain: "Handla 2-Pack" },
-    { key: "home.offers.shippingSuffix", mustContain: "Sverige" },
+    { key: "home.hero.headline", mustContain: "träder in i Ihram" },
+    { key: "home.hero.cta", mustContain: "Välj ditt set" },
+    { key: "home.offers.title", mustContain: "Välj ditt set" },
+    { key: "home.offers.addToCart", mustContain: "Lägg i varukorgen" },
+    { key: "home.offers.facts.shipping.text", mustContain: "Sverige" },
     { key: "home.prepPack.submit", mustContain: "Skicka guiden" },
     { key: "home.prepPack.disclaimer", mustContain: "Ingen spam" },
-    { key: "home.benefits.climate.title", mustContain: "Anpassad för klimatet" },
+    { key: "home.set.title", mustContain: "Två delar" },
     { key: "home.faq.title", mustContain: "Vanliga frågor" },
     { key: "home.testimonial.verified", mustContain: "Verifierad köpare" },
     { key: "home.howToWear.cta", mustContain: "Läs hela guiden" },
@@ -66,13 +68,14 @@ const EXPECTATIONS: Record<Locale, Array<{ key: string; mustContain: string }>> 
   ],
   no: [
     { key: "home.hero.title", mustContain: "Ihram for Umrah" },
-    { key: "home.hero.ctaShop", mustContain: "Handle Ihram" },
-    { key: "home.offers.title", mustContain: "Velg din Ihram" },
-    { key: "home.offers.twoPack.cta", mustContain: "Handle 2-Pack" },
-    { key: "home.offers.shippingSuffix", mustContain: "frakt" },
+    { key: "home.hero.headline", mustContain: "går inn i Ihram" },
+    { key: "home.hero.cta", mustContain: "Velg ditt sett" },
+    { key: "home.offers.title", mustContain: "Velg ditt sett" },
+    { key: "home.offers.addToCart", mustContain: "Legg i handlekurven" },
+    { key: "home.offers.facts.shipping.text", mustContain: "frakt" },
     { key: "home.prepPack.submit", mustContain: "Send guiden" },
     { key: "home.prepPack.disclaimer", mustContain: "Ingen spam" },
-    { key: "home.benefits.climate.title", mustContain: "Tilpasset klimaet" },
+    { key: "home.set.title", mustContain: "To deler" },
     { key: "home.faq.title", mustContain: "Ofte stilte spørsmål" },
     { key: "home.testimonial.verified", mustContain: "Verifisert kjøper" },
     { key: "home.howToWear.cta", mustContain: "Les hele guiden" },
@@ -142,10 +145,10 @@ describe("Homepage localization", () => {
         // Pick a handful of strings that have very different English originals
         // and assert the translated value does NOT match the English source.
         const driftCandidates = [
-          "home.hero.ctaShop",
+          "home.hero.cta",
           "home.offers.title",
           "home.prepPack.submit",
-          "home.benefits.climate.title",
+          "home.set.title",
           "home.faq.title",
           "home.howToWear.cta",
           "home.finalCta.title",
