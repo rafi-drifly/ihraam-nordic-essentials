@@ -38,6 +38,19 @@ const NEVER = [
   "how fast",
   "hur snabbt",
   "hvor raskt",
+  // Not on the verified list; Rafi had them removed on 6 Nov 2026. A ruling
+  // on behalf of every school of fiqh is not ours to make, and "stays cool"
+  // and the cotton comparison were never confirmed.
+  "schools of fiqh",
+  "fiqh-skol",
+  "écoles de fiqh",
+  "stays cool",
+  "håller sig sval",
+  "holder seg kjølig",
+  "reste fraîche",
+  "cotton",
+  "bomull",
+  "coton",
 ];
 
 const strings = (node: unknown): string[] => {
