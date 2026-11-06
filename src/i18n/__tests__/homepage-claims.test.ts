@@ -28,6 +28,16 @@ const NEVER = [
   "retours gratuits",
   "miljövänlig",
   "miljøvennlig",
+  // Returns cost the buyer the postage on a change of mind (Returns page,
+  // manual p. 15), so they are never "no questions asked".
+  "no questions asked",
+  "inga frågor ställs",
+  "ingen spørsmål stilt",
+  "sans avoir à vous justifier",
+  // Delivery is 3-7 / 7-14 business days; never sold as fast.
+  "how fast",
+  "hur snabbt",
+  "hvor raskt",
 ];
 
 const strings = (node: unknown): string[] => {

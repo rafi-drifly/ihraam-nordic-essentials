@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ArrowRight } from "lucide-react";
 import spiritualMeaning from "@/assets/blog/spiritual-meaning.png";
-import howToWear from "@/assets/blog/how-to-wear-ihram.png";
+import howToWear from "@/assets/blog/how-to-wear-ihram.webp";
 import sunnahActs from "@/assets/blog/sunnah-acts.png";
 import SEOHead from "@/components/SEOHead";
 import { HomeHero } from "@/components/home/HomeHero";

@@ -1,7 +1,7 @@
 import heroCloth from "@/assets/hero-product.avif";
 import weaveDiamond from "@/assets/product/detail-8.avif";
 import weavePlain from "@/assets/product/detail-5.avif";
-import howToWear from "@/assets/blog/how-to-wear-ihram.png";
+import howToWear from "@/assets/blog/how-to-wear-ihram.webp";
 
 /**
  * The four photo places on the homepage, and the photo each one is waiting for.
@@ -58,8 +58,8 @@ export const HOME_PHOTOS = {
   },
   wear: {
     src: howToWear,
-    width: 1920,
-    height: 1920,
+    width: 1200,
+    height: 1200,
     awaiting: "The set worn, seen from behind, no face",
     altKey: "home.howToWear.imageAlt",
     fit: "contain",

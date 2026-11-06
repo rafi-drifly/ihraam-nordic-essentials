@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Clock, User, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import SEOHead from "@/components/SEOHead";
-import howToWearIhram from "@/assets/blog/how-to-wear-ihram.png";
+import howToWearIhram from "@/assets/blog/how-to-wear-ihram.webp";
 import sunnahActs from "@/assets/blog/sunnah-acts.png";
 import umrahChecklist from "@/assets/blog/umrah-checklist.png";
 import commonMistakes from "@/assets/blog/common-mistakes.png";
