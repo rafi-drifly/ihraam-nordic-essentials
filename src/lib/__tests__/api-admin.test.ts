@@ -1,6 +1,7 @@
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 import { clearAccessCertsCache, verifyAccessToken } from "../../../workers/api/src/access";
 import worker, { type Env } from "../../../workers/api/src/index";
+import { testD1 } from "@/test/d1";
 
 const TEAM = "pureihram.cloudflareaccess.com";
 const AUD = "aud-tag-123";
@@ -101,7 +102,10 @@ describe("verifyAccessToken", () => {
 
 function makeEnv(overrides: Partial<Env> = {}): Env {
   return {
-    DB: {} as Env["DB"],
+    // Orders and stock live in D1 since Nov 2026: a real SQLite with the migrations.
+    DB: testD1(),
+    STRIPE_SECRET_KEY: "sk_test_123",
+    RESEND_API_KEY: "re_test",
     ALLOWED_ORIGINS: "https://www.pureihram.com",
     KLAVIYO_COMPANY_ID: "TGazgN",
     KLAVIYO_PREP_PACK_LIST_ID: "",
@@ -130,10 +134,10 @@ function postJson(body: unknown): RequestInit {
 }
 
 describe("/api/admin gate", () => {
-  it("answers 503 until Access and the database key are configured", async () => {
+  it("answers 503 until Access is configured, and no longer needs Supabase", async () => {
     stubFetch();
     expect((await admin("me", {}, makeEnv({ ACCESS_AUD: "" }))).status).toBe(503);
-    expect((await admin("me", {}, makeEnv({ SUPABASE_SERVICE_ROLE_KEY: undefined }))).status).toBe(503);
+    expect((await admin("me", {}, makeEnv({ SUPABASE_SERVICE_ROLE_KEY: undefined }))).status).toBe(200);
   });
 
   it("refuses a request with no Access token", async () => {
@@ -156,60 +160,109 @@ describe("/api/admin gate", () => {
 });
 
 describe("/api/admin routes", () => {
-  it("lists only real orders, with the service role key", async () => {
-    const fetchMock = stubFetch(() => Response.json([{ id: ORDER_ID }]));
-    const response = await admin("orders");
-    expect(await response.json()).toEqual([{ id: ORDER_ID }]);
-    const [url, init] = fetchMock.mock.calls.find(([u]) => String(u).includes("/rest/v1/orders"))!;
-    expect(String(url)).toContain("stripe_payment_intent_id=not.is.null");
-    expect(new Headers(init!.headers).get("apikey")).toBe("service-role-key");
+  /** One order in D1, as the Stripe webhook saves it. */
+  function seedOrder(env: Env, overrides: Record<string, unknown> = {}) {
+    const row = {
+      id: ORDER_ID,
+      order_number: "ORD-1-ABCDEF12",
+      lookup_token: "6f1c2b8e-5d4a-4c3b-9a1e-2f3d4c5b6a7e",
+      status: "paid_pending_shipping_review",
+      guest_email: "karim@example.com",
+      shipping_name: "Karim",
+      shipping_country: "DE",
+      shipping_address: JSON.stringify({ name: "Karim", line1: "Hauptstr. 1", city: "Berlin", country: "DE" }),
+      total_amount: 28,
+      goods_amount: 19,
+      quantity: 1,
+      base_shipping_fee_eur: 9,
+      stripe_session_id: "cs_live_1",
+      ...overrides,
+    };
+    const cols = Object.keys(row);
+    (env.DB as ReturnType<typeof testD1>).raw
+      .prepare(`INSERT INTO orders (${cols.join(", ")}) VALUES (${cols.map(() => "?").join(", ")})`)
+      .run(...Object.values(row));
+  }
+  const raw = (env: Env) => (env.DB as ReturnType<typeof testD1>).raw;
+
+  it("lists orders from D1, newest first, with the address as an object", async () => {
+    stubFetch();
+    const env = makeEnv();
+    seedOrder(env);
+    const response = await admin("orders", {}, env);
+    const [order] = (await response.json()) as Array<Record<string, unknown>>;
+    expect(order).toMatchObject({ id: ORDER_ID, order_number: "ORD-1-ABCDEF12", shipping_address: { city: "Berlin" } });
   });
 
   it("only allows the two dispatch statuses", async () => {
-    const fetchMock = stubFetch(() => new Response(null, { status: 204 }));
-    expect((await admin(`orders/${ORDER_ID}/status`, postJson({ status: "refunded" }))).status).toBe(400);
-    expect((await admin(`orders/not-a-uuid/status`, postJson({ status: "shipped" }))).status).toBe(400);
+    stubFetch();
+    const env = makeEnv();
+    seedOrder(env);
+    expect((await admin(`orders/${ORDER_ID}/status`, postJson({ status: "refunded" }), env)).status).toBe(400);
+    expect((await admin(`orders/not-a-uuid/status`, postJson({ status: "shipped" }), env)).status).toBe(400);
+    expect((await admin(`orders/75f84889-aff6-4822-8667-000000000000/status`, postJson({ status: "shipped" }), env)).status).toBe(404);
 
-    expect((await admin(`orders/${ORDER_ID}/status`, postJson({ status: "shipped" }))).status).toBe(200);
-    const [url, init] = fetchMock.mock.calls.find(([u]) => String(u).includes("/rest/v1/orders"))!;
-    expect(String(url)).toBe(`${SUPABASE}/rest/v1/orders?id=eq.${ORDER_ID}`);
-    expect(JSON.parse(init!.body as string)).toEqual({ status: "shipped", extra_shipping_status: "not_required" });
+    expect((await admin(`orders/${ORDER_ID}/status`, postJson({ status: "shipped" }), env)).status).toBe(200);
+    expect(raw(env).prepare("SELECT status, extra_shipping_status FROM orders").get()).toEqual({
+      status: "shipped",
+      extra_shipping_status: "not_required",
+    });
   });
 
-  it("creates the extra-shipping link server-side and emails that link, not one from the browser", async () => {
+  it("creates the extra-delivery link with Stripe and emails that link, not one from the browser", async () => {
     const fetchMock = stubFetch((url) =>
-      url.endsWith("/create-extra-shipping-payment")
-        ? Response.json({ url: "https://checkout.stripe.com/c/pay/real" })
-        : Response.json({ success: true })
+      url.startsWith("https://api.stripe.com/v1/checkout/sessions")
+        ? Response.json({ id: "cs_extra", url: "https://checkout.stripe.com/c/pay/real" })
+        : Response.json({ id: "email_1" })
     );
+    const env = makeEnv();
+    seedOrder(env);
     const response = await admin(
       `orders/${ORDER_ID}/extra-shipping`,
-      postJson({ extraAmount: 6, paymentUrl: "https://phishing.example" })
+      postJson({ extraAmount: 6, paymentUrl: "https://phishing.example" }),
+      env
     );
     expect(response.status).toBe(200);
-    const emailCall = fetchMock.mock.calls.find(([u]) => String(u).endsWith("/send-shipping-adjustment-email"))!;
-    expect(JSON.parse(emailCall[1]!.body as string)).toEqual({
-      orderId: ORDER_ID,
-      paymentUrl: "https://checkout.stripe.com/c/pay/real",
-      extraAmount: 6,
+
+    const stripeCall = fetchMock.mock.calls.find(([u]) => String(u).startsWith("https://api.stripe.com"))!;
+    const form = decodeURIComponent(String(stripeCall[1]!.body));
+    expect(form).toContain("line_items[0][price_data][unit_amount]=600");
+    expect(form).toContain("metadata[payment_type]=extra_shipping");
+    expect(form).toContain(`metadata[order_id]=${ORDER_ID}`);
+
+    const emailCall = fetchMock.mock.calls.find(([u]) => String(u) === "https://api.resend.com/emails")!;
+    const email = JSON.parse(emailCall[1]!.body as string) as { to: string[]; html: string };
+    expect(email.to).toEqual(["karim@example.com"]);
+    expect(email.html).toContain("https://checkout.stripe.com/c/pay/real");
+    expect(email.html).not.toContain("phishing.example");
+    expect(raw(env).prepare("SELECT extra_shipping_fee_eur, extra_shipping_status FROM orders").get()).toEqual({
+      extra_shipping_fee_eur: 6,
+      extra_shipping_status: "requested",
     });
-    expect(new Headers(emailCall[1]!.headers).get("Authorization")).toBe("Bearer service-role-key");
   });
 
-  it("adjusts stock from the database's own count and refuses to go negative", async () => {
-    const fetchMock = stubFetch((url, init) =>
-      (init?.method ?? "GET") === "GET" ? Response.json([{ stock_on_hand: 3 }]) : new Response(null, { status: 201 })
-    );
-    expect((await admin("inventory/adjust", postJson({ delta: -5 }))).status).toBe(400);
+  it("starts the stock count with the first adjustment, then refuses to go negative", async () => {
+    stubFetch();
+    const env = makeEnv();
+    expect(await (await admin("inventory", {}, env)).json()).toEqual({ inventory: null, movements: [] });
+    // No count yet: a threshold has nothing to apply to, and stock cannot start below zero.
+    expect((await admin("inventory/threshold", postJson({ threshold: 10 }), env)).status).toBe(400);
+    expect((await admin("inventory/adjust", postJson({ delta: -1 }), env)).status).toBe(400);
 
-    const response = await admin("inventory/adjust", postJson({ delta: -2 }));
-    expect(await response.json()).toEqual({ ok: true, stock_on_hand: 1 });
-    const movement = fetchMock.mock.calls.find(([u]) => String(u).endsWith("/rest/v1/stock_movements"))!;
-    expect(JSON.parse(movement[1]!.body as string)).toEqual({
-      product_key: "ihram_set",
-      delta: -2,
-      reason: "manual_adjustment",
-    });
+    expect(await (await admin("inventory/adjust", postJson({ delta: 3 }), env)).json()).toEqual({ ok: true, stock_on_hand: 3 });
+    expect((await admin("inventory/adjust", postJson({ delta: -5 }), env)).status).toBe(400);
+    expect(await (await admin("inventory/adjust", postJson({ delta: -2 }), env)).json()).toEqual({ ok: true, stock_on_hand: 1 });
+    expect((await admin("inventory/threshold", postJson({ threshold: 10 }), env)).status).toBe(200);
+
+    const { inventory, movements } = (await (await admin("inventory", {}, env)).json()) as {
+      inventory: { stock_on_hand: number; low_stock_threshold: number };
+      movements: Array<{ delta: number; reason: string }>;
+    };
+    expect(inventory).toMatchObject({ stock_on_hand: 1, low_stock_threshold: 10 });
+    expect(movements.map((m) => [m.delta, m.reason]).sort()).toEqual([
+      [-2, "manual_adjustment"],
+      [3, "manual_adjustment"],
+    ]);
   });
 
   it("uploads images only to the product folder, and returns the public URL", async () => {

@@ -20,6 +20,9 @@
 
 import { getBundlePrice, getBundleType } from "../../../supabase/functions/create-checkout/pricing";
 import { PRODUCT } from "../../../src/lib/product";
+import { STRIPE_VERSION, toStripeForm } from "./stripe";
+
+export { toStripeForm };
 
 export interface CheckoutEnv {
   ALLOWED_ORIGINS: string;
@@ -237,26 +240,6 @@ export function buildSessionParams(input: CheckoutInput, origin: string): Record
     },
   };
 }
-
-/** Stripe's form encoding: nested objects and arrays in bracket notation. */
-export function toStripeForm(params: Record<string, unknown>): string {
-  const pairs: string[] = [];
-  const walk = (value: unknown, key: string) => {
-    if (value === undefined || value === null) return;
-    if (Array.isArray(value)) {
-      value.forEach((v, i) => walk(v, `${key}[${i}]`));
-    } else if (typeof value === "object") {
-      for (const [k, v] of Object.entries(value as Record<string, unknown>)) walk(v, `${key}[${k}]`);
-    } else {
-      pairs.push(`${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`);
-    }
-  };
-  for (const [k, v] of Object.entries(params)) walk(v, k);
-  return pairs.join("&");
-}
-
-/** The Stripe API version the Supabase function was pinned to. */
-const STRIPE_VERSION = "2025-08-27.basil";
 
 export async function handleCheckout(
   request: Request,

@@ -10,6 +10,10 @@
  *   POST /contact    contact, partner and mosque forms -> Resend -> shop inbox
  *   POST /prep-pack  Hajj prep pack signup -> Klaviyo, whose flow emails the PDF
  *   POST /checkout   the shop's checkout -> a Stripe Checkout page (checkout.ts)
+ *   POST /donation-checkout     Support Our Mission -> Stripe (donation.ts)
+ *   POST /stripe-webhook        Stripe -> saves paid orders in D1 (orders.ts)
+ *   POST /order-lookup          a customer's order, by number + token (orders.ts)
+ *   POST /import/stripe-orders  one-off copy of past orders; only while IMPORT_TOKEN is set
  *   /admin/*         the admin's backend, behind Cloudflare Access (admin.ts)
  *
  * The same routes answer under /api/ on www.pureihram.com, where a Workers
@@ -18,6 +22,8 @@
 
 import { handleAdmin, type AdminEnv } from "./admin";
 import { handleCheckout } from "./checkout";
+import { handleDonationCheckout } from "./donation";
+import { handleOrderLookup, handleStripeImport, handleStripeWebhook } from "./orders";
 
 export interface Env extends AdminEnv {
   DB: D1Database;
@@ -27,6 +33,10 @@ export interface Env extends AdminEnv {
   RESEND_API_KEY?: string;
   /** Stripe secret key for creating Checkout sessions (checkout.ts). */
   STRIPE_SECRET_KEY?: string;
+  /** Signing secret of the Stripe webhook endpoint that points here (orders.ts). */
+  STRIPE_WEBHOOK_SECRET?: string;
+  /** Set only while past orders are being copied from Stripe. */
+  IMPORT_TOKEN?: string;
 }
 
 type Parsed<T> = { ok: true; value: T } | { ok: false; error: string };
@@ -287,6 +297,7 @@ export default {
           ok: true,
           contactConfigured: Boolean(env.RESEND_API_KEY),
           checkoutConfigured: Boolean(env.STRIPE_SECRET_KEY),
+          webhookConfigured: Boolean(env.STRIPE_WEBHOOK_SECRET),
           prepPackListConfigured: Boolean(env.KLAVIYO_PREP_PACK_LIST_ID),
         },
         200,
@@ -299,6 +310,15 @@ export default {
     if (request.method === "POST" && pathname === "/checkout") {
       return handleCheckout(request, env, (body, status) => json(body, status, cors));
     }
+    if (request.method === "POST" && pathname === "/donation-checkout") {
+      return handleDonationCheckout(request, env, (body, status) => json(body, status, cors));
+    }
+    if (request.method === "POST" && pathname === "/order-lookup") {
+      return handleOrderLookup(request, env, (body, status) => json(body, status, cors));
+    }
+    // Server to server: Stripe and the import, so no CORS headers.
+    if (request.method === "POST" && pathname === "/stripe-webhook") return handleStripeWebhook(request, env);
+    if (request.method === "POST" && pathname === "/import/stripe-orders") return handleStripeImport(request, env);
 
     return json({ error: "Not found" }, 404, cors);
   },

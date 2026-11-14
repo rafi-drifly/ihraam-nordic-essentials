@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Heart, Lock, Building2, Globe, HelpCircle } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { postToApi } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 
 const DONATION_AMOUNTS = [5, 10, 25, 50];
@@ -79,19 +79,18 @@ const DonationForm = ({ localePrefix }: DonationFormProps) => {
 
     setLoading(true);
     try {
-      const { data, error } = await supabase.functions.invoke('create-donation-checkout', {
-        body: { 
-          amount,
-          frequency,
-          direction,
-          anonymous,
-          wantsReceipt,
-          receiptEmail: wantsReceipt ? receiptEmail : undefined,
-          coverFees
-        }
+      // Donations run on the Cloudflare Worker since the Supabase project was
+      // paused (Nov 2026).
+      const data = await postToApi<{ url?: string }>('/donation-checkout', {
+        amount,
+        frequency,
+        direction,
+        anonymous,
+        wantsReceipt,
+        receiptEmail: wantsReceipt ? receiptEmail : undefined,
+        coverFees
       });
 
-      if (error) throw error;
       if (data?.url) {
         window.location.href = data.url;
       } else {

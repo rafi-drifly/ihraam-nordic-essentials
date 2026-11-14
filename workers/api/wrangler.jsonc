@@ -37,4 +37,6 @@
   //   RESEND_API_KEY             delivers contact-form messages to the shop inbox
   //   SUPABASE_SERVICE_ROLE_KEY  lets the admin routes read and write Supabase
   //   STRIPE_SECRET_KEY          creates the shop's Stripe Checkout sessions (/checkout)
+  //   STRIPE_WEBHOOK_SECRET      signing secret of the Stripe webhook endpoint (/stripe-webhook)
+  //   IMPORT_TOKEN               only while copying past orders from Stripe; delete afterwards
 }

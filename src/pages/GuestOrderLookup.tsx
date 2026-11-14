@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -6,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Search, Package, CreditCard, CheckCircle, Clock, XCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
+import { postToApi } from "@/lib/api";
 import SEOHead from "@/components/SEOHead";
 
 interface OrderData {
@@ -39,14 +40,18 @@ interface OrderData {
 
 const GuestOrderLookup = () => {
   const { t } = useTranslation();
-  const [orderNumber, setOrderNumber] = useState("");
-  const [lookupToken, setLookupToken] = useState("");
+  // The confirmation email links here with ?order=…&token=…, so the order
+  // opens without the customer copying either value.
+  const [searchParams] = useSearchParams();
+  const [orderNumber, setOrderNumber] = useState(searchParams.get("order") ?? "");
+  const [lookupToken, setLookupToken] = useState(searchParams.get("token") ?? "");
   const [loading, setLoading] = useState(false);
   const [orderData, setOrderData] = useState<OrderData | null>(null);
   const { toast } = useToast();
+  const autoLooked = useRef(false);
 
-  const handleLookup = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleLookup = async (e?: React.FormEvent) => {
+    e?.preventDefault();
     
     if (!orderNumber.trim() || !lookupToken.trim()) {
       toast({
@@ -61,24 +66,12 @@ const GuestOrderLookup = () => {
     try {
       console.log("Looking up guest order:", { orderNumber, lookupToken: "***" });
       
-      const { data, error } = await supabase.functions.invoke('guest-order-lookup', {
-        body: { 
-          orderNumber: orderNumber.trim(),
-          lookupToken: lookupToken.trim()
-        }
+      // Orders live on the Cloudflare Worker since the Supabase project was
+      // paused (Nov 2026). It throws with the Worker's message on a miss.
+      const data = await postToApi<{ success?: boolean; order?: OrderData }>('/order-lookup', {
+        orderNumber: orderNumber.trim(),
+        lookupToken: lookupToken.trim()
       });
-
-      console.log("Lookup response:", { data, error });
-
-      if (error) {
-        console.error("Lookup error:", error);
-        toast({
-          title: "Lookup Failed",
-          description: error.message || "Unable to lookup order.",
-          variant: "destructive",
-        });
-        return;
-      }
 
       if (data?.success && data?.order) {
         setOrderData(data.order);
@@ -96,14 +89,22 @@ const GuestOrderLookup = () => {
     } catch (error) {
       console.error("Error looking up order:", error);
       toast({
-        title: "Lookup Error",
-        description: "An error occurred while looking up your order.",
+        title: "Lookup Failed",
+        description: error instanceof Error ? error.message : "An error occurred while looking up your order.",
         variant: "destructive",
       });
     } finally {
       setLoading(false);
     }
   };
+
+  // Arrived from the email link with both values: open the order straight away.
+  useEffect(() => {
+    if (autoLooked.current || !orderNumber || !lookupToken) return;
+    autoLooked.current = true;
+    void handleLookup();
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- once, on arrival
+  }, []);
 
   const getStatusIcon = (status: string) => {
     switch (status) {
