@@ -6,10 +6,10 @@
  * a browser mints one endpoint per installation, so the phone and the laptop
  * are two enrolments and both should ring.
  *
- * Enrolment is gated by a shared code rather than a login, because the Worker
- * has no session of its own yet. That is deliberate for this stage: when the
- * admin moves behind Cloudflare Access, the code goes away and the Access
- * identity takes over.
+ * Enrolment goes through the admin backend (/api/admin/push/*), so the
+ * Cloudflare Access login is what allows a device in. The notifications
+ * themselves are still sent by the pureihram-push Worker, which the admin
+ * backend reaches over a service binding.
  *
  * iOS is the awkward one. Safari refuses `Notification.requestPermission()`
  * unless the site has been added to the Home Screen, and it throws rather than
@@ -17,8 +17,7 @@
  * instead of showing a button that cannot work.
  */
 
-/** Deployed Worker. Public by design; every route it exposes is authenticated. */
-export const PUSH_WORKER_URL = "https://pureihram-push.rafi-drifly.workers.dev";
+import { adminPost } from "@/lib/adminApi";
 
 /**
  * VAPID public key. Public by design — it ships to every browser that
@@ -27,9 +26,6 @@ export const PUSH_WORKER_URL = "https://pureihram-push.rafi-drifly.workers.dev";
  */
 export const VAPID_PUBLIC_KEY =
   "BBnC7Lg1mHfA8m7ClKO2Hbal6y1bNt0fcp1q7zb9z9NwvCoKg_wlsryWTaODU4PtxeGmrVBgsUS3lJ1dlnliizE";
-
-/** Remembers the enrolment code so a device asks for it once, not every time. */
-const CODE_STORAGE_KEY = "pureihram_push_code";
 
 /**
  * Decode a base64url VAPID key into the raw bytes `pushManager.subscribe`
@@ -93,22 +89,6 @@ export function describePushBlocker(): PushBlocker {
   return null;
 }
 
-export function rememberedCode(): string {
-  try {
-    return localStorage.getItem(CODE_STORAGE_KEY) ?? "";
-  } catch {
-    return "";
-  }
-}
-
-function rememberCode(code: string): void {
-  try {
-    localStorage.setItem(CODE_STORAGE_KEY, code);
-  } catch {
-    /* private browsing; the code just gets asked for again */
-  }
-}
-
 export async function registerServiceWorker(): Promise<ServiceWorkerRegistration | null> {
   if (typeof navigator === "undefined" || !("serviceWorker" in navigator)) return null;
   try {
@@ -137,18 +117,12 @@ export interface EnableResult {
   error?: string;
 }
 
-async function postToWorker(path: string, body: unknown): Promise<{ ok: boolean; error?: string }> {
+async function postToAdmin(path: string, body?: unknown): Promise<{ ok: boolean; error?: string }> {
   try {
-    const response = await fetch(`${PUSH_WORKER_URL}${path}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    });
-    if (response.ok) return { ok: true };
-    const detail = (await response.json().catch(() => null)) as { error?: string } | null;
-    return { ok: false, error: detail?.error ?? `Request failed (${response.status})` };
-  } catch {
-    return { ok: false, error: "Could not reach the notification service." };
+    await adminPost(path, body);
+    return { ok: true };
+  } catch (error) {
+    return { ok: false, error: error instanceof Error ? error.message : "Could not reach the admin backend." };
   }
 }
 
@@ -156,7 +130,7 @@ async function postToWorker(path: string, body: unknown): Promise<{ ok: boolean;
  * Ask for permission, subscribe, and enrol the device with the Worker.
  * Safe to call when already subscribed — enrolment is keyed on the endpoint.
  */
-export async function enablePush(code: string): Promise<EnableResult> {
+export async function enablePush(): Promise<EnableResult> {
   const blocker = describePushBlocker();
   if (blocker) return { ok: false, blocker };
 
@@ -178,8 +152,7 @@ export async function enablePush(code: string): Promise<EnableResult> {
   }
 
   const json = subscription.toJSON();
-  const result = await postToWorker("/subscribe", {
-    secret: code,
+  const result = await postToAdmin("push/subscribe", {
     subscription: {
       endpoint: subscription.endpoint,
       keys: { p256dh: json.keys?.p256dh, auth: json.keys?.auth },
@@ -194,21 +167,20 @@ export async function enablePush(code: string): Promise<EnableResult> {
     return { ok: false, error: result.error };
   }
 
-  rememberCode(code);
   return { ok: true };
 }
 
-export async function disablePush(code: string): Promise<void> {
+export async function disablePush(): Promise<void> {
   const subscription = await currentSubscription();
   if (!subscription) return;
   const { endpoint } = subscription;
   await subscription.unsubscribe();
   // Best effort: a stale entry only costs one rejected send, which the Worker
   // prunes on the 410 the push service returns.
-  await postToWorker("/unsubscribe", { secret: code, endpoint });
+  await postToAdmin("push/unsubscribe", { endpoint });
 }
 
 /** Fire a notification immediately so enabling can be confirmed, not assumed. */
-export async function sendTestPush(code: string): Promise<{ ok: boolean; error?: string }> {
-  return postToWorker("/test", { secret: code });
+export async function sendTestPush(): Promise<{ ok: boolean; error?: string }> {
+  return postToAdmin("push/test");
 }

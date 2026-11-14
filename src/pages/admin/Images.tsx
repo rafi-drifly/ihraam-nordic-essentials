@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Loader2, Trash2, Upload, ArrowLeft, Star } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { adminGet, adminPost, adminUploadImage } from "@/lib/adminApi";
 import { useToast } from "@/hooks/use-toast";
 import { adminSignOut } from "@/hooks/useAdminAuth";
 import SEOHead from "@/components/SEOHead";
@@ -12,8 +12,6 @@ import {
   variantPath,
   VARIANT_WIDTHS,
 } from "@/lib/imageProcessing";
-
-const BUCKET = "product-images";
 
 interface ProductRow {
   id: string;
@@ -31,15 +29,14 @@ const AdminImages = () => {
 
   useEffect(() => {
     (async () => {
-      const { data, error } = await supabase
-        .from("products")
-        .select("id, name, images")
-        .eq("is_active", true)
-        .single();
-      if (error) {
-        toast({ title: "Could not load the product", description: error.message, variant: "destructive" });
-      } else {
-        setProduct(data as ProductRow);
+      try {
+        setProduct(await adminGet<ProductRow>("product"));
+      } catch (error) {
+        toast({
+          title: "Could not load the product",
+          description: error instanceof Error ? error.message : undefined,
+          variant: "destructive",
+        });
       }
       setLoading(false);
     })();
@@ -49,9 +46,14 @@ const AdminImages = () => {
 
   const saveImages = async (next: string[]) => {
     if (!product) return;
-    const { error } = await supabase.from("products").update({ images: next }).eq("id", product.id);
-    if (error) {
-      toast({ title: "Could not save", description: error.message, variant: "destructive" });
+    try {
+      await adminPost(`products/${product.id}/images`, { images: next });
+    } catch (error) {
+      toast({
+        title: "Could not save",
+        description: error instanceof Error ? error.message : undefined,
+        variant: "destructive",
+      });
       return;
     }
     setProduct({ ...product, images: next });
@@ -70,12 +72,8 @@ const AdminImages = () => {
         for (const variant of variants) {
           setBusy(`Uploading ${file.name} at ${variant.width}px...`);
           const path = variantPath(product.id, file.name, variant.width);
-          const { error } = await supabase.storage
-            .from(BUCKET)
-            .upload(path, variant.blob, { contentType: "image/webp", upsert: true });
-          if (error) throw error;
-          const { data } = supabase.storage.from(BUCKET).getPublicUrl(path);
-          uploadedByWidth.push({ width: variant.width, url: data.publicUrl });
+          const { url } = await adminUploadImage(path, variant.blob);
+          uploadedByWidth.push({ width: variant.width, url });
         }
 
         // The largest variant is the canonical URL stored on the product; the
@@ -102,7 +100,9 @@ const AdminImages = () => {
     // Remove every stored width, not just the one referenced on the product.
     const base = url.split("/").pop()?.replace(/-\d+\.webp$/, "") ?? "";
     const paths = VARIANT_WIDTHS.map((w) => `products/${product.id}/${base}-${w}.webp`);
-    await supabase.storage.from(BUCKET).remove(paths);
+    await adminPost("images/remove", { paths }).catch((error: unknown) =>
+      console.error("Could not remove stored image files:", error)
+    );
     await saveImages(images.filter((i) => i !== url));
     setBusy("");
   };
@@ -130,7 +130,7 @@ const AdminImages = () => {
             </Button>
             <h1 className="text-xl sm:text-2xl font-bold">Product images</h1>
           </div>
-          <Button variant="ghost" size="sm" onClick={async () => { await adminSignOut(); navigate("/admin"); }}>
+          <Button variant="ghost" size="sm" onClick={() => adminSignOut()}>
             Sign out
           </Button>
         </div>

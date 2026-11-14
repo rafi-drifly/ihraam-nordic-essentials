@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
-import { supabase } from "@/integrations/supabase/client";
+import { adminGet, adminPost } from "@/lib/adminApi";
 import { useToast } from "@/hooks/use-toast";
 import { Package, RefreshCw, CheckCircle, Clock, Mail, DollarSign, Truck, MessageCircle, Copy, Phone } from "lucide-react";
 import { adminSignOut } from "@/hooks/useAdminAuth";
@@ -69,7 +69,8 @@ const AdminOrders = () => {
   const [extraShippingAmount, setExtraShippingAmount] = useState("");
   const [sendingEmail, setSendingEmail] = useState(false);
 
-  // Route access is enforced by RequireAdmin and, decisively, by RLS.
+  // Route access is enforced by Cloudflare Access and, decisively, by the
+  // Worker checking that session on every request.
   useEffect(() => {
     fetchOrders();
   }, []);
@@ -77,18 +78,9 @@ const AdminOrders = () => {
   const fetchOrders = async () => {
     setLoading(true);
     try {
-      // Only real orders. The 37 legacy rows from building the shop have no
-      // Stripe payment against them - no money ever moved - and counting them
-      // turned 11 real orders into "48".
-      const { data, error } = await supabase
-        .from('orders')
-        .select('*')
-        .not('stripe_payment_intent_id', 'is', null)
-        .order('created_at', { ascending: false })
-        .limit(100);
-      
-      if (error) throw error;
-      setOrders(data || []);
+      // Only real orders: the Worker leaves out the legacy rows from building
+      // the shop, which have no Stripe payment against them.
+      setOrders(await adminGet<Order[]>("orders"));
     } catch (error) {
       console.error("Error fetching orders:", error);
       toast({ title: "Error loading orders", variant: "destructive" });
@@ -98,14 +90,7 @@ const AdminOrders = () => {
 
   const handleMarkReadyToShip = async (order: Order) => {
     try {
-      await supabase
-        .from('orders')
-        .update({ 
-          status: 'ready_to_ship',
-          extra_shipping_status: 'not_required' 
-        })
-        .eq('id', order.id);
-      
+      await adminPost(`orders/${order.id}/status`, { status: "ready_to_ship" });
       toast({ title: "Order marked as ready to ship" });
       fetchOrders();
     } catch (error) {
@@ -123,12 +108,14 @@ const AdminOrders = () => {
     const link = whatsappDispatchLink(order);
     if (link) window.open(link, "_blank", "noopener");
     void (async () => {
-      const { error } = await supabase
-        .from('orders')
-        .update({ status: 'shipped', extra_shipping_status: 'not_required' })
-        .eq('id', order.id);
-      if (error) {
-        toast({ title: "Could not mark it shipped", description: error.message, variant: "destructive" });
+      try {
+        await adminPost(`orders/${order.id}/status`, { status: "shipped" });
+      } catch (error) {
+        toast({
+          title: "Could not mark it shipped",
+          description: error instanceof Error ? error.message : undefined,
+          variant: "destructive",
+        });
         return;
       }
       toast({
@@ -159,24 +146,9 @@ const AdminOrders = () => {
 
     setSendingEmail(true);
     try {
-      // Create extra shipping payment session
-      const { data: paymentData, error: paymentError } = await supabase.functions.invoke('create-extra-shipping-payment', {
-        body: { orderId: selectedOrder.id, extraAmount: amount }
-      });
-
-      if (paymentError) throw paymentError;
-
-      // Send email to customer
-      const { error: emailError } = await supabase.functions.invoke('send-shipping-adjustment-email', {
-        body: { 
-          orderId: selectedOrder.id, 
-          paymentUrl: paymentData.url,
-          extraAmount: amount 
-        }
-      });
-
-      if (emailError) throw emailError;
-
+      // The Worker creates the payment link and emails it to the customer in
+      // one step, so the link that goes out is never one the browser supplied.
+      await adminPost(`orders/${selectedOrder.id}/extra-shipping`, { extraAmount: amount });
       toast({ title: "Extra shipping request sent to customer" });
       setSelectedOrder(null);
       setExtraShippingAmount("");
@@ -188,10 +160,7 @@ const AdminOrders = () => {
     setSendingEmail(false);
   };
 
-  const handleLogout = async () => {
-    await adminSignOut();
-    navigate("/admin");
-  };
+  const handleLogout = () => adminSignOut();
 
   if (loading) {
     return (

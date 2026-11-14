@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { supabase } from "@/integrations/supabase/client";
+import { adminGet, adminPost } from "@/lib/adminApi";
 import { useToast } from "@/hooks/use-toast";
 import { Package, Plus, Minus, RefreshCw, ArrowLeft, AlertTriangle } from "lucide-react";
 import { adminSignOut } from "@/hooks/useAdminAuth";
@@ -39,24 +39,13 @@ const AdminInventory = () => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      // Fetch inventory
-      const { data: inv } = await supabase
-        .from('inventory')
-        .select('*')
-        .eq('product_key', 'ihram_set')
-        .single();
-      
+      // Stock on hand plus the 20 most recent movements.
+      const { inventory: inv, movements: mvts } = await adminGet<{
+        inventory: Inventory | null;
+        movements: StockMovement[];
+      }>("inventory");
       if (inv) setInventory(inv);
-
-      // Fetch recent movements
-      const { data: mvts } = await supabase
-        .from('stock_movements')
-        .select('*')
-        .eq('product_key', 'ihram_set')
-        .order('created_at', { ascending: false })
-        .limit(20);
-      
-      if (mvts) setMovements(mvts);
+      setMovements(mvts);
     } catch (error) {
       console.error("Error fetching inventory:", error);
     }
@@ -79,26 +68,18 @@ const AdminInventory = () => {
     }
 
     try {
-      // Update inventory
-      await supabase
-        .from('inventory')
-        .update({ stock_on_hand: newStock })
-        .eq('product_key', 'ihram_set');
-
-      // Log movement
-      await supabase
-        .from('stock_movements')
-        .insert({
-          product_key: 'ihram_set',
-          delta: delta,
-          reason: 'manual_adjustment',
-        });
-
+      // The Worker applies the change to the database's own count and logs
+      // the movement, so an order that landed meanwhile is not overwritten.
+      await adminPost("inventory/adjust", { delta });
       toast({ title: `Stock ${type === 'add' ? 'added' : 'removed'} successfully` });
       setAdjustAmount("");
       fetchData();
     } catch (error) {
-      toast({ title: "Error updating stock", variant: "destructive" });
+      toast({
+        title: "Error updating stock",
+        description: error instanceof Error ? error.message : undefined,
+        variant: "destructive",
+      });
     }
   };
 
@@ -110,10 +91,7 @@ const AdminInventory = () => {
     }
 
     try {
-      await supabase
-        .from('inventory')
-        .update({ low_stock_threshold: threshold })
-        .eq('product_key', 'ihram_set');
+      await adminPost("inventory/threshold", { threshold });
 
       toast({ title: "Threshold updated" });
       setNewThreshold("");
@@ -123,10 +101,7 @@ const AdminInventory = () => {
     }
   };
 
-  const handleLogout = async () => {
-    await adminSignOut();
-    navigate("/admin");
-  };
+  const handleLogout = () => adminSignOut();
 
   if (loading) {
     return (

@@ -1,17 +1,15 @@
 import { ReactNode } from "react";
-import { Navigate, useLocation } from "react-router-dom";
 import { useAdminAuth } from "@/hooks/useAdminAuth";
 
 /**
- * Gates an admin route on a real session plus the admin role.
+ * Gates an admin route on a Cloudflare Access session the Worker accepts.
  *
- * This is a convenience for the operator, not the security boundary: the
- * database enforces access through RLS, so a tampered client still gets
- * nothing back.
+ * A convenience for the operator, not the security boundary: Access stops a
+ * signed-out browser before the page loads, and the Worker checks the session
+ * again on every data request, so a tampered client still gets nothing back.
  */
 export const RequireAdmin = ({ children }: { children: ReactNode }) => {
-  const { loading, session, isAdmin } = useAdminAuth();
-  const location = useLocation();
+  const { loading, email, error } = useAdminAuth();
 
   if (loading) {
     return (
@@ -21,17 +19,17 @@ export const RequireAdmin = ({ children }: { children: ReactNode }) => {
     );
   }
 
-  if (!session) {
-    return <Navigate to="/admin" replace state={{ from: location.pathname }} />;
-  }
-
-  if (!isAdmin) {
+  if (!email) {
     return (
       <div className="min-h-screen flex items-center justify-center p-6">
         <div className="max-w-md text-center space-y-3">
-          <h1 className="text-xl font-semibold">Not an admin account</h1>
+          <h1 className="text-xl font-semibold">Cannot open the admin</h1>
+          <p className="text-muted-foreground text-sm">{error}</p>
           <p className="text-muted-foreground text-sm">
-            You are signed in, but this account does not have the admin role.
+            <a className="underline" href="/cdn-cgi/access/logout">
+              Sign out
+            </a>{" "}
+            and sign in again with the admin email.
           </p>
         </div>
       </div>
