@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { CartDrawer } from "@/components/shop/CartDrawer";
-import { supabase } from "@/integrations/supabase/client";
+import { postToApi } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useShippingDestination } from "@/hooks/useShippingDestination";
@@ -61,21 +61,14 @@ const Navbar = () => {
         item_count: checkoutQty,
       });
 
-      const { data, error } = await supabase.functions.invoke('create-checkout', {
-        body: { 
-          items: cartItems.map((item: any) => ({ id: item.id, quantity: item.quantity })),
-          locale: localeCodeFromHook,
-          shippingCountry: destination,
-        }
+      // Checkout runs on the Cloudflare Worker (workers/api, /checkout) since
+      // the Supabase project was paused. A failure throws with the Worker's
+      // message and lands in the catch below.
+      const data = await postToApi<{ url?: string }>('/checkout', {
+        items: cartItems.map((item: any) => ({ id: item.id, quantity: item.quantity })),
+        locale: localeCodeFromHook,
+        shippingCountry: destination,
       });
-
-      console.log('Checkout response:', { data, error });
-
-      if (error) {
-        console.error('Checkout error:', error);
-        toast({ title: "Checkout failed", description: error.message || "Unable to create checkout session.", variant: "destructive" });
-        return;
-      }
 
       if (data?.url) {
         // The basket is deliberately NOT cleared here. Stripe checkout can be

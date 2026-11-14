@@ -36,4 +36,5 @@
   // Secrets, set with `npx wrangler secret put <NAME>`:
   //   RESEND_API_KEY             delivers contact-form messages to the shop inbox
   //   SUPABASE_SERVICE_ROLE_KEY  lets the admin routes read and write Supabase
+  //   STRIPE_SECRET_KEY          creates the shop's Stripe Checkout sessions (/checkout)
 }

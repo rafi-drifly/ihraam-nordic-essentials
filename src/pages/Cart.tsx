@@ -8,7 +8,7 @@ import { useCart } from "@/hooks/useCart";
 import { ShoppingCart, ArrowLeft, Minus, Plus, Trash2, Gift, Globe, Info } from "lucide-react";
 import { calculateShipping, EUROPE_COUNTRIES, COUNTRY_NAMES, countryFlag, requiresShippingDisclosure, type EuropeCountry } from "@/lib/shipping";
 import { getBundlePrice, SHIPPING_DISCLOSURE, CUSTOMS_DISCLOSURE } from "@/lib/bundles";
-import { supabase } from "@/integrations/supabase/client";
+import { postToApi } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 import DonationSection from "@/components/shop/DonationSection";
 import { trackEvent, trackBeginCheckout } from "@/lib/analytics";
@@ -64,20 +64,15 @@ const Cart = () => {
     setCheckoutLoading(true);
     try {
       const checkoutItems = items.map(item => ({ id: item.id, quantity: item.quantity }));
-      const { data, error } = await supabase.functions.invoke('create-checkout', {
-        body: { 
-          items: checkoutItems,
-          donation: selectedDonation > 0 ? selectedDonation : undefined,
-          bundlePrice: getBundlePrice(totalItems),
-          locale: localeCodeFromHook,
-          shippingCountry,
-        }
+      // Checkout runs on the Cloudflare Worker (workers/api, /checkout) since
+      // the Supabase project was paused. It throws with the Worker's message.
+      const data = await postToApi<{ url?: string }>('/checkout', {
+        items: checkoutItems,
+        donation: selectedDonation > 0 ? selectedDonation : undefined,
+        bundlePrice: getBundlePrice(totalItems),
+        locale: localeCodeFromHook,
+        shippingCountry,
       });
-      if (error) throw error;
-      if (data?.error) {
-        toast({ title: t('common.error'), description: data.error, variant: "destructive" });
-        return;
-      }
       if (data?.url) {
         window.location.href = data.url;
       } else {

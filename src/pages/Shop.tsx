@@ -9,7 +9,8 @@ import { Badge } from "@/components/ui/badge";
 import { ShoppingCart, Check, X, ChevronLeft, ChevronRight, Package, Truck, Globe, Info } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useCart } from "@/hooks/useCart";
-import { supabase } from "@/integrations/supabase/client";
+import { postToApi } from "@/lib/api";
+import { PRODUCT } from "@/lib/product";
 import { useToast } from "@/hooks/use-toast";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { EUROPE_COUNTRIES, COUNTRY_NAMES, countryFlag, requiresShippingDisclosure, calculateShipping, type EuropeCountry } from "@/lib/shipping";
@@ -85,17 +86,22 @@ const Shop = () => {
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, [selectedImageIndex]);
 
-  const fetchProduct = async () => {
-    try {
-      const { data, error } = await supabase.from('products').select('*').eq('is_active', true).single();
-      if (error) throw error;
-      setProduct(data);
-    } catch (error) {
-      console.error('Error fetching product:', error);
-      toast({ title: t('common.error'), description: "Failed to load product. Please refresh the page.", variant: "destructive" });
-    } finally {
-      setLoading(false);
-    }
+  // The product used to be read from Supabase here. While that project was
+  // paused (Nov 2026) the read failed and the page showed "Product not found",
+  // so it now comes from src/lib/product.ts. Stock is not tracked there: the
+  // count only decides whether the buttons are enabled, and the set is in stock.
+  const fetchProduct = () => {
+    setProduct({
+      id: PRODUCT.id,
+      name: PRODUCT.name,
+      description: PRODUCT.description,
+      price: UNIT_PRICE,
+      currency: 'EUR',
+      stock_quantity: 50,
+      images: [],
+      is_active: true,
+    });
+    setLoading(false);
   };
 
   const bundle = bundles[selectedBundle];
@@ -128,16 +134,15 @@ const Shop = () => {
     setCheckoutLoading(true);
     try {
       const checkoutItems = [{ id: product.id, quantity: bundle.qty }];
-      const { data, error } = await supabase.functions.invoke('create-checkout', {
-        body: { 
-          items: checkoutItems, 
-          bundlePrice: bundle.totalPrice, 
-          locale: localePrefixCode,
-          shippingCountry: shippingCountry,
-          cancelPath: `${localePrefix}/shop`
-        }
+      // Checkout runs on the Cloudflare Worker (workers/api, /checkout) since
+      // the Supabase project was paused.
+      const data = await postToApi<{ url?: string }>('/checkout', {
+        items: checkoutItems,
+        bundlePrice: bundle.totalPrice,
+        locale: localePrefixCode,
+        shippingCountry: shippingCountry,
+        cancelPath: `${localePrefix}/shop`
       });
-      if (error) throw error;
       if (data?.url) {
         window.location.href = data.url;
       } else {

@@ -12,22 +12,16 @@
  * The id also travels on into Stripe metadata and from there into
  * order_items.product_id, which is a uuid column - a SKU reaching that insert
  * would take the payment and then lose the order.
+ *
+ * Since Nov 2026 the id comes from src/lib/product.ts rather than a Supabase
+ * lookup (the project was paused), so no Supabase mock is needed here.
  */
 import { act, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it } from "vitest";
 
 const PRODUCT_ID = "36acffbc-41ea-4512-8621-174cd8d9b00c";
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-
-vi.mock("@/integrations/supabase/client", () => {
-  const builder: Record<string, unknown> = {};
-  builder.select = () => builder;
-  builder.eq = () => builder;
-  builder.limit = () => builder;
-  builder.maybeSingle = async () => ({ data: { id: PRODUCT_ID }, error: null });
-  return { supabase: { from: () => builder } };
-});
 
 import { CartProvider } from "@/hooks/useCart";
 import { ProductOffersBlock } from "../ProductOffersBlock";

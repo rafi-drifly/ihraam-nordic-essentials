@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useCart } from "@/hooks/useCart";
 import { useToast } from "@/hooks/use-toast";
 import { useLocalePrefix } from "@/i18n/useLocale";
-import { supabase } from "@/integrations/supabase/client";
+import { PRODUCT } from "@/lib/product";
 import { UNIT_PRICE, getBundlePrice } from "@/lib/bundles";
 import ihraamProduct from "@/assets/hero-product.avif";
 import { cn } from "@/lib/utils";
@@ -50,35 +50,15 @@ export const ProductOffersBlock = () => {
   const localePrefix = useLocalePrefix();
   const [selectedSku, setSelectedSku] = useState<OfferConfig["sku"]>("IHRAM-1");
 
-  // The catalogue id of the one product this block sells. The basket used to
-  // carry the SKU ("IHRAM-2") instead, and the checkout function rejects an id
-  // that is not a product id: every basket started from the homepage failed at
-  // "Proceed to Checkout" with a 400, while the shop and cart pages worked.
-  const [productId, setProductId] = useState<string | null>(null);
-  useEffect(() => {
-    let cancelled = false;
-    (async () => {
-      const { data } = await supabase
-        .from("products")
-        .select("id")
-        .eq("is_active", true)
-        .limit(1)
-        .maybeSingle();
-      if (!cancelled && data?.id) setProductId(data.id);
-    })();
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
   const handleSelect = (offer: OfferConfig) => {
     const title = t(`home.offers.${offer.key}.title`);
     addItem(
       {
-        // Falls back to the SKU only if the catalogue lookup has not landed
-        // yet; the checkout function resolves an unknown id to the active
-        // product rather than refusing the sale.
-        id: productId ?? offer.sku,
+        // The catalogue id, never the SKU: the basket used to carry "IHRAM-2",
+        // which checkout refused, so every homepage basket failed at payment.
+        // It came from a Supabase lookup until the project was paused (Nov
+        // 2026); it now comes from src/lib/product.ts.
+        id: PRODUCT.id,
         name: `Pure Ihram - ${title}`,
         // The flat unit price, as the shop page stores it, so a basket built
         // from both places merges into one line. Never a derived fraction:

@@ -6,7 +6,9 @@
  * Until then the cart falls back to telling them the details arrive by email,
  * rather than inventing a place and a time nobody agreed to.
  *
- * The ids must match PICKUP_LOCATIONS in supabase/functions/create-checkout.
+ * The ids must match PICKUP_LOCATIONS in workers/api/src/checkout.ts, which
+ * builds the Stripe checkout (and in supabase/functions/create-checkout, which
+ * did until Nov 2026).
  */
 export interface PickupLocation {
   id: "uppsala-mosque" | "stockholm-mosque";

@@ -9,6 +9,7 @@
  *
  *   POST /contact    contact, partner and mosque forms -> Resend -> shop inbox
  *   POST /prep-pack  Hajj prep pack signup -> Klaviyo, whose flow emails the PDF
+ *   POST /checkout   the shop's checkout -> a Stripe Checkout page (checkout.ts)
  *   /admin/*         the admin's backend, behind Cloudflare Access (admin.ts)
  *
  * The same routes answer under /api/ on www.pureihram.com, where a Workers
@@ -16,6 +17,7 @@
  */
 
 import { handleAdmin, type AdminEnv } from "./admin";
+import { handleCheckout } from "./checkout";
 
 export interface Env extends AdminEnv {
   DB: D1Database;
@@ -23,6 +25,8 @@ export interface Env extends AdminEnv {
   KLAVIYO_COMPANY_ID: string;
   KLAVIYO_PREP_PACK_LIST_ID: string;
   RESEND_API_KEY?: string;
+  /** Stripe secret key for creating Checkout sessions (checkout.ts). */
+  STRIPE_SECRET_KEY?: string;
 }
 
 type Parsed<T> = { ok: true; value: T } | { ok: false; error: string };
@@ -282,6 +286,7 @@ export default {
         {
           ok: true,
           contactConfigured: Boolean(env.RESEND_API_KEY),
+          checkoutConfigured: Boolean(env.STRIPE_SECRET_KEY),
           prepPackListConfigured: Boolean(env.KLAVIYO_PREP_PACK_LIST_ID),
         },
         200,
@@ -291,6 +296,9 @@ export default {
 
     if (request.method === "POST" && pathname === "/contact") return handleContact(request, env, cors);
     if (request.method === "POST" && pathname === "/prep-pack") return handlePrepPack(request, env, cors);
+    if (request.method === "POST" && pathname === "/checkout") {
+      return handleCheckout(request, env, (body, status) => json(body, status, cors));
+    }
 
     return json({ error: "Not found" }, 404, cors);
   },
