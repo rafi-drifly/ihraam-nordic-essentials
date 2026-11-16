@@ -13,9 +13,10 @@ import { adminHasSession, adminSignIn } from "@/lib/adminApi";
 const AdminLogin = () => {
   const navigate = useNavigate();
   const [params] = useSearchParams();
-  // Only back into the admin, never to another site.
+  // Only back into the admin, never to another site. Cloudflare Pages adds a
+  // trailing slash to addresses (/admin/inventory/), so that is allowed too.
   const requested = params.get("next") ?? "";
-  const next = /^\/admin\/[a-z-]+$/.test(requested) ? requested : "/admin/orders";
+  const next = /^\/admin\/[a-z-]+\/?$/.test(requested) ? requested : "/admin/orders";
 
   const [checking, setChecking] = useState(true);
   const [password, setPassword] = useState("");
