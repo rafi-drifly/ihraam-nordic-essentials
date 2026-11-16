@@ -29,8 +29,10 @@
     "SUPABASE_URL": "https://cimjybhmilaecqhnqrby.supabase.co",
     // From the Access application "Pure Ihram admin". Empty keeps /admin/*
     // answering 503, so nothing is reachable before Access is in place.
-    "ACCESS_TEAM_DOMAIN": "",
-    "ACCESS_AUD": "",
+    "ACCESS_TEAM_DOMAIN": "wild-art-09ec.cloudflareaccess.com",
+    // Access application "Pure Ihram admin" (created 16 Nov 2026), guarding
+    // www.pureihram.com/admin and /api/admin; only rafi.drifly@gmail.com.
+    "ACCESS_AUD": "68d3f4f75bfdbf010e54da3189957e5b300564eea632969b0dd8a3055e9b340d",
     "ADMIN_EMAILS": "rafi.drifly@gmail.com"
   }
   // Secrets, set with `npx wrangler secret put <NAME>`:
