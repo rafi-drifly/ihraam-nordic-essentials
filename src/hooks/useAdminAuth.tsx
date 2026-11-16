@@ -1,33 +1,31 @@
 import { useEffect, useState } from "react";
-import { adminGet, AdminSignInRequired } from "@/lib/adminApi";
+import { adminHasSession } from "@/lib/adminApi";
 
 /**
- * Who is signed in to the admin, according to the Worker.
+ * Whether this browser is signed in to the admin, according to the Worker.
  *
- * The login itself is Cloudflare Access, in front of /admin and /api/admin.
- * This only asks the Worker which Access identity it sees, so the pages can
- * show the account and redirect to the login when the session has ended. The
- * protection is the Worker's own check on every request, not this hook.
+ * Only lets the pages decide between showing themselves and sending the
+ * browser to the password page. The protection is the Worker's own check of
+ * the session on every request, not this hook.
  */
 export interface AdminAuthState {
   loading: boolean;
-  email: string | null;
+  signedIn: boolean;
   error: string | null;
 }
 
 export function useAdminAuth(): AdminAuthState {
-  const [state, setState] = useState<AdminAuthState>({ loading: true, email: null, error: null });
+  const [state, setState] = useState<AdminAuthState>({ loading: true, signedIn: false, error: null });
 
   useEffect(() => {
     let cancelled = false;
-    adminGet<{ email: string }>("me")
-      .then(({ email }) => {
-        if (!cancelled) setState({ loading: false, email, error: null });
+    adminHasSession()
+      .then((signedIn) => {
+        if (!cancelled) setState({ loading: false, signedIn, error: null });
       })
       .catch((error: unknown) => {
-        // Already on its way to the login page; keep showing the spinner.
-        if (cancelled || error instanceof AdminSignInRequired) return;
-        setState({ loading: false, email: null, error: error instanceof Error ? error.message : String(error) });
+        if (cancelled) return;
+        setState({ loading: false, signedIn: false, error: error instanceof Error ? error.message : String(error) });
       });
     return () => {
       cancelled = true;

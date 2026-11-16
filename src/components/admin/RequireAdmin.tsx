@@ -1,15 +1,17 @@
 import { ReactNode } from "react";
+import { Navigate, useLocation } from "react-router-dom";
 import { useAdminAuth } from "@/hooks/useAdminAuth";
 
 /**
- * Gates an admin route on a Cloudflare Access session the Worker accepts.
+ * Shows an admin page only to a signed-in browser; anyone else goes to the
+ * password page and comes back here afterwards.
  *
- * A convenience for the operator, not the security boundary: Access stops a
- * signed-out browser before the page loads, and the Worker checks the session
- * again on every data request, so a tampered client still gets nothing back.
+ * A convenience, not the security boundary: the Worker checks the session on
+ * every data request, so a tampered page still gets nothing back.
  */
 export const RequireAdmin = ({ children }: { children: ReactNode }) => {
-  const { loading, email, error } = useAdminAuth();
+  const { loading, signedIn, error } = useAdminAuth();
+  const { pathname } = useLocation();
 
   if (loading) {
     return (
@@ -19,22 +21,21 @@ export const RequireAdmin = ({ children }: { children: ReactNode }) => {
     );
   }
 
-  if (!email) {
+  if (error) {
     return (
       <div className="min-h-screen flex items-center justify-center p-6">
         <div className="max-w-md text-center space-y-3">
           <h1 className="text-xl font-semibold">Cannot open the admin</h1>
           <p className="text-muted-foreground text-sm">{error}</p>
-          <p className="text-muted-foreground text-sm">
-            <a className="underline" href="/cdn-cgi/access/logout">
-              Sign out
-            </a>{" "}
-            and sign in again with the admin email.
-          </p>
+          <button className="text-sm underline" onClick={() => window.location.reload()}>
+            Try again
+          </button>
         </div>
       </div>
     );
   }
+
+  if (!signedIn) return <Navigate to={`/admin?next=${encodeURIComponent(pathname)}`} replace />;
 
   return <>{children}</>;
 };

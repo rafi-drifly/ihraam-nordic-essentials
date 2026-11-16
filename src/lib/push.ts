@@ -7,7 +7,7 @@
  * are two enrolments and both should ring.
  *
  * Enrolment goes through the admin backend (/api/admin/push/*), so the
- * Cloudflare Access login is what allows a device in. The notifications
+ * admin password login is what allows a device in. The notifications
  * themselves are still sent by the pureihram-push Worker, which the admin
  * backend reaches over a service binding.
  *

@@ -14,7 +14,7 @@
  *   POST /stripe-webhook        Stripe -> saves paid orders in D1 (orders.ts)
  *   POST /order-lookup          a customer's order, by number + token (orders.ts)
  *   POST /import/stripe-orders  one-off copy of past orders; only while IMPORT_TOKEN is set
- *   /admin/*         the admin's backend, behind Cloudflare Access (admin.ts)
+ *   /admin/*         the admin's backend, behind the admin password (admin.ts, admin-session.ts)
  *
  * The same routes answer under /api/ on www.pureihram.com, where a Workers
  * route sends them here, and at the root of the workers.dev address.
@@ -282,7 +282,7 @@ export default {
     const url = new URL(request.url);
     const pathname = url.pathname.startsWith("/api/") ? url.pathname.slice("/api".length) : url.pathname;
 
-    // Same-origin only, behind Access: no CORS headers on purpose.
+    // Same-origin only, behind the admin password: no CORS headers on purpose.
     if (pathname.startsWith("/admin/")) return handleAdmin(request, env, pathname.slice("/admin/".length));
 
     const cors = corsHeaders(request, env);

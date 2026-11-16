@@ -1,104 +1,28 @@
-import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
-import { clearAccessCertsCache, verifyAccessToken } from "../../../workers/api/src/access";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import worker, { type Env } from "../../../workers/api/src/index";
+import {
+  COOKIE_NAME,
+  handleLogin,
+  hasValidSession,
+  LOCKOUT_MS,
+  makeSessionValue,
+  SHORT_SESSION_MS,
+} from "../../../workers/api/src/admin-session";
 import { testD1 } from "@/test/d1";
 
-const TEAM = "pureihram.cloudflareaccess.com";
-const AUD = "aud-tag-123";
-const CERTS_URL = `https://${TEAM}/cdn-cgi/access/certs`;
 const SUPABASE = "https://cimjybhmilaecqhnqrby.supabase.co";
 const ORDER_ID = "75f84889-aff6-4822-8667-aaa26df189ee";
+const PASSWORD = "correct horse battery staple";
+const SECRET = "0123456789abcdef0123456789abcdef0123456789abcdef";
 
-let keyPair: CryptoKeyPair;
-let publicJwk: JsonWebKey;
-
-function b64url(bytes: Uint8Array | string): string {
-  const raw = typeof bytes === "string" ? new TextEncoder().encode(bytes) : bytes;
-  return btoa(String.fromCharCode(...raw)).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
-}
-
-/** Signs a token the way Access does: RS256 over header.payload. */
-async function makeToken(claims: Record<string, unknown>, kid = "key-1", signer = keyPair.privateKey): Promise<string> {
-  const now = Math.floor(Date.now() / 1000);
-  const header = b64url(JSON.stringify({ alg: "RS256", kid, typ: "JWT" }));
-  const payload = b64url(
-    JSON.stringify({ aud: [AUD], iss: `https://${TEAM}`, exp: now + 3600, email: "rafi.drifly@gmail.com", ...claims })
-  );
-  const signature = await crypto.subtle.sign("RSASSA-PKCS1-v1_5", signer, new TextEncoder().encode(`${header}.${payload}`));
-  return `${header}.${payload}.${b64url(new Uint8Array(signature))}`;
-}
-
-const config = { teamDomain: TEAM, aud: AUD, adminEmails: ["rafi.drifly@gmail.com"] };
-
-beforeAll(async () => {
-  keyPair = (await crypto.subtle.generateKey(
-    { name: "RSASSA-PKCS1-v1_5", modulusLength: 2048, publicExponent: new Uint8Array([1, 0, 1]), hash: "SHA-256" },
-    true,
-    ["sign", "verify"]
-  )) as CryptoKeyPair;
-  publicJwk = { ...(await crypto.subtle.exportKey("jwk", keyPair.publicKey)), kid: "key-1" } as JsonWebKey;
-});
-
-beforeEach(() => clearAccessCertsCache());
 afterEach(() => vi.unstubAllGlobals());
 
-/** Answers the Access certs request; everything else goes to `rest`. */
+/** Everything the admin calls out to goes to `rest`. */
 function stubFetch(rest: (url: string, init?: RequestInit) => Response | Promise<Response> = () => Response.json([])) {
-  const mock = vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
-    const url = String(input);
-    if (url === CERTS_URL) return Response.json({ keys: [publicJwk] });
-    return rest(url, init);
-  });
+  const mock = vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => rest(String(input), init));
   vi.stubGlobal("fetch", mock);
   return mock;
 }
-
-describe("verifyAccessToken", () => {
-  it("accepts a genuine, current token for an allowed email", async () => {
-    stubFetch();
-    expect(await verifyAccessToken(await makeToken({}), config)).toBe("rafi.drifly@gmail.com");
-  });
-
-  it("rejects the wrong audience, issuer, an expired token, or another email", async () => {
-    stubFetch();
-    const past = Math.floor(Date.now() / 1000) - 10;
-    expect(await verifyAccessToken(await makeToken({ aud: ["some-other-app"] }), config)).toBeNull();
-    expect(await verifyAccessToken(await makeToken({ iss: "https://evil.cloudflareaccess.com" }), config)).toBeNull();
-    expect(await verifyAccessToken(await makeToken({ exp: past }), config)).toBeNull();
-    expect(await verifyAccessToken(await makeToken({ email: "someone@else.com" }), config)).toBeNull();
-  });
-
-  it("rejects a token signed by any other key", async () => {
-    stubFetch();
-    const stranger = (await crypto.subtle.generateKey(
-      { name: "RSASSA-PKCS1-v1_5", modulusLength: 2048, publicExponent: new Uint8Array([1, 0, 1]), hash: "SHA-256" },
-      true,
-      ["sign", "verify"]
-    )) as CryptoKeyPair;
-    expect(await verifyAccessToken(await makeToken({}, "key-1", stranger.privateKey), config)).toBeNull();
-  });
-
-  it("rejects a token whose payload was edited after signing", async () => {
-    stubFetch();
-    const [header, , signature] = (await makeToken({ email: "someone@else.com" })).split(".");
-    const forged = b64url(JSON.stringify({ aud: [AUD], iss: `https://${TEAM}`, exp: 9999999999, email: "rafi.drifly@gmail.com" }));
-    expect(await verifyAccessToken(`${header}.${forged}.${signature}`, config)).toBeNull();
-  });
-
-  it("refetches the keys once when it meets an unknown key id", async () => {
-    const fetchMock = stubFetch();
-    expect(await verifyAccessToken(await makeToken({}, "rotated-key"), config)).toBeNull();
-    expect(fetchMock.mock.calls.filter(([url]) => String(url) === CERTS_URL)).toHaveLength(2);
-  });
-
-  it("treats garbage as not an admin rather than throwing", async () => {
-    stubFetch();
-    expect(await verifyAccessToken("not.a.token", config)).toBeNull();
-    expect(await verifyAccessToken("nonsense", config)).toBeNull();
-  });
-});
-
-// --- The admin routes, through the Worker's own entry point ---------------
 
 function makeEnv(overrides: Partial<Env> = {}): Env {
   return {
@@ -111,9 +35,8 @@ function makeEnv(overrides: Partial<Env> = {}): Env {
     KLAVIYO_PREP_PACK_LIST_ID: "",
     SUPABASE_URL: SUPABASE,
     SUPABASE_SERVICE_ROLE_KEY: "service-role-key",
-    ACCESS_TEAM_DOMAIN: TEAM,
-    ACCESS_AUD: AUD,
-    ADMIN_EMAILS: "rafi.drifly@gmail.com",
+    ADMIN_PASSWORD: PASSWORD,
+    ADMIN_SESSION_SECRET: SECRET,
     PUSH: {
       subscribe: vi.fn(async () => ({ ok: true })),
       unsubscribe: vi.fn(async () => undefined),
@@ -123,39 +46,144 @@ function makeEnv(overrides: Partial<Env> = {}): Env {
   };
 }
 
-async function admin(path: string, init: RequestInit = {}, env = makeEnv(), withToken = true) {
+const raw = (env: Env) => (env.DB as ReturnType<typeof testD1>).raw;
+
+async function sessionCookie(env: Env, remember = true): Promise<string> {
+  return `${COOKIE_NAME}=${await makeSessionValue(env, remember)}`;
+}
+
+async function admin(path: string, init: RequestInit = {}, env = makeEnv(), signedIn = true) {
   const headers = new Headers(init.headers);
-  if (withToken) headers.set("Cf-Access-Jwt-Assertion", await makeToken({}));
+  if (signedIn) headers.set("Cookie", await sessionCookie(env));
   return worker.fetch(new Request(`https://www.pureihram.com/api/admin/${path}`, { ...init, headers }), env);
 }
 
-function postJson(body: unknown): RequestInit {
-  return { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) };
+function postJson(body: unknown, headers: Record<string, string> = {}): RequestInit {
+  return { method: "POST", headers: { "Content-Type": "application/json", ...headers }, body: JSON.stringify(body) };
 }
 
-describe("/api/admin gate", () => {
-  it("answers 503 until Access is configured, and no longer needs Supabase", async () => {
+function login(env: Env, body: unknown, ip = "203.0.113.7", base = "https://www.pureihram.com/api/admin") {
+  return worker.fetch(
+    new Request(`${base}/login`, postJson(body, { "CF-Connecting-IP": ip, Origin: new URL(base).origin })),
+    env
+  );
+}
+
+describe("admin password login", () => {
+  it("answers 503 until a long enough password and the signing secret are set", async () => {
     stubFetch();
-    expect((await admin("me", {}, makeEnv({ ACCESS_AUD: "" }))).status).toBe(503);
+    expect((await admin("me", {}, makeEnv({ ADMIN_PASSWORD: undefined }), false)).status).toBe(503);
+    expect((await login(makeEnv({ ADMIN_PASSWORD: "short" }), { password: "short" })).status).toBe(503);
+    expect((await admin("me", {}, makeEnv({ ADMIN_SESSION_SECRET: undefined }), false)).status).toBe(503);
+    // Supabase is not needed to sign in or read orders.
     expect((await admin("me", {}, makeEnv({ SUPABASE_SERVICE_ROLE_KEY: undefined }))).status).toBe(200);
   });
 
-  it("refuses a request with no Access token", async () => {
+  it("refuses every admin route without a session, before touching anything", async () => {
     const fetchMock = stubFetch();
     const response = await admin("orders", {}, makeEnv(), false);
     expect(response.status).toBe(401);
-    // Nothing reached the database.
-    expect(fetchMock.mock.calls.some(([url]) => String(url).startsWith(SUPABASE))).toBe(false);
+    expect(fetchMock).not.toHaveBeenCalled();
   });
 
-  it("accepts the token from the CF_Authorization cookie too", async () => {
-    stubFetch();
-    const token = await makeToken({});
-    const response = await worker.fetch(
-      new Request("https://www.pureihram.com/api/admin/me", { headers: { Cookie: `other=1; CF_Authorization=${token}` } }),
-      makeEnv()
+  it("answers the right password with a cookie the page cannot read, kept 30 days when asked", async () => {
+    const env = makeEnv();
+    const response = await login(env, { password: `  ${PASSWORD} `, remember: true });
+    expect(response.status).toBe(200);
+    const setCookie = response.headers.get("Set-Cookie")!;
+    expect(setCookie).toMatch(new RegExp(`^${COOKIE_NAME}=v1\\.`));
+    for (const part of ["Path=/api/admin", "HttpOnly", "Secure", "SameSite=Strict", "Max-Age=2592000"]) {
+      expect(setCookie).toContain(part);
+    }
+    // That cookie opens the admin.
+    const me = await worker.fetch(
+      new Request("https://www.pureihram.com/api/admin/me", { headers: { Cookie: `other=1; ${setCookie.split(";")[0]}` } }),
+      env
     );
-    expect(await response.json()).toEqual({ email: "rafi.drifly@gmail.com" });
+    expect(await me.json()).toEqual({ signedIn: true });
+  });
+
+  it("without 'keep me signed in' the cookie ends with the browser and the session within 12 hours", async () => {
+    const env = makeEnv();
+    const setCookie = (await login(env, { password: PASSWORD, remember: false })).headers.get("Set-Cookie")!;
+    expect(setCookie).not.toContain("Max-Age");
+    const cookie = setCookie.split(";")[0];
+    const request = new Request("https://www.pureihram.com/api/admin/me", { headers: { Cookie: cookie } });
+    expect(await hasValidSession(request, env)).toBe(true);
+    expect(await hasValidSession(request, env, Date.now() + SHORT_SESSION_MS + 1000)).toBe(false);
+  });
+
+  it("uses the workers.dev path for a cookie set there", async () => {
+    const response = await login(makeEnv(), { password: PASSWORD }, "203.0.113.7", "https://pureihram-api.example/admin");
+    expect(response.headers.get("Set-Cookie")).toContain("Path=/admin;");
+  });
+
+  it("refuses an edited, expired or old-password session", async () => {
+    stubFetch();
+    const env = makeEnv();
+    const value = await makeSessionValue(env, true);
+    const [, expires, signature] = value.split(".");
+    const asCookie = (v: string) => ({ headers: { Cookie: `${COOKIE_NAME}=${v}` } });
+
+    // Pushing the expiry later breaks the signature.
+    const edited = `v1.${Number(expires) + 1000}.${signature}`;
+    expect((await admin("me", asCookie(edited), env, false)).status).toBe(401);
+    // An expired one, though genuinely signed.
+    const expired = await makeSessionValue(env, false, Date.now() - SHORT_SESSION_MS - 1000);
+    expect((await admin("me", asCookie(expired), env, false)).status).toBe(401);
+    // Changing the password signs every device out.
+    expect((await admin("me", asCookie(value), makeEnv({ ADMIN_PASSWORD: "a brand new password" }), false)).status).toBe(401);
+    // A session signed with another secret.
+    expect((await admin("me", asCookie(value), makeEnv({ ADMIN_SESSION_SECRET: SECRET.replace("0", "9") }), false)).status).toBe(401);
+    expect((await admin("me", asCookie("garbage"), env, false)).status).toBe(401);
+    // The real one still works.
+    expect((await admin("me", asCookie(value), env, false)).status).toBe(200);
+  });
+
+  it("locks an address out after 5 wrong passwords, even for the right one, for 15 minutes", async () => {
+    const env = makeEnv();
+    const messages: string[] = [];
+    for (let i = 0; i < 5; i++) {
+      const response = await login(env, { password: "wrong password!!" });
+      messages.push(((await response.json()) as { error: string }).error);
+    }
+    expect(messages[0]).toBe("Wrong password. 4 tries left before a 15-minute wait.");
+    expect(messages[3]).toBe("Wrong password. 1 try left before a 15-minute wait.");
+    expect(messages[4]).toMatch(/^Too many wrong passwords/);
+
+    const locked = await login(env, { password: PASSWORD });
+    expect(locked.status).toBe(429);
+    expect(locked.headers.get("Set-Cookie")).toBeNull();
+    // Another address is not affected.
+    expect((await login(env, { password: PASSWORD }, "198.51.100.1")).status).toBe(200);
+
+    // After 15 minutes the right password works, and clears the count.
+    const later = Date.now() + LOCKOUT_MS + 1000;
+    const request = new Request("https://www.pureihram.com/api/admin/login", {
+      ...postJson({ password: PASSWORD }, { "CF-Connecting-IP": "203.0.113.7" }),
+    });
+    expect((await handleLogin(request, env, later)).status).toBe(200);
+    expect(raw(env).prepare("SELECT COUNT(*) AS n FROM admin_login_failures WHERE ip = '203.0.113.7'").get()).toEqual({ n: 0 });
+  });
+
+  it("refuses an empty or absurdly long guess as a wrong password", async () => {
+    const env = makeEnv();
+    expect((await login(env, {})).status).toBe(401);
+    expect((await login(env, { password: "x".repeat(500) })).status).toBe(401);
+    expect(raw(env).prepare("SELECT COUNT(*) AS n FROM admin_login_failures").get()).toEqual({ n: 2 });
+  });
+
+  it("signs out by clearing the cookie", async () => {
+    const response = await admin("logout", { method: "POST" });
+    expect(response.headers.get("Set-Cookie")).toContain("Max-Age=0");
+  });
+
+  it("refuses a change sent from another site, even with a session", async () => {
+    stubFetch();
+    const env = makeEnv();
+    const response = await admin("inventory/adjust", postJson({ delta: 5 }, { Origin: "https://evil.example" }), env);
+    expect(response.status).toBe(403);
+    expect(raw(env).prepare("SELECT COUNT(*) AS n FROM stock_movements").get()).toEqual({ n: 0 });
   });
 });
 
@@ -179,11 +207,10 @@ describe("/api/admin routes", () => {
       ...overrides,
     };
     const cols = Object.keys(row);
-    (env.DB as ReturnType<typeof testD1>).raw
+    raw(env)
       .prepare(`INSERT INTO orders (${cols.join(", ")}) VALUES (${cols.map(() => "?").join(", ")})`)
       .run(...Object.values(row));
   }
-  const raw = (env: Env) => (env.DB as ReturnType<typeof testD1>).raw;
 
   it("lists orders from D1, newest first, with the address as an object", async () => {
     stubFetch();

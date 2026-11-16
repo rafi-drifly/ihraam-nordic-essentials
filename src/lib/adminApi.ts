@@ -1,67 +1,68 @@
 /**
- * The admin's backend: /api/admin on this same origin, behind Cloudflare Access.
+ * The admin's backend: /api/admin on this same origin, behind the admin password.
  *
- * Access does the login: a full page load of /admin while signed out goes to
- * Cloudflare's sign-in page (a one-time code by email) and comes back with a
- * session cookie that these requests then carry. The Worker behind /api/admin
- * checks that session again on every call.
+ * Since 16 Nov 2026 the admin signs in with a password, like the Yalla Jerky
+ * admin (before that, Cloudflare Access with an emailed code). The Worker
+ * checks the password and answers with a session cookie that the browser
+ * sends back with every request. This page never stores the password, and
+ * cannot read the cookie: the Worker checks the session on every call.
  */
 
-/** Where a full page load sends the browser through the Access login. */
-const LOGIN_URL = "/admin/orders";
-const LOGOUT_URL = "/cdn-cgi/access/logout";
-/** Stops a redirect loop if a login succeeds but the Worker still refuses it. */
-const LOGIN_REDIRECT_KEY = "pureihram_admin_login_redirect_at";
-const LOGIN_REDIRECT_COOLDOWN_MS = 30_000;
+const LOGIN_PAGE = "/admin";
 
 export class AdminSignInRequired extends Error {
   constructor() {
-    super("Your admin session has ended. Signing you in again...");
+    super("Your admin session has ended. Please sign in again.");
   }
 }
 
-/**
- * Send the browser through the Access login, unless that was just tried, in
- * which case the session is fine and the account is simply not allowed in.
- * Returns whether it redirected.
- */
-export function startAdminLogin(): boolean {
-  try {
-    const last = Number(sessionStorage.getItem(LOGIN_REDIRECT_KEY) ?? 0);
-    if (Date.now() - last < LOGIN_REDIRECT_COOLDOWN_MS) return false;
-    sessionStorage.setItem(LOGIN_REDIRECT_KEY, String(Date.now()));
-  } catch {
-    /* no sessionStorage: redirect anyway */
-  }
-  window.location.assign(LOGIN_URL);
-  return true;
+/** Back to the password page, then on to where the admin was. */
+function goToLogin(): void {
+  const here = window.location.pathname;
+  window.location.assign(here.startsWith("/admin/") ? `${LOGIN_PAGE}?next=${encodeURIComponent(here)}` : LOGIN_PAGE);
 }
 
-export function adminSignOut(): void {
-  window.location.assign(LOGOUT_URL);
+async function readError(response: Response): Promise<string> {
+  const data = (await response.json().catch(() => ({}))) as { error?: string };
+  return data.error || `Request failed (${response.status})`;
 }
 
 async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
-  let response: Response;
-  try {
-    response = await fetch(`/api/admin/${path}`, { credentials: "same-origin", ...init });
-  } catch (error) {
-    // An expired Access session answers with a redirect to Cloudflare's own
-    // sign-in page, which fetch cannot follow across origins and reports as a
-    // network error. Online, that almost always means "sign in again".
-    if (navigator.onLine && startAdminLogin()) throw new AdminSignInRequired();
-    throw error;
+  const response = await fetch(`/api/admin/${path}`, { credentials: "same-origin", ...init });
+  if (response.status === 401) {
+    goToLogin();
+    throw new AdminSignInRequired();
   }
-
   const isJson = (response.headers.get("Content-Type") ?? "").includes("application/json");
-  if (response.status === 401 || response.redirected || !isJson) {
-    if (startAdminLogin()) throw new AdminSignInRequired();
-    throw new Error("This account is not allowed into the admin.");
-  }
+  if (!isJson) throw new Error(`Unexpected answer from the server (${response.status}).`);
+  if (!response.ok) throw new Error(await readError(response));
+  return (await response.json()) as T;
+}
 
-  const data = (await response.json()) as T & { error?: string };
-  if (!response.ok) throw new Error(data.error || `Request failed (${response.status})`);
-  return data;
+/** Whether this browser has a current admin session. Never redirects. */
+export async function adminHasSession(): Promise<boolean> {
+  const response = await fetch("/api/admin/me", { credentials: "same-origin" });
+  if (response.status === 401) return false;
+  if (!response.ok) throw new Error(await readError(response));
+  // Only the Worker's own answer counts, not a page some other server returned.
+  const data = (await response.json().catch(() => null)) as { signedIn?: boolean } | null;
+  return data?.signedIn === true;
+}
+
+/** Checks the password; on success the browser now holds the session cookie. */
+export async function adminSignIn(password: string, remember: boolean): Promise<void> {
+  const response = await fetch("/api/admin/login", {
+    method: "POST",
+    credentials: "same-origin",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ password, remember }),
+  });
+  if (!response.ok) throw new Error(await readError(response));
+}
+
+export async function adminSignOut(): Promise<void> {
+  await fetch("/api/admin/logout", { method: "POST", credentials: "same-origin" }).catch(() => undefined);
+  window.location.assign(LOGIN_PAGE);
 }
 
 export function adminGet<T>(path: string): Promise<T> {

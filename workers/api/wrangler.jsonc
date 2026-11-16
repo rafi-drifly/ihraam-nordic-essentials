@@ -4,7 +4,7 @@
   "main": "src/index.ts",
   "compatibility_date": "2026-10-01",
   "observability": { "enabled": true },
-  // Same-origin home for the admin API, so the Access login cookie reaches it.
+  // Same-origin home for the admin API, so the admin's session cookie reaches it.
   // workers_dev stays on explicitly: the public forms still post there, and
   // declaring a route would otherwise switch it off.
   "routes": [{ "pattern": "www.pureihram.com/api/*", "zone_name": "pureihram.com" }],
@@ -26,18 +26,13 @@
     // The "Hajj Guide Subscribers" list. Empty skips the list subscription,
     // exactly as the Supabase function did when its list secret was unset.
     "KLAVIYO_PREP_PACK_LIST_ID": "",
-    "SUPABASE_URL": "https://cimjybhmilaecqhnqrby.supabase.co",
-    // From the Access application "Pure Ihram admin". Empty keeps /admin/*
-    // answering 503, so nothing is reachable before Access is in place.
-    "ACCESS_TEAM_DOMAIN": "wild-art-09ec.cloudflareaccess.com",
-    // Access application "Pure Ihram admin" (created 16 Nov 2026), guarding
-    // www.pureihram.com/admin and /api/admin; only rafi.drifly@gmail.com.
-    "ACCESS_AUD": "68d3f4f75bfdbf010e54da3189957e5b300564eea632969b0dd8a3055e9b340d",
-    "ADMIN_EMAILS": "rafi.drifly@gmail.com"
+    "SUPABASE_URL": "https://cimjybhmilaecqhnqrby.supabase.co"
   }
   // Secrets, set with `npx wrangler secret put <NAME>`:
+  //   ADMIN_PASSWORD             the admin password, 12+ characters; changing it signs every device out
+  //   ADMIN_SESSION_SECRET       random 32+ characters that sign admin sessions; nobody types it
   //   RESEND_API_KEY             delivers contact-form messages to the shop inbox
-  //   SUPABASE_SERVICE_ROLE_KEY  lets the admin routes read and write Supabase
+  //   SUPABASE_SERVICE_ROLE_KEY  lets the admin routes read and write Supabase (product images only)
   //   STRIPE_SECRET_KEY          creates the shop's Stripe Checkout sessions (/checkout)
   //   STRIPE_WEBHOOK_SECRET      signing secret of the Stripe webhook endpoint (/stripe-webhook)
   //   IMPORT_TOKEN               only while copying past orders from Stripe; delete afterwards

@@ -1,9 +1,11 @@
 /**
- * The admin's backend: /api/admin/*, behind Cloudflare Access.
+ * The admin's backend: /api/admin/*, behind the admin password.
  *
  * Stage 2 of the move off Supabase. The admin pages no longer log in to
- * Supabase or talk to it. They call these routes, which accept only a valid
- * Access login (see access.ts).
+ * Supabase or talk to it. They call these routes, which accept only a signed
+ * session from the password login (admin-session.ts). Cloudflare Access did
+ * this job from 14 to 16 Nov 2026, until the owner asked for a password like
+ * the Yalla Jerky admin's.
  *
  * Since 14 Nov 2026 orders and stock live in D1 (migrations/0002_orders.sql),
  * written by the Stripe webhook in orders.ts, and the extra-delivery charge is
@@ -13,7 +15,7 @@
  * product images from there.
  */
 
-import { accessTokenFrom, verifyAccessToken } from "./access";
+import { handleLogin, handleLogout, hasValidSession, sessionSetupProblem, type AdminSessionEnv } from "./admin-session";
 import { extraShippingEmail, sendEmail } from "./emails";
 import { parseOrderRow, PRODUCT_KEY } from "./orders";
 import { stripeApi, StripeError } from "./stripe";
@@ -27,10 +29,7 @@ export interface PushAdminService {
   sendTest(): Promise<{ sent: number; pruned: number }>;
 }
 
-export interface AdminEnv {
-  ACCESS_TEAM_DOMAIN: string;
-  ACCESS_AUD: string;
-  ADMIN_EMAILS: string;
+export interface AdminEnv extends AdminSessionEnv {
   SUPABASE_URL: string;
   /** Only the product image routes need this now. */
   SUPABASE_SERVICE_ROLE_KEY?: string;
@@ -91,10 +90,10 @@ async function rest<T>(env: AdminEnv, path: string, init: RequestInit = {}): Pro
 
 // --- Routes --------------------------------------------------------------
 
-async function route(request: Request, env: AdminEnv, path: string, email: string): Promise<Response> {
+async function route(request: Request, env: AdminEnv, path: string): Promise<Response> {
   const method = request.method;
 
-  if (path === "me" && method === "GET") return json({ email });
+  if (path === "me" && method === "GET") return json({ signedIn: true });
 
   // Orders ---------------------------------------------------------------
   if (path === "orders" && method === "GET") {
@@ -301,26 +300,23 @@ async function route(request: Request, env: AdminEnv, path: string, email: strin
 
 /** Entry point for every /api/admin/* request. */
 export async function handleAdmin(request: Request, env: AdminEnv, path: string): Promise<Response> {
-  // Fail closed until Access is configured.
-  if (!env.ACCESS_TEAM_DOMAIN || !env.ACCESS_AUD) {
-    return json({ error: "Admin is not configured yet." }, 503);
+  // Anything that changes something must come from the admin's own pages. The
+  // cookie's SameSite=Strict already keeps other sites out; this is a second lock.
+  if (request.method !== "GET" && request.method !== "HEAD") {
+    const origin = request.headers.get("Origin");
+    if (origin && origin !== new URL(request.url).origin) return json({ error: "Not allowed." }, 403);
   }
 
-  const token = accessTokenFrom(request);
-  const email = token
-    ? await verifyAccessToken(token, {
-        teamDomain: env.ACCESS_TEAM_DOMAIN,
-        aud: env.ACCESS_AUD,
-        adminEmails: env.ADMIN_EMAILS.split(",").map((e) => e.trim().toLowerCase()).filter(Boolean),
-      }).catch((error: unknown) => {
-        console.error("admin: could not verify Access token", error instanceof Error ? error.message : error);
-        return null;
-      })
-    : null;
-  if (!email) return json({ error: "Sign in through Cloudflare Access." }, 401);
-
   try {
-    return await route(request, env, path, email);
+    if (path === "login" && request.method === "POST") return await handleLogin(request, env);
+    if (path === "logout" && request.method === "POST") return handleLogout(request);
+
+    // Fail closed until the password and the signing secret are both set.
+    const problem = sessionSetupProblem(env);
+    if (problem) return json({ error: problem }, 503);
+    if (!(await hasValidSession(request, env))) return json({ error: "Please sign in." }, 401);
+
+    return await route(request, env, path);
   } catch (error) {
     if (error instanceof HttpError) return json({ error: error.message }, error.status);
     console.error("admin: unexpected error", error instanceof Error ? error.message : error);

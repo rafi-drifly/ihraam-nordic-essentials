@@ -69,8 +69,8 @@ const AdminOrders = () => {
   const [extraShippingAmount, setExtraShippingAmount] = useState("");
   const [sendingEmail, setSendingEmail] = useState(false);
 
-  // Route access is enforced by Cloudflare Access and, decisively, by the
-  // Worker checking that session on every request.
+  // Route access is enforced by RequireAdmin and, decisively, by the Worker
+  // checking the password session on every request.
   useEffect(() => {
     fetchOrders();
   }, []);
